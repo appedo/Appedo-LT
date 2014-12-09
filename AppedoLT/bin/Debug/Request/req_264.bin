@@ -1,0 +1,13 @@
+POST /default.aspx HTTP/1.1
+Host: localhost:8666
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:33.0) Gecko/20100101 Firefox/33.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://localhost:8666/
+Cookie: ASP.NET_SessionId=z0ofoc45v2uzpb553uy514jv
+Connection: keep-alive
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 236
+
+__VIEWSTATE=%2FwEPDwUKMTg0NTgwMzM2M2Rk6KHmY7bilZcYuuXGhQgoSUs6z3E%3D&__VIEWSTATEGENERATOR=CA0B0334&__EVENTVALIDATION=%2FwEWBAL%2FycDGBwKl1bK4CQK1qbSRCwKC3IeGDP5XFUZnikpttlfd%2Fdwv%2F3TAMn9v&txtUsername=df&txtPassword=dfgh&btnLogin=Login

@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <uniquenumbers>
+    <server lastcreatedid="23" />
+  </uniquenumbers>
+  <servers>
+    <server id="23" name="server23" type="" ipaddress="lt0016" username="" password="" interval="5">
+      <counters>
+        <counter category="Process" instance="_Total" countername="% Processor Time" />
+        <counter category="Process" instance="_Total" countername="% User Time" />
+        <counter category="Process" instance="_Total" countername="% Privileged Time" />
+        <counter category="Process" instance="_Total" countername="Virtual Bytes Peak" />
+        <counter category="Process" instance="_Total" countername="Virtual Bytes" />
+        <counter category="Process" instance="_Total" countername="Page Faults/sec" />
+        <counter category="Process" instance="_Total" countername="Working Set Peak" />
+      </counters>
+    </server>
+  </servers>
+</root>

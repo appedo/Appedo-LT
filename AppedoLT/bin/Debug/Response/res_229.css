@@ -1,0 +1,96 @@
+html,body
+{
+	/*debug */
+	/*color: red;*/
+}
+/* As per changes request of 1.1.1 */
+.index_content_container h1
+{
+    border-bottom: none;
+	font-size: 102px;
+	line-height: 82px;
+	letter-spacing: -6px;
+	padding: 126px 0 0;
+}
+.formatlist
+{
+	margin: 5px -20px 0 -10px;
+	padding: 0;
+	list-style: none;
+	clear: both;
+}
+
+.formatlist li
+{
+	width: 33%;
+	float: left;
+	padding: 10px;
+	position: relative;
+	height: 310px;
+	overflow: hidden;
+	-webkit-box-sizing: border-box;
+	/*background: #fff; /* SWITCH */
+	margin: 0 !important;
+}
+
+.formatlist li img
+{
+	vertical-align: bottom;
+	width: 100%;
+	margin: 0;
+	border-bottom: 2px dotted #e7e7e7;	
+}
+
+
+
+
+/*	FEATURED FORMATS
+------------------------------------------------------------------------*/
+
+.featured_formats_container h1
+{
+	width: 100%;
+}
+
+
+.featured_formats_container .player_container
+{
+	width:66%;
+	height: 315px;
+}
+
+.featured_formats_container > p 
+{
+	width: 33%;
+}
+
+
+
+
+/*	ABOUT PAGE
+------------------------------------------------------------------------*/
+
+.about_container .contact img
+{
+	width:100%;
+	height: auto;
+}
+
+
+
+
+/*	FORMAT SINGLE PAGE
+------------------------------------------------------------------------*/
+
+.format_container .box
+{
+	float:none;
+	display: table-cell;
+	width: 33.33%;
+	padding: 0 0 0 20px;
+}
+
+.format_container .box .box_share
+{
+	padding: 0;
+}

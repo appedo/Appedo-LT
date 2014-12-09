@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<report>
+  <summaryreport>
+    <val starttime="02-12-2014 16:42:16" endtime="02-12-2014 16:42:21" durationsec="4" usercount="1" totalhits="6" avgresponse="0.388789166666667" avghits="1.5" totalthroughput="0.025" avgthroughput="0.0506210327148438" totalerrors="2" totalpage="2" avgpageresponse="1.1663675" reponse200="3" reponse300="1" reponse400="2" reponse500="0" />
+  </summaryreport>
+  <log />
+  <error>
+    <val loadgen="192.168.1.70" reportname="sdfsdfa" scenarioname="aazX" scriptname="script1" requestid="252" url="/favicon.ico" userid="1" iterationid="1" errorcode="404" message="The remote server returned an error: (404) Not Found." time="02-12-2014 16:42:17" />
+    <val loadgen="192.168.1.70" reportname="sdfsdfa" scenarioname="aazX" scriptname="script1" requestid="253" url="/favicon.ico" userid="1" iterationid="1" errorcode="404" message="The remote server returned an error: (404) Not Found." time="02-12-2014 16:42:17" />
+  </error>
+  <script name="script1" id="11">
+    <requests>
+      <val containerid="51" containername="Container1" requestid="250" address="/" />
+      <val containerid="51" containername="Container1" requestid="251" address="/Untitled.jpg" />
+      <val containerid="51" containername="Container1" requestid="252" address="/favicon.ico" />
+      <val containerid="51" containername="Container1" requestid="253" address="/favicon.ico" />
+      <val containerid="51" containername="Container1" requestid="255" address="/default.aspx" />
+      <val containerid="51" containername="Container1" requestid="256" address="/Newuser.aspx" />
+    </requests>
+    <requestresponse>
+      <val containerid="51" containername="Container1" requestid="250" address="/" min="1167.9855" max="1167.9855" avg="1167.9855" throughput="1208" hitcount="1" />
+      <val containerid="51" containername="Container1" requestid="251" address="/Untitled.jpg" min="3.14" max="3.14" avg="3.14" throughput="19301" hitcount="1" />
+      <val containerid="51" containername="Container1" requestid="252" address="/favicon.ico" min="23.6899" max="23.6899" avg="23.6899" throughput="2288" hitcount="1" />
+      <val containerid="51" containername="Container1" requestid="253" address="/favicon.ico" min="21.2896" max="21.2896" avg="21.2896" throughput="2288" hitcount="1" />
+      <val containerid="51" containername="Container1" requestid="255" address="/default.aspx" min="73.3212" max="73.3212" avg="73.3212" throughput="132" hitcount="1" />
+      <val containerid="51" containername="Container1" requestid="256" address="/Newuser.aspx" min="1043.3088" max="1043.3088" avg="1043.3088" throughput="1323" hitcount="1" />
+    </requestresponse>
+    <containerresponse>
+      <val containerid="51" containername="Container1" min="2332.735" max="2332.735" avg="2332.735" />
+    </containerresponse>
+    <errorcount>
+      <val containerid="51" containername="Container1" requestid="252" address="/favicon.ico" count="1" />
+      <val containerid="51" containername="Container1" requestid="253" address="/favicon.ico" count="1" />
+    </errorcount>
+    <errorcode>
+      <val errorcode="404" message="The remote server returned an error: (404) Not Found." count="2" />
+    </errorcode>
+    <transactions />
+  </script>
+</report>

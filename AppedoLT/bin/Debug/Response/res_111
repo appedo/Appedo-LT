@@ -1,0 +1,700 @@
+</select>
+                                <span id="ctl00_ContentPlaceHolder1_cvSelPhoto" style="color:Red;display:none;">Please select any one Photo ID Card Type</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="left">
+                                ID Card No.<font color="red">*</font></td>
+                            <td align="left">
+                                
+                                
+                                
+                                                                    
+                            
+                                <span id="ctl00_ContentPlaceHolder1_lblPPMsg" class="txt">(Minimum 7 chars)</span>
+                                
+                                
+                                
+                            
+                                <span id="ctl00_ContentPlaceHolder1_rfvIDCardPP" style="color:Red;display:none;">Please Enter Passport Number</span>
+                                <span id="ctl00_ContentPlaceHolder1_rxIDCardPP" style="color:Red;display:none;">Please Enter valid Passport Number</span>
+                                <span id="ctl00_ContentPlaceHolder1_rfvIDCardDL" style="color:Red;display:none;">Please Enter Driving Licence Number</span>
+                                <span id="ctl00_ContentPlaceHolder1_rxIDCardDL" style="color:Red;display:none;">Invalid DL Number, Special Characters allowed are (Space,-,/)</span>
+                                <span id="ctl00_ContentPlaceHolder1_rfvIDCardPC" style="color:Red;display:none;">Please Enter PAN Card Number</span>
+                                <span id="ctl00_ContentPlaceHolder1_rxIDCardPC" style="color:Red;display:none;">Please Enter valid PAN Card Number</span>
+                                <span id="ctl00_ContentPlaceHolder1_rfvIDCardVID" style="color:Red;display:none;">Please Enter Voter ID Number</span>
+                                <span id="ctl00_ContentPlaceHolder1_rxIDCardVID" style="color:Red;display:none;">Please Enter valid Voters ID Number</span>
+                            <span id="ctl00_ContentPlaceHolder1_rfvIDCardSchool" style="color:Red;display:none;">Please Enter School/College ID Number</span>
+                            <span id="ctl00_ContentPlaceHolder1_cvIDCardSchool" style="color:Red;display:none;">Please Enter valid School/College ID Number</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                &nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                &nbsp;</td>
+                            <td class="txt" align="left">
+                                <b>Note: </b>Please choose any one of the above listed 'Photo Id Card' and furnish
+                                the relevant Information( Passport No, Driving License No, Voter's Id No,..etc)
+                                about the Id card. <span style="color:Red; font-weight:bold">Please carry the same photo Id for Darshan</span> <p> Please choose
+                            'School / College Identity Card' from above listed 'Photo Id Card' for childrens
+                            below 18 Years.</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="txt" align="left">
+                                Upload your Photo<font color="red">*</font></td>
+                            <td align="left">
+                                <input type="file" name="ctl00$ContentPlaceHolder1$txtUpload" id="ctl00_ContentPlaceHolder1_txtUpload" class="textbox2" onKeyDown="return false;" />
+                                <span id="ctl00_ContentPlaceHolder1_RequiredFieldValidator8" style="color:Red;display:none;">Please upload your photo less than 20kb.</span>
+                                <span id="ctl00_ContentPlaceHolder1_CustomValidator2" style="color:Red;display:none;">Please select valid gif/jpg/jpeg/bmp file</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                &nbsp;</td>
+                            <td class="redtxt1" align="left">
+                                Please Upload your Photo size less than 20 KB.
+
+                                <script type="text/javascript">
+                                    function openpopup(popurl) {
+                                        var winpops = window.open(popurl, "imgCrop", "width=430,height=400,status")
+                                    }
+                                </script>
+
+                                <a href="javascript:openpopup('ImageCrop.htm')"><font color="royalblue">Help</font></a>
+                            </td>
+                            <td>
+                                &nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                &nbsp;
+                            </td>
+                        </tr>
+                        <tr>
+                            <td height="1" colspan="2" align="left" background="../images/line.gif">
+                                <img src="../images/spacer.gif" width="3" height="1"></td>
+                        </tr>
+                        <tr id="ctl00_ContentPlaceHolder1_trAccomPilHead">
+	<td class="pageTitle" width="25%">
+                                Accompanying Pilgrim Details
+                            </td>
+	<td class="txt" align="left">
+                                <span id="ctl00_ContentPlaceHolder1_lblPilgrimNote" class="red_txt">Note: Pilgrims Name, Age, Gender and Photo are mandatory</span>
+                            </td>
+</tr>
+
+                        <tr id="ctl00_ContentPlaceHolder1_trPilTable">
+	<td colspan="2">
+                                <table border="0" width="100%" cellspacing="1" cellpadding="1">
+                                    <tr>
+                                        <td style="width: 20px;">
+                                            No.
+                                        </td>
+                                        <td>
+                                            Name
+                                        </td>
+                                        <td style="width: 50px;">
+                                            Age
+                                        </td>
+                                        <td style="width: 80px;">
+                                            Gender
+                                        </td>
+                                        <td style="width: 250px;" align="left">
+                                            Photo
+                                        </td>
+                                        <td style="width: 250px;" align="left">
+                                        </td>
+                                    </tr>
+                                    <tr id="ctl00_ContentPlaceHolder1_trrow1">
+		<td style="width: 20px;">
+                                            2
+                                        </td>
+		<td style="width: 50px; vertical-align: top; margin-left: 80px;" align="left">
+                                            <input name="ctl00$ContentPlaceHolder1$txtName1" type="text" maxlength="30" id="ctl00_ContentPlaceHolder1_txtName1" class="textbox1" />
+                                        </td>
+		<td style="width: 50px; vertical-align: top;" align="left">
+                                            <input name="ctl00$ContentPlaceHolder1$txtAge1" type="text" maxlength="2" id="ctl00_ContentPlaceHolder1_txtAge1" class="textbox1" style="width: 50px;" />
+                                        </td>
+		<td style="width: 80px; vertical-align: top;">
+                                            <select name="ctl00$ContentPlaceHolder1$ddlGender1" id="ctl00_ContentPlaceHolder1_ddlGender1" class="textbox1" style="width:80px;">
+			<option value="--Select--">--Select--</option>
+			<option value="Male">Male</option>
+			<option value="Female">Female</option>
+
+		</select>
+                                        </td>
+		<td style="width: 250px; vertical-align: top;" align="left">
+                                            <input type="file" name="ctl00$ContentPlaceHolder1$flpUpload1" id="ctl00_ContentPlaceHolder1_flpUpload1" class="textbox2" onKeyDown="return false;" />
+                                        </td>
+		<td style="width: 250px;" align="left">
+                                            <span id="ctl00_ContentPlaceHolder1_RangeValidator2" style="color:Red;display:none;">Please Enter Age between 10 and 100</span>
+                                         
+                                            <span id="ctl00_ContentPlaceHolder1_CustomValidator4" style="color:Red;display:none;">Please select valid gif/jpg/jpeg/bmp file</span>
+                                                <span id="ctl00_ContentPlaceHolder1_rfvaccompanyName" style="color:Red;display:none;">Please Enter Name</span>
+                                     
+                                        
+                                        <span id="ctl00_ContentPlaceHolder1_RegularExpressionValidator12" style="color:Red;display:none;">Please Enter Valid Name</span></td>
+	</tr>
+	
+                                    </tr>
+                                    
+                                    
+                                    
+                                    
+                                </table>
+                            </td>
+</tr>
+
+                        <tr>
+                            <td>
+                                &nbsp;
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="pageTitle" colspan="2" align="left">
+                                Terms &amp; Conditions
+                            </td>
+                        </tr>
+                        <tr>
+                            <td height="1" colspan="2" align="left" background="../images/line.gif">
+                                <img src="../images/spacer.gif" width="3" height="1"></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" align="left">
+                                <textarea name="ctl00$ContentPlaceHolder1$txtDisc" rows="6" cols="20" readonly="readonly" id="ctl00_ContentPlaceHolder1_txtDisc" class="txtBoxlong" style="width:98%;">Tirumala Tirupati Devastanam is a charitable trust which supervises the administrative functions necessary to the conduct of the various traditional rituals at Sri Venkateswara Temple, Tirumala.
+
+    TTD does not solicit or canvass for any offering. TTD has its own fund, the corpus of which, shall include all the amounts received by it by way of offering, gifts, kanukas including offerings deposited in Hundi and any income from any other source as per sec 111 of A.P.Charitable and Hindu Religious Institutions and Endowments Act 1987.  
+
+    It is hereby made clear, that all offerings made through the on-line facility is accepted by TTD as a non-reclaimable transfer to the Lord's Hundi and the donor is not entitled to any claim that may be available to a consumer under this payment mode.The devotee has read and understood the above and hereby agrees to disclaim any right that may accrue to him as a consumer in an online transaction, in view of the special nature of these services.
+
+    Please go through the Disclaimer,Privacy Policy and Copyright information in Terms &amp; Conditions provided in website.
+                                </textarea>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" align="left">
+                                <span class="txtSmall1">
+                                    <input id="ctl00_ContentPlaceHolder1_ChkAccept" type="checkbox" name="ctl00$ContentPlaceHolder1$ChkAccept" />I Agree the Terms &amp;
+                                    Conditions </span>
+                                <span id="ctl00_ContentPlaceHolder1_CheckNews" style="color:Red;display:none;">Please accept the terms & conditions</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" height="10">
+                                &nbsp;
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" align="center">
+                                <input type="hidden" name="ctl00$ContentPlaceHolder1$Specialdarshan_date" id="ctl00_ContentPlaceHolder1_Specialdarshan_date" value="9/1/2014 12:00:00 AM" />
+                                <input type="submit" name="ctl00$ContentPlaceHolder1$btnSubmit" value="Continue" onclick="javascript:WebForm_DoPostBackWithOptions(new WebForm_PostBackOptions(&quot;ctl00$ContentPlaceHolder1$btnSubmit&quot;, &quot;&quot;, true, &quot;&quot;, &quot;&quot;, false, false))" id="ctl00_ContentPlaceHolder1_btnSubmit" class="but" />
+                                <input type="submit" name="ctl00$ContentPlaceHolder1$btnReset" value="Reset" id="ctl00_ContentPlaceHolder1_btnReset" class="but" />
+                            </td>
+                        </tr>
+           
+                </table>
+                <p>
+                    &nbsp;</p>
+            </td>
+        </tr>
+    </table>
+    <script type="text/javascript" language="javascript">
+            function CheckTerms(src,args)
+            {
+                if(document.getElementById("ctl00_ContentPlaceHolder1_ChkAccept").checked == true)
+                    args.IsValid = true;
+                else
+                    args.IsValid = false;                
+            }
+//            function CheckCountry(src,args)
+//            {                
+//                if(document.getElementById("ctl00_ContentPlaceHolder1_selCountry").value == "--Select--")
+//                    args.IsValid = false;
+//                else
+//                    args.IsValid = true;  
+//            } 
+            
+            function CheckCountry(src,args)
+            {   
+                // Check if the selected country is India then State is enabled otherwise State is disabled
+                if(document.getElementById("ctl00_ContentPlaceHolder1_selCountry").value != "India")
+			    { 
+				    document.getElementById("ctl00_ContentPlaceHolder1_valstate").style.visibility ="hidden";
+			        document.getElementById("ctl00_ContentPlaceHolder1_selState").value="[*** If India - Choose one ***]";
+				    document.getElementById("ctl00_ContentPlaceHolder1_selState").disabled="disabled";
+			    }
+			    else
+			    {
+			        document.getElementById("ctl00_ContentPlaceHolder1_valstate").style.visibility ="visible";
+				    document.getElementById("ctl00_ContentPlaceHolder1_selState").disabled="";
+			    }
+			
+                if(document.getElementById("ctl00_ContentPlaceHolder1_selCountry").value == "--Select--")
+                    args.IsValid = false;
+                else
+                    args.IsValid = true;  
+            } 
+            
+            function CheckState(src,args)
+            {                
+                var chkCountry = "ctl00_ContentPlaceHolder1_selCountry"
+                var myCountry = document.getElementById(chkCountry).value;
+                if(myCountry == "India")
+                 {
+                    if(document.getElementById("ctl00_ContentPlaceHolder1_selState").value == "[*** If India - Choose one ***]")
+                        args.IsValid = false;
+                     else
+                        args.IsValid = true;
+                 }  
+            } 
+            function CheckGender(src,args)
+            {
+                if(document.getElementById("ctl00_ContentPlaceHolder1_ddlGender").selectedIndex == 0 || document.getElementById("ctl00_ContentPlaceHolder1_ddlGender").value =="--Select--") 
+                    args.IsValid = false;
+                else
+                    args.IsValid = true;  
+            }
+            function ValidateFileUpload(Source, args)
+            {
+            
+             // var fuData = document.getElementById('ctl00_ContentPlaceHolder1_txtUpload'); 
+             
+              //var FileUploadPath = fuData.value;
+              
+              var FileUploadPath = args.Value;
+             
+              if(FileUploadPath =='') 
+              {
+                // There is no file selected 
+                args.IsValid = false;
+              }
+              else
+              {
+                var Extension = FileUploadPath.substring(FileUploadPath.lastIndexOf('.') + 1).toLowerCase();
+             
+                if (Extension == "gif" || Extension == "jpg" || Extension == "jpeg" ||  Extension =="bmp")
+                {
+                  args.IsValid = true; // Valid file type
+                }
+                else
+                {
+                  args.IsValid = false; // Not valid file type
+                }
+               }
+            }
+            function CheckPhotoCard(src,args)
+            {
+                if(document.getElementById("ctl00_ContentPlaceHolder1_selPhoto").value == "Choose One")
+                    args.IsValid = false;
+                else
+                    args.IsValid = true;
+            }  
+            
+           // Function to validate passport - should allow only letters and numbers
+         function CheckPassport(src,args)
+            {
+                var passRegx = /^(\w[0-9a-zA-Z]*)?$/i;                
+                var passportNo = document.getElementById("ctl00_ContentPlaceHolder1_txtIDCardPP").value;
+                var result = passRegx.test(passportNo);                
+               
+                if(result == true && passportNo.length >= 7)
+                {
+                    args.IsValid = true;
+                }
+                else
+                {
+                    args.IsValid = false;
+                }                
+            }
+            
+            // Function to validate driving licence - should allow only letters and numbers and space,hyphen and slash as special characters
+          function CheckDrivingLicence(src,args)
+            {
+                var passRegx = /^(\w[0-9 a-zA-Z-/]*)?$/i;        
+                var numberic = "0123456789"; 
+                var alphabets = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";        
+                var drivingLicenceNo = document.getElementById("ctl00_ContentPlaceHolder1_txtIDCardDL").value;
+                var result = passRegx.test(drivingLicenceNo);                
+                noCount = 0; 
+                letterCount = 0;
+                
+                for(i=0;i<drivingLicenceNo.length;i++)
+                {  
+                    for(j=0;j<numberic.length;j++)
+                    {                             
+                        if(drivingLicenceNo.charAt(i) == numberic.charAt(j))
+                        {
+                            noCount = noCount + 1; 
+                        }
+                    }                    
+                }
+                for(i=0;i<drivingLicenceNo.length;i++)
+                {  
+                    for(j=0;j<alphabets.length;j++)
+                    {                             
+                        if(drivingLicenceNo.charAt(i) == alphabets.charAt(j))
+                        {
+                            letterCount = letterCount + 1;
+                        }
+                    }                    
+                }                
+                
+                if(result == true && drivingLicenceNo.length >= 7)
+                {
+                    args.IsValid = true;
+                }
+                else
+                {
+                    args.IsValid = false;
+                }                
+            }
+            
+            // Function to validate voters id - should allow only letters and numbers, some special characters allowed
+            // Allowed characters are blankspace,/,- and _
+            // Updated by Hariselvan.N on Feb-01-2012 - Special allowed for DrivingLicence
+            function CheckVotersID(src,args)
+            {
+                //var votersIDRegx = /^(\w[0-9a-zA-Z]*)?$/i; 
+                var votersIDRegx = /^(\w[0-9 a-zA-Z/-]*)?$/i;                
+                var votersIDNo = document.getElementById("ctl00_ContentPlaceHolder1_txtIDCardVID").value;
+                var result = votersIDRegx.test(votersIDNo);                
+               
+                if(result == true && votersIDNo.length >= 7)
+                {
+                    args.IsValid = true;
+                }
+                else
+                {
+                    args.IsValid = false;
+                }                
+            }    
+            
+            // ------ CR000356
+            function CheckSchoolID(src,args)
+            {
+                //var schoolIDRegx = /^(\w[0-9a-zA-Z/-_]*)?$/i;  
+                var schoolIDRegx = "~!@#$%^&*()+=|]}[{';:,<.>?` \"";       
+                var validSchoolIDRegx = "-_/";                    
+                var schoolIDNo = document.getElementById("ctl00_ContentPlaceHolder1_txtIDCardSchool").value;
+                //var result = schoolIDRegx.test(schoolIDNo);  
+                var kount = 0;
+                var kount1 = 0;
+                var specialCheck = false;
+                var firstSpecialCheck = false;
+                
+                    for(k=0;k<validSchoolIDRegx.length; k++)
+                    {
+                        if(schoolIDNo.charAt(0) == validSchoolIDRegx.charAt(k))
+                        {                           
+                            firstSpecialCheck = true;
+                            break;
+                        }
+                    } 
+               
+                for(i=0;i<schoolIDNo.length; i++)
+                {
+                    for(j=0;j<schoolIDRegx.length; j++)
+                    {
+                        if(schoolIDNo.charAt(i)== schoolIDRegx.charAt(j))
+                        {
+                            kount = 1;
+                            break;
+                        }
+                    } 
+                    if(kount == 1)
+                    {
+                        specialCheck = true;
+                        break;
+                    }  
+                }              
+              
+                if(specialCheck == false && schoolIDNo.length >= 6 && firstSpecialCheck == false)
+                {
+                    args.IsValid = true;
+                }
+                else
+                {
+                    args.IsValid = false;
+                }  
+                          
+            }
+            // ------------ CR000356
+            
+            function PhoneAndMobileValidation(src,args)
+            {
+                var phoneNoRegx = /^([0-9]*)?$/i;                
+                var phoneNo = args.Value;
+                var result = phoneNoRegx.test(phoneNo);                
+                var noCount = 0;
+                
+                if(phoneNo.charAt(0) == 0)
+                {
+                   noCount = noCount + 1; 
+                }
+                if(phoneNo.charAt(1) == 0)
+                {
+                   noCount = noCount + 1; 
+                }
+                if(phoneNo.charAt(2) == 0)
+                {
+                   noCount = noCount + 1; 
+                }
+                
+                if(result == true && noCount < 3 && phoneNo.length >= 10)
+                {
+                    args.IsValid = true;
+                }
+                else if(result == true && noCount >= 3)
+                {
+                    args.IsValid = false;
+                } 
+                else if(result == false && noCount >= 3)
+                {
+                    args.IsValid = false;
+                } 
+                else if(result == false && noCount < 3)
+                {
+                    args.IsValid = false;
+                } 
+                else 
+                {
+                    args.IsValid = false;
+                }                  
+            }
+   
+    </script>
+
+    </div>
+       <div align="center">
+            <table width="1002" border="0" class="brown_bg" cellspacing="0" cellpadding="0">
+                <tr>
+                    <td height="6">
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left" class="navi_txt1">
+                        &nbsp;&nbsp;&copy; 
+
+                         <span id="ctl00_LblCpyRgt" class="navi_txt1">Copyright 2014. Tirumala Tirupati Devasthanams</span>
+                    </td>
+                    <td align="right">
+                        <span class="navi_txt1">For any queries</span> <a href="../UserProfile/Queries.aspx" class="txt_wht">
+                            <u>Click Here</u></a> <span class="navi_txt1">|</span> <a href="../UserProfile/Terms.aspx" class="navi_txt1">
+                                <u>Terms &amp; Conditions</u></a>&nbsp;&nbsp; <span class="navi_txt1">|</span> 
+                                <a href="javascript:openpopup('../eSpecialEntryDarshan/Guideline.htm', 'Booking Guidelines', 'width=800,height=550,status,resizable=1')" class="navi_txt1"><u>Booking Guidelines</u></a>
+                                    <span class="navi_txt1">|</span>
+                                <a href="javascript:openpopup('../TTD e-SERVICES Portal WebHelp/TTD_e-SERVICES_Portal/TTD_e-SERVICES_Portal.htm', 'help', 'width=800,height=500,status,resizable=1')" class="navi_txt1"><u>Help</u></a>
+                                    <span class="navi_txt1">|</span> <a href="../UserProfile/Contact.aspx" class="navi_txt1"><u>Contact</u></a>&nbsp;&nbsp;</td>
+                </tr>
+                <tr>
+                    <td height="6">
+                    </td>
+                </tr>
+            </table>
+        </div>
+    
+<script type="text/javascript">
+//<![CDATA[
+var Page_Validators =  new Array(document.getElementById("ctl00_ContentPlaceHolder1_RequiredFieldValidator1"), document.getElementById("ctl00_ContentPlaceHolder1_RegularExpressionValidator2"), document.getElementById("ctl00_ContentPlaceHolder1_RequiredFieldValidator2"), document.getElementById("ctl00_ContentPlaceHolder1_RangeValidator1"), document.getElementById("ctl00_ContentPlaceHolder1_CustomValidator1"), document.getElementById("ctl00_ContentPlaceHolder1_RequiredFieldValidator3"), document.getElementById("ctl00_ContentPlaceHolder1_RegularExpressionValidator3"), document.getElementById("ctl00_ContentPlaceHolder1_RequiredFieldValidator4"), document.getElementById("ctl00_ContentPlaceHolder1_RegularExpressionValidator7"), document.getElementById("ctl00_ContentPlaceHolder1_RegularExpressionValidator1"), document.getElementById("ctl00_ContentPlaceHolder1_RequiredFieldValidator5"), document.getElementById("ctl00_ContentPlaceHolder1_RegularExpressionValidator4"), document.getElementById("ctl00_ContentPlaceHolder1_rfvTxtPinCode"), document.getElementById("ctl00_ContentPlaceHolder1_RegularExpressionValidator5"), document.getElementById("ctl00_ContentPlaceHolder1_valCountry"), document.getElementById("ctl00_ContentPlaceHolder1_valstate"), document.getElementById("ctl00_ContentPlaceHolder1_RequiredFieldValidator6"), document.getElementById("ctl00_ContentPlaceHolder1_CustomValidator8"), document.getElementById("ctl00_ContentPlaceHolder1_CustomValidator9"), document.getElementById("ctl00_ContentPlaceHolder1_CustomValidator10"), document.getElementById("ctl00_ContentPlaceHolder1_cvSelPhoto"), document.getElementById("ctl00_ContentPlaceHolder1_rfvIDCardPP"), document.getElementById("ctl00_ContentPlaceHolder1_rxIDCardPP"), document.getElementById("ctl00_ContentPlaceHolder1_rfvIDCardDL"), document.getElementById("ctl00_ContentPlaceHolder1_rxIDCardDL"), document.getElementById("ctl00_ContentPlaceHolder1_rfvIDCardPC"), document.getElementById("ctl00_ContentPlaceHolder1_rxIDCardPC"), document.getElementById("ctl00_ContentPlaceHolder1_rfvIDCardVID"), document.getElementById("ctl00_ContentPlaceHolder1_rxIDCardVID"), document.getElementById("ctl00_ContentPlaceHolder1_rfvIDCardSchool"), document.getElementById("ctl00_ContentPlaceHolder1_cvIDCardSchool"), document.getElementById("ctl00_ContentPlaceHolder1_RequiredFieldValidator8"), document.getElementById("ctl00_ContentPlaceHolder1_CustomValidator2"), document.getElementById("ctl00_ContentPlaceHolder1_RangeValidator2"), document.getElementById("ctl00_ContentPlaceHolder1_CustomValidator4"), document.getElementById("ctl00_ContentPlaceHolder1_rfvaccompanyName"), document.getElementById("ctl00_ContentPlaceHolder1_RegularExpressionValidator12"), document.getElementById("ctl00_ContentPlaceHolder1_CheckNews"));
+//]]>
+</script>
+
+<script type="text/javascript">
+//<![CDATA[
+var ctl00_ContentPlaceHolder1_RequiredFieldValidator1 = document.all ? document.all["ctl00_ContentPlaceHolder1_RequiredFieldValidator1"] : document.getElementById("ctl00_ContentPlaceHolder1_RequiredFieldValidator1");
+ctl00_ContentPlaceHolder1_RequiredFieldValidator1.controltovalidate = "ctl00_ContentPlaceHolder1_txtName";
+ctl00_ContentPlaceHolder1_RequiredFieldValidator1.errormessage = "Please Enter Name";
+ctl00_ContentPlaceHolder1_RequiredFieldValidator1.display = "Dynamic";
+ctl00_ContentPlaceHolder1_RequiredFieldValidator1.evaluationfunction = "RequiredFieldValidatorEvaluateIsValid";
+ctl00_ContentPlaceHolder1_RequiredFieldValidator1.initialvalue = "";
+var ctl00_ContentPlaceHolder1_RegularExpressionValidator2 = document.all ? document.all["ctl00_ContentPlaceHolder1_RegularExpressionValidator2"] : document.getElementById("ctl00_ContentPlaceHolder1_RegularExpressionValidator2");
+ctl00_ContentPlaceHolder1_RegularExpressionValidator2.controltovalidate = "ctl00_ContentPlaceHolder1_txtName";
+ctl00_ContentPlaceHolder1_RegularExpressionValidator2.errormessage = "Please Enter Valid Name";
+ctl00_ContentPlaceHolder1_RegularExpressionValidator2.display = "Dynamic";
+ctl00_ContentPlaceHolder1_RegularExpressionValidator2.evaluationfunction = "RegularExpressionValidatorEvaluateIsValid";
+ctl00_ContentPlaceHolder1_RegularExpressionValidator2.validationexpression = "^[a-zA-Z .]+$";
+var ctl00_ContentPlaceHolder1_RequiredFieldValidator2 = document.all ? document.all["ctl00_ContentPlaceHolder1_RequiredFieldValidator2"] : document.getElementById("ctl00_ContentPlaceHolder1_RequiredFieldValidator2");
+ctl00_ContentPlaceHolder1_RequiredFieldValidator2.controltovalidate = "ctl00_ContentPlaceHolder1_txtAge";
+ctl00_ContentPlaceHolder1_RequiredFieldValidator2.errormessage = "Please Enter Age";
+ctl00_ContentPlaceHolder1_RequiredFieldValidator2.display = "Dynamic";
+ctl00_ContentPlaceHolder1_RequiredFieldValidator2.evaluationfunction = "RequiredFieldValidatorEvaluateIsValid";
+ctl00_ContentPlaceHolder1_RequiredFieldValidator2.initialvalue = "";
+var ctl00_ContentPlaceHolder1_RangeValidator1 = document.all ? document.all["ctl00_ContentPlaceHolder1_RangeValidator1"] : document.getElementById("ctl00_ContentPlaceHolder1_RangeValidator1");
+ctl00_ContentPlaceHolder1_RangeValidator1.controltovalidate = "ctl00_ContentPlaceHolder1_txtAge";
+ctl00_ContentPlaceHolder1_RangeValidator1.errormessage = "Please Enter Age between 10 and 100";
+ctl00_ContentPlaceHolder1_RangeValidator1.display = "Dynamic";
+ctl00_ContentPlaceHolder1_RangeValidator1.type = "Currency";
+ctl00_ContentPlaceHolder1_RangeValidator1.decimalchar = ".";
+ctl00_ContentPlaceHolder1_RangeValidator1.groupchar = ",";
+ctl00_ContentPlaceHolder1_RangeValidator1.digits = "2";
+ctl00_ContentPlaceHolder1_RangeValidator1.groupsize = "3";
+ctl00_ContentPlaceHolder1_RangeValidator1.evaluationfunction = "RangeValidatorEvaluateIsValid";
+ctl00_ContentPlaceHolder1_RangeValidator1.maximumvalue = "99";
+ctl00_ContentPlaceHolder1_RangeValidator1.minimumvalue = "10";
+var ctl00_ContentPlaceHolder1_CustomValidator1 = document.all ? document.all["ctl00_ContentPlaceHolder1_CustomValidator1"] : document.getElementById("ctl00_ContentPlaceHolder1_CustomValidator1");
+ctl00_ContentPlaceHolder1_CustomValidator1.controltovalidate = "ctl00_ContentPlaceHolder1_ddlGender";
+ctl00_ContentPlaceHolder1_CustomValidator1.errormessage = "Please select gender";
+ctl00_ContentPlaceHolder1_CustomValidator1.display = "Dynamic";
+ctl00_ContentPlaceHolder1_CustomValidator1.evaluationfunction = "CustomValidatorEvaluateIsValid";
+ctl00_ContentPlaceHolder1_CustomValidator1.clientvalidationfunction = "CheckGender";
+var ctl00_ContentPlaceHolder1_RequiredFieldValidator3 = document.all ? document.all["ctl00_ContentPlaceHolder1_RequiredFieldValidator3"] : document.getElementById("ctl00_ContentPlaceHolder1_RequiredFieldValidator3");
+ctl00_ContentPlaceHolder1_RequiredFieldValidator3.controltovalidate = "ctl00_ContentPlaceHolder1_txtEmail";
+ctl00_ContentPlaceHolder1_RequiredFieldValidator3.errormessage = "Please Enter Your Email Address";
+ctl00_ContentPlaceHolder1_RequiredFieldValidator3.display = "Dynamic";
+ctl00_ContentPlaceHolder1_RequiredFieldValidator3.evaluationfunction = "RequiredFieldValidatorEvaluateIsValid";
+ctl00_ContentPlaceHolder1_RequiredFieldValidator3.initialvalue = "";
+var ctl00_ContentPlaceHolder1_RegularExpressionValidator3 = document.all ? document.all["ctl00_ContentPlaceHolder1_RegularExpressionValidator3"] : document.getElementById("ctl00_ContentPlaceHolder1_RegularExpressionValidator3");
+ctl00_ContentPlaceHolder1_RegularExpressionValidator3.controltovalidate = "ctl00_ContentPlaceHolder1_txtEmail";
+ctl00_ContentPlaceHolder1_RegularExpressionValidator3.errormessage = "Please Enter Valid Email Address";
+ctl00_ContentPlaceHolder1_RegularExpressionValidator3.display = "Dynamic";
+ctl00_ContentPlaceHolder1_RegularExpressionValidator3.evaluationfunction = "RegularExpressionValidatorEvaluateIsValid";
+ctl00_ContentPlaceHolder1_RegularExpressionValidator3.validationexpression = "^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$";
+var ctl00_ContentPlaceHolder1_RequiredFieldValidator4 = document.all ? document.all["ctl00_ContentPlaceHolder1_RequiredFieldValidator4"] : document.getElementById("ctl00_ContentPlaceHolder1_RequiredFieldValidator4");
+ctl00_ContentPlaceHolder1_RequiredFieldValidator4.controltovalidate = "ctl00_ContentPlaceHolder1_txtAddress1";
+ctl00_ContentPlaceHolder1_RequiredFieldValidator4.errormessage = "Please Enter Address";
+ctl00_ContentPlaceHolder1_RequiredFieldValidator4.display = "Dynamic";
+ctl00_ContentPlaceHolder1_RequiredFieldValidator4.evaluationfunction = "RequiredFieldValidatorEvaluateIsValid";
+ctl00_ContentPlaceHolder1_RequiredFieldValidator4.initialvalue = "";
+var ctl00_ContentPlaceHolder1_RegularExpressionValidator7 = document.all ? document.all["ctl00_ContentPlaceHolder1_RegularExpressionValidator7"] : document.getElementById("ctl00_ContentPlaceHolder1_RegularExpressionValidator7");
+ctl00_ContentPlaceHolder1_RegularExpressionValidator7.controltovalidate = "ctl00_ContentPlaceHolder1_txtAddress1";
+ctl00_ContentPlaceHolder1_RegularExpressionValidator7.errormessage = "Please Enter Valid Address";
+ctl00_ContentPlaceHolder1_RegularExpressionValidator7.display = "Dynamic";
+ctl00_ContentPlaceHolder1_RegularExpressionValidator7.evaluationfunction = "RegularExpressionValidatorEvaluateIsValid";
+ctl00_ContentPlaceHolder1_RegularExpressionValidator7.validationexpression = "([^<>\\\"\\^])*";
+var ctl00_ContentPlaceHolder1_RegularExpressionValidator1 = document.all ? document.all["ctl00_ContentPlaceHolder1_RegularExpressionValidator1"] : document.getElementById("ctl00_ContentPlaceHolder1_RegularExpressionValidator1");
+ctl00_ContentPlaceHolder1_RegularExpressionValidator1.controltovalidate = "ctl00_ContentPlaceHolder1_txtAddress2";
+ctl00_ContentPlaceHolder1_RegularExpressionValidator1.errormessage = "Please Enter Valid Address";
+ctl00_ContentPlaceHolder1_RegularExpressionValidator1.display = "Dynamic";
+ctl00_ContentPlaceHolder1_RegularExpressionValidator1.evaluationfunction = "RegularExpressionValidatorEvaluateIsValid";
+ctl00_ContentPlaceHolder1_RegularExpressionValidator1.validationexpression = "([^<>\\\"\\^])*";
+var ctl00_ContentPlaceHolder1_RequiredFieldValidator5 = document.all ? document.all["ctl00_ContentPlaceHolder1_RequiredFieldValidator5"] : document.getElementById("ctl00_ContentPlaceHolder1_RequiredFieldValidator5");
+ctl00_ContentPlaceHolder1_RequiredFieldValidator5.controltovalidate = "ctl00_ContentPlaceHolder1_txtCity";
+ctl00_ContentPlaceHolder1_RequiredFieldValidator5.errormessage = "Please Enter Your City Name";
+ctl00_ContentPlaceHolder1_RequiredFieldValidator5.display = "Dynamic";
+ctl00_ContentPlaceHolder1_RequiredFieldValidator5.evaluationfunction = "RequiredFieldValidatorEvaluateIsValid";
+ctl00_ContentPlaceHolder1_RequiredFieldValidator5.initialvalue = "";
+var ctl00_ContentPlaceHolder1_RegularExpressionValidator4 = document.all ? document.all["ctl00_ContentPlaceHolder1_RegularExpressionValidator4"] : document.getElementById("ctl00_ContentPlaceHolder1_RegularExpressionValidator4");
+ctl00_ContentPlaceHolder1_RegularExpressionValidator4.controltovalidate = "ctl00_ContentPlaceHolder1_txtCity";
+ctl00_ContentPlaceHolder1_RegularExpressionValidator4.errormessage = "Please Enter Valid City Name";
+ctl00_ContentPlaceHolder1_RegularExpressionValidator4.display = "Dynamic";
+ctl00_ContentPlaceHolder1_RegularExpressionValidator4.evaluationfunction = "RegularExpressionValidatorEvaluateIsValid";
+ctl00_ContentPlaceHolder1_RegularExpressionValidator4.validationexpression = "^[a-zA-Z ]+$";
+var ctl00_ContentPlaceHolder1_rfvTxtPinCode = document.all ? document.all["ctl00_ContentPlaceHolder1_rfvTxtPinCode"] : document.getElementById("ctl00_ContentPlaceHolder1_rfvTxtPinCode");
+ctl00_ContentPlaceHolder1_rfvTxtPinCode.controltovalidate = "ctl00_ContentPlaceHolder1_txtZip";
+ctl00_ContentPlaceHolder1_rfvTxtPinCode.errormessage = "Please Enter Zip/PinCode";
+ctl00_ContentPlaceHolder1_rfvTxtPinCode.display = "Dynamic";
+ctl00_ContentPlaceHolder1_rfvTxtPinCode.evaluationfunction = "RequiredFieldValidatorEvaluateIsValid";
+ctl00_ContentPlaceHolder1_rfvTxtPinCode.initialvalue = "";
+var ctl00_ContentPlaceHolder1_RegularExpressionValidator5 = document.all ? document.all["ctl00_ContentPlaceHolder1_RegularExpressionValidator5"] : document.getElementById("ctl00_ContentPlaceHolder1_RegularExpressionValidator5");
+ctl00_ContentPlaceHolder1_RegularExpressionValidator5.controltovalidate = "ctl00_ContentPlaceHolder1_txtZip";
+ctl00_ContentPlaceHolder1_RegularExpressionValidator5.errormessage = "Please Enter valid Zip/PinCode";
+ctl00_ContentPlaceHolder1_RegularExpressionValidator5.display = "Dynamic";
+ctl00_ContentPlaceHolder1_RegularExpressionValidator5.evaluationfunction = "RegularExpressionValidatorEvaluateIsValid";
+ctl00_ContentPlaceHolder1_RegularExpressionValidator5.validationexpression = "^[0-9a-zA-Z]+$";
+var ctl00_ContentPlaceHolder1_valCountry = document.all ? document.all["ctl00_ContentPlaceHolder1_valCountry"] : document.getElementById("ctl00_ContentPlaceHolder1_valCountry");
+ctl00_ContentPlaceHolder1_valCountry.controltovalidate = "ctl00_ContentPlaceHolder1_selCountry";
+ctl00_ContentPlaceHolder1_valCountry.errormessage = "Please Select any Country";
+ctl00_ContentPlaceHolder1_valCountry.display = "Dynamic";
+ctl00_ContentPlaceHolder1_valCountry.evaluationfunction = "CustomValidatorEvaluateIsValid";
+ctl00_ContentPlaceHolder1_valCountry.clientvalidationfunction = "CheckCountry";
+var ctl00_ContentPlaceHolder1_valstate = document.all ? document.all["ctl00_ContentPlaceHolder1_valstate"] : document.getElementById("ctl00_ContentPlaceHolder1_valstate");
+ctl00_ContentPlaceHolder1_valstate.controltovalidate = "ctl00_ContentPlaceHolder1_selState";
+ctl00_ContentPlaceHolder1_valstate.errormessage = "Please choose the State";
+ctl00_ContentPlaceHolder1_valstate.display = "Dynamic";
+ctl00_ContentPlaceHolder1_valstate.evaluationfunction = "CustomValidatorEvaluateIsValid";
+ctl00_ContentPlaceHolder1_valstate.clientvalidationfunction = "CheckState";
+var ctl00_ContentPlaceHolder1_RequiredFieldValidator6 = document.all ? document.all["ctl00_ContentPlaceHolder1_RequiredFieldValidator6"] : document.getElementById("ctl00_ContentPlaceHolder1_RequiredFieldValidator6");
+ctl00_ContentPlaceHolder1_RequiredFieldValidator6.controltovalidate = "ctl00_ContentPlaceHolder1_txtMPhone";
+ctl00_ContentPlaceHolder1_RequiredFieldValidator6.errormessage = "Please Enter Mobile number";
+ctl00_ContentPlaceHolder1_RequiredFieldValidator6.display = "Dynamic";
+ctl00_ContentPlaceHolder1_RequiredFieldValidator6.evaluationfunction = "RequiredFieldValidatorEvaluateIsValid";
+ctl00_ContentPlaceHolder1_RequiredFieldValidator6.initialvalue = "";
+var ctl00_ContentPlaceHolder1_CustomValidator8 = document.all ? document.all["ctl00_ContentPlaceHolder1_CustomValidator8"] : document.getElementById("ctl00_ContentPlaceHolder1_CustomValidator8");
+ctl00_ContentPlaceHolder1_CustomValidator8.controltovalidate = "ctl00_ContentPlaceHolder1_txtMPhone";
+ctl00_ContentPlaceHolder1_CustomValidator8.errormessage = "Please Enter valid Mobile No";
+ctl00_ContentPlaceHolder1_CustomValidator8.display = "Dynamic";
+ctl00_ContentPlaceHolder1_CustomValidator8.evaluationfunction = "CustomValidatorEvaluateIsValid";
+ctl00_ContentPlaceHolder1_CustomValidator8.clientvalidationfunction = "PhoneAndMobileValidation";
+var ctl00_ContentPlaceHolder1_CustomValidator9 = document.all ? document.all["ctl00_ContentPlaceHolder1_CustomValidator9"] : document.getElementById("ctl00_ContentPlaceHolder1_CustomValidator9");
+ctl00_ContentPlaceHolder1_CustomValidator9.controltovalidate = "ctl00_ContentPlaceHolder1_txtPPhone";
+ctl00_ContentPlaceHolder1_CustomValidator9.errormessage = "Please Enter valid Phone No";
+ctl00_ContentPlaceHolder1_CustomValidator9.display = "Dynamic";
+ctl00_ContentPlaceHolder1_CustomValidator9.evaluationfunction = "CustomValidatorEvaluateIsValid";
+ctl00_ContentPlaceHolder1_CustomValidator9.clientvalidationfunction = "PhoneAndMobileValidation";
+var ctl00_ContentPlaceHolder1_CustomValidator10 = document.all ? document.all["ctl00_ContentPlaceHolder1_CustomValidator10"] : document.getElementById("ctl00_ContentPlaceHolder1_CustomValidator10");
+ctl00_ContentPlaceHolder1_CustomValidator10.controltovalidate = "ctl00_ContentPlaceHolder1_txtFFax";
+ctl00_ContentPlaceHolder1_CustomValidator10.errormessage = "Please Enter valid Fax No";
+ctl00_ContentPlaceHolder1_CustomValidator10.display = "Dynamic";
+ctl00_ContentPlaceHolder1_CustomValidator10.evaluationfunction = "CustomValidatorEvaluateIsValid";
+ctl00_ContentPlaceHolder1_CustomValidator10.clientvalidationfunction = "PhoneAndMobileValidation";
+var ctl00_ContentPlaceHolder1_cvSelPhoto = document.all ? document.all["ctl00_ContentPlaceHolder1_cvSelPhoto"] : document.getElementById("ctl00_ContentPlaceHolder1_cvSelPhoto");
+ctl00_ContentPlaceHolder1_cvSelPhoto.controltovalidate = "ctl00_ContentPlaceHolder1_selPhoto";
+ctl00_ContentPlaceHolder1_cvSelPhoto.errormessage = "Please select any one Photo ID Card Type";
+ctl00_ContentPlaceHolder1_cvSelPhoto.display = "Dynamic";
+ctl00_ContentPlaceHolder1_cvSelPhoto.evaluationfunction = "CustomValidatorEvaluateIsValid";
+ctl00_ContentPlaceHolder1_cvSelPhoto.clientvalidationfunction = "CheckPhotoCard";
+var ctl00_ContentPlaceHolder1_rfvIDCardPP = document.all ? document.all["ctl00_ContentPlaceHolder1_rfvIDCardPP"] : document.getElementById("ctl00_ContentPlaceHolder1_rfvIDCardPP");
+ctl00_ContentPlaceHolder1_rfvIDCardPP.controltovalidate = "ctl00_ContentPlaceHolder1_txtIDCardPP";
+ctl00_ContentPlaceHolder1_rfvIDCardPP.errormessage = "Please Enter Passport Number";
+ctl00_ContentPlaceHolder1_rfvIDCardPP.display = "Dynamic";
+ctl00_ContentPlaceHolder1_rfvIDCardPP.evaluationfunction = "RequiredFieldValidatorEvaluateIsValid";
+ctl00_ContentPlaceHolder1_rfvIDCardPP.initialvalue = "";
+var ctl00_ContentPlaceHolder1_rxIDCardPP = document.all ? document.all["ctl00_ContentPlaceHolder1_rxIDCardPP"] : document.getElementById("ctl00_ContentPlaceHolder1_rxIDCardPP");
+ctl00_ContentPlaceHolder1_rxIDCardPP.controltovalidate = "ctl00_ContentPlaceHolder1_txtIDCardPP";
+ctl00_ContentPlaceHolder1_rxIDCardPP.errormessage = "Please Enter valid Passport Number";
+ctl00_ContentPlaceHolder1_rxIDCardPP.display = "Dynamic";
+ctl00_ContentPlaceHolder1_rxIDCardPP.evaluationfunction = "CustomValidatorEvaluateIsValid";
+ctl00_ContentPlaceHolder1_rxIDCardPP.clientvalidationfunction = "CheckPassport";
+var ctl00_ContentPlaceHolder1_rfvIDCardDL = document.all ? document.all["ctl00_ContentPlaceHolder1_rfvIDCardDL"] : document.getElementById("ctl00_ContentPlaceHolder1_rfvIDCardDL");
+ctl00_ContentPlaceHolder1_rfvIDCardDL.controltovalidate = "ctl00_ContentPlaceHolder1_txtIDCardDL";
+ctl00_ContentPlaceHolder1_rfvIDCardDL.errormessage = "Please Enter Driving Licence Number";
+ctl00_ContentPlaceHolder1_rfvIDCardDL.display = "Dynamic";
+ctl00_ContentPlaceHolder1_rfvIDCardDL.evaluationfunction = "RequiredFieldValidatorEvaluateIsValid";
+ctl00_ContentPlaceHolder1_rfvIDCardDL.initialvalue = "";
+var ctl00_ContentPlaceHolder1_rxIDCardDL = document.all ? document.all["ctl00_ContentPlaceHolder1_rxIDCardDL"] : document.getElementById("ctl00_ContentPlaceHolder1_rxIDCardDL");
+ctl00_ContentPlaceHolder1_rxIDCardDL.controltovalidate = "ctl00_ContentPlaceHolder1_txtIDCardDL";
+ctl00_ContentPlaceHolder1_rxIDCardDL.errormessage = "Invalid DL Number, Special Characters allowed are (Space,-,/)";
+ctl00_ContentPlaceHolder1_rxIDCardDL.display = "Dynamic";
+ctl00_ContentPlaceHolder1_rxIDCardDL.evaluationfunction = "CustomValidatorEvaluateIsValid";
+ctl00_ContentPlaceHolder1_rxIDCardDL.clientvalidationfunction = "CheckDrivingLicence";
+var ctl00_ContentPlaceHolder1_rfvIDCardPC = document.all ? document.all["ctl00_ContentPlaceHolder1_rfvIDCardPC"] : document.getElementById("ctl00_ContentPlaceHolder1_rfvIDCardPC");
+ctl00_ContentPlaceHolder1_rfvIDCardPC.controltovalidate = "ctl00_ContentPlaceHolder1_txtIDCardPC";
+ctl00_ContentPlaceHolder1_rfvIDCardPC.errormessage = "Please Enter PAN Card Number";
+ctl00_ContentPlaceHolder1_rfvIDCardPC.display = "Dynamic";
+ctl00_ContentPlaceHolder1_rfvIDCardPC.evaluationfunction = "RequiredFieldValidatorEvaluateIsValid";
+ctl00_ContentPlaceHolder1_rfvIDCardPC.initialvalue = "";
+var ctl00_ContentPlaceHolder1_rxIDCardPC = document.all ? document.all["ctl00_ContentPlaceHolder1_rxIDCardPC"] : document.getElementById("ctl00_ContentPlaceHolder1_rxIDCardPC");
+ctl00_ContentPlaceHolder1_rxIDCardPC.controltovalidate = "ctl00_ContentPlaceHolder1_txtIDCardPC";
+ctl00_ContentPlaceHolder1_rxIDCardPC.errormessage = "Please Enter valid PAN Card Number";
+ctl00_ContentPlaceHolder1_rxIDCardPC.display = "Dynamic";
+ctl00_ContentPlaceHolder1_rxIDCardPC.evaluationfunction = "RegularExpressionValidatorEvaluateIsValid";
+ctl00_ContentPlaceHolder1_rxIDCardPC.validationexpression = "^[\\w]{3}(p|P|c|C|h|H|f|F|a|A|t|T|b|B|l|L|j|J|g|G)[\\w][\\d]{4}[\\w]$";
+var ctl00_ContentPlaceHolder1_rfvIDCardVID = document.all ? document.all["ctl00_ContentPlaceHolder1_rfvIDCardVID"] : document.getElementById("ctl00_ContentPlaceHolder1_rfvIDCardVID");
+ctl00_ContentPlaceHolder1_rfvIDCardVID.controltovalidate = "ctl00_ContentPlaceHolder1_txtIDCardVID";
+ctl00_ContentPlaceHolder1_rfvIDCardVID.errormessage = "Please Enter Voter ID Number";
+ctl00_ContentPlaceHolder1_rfvIDCardVID.display = "Dynamic";
+ctl00_ContentPlaceHolder1_rfvIDCardVID.evaluationfunction = "RequiredFieldValidatorEvaluateIsValid";
+ctl00_ContentPlaceHolder1_rfvIDCardVID.initialvalue = "";
+var ctl00_ContentPlaceHolder1_rxIDCardVID = document.all ? document.all["ctl00_ContentPlaceHolder1_rxIDCardVID"] : document.getElementById("ctl00_ContentPlaceHolder1_rxIDCardVID");
+ctl00_ContentPlaceHolder1_rxIDCardVID.controltovalidate = "ctl00_ContentPlaceHolder1_txtIDCardVID";
+ctl00_ContentPlaceHolder1_rxIDCardVID.errormessage = "Please Enter valid Voters ID Number";
+ctl00_ContentPlaceHolder1_rxIDCardVID.display = "Dynamic";
+ctl00_ContentPlaceHolder1_rxIDCardVID.evaluationfunction = "CustomValidatorEvaluateIsValid";
+ctl00_ContentPlaceHolder1_rxIDCardVID.clientvalidationfunction = "CheckVotersID";
+var ctl00_ContentPlaceHolder1_rfvIDCardSchool = document.all ? document.all["ctl00_ContentPlaceHolder1_rfvIDCardSchool"] : document.getElementById("ctl00_ContentPlaceHolder1_rfvIDCardSchool");
+ctl00_ContentPlaceHolder1_rfvIDCardSchool.controltovalidate = "ctl00_ContentPlaceHolder1_txtIDCardSchool";
+ctl00_ContentPlaceHolder1_rfvIDCardSchool.errormessage = "Please Enter School/College ID Number";
+ctl00_ContentPlaceHolder1_rfvIDCardSchool.display = "Dynamic";
+ctl00_ContentPlaceHolder1_rfvIDCardSchool.evaluationfunction = "RequiredFieldValidatorEvaluateIsValid";
+ctl00_ContentPlaceHolder1_rfvIDCardSchool.initialvalue = "";
+var ctl00_ContentPlaceHolder1_cvIDCardSchool = document.all ? document.all["ctl00_ContentPlaceHolder1_cvIDCardSchool"] : document.getElementById("ctl00_ContentPlaceHolder1_cvIDCardSchool");
+ctl00_ContentPlaceHolder1_cvIDCardSchool.controltovalidate = "ctl00_ContentPlaceHolder1_txtIDCardSchool";
+ctl00_ContentPlaceHolder1_cvIDCardSchool.errormessage = "Please Enter valid School/College ID Number";
+ctl00_ContentPlaceHolder1_cvIDCardSchool.display = "Dynamic";
+ctl00_ContentPlaceHolder1_cvIDCardSchool.evaluationfunction = "CustomValidatorEvaluateIsValid";
+ctl00_ContentPlaceHolder1_cvIDCardSchool.clientvalidationfunction = "CheckSchoolID";
+var ctl00_ContentPlaceHolder1_RequiredFieldValidator8 = document.all ? document.

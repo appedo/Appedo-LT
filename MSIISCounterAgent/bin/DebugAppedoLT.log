@@ -1,0 +1,73 @@
+Log Entry : 
+13:24:57 27 November 2014 
+--Log entry goes here--
+   at System.Net.HttpWebRequest.GetResponse()
+   at AgentCore.Utility.GetPageContent(String Url, String data) in d:\Rasith\AppedoLT\AgentCore\Utility.cs:line 59The remote server returned an error: (404) Not Found.
+---------------------------------------
+Log Entry : 
+13:25:26 27 November 2014 
+--Log entry goes here--
+   at System.Net.HttpWebRequest.GetResponse()
+   at AgentCore.Utility.GetPageContent(String Url, String data) in d:\Rasith\AppedoLT\AgentCore\Utility.cs:line 59The remote server returned an error: (404) Not Found.
+---------------------------------------
+Log Entry : 
+13:26:14 27 November 2014 
+--Log entry goes here--
+   at System.Net.HttpWebRequest.GetResponse()
+   at AgentCore.Utility.GetPageContent(String Url, String data) in d:\Rasith\AppedoLT\AgentCore\Utility.cs:line 59The remote server returned an error: (404) Not Found.
+---------------------------------------
+Log Entry : 
+14:37:19 27 November 2014 
+--Log entry goes here--
+   at System.Net.HttpWebRequest.GetResponse()
+   at AgentCore.Utility.GetPageContent(String Url, String data) in d:\Rasith\AppedoLT\AgentCore\Utility.cs:line 59The remote server returned an error: (404) Not Found.
+---------------------------------------
+Log Entry : 
+14:37:54 27 November 2014 
+--Log entry goes here--
+   at System.Net.HttpWebRequest.GetResponse()
+   at AgentCore.Utility.GetPageContent(String Url, String data) in d:\Rasith\AppedoLT\AgentCore\Utility.cs:line 59The remote server returned an error: (404) Not Found.
+---------------------------------------
+Log Entry : 
+14:38:24 27 November 2014 
+--Log entry goes here--
+   at System.Net.HttpWebRequest.GetResponse()
+   at AgentCore.Utility.GetPageContent(String Url, String data) in d:\Rasith\AppedoLT\AgentCore\Utility.cs:line 59The remote server returned an error: (404) Not Found.
+---------------------------------------
+Log Entry : 
+14:38:54 27 November 2014 
+--Log entry goes here--
+   at System.Net.HttpWebRequest.GetResponse()
+   at AgentCore.Utility.GetPageContent(String Url, String data) in d:\Rasith\AppedoLT\AgentCore\Utility.cs:line 59The remote server returned an error: (404) Not Found.
+---------------------------------------
+Log Entry : 
+14:39:24 27 November 2014 
+--Log entry goes here--
+   at System.Net.HttpWebRequest.GetResponse()
+   at AgentCore.Utility.GetPageContent(String Url, String data) in d:\Rasith\AppedoLT\AgentCore\Utility.cs:line 59The remote server returned an error: (404) Not Found.
+---------------------------------------
+Log Entry : 
+14:39:55 27 November 2014 
+--Log entry goes here--
+   at System.Net.HttpWebRequest.GetResponse()
+   at AgentCore.Utility.GetPageContent(String Url, String data) in d:\Rasith\AppedoLT\AgentCore\Utility.cs:line 59The remote server returned an error: (404) Not Found.
+---------------------------------------
+Log Entry : 
+14:40:30 27 November 2014 
+--Log entry goes here--
+   at System.Net.HttpWebRequest.GetResponse()
+   at AgentCore.Utility.GetPageContent(String Url, String data) in d:\Rasith\AppedoLT\AgentCore\Utility.cs:line 59The remote server returned an error: (404) Not Found.
+---------------------------------------
+Log Entry : 
+14:41:00 27 November 2014 
+--Log entry goes here--
+   at System.Net.HttpWebRequest.GetResponse()
+   at AgentCore.Utility.GetPageContent(String Url, String data) in d:\Rasith\AppedoLT\AgentCore\Utility.cs:line 59The remote server returned an error: (404) Not Found.
+---------------------------------------
+Log Entry : 
+14:41:30 27 November 2014 
+--Log entry goes here--
+   at System.Net.HttpWebRequest.GetRequestStream(TransportContext& context)
+   at System.Net.HttpWebRequest.GetRequestStream()
+   at AgentCore.Utility.GetPageContent(String Url, String data) in d:\Rasith\AppedoLT\AgentCore\Utility.cs:line 55Unable to connect to the remote server
+---------------------------------------

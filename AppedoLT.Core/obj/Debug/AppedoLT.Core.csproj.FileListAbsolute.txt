@@ -1,0 +1,14 @@
+D:\Rasith\AppedoLT\Core\bin\Debug\AppedoLT.Core.dll
+D:\Rasith\AppedoLT\Core\bin\Debug\AppedoLT.Core.pdb
+D:\Rasith\AppedoLT\Core\obj\Debug\AppedoLT.Core.IntTextBox.resources
+D:\Rasith\AppedoLT\Core\obj\Debug\AppedoLT.Core.UCTime.resources
+D:\Rasith\AppedoLT\Core\obj\Debug\AppedoLT.Core.csproj.GenerateResource.Cache
+D:\Rasith\AppedoLT\Core\obj\Debug\AppedoLT.Core.dll
+D:\Rasith\AppedoLT\Core\obj\Debug\AppedoLT.Core.pdb
+D:\Rasith\AppedoLT\AppedoLT.Core\bin\Debug\AppedoLT.Core.dll
+D:\Rasith\AppedoLT\AppedoLT.Core\bin\Debug\AppedoLT.Core.pdb
+D:\Rasith\AppedoLT\AppedoLT.Core\obj\Debug\AppedoLT.Core.IntTextBox.resources
+D:\Rasith\AppedoLT\AppedoLT.Core\obj\Debug\AppedoLT.Core.UCTime.resources
+D:\Rasith\AppedoLT\AppedoLT.Core\obj\Debug\AppedoLT.Core.csproj.GenerateResource.Cache
+D:\Rasith\AppedoLT\AppedoLT.Core\obj\Debug\AppedoLT.Core.dll
+D:\Rasith\AppedoLT\AppedoLT.Core\obj\Debug\AppedoLT.Core.pdb

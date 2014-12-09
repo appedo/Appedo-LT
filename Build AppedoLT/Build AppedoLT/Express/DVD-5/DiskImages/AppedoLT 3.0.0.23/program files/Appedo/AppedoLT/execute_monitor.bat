@@ -1,0 +1,1 @@
+sqlite3 .\DataMonitor\sample\databasemonitor.db < commands_monitor.txt

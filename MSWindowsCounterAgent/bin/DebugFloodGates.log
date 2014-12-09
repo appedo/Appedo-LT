@@ -1,0 +1,859 @@
+Log Entry : 
+14:47:30 01 July 2014 
+--Log entry goes here--
+The 'counter' start tag on line 1 position 56 does not match the end tag of 'counters'. Line 1, position 148.
+   at System.Xml.XmlTextReaderImpl.Throw(Exception e)
+   at System.Xml.XmlTextReaderImpl.Throw(String res, String[] args)
+   at System.Xml.XmlTextReaderImpl.ThrowTagMismatch(NodeData startTag)
+   at System.Xml.XmlTextReaderImpl.ParseEndElement()
+   at System.Xml.XmlTextReaderImpl.ParseElementContent()
+   at System.Xml.XmlTextReaderImpl.Read()
+   at System.Xml.XmlLoader.LoadNode(Boolean skipOverWhitespace)
+   at System.Xml.XmlLoader.LoadDocSequence(XmlDocument parentDoc)
+   at System.Xml.XmlLoader.Load(XmlDocument doc, XmlReader reader, Boolean preserveWhitespace)
+   at System.Xml.XmlDocument.Load(XmlReader reader)
+   at System.Xml.XmlDocument.Load(String filename)
+   at MSWindowsCounterAgent.MSWindowsCounterXml..ctor()
+---------------------------------------
+Log Entry : 
+19:57:55 01 July 2014 
+--Log entry goes here--
+   at System.Net.HttpWebRequest.GetResponse()
+   at Core.Constants.GetPageContent(String Url, String data) in d:\Rasith\Floodgates\Core\Constants.cs:line 746
+   at MSWindowsCounterAgent.frmMSWindowsCounterAgent.DoWork() in d:\Rasith\Floodgates\MSWindowsCounterAgent\frmMSWindowsCounterAgent.cs:line 106The remote server returned an error: (500) Internal Server Error.
+---------------------------------------
+Log Entry : 
+19:58:00 01 July 2014 
+--Log entry goes here--
+   at System.Net.HttpWebRequest.GetResponse()
+   at Core.Constants.GetPageContent(String Url, String data) in d:\Rasith\Floodgates\Core\Constants.cs:line 746
+   at MSWindowsCounterAgent.frmMSWindowsCounterAgent.DoWork() in d:\Rasith\Floodgates\MSWindowsCounterAgent\frmMSWindowsCounterAgent.cs:line 106The remote server returned an error: (500) Internal Server Error.
+---------------------------------------
+Log Entry : 
+19:58:00 01 July 2014 
+--Log entry goes here--
+   at System.Net.HttpWebRequest.GetResponse()
+   at Core.Constants.GetPageContent(String Url, String data) in d:\Rasith\Floodgates\Core\Constants.cs:line 746
+   at MSWindowsCounterAgent.frmMSWindowsCounterAgent.DoWork() in d:\Rasith\Floodgates\MSWindowsCounterAgent\frmMSWindowsCounterAgent.cs:line 106The remote server returned an error: (500) Internal Server Error.
+---------------------------------------
+Log Entry : 
+19:58:00 01 July 2014 
+--Log entry goes here--
+   at System.Net.HttpWebRequest.GetResponse()
+   at Core.Constants.GetPageContent(String Url, String data) in d:\Rasith\Floodgates\Core\Constants.cs:line 746
+   at MSWindowsCounterAgent.frmMSWindowsCounterAgent.DoWork() in d:\Rasith\Floodgates\MSWindowsCounterAgent\frmMSWindowsCounterAgent.cs:line 106The remote server returned an error: (500) Internal Server Error.
+---------------------------------------
+Log Entry : 
+19:58:00 01 July 2014 
+--Log entry goes here--
+   at System.Net.HttpWebRequest.GetResponse()
+   at Core.Constants.GetPageContent(String Url, String data) in d:\Rasith\Floodgates\Core\Constants.cs:line 746
+   at MSWindowsCounterAgent.frmMSWindowsCounterAgent.DoWork() in d:\Rasith\Floodgates\MSWindowsCounterAgent\frmMSWindowsCounterAgent.cs:line 106The remote server returned an error: (500) Internal Server Error.
+---------------------------------------
+Log Entry : 
+19:58:00 01 July 2014 
+--Log entry goes here--
+   at System.Net.HttpWebRequest.GetResponse()
+   at Core.Constants.GetPageContent(String Url, String data) in d:\Rasith\Floodgates\Core\Constants.cs:line 746
+   at MSWindowsCounterAgent.frmMSWindowsCounterAgent.DoWork() in d:\Rasith\Floodgates\MSWindowsCounterAgent\frmMSWindowsCounterAgent.cs:line 106The remote server returned an error: (500) Internal Server Error.
+---------------------------------------
+Log Entry : 
+19:58:00 01 July 2014 
+--Log entry goes here--
+   at System.Net.HttpWebRequest.GetResponse()
+   at Core.Constants.GetPageContent(String Url, String data) in d:\Rasith\Floodgates\Core\Constants.cs:line 746
+   at MSWindowsCounterAgent.frmMSWindowsCounterAgent.DoWork() in d:\Rasith\Floodgates\MSWindowsCounterAgent\frmMSWindowsCounterAgent.cs:line 106The remote server returned an error: (500) Internal Server Error.
+---------------------------------------
+Log Entry : 
+19:58:00 01 July 2014 
+--Log entry goes here--
+   at System.Net.HttpWebRequest.GetResponse()
+   at Core.Constants.GetPageContent(String Url, String data) in d:\Rasith\Floodgates\Core\Constants.cs:line 746
+   at MSWindowsCounterAgent.frmMSWindowsCounterAgent.DoWork() in d:\Rasith\Floodgates\MSWindowsCounterAgent\frmMSWindowsCounterAgent.cs:line 106The remote server returned an error: (500) Internal Server Error.
+---------------------------------------
+Log Entry : 
+19:58:00 01 July 2014 
+--Log entry goes here--
+   at System.Net.HttpWebRequest.GetResponse()
+   at Core.Constants.GetPageContent(String Url, String data) in d:\Rasith\Floodgates\Core\Constants.cs:line 746
+   at MSWindowsCounterAgent.frmMSWindowsCounterAgent.DoWork() in d:\Rasith\Floodgates\MSWindowsCounterAgent\frmMSWindowsCounterAgent.cs:line 106The remote server returned an error: (500) Internal Server Error.
+---------------------------------------
+Log Entry : 
+19:58:00 01 July 2014 
+--Log entry goes here--
+   at System.Net.HttpWebRequest.GetResponse()
+   at Core.Constants.GetPageContent(String Url, String data) in d:\Rasith\Floodgates\Core\Constants.cs:line 746
+   at MSWindowsCounterAgent.frmMSWindowsCounterAgent.DoWork() in d:\Rasith\Floodgates\MSWindowsCounterAgent\frmMSWindowsCounterAgent.cs:line 106The remote server returned an error: (500) Internal Server Error.
+---------------------------------------
+Log Entry : 
+19:58:00 01 July 2014 
+--Log entry goes here--
+   at System.Net.HttpWebRequest.GetResponse()
+   at Core.Constants.GetPageContent(String Url, String data) in d:\Rasith\Floodgates\Core\Constants.cs:line 746
+   at MSWindowsCounterAgent.frmMSWindowsCounterAgent.DoWork() in d:\Rasith\Floodgates\MSWindowsCounterAgent\frmMSWindowsCounterAgent.cs:line 106The remote server returned an error: (500) Internal Server Error.
+---------------------------------------
+Log Entry : 
+19:58:00 01 July 2014 
+--Log entry goes here--
+   at System.Net.HttpWebRequest.GetResponse()
+   at Core.Constants.GetPageContent(String Url, String data) in d:\Rasith\Floodgates\Core\Constants.cs:line 746
+   at MSWindowsCounterAgent.frmMSWindowsCounterAgent.DoWork() in d:\Rasith\Floodgates\MSWindowsCounterAgent\frmMSWindowsCounterAgent.cs:line 106The remote server returned an error: (500) Internal Server Error.
+---------------------------------------
+Log Entry : 
+19:58:00 01 July 2014 
+--Log entry goes here--
+   at System.Net.HttpWebRequest.GetResponse()
+   at Core.Constants.GetPageContent(String Url, String data) in d:\Rasith\Floodgates\Core\Constants.cs:line 746
+   at MSWindowsCounterAgent.frmMSWindowsCounterAgent.DoWork() in d:\Rasith\Floodgates\MSWindowsCounterAgent\frmMSWindowsCounterAgent.cs:line 106The remote server returned an error: (500) Internal Server Error.
+---------------------------------------
+Log Entry : 
+19:58:00 01 July 2014 
+--Log entry goes here--
+   at System.Net.HttpWebRequest.GetResponse()
+   at Core.Constants.GetPageContent(String Url, String data) in d:\Rasith\Floodgates\Core\Constants.cs:line 746
+   at MSWindowsCounterAgent.frmMSWindowsCounterAgent.DoWork() in d:\Rasith\Floodgates\MSWindowsCounterAgent\frmMSWindowsCounterAgent.cs:line 106The remote server returned an error: (500) Internal Server Error.
+---------------------------------------
+Log Entry : 
+19:58:05 01 July 2014 
+--Log entry goes here--
+   at System.Net.HttpWebRequest.GetResponse()
+   at Core.Constants.GetPageContent(String Url, String data) in d:\Rasith\Floodgates\Core\Constants.cs:line 746
+   at MSWindowsCounterAgent.frmMSWindowsCounterAgent.DoWork() in d:\Rasith\Floodgates\MSWindowsCounterAgent\frmMSWindowsCounterAgent.cs:line 106The remote server returned an error: (500) Internal Server Error.
+---------------------------------------
+Log Entry : 
+19:58:05 01 July 2014 
+--Log entry goes here--
+   at System.Net.HttpWebRequest.GetResponse()
+   at Core.Constants.GetPageContent(String Url, String data) in d:\Rasith\Floodgates\Core\Constants.cs:line 746
+   at MSWindowsCounterAgent.frmMSWindowsCounterAgent.DoWork() in d:\Rasith\Floodgates\MSWindowsCounterAgent\frmMSWindowsCounterAgent.cs:line 106The remote server returned an error: (500) Internal Server Error.
+---------------------------------------
+Log Entry : 
+19:58:05 01 July 2014 
+--Log entry goes here--
+   at System.Net.HttpWebRequest.GetResponse()
+   at Core.Constants.GetPageContent(String Url, String data) in d:\Rasith\Floodgates\Core\Constants.cs:line 746
+   at MSWindowsCounterAgent.frmMSWindowsCounterAgent.DoWork() in d:\Rasith\Floodgates\MSWindowsCounterAgent\frmMSWindowsCounterAgent.cs:line 106The remote server returned an error: (500) Internal Server Error.
+---------------------------------------
+Log Entry : 
+19:58:05 01 July 2014 
+--Log entry goes here--
+   at System.Net.HttpWebRequest.GetResponse()
+   at Core.Constants.GetPageContent(String Url, String data) in d:\Rasith\Floodgates\Core\Constants.cs:line 746
+   at MSWindowsCounterAgent.frmMSWindowsCounterAgent.DoWork() in d:\Rasith\Floodgates\MSWindowsCounterAgent\frmMSWindowsCounterAgent.cs:line 106The remote server returned an error: (500) Internal Server Error.
+---------------------------------------
+Log Entry : 
+19:58:05 01 July 2014 
+--Log entry goes here--
+   at System.Net.HttpWebRequest.GetResponse()
+   at Core.Constants.GetPageContent(String Url, String data) in d:\Rasith\Floodgates\Core\Constants.cs:line 746
+   at MSWindowsCounterAgent.frmMSWindowsCounterAgent.DoWork() in d:\Rasith\Floodgates\MSWindowsCounterAgent\frmMSWindowsCounterAgent.cs:line 106The remote server returned an error: (500) Internal Server Error.
+---------------------------------------
+Log Entry : 
+19:58:05 01 July 2014 
+--Log entry goes here--
+   at System.Net.HttpWebRequest.GetResponse()
+   at Core.Constants.GetPageContent(String Url, String data) in d:\Rasith\Floodgates\Core\Constants.cs:line 746
+   at MSWindowsCounterAgent.frmMSWindowsCounterAgent.DoWork() in d:\Rasith\Floodgates\MSWindowsCounterAgent\frmMSWindowsCounterAgent.cs:line 106The remote server returned an error: (500) Internal Server Error.
+---------------------------------------
+Log Entry : 
+19:58:05 01 July 2014 
+--Log entry goes here--
+   at System.Net.HttpWebRequest.GetResponse()
+   at Core.Constants.GetPageContent(String Url, String data) in d:\Rasith\Floodgates\Core\Constants.cs:line 746
+   at MSWindowsCounterAgent.frmMSWindowsCounterAgent.DoWork() in d:\Rasith\Floodgates\MSWindowsCounterAgent\frmMSWindowsCounterAgent.cs:line 106The remote server returned an error: (500) Internal Server Error.
+---------------------------------------
+Log Entry : 
+19:58:05 01 July 2014 
+--Log entry goes here--
+   at System.Net.HttpWebRequest.GetResponse()
+   at Core.Constants.GetPageContent(String Url, String data) in d:\Rasith\Floodgates\Core\Constants.cs:line 746
+   at MSWindowsCounterAgent.frmMSWindowsCounterAgent.DoWork() in d:\Rasith\Floodgates\MSWindowsCounterAgent\frmMSWindowsCounterAgent.cs:line 106The remote server returned an error: (500) Internal Server Error.
+---------------------------------------
+Log Entry : 
+19:58:05 01 July 2014 
+--Log entry goes here--
+   at System.Net.HttpWebRequest.GetResponse()
+   at Core.Constants.GetPageContent(String Url, String data) in d:\Rasith\Floodgates\Core\Constants.cs:line 746
+   at MSWindowsCounterAgent.frmMSWindowsCounterAgent.DoWork() in d:\Rasith\Floodgates\MSWindowsCounterAgent\frmMSWindowsCounterAgent.cs:line 106The remote server returned an error: (500) Internal Server Error.
+---------------------------------------
+Log Entry : 
+19:58:05 01 July 2014 
+--Log entry goes here--
+   at System.Net.HttpWebRequest.GetResponse()
+   at Core.Constants.GetPageContent(String Url, String data) in d:\Rasith\Floodgates\Core\Constants.cs:line 746
+   at MSWindowsCounterAgent.frmMSWindowsCounterAgent.DoWork() in d:\Rasith\Floodgates\MSWindowsCounterAgent\frmMSWindowsCounterAgent.cs:line 106The remote server returned an error: (500) Internal Server Error.
+---------------------------------------
+Log Entry : 
+19:58:05 01 July 2014 
+--Log entry goes here--
+   at System.Net.HttpWebRequest.GetResponse()
+   at Core.Constants.GetPageContent(String Url, String data) in d:\Rasith\Floodgates\Core\Constants.cs:line 746
+   at MSWindowsCounterAgent.frmMSWindowsCounterAgent.DoWork() in d:\Rasith\Floodgates\MSWindowsCounterAgent\frmMSWindowsCounterAgent.cs:line 106The remote server returned an error: (500) Internal Server Error.
+---------------------------------------
+Log Entry : 
+19:58:05 01 July 2014 
+--Log entry goes here--
+   at System.Net.HttpWebRequest.GetResponse()
+   at Core.Constants.GetPageContent(String Url, String data) in d:\Rasith\Floodgates\Core\Constants.cs:line 746
+   at MSWindowsCounterAgent.frmMSWindowsCounterAgent.DoWork() in d:\Rasith\Floodgates\MSWindowsCounterAgent\frmMSWindowsCounterAgent.cs:line 106The remote server returned an error: (500) Internal Server Error.
+---------------------------------------
+Log Entry : 
+19:58:05 01 July 2014 
+--Log entry goes here--
+   at System.Net.HttpWebRequest.GetResponse()
+   at Core.Constants.GetPageContent(String Url, String data) in d:\Rasith\Floodgates\Core\Constants.cs:line 746
+   at MSWindowsCounterAgent.frmMSWindowsCounterAgent.DoWork() in d:\Rasith\Floodgates\MSWindowsCounterAgent\frmMSWindowsCounterAgent.cs:line 106The remote server returned an error: (500) Internal Server Error.
+---------------------------------------
+Log Entry : 
+19:58:10 01 July 2014 
+--Log entry goes here--
+   at System.Net.HttpWebRequest.GetResponse()
+   at Core.Constants.GetPageContent(String Url, String data) in d:\Rasith\Floodgates\Core\Constants.cs:line 746
+   at MSWindowsCounterAgent.frmMSWindowsCounterAgent.DoWork() in d:\Rasith\Floodgates\MSWindowsCounterAgent\frmMSWindowsCounterAgent.cs:line 106The remote server returned an error: (500) Internal Server Error.
+---------------------------------------
+Log Entry : 
+19:58:10 01 July 2014 
+--Log entry goes here--
+   at System.Net.HttpWebRequest.GetResponse()
+   at Core.Constants.GetPageContent(String Url, String data) in d:\Rasith\Floodgates\Core\Constants.cs:line 746
+   at MSWindowsCounterAgent.frmMSWindowsCounterAgent.DoWork() in d:\Rasith\Floodgates\MSWindowsCounterAgent\frmMSWindowsCounterAgent.cs:line 106The remote server returned an error: (500) Internal Server Error.
+---------------------------------------
+Log Entry : 
+19:58:10 01 July 2014 
+--Log entry goes here--
+   at System.Net.HttpWebRequest.GetResponse()
+   at Core.Constants.GetPageContent(String Url, String data) in d:\Rasith\Floodgates\Core\Constants.cs:line 746
+   at MSWindowsCounterAgent.frmMSWindowsCounterAgent.DoWork() in d:\Rasith\Floodgates\MSWindowsCounterAgent\frmMSWindowsCounterAgent.cs:line 106The remote server returned an error: (500) Internal Server Error.
+---------------------------------------
+Log Entry : 
+19:58:10 01 July 2014 
+--Log entry goes here--
+   at System.Net.HttpWebRequest.GetResponse()
+   at Core.Constants.GetPageContent(String Url, String data) in d:\Rasith\Floodgates\Core\Constants.cs:line 746
+   at MSWindowsCounterAgent.frmMSWindowsCounterAgent.DoWork() in d:\Rasith\Floodgates\MSWindowsCounterAgent\frmMSWindowsCounterAgent.cs:line 106The remote server returned an error: (500) Internal Server Error.
+---------------------------------------
+Log Entry : 
+19:58:10 01 July 2014 
+--Log entry goes here--
+   at System.Net.HttpWebRequest.GetResponse()
+   at Core.Constants.GetPageContent(String Url, String data) in d:\Rasith\Floodgates\Core\Constants.cs:line 746
+   at MSWindowsCounterAgent.frmMSWindowsCounterAgent.DoWork() in d:\Rasith\Floodgates\MSWindowsCounterAgent\frmMSWindowsCounterAgent.cs:line 106The remote server returned an error: (500) Internal Server Error.
+---------------------------------------
+Log Entry : 
+19:58:10 01 July 2014 
+--Log entry goes here--
+   at System.Net.HttpWebRequest.GetResponse()
+   at Core.Constants.GetPageContent(String Url, String data) in d:\Rasith\Floodgates\Core\Constants.cs:line 746
+   at MSWindowsCounterAgent.frmMSWindowsCounterAgent.DoWork() in d:\Rasith\Floodgates\MSWindowsCounterAgent\frmMSWindowsCounterAgent.cs:line 106The remote server returned an error: (500) Internal Server Error.
+---------------------------------------
+Log Entry : 
+19:58:10 01 July 2014 
+--Log entry goes here--
+   at System.Net.HttpWebRequest.GetResponse()
+   at Core.Constants.GetPageContent(String Url, String data) in d:\Rasith\Floodgates\Core\Constants.cs:line 746
+   at MSWindowsCounterAgent.frmMSWindowsCounterAgent.DoWork() in d:\Rasith\Floodgates\MSWindowsCounterAgent\frmMSWindowsCounterAgent.cs:line 106The remote server returned an error: (500) Internal Server Error.
+---------------------------------------
+Log Entry : 
+19:58:10 01 July 2014 
+--Log entry goes here--
+   at System.Net.HttpWebRequest.GetResponse()
+   at Core.Constants.GetPageContent(String Url, String data) in d:\Rasith\Floodgates\Core\Constants.cs:line 746
+   at MSWindowsCounterAgent.frmMSWindowsCounterAgent.DoWork() in d:\Rasith\Floodgates\MSWindowsCounterAgent\frmMSWindowsCounterAgent.cs:line 106The remote server returned an error: (500) Internal Server Error.
+---------------------------------------
+Log Entry : 
+19:58:10 01 July 2014 
+--Log entry goes here--
+   at System.Net.HttpWebRequest.GetResponse()
+   at Core.Constants.GetPageContent(String Url, String data) in d:\Rasith\Floodgates\Core\Constants.cs:line 746
+   at MSWindowsCounterAgent.frmMSWindowsCounterAgent.DoWork() in d:\Rasith\Floodgates\MSWindowsCounterAgent\frmMSWindowsCounterAgent.cs:line 106The remote server returned an error: (500) Internal Server Error.
+---------------------------------------
+Log Entry : 
+19:58:10 01 July 2014 
+--Log entry goes here--
+   at System.Net.HttpWebRequest.GetResponse()
+   at Core.Constants.GetPageContent(String Url, String data) in d:\Rasith\Floodgates\Core\Constants.cs:line 746
+   at MSWindowsCounterAgent.frmMSWindowsCounterAgent.DoWork() in d:\Rasith\Floodgates\MSWindowsCounterAgent\frmMSWindowsCounterAgent.cs:line 106The remote server returned an error: (500) Internal Server Error.
+---------------------------------------
+Log Entry : 
+19:58:10 01 July 2014 
+--Log entry goes here--
+   at System.Net.HttpWebRequest.GetResponse()
+   at Core.Constants.GetPageContent(String Url, String data) in d:\Rasith\Floodgates\Core\Constants.cs:line 746
+   at MSWindowsCounterAgent.frmMSWindowsCounterAgent.DoWork() in d:\Rasith\Floodgates\MSWindowsCounterAgent\frmMSWindowsCounterAgent.cs:line 106The remote server returned an error: (500) Internal Server Error.
+---------------------------------------
+Log Entry : 
+19:58:10 01 July 2014 
+--Log entry goes here--
+   at System.Net.HttpWebRequest.GetResponse()
+   at Core.Constants.GetPageContent(String Url, String data) in d:\Rasith\Floodgates\Core\Constants.cs:line 746
+   at MSWindowsCounterAgent.frmMSWindowsCounterAgent.DoWork() in d:\Rasith\Floodgates\MSWindowsCounterAgent\frmMSWindowsCounterAgent.cs:line 106The remote server returned an error: (500) Internal Server Error.
+---------------------------------------
+Log Entry : 
+19:58:19 01 July 2014 
+--Log entry goes here--
+   at System.Net.HttpWebRequest.GetResponse()
+   at Core.Constants.GetPageContent(String Url, String data) in d:\Rasith\Floodgates\Core\Constants.cs:line 746
+   at MSWindowsCounterAgent.frmMSWindowsCounterAgent.DoWork() in d:\Rasith\Floodgates\MSWindowsCounterAgent\frmMSWindowsCounterAgent.cs:line 106The remote server returned an error: (500) Internal Server Error.
+---------------------------------------
+Log Entry : 
+19:58:19 01 July 2014 
+--Log entry goes here--
+   at System.Net.HttpWebRequest.GetResponse()
+   at Core.Constants.GetPageContent(String Url, String data) in d:\Rasith\Floodgates\Core\Constants.cs:line 746
+   at MSWindowsCounterAgent.frmMSWindowsCounterAgent.DoWork() in d:\Rasith\Floodgates\MSWindowsCounterAgent\frmMSWindowsCounterAgent.cs:line 106The remote server returned an error: (500) Internal Server Error.
+---------------------------------------
+Log Entry : 
+19:58:19 01 July 2014 
+--Log entry goes here--
+   at System.Net.HttpWebRequest.GetResponse()
+   at Core.Constants.GetPageContent(String Url, String data) in d:\Rasith\Floodgates\Core\Constants.cs:line 746
+   at MSWindowsCounterAgent.frmMSWindowsCounterAgent.DoWork() in d:\Rasith\Floodgates\MSWindowsCounterAgent\frmMSWindowsCounterAgent.cs:line 106The remote server returned an error: (500) Internal Server Error.
+---------------------------------------
+Log Entry : 
+19:58:19 01 July 2014 
+--Log entry goes here--
+   at System.Net.HttpWebRequest.GetResponse()
+   at Core.Constants.GetPageContent(String Url, String data) in d:\Rasith\Floodgates\Core\Constants.cs:line 746
+   at MSWindowsCounterAgent.frmMSWindowsCounterAgent.DoWork() in d:\Rasith\Floodgates\MSWindowsCounterAgent\frmMSWindowsCounterAgent.cs:line 106The remote server returned an error: (500) Internal Server Error.
+---------------------------------------
+Log Entry : 
+19:58:19 01 July 2014 
+--Log entry goes here--
+   at System.Net.HttpWebRequest.GetResponse()
+   at Core.Constants.GetPageContent(String Url, String data) in d:\Rasith\Floodgates\Core\Constants.cs:line 746
+   at MSWindowsCounterAgent.frmMSWindowsCounterAgent.DoWork() in d:\Rasith\Floodgates\MSWindowsCounterAgent\frmMSWindowsCounterAgent.cs:line 106The remote server returned an error: (500) Internal Server Error.
+---------------------------------------
+Log Entry : 
+19:58:19 01 July 2014 
+--Log entry goes here--
+   at System.Net.HttpWebRequest.GetResponse()
+   at Core.Constants.GetPageContent(String Url, String data) in d:\Rasith\Floodgates\Core\Constants.cs:line 746
+   at MSWindowsCounterAgent.frmMSWindowsCounterAgent.DoWork() in d:\Rasith\Floodgates\MSWindowsCounterAgent\frmMSWindowsCounterAgent.cs:line 106The remote server returned an error: (500) Internal Server Error.
+---------------------------------------
+Log Entry : 
+19:58:19 01 July 2014 
+--Log entry goes here--
+   at System.Net.HttpWebRequest.GetResponse()
+   at Core.Constants.GetPageContent(String Url, String data) in d:\Rasith\Floodgates\Core\Constants.cs:line 746
+   at MSWindowsCounterAgent.frmMSWindowsCounterAgent.DoWork() in d:\Rasith\Floodgates\MSWindowsCounterAgent\frmMSWindowsCounterAgent.cs:line 106The remote server returned an error: (500) Internal Server Error.
+---------------------------------------
+Log Entry : 
+19:58:19 01 July 2014 
+--Log entry goes here--
+   at System.Net.HttpWebRequest.GetResponse()
+   at Core.Constants.GetPageContent(String Url, String data) in d:\Rasith\Floodgates\Core\Constants.cs:line 746
+   at MSWindowsCounterAgent.frmMSWindowsCounterAgent.DoWork() in d:\Rasith\Floodgates\MSWindowsCounterAgent\frmMSWindowsCounterAgent.cs:line 106The remote server returned an error: (500) Internal Server Error.
+---------------------------------------
+Log Entry : 
+19:58:19 01 July 2014 
+--Log entry goes here--
+   at System.Net.HttpWebRequest.GetResponse()
+   at Core.Constants.GetPageContent(String Url, String data) in d:\Rasith\Floodgates\Core\Constants.cs:line 746
+   at MSWindowsCounterAgent.frmMSWindowsCounterAgent.DoWork() in d:\Rasith\Floodgates\MSWindowsCounterAgent\frmMSWindowsCounterAgent.cs:line 106The remote server returned an error: (500) Internal Server Error.
+---------------------------------------
+Log Entry : 
+13:47:31 02 July 2014 
+--Log entry goes here--
+   at System.Net.HttpWebRequest.GetRequestStream(TransportContext& context)
+   at System.Net.HttpWebRequest.GetRequestStream()
+   at Core.Constants.GetPageContent(String Url, String data) in d:\Rasith\Floodgates\Core\Constants.cs:line 742
+   at MSWindowsCounterAgent.frmMSWindowsCounterAgent.DoWork() in d:\Rasith\Floodgates\MSWindowsCounterAgent\frmMSWindowsCounterAgent.cs:line 108The operation has timed out
+---------------------------------------
+Log Entry : 
+13:47:56 02 July 2014 
+--Log entry goes here--
+   at System.Net.HttpWebRequest.GetRequestStream(TransportContext& context)
+   at System.Net.HttpWebRequest.GetRequestStream()
+   at Core.Constants.GetPageContent(String Url, String data) in d:\Rasith\Floodgates\Core\Constants.cs:line 742
+   at MSWindowsCounterAgent.frmMSWindowsCounterAgent.DoWork() in d:\Rasith\Floodgates\MSWindowsCounterAgent\frmMSWindowsCounterAgent.cs:line 108Unable to connect to the remote server
+---------------------------------------
+Log Entry : 
+13:48:16 02 July 2014 
+--Log entry goes here--
+   at System.Net.HttpWebRequest.GetRequestStream(TransportContext& context)
+   at System.Net.HttpWebRequest.GetRequestStream()
+   at Core.Constants.GetPageContent(String Url, String data) in d:\Rasith\Floodgates\Core\Constants.cs:line 742
+   at MSWindowsCounterAgent.frmMSWindowsCounterAgent.DoWork() in d:\Rasith\Floodgates\MSWindowsCounterAgent\frmMSWindowsCounterAgent.cs:line 108Unable to connect to the remote server
+---------------------------------------
+Log Entry : 
+13:48:36 02 July 2014 
+--Log entry goes here--
+   at System.Net.HttpWebRequest.GetRequestStream(TransportContext& context)
+   at System.Net.HttpWebRequest.GetRequestStream()
+   at Core.Constants.GetPageContent(String Url, String data) in d:\Rasith\Floodgates\Core\Constants.cs:line 742
+   at MSWindowsCounterAgent.frmMSWindowsCounterAgent.DoWork() in d:\Rasith\Floodgates\MSWindowsCounterAgent\frmMSWindowsCounterAgent.cs:line 108Unable to connect to the remote server
+---------------------------------------
+Log Entry : 
+13:48:56 02 July 2014 
+--Log entry goes here--
+   at System.Net.HttpWebRequest.GetRequestStream(TransportContext& context)
+   at System.Net.HttpWebRequest.GetRequestStream()
+   at Core.Constants.GetPageContent(String Url, String data) in d:\Rasith\Floodgates\Core\Constants.cs:line 742
+   at MSWindowsCounterAgent.frmMSWindowsCounterAgent.DoWork() in d:\Rasith\Floodgates\MSWindowsCounterAgent\frmMSWindowsCounterAgent.cs:line 108Unable to connect to the remote server
+---------------------------------------
+Log Entry : 
+13:49:21 02 July 2014 
+--Log entry goes here--
+   at System.Net.HttpWebRequest.GetRequestStream(TransportContext& context)
+   at System.Net.HttpWebRequest.GetRequestStream()
+   at Core.Constants.GetPageContent(String Url, String data) in d:\Rasith\Floodgates\Core\Constants.cs:line 742
+   at MSWindowsCounterAgent.frmMSWindowsCounterAgent.DoWork() in d:\Rasith\Floodgates\MSWindowsCounterAgent\frmMSWindowsCounterAgent.cs:line 108Unable to connect to the remote server
+---------------------------------------
+Log Entry : 
+13:49:41 02 July 2014 
+--Log entry goes here--
+   at System.Net.HttpWebRequest.GetRequestStream(TransportContext& context)
+   at System.Net.HttpWebRequest.GetRequestStream()
+   at Core.Constants.GetPageContent(String Url, String data) in d:\Rasith\Floodgates\Core\Constants.cs:line 742
+   at MSWindowsCounterAgent.frmMSWindowsCounterAgent.DoWork() in d:\Rasith\Floodgates\MSWindowsCounterAgent\frmMSWindowsCounterAgent.cs:line 108Unable to connect to the remote server
+---------------------------------------
+Log Entry : 
+13:50:01 02 July 2014 
+--Log entry goes here--
+   at System.Net.HttpWebRequest.GetRequestStream(TransportContext& context)
+   at System.Net.HttpWebRequest.GetRequestStream()
+   at Core.Constants.GetPageContent(String Url, String data) in d:\Rasith\Floodgates\Core\Constants.cs:line 742
+   at MSWindowsCounterAgent.frmMSWindowsCounterAgent.DoWork() in d:\Rasith\Floodgates\MSWindowsCounterAgent\frmMSWindowsCounterAgent.cs:line 108Unable to connect to the remote server
+---------------------------------------
+Log Entry : 
+13:50:21 02 July 2014 
+--Log entry goes here--
+   at System.Net.HttpWebRequest.GetRequestStream(TransportContext& context)
+   at System.Net.HttpWebRequest.GetRequestStream()
+   at Core.Constants.GetPageContent(String Url, String data) in d:\Rasith\Floodgates\Core\Constants.cs:line 742
+   at MSWindowsCounterAgent.frmMSWindowsCounterAgent.DoWork() in d:\Rasith\Floodgates\MSWindowsCounterAgent\frmMSWindowsCounterAgent.cs:line 108Unable to connect to the remote server
+---------------------------------------
+Log Entry : 
+13:50:41 02 July 2014 
+--Log entry goes here--
+   at System.Net.HttpWebRequest.GetRequestStream(TransportContext& context)
+   at System.Net.HttpWebRequest.GetRequestStream()
+   at Core.Constants.GetPageContent(String Url, String data) in d:\Rasith\Floodgates\Core\Constants.cs:line 742
+   at MSWindowsCounterAgent.frmMSWindowsCounterAgent.DoWork() in d:\Rasith\Floodgates\MSWindowsCounterAgent\frmMSWindowsCounterAgent.cs:line 108Unable to connect to the remote server
+---------------------------------------
+Log Entry : 
+13:51:06 02 July 2014 
+--Log entry goes here--
+   at System.Net.HttpWebRequest.GetRequestStream(TransportContext& context)
+   at System.Net.HttpWebRequest.GetRequestStream()
+   at Core.Constants.GetPageContent(String Url, String data) in d:\Rasith\Floodgates\Core\Constants.cs:line 742
+   at MSWindowsCounterAgent.frmMSWindowsCounterAgent.DoWork() in d:\Rasith\Floodgates\MSWindowsCounterAgent\frmMSWindowsCounterAgent.cs:line 108Unable to connect to the remote server
+---------------------------------------
+Log Entry : 
+13:51:26 02 July 2014 
+--Log entry goes here--
+   at System.Net.HttpWebRequest.GetRequestStream(TransportContext& context)
+   at System.Net.HttpWebRequest.GetRequestStream()
+   at Core.Constants.GetPageContent(String Url, String data) in d:\Rasith\Floodgates\Core\Constants.cs:line 742
+   at MSWindowsCounterAgent.frmMSWindowsCounterAgent.DoWork() in d:\Rasith\Floodgates\MSWindowsCounterAgent\frmMSWindowsCounterAgent.cs:line 108Unable to connect to the remote server
+---------------------------------------
+Log Entry : 
+13:51:46 02 July 2014 
+--Log entry goes here--
+   at System.Net.HttpWebRequest.GetRequestStream(TransportContext& context)
+   at System.Net.HttpWebRequest.GetRequestStream()
+   at Core.Constants.GetPageContent(String Url, String data) in d:\Rasith\Floodgates\Core\Constants.cs:line 742
+   at MSWindowsCounterAgent.frmMSWindowsCounterAgent.DoWork() in d:\Rasith\Floodgates\MSWindowsCounterAgent\frmMSWindowsCounterAgent.cs:line 108Unable to connect to the remote server
+---------------------------------------
+Log Entry : 
+13:52:06 02 July 2014 
+--Log entry goes here--
+   at System.Net.HttpWebRequest.GetRequestStream(TransportContext& context)
+   at System.Net.HttpWebRequest.GetRequestStream()
+   at Core.Constants.GetPageContent(String Url, String data) in d:\Rasith\Floodgates\Core\Constants.cs:line 742
+   at MSWindowsCounterAgent.frmMSWindowsCounterAgent.DoWork() in d:\Rasith\Floodgates\MSWindowsCounterAgent\frmMSWindowsCounterAgent.cs:line 108Unable to connect to the remote server
+---------------------------------------
+Log Entry : 
+13:52:26 02 July 2014 
+--Log entry goes here--
+   at System.Net.HttpWebRequest.GetRequestStream(TransportContext& context)
+   at System.Net.HttpWebRequest.GetRequestStream()
+   at Core.Constants.GetPageContent(String Url, String data) in d:\Rasith\Floodgates\Core\Constants.cs:line 742
+   at MSWindowsCounterAgent.frmMSWindowsCounterAgent.DoWork() in d:\Rasith\Floodgates\MSWindowsCounterAgent\frmMSWindowsCounterAgent.cs:line 108Unable to connect to the remote server
+---------------------------------------
+Log Entry : 
+13:52:51 02 July 2014 
+--Log entry goes here--
+   at System.Net.HttpWebRequest.GetRequestStream(TransportContext& context)
+   at System.Net.HttpWebRequest.GetRequestStream()
+   at Core.Constants.GetPageContent(String Url, String data) in d:\Rasith\Floodgates\Core\Constants.cs:line 742
+   at MSWindowsCounterAgent.frmMSWindowsCounterAgent.DoWork() in d:\Rasith\Floodgates\MSWindowsCounterAgent\frmMSWindowsCounterAgent.cs:line 108Unable to connect to the remote server
+---------------------------------------
+Log Entry : 
+13:53:11 02 July 2014 
+--Log entry goes here--
+   at System.Net.HttpWebRequest.GetRequestStream(TransportContext& context)
+   at System.Net.HttpWebRequest.GetRequestStream()
+   at Core.Constants.GetPageContent(String Url, String data) in d:\Rasith\Floodgates\Core\Constants.cs:line 742
+   at MSWindowsCounterAgent.frmMSWindowsCounterAgent.DoWork() in d:\Rasith\Floodgates\MSWindowsCounterAgent\frmMSWindowsCounterAgent.cs:line 108Unable to connect to the remote server
+---------------------------------------
+Log Entry : 
+13:53:31 02 July 2014 
+--Log entry goes here--
+   at System.Net.HttpWebRequest.GetRequestStream(TransportContext& context)
+   at System.Net.HttpWebRequest.GetRequestStream()
+   at Core.Constants.GetPageContent(String Url, String data) in d:\Rasith\Floodgates\Core\Constants.cs:line 742
+   at MSWindowsCounterAgent.frmMSWindowsCounterAgent.DoWork() in d:\Rasith\Floodgates\MSWindowsCounterAgent\frmMSWindowsCounterAgent.cs:line 108Unable to connect to the remote server
+---------------------------------------
+Log Entry : 
+13:53:51 02 July 2014 
+--Log entry goes here--
+   at System.Net.HttpWebRequest.GetRequestStream(TransportContext& context)
+   at System.Net.HttpWebRequest.GetRequestStream()
+   at Core.Constants.GetPageContent(String Url, String data) in d:\Rasith\Floodgates\Core\Constants.cs:line 742
+   at MSWindowsCounterAgent.frmMSWindowsCounterAgent.DoWork() in d:\Rasith\Floodgates\MSWindowsCounterAgent\frmMSWindowsCounterAgent.cs:line 108Unable to connect to the remote server
+---------------------------------------
+Log Entry : 
+13:54:16 02 July 2014 
+--Log entry goes here--
+   at System.Net.HttpWebRequest.GetRequestStream(TransportContext& context)
+   at System.Net.HttpWebRequest.GetRequestStream()
+   at Core.Constants.GetPageContent(String Url, String data) in d:\Rasith\Floodgates\Core\Constants.cs:line 742
+   at MSWindowsCounterAgent.frmMSWindowsCounterAgent.DoWork() in d:\Rasith\Floodgates\MSWindowsCounterAgent\frmMSWindowsCounterAgent.cs:line 108Unable to connect to the remote server
+---------------------------------------
+Log Entry : 
+13:54:36 02 July 2014 
+--Log entry goes here--
+   at System.Net.HttpWebRequest.GetRequestStream(TransportContext& context)
+   at System.Net.HttpWebRequest.GetRequestStream()
+   at Core.Constants.GetPageContent(String Url, String data) in d:\Rasith\Floodgates\Core\Constants.cs:line 742
+   at MSWindowsCounterAgent.frmMSWindowsCounterAgent.DoWork() in d:\Rasith\Floodgates\MSWindowsCounterAgent\frmMSWindowsCounterAgent.cs:line 108Unable to connect to the remote server
+---------------------------------------
+Log Entry : 
+13:54:56 02 July 2014 
+--Log entry goes here--
+   at System.Net.HttpWebRequest.GetRequestStream(TransportContext& context)
+   at System.Net.HttpWebRequest.GetRequestStream()
+   at Core.Constants.GetPageContent(String Url, String data) in d:\Rasith\Floodgates\Core\Constants.cs:line 742
+   at MSWindowsCounterAgent.frmMSWindowsCounterAgent.DoWork() in d:\Rasith\Floodgates\MSWindowsCounterAgent\frmMSWindowsCounterAgent.cs:line 108Unable to connect to the remote server
+---------------------------------------
+Log Entry : 
+13:55:16 02 July 2014 
+--Log entry goes here--
+   at System.Net.HttpWebRequest.GetRequestStream(TransportContext& context)
+   at System.Net.HttpWebRequest.GetRequestStream()
+   at Core.Constants.GetPageContent(String Url, String data) in d:\Rasith\Floodgates\Core\Constants.cs:line 742
+   at MSWindowsCounterAgent.frmMSWindowsCounterAgent.DoWork() in d:\Rasith\Floodgates\MSWindowsCounterAgent\frmMSWindowsCounterAgent.cs:line 108Unable to connect to the remote server
+---------------------------------------
+Log Entry : 
+13:55:36 02 July 2014 
+--Log entry goes here--
+   at System.Net.HttpWebRequest.GetRequestStream(TransportContext& context)
+   at System.Net.HttpWebRequest.GetRequestStream()
+   at Core.Constants.GetPageContent(String Url, String data) in d:\Rasith\Floodgates\Core\Constants.cs:line 742
+   at MSWindowsCounterAgent.frmMSWindowsCounterAgent.DoWork() in d:\Rasith\Floodgates\MSWindowsCounterAgent\frmMSWindowsCounterAgent.cs:line 108Unable to connect to the remote server
+---------------------------------------
+Log Entry : 
+19:04:37 04 July 2014 
+--Log entry goes here--
+   at System.Net.HttpWebRequest.GetRequestStream(TransportContext& context)
+   at System.Net.HttpWebRequest.GetRequestStream()
+   at Core.Constants.GetPageContent(String Url, String data) in d:\Rasith\Floodgates\Core\Constants.cs:line 742
+   at MSWindowsCounterAgent.frmMSWindowsCounterAgent.DoWork() in d:\Rasith\Floodgates\MSWindowsCounterAgent\frmMSWindowsCounterAgent.cs:line 108Unable to connect to the remote server
+---------------------------------------
+Log Entry : 
+15:25:47 19 July 2014 
+--Log entry goes here--
+   at System.Diagnostics.PerformanceCounter.InitializeImpl()
+   at System.Diagnostics.PerformanceCounter..ctor(String categoryName, String counterName, String instanceName, Boolean readOnly)
+   at System.Diagnostics.PerformanceCounter..ctor(String categoryName, String counterName, String instanceName)
+   at MSWindowsCounterAgent.frmMSWindowsCounterAgent..ctor() in d:\Rasith\Floodgates\MSWindowsCounterAgent\frmMSWindowsCounterAgent.cs:line 88
+Could not locate Performance Counter with specified category name 'PhysicalDisk', counter name 'Processor Queue Length'.
+---------------------------------------
+Log Entry : 
+15:25:47 19 July 2014 
+--Log entry goes here--
+   at System.Diagnostics.PerformanceCounter.InitializeImpl()
+   at System.Diagnostics.PerformanceCounter..ctor(String categoryName, String counterName, String instanceName, Boolean readOnly)
+   at System.Diagnostics.PerformanceCounter..ctor(String categoryName, String counterName, String instanceName)
+   at MSWindowsCounterAgent.frmMSWindowsCounterAgent..ctor() in d:\Rasith\Floodgates\MSWindowsCounterAgent\frmMSWindowsCounterAgent.cs:line 88
+Could not locate Performance Counter with specified category name 'PhysicalDisk', counter name 'Processor Queue Length'.
+---------------------------------------
+Log Entry : 
+15:26:14 19 July 2014 
+--Log entry goes here--
+   at System.Diagnostics.PerformanceCounter.InitializeImpl()
+   at System.Diagnostics.PerformanceCounter..ctor(String categoryName, String counterName, String instanceName, Boolean readOnly)
+   at System.Diagnostics.PerformanceCounter..ctor(String categoryName, String counterName, String instanceName)
+   at MSWindowsCounterAgent.frmMSWindowsCounterAgent..ctor() in d:\Rasith\Floodgates\MSWindowsCounterAgent\frmMSWindowsCounterAgent.cs:line 88
+Could not locate Performance Counter with specified category name 'PhysicalDisk', counter name 'Processor Queue Length'.
+---------------------------------------
+Log Entry : 
+15:26:14 19 July 2014 
+--Log entry goes here--
+   at System.Diagnostics.PerformanceCounter.InitializeImpl()
+   at System.Diagnostics.PerformanceCounter..ctor(String categoryName, String counterName, String instanceName, Boolean readOnly)
+   at System.Diagnostics.PerformanceCounter..ctor(String categoryName, String counterName, String instanceName)
+   at MSWindowsCounterAgent.frmMSWindowsCounterAgent..ctor() in d:\Rasith\Floodgates\MSWindowsCounterAgent\frmMSWindowsCounterAgent.cs:line 88
+Could not locate Performance Counter with specified category name 'PhysicalDisk', counter name 'Processor Queue Length'.
+---------------------------------------
+Log Entry : 
+15:26:14 19 July 2014 
+--Log entry goes here--
+   at System.Diagnostics.CounterDefinitionSample.GetInstanceValue(String instanceName)
+   at System.Diagnostics.PerformanceCounter.NextSample()
+   at System.Diagnostics.PerformanceCounter.NextValue()
+   at MSWindowsCounterAgent.frmMSWindowsCounterAgent..ctor() in d:\Rasith\Floodgates\MSWindowsCounterAgent\frmMSWindowsCounterAgent.cs:line 89
+Instance 'ALL' does not exist in the specified Category.
+---------------------------------------
+Log Entry : 
+15:26:19 19 July 2014 
+--Log entry goes here--
+   at System.Diagnostics.CounterDefinitionSample.GetInstanceValue(String instanceName)
+   at System.Diagnostics.PerformanceCounter.NextSample()
+   at System.Diagnostics.PerformanceCounter.NextValue()
+   at MSWindowsCounterAgent.frmMSWindowsCounterAgent..ctor() in d:\Rasith\Floodgates\MSWindowsCounterAgent\frmMSWindowsCounterAgent.cs:line 89
+Instance 'ALL' does not exist in the specified Category.
+---------------------------------------
+Log Entry : 
+15:27:58 19 July 2014 
+--Log entry goes here--
+   at System.Diagnostics.PerformanceCounter.InitializeImpl()
+   at System.Diagnostics.PerformanceCounter..ctor(String categoryName, String counterName, String instanceName, Boolean readOnly)
+   at System.Diagnostics.PerformanceCounter..ctor(String categoryName, String counterName, String instanceName)
+   at MSWindowsCounterAgent.frmMSWindowsCounterAgent..ctor() in d:\Rasith\Floodgates\MSWindowsCounterAgent\frmMSWindowsCounterAgent.cs:line 88
+Could not locate Performance Counter with specified category name 'PhysicalDisk', counter name 'Processor Queue Length'.
+---------------------------------------
+Log Entry : 
+15:28:03 19 July 2014 
+--Log entry goes here--
+   at System.Diagnostics.PerformanceCounter.InitializeImpl()
+   at System.Diagnostics.PerformanceCounter..ctor(String categoryName, String counterName, String instanceName, Boolean readOnly)
+   at System.Diagnostics.PerformanceCounter..ctor(String categoryName, String counterName, String instanceName)
+   at MSWindowsCounterAgent.frmMSWindowsCounterAgent..ctor() in d:\Rasith\Floodgates\MSWindowsCounterAgent\frmMSWindowsCounterAgent.cs:line 88
+Could not locate Performance Counter with specified category name 'PhysicalDisk', counter name 'Processor Queue Length'.
+---------------------------------------
+Log Entry : 
+15:28:03 19 July 2014 
+--Log entry goes here--
+   at System.Diagnostics.CounterDefinitionSample.GetInstanceValue(String instanceName)
+   at System.Diagnostics.PerformanceCounter.NextSample()
+   at System.Diagnostics.PerformanceCounter.NextValue()
+   at MSWindowsCounterAgent.frmMSWindowsCounterAgent..ctor() in d:\Rasith\Floodgates\MSWindowsCounterAgent\frmMSWindowsCounterAgent.cs:line 89
+Instance 'ALL' does not exist in the specified Category.
+---------------------------------------
+Log Entry : 
+15:28:03 19 July 2014 
+--Log entry goes here--
+   at System.Diagnostics.CounterDefinitionSample.GetInstanceValue(String instanceName)
+   at System.Diagnostics.PerformanceCounter.NextSample()
+   at System.Diagnostics.PerformanceCounter.NextValue()
+   at MSWindowsCounterAgent.frmMSWindowsCounterAgent..ctor() in d:\Rasith\Floodgates\MSWindowsCounterAgent\frmMSWindowsCounterAgent.cs:line 89
+Instance 'ALL' does not exist in the specified Category.
+---------------------------------------
+Log Entry : 
+15:28:14 19 July 2014 
+--Log entry goes here--
+'<', hexadecimal value 0x3C, is an invalid attribute character. Line 1, position 1496.
+   at System.Xml.XmlTextReaderImpl.Throw(String res, String[] args)
+   at System.Xml.XmlTextReaderImpl.ParseAttributeValueSlow(Int32 curPos, Char quoteChar, NodeData attr)
+   at System.Xml.XmlTextReaderImpl.ParseAttributes()
+   at System.Xml.XmlTextReaderImpl.ParseElement()
+   at System.Xml.XmlTextReaderImpl.ParseElementContent()
+   at System.Xml.XmlLoader.LoadNode(Boolean skipOverWhitespace)
+   at System.Xml.XmlLoader.LoadDocSequence(XmlDocument parentDoc)
+   at System.Xml.XmlDocument.Load(XmlReader reader)
+   at System.Xml.XmlDocument.Load(String filename)
+   at MSWindowsCounterAgent.MSWindowsCounterXml..ctor() in d:\Rasith\Floodgates\MSWindowsCounterAgent\MSWindowsCounterXml.cs:line 53
+---------------------------------------
+Log Entry : 
+15:28:24 19 July 2014 
+--Log entry goes here--
+'<', hexadecimal value 0x3C, is an invalid attribute character. Line 1, position 1496.
+   at System.Xml.XmlTextReaderImpl.Throw(String res, String[] args)
+   at System.Xml.XmlTextReaderImpl.ParseAttributeValueSlow(Int32 curPos, Char quoteChar, NodeData attr)
+   at System.Xml.XmlTextReaderImpl.ParseAttributes()
+   at System.Xml.XmlTextReaderImpl.ParseElement()
+   at System.Xml.XmlTextReaderImpl.ParseElementContent()
+   at System.Xml.XmlLoader.LoadNode(Boolean skipOverWhitespace)
+   at System.Xml.XmlLoader.LoadDocSequence(XmlDocument parentDoc)
+   at System.Xml.XmlDocument.Load(XmlReader reader)
+   at System.Xml.XmlDocument.Load(String filename)
+   at MSWindowsCounterAgent.MSWindowsCounterXml..ctor() in d:\Rasith\Floodgates\MSWindowsCounterAgent\MSWindowsCounterXml.cs:line 53
+---------------------------------------
+Log Entry : 
+15:30:59 19 July 2014 
+--Log entry goes here--
+'<', hexadecimal value 0x3C, is an invalid attribute character. Line 1, position 1496.
+   at System.Xml.XmlTextReaderImpl.Throw(String res, String[] args)
+   at System.Xml.XmlTextReaderImpl.ParseAttributeValueSlow(Int32 curPos, Char quoteChar, NodeData attr)
+   at System.Xml.XmlTextReaderImpl.ParseAttributes()
+   at System.Xml.XmlTextReaderImpl.ParseElement()
+   at System.Xml.XmlTextReaderImpl.ParseElementContent()
+   at System.Xml.XmlLoader.LoadNode(Boolean skipOverWhitespace)
+   at System.Xml.XmlLoader.LoadDocSequence(XmlDocument parentDoc)
+   at System.Xml.XmlDocument.Load(XmlReader reader)
+   at System.Xml.XmlDocument.Load(String filename)
+   at MSWindowsCounterAgent.MSWindowsCounterXml..ctor() in d:\Rasith\Floodgates\MSWindowsCounterAgent\MSWindowsCounterXml.cs:line 53
+---------------------------------------
+Log Entry : 
+15:34:14 19 July 2014 
+--Log entry goes here--
+'<', hexadecimal value 0x3C, is an invalid attribute character. Line 1, position 1496.
+   at System.Xml.XmlTextReaderImpl.Throw(String res, String[] args)
+   at System.Xml.XmlTextReaderImpl.ParseAttributeValueSlow(Int32 curPos, Char quoteChar, NodeData attr)
+   at System.Xml.XmlTextReaderImpl.ParseAttributes()
+   at System.Xml.XmlTextReaderImpl.ParseElement()
+   at System.Xml.XmlTextReaderImpl.ParseElementContent()
+   at System.Xml.XmlLoader.LoadNode(Boolean skipOverWhitespace)
+   at System.Xml.XmlLoader.LoadDocSequence(XmlDocument parentDoc)
+   at System.Xml.XmlDocument.Load(XmlReader reader)
+   at System.Xml.XmlDocument.Load(String filename)
+   at MSWindowsCounterAgent.MSWindowsCounterXml..ctor() in d:\Rasith\Floodgates\MSWindowsCounterAgent\MSWindowsCounterXml.cs:line 53
+---------------------------------------
+Log Entry : 
+15:34:19 19 July 2014 
+--Log entry goes here--
+   at MSWindowsCounterAgent.frmMSWindowsCounterAgent..ctor() in d:\Rasith\Floodgates\MSWindowsCounterAgent\frmMSWindowsCounterAgent.cs:line 40
+Object reference not set to an instance of an object.
+---------------------------------------
+Log Entry : 
+15:35:02 19 July 2014 
+--Log entry goes here--
+'<', hexadecimal value 0x3C, is an invalid attribute character. Line 1, position 1496.
+   at System.Xml.XmlTextReaderImpl.Throw(String res, String[] args)
+   at System.Xml.XmlTextReaderImpl.ParseAttributeValueSlow(Int32 curPos, Char quoteChar, NodeData attr)
+   at System.Xml.XmlTextReaderImpl.ParseAttributes()
+   at System.Xml.XmlTextReaderImpl.ParseElement()
+   at System.Xml.XmlTextReaderImpl.ParseElementContent()
+   at System.Xml.XmlLoader.LoadNode(Boolean skipOverWhitespace)
+   at System.Xml.XmlLoader.LoadDocSequence(XmlDocument parentDoc)
+   at System.Xml.XmlDocument.Load(XmlReader reader)
+   at System.Xml.XmlDocument.Load(String filename)
+   at MSWindowsCounterAgent.MSWindowsCounterXml..ctor() in d:\Rasith\Floodgates\MSWindowsCounterAgent\MSWindowsCounterXml.cs:line 53
+---------------------------------------
+Log Entry : 
+15:36:04 19 July 2014 
+--Log entry goes here--
+   at System.Diagnostics.PerformanceCounter.InitializeImpl()
+   at System.Diagnostics.PerformanceCounter..ctor(String categoryName, String counterName, String instanceName, Boolean readOnly)
+   at System.Diagnostics.PerformanceCounter..ctor(String categoryName, String counterName, String instanceName)
+   at MSWindowsCounterAgent.frmMSWindowsCounterAgent..ctor() in d:\Rasith\Floodgates\MSWindowsCounterAgent\frmMSWindowsCounterAgent.cs:line 88
+Could not locate Performance Counter with specified category name 'PhysicalDisk', counter name 'Processor Queue Length'.
+---------------------------------------
+Log Entry : 
+15:36:15 19 July 2014 
+--Log entry goes here--
+   at System.Diagnostics.PerformanceCounter.InitializeImpl()
+   at System.Diagnostics.PerformanceCounter..ctor(String categoryName, String counterName, String instanceName, Boolean readOnly)
+   at System.Diagnostics.PerformanceCounter..ctor(String categoryName, String counterName, String instanceName)
+   at MSWindowsCounterAgent.frmMSWindowsCounterAgent..ctor() in d:\Rasith\Floodgates\MSWindowsCounterAgent\frmMSWindowsCounterAgent.cs:line 88
+Could not locate Performance Counter with specified category name 'PhysicalDisk', counter name 'Processor Queue Length'.
+---------------------------------------
+Log Entry : 
+15:36:56 19 July 2014 
+--Log entry goes here--
+   at System.Collections.Generic.Dictionary`2.get_Item(TKey key)
+   at MSWindowsCounterAgent.frmMSWindowsCounterAgent.GetCountersValue() in d:\Rasith\Floodgates\MSWindowsCounterAgent\frmMSWindowsCounterAgent.cs:line 175
+   at MSWindowsCounterAgent.frmMSWindowsCounterAgent.DoWork() in d:\Rasith\Floodgates\MSWindowsCounterAgent\frmMSWindowsCounterAgent.cs:line 133The given key was not present in the dictionary.
+---------------------------------------
+Log Entry : 
+15:37:33 19 July 2014 
+--Log entry goes here--
+   at System.Diagnostics.PerformanceCounter.InitializeImpl()
+   at System.Diagnostics.PerformanceCounter..ctor(String categoryName, String counterName, String instanceName, Boolean readOnly)
+   at System.Diagnostics.PerformanceCounter..ctor(String categoryName, String counterName, String instanceName)
+   at MSWindowsCounterAgent.frmMSWindowsCounterAgent..ctor() in d:\Rasith\Floodgates\MSWindowsCounterAgent\frmMSWindowsCounterAgent.cs:line 88
+Could not locate Performance Counter with specified category name 'PhysicalDisk', counter name 'Processor Queue Length'.
+---------------------------------------
+Log Entry : 
+15:37:33 19 July 2014 
+--Log entry goes here--
+   at System.Diagnostics.PerformanceCounter.InitializeImpl()
+   at System.Diagnostics.PerformanceCounter..ctor(String categoryName, String counterName, String instanceName, Boolean readOnly)
+   at System.Diagnostics.PerformanceCounter..ctor(String categoryName, String counterName, String instanceName)
+   at MSWindowsCounterAgent.frmMSWindowsCounterAgent..ctor() in d:\Rasith\Floodgates\MSWindowsCounterAgent\frmMSWindowsCounterAgent.cs:line 88
+Could not locate Performance Counter with specified category name 'PhysicalDisk', counter name 'Processor Queue Length'.
+---------------------------------------
+Log Entry : 
+15:45:28 19 July 2014 
+--Log entry goes here--
+   at System.Diagnostics.PerformanceCounter.InitializeImpl()
+   at System.Diagnostics.PerformanceCounter..ctor(String categoryName, String counterName, String instanceName, Boolean readOnly)
+   at System.Diagnostics.PerformanceCounter..ctor(String categoryName, String counterName, String instanceName)
+   at MSWindowsCounterAgent.frmMSWindowsCounterAgent..ctor() in d:\Rasith\Floodgates\MSWindowsCounterAgent\frmMSWindowsCounterAgent.cs:line 88
+Could not locate Performance Counter with specified category name 'PhysicalDisk', counter name 'Processor Queue Length'.
+---------------------------------------
+Log Entry : 
+15:45:28 19 July 2014 
+--Log entry goes here--
+   at System.Diagnostics.PerformanceCounter.InitializeImpl()
+   at System.Diagnostics.PerformanceCounter..ctor(String categoryName, String counterName, String instanceName, Boolean readOnly)
+   at System.Diagnostics.PerformanceCounter..ctor(String categoryName, String counterName, String instanceName)
+   at MSWindowsCounterAgent.frmMSWindowsCounterAgent..ctor() in d:\Rasith\Floodgates\MSWindowsCounterAgent\frmMSWindowsCounterAgent.cs:line 88
+Could not locate Performance Counter with specified category name 'PhysicalDisk', counter name 'Processor Queue Length'.
+---------------------------------------
+Log Entry : 
+15:46:47 19 July 2014 
+--Log entry goes here--
+   at System.Diagnostics.PerformanceCounter.InitializeImpl()
+   at System.Diagnostics.PerformanceCounter..ctor(String categoryName, String counterName, String instanceName, Boolean readOnly)
+   at System.Diagnostics.PerformanceCounter..ctor(String categoryName, String counterName, String instanceName)
+   at MSWindowsCounterAgent.frmMSWindowsCounterAgent..ctor() in d:\Rasith\Floodgates\MSWindowsCounterAgent\frmMSWindowsCounterAgent.cs:line 88
+Could not locate Performance Counter with specified category name 'PhysicalDisk', counter name 'Processor Queue Length'.
+---------------------------------------
+Log Entry : 
+15:46:47 19 July 2014 
+--Log entry goes here--
+   at System.Diagnostics.PerformanceCounter.InitializeImpl()
+   at System.Diagnostics.PerformanceCounter..ctor(String categoryName, String counterName, String instanceName, Boolean readOnly)
+   at System.Diagnostics.PerformanceCounter..ctor(String categoryName, String counterName, String instanceName)
+   at MSWindowsCounterAgent.frmMSWindowsCounterAgent..ctor() in d:\Rasith\Floodgates\MSWindowsCounterAgent\frmMSWindowsCounterAgent.cs:line 88
+Could not locate Performance Counter with specified category name 'PhysicalDisk', counter name 'Processor Queue Length'.
+---------------------------------------
+Log Entry : 
+12:34:08 06 August 2014 
+--Log entry goes here--
+   at System.Net.HttpWebRequest.GetResponse()
+   at Core.Constants.GetPageContent(String Url, String data) in d:\Rasith\Floodgates\Core\Constants.cs:line 749The remote server returned an error: (500) Internal Server Error.
+---------------------------------------
+Log Entry : 
+12:37:25 06 August 2014 
+--Log entry goes here--
+   at System.Net.HttpWebRequest.GetResponse()
+   at Core.Constants.GetPageContent(String Url, String data) in d:\Rasith\Floodgates\Core\Constants.cs:line 749The remote server returned an error: (500) Internal Server Error.
+---------------------------------------
+Log Entry : 
+18:30:15 07 August 2014 
+--Log entry goes here--
+   at System.Net.HttpWebRequest.GetRequestStream(TransportContext& context)
+   at System.Net.HttpWebRequest.GetRequestStream()
+   at Core.Constants.GetPageContent(String Url, String data) in d:\Rasith\Floodgates\Core\Constants.cs:line 745Unable to connect to the remote server
+---------------------------------------
+Log Entry : 
+14:40:56 12 August 2014 
+--Log entry goes here--
+   at System.Net.HttpWebRequest.GetRequestStream(TransportContext& context)
+   at System.Net.HttpWebRequest.GetRequestStream()
+   at Core.Constants.GetPageContent(String Url, String data) in d:\Rasith\Floodgates\Core\Constants.cs:line 745Unable to connect to the remote server
+---------------------------------------
+Log Entry : 
+14:41:21 12 August 2014 
+--Log entry goes here--
+   at System.Net.HttpWebRequest.GetRequestStream(TransportContext& context)
+   at System.Net.HttpWebRequest.GetRequestStream()
+   at Core.Constants.GetPageContent(String Url, String data) in d:\Rasith\Floodgates\Core\Constants.cs:line 745Unable to connect to the remote server
+---------------------------------------
+Log Entry : 
+14:42:11 12 August 2014 
+--Log entry goes here--
+   at System.Net.HttpWebRequest.GetRequestStream(TransportContext& context)
+   at System.Net.HttpWebRequest.GetRequestStream()
+   at Core.Constants.GetPageContent(String Url, String data) in d:\Rasith\Floodgates\Core\Constants.cs:line 745Unable to connect to the remote server
+---------------------------------------
+Log Entry : 
+14:43:18 12 August 2014 
+--Log entry goes here--
+   at System.Net.HttpWebRequest.GetRequestStream(TransportContext& context)
+   at System.Net.HttpWebRequest.GetRequestStream()
+   at Core.Constants.GetPageContent(String Url, String data) in d:\Rasith\Floodgates\Core\Constants.cs:line 745Unable to connect to the remote server
+---------------------------------------
+Log Entry : 
+15:39:01 10 November 2014 
+--Log entry goes here--
+   at System.Diagnostics.CounterDefinitionSample.GetInstanceValue(String instanceName)
+   at System.Diagnostics.PerformanceCounter.NextSample()
+   at System.Diagnostics.PerformanceCounter.NextValue()
+   at AgentCore.Agent..ctor(XmlFileProccessor xml, Boolean isWindowsCounter) in d:\Rasith\AppedoLT\AgentCore\Agent.cs:line 81
+Instance '*' does not exist in the specified Category.
+---------------------------------------

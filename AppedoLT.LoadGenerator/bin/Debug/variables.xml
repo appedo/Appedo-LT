@@ -1,0 +1,4 @@
+<variables>
+  <variable columns="" delimiter="," from="variablemanager" location="C:\Documents and Settings\rajasree\Desktop\appedodata\Data.csv" modified="635451824958568538" name="UserVariables" policy="eachuser" start="1" type="file" vituallocation="\Variables\635486448454072272_Data.csv" />
+  <variable columns="Uname" delimiter="," from="variablemanager" location="C:\Documents and Settings\rajasree\Desktop\appedodata\usr.csv" modified="635486442445231984" name="userdata" policy="eachiteration" start="1" type="file" vituallocation="\Variables\635486448603086544_usr.csv" />
+</variables>

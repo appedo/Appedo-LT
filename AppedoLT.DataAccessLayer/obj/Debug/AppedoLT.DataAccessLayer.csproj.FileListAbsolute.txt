@@ -1,0 +1,15 @@
+D:\Rasith\AppedoLT\DataAccessLayer\bin\Debug\AppedoLT.DataAccessLayer.dll
+D:\Rasith\AppedoLT\DataAccessLayer\bin\Debug\AppedoLT.DataAccessLayer.pdb
+D:\Rasith\AppedoLT\DataAccessLayer\bin\Debug\AppedoLT.Core.dll
+D:\Rasith\AppedoLT\DataAccessLayer\bin\Debug\AppedoLT.Core.pdb
+D:\Rasith\AppedoLT\DataAccessLayer\obj\Debug\AppedoLT.DataAccessLayer.csprojResolveAssemblyReference.cache
+D:\Rasith\AppedoLT\DataAccessLayer\obj\Debug\AppedoLT.DataAccessLayer.dll
+D:\Rasith\AppedoLT\DataAccessLayer\obj\Debug\AppedoLT.DataAccessLayer.pdb
+D:\Rasith\AppedoLT\AppedoLT.DataAccessLayer\bin\Debug\AppedoLT.DataAccessLayer.dll
+D:\Rasith\AppedoLT\AppedoLT.DataAccessLayer\bin\Debug\AppedoLT.DataAccessLayer.pdb
+D:\Rasith\AppedoLT\AppedoLT.DataAccessLayer\bin\Debug\AppedoLT.Core.dll
+D:\Rasith\AppedoLT\AppedoLT.DataAccessLayer\bin\Debug\System.Data.SQLite.dll
+D:\Rasith\AppedoLT\AppedoLT.DataAccessLayer\bin\Debug\AppedoLT.Core.pdb
+D:\Rasith\AppedoLT\AppedoLT.DataAccessLayer\obj\Debug\AppedoLT.DataAccessLayer.csprojResolveAssemblyReference.cache
+D:\Rasith\AppedoLT\AppedoLT.DataAccessLayer\obj\Debug\AppedoLT.DataAccessLayer.dll
+D:\Rasith\AppedoLT\AppedoLT.DataAccessLayer\obj\Debug\AppedoLT.DataAccessLayer.pdb

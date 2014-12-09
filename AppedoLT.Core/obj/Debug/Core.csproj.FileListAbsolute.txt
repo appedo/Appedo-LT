@@ -1,0 +1,39 @@
+C:\Softsmith\Rasith\Floodgates\Core\bin\Debug\Core.dll
+C:\Softsmith\Rasith\Floodgates\Core\bin\Debug\Core.pdb
+C:\Softsmith\Rasith\Floodgates\Core\obj\Debug\ResolveAssemblyReference.cache
+C:\Softsmith\Rasith\Floodgates\Core\obj\Debug\Core.dll
+C:\Softsmith\Rasith\Floodgates\Core\obj\Debug\Core.pdb
+D:\Rasith\FloodGatest_VS_SolutionFile\Floodgates\Core\bin\Debug\Core.dll
+D:\Rasith\FloodGatest_VS_SolutionFile\Floodgates\Core\bin\Debug\Core.pdb
+D:\Rasith\FloodGatest_VS_SolutionFile\Floodgates\Core\obj\Debug\ResolveAssemblyReference.cache
+D:\Rasith\FloodGatest_VS_SolutionFile\Floodgates\Core\obj\Debug\Core.dll
+D:\Rasith\FloodGatest_VS_SolutionFile\Floodgates\Core\obj\Debug\Core.pdb
+D:\Rasith\Build\Floodgates\Core\bin\Debug\Core.dll
+D:\Rasith\Build\Floodgates\Core\bin\Debug\Core.pdb
+D:\Rasith\Build\Floodgates\Core\obj\Debug\ResolveAssemblyReference.cache
+D:\Rasith\Build\Floodgates\Core\obj\Debug\Core.dll
+D:\Rasith\Build\Floodgates\Core\obj\Debug\Core.pdb
+D:\Rasith\Floodgates - Copy\Core\bin\Debug\Core.dll
+D:\Rasith\Floodgates - Copy\Core\bin\Debug\Core.pdb
+D:\Rasith\Floodgates - Copy\Core\obj\Debug\Core.dll
+D:\Rasith\Floodgates - Copy\Core\obj\Debug\Core.pdb
+E:\Rasith\Floodgates\Core\bin\Debug\Core.dll
+E:\Rasith\Floodgates\Core\bin\Debug\Core.pdb
+E:\Rasith\Floodgates\Core\obj\Debug\Core.csprojResolveAssemblyReference.cache
+E:\Rasith\Floodgates\Core\obj\Debug\Core.dll
+E:\Rasith\Floodgates\Core\obj\Debug\Core.pdb
+D:\Rasith\Floodgates\Core\bin\Debug\Core.dll
+D:\Rasith\Floodgates\Core\bin\Debug\Core.pdb
+D:\Rasith\Floodgates\Core\obj\Debug\Core.IntTextBox.resources
+D:\Rasith\Floodgates\Core\obj\Debug\Core.UCTime.resources
+D:\Rasith\Floodgates\Core\obj\Debug\Core.csproj.GenerateResource.Cache
+D:\Rasith\Floodgates\Core\obj\Debug\Core.dll
+D:\Rasith\Floodgates\Core\obj\Debug\Core.pdb
+D:\Rasith\Floodgates\Core\obj\Debug\Core.csprojResolveAssemblyReference.cache
+D:\Rasith\AppedoLT\Core\bin\Debug\Core.dll
+D:\Rasith\AppedoLT\Core\bin\Debug\Core.pdb
+D:\Rasith\AppedoLT\Core\obj\Debug\Core.IntTextBox.resources
+D:\Rasith\AppedoLT\Core\obj\Debug\Core.UCTime.resources
+D:\Rasith\AppedoLT\Core\obj\Debug\Core.csproj.GenerateResource.Cache
+D:\Rasith\AppedoLT\Core\obj\Debug\Core.dll
+D:\Rasith\AppedoLT\Core\obj\Debug\Core.pdb

@@ -1,0 +1,10 @@
+GET /TTDService/eSpecialentrydarshan/SpecialDarshanHome.aspx HTTP/1.1
+Host: 61.246.255.108
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:34.0) Gecko/20100101 Firefox/34.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://61.246.255.108/TTDService/Home.aspx
+Cookie: __utma=160861178.1886378540.1409375508.1409375508.1409375508.1; __utmb=160861178.18.10.1409375508; __utmz=160861178.1409375508.1.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none); ASP.NET_SessionId=4kuvzg455kq2j155ei0fcyvs; __utmc=160861178; .ASPXAUTH=D8C1DFF19969543AA931DFED190D65AC656200A06F1737ADFD86CCE9E398B08967F11FCF8761976A659BB191FBE5AEFD0651F76DFDBD40D7D60A9B30024869CE11DAFF0815B4EDB91F8CE6D8DE8A0332
+Connection: keep-alive
+

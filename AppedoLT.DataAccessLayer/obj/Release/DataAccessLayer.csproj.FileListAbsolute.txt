@@ -1,0 +1,9 @@
+D:\Rasith\Floodgates\DataAccessLayer\bin\Release\DataAccessLayer.dll
+D:\Rasith\Floodgates\DataAccessLayer\bin\Release\DataAccessLayer.pdb
+D:\Rasith\Floodgates\DataAccessLayer\bin\Release\Core.dll
+D:\Rasith\Floodgates\DataAccessLayer\bin\Release\System.Data.SQLite.dll
+D:\Rasith\Floodgates\DataAccessLayer\bin\Release\Core.pdb
+D:\Rasith\Floodgates\DataAccessLayer\bin\Release\System.Data.SQLite.xml
+D:\Rasith\Floodgates\DataAccessLayer\obj\Release\ResolveAssemblyReference.cache
+D:\Rasith\Floodgates\DataAccessLayer\obj\Release\DataAccessLayer.dll
+D:\Rasith\Floodgates\DataAccessLayer\obj\Release\DataAccessLayer.pdb

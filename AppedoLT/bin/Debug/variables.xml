@@ -1,0 +1,4 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<variables>
+  <variable from="variablemanager" modified="635476867918866858" policy="eachiteration" name="dataset" type="file" location="C:\Users\Administrator\Desktop\Bajaj_LoadTest_Testcases.csv" vituallocation="\Variables\635476867594838325_Bajaj_LoadTest_Testcases.csv" start="1" delimiter="," columns="LosAppNumber;InquiryId;InquiryPurpose;TransactionAmount;FirstName;MiddleName;LastName;DOB;GenderId;Gender;Address;Street;StateId;State;PostalPin;PAN;PassportID;VoterID;PhoneHome;PhoneMobile;DriverLicense;NationalIDCard;Address2;State2;PostalPin2;Address3;State3;PostalPin3;Account1;Account2;Account3;Account4;AltPhone" />
+</variables>

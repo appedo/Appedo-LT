@@ -1,0 +1,6 @@
+17:09:11 06 December 2014 
+   at AppedoLTController.frmController.DoWork() in d:\Rasith\AppedoLT\AppedoLT.Controller\frmController.cs:line 65Attempted to divide by zero.
+---------------------------------------
+17:10:17 06 December 2014 
+   at AppedoLTController.frmController.DoWork() in d:\Rasith\AppedoLT\AppedoLT.Controller\frmController.cs:line 71Attempted to divide by zero.
+---------------------------------------

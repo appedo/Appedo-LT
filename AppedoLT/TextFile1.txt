@@ -1,0 +1,42 @@
+﻿c:\Program Files (x86)\Microsoft Visual Studio 9.0\VC>makecert.exe Floodgates.cer -a sha1 -n "CN=softmith.com,O=Softsminth infotech,OU=Softsminth infotech" -sr LocalMachine -ss My -sky signature -pe -len 2048
+
+makecert -r -pe -n "CN=softmith.com,O=Softsmith infotech,OU=Softsmith infotech" -b 01/01/2007 -e 01/01/2020 -sky exchange Floodgates.cer -sv Floodgates.pvk
+pvk2pfx -pvk Floodgates.pvk -spc Floodgates.cer -pfx Floodgates.pfx
+
+pvk2pfx -pvk Floodgates.pvk -spc Floodgates.cer -pfx Floodgates.pfx -pi pass@12345
+
+ 
+makecert.exe Floodgates.cer -a sha1 -n "CN=softmith.com,O=Softsminth infotech,OU=Softsminth infotech" -sr LocalMachine -ss My -sky signature -pe -len 2048 -b 01/01/2007 -e 01/01/2020 -sv Floodgates.pvk
+pvk2pfx -pvk Floodgates.pvk -spc Floodgates.cer -pfx Floodgates.pfx -pi pass@12345
+
+ 
+makecert.exe Floodgates.cer -a sha1 -is My -in "FYIcenter Root CA" -n "CN=softmith.com,O=Softsminth infotech,OU=Softsminth infotech" -sr LocalMachine -ss My -sky signature -pe -len 2048 -b 01/01/2007 -e 01/01/2020 -sv Floodgates.pvk
+pvk2pfx -pvk Floodgates.pvk -spc Floodgates.cer -pfx Floodgates.pfx -pi pass@12345
+
+makecert.exe Floodgates.cer -a sha1 -in "Softsmith" -n "CN=softmith.com,O=Softsminth infotech,OU=Softsminth infotech" -sr LocalMachine -ss My -sky signature  -r
+pvk2pfx -pvk Floodgates.pvk -spc Floodgates.cer -pfx Floodgates.pfx -pi pass@12345
+
+-n "CN=www.yourdomain.com" -is TestStore -in "FYIcenter Root CA"  -ss TestStore -e "07/01/2022" -eku 1.3.6.1.5.5.7.3.1 -pe
+
+-n "CN=www.yourdomain.com" -is TestStore -in "FYIcenter Root CA" 
+-ss TestStore -e "07/01/2022" -eku 1.3.6.1.5.5.7.3.1 -pe
+
+
+
+makecert -n "CN=Floodgates" -cy authority -a sha1 -sv "Floodgates.pvk"  -b 01/01/2007 -e 01/01/2020 -r "Floodgates.cer"
+pvk2pfx -pvk Floodgates.pvk -spc Floodgates.cer -pfx Floodgates.pfx -pi pass@12345
+
+
+makecert -n "CN=Softsmith Certificate Authority" -cy authority -a sha1 -sv "Softsmith Certificate Authority Private Key.pvk" -r "Softsmith Certificate Authority.cer"
+
+makecert -n "CN=Softsmith.com" -ic "Softsmith Certificate Authority.cer" -iv "Softsmith Certificate Authority Private Key.pvk" -a sha1 -sky exchange -pe -sv "Softsmith Private Key.pvk" "Softsmith.cer"
+
+pvk2pfx -pvk "Softsmith Private Key.pvk" -spc "Softsmith.cer" -pfx "Softsmith.pfx" -pi pass@12345
+
+
+
+makecert -n "CN=Appedo Certificate Authority" -cy authority -a sha1 -sv "Appedo Certificate Authority Private Key.pvk" -r "Appedo Certificate Authority.cer"
+
+makecert -n "CN=Appedo.com" -ic "Appedo Certificate Authority.cer" -iv "Appedo Certificate Authority Private Key.pvk" -a sha1 -sky exchange -pe -sv "Appedo Private Key.pvk" "Appedo.cer"
+
+pvk2pfx -pvk "Appedo Private Key.pvk" -spc "Appedo.cer" -pfx "Appedo.pfx" -pi pass@12345

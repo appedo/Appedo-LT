@@ -1,0 +1,394 @@
+<html><head><title>Object moved</title></head><body>
+<h2>Object moved to <a href="/SendRequestTest.aspx?cm=KE8WReXOT2Y=&amp;ref=Qa1JcK4PvDk=&amp;bureau=wi6kvXQkBas=">here</a>.</h2>
+</body></html>
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head id="Head1"><title>
+	BureauOne - Communication - Single Enquiry
+</title><link rel="stylesheet" type="text/css" href="/html/css/yuicombo.css" /><link rel="stylesheet" type="text/css" href="/html/css/Site.css" />
+    <script type="text/javascript" src="/html/js/yuicombo.js"></script>
+    <script src='/html/js/jquery.min.js' type="text/javascript"></script>
+    <script type="text/javascript">
+        function htmlValidation() {
+            var pattern = /[<>{}()&|?%\\]/g;
+            var valid = true;
+            $('input[type="text"], textarea, input[type="password"]').each(function () {
+                if (pattern.test($(this).val())) {
+                    $(this).focus();
+                    alert("Some of the listed special characters [<>{}()&|?%\\] are not allowed in input data. Please remove those character and proceed.");
+                    valid = false;
+                    return false;
+                }
+            });
+
+            return valid;
+        }
+
+
+        function OpenTemConWinddowAll() {
+            window.open('../TermsAndCondition.htm', 'termConWindow', 'width=500px,height=450px, scrollbars=1');
+
+        }
+        function noBack() { window.history.forward(); }
+
+        YAHOO.util.Event.onContentReady("productsandservices", function () {
+            var oMenuBar = new YAHOO.widget.MenuBar("productsandservices", { autosubmenudisplay: true, hidedelay: 750, lazyload: true, minscrollheight: 200 });
+            oMenuBar.render();
+        });
+        function changeSelectedClass() {
+            var url = window.location.href;
+            var getLinksOnPage = document.getElementById("productreportmenu");
+            var mainLinks = getLinksOnPage.getElementsByTagName("a");
+            for (var i = 0; i < mainLinks.length; i++) {
+                var link = mainLinks[i].href;
+                var ind = url.indexOf(link);
+                if (ind > -1) {
+                    var parentObj = mainLinks[i].parentNode;
+                    parentObj.className = "selected";
+                }
+            }
+
+        }
+
+        function confirmDialog(msg, e) {
+            if (window.confirm(msg) == false) {
+                if (window.event)
+                    event.returnValue = false;
+                else
+                    e.preventDefault();
+                return false;
+            }
+            else {
+                event.returnValue = true;
+                return true;
+            }
+        }        
+    </script>
+    <style type="text/css">
+        .starMark
+        {
+            color: Red;
+        }
+        #myTable
+        {
+            margin-top: 10px;
+        }
+        #divHome
+        {
+            float: right;
+            margin-top: -1px;
+            margin-right: 5px;
+        }
+        #imgHome
+        {
+            height: 23px;
+            width: 23px;
+        }
+    </style>
+    
+    <link rel="stylesheet" type="text/css" href="html/css/jquery-ui.css" media="all" />
+    <link rel="stylesheet" type="text/css" href="html/css/ui.theme.css" media="all" />
+    <script type="text/javascript" src="html/js/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="html/js/json2.js"></script>
+    <script type="text/javascript">
+        var date = new Date();
+        var currentMonth = date.getMonth();
+        var currentDate = date.getDate();
+        var currentYear = date.getFullYear();
+
+        jQuery(function () {
+            jQuery("#MainContent_txtDOB").datepicker(
+            {
+                changeMonth: true,
+                changeYear: true,
+                yearRange: '1900:9999',
+                dateFormat: 'yy-mm-dd',
+                closeText: 'X',
+                maxDate: new Date(currentYear, currentMonth, currentDate)
+            });
+
+        });
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            WCFJSON();
+
+            stateval = new Array();
+            AddType = new Array();
+            var Address2Dts = document.getElementById("MainContent_hidDetailsAddress2").value.toString();
+            var Address3Dts = document.getElementById("MainContent_hidDetailsAddress3").value.toString();
+
+            LoadStates();
+            LoadAddreeType();
+
+            if (Address2Dts != "") {
+                document.getElementById("MainContent_hidCounter").value = "1";
+                addAddressField('tblAddress');
+                var allfld = Address2Dts.split("||");
+                stateval[0] = allfld[5].toString().substring(2);
+                AddType[0] = allfld[7].toString().substring(2);
+                refNoexist = parseInt(allfld[8].toString().substring(2));
+                AssignValuetoAddressFields(allfld)
+            }
+            if (Address3Dts != "") {
+                document.getElementById("MainContent_hidCounter").value = "2";
+                addAddressField('tblAddress');
+                var allfld = Address3Dts.split("||");
+                stateval[1] = allfld[5].toString().substring(2);
+                AddType[1] = allfld[7].toString().substring(2);
+                refNoexist = parseInt(allfld[8].toString().substring(2));
+                AssignValuetoAddressFields(allfld)
+            }
+
+            $("#btnAddAdtAddress").click(function () {
+                addAddressBtn_Click();
+                if (errcount > 0) { return false; }
+                if (count == 2) {
+                    stateval[0] = "";
+                    AddType[0] = "";
+                }
+                if (count == 3) {
+                    stateval[1] = "";
+                    AddType[1] = "";
+                }
+                refNoexist = 0;
+                LoadStates();
+                LoadAddreeType();
+            });
+
+        });
+
+        var appenddata;
+        var maxLimit;
+        var count;
+        var stateval;
+        var AddType;
+        var refNoexist = 0;
+        var noerrorcount = 0;
+        function addAddressField(tableID) {
+            maxLimit = parseInt(document.getElementById("MainContent_hidMaxAddress").value);
+            count = parseInt(document.getElementById("MainContent_hidCounter").value);
+            var table = document.getElementById(tableID);
+            var rowCount = table.rows.length;
+
+            if (count < maxLimit) {
+                var row0 = table.insertRow(-1);
+                var cellblnk = row0.insertCell(0);
+                cellblnk.innerHTML = "</br>";
+
+                var row1 = table.insertRow(-1);
+                var row2 = table.insertRow(-1);
+                var row3 = table.insertRow(-1);
+                var row4 = table.insertRow(-1);
+
+                var elementmandatory = document.createElement("span");
+                elementmandatory.className = "starMark";
+                elementmandatory.innerHTML = "*";
+                var elementmandatory1 = document.createElement("span");
+                elementmandatory1.className = "starMark";
+                elementmandatory1.innerHTML = "*";
+
+                var cellAddress = row1.insertCell(0);
+                cellAddress.innerHTML = "Address" + (count + 1);
+                cellAddress.className = "addrow";
+                cellAddress.style["padding-left"] = "10px";
+                cellAddress.appendChild(elementmandatory);
+                var cellAddressinp = row1.insertCell(1);
+                var elementtxtAdd = document.createElement("input");
+                elementtxtAdd.type = "text";
+                elementtxtAdd.name = "txtAddress" + (count + 1);
+                cellAddressinp.appendChild(elementtxtAdd);
+
+                var cellStreet = row1.insertCell(2);
+                cellStreet.innerHTML = "Street";
+                cellStreet.className = "addrow";
+                cellStreet.style["padding-left"] = "10px";
+                var cellStreetinp = row1.insertCell(3);
+                var elementtxtStreet = document.createElement("input");
+                elementtxtStreet.type = "text";
+                elementtxtStreet.name = "txtStreet" + (count + 1);
+                cellStreetinp.appendChild(elementtxtStreet);
+
+                var cellLocality1 = row2.insertCell(0);
+                cellLocality1.innerHTML = "Locality1";
+                cellLocality1.className = "addrow";
+                cellLocality1.style["padding-left"] = "10px";
+                var cellLoc1inp = row2.insertCell(1);
+                var elementtxtLoc1 = document.createElement("input");
+                elementtxtLoc1.type = "text";
+                elementtxtLoc1.name = "txtLocality" + (count + 1) + "1";
+                cellLoc1inp.appendChild(elementtxtLoc1);
+
+                var cellLocality2 = row2.insertCell(2);
+                cellLocality2.innerHTML = "Locality2";
+                cellLocality2.className = "addrow";
+                cellLocality2.style["padding-left"] = "10px";
+                var cellLoc2inp = row2.insertCell(3);
+                var elementtxtLoc2 = document.createElement("input");
+                elementtxtLoc2.type = "text";
+                elementtxtLoc2.name = "txtLocality" + (count + 1) + "2";
+                cellLoc2inp.appendChild(elementtxtLoc2);
+
+                var cellCity = row3.insertCell(0);
+                cellCity.innerHTML = "City";
+                cellCity.className = "addrow";
+                cellCity.style["padding-left"] = "10px";
+                var cellCityinp = row3.insertCell(1);
+                var elementtxtCity = document.createElement("input");
+                elementtxtCity.type = "text";
+                elementtxtCity.name = "txtCity" + (count + 1);
+                cellCityinp.appendChild(elementtxtCity);
+
+                var cellState = row3.insertCell(2);
+                cellState.innerHTML = "State";
+                cellState.className = "addrow";
+                cellState.style["padding-left"] = "10px";
+                var cellStateselect = row3.insertCell(3);
+                var elementslctState = document.createElement("select");
+                elementslctState.name = "ddlState" + (count + 1);
+                elementslctState.id = "ddlState" + (count + 1);
+                cellStateselect.appendChild(elementslctState);
+
+                var cellPostal = row4.insertCell(0);
+                cellPostal.innerHTML = "Postal";
+                cellPostal.className = "addrow";
+                cellPostal.style["padding-left"] = "10px";
+                var cellPostinp = row4.insertCell(1);
+                var elementtxtPostal = document.createElement("input");
+                elementtxtPostal.type = "text";
+                elementtxtPostal.name = "txtPostal" + (count + 1);
+                cellPostinp.appendChild(elementtxtPostal);
+
+                var cellAddType = row4.insertCell(2);
+                cellAddType.innerHTML = "Type";
+                cellAddType.className = "addrow";
+                cellAddType.style["padding-left"] = "10px";
+                cellAddType.appendChild(elementmandatory1);
+                var cellAddTypeinp = row4.insertCell(3);
+                var elementddlAddtype = document.createElement("select");
+                elementddlAddtype.name = "ddlAddType" + (count + 1);
+                elementddlAddtype.id = "ddlAddType" + (count + 1);
+                cellAddTypeinp.appendChild(elementddlAddtype);
+
+                count++;
+                document.getElementById("MainContent_hidCounter").value = parseInt(count);
+
+            }
+            else {
+                alert('max of ' + (maxLimit) + ' addresses only allowed');
+                return false;
+            }
+        }
+        function deleteAddressField(tableID) {
+            try {
+                maxLimit = parseInt(document.getElementById("MainContent_hidMaxAddress").value);
+                count = parseInt(document.getElementById("MainContent_hidCounter").value);
+                var table = document.getElementById(tableID);
+                var rowCount = table.rows.length;
+                if (count > 1 && rowCount > 5) {
+                    for (var i = rowCount; i >= rowCount - 4; i--) {
+                        table.deleteRow(i - 1);
+                    }
+                    count--;
+                    document.getElementById("MainContent_hidCounter").value = parseInt(count);
+
+                }
+
+            } catch (e) {
+                alert(e);
+            }
+            return false;
+        }
+
+        function LoadStates() {
+            $.ajax({
+                dataType: 'json',
+                type: "POST",
+                url: "WSUtility.asmx/Bind_State",
+                contentType: "application/json; charset=utf-8",
+                success: function (response) {
+                    OnServiceSucceededLoadState(response);
+                },
+                error: OnServiceFailed// When Service call fails
+            });
+        }
+        function OnServiceSucceededLoadState(result) {
+            if (result != null) {
+                appenddata = "<option value =''>- Select -</option>";
+                $.each(result.d, function (key, value) {
+                    appenddata += "<option value =" + value.ItemId + ">" + value.ItemDesc + "</option>";
+                });
+                var itreator;
+                if (refNoexist != 0) { itreator = 2; }
+                else { itreator = count; }
+                for (var i = itreator; i <= count; i++) {
+                    $("#ddlState" + i).html("");
+                    $("#ddlState" + i).append(appenddata);
+                    if (stateval.length > 0) {
+                        $("#ddlState" + i + " option[value=" + stateval[i - 2] + "]").attr('selected', 'selected');
+                    }
+                }
+            }
+        }
+
+        function LoadAddreeType() {
+            $.ajax({
+                dataType: 'json',
+                type: "POST",
+                url: "WSUtility.asmx/Bind_AddressTypes",
+                contentType: "application/json; charset=utf-8",
+                success: function (response) {
+                    OnServiceSucceededLoadAddressType(response);
+                },
+                error: OnServiceFailed// When Service call fails
+            });
+        }
+        function OnServiceSucceededLoadAddressType(result) {
+            count = parseInt(document.getElementById("MainContent_hidCounter").value);
+            if (result != null) {
+                appenddata = "<option value =''>- Select -</option>";
+                $.each(result.d, function (key, value) {
+                    appenddata += "<option value =" + value.ItemId + ">" + value.ItemDesc + "</option>";
+                });
+                var itreator;
+                if (refNoexist != 0) { itreator = 2; }
+                else { itreator = count; }
+                for (var i = itreator; i <= count; i++) {
+                    $("#ddlAddType" + i).html("");
+                    $("#ddlAddType" + i).append(appenddata);
+                    if (AddType.length > 0) {
+                        $("#ddlAddType" + i + " option[value=" + AddType[i - 2] + "]").attr('selected', 'selected');
+                    }
+                }
+            }
+        }
+
+        function OnServiceFailed(xhr) {
+            if (xhr.responseText) {
+                var err = xhr.responseText;
+                if (err)
+                    error(err);
+                else
+                    error({ Message: "Unknown server error." })
+            }
+            return;
+        }
+
+        var errcount;
+        function addAddressBtn_Click() {
+            count = parseInt(document.getElementById("MainContent_hidCounter").value);
+            errcount = 0;
+            if (count == maxLimit) {
+                alert('max of ' + (maxLimit) + ' addresses only allowed');
+                errcount += 1;
+                return false;
+            }
+            else {
+                for (var i = 1; i <= count; i++) {
+                    if (count == 1 && $("#MainContent_txtAddrLine1").val() != "" && $("#MainContent_ddlAddType").val() != "") { addAddressField('tblAddress'); return false; }
+                    if (count > 1 && $("input[name=txtAddress" + count + "]").val() != "" && $("#ddlAddType" + count).val() != "") { addAddressField('tblAddress'); return false; }
+                    else {
+                        if ($("#MainContent_txtAddrLine1").val() == "") {
+                            alert("please fill the

@@ -1,0 +1,88 @@
+﻿/*-------------------------------------------------------------------------------------------------------------------*/
+/* NEW STYLE */
+/*-------------------------------------------------------------------------------------------------------------------*/
+
+.formatlist a
+{
+	text-decoration: none;
+}
+
+.formatlist li h3
+{
+	color: #F8A331;
+}
+/* My Option Single Page*/
+
+#options_taken_container table tbody tr:first-child td a, #options_given_container table tbody tr:first-child td a, #options_expired_container table tbody tr:first-child td a
+{
+	color: #F8A331;
+	text-transform: uppercase;
+	font-weight: bold;
+}
+
+/* End My Option Single Page*/
+/*-------------------------------------------------------------------------------------------------------------------*/
+/* EXISTING STYLE WITH MINOR CHANGES*/
+/*-------------------------------------------------------------------------------------------------------------------*/
+.formatlist li img
+{
+	vertical-align: bottom;
+	width: 217px;
+	height: 162px; /*newly added*/
+	margin: -10px 0 0 -10px;
+	border-bottom: 2px dotted #e7e7e7;
+}
+
+.formatlist .list li img
+{
+	width: 100px;
+	height: 69px; /*newly added*/
+	vertical-align: bottom;
+	border-bottom: none;
+	float: left;
+	margin: 0;
+}
+/*-------------------------------------------------------------------------------------------------------------------*/
+/* REEAD MORE & LESS CONTENT*/
+/*-------------------------------------------------------------------------------------------------------------------*/
+
+.short-text
+{
+	overflow: hidden;
+	height: 5.4em;
+}
+
+.full-text
+{
+	height: auto;
+}
+.content p
+{
+	padding-top: 0;
+	margin-top: 0;
+}
+
+.none_display
+{
+	display: none;
+}
+/*-------------------------------------------------------------------------------------------------------------------*/
+/* FORMAT DETAILS
+/*-------------------------------------------------------------------------------------------------------------------*/
+
+.format_details_desc_title
+{
+	font-family: arial;
+	font-size: 10px;
+	font-weight: bold;
+	text-transform: uppercase;
+	margin: 0px 0px 10px;
+	color: rgb(135, 140, 141);
+	padding: 0px;
+	text-decoration: none;
+	line-height: 20px;
+}
+.format_details_desc
+{
+	/* 	font-family: arial,sans-serif; 	font-weight: bold; 	font-size: 12px;*/
+}

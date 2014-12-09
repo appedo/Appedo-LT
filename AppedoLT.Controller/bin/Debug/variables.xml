@@ -1,0 +1,4 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<variables>
+  <variable columns="uid;pwd" delimiter="," from="variablemanager" location="C:\Users\Administrator\Desktop\test.csv" modified="635473551095941348" name="test" policy="eachiteration" start="1" type="file" vituallocation="\Variables\635473574580254574_test.csv" />
+</variables>

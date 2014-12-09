@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <runs>
+    <run reportname="539" sourceip="192.168.1.160">
+      <scripts>
+        <script id="12" name="script2" />
+      </scripts>
+      <loadgen ipaddress="127.0.0.1" hostname="127.0.0.1" resultfilereceived="True" chartresultfilereceived="True" runstarted="True" />
+    </run>
+    <run reportname="540" sourceip="192.168.1.160">
+      <scripts>
+        <script id="12" name="script2" />
+      </scripts>
+      <loadgen ipaddress="127.0.0.1" hostname="127.0.0.1" resultfilereceived="True" chartresultfilereceived="False" runstarted="True" />
+    </run>
+  </runs>
+</root>

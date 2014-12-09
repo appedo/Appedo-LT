@@ -1,0 +1,15 @@
+D:\Rasith\AppedoLT\Controller\bin\Debug\AppedoLTController.exe.config
+D:\Rasith\AppedoLT\Controller\bin\Debug\AppedoLTController.exe
+D:\Rasith\AppedoLT\Controller\bin\Debug\AppedoLTController.pdb
+D:\Rasith\AppedoLT\Controller\bin\Debug\Core.dll
+D:\Rasith\AppedoLT\Controller\bin\Debug\DataAccessLayer.dll
+D:\Rasith\AppedoLT\Controller\bin\Debug\Core.pdb
+D:\Rasith\AppedoLT\Controller\bin\Debug\DataAccessLayer.pdb
+D:\Rasith\AppedoLT\Controller\obj\Debug\AppedoLTController.csprojResolveAssemblyReference.cache
+D:\Rasith\AppedoLT\Controller\obj\Debug\AppedoLTController.Form1.resources
+D:\Rasith\AppedoLT\Controller\obj\Debug\AppedoLTController.frmController.resources
+D:\Rasith\AppedoLT\Controller\obj\Debug\AppedoLTController.Properties.Resources.resources
+D:\Rasith\AppedoLT\Controller\obj\Debug\AppedoLTController.ReportGenerate.resources
+D:\Rasith\AppedoLT\Controller\obj\Debug\AppedoLTController.csproj.GenerateResource.Cache
+D:\Rasith\AppedoLT\Controller\obj\Debug\AppedoLTController.exe
+D:\Rasith\AppedoLT\Controller\obj\Debug\AppedoLTController.pdb

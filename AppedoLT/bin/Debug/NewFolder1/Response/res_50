@@ -1,0 +1,295 @@
+        function CheckRadio()
+        {
+            var rdo1,rdo2,rdo3,rdo4,rdo5,rdo6;
+            rdo1 = document.getElementById("ctl00_ContentPlaceHolder1_rdo1");
+            rdo2 = document.getElementById("ctl00_ContentPlaceHolder1_rdo2");
+            rdo3 = document.getElementById("ctl00_ContentPlaceHolder1_rdo3");
+            rdo4 = document.getElementById("ctl00_ContentPlaceHolder1_rdo4");
+            rdo5 = document.getElementById("ctl00_ContentPlaceHolder1_rdo5");
+            rdo6 = document.getElementById("ctl00_ContentPlaceHolder1_rdo6");
+
+            if (document.forms[0][rdo1].checked == false && document.forms[0][rdo2].checked == false && document.forms[0][rdo3].checked == false && document.forms[0][rdo4].checked == false && document.forms[0][rdo5].checked == false && document.forms[0][rdo6].checked == false)
+            {
+                alert("Please select atleast one Person");
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+
+
+    </script>
+
+    <table width="1002" border="0" cellspacing="0" cellpadding="0" class="contentarea_bg">
+        <tr>
+            <td align="center" class="contentarea_bg">
+                &nbsp;</td>
+        </tr>
+        <tr>
+            <td align="center" class="contentarea_bg">
+            <img src="../images/1A.jpg" alt="" />
+            <br />
+                <span id="ctl00_ContentPlaceHolder1_lblError" class="txtError"></span></td>
+        </tr>
+            <tr>
+                <td height="85" valign="top" align="center">
+                    <table width="90%" border="0" cellspacing="0" cellpadding="0">
+                        <tr>
+                            <td align="left" class="m_txt" height="35">
+                                Important Note:
+                                <ul>
+                                    <li>Pilgrims can book darshan minimum of 1 day in advance upto 7 p.m. and maximum of 14 days for special entry darshan.</li>
+                                        <li>Only two bookings are allowed for one day with a maximum of six persons per booking.
+                                           </li>
+                                          
+                                     <li>To know more about Special Entry darshan please visit <a  href=" http://www.tirumala.org/darshan.htm " target="_blank"> http://www.tirumala.org/darshan.htm </a> </li> 
+                                </ul>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <td align="center" class="contentarea_bg">
+                <table align="center" width="90%" style="vertical-align: top;" border="0" cellspacing="0"
+                    cellpadding="0">
+                    <tr>
+                        <td align="left" class="hdtxt2">
+                            Special 
+                            Entry Darshan Booking</td>
+                        <td align="right" class="green_txt">
+                            <a class="green_txt" href="javascript:openpopup('AvailabilityChart.aspx', 'SudarsanChart', 'width=450,height=475,status,resizable=1')">
+                                Check Availability</a> | <a href="SpecialdarshanBookingHistroy.aspx" class="green_txt">
+                                    Booking History</a>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td height="5" align="center" class="contentarea_bg">
+                <img src="../images/spacer.gif" width="5" height="5" alt=""></td>
+        </tr>
+        <tr>
+            <td align="center" class="contentarea_bg">
+                <table width="90%" border="0" cellspacing="0" cellpadding="1">
+                    <tr>
+                        <td>
+                            <div class="demo">
+                                <table border="0" cellspacing="4" cellpadding="2">
+                                    <tr>
+                                        <td class="contentarea_bg" align="left">
+                                            &nbsp;<span id="ctl00_ContentPlaceHolder1_lblCheckAvail" class="txt">Darshan Date</span>
+                                            &nbsp;
+                                            <input name="ctl00$ContentPlaceHolder1$txtDate" type="text" value="08/31/2014" onchange="javascript:setTimeout('__doPostBack(\'ctl00$ContentPlaceHolder1$txtDate\',\'\')', 0)" onkeypress="if (WebForm_TextBoxKeyHandler(event) == false) return false;" id="ctl00_ContentPlaceHolder1_txtDate" class="textbox1" style="width:80px;" />
+                                        </td>
+                                        
+                                    </tr>
+                                    <tr>
+                                        <td class="contentarea_bg" align="left">
+                                            &nbsp;<span id="ctl00_ContentPlaceHolder1_lblNoofPersons" class="txt">No of Persons</span><font
+                                                color="red">*</font>
+                                            <span class="txt"><input id="ctl00_ContentPlaceHolder1_rdo1" type="radio" name="ctl00$ContentPlaceHolder1$Persons" value="rdo1" checked="checked" /><label for="ctl00_ContentPlaceHolder1_rdo1">1</label></span>
+                                            <span class="txt"><input id="ctl00_ContentPlaceHolder1_rdo2" type="radio" name="ctl00$ContentPlaceHolder1$Persons" value="rdo2" /><label for="ctl00_ContentPlaceHolder1_rdo2">2</label></span>
+                                            <span class="txt"><input id="ctl00_ContentPlaceHolder1_rdo3" type="radio" name="ctl00$ContentPlaceHolder1$Persons" value="rdo3" /><label for="ctl00_ContentPlaceHolder1_rdo3">3</label></span>
+                                            <span class="txt"><input id="ctl00_ContentPlaceHolder1_rdo4" type="radio" name="ctl00$ContentPlaceHolder1$Persons" value="rdo4" /><label for="ctl00_ContentPlaceHolder1_rdo4">4</label></span>
+                                            <span class="txt"><input id="ctl00_ContentPlaceHolder1_rdo5" type="radio" name="ctl00$ContentPlaceHolder1$Persons" value="rdo5" /><label for="ctl00_ContentPlaceHolder1_rdo5">5</label></span>
+                                            <span class="txt"><input id="ctl00_ContentPlaceHolder1_rdo6" type="radio" name="ctl00$ContentPlaceHolder1$Persons" value="rdo6" /><label for="ctl00_ContentPlaceHolder1_rdo6">6</label></span>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="contentarea_bg" align="center">
+                            <!-- -->
+                            <div>
+	<table cellspacing="1" border="0" id="ctl00_ContentPlaceHolder1_gvspecialDarshan" style="width:100%;">
+		<tr class="txt_whtbld gridHeader" style="height:33px;">
+			<th scope="col">Time Slot</th><th scope="col">Amount</th><th scope="col">Available</th>
+		</tr><tr class="tdrow1">
+			<td align="left">
+                                            &nbsp;&nbsp;&nbsp;<span disabled="disabled"><input id="ctl00_ContentPlaceHolder1_gvspecialDarshan_ctl02_rdoTimeSlot" type="checkbox" name="ctl00$ContentPlaceHolder1$gvspecialDarshan$ctl02$rdoTimeSlot" disabled="disabled" onclick="toggleAll(this);" /><label for="ctl00_ContentPlaceHolder1_gvspecialDarshan_ctl02_rdoTimeSlot">10 AM to 11 AM</label></span>
+                                        </td><td align="center" style="width:15%;">
+                                            Rs.
+                                            <span id="ctl00_ContentPlaceHolder1_gvspecialDarshan_ctl02_lblCost">300</span>
+                                        </td><td align="center" style="width:10%;">
+                                            <span id="ctl00_ContentPlaceHolder1_gvspecialDarshan_ctl02_txtTicketCount">0</span>
+                                        </td>
+		</tr><tr class="tdrow2">
+			<td align="left">
+                                            &nbsp;&nbsp;&nbsp;<span disabled="disabled"><input id="ctl00_ContentPlaceHolder1_gvspecialDarshan_ctl03_rdoTimeSlot" type="checkbox" name="ctl00$ContentPlaceHolder1$gvspecialDarshan$ctl03$rdoTimeSlot" disabled="disabled" onclick="toggleAll(this);" /><label for="ctl00_ContentPlaceHolder1_gvspecialDarshan_ctl03_rdoTimeSlot">11 AM to 12 NOON</label></span>
+                                        </td><td align="center" style="width:15%;">
+                                            Rs.
+                                            <span id="ctl00_ContentPlaceHolder1_gvspecialDarshan_ctl03_lblCost">300</span>
+                                        </td><td align="center" style="width:10%;">
+                                            <span id="ctl00_ContentPlaceHolder1_gvspecialDarshan_ctl03_txtTicketCount">0</span>
+                                        </td>
+		</tr><tr class="tdrow1">
+			<td align="left">
+                                            &nbsp;&nbsp;&nbsp;<span disabled="disabled"><input id="ctl00_ContentPlaceHolder1_gvspecialDarshan_ctl04_rdoTimeSlot" type="checkbox" name="ctl00$ContentPlaceHolder1$gvspecialDarshan$ctl04$rdoTimeSlot" disabled="disabled" onclick="toggleAll(this);" /><label for="ctl00_ContentPlaceHolder1_gvspecialDarshan_ctl04_rdoTimeSlot">12 NOON to 1 PM</label></span>
+                                        </td><td align="center" style="width:15%;">
+                                            Rs.
+                                            <span id="ctl00_ContentPlaceHolder1_gvspecialDarshan_ctl04_lblCost">300</span>
+                                        </td><td align="center" style="width:10%;">
+                                            <span id="ctl00_ContentPlaceHolder1_gvspecialDarshan_ctl04_txtTicketCount">0</span>
+                                        </td>
+		</tr><tr class="tdrow2">
+			<td align="left">
+                                            &nbsp;&nbsp;&nbsp;<span disabled="disabled"><input id="ctl00_ContentPlaceHolder1_gvspecialDarshan_ctl05_rdoTimeSlot" type="checkbox" name="ctl00$ContentPlaceHolder1$gvspecialDarshan$ctl05$rdoTimeSlot" disabled="disabled" onclick="toggleAll(this);" /><label for="ctl00_ContentPlaceHolder1_gvspecialDarshan_ctl05_rdoTimeSlot">1 PM TO 2 PM</label></span>
+                                        </td><td align="center" style="width:15%;">
+                                            Rs.
+                                            <span id="ctl00_ContentPlaceHolder1_gvspecialDarshan_ctl05_lblCost">300</span>
+                                        </td><td align="center" style="width:10%;">
+                                            <span id="ctl00_ContentPlaceHolder1_gvspecialDarshan_ctl05_txtTicketCount">0</span>
+                                        </td>
+		</tr><tr class="tdrow1">
+			<td align="left">
+                                            &nbsp;&nbsp;&nbsp;<span disabled="disabled"><input id="ctl00_ContentPlaceHolder1_gvspecialDarshan_ctl06_rdoTimeSlot" type="checkbox" name="ctl00$ContentPlaceHolder1$gvspecialDarshan$ctl06$rdoTimeSlot" disabled="disabled" onclick="toggleAll(this);" /><label for="ctl00_ContentPlaceHolder1_gvspecialDarshan_ctl06_rdoTimeSlot">2 PM TO 3 PM</label></span>
+                                        </td><td align="center" style="width:15%;">
+                                            Rs.
+                                            <span id="ctl00_ContentPlaceHolder1_gvspecialDarshan_ctl06_lblCost">300</span>
+                                        </td><td align="center" style="width:10%;">
+                                            <span id="ctl00_ContentPlaceHolder1_gvspecialDarshan_ctl06_txtTicketCount">0</span>
+                                        </td>
+		</tr><tr class="tdrow2">
+			<td align="left">
+                                            &nbsp;&nbsp;&nbsp;<input id="ctl00_ContentPlaceHolder1_gvspecialDarshan_ctl07_rdoTimeSlot" type="checkbox" name="ctl00$ContentPlaceHolder1$gvspecialDarshan$ctl07$rdoTimeSlot" checked="checked" onclick="toggleAll(this);" /><label for="ctl00_ContentPlaceHolder1_gvspecialDarshan_ctl07_rdoTimeSlot">3 PM TO 4 PM</label>
+                                        </td><td align="center" style="width:15%;">
+                                            Rs.
+                                            <span id="ctl00_ContentPlaceHolder1_gvspecialDarshan_ctl07_lblCost">300</span>
+                                        </td><td align="center" style="width:10%;">
+                                            <span id="ctl00_ContentPlaceHolder1_gvspecialDarshan_ctl07_txtTicketCount">1246</span>
+                                        </td>
+		</tr><tr class="tdrow1">
+			<td align="left">
+                                            &nbsp;&nbsp;&nbsp;<span disabled="disabled"><input id="ctl00_ContentPlaceHolder1_gvspecialDarshan_ctl08_rdoTimeSlot" type="checkbox" name="ctl00$ContentPlaceHolder1$gvspecialDarshan$ctl08$rdoTimeSlot" disabled="disabled" onclick="toggleAll(this);" /><label for="ctl00_ContentPlaceHolder1_gvspecialDarshan_ctl08_rdoTimeSlot">4 PM TO 5 PM</label></span>
+                                        </td><td align="center" style="width:15%;">
+                                            Rs.
+                                            <span id="ctl00_ContentPlaceHolder1_gvspecialDarshan_ctl08_lblCost">300</span>
+                                        </td><td align="center" style="width:10%;">
+                                            <span id="ctl00_ContentPlaceHolder1_gvspecialDarshan_ctl08_txtTicketCount">0</span>
+                                        </td>
+		</tr><tr class="gridHeader">
+			<td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td>
+		</tr>
+	</table>
+</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            &nbsp;</td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td align="center">
+                <input type="submit" name="ctl00$ContentPlaceHolder1$btnContinue" value="Continue" onclick="return CheckRadio();" id="ctl00_ContentPlaceHolder1_btnContinue" class="but" />
+                    <input type="hidden" name="ctl00$ContentPlaceHolder1$hdn_spldarshanDate" id="ctl00_ContentPlaceHolder1_hdn_spldarshanDate" value="08/31/2014" />
+                    <input type="hidden" name="ctl00$ContentPlaceHolder1$hdfMinday" id="ctl00_ContentPlaceHolder1_hdfMinday" value="1" />
+                <input type="hidden" name="ctl00$ContentPlaceHolder1$hdfMaxday" id="ctl00_ContentPlaceHolder1_hdfMaxday" />
+                <input type="hidden" name="ctl00$ContentPlaceHolder1$hdfTiming" id="ctl00_ContentPlaceHolder1_hdfTiming" />
+                    <input type="hidden" name="ctl00$ContentPlaceHolder1$hdn_spldarshanId" id="ctl00_ContentPlaceHolder1_hdn_spldarshanId" value="6" />
+                    <input type="hidden" name="ctl00$ContentPlaceHolder1$hdn_spldarshanName" id="ctl00_ContentPlaceHolder1_hdn_spldarshanName" value="3 PM TO 4 PM" />
+                    <input type="hidden" name="ctl00$ContentPlaceHolder1$hdn_NoofPersons" id="ctl00_ContentPlaceHolder1_hdn_NoofPersons" value="1246" />
+                     <input type="hidden" name="ctl00$ContentPlaceHolder1$hdn_NoofTickets" id="ctl00_ContentPlaceHolder1_hdn_NoofTickets" value="1" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                &nbsp;
+            </td>
+        </tr>
+    </table>
+
+    </div>
+       <div align="center">
+            <table width="1002" border="0" class="brown_bg" cellspacing="0" cellpadding="0">
+                <tr>
+                    <td height="6">
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left" class="navi_txt1">
+                        &nbsp;&nbsp;&copy; 
+
+                         <span id="ctl00_LblCpyRgt" class="navi_txt1">Copyright 2014. Tirumala Tirupati Devasthanams</span>
+                    </td>
+                    <td align="right">
+                        <span class="navi_txt1">For any queries</span> <a href="../UserProfile/Queries.aspx" class="txt_wht">
+                            <u>Click Here</u></a> <span class="navi_txt1">|</span> <a href="../UserProfile/Terms.aspx" class="navi_txt1">
+                                <u>Terms &amp; Conditions</u></a>&nbsp;&nbsp; <span class="navi_txt1">|</span> 
+                                <a href="javascript:openpopup('../eSpecialEntryDarshan/Guideline.htm', 'Booking Guidelines', 'width=800,height=550,status,resizable=1')" class="navi_txt1"><u>Booking Guidelines</u></a>
+                                    <span class="navi_txt1">|</span>
+                                <a href="javascript:openpopup('../TTD e-SERVICES Portal WebHelp/TTD_e-SERVICES_Portal/TTD_e-SERVICES_Portal.htm', 'help', 'width=800,height=500,status,resizable=1')" class="navi_txt1"><u>Help</u></a>
+                                    <span class="navi_txt1">|</span> <a href="../UserProfile/Contact.aspx" class="navi_txt1"><u>Contact</u></a>&nbsp;&nbsp;</td>
+                </tr>
+                <tr>
+                    <td height="6">
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </form>
+</body>
+</html>
+HTTP/1.1 200 OK
+Content-Type: image/jpeg
+Last-Modified: Wed, 06 Aug 2014 10:47:03 GMT
+Accept-Ranges: bytes
+ETag: "7e8636c263b1cf1:0"
+Server: Microsoft-IIS/7.0
+X-Powered-By: ASP.NET
+Date: Sat, 30 Aug 2014 05:19:21 GMT
+Content-Length: 9671
+
+ÿØÿá Exif  II*            ÿì Ducky     d  ÿáohttp://ns.adobe.com/xap/1.0/ <?xpacket begin="ï»¿" id="W5M0MpCehiHzreSzNTczkc9d"?> <x:xmpmeta xmlns:x="adobe:ns:meta/" x:xmptk="Adobe XMP Core 5.0-c061 64.140949, 2010/12/07-10:57:01        "> <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"> <rdf:Description rdf:about="" xmlns:xmpMM="http://ns.adobe.com/xap/1.0/mm/" xmlns:stRef="http://ns.adobe.com/xap/1.0/sType/ResourceRef#" xmlns:xmp="http://ns.adobe.com/xap/1.0/" xmpMM:OriginalDocumentID="xmp.did:8C5C62B1A81BE41183D9F86E2BEA5FBC" xmpMM:DocumentID="xmp.did:758BF4491D5411E4BC74E97BBB6DDF09" xmpMM:InstanceID="xmp.iid:758BF4481D5411E4BC74E97BBB6DDF09" xmp:CreatorTool="Adobe Photoshop CS5.1 Windows"> <xmpMM:DerivedFrom stRef:instanceID="xmp.iid:7D4271D33E1DE411BBC4AE9EB8F6DDD7" stRef:documentID="xmp.did:8C5C62B1A81BE41183D9F86E2BEA5FBC"/> </rdf:Description> </rdf:RDF> </x:xmpmeta> <?xpacket end="r"?>ÿî Adobe dÀ   ÿÛ „ ÿÀ  #Á ÿÄ ’           	
+             	       Q•ÓÔU!#5	$4%1"23D&Sce67W        !1A"Qa2ÿÚ   ? ú¢æ&£´)¥XÒ‘ˆÔî±¦˜¡Ş¬{QÓ€ºçj<5;'iê2h#iÕèÚúb3MfI«-1îUB[Lã|{A´LOšN:DLò‘ğ#Œ-e÷Œµû‹ÈÆŞÆzì†Q1ÖÊËdÃh³=¼ş‹ÎÜ¤à;/5b•Ë8„L$¡ Ä‘‹Z90² êJG“‘Ğ]Ì¡"XÁ'K°~©_E¥«—VÔQæ’²B¬«d¤•Öi(¡5˜J)9i÷aÄ'@W§a¬œ;Sï.|#t­(Vr:"R90y³YrËÁÂ›çOjÒq"Y¿
+ŠnÔ„×‡)+¥œw¯•E9½×&$b\sË†m]°È(·P]2Óm~ékLqà—0ç)¢8G¨ùÔ¼lÎu”2Ù`?›M“*K—’;Ô„'r
+,Å—-ˆ![q=Dƒ]²3Š„špêC'F­ÆÛÙú°ù‘Ÿ"¬jWS³\HHy	êïw©¾$6L\¨{”´1UIÂdù ’ØB”o$MNXšvÕdAÙ2;Å«êiaJ.Nu·Ù‰f—Ş:t”qÍå†¾OM,–Zƒ1r«*ª®$Ù,Èw^aL¢v›õ	¨XáŞm¢Èb6ßßTÂl™~bsô,†“AwÉ”ä¤Ã)ùÔ›©ˆ×è6ŞP)Îo
+Lè
+Ÿæ)ı6Ü¤@æ¥ãÓN­,wH·	½6Al5€g9È®7ºèO.ÄPÜŠrƒ…‹lŠ3„[¦—D1pq\1ÊoĞƒZP(
+@ P(
+œ¿¸‚ƒ†Û´hÙEDÔÅ5õ«56Ûº:ÓDÒz”d6ò~5rö,‚RD)6iä¹TTgcA-|áSNÔĞX…¸Zdl*0c-RªJ,Í'Ê1,¾ÛE<ìpşÖ_¼Ãñ%Ì÷ÜñEÍ‡l"
+-Ë /8,^ZI…e6údˆo'5îgc@š…ëÊ÷r¢ˆkIkSº†Iäu(ôü0‰AšÍÑÆ‘_§”d÷yÈr7ü“\Ò‡,‚Ô“Ñ&–n5ñöŞ®@(E$ãEÑ´ónóbœ¼%+I',Ö uï×%‰	¹¦UH¡/÷ ji‰šî÷:§ˆ~ílİ/6§5ÇZÛı-¶Ğy´icœJD&‚±Ò»ÑÓ-€÷5ÓÀ¨ıdºâ¥¾4ÊŒ‹<ë7WEŠHÓ´¦¶©ÿ Æ‡~¬§H2¹}X!™|±ƒ¤#éƒ¤¦‘cô«’êvœ²@‰*á¹ôÇ+8f8š×K¸š)WcvM¡·9–ÙsÉíç‡O3Ä•-=PPÔÔWšÈ¯Õ(ĞU²¨¦•ÇDBÒ))^_ÆÎXmß5FÑ6À†$¥ç=~æšòHZ¬WµsâQä$ç×‰öjj1'^¡Ùo;òÆf“Û¨EÁµÌ9ÆÔG.eDÑ“„)%Ù“Uz³Ñxå-?ŒÓuìyÎÆyÁ©¼±2h_\ğ>œ–§¸Ğ‚œê–›É®dÜE;)˜*äUŠÀX\$!×EŠ¸X&†×Ö¡›úy9<®'C_qşÙz‹ıÅàf¢K!îßúsévD"òG‡eÕÃ’»ïìãşE%2áF'ğøá±,LÃ7ÄpĞ7Öºƒ™!¨<´‰¤Æ[²TŒµ/9-(§é†Vo1›Ñ+«I­ÄD–l=OÃ
+RÒr”ö¯y÷À¥€.€DÁ5Q¯¸k1
+d7®g¨mèÆ_Ôj”d‘
+ÏZ“ÿ p4QÌêK‡NqtNGOw;ş¦#æMPëA´õWP›ì›ñ®fğ‡Å`ÉA™d=LëÉÖÍyÄ®âèºsš£@~×NÀËQ:r.è»TZ×	¡tqşà: RNÈ´QÎ‘ƒ½Ş×>¦Ü@q4Vz™ŸR6Ø!§öüÔù×;7M&f‚°ó¨6R›…'ö¶‹õzî—ä‘>bLv?V–@cf#¹ô@t4‘0úb¨æ¥µO1»`È¾4qéş5v/"şá JO7Ì)"Êíç‡B:°Š4¡j£¨Ø}I€‹))<T\˜Q^sˆL™Ö¼TŒçÓŒ»ÿ  tóO>=â_vÃt»â™¶}ã?d²Ş^=eˆ¹ÖKtİ_FS©åó9!qpZš@ P(
+@ P(
+9Õùµ‹nÓŠ*jd´ã$éŸ£8Yğ¬”j'|»ÑÊiÛPN`R€x“"€MM_oU0 ëäÂÔÜ0ÂÑÄå€ VÔ^“ÜsÆÑóp¢“†vr)I®ÄVzëu¿.¹R FÓÌp“]ë®mGéı²¨ö›2	mR÷ªú‚šµÆ<²óK@€î¨du&¦İ-V
+o+T‘,r¼É.`¢ë€8ŞGy¹bUS×M§l š‡ÊŠRŠXÙ?‘Æ‹Æ/7iS›AÖj“s)ÆòÌJQOĞ®Û«1£Å]ÖebpmiÜªkñUæFcAH0šÎxêÃã¢‚‚ ª©ˆ÷±Dˆç0Q(®íEÎM´•3a· M$µ SO¥—Ú-2ä›ÊİN›jœgr|Rü Ğ5¹ Rä’»GõpŒ‰!¡Hs¢d(Qœ†,K<]ŒI¯HC;WL%K¬@2Ô_€š™ê%¤¤¾+ÜÉõD¬\îa[§Ê6hÁQÍº}’åérûÊ[h1C×IzG—ş¤4İs¯©·şÖ/¨#™zÓì4vÙW!W"?ªÏŠÿ [G.œG¤()¸ÀoÊ@ P(
+@ P(
+ƒÃhiò*ÔDƒ)IYMÕàÇåşâw¡ÇÉ-qq-ªå~“[_5#äîóCGÙa´eÏ´S·;-¹_’jÎ’:³å ¥c&èÖOŸ§=<7šD[Ë¥-%ˆD9ãŸ‹2‡‰ôrk¨]<ºÔPÂ§Ú¾¸¨šÅ4K”ƒ.¼õ¨Õ­(¬¯,»£t·\Ñ 9_TÇtÂ}2OE~ÒŠUM‹54:œNE„Ù–ĞÑ%!øúŠM§ §hø :A—K¿M×<X,8óMâ:Úm½¥¥^Çà–Rÿ ü‹ÖÍn Œâ’”š¶úiÁ§ˆ*ı
+òª¢ÅMÚräüÉ"ÌºKâsÂn$İ9i½µ¨'áBûéô£›¸udãE¢ 4øºWÂÔ…ÊùÂ®Ş¢¸µàÛa
+±ÉªGD˜™BË%Êøh2a·ÖÃP×z‡|ÈÑ_™“İÇ”°’˜el½@ÃÑ	0ØK„ddp	¦(peíPÈ«ğ³s3mÃÖ†­ñğ£–=6¦˜òê4^ğZêlhãSîb-²(ÎMèŞhàêÖ
+¦­uiâëM	ZGtmÆÑX–3_s½µÊã6àR×]mKàUY˜+zEÎö’NÈE×•—.[åb¦XíØåD$“ú°——sDœnİa0ôOkÏ8Ûws½Õö:dÖéZd´Çë)¡Ò#DÁ*®a¬µÀhíÆ„$ aàRğô‚ƒ’¥@PJäY=‰Q¤¡Ô–VFÒ£†rsäe‡gpªŠí(Œ
+øŠK¡*´àø˜ÄSV˜n»/ÚNxn!{7ƒh¼â¨İÜÔ	È¦ò	°çc6ÛÁ»ÖÏ-)¬ºƒEUK6›c‘YIÈ¢`ÑìÀÑÏ™ûî¸qq¸$¤pøXi¸^¬K½}„¥ŠËqĞÕBp,2Ö.4šzåVš’±g[ŠXF&6#“¼y¥¿‹ˆ+1´$€f´
+å}3U¶_#r/<‘yi€äî÷W‘ù;©/–VÜ½Èãó~¼ğ\f§9·ßÔÆJ¨Èë¥B"¸”š²H$eJ*‘*¢T†âÁyT"æÂ Ô—ÒË&>`)S…Â+­;.À#U­Ï#Îš­µ1m€ÍwfˆiŠTĞ+ŸtÍWVTlñ¶_Ê•9dMsJÙ™Ùf@¼aÖ#†1T,–%IªšàFk”k5P›å[hîÅ„÷©)ºI#¦¹—ÒJP ¾„tá`†ÛÄË°ÓğÜB«õöiFê_Rô_UuìfÁÏ¬²Ü£.úû¨KÃ:!ÉËznWD_‡g$>²xkCËşÁñVßøß†ù¾F™åş!™ç~+ä½.sãyÏñ};¥ê¿7ƒ™ıê%@ P(
+@ PBª6ÛË‡›jkH(«
+Lå¡ÜD²*š®Måæ‰•æÙ³`ahÃMÔ¨–!¢·=éÊF‹cv ˜ËÂ×G¾«ÎlÇ—\ÌyG|­®†áë#É#û	†k7"s¨f>ü]39K¿iL¸·R¼€¸2Ìº…gCEZŒ‘ÀÍÜ‘ƒk ı{ßµr3{ªI,5Ï·C§µ@ŞñçÉà2¤ò;x÷GÓN2LúÁu Ó_\G™Œø3ÆüÏìñt<ì?°şİóÌ§¡è<Ïí÷>iËë¼‡ú—7¬üêXâ<#‘ôL6a?yºäv×J×C/ãÒïÌ¼áø‡Ê#fRóy}ŒáÍUòÏ(çÊ=@¢u¦y¡2‚Ûo5H˜ØAEn&šZr9§ ¥‘G"aÂñpª;ËÃ”O ¹q–NÅÃªŠF®·Ï(œÈ×^0¢_ps8÷N:y‰Ò"˜Œ‘[ï3ò:
+D{2ih’«@ìz¨üH ÛCM(šóR`©C0¨–À„ï×Ü!sH#Æú¡%´1i7ì,¹]!®†š¨Cí·y	
+Vè“"	²¿f¿’Š®8ywÛ,áÎqì ¦$éÇO(?näp40‹ÿ  s/¾r˜¹÷nuä9ÇÛ½?dæŞZ«Ôç=o?37ÇÅÔÆ0vÛxÓ…-ÜeÃ±y¶Šç,ˆÎvó¨ómMÎ‚–´ )'¢¸Ô™É•[ 8:Q1¶ûË‡Gñ¦1½õË0Ôqämt4Ÿx§ZÃfôKøÃ0ç‚!óRÈò‰“â¿,9“IºX‹ÛÏöŒi¦?Ç9]ÖÜ¤ØcCQÓI½%7­"´™jı¸šñEµ5Æ¢_ª! ™‡€qp¸&iÇO'£ÅÈˆìŠş)ä±¨¹b<pø"5²ÇÏB¡ŞÛVğÖÜrŞOJê	—AN ¿,"E¬.hqÄxØğßa³ß\³GîF×CIğHğ÷Šu¬6o@D¿Œ3x"5, ˆ™1 ±éòÂe¶Ûo3›È-Š
++U¦ÕEKm¶´²(mæãyˆ	ˆ¨((©€MGEGM*r¥K„ÀĞÃ¶Û-Ãj@ P(
+@ P(
+iäduCHÇ”’“TN·…Yo<D©³HK£ª·†UF0`!KRtñ‡¸™ÁÁÆîXÂ[pVß‘¤q*#–oIìL€MH’ˆoÆª½ªÁr§—U,šá ¢H 	(˜Áí³mq,Âì-¾ì1ÓS@e8¨Ùby:4/˜²ĞK¦"4ÔÍ4G©J€&¦§6Š°—ÒH`$pÊ¬x¤Æ0]8r!dšĞ5šu-VÙŒñÈ‚òZç¡¦œ;Ú¾9ã¥Na[³#sÃ’:Âñš'•å_gL F¸#HáØéo:˜—2åI=eì†àj¡,£¼J ‘JUt¦¨2IÀ¤˜Iª–	qÍØ0 „šVË.ÂÒáa`I%³Z~9’µ[hşÛšÑÊĞÓüU k!êZ­Î¨9lÇŠ¥ó•å¿-+¶Ìzp¸4Ò8.i†x»’Ø­4â4`lªF£„urÍå¦‹Z+A4ò0HŒ~%Â˜Vu¸‡m¶àj@ P(
+@ P(
+ƒ›ı7ı‡öçÕQ¿Úÿ şàÍ°ÿ CñŸıÓ+òOıoúó?ÈşGù_Ü ’#G	o•™=5€ÉN’œi¡#8d2-T"•ÔpJ¥—ir¯ª&‚m s…m¤ÀÃv#ÑÈ·†`2F@KdªÆ‰¨bµP„GNJ£\`M¼†$Š2VI7Á6”–0öÖ€„’ƒ5 ¬xÊš«U¶¦¤wÄzÅ4Ã§ı~á6îaõ&Ì•qü%Ö|uD+±ËTFÉ~X×İ~ Tf´<:j¶Ö<Å¶5İš!¦(yS@®}Ó5\}YQ³ÆÙ*Tå‘5Í+fdke˜uñQšĞ\ò<éªÛXóØ×vh†˜¡åM¹÷LÕqõeFÏeü©S–D×4­™‘­–aÔÆ’0–ÆYŒaX•:5q©²áÇâŒeÕ€JU–‘t`ĞÖ9{Å¶â`c…ÛA„$œğÜBöoÑyÅQ»¹¨‘MäaÎÆl/·ƒw­ZSYuŠª–m6Ç"²“‘DÁ£Ø£Ÿ2%÷İpâãpY­Ï#Îš­µ1m€ÍwfˆiŠTĞ+ŸtÍWVTlñ¶_Ê•9dMsJÙ™Ùf@¼ad P(Rs»€a1…SÂÙ,+ŠvÂ0ÆE"Lré»1±EqPØ"ZT!0¼+9XİxbqYeÁœ¬+'Ÿ«¦À²àŒ"ºEa€kíºĞU“B°ÊI1¯Ço¼§Oy|1ÙáPmÈngG”e×âEº¾HØè®T1Ïm¤‰ ƒbNó† é§K™p/Ç¸X'ØñÙ}UÏĞ¾i'¸“õ¨úÍ$÷~µ?Bù¤âOÖ gè_4“ÜIúÔıæ’{‰?ZŸ¡|ÒOq'ëP3ô/šIî$ıj~…óI=ÄŸ­@ÏĞ¾i'¸“õ¨úÍ$÷~µ?Bù¤âOÖ gè_4“ÜIúÔıæ’{‰?ZŸ¡|ÒOq'ëP3ô/šIî$ıj~…óI=ÄŸ­@ÏĞ¾i'¸“õ¨úÍ$÷~µ?Bù¤âOÖ gè_4“ÜIúÔıæ’{‰?ZŸ¡|ÒOq'ëPF-=š­ôuUÕ5ÔÀ“‘“ª3¥†Ò„ˆh|B1qayAcÃe¸cu÷lÃ6ãAó]®¯Ş”8î]¦mUøùâ…Ö‰ÆµÊM†ñÛ¯Å!BCx¹•Ä¥r¶Ü(d‰İåğ_x† C‹Vç|»Šà2Æßs7¾æc^ÚéÒ'ãºfb#_¤uŸ®‘ß½Múáìoñù96ûn—šFlóxŒ—¯úŒU¥/kEfb-yí¦ºÖ¶µ«jÆÄı»?sô=O¥§›Ê¢ãm›\*ĞT¹à’İ‘£Gağí¹9àYqÑPpºÛK( Öã~7cq‹ñÀ`IpÜŞÃÚÿ Õ±´Íbtµg¥«?Ük1×é13üë£û7Õ]ênz8,ÅJåÉNüYqÌÛjDé3KMkmk=-KV·®±3^ÛVÖöƒ?Bù¤âOÖ©vrgè_4“ÜIúÔıæ’{‰?ZŸ¡|ÒOq'ëP3ô/šIî$ıj~…óI=ÄŸ­@ÏĞ¾i'¸“õ¨úÍ$÷~µ?Bù¤âOÖ gè_4“ÜIúÔıæ’{‰?ZŸ¡|ÒOq'ëP3ô/šIî$ıj~…óI=ÄŸ­@ÏĞ¾i'¸“õ¨úÍ$÷~µ?Bù¤âOÖ gè_4“ÜIúÔıæ’{‰?ZŸ¡|ÒOq'ëP3ô/šIî$ıj~…óI=ÄŸ­@ÏĞ¾i'¸“õ¨úÍ$÷~µbÓÙªßGU]S]L	98ê¡á:Xam(@¸†‡Ä C”<6[†7_vÌ0Ãn4u]"j^zXQ8ÇX>Ãl»I" âˆDbeâÄÎ*µ—:²hï^\­öf1ålÃ™p]"©ÒRa?HÆÓÜV“O•F$äP*šEm¾ª{CH±PÒE€¤­ ªu¡XnÜ11/ã¼kìÂü,éŸ¡|ÒOq'ëP3ô/šIî$ıj~…óI=ÄŸ­@ÏĞ¾i'¸“õ¨úÍ$÷~µ?Bù¤âOÖ gè_4“ÜIúÔıæ’{‰?ZŸ¡|ÒOq'ëP3ô/šIî$ıj~…óI=ÄŸ­@ÏĞ¾i'¸“õ¨úÍ$÷~µ?Bù¤âOÖ gè_4“ÜIúÔıæ’{‰?ZŸ¡|ÒOq'ëP3ô/šIî$ıj~…óI=ÄŸ­@ÏĞ¾i'¸“õ¨úÍ$÷~µ?Bù¤âOÖ gè_4“ÜIúÔıæ’{‰?Zƒ•L“:<^Ë0¼C%ó¦ÀFm!€|+°>´vÁ„——¼A@M$\¸ƒ˜¿6âxÙn<wÛAˆÈ‹¬á+ß$_«¥ ¾áL"„E€îºàRP”‚¼Ê±0oÃl¼ßQyŒ0Ù…âĞhı6Nîù•6†L„1T&°D®)åœÈ ÁÌ¦ìÂÄÕÄ³†´ĞVa`Wóp¸0Ãá¾ËC\P(
+Aç¶¢RTš³2Cöâ·›OR$İ4Fü î>×9}ÇRmì9`é¹c…Åcp˜ã‡áeÛúsÍ‰JM¥Tò7:qY0Úv†(h@ëËXQŞ8v`%ín·®ÄM›,Û·m®Ÿ/bÍ¥§`‹s-Z9â€+Õ”M&Ç Ç+ñ°Éœ²Û¶l¾Ğ°»q·1Ä;æA#o5İûªA#o5İûªA#o5İûªA#o5İûªA#o5İûªA#o5İûªA#o5İûªA#o5İûªA#o5İûªA#o5İûªA#o5İûªA#o5İûªA#o5İûªA#o5İûªA#o5İûªA#o5İûªA#o5İûªA#o5İûªA#o5İûªA#o5İûªA#o5İûªA#o5İûª
+„€Ã‘ÜÌ‡J¡™Eca‚_"W`dp¬ÀÀ%1·8ãÄ ÷{ñ ø'ıÙ´£©¦§ŞóSF7|I1¬­syH¢ã=¸¬é8ÓZKm¤6UN´ä‚‡ĞÅ(i‰Š8!•°Á`—ÁÙ‡y×Œr9y‹ò8±ß.×7lÄÖ&İ³ŠÍmÖ>:Nši1:Ä½\ıK÷·ƒì=iµğÎGyµãùş:rÖÔÏ’˜£5/–ùk—¯5­õ‹Ìd¬LŞ·­­5ŠÚ³>“~ÆZ;Ô@'»êLh¸js
+´|E¢Æ_*2;”»yuee]ğäE7€FĞÚ¯Ê ËK›Ø×\^á-^¼àw¼NÛ6ç{[cüİ±Z[¤é]~é˜×]"'Ié=4˜sïîo·<SØœßÂx¾l[Èãc5³n1Ì[ß7ãˆÅ$}·íŒ}Ù-Iµ&mJÅ¦Õ´G×(.Üvu[6ã³ú¡ìÛøª­Ä¯Ì‚FŞkº÷T‚FŞkº÷T‚FŞkº÷T‚FŞkº÷T‚FŞkº÷T‚FŞkº÷T‚FŞkº÷T‚FŞkº÷T‚FŞkº÷T‚FŞkº÷T‚FŞkº÷T‚FŞkº÷T‚FŞkº÷T‚FŞkº÷T‚FŞkº÷T‚FŞkº÷T‚FŞkº÷T‚FŞkº÷T‚FŞkº÷T‚FŞkº÷T‚FŞkº÷T‚FŞkº÷T‚FŞkº÷T	‡#¹™”+C20ŠÆÃ¾*D®ÀÈáY€JcnqÇˆîş÷ãA›¢¹,“5$ê¦í@E ÌtÆn·yR„Ì8AÜ1S…o%³ó-ÃmÙnÜ.·("œ†OÌÒ+p‹x™‘Fê‰•ë. |I¥*® °&ğ^P¡D»ù¼c~Ù†7Û†!µ±@‘vã³ªÙ·ŸÕÿ fßÃıUæA#o5İûªA#o5İûªA#o5İûªA#o5İûªA#o5İûªA#o5İûªA#o5İûªA#o5İûªA#o5İûªA#o5İûªA#o5İûªA#o5İûªA#o5İûªA#o5İûªA#o5İûªA#o5İûªA#o5İûªA#o5İûªA#o5İûªA#o5İûªA#o5İûªA#o5İûªA#o5İûª¨6KØËiÀ¦	£+W{ø ô…Š
+G1Ä0ü,*gíºí›,°\nÇ-Ãp¶ÄÖ”šÚJO=q’G
+'bH†Ç´~€°e‚…àx7‚bĞ°ÆÛqºÜCÛ²ı›6Ğ~iÙ)IÕ3+¿p)yDäâN#G„ÃñÃîsÜI&ámü±Œâ[š8¸Û8apxcøìÚ„P(
+AÉæ®›ÀÏuÒõdùş}šäü¾+øº<úÆw³ù^›óx¶ğş4'Æ³|?ùŸ7øO&ûgÆ¹œxrº¿Òoë¿+ƒo2ƒÔ$ŸÒ“?Oı<—é?¥,éŸøÿ ú?ööPHP(
+@ P(
+@ P(
+Aç¤Û’ù²çUõ_×cú/ŸçüvyFOşÜÍø¿Ìÿ QÃÃ·ğ ëšlË9‹Yg×<=	n£Çü¿Ì¹üì8³.üì£gø:_áùûv~;h5}@ P(
+@ P(
+@ P(
+“nKæËWÖ=]è¾Ÿò8-Ùå?ûs7âÿ 3ıGßÂƒ®i³,æ-eŸ\ğô%ºòÿ 2çó°âÎ<»ó²Ÿàé‡çíÙøí Õô
+@ P(
+@ P(
+@ P(#Õ¿JSı?ôó¿«~•ü°Ÿ©ÿ ãÿ ëÛÛAåê·føÿ ó>oñ~3öÏs8ñæôû?;¤İĞşWÎ]ú…zo#Ñø?KÕœäxk“òø¬áë3ÏëŞÏæºŸÍâÙÅøĞuŠAÿÙ

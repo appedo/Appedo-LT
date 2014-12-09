@@ -1,0 +1,42 @@
+POST /Newuser.aspx HTTP/1.1
+Host: localhost:8666
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:32.0) Gecko/20100101 Firefox/32.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://localhost:8666/Newuser.aspx
+Cookie: ASP.NET_SessionId=i3auhgbxe04cvk55oshorebx
+Connection: keep-alive
+Content-Type: multipart/form-data; boundary=---------------------------6413157699968
+Content-Length: 1041
+
+-----------------------------6413157699968
+Content-Disposition: form-data; name="__VIEWSTATE"
+
+/wEPDwUJMjAxMDI1OTYzD2QWAgIDDxYCHgdlbmN0eXBlBRNtdWx0aXBhcnQvZm9ybS1kYXRhFgICDw8PFgIeBFRleHQFElNhdmVkIHN1Y2Nlc3NmdWxseWRkZIQvbb5JaOUodaL5wOviOWngE3BS
+-----------------------------6413157699968
+Content-Disposition: form-data; name="__VIEWSTATEGENERATOR"
+
+EF54B320
+-----------------------------6413157699968
+Content-Disposition: form-data; name="__EVENTVALIDATION"
+
+/wEWBQLZ2rX0CALEhISFCwLv7ITZAgKct7iSDAKm4M2dCXE5rnmnW0/jiKUwJRBgGB8UpBh6
+-----------------------------6413157699968
+Content-Disposition: form-data; name="txtName"
+
+
+-----------------------------6413157699968
+Content-Disposition: form-data; name="txtAddress"
+
+
+-----------------------------6413157699968
+Content-Disposition: form-data; name="FileUpload1"; filename=""
+Content-Type: application/octet-stream
+
+
+-----------------------------6413157699968
+Content-Disposition: form-data; name="btnLogout"
+
+Logout
+-----------------------------6413157699968--

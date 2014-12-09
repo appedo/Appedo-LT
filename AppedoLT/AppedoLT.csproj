@@ -1,0 +1,873 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{99D24F84-9972-4FBC-B0F4-D5D4706EBE46}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>AppedoLT</RootNamespace>
+    <AssemblyName>AppedoLT</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <IsWebBootstrapper>true</IsWebBootstrapper>
+    <SignAssembly>false</SignAssembly>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <TargetFrameworkProfile />
+    <PublishUrl>http://localhost/LoadTestEngine/</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Web</InstallFrom>
+    <UpdateEnabled>true</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>0</WarningLevel>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x64' ">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x64' ">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>false</SignManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AppedoLT, Version=3.0.0.22, Culture=neutral, PublicKeyToken=null" />
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Design" />
+    <Reference Include="System.Net">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Telerik.WinControls, Version=2010.1.10.504, Culture=neutral, PublicKeyToken=5bb2a467cbec794e" />
+    <Reference Include="Telerik.WinControls.GridView, Version=2010.1.10.504, Culture=neutral, PublicKeyToken=5bb2a467cbec794e" />
+    <Reference Include="Telerik.WinControls.RadChart, Version=2010.1.10.504, Culture=neutral, PublicKeyToken=5bb2a467cbec794e" />
+    <Reference Include="Telerik.WinControls.RadDock, Version=2010.1.10.504, Culture=neutral, PublicKeyToken=5bb2a467cbec794e" />
+    <Reference Include="Telerik.WinControls.Themes.Miscellaneous, Version=2010.1.10.504, Culture=neutral, PublicKeyToken=5bb2a467cbec794e" />
+    <Reference Include="Telerik.WinControls.Themes.Office2007Silver, Version=2010.1.10.504, Culture=neutral, PublicKeyToken=5bb2a467cbec794e" />
+    <Reference Include="Telerik.WinControls.Themes.Office2010, Version=2010.1.10.504, Culture=neutral, PublicKeyToken=5bb2a467cbec794e" />
+    <Reference Include="Telerik.WinControls.Themes.Telerik, Version=2010.1.10.504, Culture=neutral, PublicKeyToken=5bb2a467cbec794e" />
+    <Reference Include="Telerik.WinControls.Themes.Vista, Version=2010.1.10.504, Culture=neutral, PublicKeyToken=5bb2a467cbec794e" />
+    <Reference Include="Telerik.WinControls.Themes.Windows7, Version=2010.1.10.504, Culture=neutral, PublicKeyToken=5bb2a467cbec794e" />
+    <Reference Include="Telerik.WinControls.UI, Version=2010.1.10.504, Culture=neutral, PublicKeyToken=5bb2a467cbec794e" />
+    <Reference Include="TelerikCommon, Version=2010.1.10.504, Culture=neutral, PublicKeyToken=5bb2a467cbec794e" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="About FloodGates.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="About FloodGates.Designer.cs">
+      <DependentUpon>About FloodGates.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AboutBox1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AboutBox1.Designer.cs">
+      <DependentUpon>AboutBox1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Counters.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Counters.Designer.cs">
+      <DependentUpon>Counters.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Design\Tcp\frmTcpAssertion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Design\Tcp\frmTcpAssertion.Designer.cs">
+      <DependentUpon>frmTcpAssertion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Design\Tcp\frmTCPIPValidation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Design\Tcp\frmTCPIPValidation.designer.cs">
+      <DependentUpon>frmTCPIPValidation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Design\Tcp\frmTCPIPParam.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Design\Tcp\frmTCPIPParam.Designer.cs">
+      <DependentUpon>frmTCPIPParam.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Class\RepositoryXml.cs" />
+    <Compile Include="Design\UserControls\UCTCPIPRequest.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Design\UserControls\UCTCPIPRequest.Designer.cs">
+      <DependentUpon>UCTCPIPRequest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Design\frmNewHost.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Design\frmNewHost.Designer.cs">
+      <DependentUpon>frmNewHost.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Design\frmAutoCorrelation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Design\frmAutoCorrelation.Designer.cs">
+      <DependentUpon>frmAutoCorrelation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmAssertion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmAssertion.Designer.cs">
+      <DependentUpon>frmAssertion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmLicenseActivation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmLicenseActivation.Designer.cs">
+      <DependentUpon>frmLicenseActivation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmLicenseManagement.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmLicenseManagement.Designer.cs">
+      <DependentUpon>frmLicenseManagement.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmMessageBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMessageBox.Designer.cs">
+      <DependentUpon>frmMessageBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmUserCount.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmUserCount.Designer.cs">
+      <DependentUpon>frmUserCount.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmVUScriptNameHttp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmVUScriptNameHttp.Designer.cs">
+      <DependentUpon>frmVUScriptNameHttp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HttpRequest\UCQueryStringData.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="HttpRequest\UCQueryStringData.Designer.cs">
+      <DependentUpon>UCQueryStringData.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Class\MonitorXml.cs" />
+    <Compile Include="Login.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Login.Designer.cs">
+      <DependentUpon>Login.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MonitorServer.cs" />
+    <Compile Include="RadForm1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RadForm1.Designer.cs">
+      <DependentUpon>RadForm1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Report\userControlCharts.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Report\userControlCharts.designer.cs">
+      <DependentUpon>userControlCharts.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Run\frmRun.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Run\frmRun.Designer.cs">
+      <DependentUpon>frmRun.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Design.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Design.Designer.cs">
+      <DependentUpon>Design.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Design\frmExtrator.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Design\frmExtrator.Designer.cs">
+      <DependentUpon>frmExtrator.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Design\FindDig.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Design\FindDig.Designer.cs">
+      <DependentUpon>FindDig.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Design\FlagRequest.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Design\FlagRequest.Designer.cs">
+      <DependentUpon>FlagRequest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Design\frmCompareResponse.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Design\frmCompareResponse.Designer.cs">
+      <DependentUpon>frmCompareResponse.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Design\frmDynamicRequestParameter.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Design\frmDynamicRequestParameter.Designer.cs">
+      <DependentUpon>frmDynamicRequestParameter.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmError.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmError.Designer.cs">
+      <DependentUpon>frmError.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Design\Http\frmRecord.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Design\Http\frmRecord.Designer.cs">
+      <DependentUpon>frmRecord.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Design\frmShowText.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Design\frmShowText.Designer.cs">
+      <DependentUpon>frmShowText.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Design\frmVariableManager.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Design\frmVariableManager.Designer.cs">
+      <DependentUpon>frmVariableManager.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Design\frmScenario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Design\frmScenario.Designer.cs">
+      <DependentUpon>frmScenario.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Report\frmSingleChart.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Report\frmSingleChart.Designer.cs">
+      <DependentUpon>frmSingleChart.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Design\Tcp\frmTCPIPParamHelper.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Design\Tcp\frmTCPIPParamHelper.Designer.cs">
+      <DependentUpon>frmTCPIPParamHelper.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Design\Tcp\frmTCPIPRecord.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Design\Tcp\frmTCPIPRecord.Designer.cs">
+      <DependentUpon>frmTCPIPRecord.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Design\Http\frmValidation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Design\Http\frmValidation.designer.cs">
+      <DependentUpon>frmValidation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Run\frmVUScriptName.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Run\frmVUScriptName.Designer.cs">
+      <DependentUpon>frmVUScriptName.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Run\ListBoxMove.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Run\ListBoxMove.designer.cs">
+      <DependentUpon>ListBoxMove.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="About FloodGates.resx">
+      <DependentUpon>About FloodGates.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AboutBox1.resx">
+      <DependentUpon>AboutBox1.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Counters.resx">
+      <DependentUpon>Counters.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Design\Tcp\frmTcpAssertion.resx">
+      <DependentUpon>frmTcpAssertion.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Design\Tcp\frmTCPIPValidation.resx">
+      <DependentUpon>frmTCPIPValidation.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Design\frmNewHost.resx">
+      <DependentUpon>frmNewHost.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Design\frmAutoCorrelation.resx">
+      <DependentUpon>frmAutoCorrelation.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Design\UserControls\ucScript.resx">
+      <DependentUpon>ucScript.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmAssertion.resx">
+      <DependentUpon>frmAssertion.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmLicenseActivation.resx">
+      <DependentUpon>frmLicenseActivation.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmLicenseManagement.resx">
+      <DependentUpon>frmLicenseManagement.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmMessageBox.resx">
+      <DependentUpon>frmMessageBox.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmUserCount.resx">
+      <DependentUpon>frmUserCount.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmVUScriptNameHttp.resx">
+      <DependentUpon>frmVUScriptNameHttp.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HttpRequest\UCQueryStringData.resx">
+      <DependentUpon>UCQueryStringData.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HttpRequest\UCTextPost.resx">
+      <DependentUpon>UCTextPost.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Login.resx">
+      <DependentUpon>Login.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RadForm1.resx">
+      <DependentUpon>RadForm1.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\userControlCharts.resx">
+      <DependentUpon>userControlCharts.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Run\frmRun.resx">
+      <DependentUpon>frmRun.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Design.resx">
+      <DependentUpon>Design.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Design\frmExtrator.resx">
+      <DependentUpon>frmExtrator.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Design\FindDig.resx">
+      <DependentUpon>FindDig.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Design\FlagRequest.resx">
+      <DependentUpon>FlagRequest.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Design\frmCompareResponse.resx">
+      <DependentUpon>frmCompareResponse.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Design\frmDynamicRequestParameter.resx">
+      <DependentUpon>frmDynamicRequestParameter.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmError.resx">
+      <DependentUpon>frmError.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Design\Http\frmRecord.resx">
+      <DependentUpon>frmRecord.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Design\frmShowText.resx">
+      <DependentUpon>frmShowText.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Design\frmVariableManager.resx">
+      <DependentUpon>frmVariableManager.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Design\frmScenario.resx">
+      <DependentUpon>frmScenario.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\frmSingleChart.resx">
+      <DependentUpon>frmSingleChart.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Design\Tcp\frmTCPIPParam.resx">
+      <DependentUpon>frmTCPIPParam.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Design\Tcp\frmTCPIPParamHelper.resx">
+      <DependentUpon>frmTCPIPParamHelper.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Design\Tcp\frmTCPIPRecord.resx">
+      <DependentUpon>frmTCPIPRecord.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Design\Http\frmValidation.resx">
+      <DependentUpon>frmValidation.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Run\frmVUScriptName.resx">
+      <DependentUpon>frmVUScriptName.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Run\ListBoxMove.resx">
+      <DependentUpon>ListBoxMove.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Design\frmRequestParameter.resx">
+      <DependentUpon>frmRequestParameter.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Design\UCFileTypeVariable.resx">
+      <DependentUpon>UCFileTypeVariable.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Design\UCRequest.resx">
+      <DependentUpon>UCRequest.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Run\ucLoadGen.resx">
+      <DependentUpon>ucLoadGen.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Run\UCScriptSetting.resx">
+      <DependentUpon>UCScriptSetting.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HttpRequest\UCHttpRequest.resx">
+      <DependentUpon>UCHttpRequest.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Design\UserControls\UCTCPIPRequest.resx">
+      <DependentUpon>UCTCPIPRequest.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\userControlReports.resx">
+      <DependentUpon>userControlReports.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Design\UserControls\ucJavaScript.resx">
+      <DependentUpon>ucJavaScript.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Design\UserControls\ucContainer.resx">
+      <DependentUpon>ucContainer.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Design\UserControls\ucIfThenElse.resx">
+      <DependentUpon>ucIfThenElse.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Design\UserControls\ucDelay.resx">
+      <DependentUpon>ucDelay.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Design\UserControls\ucLoop.resx">
+      <DependentUpon>ucLoop.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Design\UserControls\ucPage.resx">
+      <DependentUpon>ucPage.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Design\UserControls\ucWhileLoop.resx">
+      <DependentUpon>ucWhileLoop.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Design\UserControls\ucTransaction.resx">
+      <DependentUpon>ucTransaction.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Design\UserControls\ucLog.resx">
+      <DependentUpon>ucLog.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ucDesign.resx">
+      <DependentUpon>ucDesign.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HttpRequest\UCFormPost.resx">
+      <DependentUpon>UCFormPost.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Monitor\UCMonitor.resx">
+      <DependentUpon>UCMonitor.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HttpRequest\UCRequestData.resx">
+      <DependentUpon>UCRequestData.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HttpRequest\UCMultipartPost.resx">
+      <DependentUpon>UCMultipartPost.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Monitor\UCServer.resx">
+      <DependentUpon>UCServer.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="Design\frmRequestParameter.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Design\frmRequestParameter.Designer.cs">
+      <DependentUpon>frmRequestParameter.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Class\Record.cs" />
+    <Compile Include="Design\UCFileTypeVariable.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Design\UCFileTypeVariable.Designer.cs">
+      <DependentUpon>UCFileTypeVariable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Design\UCRequest.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Design\UCRequest.Designer.cs">
+      <DependentUpon>UCRequest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Class\RequestResponse.cs" />
+    <Compile Include="Run\ucLoadGen.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Run\ucLoadGen.Designer.cs">
+      <DependentUpon>ucLoadGen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Run\UCScriptSetting.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Run\UCScriptSetting.Designer.cs">
+      <DependentUpon>UCScriptSetting.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HttpRequest\UCHttpRequest.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="HttpRequest\UCHttpRequest.Designer.cs">
+      <DependentUpon>UCHttpRequest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Report\userControlReports.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Report\userControlReports.designer.cs">
+      <DependentUpon>userControlReports.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Design\UserControls\ucScript.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Design\UserControls\ucScript.Designer.cs">
+      <DependentUpon>ucScript.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Design\UserControls\ucJavaScript.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Design\UserControls\ucJavaScript.Designer.cs">
+      <DependentUpon>ucJavaScript.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Design\UserControls\ucContainer.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Design\UserControls\ucContainer.Designer.cs">
+      <DependentUpon>ucContainer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Design\UserControls\ucIfThenElse.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Design\UserControls\ucIfThenElse.Designer.cs">
+      <DependentUpon>ucIfThenElse.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Design\UserControls\ucDelay.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Design\UserControls\ucDelay.Designer.cs">
+      <DependentUpon>ucDelay.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Design\UserControls\ucLoop.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Design\UserControls\ucLoop.Designer.cs">
+      <DependentUpon>ucLoop.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Design\UserControls\ucPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Design\UserControls\ucPage.Designer.cs">
+      <DependentUpon>ucPage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Design\UserControls\ucWhileLoop.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Design\UserControls\ucWhileLoop.Designer.cs">
+      <DependentUpon>ucWhileLoop.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Design\UserControls\ucTransaction.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Design\UserControls\ucTransaction.Designer.cs">
+      <DependentUpon>ucTransaction.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Design\UserControls\ucLog.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Design\UserControls\ucLog.Designer.cs">
+      <DependentUpon>ucLog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ucDesign.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ucDesign.Designer.cs">
+      <DependentUpon>ucDesign.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HttpRequest\UCFormPost.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="HttpRequest\UCFormPost.Designer.cs">
+      <DependentUpon>UCFormPost.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Monitor\UCMonitor.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Monitor\UCMonitor.Designer.cs">
+      <DependentUpon>UCMonitor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HttpRequest\UCRequestData.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="HttpRequest\UCRequestData.Designer.cs">
+      <DependentUpon>UCRequestData.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HttpRequest\UCMultipartPost.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="HttpRequest\UCMultipartPost.Designer.cs">
+      <DependentUpon>UCMultipartPost.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HttpRequest\UCTextPost.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="HttpRequest\UCTextPost.Designer.cs">
+      <DependentUpon>UCTextPost.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Monitor\UCServer.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Monitor\UCServer.Designer.cs">
+      <DependentUpon>UCServer.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="bin\Debug\commands_loadgen.txt" />
+    <Content Include="bin\Debug\Project\recorded-requests\req_09bd15d5-d998-453e-b013-842f96cea4bf.txt" />
+    <Content Include="bin\Debug\Project\recorded-requests\req_0df6d922-f1f6-4f03-8e63-4f9cfc31f418.txt" />
+    <Content Include="bin\Debug\Project\recorded-requests\req_4433db8a-6dfb-441b-89db-e5c3034eaf7a.txt" />
+    <Content Include="bin\Debug\Project\recorded-requests\req_b4d7f499-7ad7-4b1f-84c4-c29cca4a4313.txt" />
+    <Content Include="bin\Debug\Project\recorded-requests\req_c926871e-a0e3-491a-9551-b953211e282e.txt" />
+    <Content Include="bin\Debug\Project\repository.xml" />
+    <Content Include="bin\Debug\Project\scenario.xml" />
+    <Content Include="bin\Debug\Project\settings.xml" />
+    <Content Include="bin\Debug\sqlite3.exe" />
+    <Content Include="bin\Debug\VUScripts.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="obj\Debug\Telerik.WinControls.GridView.dll" />
+    <Content Include="obj\Debug\Telerik.WinControls.UI.Design.dll" />
+    <Content Include="obj\Debug\Telerik.WinControls.UI.dll" />
+    <Content Include="obj\Debug\TelerikCommon.dll" />
+    <Content Include="obj\Release\Telerik.WinControls.GridView.dll" />
+    <Content Include="obj\Release\Telerik.WinControls.UI.Design.dll" />
+    <Content Include="obj\Release\Telerik.WinControls.UI.dll" />
+    <Content Include="obj\Release\TelerikCommon.dll" />
+    <None Include="bin\Debug\execute.bat" />
+    <None Include="bin\Debug\Softsmith.pfx" />
+    <None Include="Cert\Softsmith Certificate Authority.cer" />
+    <None Include="Cert\Softsmith Private Key.pvk" />
+    <None Include="Cert\Softsmith.cer" />
+    <None Include="Cert\Softsmith.pfx" />
+    <None Include="Resources\floppy_disk_16.gif" />
+    <Content Include="Resources\form-background.jpg" />
+    <Content Include="TextFile1.txt" />
+    <Content Include="ErrorCode.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 2.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="bin\Debug\NewFolder1\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AppedoLT.BusinessLogic\AppedoLT.BusinessLogic.csproj">
+      <Project>{a482e44a-82e8-4cbf-9624-a8293bc2b437}</Project>
+      <Name>AppedoLT.BusinessLogic</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AppedoLT.Core\AppedoLT.Core.csproj">
+      <Project>{0fd4a43e-e7bc-45bd-8897-537a46a0d54d}</Project>
+      <Name>AppedoLT.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AppedoLT.DataAccessLayer\AppedoLT.DataAccessLayer.csproj">
+      <Project>{32074f4c-9aa8-42c8-a711-97bff96e4c82}</Project>
+      <Name>AppedoLT.DataAccessLayer</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
