@@ -13,17 +13,14 @@ using Microsoft.VisualBasic.FileIO;
 
 namespace AppedoLT.Core
 {
-  public  class Utility
-
-
+    public class Utility
     {
-        
         public static DataSet StoredRequest = null;
         public static DataTable GetDataTableFromCSVFile1(string FilePath, string Delim)
         {
             DataTable tbl = new DataTable();
             string CsvData = string.Empty;
-            CsvData = File.ReadAllText(FilePath,Encoding.Default);
+            CsvData = File.ReadAllText(FilePath, Encoding.Default);
             bool firstRow = true;
             foreach (string row in CsvData.Split("\n".ToCharArray()))
             {
@@ -34,7 +31,7 @@ namespace AppedoLT.Core
                   | System.Text.RegularExpressions.RegexOptions.IgnoreCase);
                 Regex reg = new Regex(Delim
                   + @"(?=(?:[^\""]*\""[^\""]*\"")*(?![^\""]*\""))", options);
-               // var csvArray = reg.Split(row.Replace("\n", "").Replace("\r", ""));
+                // var csvArray = reg.Split(row.Replace("\n", "").Replace("\r", ""));
                 var csvArray = reg.Split(row.Trim());
                 for (int i = 0; i < csvArray.Length; i++)
                 {
@@ -43,7 +40,7 @@ namespace AppedoLT.Core
                         tbl.Columns.Add(new DataColumn() { ColumnName = csvArray[i] });
                     else
                         dr[i] = csvArray[i];
-                    
+
                 }
                 if (!firstRow && !dr[0].ToString().Length.Equals(0)) tbl.Rows.Add(dr);
                 firstRow = false;
@@ -57,11 +54,11 @@ namespace AppedoLT.Core
             TextFieldParser parser = new TextFieldParser(FilePath, Encoding.Default);
             parser.TextFieldType = FieldType.Delimited;
             parser.TrimWhiteSpace = false;
-         
+
             parser.SetDelimiters(Delim);
             while (!parser.EndOfData)
             {
-               
+
                 DataRow dr = tbl.NewRow();
                 string[] fields = parser.ReadFields();
                 for (int i = 0; i < fields.Length; i++)
@@ -117,7 +114,7 @@ namespace AppedoLT.Core
             StoredRequest = new DataSet();
             StoredRequest.ReadXml(path + "\\repository.xml");
         }
-       
+
         public static DataTable GetExtractor(string requestid)
         {
             DataTable dt = new DataTable();
@@ -133,7 +130,7 @@ namespace AppedoLT.Core
             }
             return dt;
         }
-     
+
         public static string SerializeObjectToXML(object item)
         {
             try
@@ -177,7 +174,7 @@ namespace AppedoLT.Core
             {
                 return string.Empty;
             }
-           
+
         }
         public static Object CloneType(Object objtype)
         {
@@ -192,7 +189,7 @@ namespace AppedoLT.Core
 
             return lstfinal;
         }
-        
+
     }
 
 }
