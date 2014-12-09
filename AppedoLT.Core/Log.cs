@@ -6,6 +6,7 @@ using System.Text;
 namespace AppedoLT.Core
 {
    public class Log
+
     {
         public string loadGen = Constants.GetInstance().LoadGen;
         public string reportname = string.Empty;
