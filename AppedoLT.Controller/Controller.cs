@@ -25,7 +25,7 @@ namespace AppedoLTController
         ControllerStatus _staus = ControllerStatus.Idle;
         public ControllerStatus Status { get { return _staus; } }
 
-        public Controller( string soureIP, string reportName)
+        public Controller(string soureIP, string reportName)
         {
             ReportName = reportName;
         }
@@ -65,7 +65,7 @@ namespace AppedoLTController
             int runcompleted = 0;
             XmlNodeList loadGens;
             StringBuilder scriptwisestatus = null;
-            
+
             while (true)
             {
                 try
@@ -78,7 +78,7 @@ namespace AppedoLTController
                         try
                         {
                             #region Retrive Created & Completed UserCount
-                            Trasport loadGenConnection = new Trasport(loadGen.Attributes["ipaddress"].Value, "8889",10000);
+                            Trasport loadGenConnection = new Trasport(loadGen.Attributes["ipaddress"].Value, "8889", 10000);
                             loadGenConnection.Send(new TrasportData("status", string.Empty, null));
                             TrasportData data = loadGenConnection.Receive();
                             string dataStr = data.DataStr;
@@ -86,7 +86,7 @@ namespace AppedoLTController
                             totalCompleted += Convert.ToInt32(log.Match(dataStr).Groups[2].Value);
                             loadGenConnection.Close();
                             runcompleted += Convert.ToInt32(log.Match(dataStr).Groups[3].Value);
-                           
+
                             loadGenConnection = new Trasport(loadGen.Attributes["ipaddress"].Value, "8889");
                             loadGenConnection.Send(new TrasportData("scriptwisestatus", string.Empty, null));
                             scriptwisestatus.Append(loadGenConnection.Receive().DataStr);
@@ -102,19 +102,34 @@ namespace AppedoLTController
                     ScriptWiseStatus = GetStatusconcatenate(scriptwisestatus.ToString());
                     CreatedUser = totalCreated;
                     CompletedUser = totalCompleted;
-                    if ( runcompleted == loadGens.Count)
+                    if (runcompleted == loadGens.Count)
                     {
                         Thread.Sleep(10000);
                         _staus = ControllerStatus.RunCompleted;
                         new ResultFileGenerator(ReportName).Genarate();
                         _staus = ControllerStatus.ReportGenerateCompleted;
                         break;
-                        
+
                     }
                 }
                 catch (Exception ex)
                 {
-                    ExceptionHandler.WritetoEventLog(ex.StackTrace + ex.Message);
+                    try
+                    {
+                        Thread.Sleep(10000);
+                        ExceptionHandler.WritetoEventLog(ex.StackTrace + ex.Message + Environment.NewLine + ControllerXml.GetInstance().doc.InnerText);
+                        _staus = ControllerStatus.RunCompleted;
+                        new ResultFileGenerator(ReportName).Genarate();
+                        _staus = ControllerStatus.ReportGenerateCompleted;
+
+                        break;
+                    }
+                    catch (Exception ex1)
+                    {
+                        ExceptionHandler.WritetoEventLog(ex1.StackTrace + ex1.Message);
+                        break;
+                    }
+
                 }
                 finally
                 {
@@ -129,7 +144,7 @@ namespace AppedoLTController
         {
             Dictionary<string, string> scriptWiseResult = new Dictionary<string, string>();
             string[] result = null;
-            StringBuilder summary=new StringBuilder();
+            StringBuilder summary = new StringBuilder();
             try
             {
                 foreach (string str in allStatus.Split(new string[] { "\r\n", "\n" }, StringSplitOptions.None))
