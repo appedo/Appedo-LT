@@ -14,7 +14,6 @@ using Microsoft.VisualBasic.FileIO;
 namespace AppedoLT.Core
 {
   public  class Utility
-
     {
         
         public static DataSet StoredRequest = null;
