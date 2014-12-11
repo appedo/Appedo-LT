@@ -19,7 +19,7 @@ namespace MSIISCounterAgent
                         StringBuilder xml = new StringBuilder();
                         xml.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>");
                         xml.Append("<root>");
-                        xml.Append(@"<counters uid=""""  type=""MSIIS"">");
+                        xml.Append(@"<counters>");
                         xml.Append(@"<counter id=""10000001"" category=""Web Service"" countername=""Bytes Sent/sec"" instance=""_Total"" scale=""1""/>");
                         xml.Append(@"<counter id=""10000002"" category=""Web Service"" countername=""Bytes Received/sec"" instance=""_Total"" scale=""1""/>");
                         xml.Append(@"<counter id=""10000003"" category=""Web Service"" countername=""Bytes total/sec"" instance=""_Total"" scale=""1""/>");

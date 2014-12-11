@@ -1,6 +1,36 @@
-17:09:11 06 December 2014 
-   at AppedoLTController.frmController.DoWork() in d:\Rasith\AppedoLT\AppedoLT.Controller\frmController.cs:line 65Attempted to divide by zero.
+14:44:04 10 December 2014 
+   at System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   at System.Number.ParseInt32(String s, NumberStyles style, NumberFormatInfo info)
+   at AppedoLT.Core.Trasport.Receive() in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 72
+   at AppedoLTController.frmController.<>c__DisplayClass3.<DoWork>b__2() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 75Input string was not in a correct format.
 ---------------------------------------
-17:10:17 06 December 2014 
-   at AppedoLTController.frmController.DoWork() in d:\Rasith\AppedoLT\AppedoLT.Controller\frmController.cs:line 71Attempted to divide by zero.
+14:52:33 10 December 2014 
+   at System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   at System.Number.ParseInt32(String s, NumberStyles style, NumberFormatInfo info)
+   at AppedoLT.Core.Trasport.Receive() in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 72
+   at AppedoLTController.frmController.<>c__DisplayClass3.<DoWork>b__2() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 75Input string was not in a correct format.
+---------------------------------------
+15:02:53 10 December 2014 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 87
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 211A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+15:06:55 10 December 2014 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 87
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 211A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+15:20:52 10 December 2014 
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.Directory.DeleteHelper(String fullPath, String userPath, Boolean recursive, Boolean throwOnTopLevelDirectoryNotFound)
+   at System.IO.Directory.Delete(String fullPath, String userPath, Boolean recursive, Boolean checkHost)
+   at AppedoLTController.ResultFileGenerator.DeleteReportFolder(String reportname) in e:\AppedoLT\AppedoLT.Controller\ResultFileGenerator.cs:line 177The directory is not empty.
+
+---------------------------------------
+15:23:07 10 December 2014 
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.Directory.DeleteHelper(String fullPath, String userPath, Boolean recursive, Boolean throwOnTopLevelDirectoryNotFound)
+   at System.IO.Directory.Delete(String fullPath, String userPath, Boolean recursive, Boolean checkHost)
+   at AppedoLTController.ResultFileGenerator.DeleteReportFolder(String reportname) in e:\AppedoLT\AppedoLT.Controller\ResultFileGenerator.cs:line 177The directory is not empty.
+
 ---------------------------------------

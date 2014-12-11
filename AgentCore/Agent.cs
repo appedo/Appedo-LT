@@ -17,32 +17,23 @@ namespace AgentCore
 
         Dictionary<string, PerformanceCounter> Counters = new Dictionary<string, PerformanceCounter>();
         Dictionary<string, List<PerformanceCounter>> CountersAllInstance = new Dictionary<string, List<PerformanceCounter>>();
-        string uid = string.Empty;
+        private string _uid = string.Empty;
+        private string _type = string.Empty;
         string path = string.Empty;
         string dataSendUrl = string.Empty;
-        string type = string.Empty;        string totalPhysicalMemory = "0";
+      
+        string totalPhysicalMemory = "0";
         bool IsWindowsCounter = false;
+       
 
-        public Agent(XmlFileProccessor xml, bool isWindowsCounter)
+        public Agent(XmlFileProccessor xml, bool isWindowsCounter,string uid,string type)
         {
             IsWindowsCounter = isWindowsCounter;
+            _uid = uid;
+            _type=type;
             if (IsWindowsCounter == true) SetTotalPhysicalMemory();
             path = GetPath();
             dataSendUrl = path + "/collectCounters";
-            if (xml.doc.SelectSingleNode("/root/counters").Attributes["uid"].Value == string.Empty || xml.doc.SelectSingleNode("/root/counters").Attributes["uid"].Value == "null")
-            {
-                path = path + "/getConfigurations";
-                string data = string.Format("agent_type={0}&guid={1}", xml.doc.SelectSingleNode("/root/counters").Attributes["type"].Value, ConfigurationSettings.AppSettings["guid"]);
-                data = constants.GetPageContent(path, data);
-                uid = new Regex(".* \"uid\": \"(.*?)\"").Match(data).Groups[1].Value;
-                xml.doc.SelectSingleNode("/root/counters").Attributes["uid"].Value = uid;
-                xml.Save();
-            }
-            else
-            {
-                uid = xml.doc.SelectSingleNode("/root/counters").Attributes["uid"].Value;
-            }
-            type = xml.doc.SelectSingleNode("/root/counters").Attributes["type"].Value;
             foreach (XmlNode counterWithIndance in xml.doc.SelectNodes("/root/counters/counter"))
             {
                 try
@@ -150,9 +141,9 @@ namespace AgentCore
                 }
             }
             if (IsWindowsCounter == true) data.Append("1000015").Append("=").Append(totalPhysicalMemory).Append(",");
-            data.Append(1001).Append("=\"").Append(uid).Append("\",");
+            data.Append(1001).Append("=\"").Append(_uid).Append("\",");
             data.Append(1002).Append("=\"").Append(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff")).Append("\"}").Append("&");
-            data.Append("agent_type=").Append(type);
+            data.Append("agent_type=").Append(_type);
             return data.ToString();
         }
         private string GetPath()

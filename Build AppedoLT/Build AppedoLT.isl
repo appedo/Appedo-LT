@@ -353,7 +353,7 @@
 		<row><td>ISX_DEFAULTCOMPONENT7</td><td>{6DC9EE3C-E51C-497C-97CD-58CFB47BC974}</td><td>UPLOAD</td><td>2</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>ISX_DEFAULTCOMPONENT8</td><td>{9A1F0CC0-C6E7-4957-BF59-5AD697856DD1}</td><td>DesktopFolder</td><td>2</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>ISX_DEFAULTCOMPONENT9</td><td>{E23CE31A-951E-45E0-89DD-5DC75C745E44}</td><td>INSTALLDIR</td><td>2</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
-		<row><td>sqlite3.exe</td><td>{052D9B63-F72B-4206-B578-4FE742B7DC09}</td><td>INSTALLDIR</td><td>2</td><td/><td>sqlite3.exe</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>sqlite3.exe</td><td>{8AFF531E-AA1C-4764-848A-233BBDD2A174}</td><td>INSTALLDIR</td><td>2</td><td/><td>sqlite3.exe</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 	</table>
 
 	<table name="Condition">
@@ -1928,22 +1928,24 @@
 		<col def="S255">ISBuildSourcePath</col>
 		<col def="I4">ISAttributes</col>
 		<col def="S72">ISComponentSubFolder_</col>
-		<row><td>appedo.ico</td><td>ISX_DEFAULTCOMPONENT9</td><td>Appedo.ico</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Rasith\AppedoLT\AppedoLT\bin\Debug\Appedo.ico</td><td>1</td><td/></row>
-		<row><td>appedo.pfx</td><td>ISX_DEFAULTCOMPONENT9</td><td>Appedo.pfx</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Rasith\AppedoLT\AppedoLT\bin\Debug\Appedo.pfx</td><td>1</td><td/></row>
-		<row><td>appedo.png</td><td>ISX_DEFAULTCOMPONENT9</td><td>Appedo.png</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Rasith\AppedoLT\AppedoLT\bin\Debug\Appedo.png</td><td>1</td><td/></row>
+		<row><td>appedo.ico</td><td>ISX_DEFAULTCOMPONENT9</td><td>Appedo.ico</td><td>0</td><td/><td/><td/><td>1</td><td>E:\AppedoLT\AppedoLT\bin\Debug\Appedo.ico</td><td>1</td><td/></row>
+		<row><td>appedo.pfx</td><td>ISX_DEFAULTCOMPONENT9</td><td>Appedo.pfx</td><td>0</td><td/><td/><td/><td>1</td><td>E:\AppedoLT\AppedoLT\bin\Debug\Appedo.pfx</td><td>1</td><td/></row>
+		<row><td>appedo.png</td><td>ISX_DEFAULTCOMPONENT9</td><td>Appedo.png</td><td>0</td><td/><td/><td/><td>1</td><td>E:\AppedoLT\AppedoLT\bin\Debug\Appedo.png</td><td>1</td><td/></row>
 		<row><td>appedolt.primary_output</td><td>AppedoLT.Primary_output</td><td>AppedoLT.Primary output</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;AppedoLT1&gt;|Built</td><td>3</td><td/></row>
-		<row><td>commands.txt</td><td>ISX_DEFAULTCOMPONENT9</td><td>commands.txt</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Rasith\AppedoLT\AppedoLT\bin\Debug\commands.txt</td><td>1</td><td/></row>
-		<row><td>commands_monitor.txt</td><td>ISX_DEFAULTCOMPONENT9</td><td>COMMAN~1.TXT|commands_monitor.txt</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Rasith\AppedoLT\AppedoLT\bin\Debug\commands_monitor.txt</td><td>1</td><td/></row>
-		<row><td>database.db</td><td>ISX_DEFAULTCOMPONENT9</td><td>database.db</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Rasith\AppedoLT\AppedoLT\bin\Debug\database.db</td><td>1</td><td/></row>
-		<row><td>error.xslt</td><td>ISX_DEFAULTCOMPONENT9</td><td>ERROR~1.XSL|error.xslt</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Rasith\AppedoLT\AppedoLT\bin\Debug\error.xslt</td><td>1</td><td/></row>
-		<row><td>execute.bat</td><td>ISX_DEFAULTCOMPONENT9</td><td>execute.bat</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Rasith\AppedoLT\AppedoLT\bin\Debug\execute.bat</td><td>1</td><td/></row>
-		<row><td>execute_monitor.bat</td><td>ISX_DEFAULTCOMPONENT9</td><td>EXECUT~1.BAT|execute_monitor.bat</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Rasith\AppedoLT\AppedoLT\bin\Debug\execute_monitor.bat</td><td>1</td><td/></row>
-		<row><td>green.jpg</td><td>ISX_DEFAULTCOMPONENT9</td><td>green.jpg</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Rasith\AppedoLT\AppedoLT\bin\Debug\green.jpg</td><td>1</td><td/></row>
-		<row><td>log.xslt</td><td>ISX_DEFAULTCOMPONENT9</td><td>LOG~1.XSL|log.xslt</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Rasith\AppedoLT\AppedoLT\bin\Debug\log.xslt</td><td>1</td><td/></row>
-		<row><td>logic.ico</td><td>ISX_DEFAULTCOMPONENT9</td><td>logic.ico</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Rasith\AppedoLT\AppedoLT\bin\Debug\logic.ico</td><td>1</td><td/></row>
-		<row><td>red.jpg</td><td>ISX_DEFAULTCOMPONENT9</td><td>red.JPG</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Rasith\AppedoLT\AppedoLT\bin\Debug\red.JPG</td><td>1</td><td/></row>
+		<row><td>commands.txt</td><td>ISX_DEFAULTCOMPONENT9</td><td>commands.txt</td><td>0</td><td/><td/><td/><td>1</td><td>E:\AppedoLT\AppedoLT\bin\Debug\commands.txt</td><td>1</td><td/></row>
+		<row><td>commands_monitor.txt</td><td>ISX_DEFAULTCOMPONENT9</td><td>COMMAN~1.TXT|commands_monitor.txt</td><td>0</td><td/><td/><td/><td>1</td><td>E:\AppedoLT\AppedoLT\bin\Debug\commands_monitor.txt</td><td>1</td><td/></row>
+		<row><td>database.db</td><td>ISX_DEFAULTCOMPONENT9</td><td>database.db</td><td>0</td><td/><td/><td/><td>1</td><td>E:\AppedoLT\AppedoLT\bin\Debug\database.db</td><td>1</td><td/></row>
+		<row><td>databasemonitor.db</td><td>ISX_DEFAULTCOMPONENT9</td><td>DATABA~1.DB|databasemonitor.db</td><td>0</td><td/><td/><td/><td>1</td><td>E:\AppedoLT\AppedoLT\bin\Debug\databasemonitor.db</td><td>1</td><td/></row>
+		<row><td>error.xslt</td><td>ISX_DEFAULTCOMPONENT9</td><td>ERROR~1.XSL|error.xslt</td><td>0</td><td/><td/><td/><td>1</td><td>E:\AppedoLT\AppedoLT\bin\Debug\error.xslt</td><td>1</td><td/></row>
+		<row><td>execute.bat</td><td>ISX_DEFAULTCOMPONENT9</td><td>execute.bat</td><td>0</td><td/><td/><td/><td>1</td><td>E:\AppedoLT\AppedoLT\bin\Debug\execute.bat</td><td>1</td><td/></row>
+		<row><td>execute_monitor.bat</td><td>ISX_DEFAULTCOMPONENT9</td><td>EXECUT~1.BAT|execute_monitor.bat</td><td>0</td><td/><td/><td/><td>1</td><td>E:\AppedoLT\AppedoLT\bin\Debug\execute_monitor.bat</td><td>1</td><td/></row>
+		<row><td>green.jpg</td><td>ISX_DEFAULTCOMPONENT9</td><td>green.jpg</td><td>0</td><td/><td/><td/><td>1</td><td>E:\AppedoLT\AppedoLT\bin\Debug\green.jpg</td><td>1</td><td/></row>
+		<row><td>log.xslt</td><td>ISX_DEFAULTCOMPONENT9</td><td>LOG~1.XSL|log.xslt</td><td>0</td><td/><td/><td/><td>1</td><td>E:\AppedoLT\AppedoLT\bin\Debug\log.xslt</td><td>1</td><td/></row>
+		<row><td>logic.ico</td><td>ISX_DEFAULTCOMPONENT9</td><td>logic.ico</td><td>0</td><td/><td/><td/><td>1</td><td>E:\AppedoLT\AppedoLT\bin\Debug\logic.ico</td><td>1</td><td/></row>
+		<row><td>red.jpg</td><td>ISX_DEFAULTCOMPONENT9</td><td>red.JPG</td><td>0</td><td/><td/><td/><td>1</td><td>E:\AppedoLT\AppedoLT\bin\Debug\red.JPG</td><td>1</td><td/></row>
+		<row><td>report.xslt</td><td>ISX_DEFAULTCOMPONENT9</td><td>REPORT~1.XSL|report.xslt</td><td>0</td><td/><td/><td/><td>1</td><td>E:\AppedoLT\AppedoLT\bin\Debug\report.xslt</td><td>1</td><td/></row>
 		<row><td>softsmith_certificate_author</td><td>ISX_DEFAULTCOMPONENT</td><td>SOFTSM~1.CER|Softsmith Certificate Authority.cer</td><td>0</td><td/><td/><td/><td>1</td><td>E:\Rasith\Floodgates\Floodgates\Cert\Softsmith Certificate Authority.cer</td><td>1</td><td/></row>
-		<row><td>sqlite3.exe</td><td>sqlite3.exe</td><td>sqlite3.exe</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Rasith\AppedoLT\AppedoLT\bin\Debug\sqlite3.exe</td><td>1</td><td/></row>
+		<row><td>sqlite3.exe</td><td>sqlite3.exe</td><td>sqlite3.exe</td><td>0</td><td/><td/><td/><td>1</td><td>E:\AppedoLT\AppedoLT\bin\Debug\sqlite3.exe</td><td>1</td><td/></row>
 	</table>
 
 	<table name="FileSFPCatalog">
@@ -2099,7 +2101,7 @@
 		<row><td>ISX_DEFAULTCOMPONENT7</td><td/><td/><td>_44764E9F_5213_4DCE_A3F6_1E59431BEF9C_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>ISX_DEFAULTCOMPONENT8</td><td/><td/><td>_7F523872_4552_4627_BCD1_11BF12CC3CBD_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>ISX_DEFAULTCOMPONENT9</td><td/><td/><td>_905C589E_AB99_4F64_8166_CA6FE31EE7AD_FILTER</td><td/><td/><td/><td/></row>
-		<row><td>sqlite3.exe</td><td/><td/><td>_1C2F2C2A_2213_4E2F_AB91_657541028A23_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>sqlite3.exe</td><td/><td/><td>_510731C6_3BEB_44FD_B45E_BC466A2789EC_FILTER</td><td/><td/><td/><td/></row>
 	</table>
 
 	<table name="ISCustomActionReference">
@@ -3534,6 +3536,7 @@
 		<row><td>IDS_PROGMSG_XML_UPDATE_FILE</td><td>1033</td><td>Updating XML file %s...</td><td>0</td><td/><td>-761108851</td></row>
 		<row><td>IDS_SETUPEXE_EXPIRE_MSG</td><td>1033</td><td>This setup works until %s. The setup will now exit.</td><td>0</td><td/><td>-761108851</td></row>
 		<row><td>IDS_SETUPEXE_LAUNCH_COND_E</td><td>1033</td><td>This setup was built with an evaluation version of InstallShield and can only be launched from setup.exe.</td><td>0</td><td/><td>-761108851</td></row>
+		<row><td>IDS_SHORTCUT_DISPLAY_NAME1</td><td>1033</td><td>LAUNCH~1.EXE|Launch sqlite3.exe</td><td>0</td><td/><td>1445085968</td></row>
 		<row><td>IDS_SQLBROWSE_INTRO</td><td>1033</td><td>From the list of servers below, select the database server you would like to target.</td><td>0</td><td/><td>-761108851</td></row>
 		<row><td>IDS_SQLBROWSE_INTRO_DB</td><td>1033</td><td>From the list of catalog names below, select the database catalog you would like to target.</td><td>0</td><td/><td>-761108851</td></row>
 		<row><td>IDS_SQLBROWSE_INTRO_TEMPLATE</td><td>1033</td><td>[IS_SQLBROWSE_INTRO]</td><td>0</td><td/><td>-761108851</td></row>
@@ -3947,6 +3950,7 @@
 		<row><td>NewShortcut31_865C4765791148ADAE90711808C9D12E.exe</td><td/><td>&lt;VSSolutionFolder&gt;\AppedoLT\bin\Debug\logic.ico</td><td>0</td></row>
 		<row><td>NewShortcut32_CB21EE23BCD04FDE96C2A5AEC4624579.exe</td><td/><td>&lt;VSSolutionFolder&gt;\AppedoLT\bin\Debug\logic.ico</td><td>0</td></row>
 		<row><td>NewShortcut3_E542D03B5318421094FC4992B5D94FCA.exe</td><td/><td>&lt;VSSolutionFolder&gt;\AppedoLT\bin\Debug\logic.ico</td><td>0</td></row>
+		<row><td>sqlite3.exe_004BC50AD1E240469338E41A6C7AD36C.exe</td><td/><td>&lt;ISProductFolder&gt;\redist\Language Independent\OS Independent\GenericExe.ico</td><td>0</td></row>
 	</table>
 
 	<table name="IniFile">
@@ -4532,9 +4536,8 @@ RABWAEQALQA1AAEARQB4AHAAcgBlAHMAcwA=
 		<col def="L255">FileName</col>
 		<col def="s72">DirProperty</col>
 		<col def="i2">InstallMode</col>
-		<row><td>FileKey1</td><td>sqlite3.exe</td><td/><td>appedo</td><td>2</td></row>
-		<row><td>FileKey2</td><td>sqlite3.exe</td><td/><td>appedolt</td><td>2</td></row>
 		<row><td>NewShortcut31</td><td>AppedoLT.Primary_output</td><td/><td>appedolt</td><td>2</td></row>
+		<row><td>sqlite3.exe</td><td>sqlite3.exe</td><td/><td>appedolt</td><td>2</td></row>
 	</table>
 
 	<table name="RemoveIniFile">
@@ -4623,6 +4626,7 @@ RABWAEQALQA1AAEARQB4AHAAcgBlAHMAcwA=
 		<row><td>NewShortcut3</td><td>StartupFolder</td><td>##ID_STRING9##</td><td>AppedoLT.Primary_output</td><td>AlwaysInstall</td><td/><td/><td/><td>NewShortcut3_E542D03B5318421094FC4992B5D94FCA.exe</td><td>0</td><td>1</td><td>INSTALLDIR</td><td/><td/><td/><td/><td/><td/><td/></row>
 		<row><td>NewShortcut31</td><td>appedolt</td><td>##ID_STRING10##</td><td>AppedoLT.Primary_output</td><td>AlwaysInstall</td><td/><td/><td/><td>NewShortcut31_865C4765791148ADAE90711808C9D12E.exe</td><td>0</td><td>1</td><td>INSTALLDIR</td><td/><td/><td/><td/><td/><td/><td/></row>
 		<row><td>NewShortcut32</td><td>DesktopFolder</td><td>##ID_STRING11##</td><td>AppedoLT.Primary_output</td><td>AlwaysInstall</td><td/><td/><td/><td>NewShortcut32_CB21EE23BCD04FDE96C2A5AEC4624579.exe</td><td>0</td><td>1</td><td>INSTALLDIR</td><td/><td/><td/><td/><td/><td/><td/></row>
+		<row><td>sqlite3.exe</td><td>appedolt</td><td>##IDS_SHORTCUT_DISPLAY_NAME1##</td><td>sqlite3.exe</td><td>AlwaysInstall</td><td/><td/><td/><td>sqlite3.exe_004BC50AD1E240469338E41A6C7AD36C.exe</td><td>0</td><td>1</td><td>INSTALLDIR</td><td/><td/><td/><td/><td/><td/><td/></row>
 	</table>
 
 	<table name="Signature">

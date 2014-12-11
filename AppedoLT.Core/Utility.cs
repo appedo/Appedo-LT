@@ -14,6 +14,7 @@ namespace AppedoLT.Core
     public class Utility
     {
         public static DataSet StoredRequest = null;
+
         public static DataTable GetDataTableFromCSVFile1(string FilePath, string Delim)
         {
             DataTable tbl = new DataTable();
@@ -45,6 +46,7 @@ namespace AppedoLT.Core
             }
             return tbl;
         }
+
         public static DataTable GetDataTableFromCSVFile(string FilePath, string Delim)
         {
             bool firstRow = true;
@@ -72,6 +74,7 @@ namespace AppedoLT.Core
             parser.Close();
             return tbl;
         }
+
         public static DataTable GetDataTableFromCSVContent(string content, string Delim)
         {
             bool firstRow = true;
@@ -99,6 +102,7 @@ namespace AppedoLT.Core
             parser.Close();
             return tbl;
         }
+
         public static void SaveDataSet(DataSet ds, string path)
         {
             if (System.IO.File.Exists(path) == true)
@@ -107,6 +111,7 @@ namespace AppedoLT.Core
             }
             ds.WriteXml(path);
         }
+
         public static void LoadRequest(DataSet requestData, string path)
         {
             StoredRequest = new DataSet();
@@ -153,6 +158,7 @@ namespace AppedoLT.Core
                 return null;
             }
         }
+
         public static object DeserializeXMLToObject(string xmlText, Type objectType)
         {
             if (string.IsNullOrEmpty(xmlText)) return null;
@@ -162,6 +168,7 @@ namespace AppedoLT.Core
                 return xs.Deserialize(memoryStream);
             }
         }
+
         public static string GetFileContent(string filename)
         {
             if (File.Exists(filename))
@@ -172,8 +179,8 @@ namespace AppedoLT.Core
             {
                 return string.Empty;
             }
-
         }
+
         public static Object CloneType(Object objtype)
         {
             Object lstfinal = new Object();
@@ -187,7 +194,5 @@ namespace AppedoLT.Core
 
             return lstfinal;
         }
-
     }
-
 }

@@ -1879,7 +1879,7 @@
 		<col def="I4">ISAttributes</col>
 		<col def="S72">ISComponentSubFolder_</col>
 		<row><td>mswindowscounteragent.primar</td><td>MSWindowsCounterAgent.Primary_output1</td><td>MSWindowsCounterAgent.Primary output</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;MSWindowsCounterAgent&gt;|Built</td><td>3</td><td/></row>
-		<row><td>mswindowscounterxml.xml</td><td>ISX_DEFAULTCOMPONENT</td><td>MSWIND~1.XML|MSWindowsCounterXml.xml</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Rasith\AppedoLT\MSWindowsCounterAgent\bin\Debug\MSWindowsCounterXml.xml</td><td>1</td><td/></row>
+		<row><td>mswindowscounterxml.xml</td><td>ISX_DEFAULTCOMPONENT</td><td>MSWIND~1.XML|MSWindowsCounterXml.xml</td><td>0</td><td/><td/><td/><td>1</td><td>E:\AppedoLT\MSWindowsCounterAgent\bin\Debug\MSWindowsCounterXml.xml</td><td>1</td><td/></row>
 	</table>
 
 	<table name="FileSFPCatalog">
@@ -3988,7 +3988,7 @@ UwBpAG4AZwBsAGUASQBtAGEAZwBlAAEARQB4AHAAcgBlAHMAcwA=
 		<row><td>ISTheme</td><td>InstallShield Blue.theme</td></row>
 		<row><td>ISUSLock</td><td>{34837E46-3741-4E99-8E39-0BC4D2526B3E}</td></row>
 		<row><td>ISUSSignature</td><td>{295ED37A-33DD-4902-8D99-A3186E1C88E8}</td></row>
-		<row><td>ISVisitedViews</td><td>viewAssistant,viewShortcuts,viewAppFiles,viewUI,viewSystemSearch</td></row>
+		<row><td>ISVisitedViews</td><td>viewAssistant,viewShortcuts,viewAppFiles,viewUI,viewSystemSearch,viewFeatureFiles,viewObjects,viewDependencies</td></row>
 		<row><td>Limited</td><td>1</td></row>
 		<row><td>LockPermissionMode</td><td>1</td></row>
 		<row><td>MsiExecCmdLineOptions</td><td/></row>

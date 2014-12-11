@@ -1,15 +1,1 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<root>
-  <counters uid="5" type="MSSQL">
-    <counter id="26000001" category="SQLServer:Buffer Manager" countername="Lazy writes/sec" instance="" scale="1" />
-    <counter id="26000002" category="SQLServer:Buffer Manager" countername="Page life expectancy" instance="" scale="1" />
-    <counter id="26000003" category="SQLServer:Buffer Manager" countername="Page reads/sec" instance="" scale="1" />
-    <counter id="26000004" category="SQLServer:Buffer Manager" countername="Page writes/sec" instance="" scale="1" />
-    <counter id="26000005" category="SQLServer:Buffer Manager" countername="Checkpoint pages/sec" instance="" scale="1" />
-    <counter id="26000006" category="SQLServer:Buffer Manager" countername="Free list stalls/sec" instance="" scale="1" />
-    <counter id="26000007" category="SQLServer:Memory Manager" countername="Memory Grants Pending" instance="" scale="1" />
-    <counter id="26000008" category="SQLServer:Memory Manager" countername="Target Server Memory (KB)" instance="" scale="1" />
-    <counter id="26000009" category="SQLServer:Memory Manager" countername="Total Server Memory (KB)" instance="" scale="1" />
-    <counter id="26000010" category="SQLServer:General Statistics" countername="User Connections" instance="" scale="1" />
-  </counters>
-</root>
+<?xml version="1.0" encoding="utf-8"?><root><counters><counter id="26000001" category="SQLServer:Buffer Manager" countername="Lazy writes/sec" instance="" scale="1"/><counter id="26000002" category="SQLServer:Buffer Manager" countername="Page life expectancy" instance="" scale="1"/><counter id="26000003" category="SQLServer:Buffer Manager" countername="Page reads/sec" instance="" scale="1"/><counter id="26000004" category="SQLServer:Buffer Manager" countername="Page writes/sec" instance="" scale="1"/><counter id="26000005" category="SQLServer:Buffer Manager" countername="Checkpoint pages/sec" instance="" scale="1"/><counter id="26000006" category="SQLServer:Buffer Manager" countername="Free list stalls/sec" instance="" scale="1"/><counter id="26000007" category="SQLServer:Memory Manager" countername="Memory Grants Pending" instance="" scale="1"/><counter id="26000008" category="SQLServer:Memory Manager" countername="Target Server Memory (KB)" instance="" scale="1"/><counter id="26000009" category="SQLServer:Memory Manager" countername="Total Server Memory (KB)" instance="" scale="1"/><counter id="26000010" category="SQLServer:General Statistics" countername="User Connections" instance="" scale="1"/></counters></root>

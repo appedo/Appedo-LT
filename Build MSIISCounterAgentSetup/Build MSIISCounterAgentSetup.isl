@@ -1879,7 +1879,7 @@
 		<col def="I4">ISAttributes</col>
 		<col def="S72">ISComponentSubFolder_</col>
 		<row><td>msiiscounteragent.primary_ou</td><td>MSIISCounterAgent.Primary_output</td><td>MSIISCounterAgent.Primary output</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;MSIISCounterAgent&gt;|Built</td><td>3</td><td/></row>
-		<row><td>msiiscounterxml.xml</td><td>ISX_DEFAULTCOMPONENT</td><td>MSIISC~1.XML|MSIISCounterXml.xml</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Rasith\AppedoLT\MSIISCounterAgent\bin\Debug\MSIISCounterXml.xml</td><td>1</td><td/></row>
+		<row><td>msiiscounterxml.xml</td><td>ISX_DEFAULTCOMPONENT</td><td>MSIISC~1.XML|MSIISCounterXml.xml</td><td>0</td><td/><td/><td/><td>1</td><td>E:\AppedoLT\MSIISCounterAgent\bin\Debug\MSIISCounterXml.xml</td><td>1</td><td/></row>
 	</table>
 
 	<table name="FileSFPCatalog">

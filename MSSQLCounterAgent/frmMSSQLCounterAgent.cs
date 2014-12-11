@@ -1,5 +1,6 @@
 ﻿using AgentCore;
 using System;
+using System.Configuration;
 using System.Threading;
 using System.Windows.Forms;
 
@@ -20,25 +21,26 @@ namespace MSSQLCounterAgent
             InitializeComponent();
             try
             {
-                try
+                string type = ConfigurationSettings.AppSettings["type"];
+                string uid = ConfigurationSettings.AppSettings["uid"];
+                if (uid == string.Empty)
                 {
-                    agent = new Agent(counterXML, false);
+                    MessageBox.Show("UID is missing. Please download again.");
+                    Environment.Exit(1);
                 }
-                catch (Exception ex)
+                else
                 {
-                    ExceptionHandler.WritetoEventLog(ex.StackTrace + Environment.NewLine + ex.Message);
-                    MessageBox.Show("Unable to start agent. \r\nError:" + ex.Message);
-                    Application.Exit();
+                    agent = new Agent(counterXML, true, uid, type);
+                    DoWorkThread = new Thread(new ThreadStart(DoWork));
+                    DoWorkThread.Start();
+                    ni.Icon = new Form().Icon;
+                    ni.Text = trayText;
+                    ni.Visible = true;
+                    ni.ContextMenuStrip = contextMenuStrip1;
+                    ni.BalloonTipText = trayTipText;
+                    ni.ShowBalloonTip(1000);
+                    ni.ContextMenuStrip = contextMenuStrip1;
                 }
-                DoWorkThread = new Thread(new ThreadStart(DoWork));
-                DoWorkThread.Start();
-                ni.Icon = new Form().Icon;
-                ni.Text = trayText;
-                ni.Visible = true;
-                ni.ContextMenuStrip = contextMenuStrip1;
-                ni.BalloonTipText = trayTipText;
-                ni.ShowBalloonTip(1000);
-                ni.ContextMenuStrip = contextMenuStrip1;
             }
             catch (Exception ex)
             {

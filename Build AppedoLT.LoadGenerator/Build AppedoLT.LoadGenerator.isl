@@ -345,8 +345,7 @@
 		<row><td>ISX_DEFAULTCOMPONENT1</td><td>{0447E6EF-508C-4611-8C1D-3E874EE98D1C}</td><td>DATA</td><td>2</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>ISX_DEFAULTCOMPONENT2</td><td>{54AC2106-1903-46AB-B873-3C6EC80E45DC}</td><td>UPLOAD</td><td>2</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>ISX_DEFAULTCOMPONENT3</td><td>{253779BE-5F93-4253-95FD-CBBDA561894D}</td><td>VARIABLES</td><td>2</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
-		<row><td>System.Data.SQLite.dll</td><td>{9AE8B4EA-F709-41F6-8EA1-A5784F116D3D}</td><td>INSTALLDIR</td><td>2</td><td/><td>system.data.sqlite.dll</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
-		<row><td>sqlite3.exe</td><td>{796868B8-0E1A-4CED-BC7E-F233CA242FFC}</td><td>INSTALLDIR</td><td>2</td><td/><td>sqlite3.exe</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>sqlite3.exe</td><td>{4FCA911D-AD48-41A8-B3ED-581C9DA824C5}</td><td>INSTALLDIR</td><td>2</td><td/><td>sqlite3.exe</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 	</table>
 
 	<table name="Condition">
@@ -1881,7 +1880,6 @@
 		<row><td>AlwaysInstall</td><td>ISX_DEFAULTCOMPONENT1</td></row>
 		<row><td>AlwaysInstall</td><td>ISX_DEFAULTCOMPONENT2</td></row>
 		<row><td>AlwaysInstall</td><td>ISX_DEFAULTCOMPONENT3</td></row>
-		<row><td>AlwaysInstall</td><td>System.Data.SQLite.dll</td></row>
 		<row><td>AlwaysInstall</td><td>sqlite3.exe</td></row>
 	</table>
 
@@ -1898,12 +1896,11 @@
 		<col def="I4">ISAttributes</col>
 		<col def="S72">ISComponentSubFolder_</col>
 		<row><td>appedolt.loadgenerator.prima</td><td>AppedoLT.LoadGenerator.Primary_output</td><td>AppedoLT.LoadGenerator.Primary output</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;AppedoLT.LoadGenerator1&gt;|Built</td><td>3</td><td/></row>
-		<row><td>commands.txt</td><td>ISX_DEFAULTCOMPONENT</td><td>commands.txt</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Rasith\AppedoLT\AppedoLT.LoadGenerator\bin\Debug\commands.txt</td><td>1</td><td/></row>
-		<row><td>database.db</td><td>ISX_DEFAULTCOMPONENT</td><td>database.db</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Rasith\AppedoLT\AppedoLT.LoadGenerator\bin\Debug\database.db</td><td>1</td><td/></row>
-		<row><td>execute.bat</td><td>ISX_DEFAULTCOMPONENT</td><td>execute.bat</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Rasith\AppedoLT\AppedoLT.LoadGenerator\bin\Debug\execute.bat</td><td>1</td><td/></row>
-		<row><td>loadtestagent.xml</td><td>ISX_DEFAULTCOMPONENT</td><td>LOADTE~1.XML|loadtestagent.xml</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Rasith\AppedoLT\AppedoLT.LoadGenerator\bin\loadtestagent.xml</td><td>1</td><td/></row>
-		<row><td>sqlite3.exe</td><td>sqlite3.exe</td><td>sqlite3.exe</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Rasith\AppedoLT\AppedoLT.LoadGenerator\bin\Debug\sqlite3.exe</td><td>1</td><td/></row>
-		<row><td>system.data.sqlite.dll</td><td>System.Data.SQLite.dll</td><td>SYSTEM~1.DLL|System.Data.SQLite.dll</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Rasith\AppedoLT\AppedoLT\Sqlite\64bit\System.Data.SQLite.dll</td><td>1</td><td/></row>
+		<row><td>commands.txt</td><td>ISX_DEFAULTCOMPONENT</td><td>commands.txt</td><td>0</td><td/><td/><td/><td>1</td><td>E:\AppedoLT\AppedoLT.LoadGenerator\bin\Debug\commands.txt</td><td>1</td><td/></row>
+		<row><td>database.db</td><td>ISX_DEFAULTCOMPONENT</td><td>database.db</td><td>0</td><td/><td/><td/><td>1</td><td>E:\AppedoLT\AppedoLT.LoadGenerator\bin\Debug\database.db</td><td>1</td><td/></row>
+		<row><td>execute.bat</td><td>ISX_DEFAULTCOMPONENT</td><td>execute.bat</td><td>0</td><td/><td/><td/><td>1</td><td>E:\AppedoLT\AppedoLT.LoadGenerator\bin\Debug\execute.bat</td><td>1</td><td/></row>
+		<row><td>loadtestagent.xml</td><td>ISX_DEFAULTCOMPONENT</td><td>LOADTE~1.XML|loadtestagent.xml</td><td>0</td><td/><td/><td/><td>1</td><td>E:\AppedoLT\AppedoLT.LoadGenerator\bin\loadtestagent.xml</td><td>1</td><td/></row>
+		<row><td>sqlite3.exe</td><td>sqlite3.exe</td><td>sqlite3.exe</td><td>0</td><td/><td/><td/><td>1</td><td>E:\AppedoLT\AppedoLT.LoadGenerator\bin\Debug\sqlite3.exe</td><td>1</td><td/></row>
 	</table>
 
 	<table name="FileSFPCatalog">
@@ -2052,8 +2049,7 @@
 		<row><td>ISX_DEFAULTCOMPONENT1</td><td/><td/><td>_C874B0DB_73F4_4AE9_A366_41C48C9A9DAF_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>ISX_DEFAULTCOMPONENT2</td><td/><td/><td>_7F6E6171_555D_4BC0_B0AC_33690640824E_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>ISX_DEFAULTCOMPONENT3</td><td/><td/><td>_8138984F_6D00_4076_9622_2E9C46791C10_FILTER</td><td/><td/><td/><td/></row>
-		<row><td>System.Data.SQLite.dll</td><td/><td/><td>_7E292537_ACA1_4C0F_BEB6_2AF754FAC84D_FILTER</td><td/><td/><td/><td/></row>
-		<row><td>sqlite3.exe</td><td/><td/><td>_06C07BEA_12F7_4CF0_80F3_717732652524_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>sqlite3.exe</td><td/><td/><td>_EF8E03FE_E6B7_4959_BF56_E54D5E620E73_FILTER</td><td/><td/><td/><td/></row>
 	</table>
 
 	<table name="ISCustomActionReference">
@@ -3484,6 +3480,7 @@
 		<row><td>IDS_PROGMSG_XML_UPDATE_FILE</td><td>1033</td><td>Updating XML file %s...</td><td>0</td><td/><td>1570937296</td></row>
 		<row><td>IDS_SETUPEXE_EXPIRE_MSG</td><td>1033</td><td>This setup works until %s. The setup will now exit.</td><td>0</td><td/><td>1570937296</td></row>
 		<row><td>IDS_SETUPEXE_LAUNCH_COND_E</td><td>1033</td><td>This setup was built with an evaluation version of InstallShield and can only be launched from setup.exe.</td><td>0</td><td/><td>1570937296</td></row>
+		<row><td>IDS_SHORTCUT_DISPLAY_NAME1</td><td>1033</td><td>LAUNCH~1.EXE|Launch sqlite3.exe</td><td>0</td><td/><td>1445069776</td></row>
 		<row><td>IDS_SQLBROWSE_INTRO</td><td>1033</td><td>From the list of servers below, select the database server you would like to target.</td><td>0</td><td/><td>1570937296</td></row>
 		<row><td>IDS_SQLBROWSE_INTRO_DB</td><td>1033</td><td>From the list of catalog names below, select the database catalog you would like to target.</td><td>0</td><td/><td>1570937296</td></row>
 		<row><td>IDS_SQLBROWSE_INTRO_TEMPLATE</td><td>1033</td><td>[IS_SQLBROWSE_INTRO]</td><td>0</td><td/><td>1570937296</td></row>
@@ -3892,6 +3889,7 @@
 		<row><td>NewShortcut21_4EE1DE19AC2B43768E284458366EB2EF.exe</td><td/><td>&lt;VSSolutionFolder&gt;\AppedoLT\bin\Debug\logic.ico</td><td>0</td></row>
 		<row><td>NewShortcut22_74D4E7FB786446E894BBB40367DB268A.exe</td><td/><td>&lt;VSSolutionFolder&gt;\AppedoLT\bin\Debug\logic.ico</td><td>0</td></row>
 		<row><td>NewShortcut2_724DB90064F04EEA9C75C639F36F2D79.exe</td><td/><td>&lt;VSSolutionFolder&gt;\AppedoLT\bin\Debug\logic.ico</td><td>0</td></row>
+		<row><td>sqlite3.exe_34797D5D749D46CA80D7C4A4C3FE1C71.exe</td><td/><td>&lt;ISProductFolder&gt;\redist\Language Independent\OS Independent\GenericExe.ico</td><td>0</td></row>
 	</table>
 
 	<table name="IniFile">
@@ -4477,9 +4475,8 @@ UwBpAG4AZwBsAGUASQBtAGEAZwBlAAEARQB4AHAAcgBlAHMAcwA=
 		<col def="L255">FileName</col>
 		<col def="s72">DirProperty</col>
 		<col def="i2">InstallMode</col>
-		<row><td>FileKey1</td><td>sqlite3.exe</td><td/><td>appedo</td><td>2</td></row>
-		<row><td>FileKey2</td><td>sqlite3.exe</td><td/><td>appedo_1_appedolt_loadgenerator</td><td>2</td></row>
 		<row><td>NewShortcut21</td><td>AppedoLT.LoadGenerator.Primary_output</td><td/><td>appedo_1_appedolt_loadgenerator</td><td>2</td></row>
+		<row><td>sqlite3.exe</td><td>sqlite3.exe</td><td/><td>appedo_1_appedolt_loadgenerator</td><td>2</td></row>
 	</table>
 
 	<table name="RemoveIniFile">
@@ -4568,6 +4565,7 @@ UwBpAG4AZwBsAGUASQBtAGEAZwBlAAEARQB4AHAAcgBlAHMAcwA=
 		<row><td>NewShortcut2</td><td>StartupFolder</td><td>##ID_STRING5##</td><td>AppedoLT.LoadGenerator.Primary_output</td><td>AlwaysInstall</td><td/><td/><td/><td>NewShortcut2_724DB90064F04EEA9C75C639F36F2D79.exe</td><td>0</td><td>1</td><td>INSTALLDIR</td><td/><td/><td/><td/><td/><td/><td/></row>
 		<row><td>NewShortcut21</td><td>appedo_1_appedolt_loadgenerator</td><td>##ID_STRING6##</td><td>AppedoLT.LoadGenerator.Primary_output</td><td>AlwaysInstall</td><td/><td/><td/><td>NewShortcut21_4EE1DE19AC2B43768E284458366EB2EF.exe</td><td>0</td><td>1</td><td>INSTALLDIR</td><td/><td/><td/><td/><td/><td/><td/></row>
 		<row><td>NewShortcut22</td><td>DesktopFolder</td><td>##ID_STRING7##</td><td>AppedoLT.LoadGenerator.Primary_output</td><td>AlwaysInstall</td><td/><td/><td/><td>NewShortcut22_74D4E7FB786446E894BBB40367DB268A.exe</td><td>0</td><td>1</td><td>INSTALLDIR</td><td/><td/><td/><td/><td/><td/><td/></row>
+		<row><td>sqlite3.exe</td><td>appedo_1_appedolt_loadgenerator</td><td>##IDS_SHORTCUT_DISPLAY_NAME1##</td><td>sqlite3.exe</td><td>AlwaysInstall</td><td/><td/><td/><td>sqlite3.exe_34797D5D749D46CA80D7C4A4C3FE1C71.exe</td><td>0</td><td>1</td><td>INSTALLDIR</td><td/><td/><td/><td/><td/><td/><td/></row>
 	</table>
 
 	<table name="Signature">

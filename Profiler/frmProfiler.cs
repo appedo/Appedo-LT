@@ -41,9 +41,9 @@ namespace Profiler
         private Dictionary<string, Stack<TraceLogInfo>> TraceLog = new Dictionary<string, Stack<TraceLogInfo>>();
         private Queue<TraceLogInfo> Trace = new Queue<TraceLogInfo>();
 
-         NotifyIcon ni = new NotifyIcon();
-         Thread DoWorkThread = null;
-      
+        NotifyIcon ni = new NotifyIcon();
+        Thread DoWorkThread = null;
+
         string trayText = "Appedo Profile Agent.";
         string trayTipText = "Appedo Profile.";
         MessageQueue myQueue;
@@ -66,43 +66,35 @@ namespace Profiler
         public frmProfiler()
         {
             InitializeComponent();
-            if (xml.doc.SelectSingleNode("//root/guid").Attributes["value"].Value.Trim() == string.Empty || xml.doc.SelectSingleNode("//root/uid").Attributes["value"].Value.Trim() == string.Empty)
+            try
             {
-                Settings setting = new Settings();
-                if (setting.ShowDialog() != DialogResult.Yes) 
+                if (ConfigurationSettings.AppSettings["uid"] == string.Empty)
                 {
-                    System.Environment.Exit(1);
+                    MessageBox.Show("UID is missing. Please download again.");
+                    Environment.Exit(1);
                 }
                 else
                 {
-                    uid = setting.uid;
+                    uid = ConfigurationSettings.AppSettings["uid"];
+                    dataSendUrl = GetPath() + "/collectProfilerStack";
+                    DoWorkThread = new Thread(new ThreadStart(DoWork));
+                    DoWorkThread.Start();
+                    ni.Icon = new Form().Icon;
+                    ni.Text = trayText;
+                    ni.Visible = true;
+                    ni.ContextMenuStrip = contextMenuStrip1;
+                    ni.BalloonTipText = trayTipText;
+                    ni.ShowBalloonTip(1000);
+                    ni.ContextMenuStrip = contextMenuStrip1;
+                    myQueue = CreateMSMQ();
                 }
-            }
-            else
-            {
-                uid = xml.doc.SelectSingleNode("//root/uid").Attributes["value"].Value;
-            }
-            try
-            {
-                dataSendUrl = GetPath() + "/collectProfilerStack";
-                DoWorkThread = new Thread(new ThreadStart(DoWork));
-                DoWorkThread.Start();
-                ni.Icon = new Form().Icon;
-                ni.Text = trayText;
-                ni.Visible = true;
-                ni.ContextMenuStrip = contextMenuStrip1;
-                ni.BalloonTipText = trayTipText;
-                ni.ShowBalloonTip(1000);
-                ni.ContextMenuStrip = contextMenuStrip1;
-                myQueue = CreateMSMQ();
-               
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
         }
-        
+
         void DoWork()
         {
             try
@@ -111,10 +103,10 @@ namespace Profiler
                 {
                     try
                     {
-                      //  Thread.Sleep(30000);
+                        //  Thread.Sleep(30000);
                         if (Trace.Count > 0)
                         {
-                           // GetProfilerData();
+                            // GetProfilerData();
                             GetPageContent(dataSendUrl, GetProfilerData());
                         }
                     }
@@ -160,7 +152,7 @@ namespace Profiler
         private void StopIIS()
         {
             // stop IIS
-          //  Text = "Stopping IIS ";
+            //  Text = "Stopping IIS ";
             ProcessStartInfo processStartInfo = new ProcessStartInfo("cmd.exe");
             processStartInfo.WindowStyle = ProcessWindowStyle.Hidden;
             if (Environment.OSVersion.Version.Major >= 6/*Vista*/)
@@ -172,17 +164,17 @@ namespace Profiler
             {
                 //Text += ".";
                 Thread.Sleep(100);
-              //  Application.DoEvents();
+                //  Application.DoEvents();
             }
             if (process.ExitCode != 0)
             {
-              //  Text += string.Format(" Error {0} occurred", process.ExitCode);
+                //  Text += string.Format(" Error {0} occurred", process.ExitCode);
             }
             else
             {
 
             }
-               // Text = "IIS stopped";
+            // Text = "IIS stopped";
         }
         private string GetLogDir()
         {
@@ -225,7 +217,7 @@ namespace Profiler
                 "OMV_USAGE=" + CreateUsageString(),
                 "OMV_FORCE_GC_ON_COMMENT=1",
                 "OMV_INITIAL_SETTING=" + CreateInitialString(),
-                "OMV_TargetCLRVersion="+ProfilerXml.GetInstance().doc.SelectSingleNode("//root/clrversion").Attributes["value"].Value,
+                "OMV_TargetCLRVersion="+ConfigurationSettings.AppSettings["clrversion"],
                 "OMV_WindowsStoreApp=0"
             };
         }
@@ -544,10 +536,10 @@ namespace Profiler
                 }
                 else
                 {
-                //    if (waitingForConnectionForm == null)
-                //        waitingForConnectionForm = new WaitingForConnectionForm();
-                //    waitingForConnectionForm.setMessage(text);
-                //    waitingForConnectionForm.Visible = true;
+                    //    if (waitingForConnectionForm == null)
+                    //        waitingForConnectionForm = new WaitingForConnectionForm();
+                    //    waitingForConnectionForm.setMessage(text);
+                    //    waitingForConnectionForm.Visible = true;
                 }
             }
 
@@ -610,11 +602,11 @@ namespace Profiler
 
                     if (attachMode == false && noUI == false)
                     {
-                      //  waitingForConnectionForm.addMessage(message);
+                        //  waitingForConnectionForm.addMessage(message);
                     }
                     else
                     {
-                       // ShowErrorMessage(message);
+                        // ShowErrorMessage(message);
                     }
 
                     loggingReadBytes = 0;
@@ -655,7 +647,7 @@ namespace Profiler
             }
 
             if (waitingForConnectionForm != null) ;
-               // waitingForConnectionForm.Visible = false;
+            // waitingForConnectionForm.Visible = false;
 
             if (pid == -1)
                 return pid;
@@ -676,7 +668,7 @@ namespace Profiler
                 fileNameBuffer[fileName.Length] = 0;
                 handshakingPipe.Write(fileNameBuffer, 0, fileNameBuffer.Length);
                 handshakingPipe.Flush();
-             
+
                 //  log = new ReadNewLog(logFileName);
                 //  lastLogResult = null;
                 //   ObjectGraph.cachedGraph = null;
@@ -722,7 +714,7 @@ namespace Profiler
                 //killApplicationButton.Enabled = true;
                 //detachProcessMenuItem.Enabled = false;
             }
-           
+
             //profilerConnected = true;
 
             return pid;
@@ -907,17 +899,17 @@ namespace Profiler
             return result;
         }
 
-       
+
         private bool StartIIS()
         {
-           // Text = "Starting IIS ";
+            // Text = "Starting IIS ";
             ProcessStartInfo processStartInfo = new ProcessStartInfo("cmd.exe");
             processStartInfo.WindowStyle = ProcessWindowStyle.Hidden;
             processStartInfo.Arguments = "/c net start w3svc";
             Process process = Process.Start(processStartInfo);
             while (!process.HasExited)
             {
-               // Text += ".";
+                // Text += ".";
                 Thread.Sleep(100);
                 Application.DoEvents();
             }
@@ -926,7 +918,7 @@ namespace Profiler
                 //Text += string.Format(" Error {0} occurred", process.ExitCode);
                 return false;
             }
-           // Text = "IIS running";
+            // Text = "IIS running";
             return true;
         }
 
@@ -961,7 +953,7 @@ namespace Profiler
             }
             return "ASPNET";
         }
-       
+
         private void Start()
         {
             // if (targetv2DesktopCLR())
@@ -994,19 +986,19 @@ namespace Profiler
             if (StartIIS())
             {
                 // wait for worker process to start up and connect
-              //  Text = "Waiting for ASP.NET worker process to start up";
+                //  Text = "Waiting for ASP.NET worker process to start up";
 
                 Thread.Sleep(1000);
                 int pid = WaitForProcessToConnect(logDir, "Waiting for ASP.NET to start common language runtime - this is the time to load your test page");
                 if (pid > 0)
                 {
                     profiledProcess = Process.GetProcessById(pid);
-                    ni.BalloonTipText ="Appedo Profile Agent started successfully.";
+                    ni.BalloonTipText = "Appedo Profile Agent started successfully.";
                     ni.ShowBalloonTip(2000);
-                  //  trayTipText = 
+                    //  trayTipText = 
                     // startApplicationButton.Text = "Start ASP.NET";
                     //killApplicationButton.Text = "Kill ASP.NET";
-                  
+
                 }
             }
 
@@ -1052,26 +1044,26 @@ namespace Profiler
                                 }
                                 if (TraceLog[mat.Groups[1].Value].Count == 0)
                                 {
-                                   transactionidlocal=this.TransactionID;
+                                    transactionidlocal = this.TransactionID;
 
-                                   TraceLog[mat.Groups[1].Value].Push(new TraceLogInfo(
-                                       "-1", 
-                                       transactionidlocal.ToString(), 
-                                       mat.Groups[2].Value,
-                                       "1",
-                                        mat.Groups[4].Value, 
-                                        mat.Groups[5].Value, 
-                                        1));
+                                    TraceLog[mat.Groups[1].Value].Push(new TraceLogInfo(
+                                        "-1",
+                                        transactionidlocal.ToString(),
+                                        mat.Groups[2].Value,
+                                        "1",
+                                         mat.Groups[4].Value,
+                                         mat.Groups[5].Value,
+                                         1));
                                 }
                                 else
                                 {
 
                                     TraceLog[mat.Groups[1].Value].Push(new TraceLogInfo(
                                         TraceLog[mat.Groups[1].Value].Peek().MethodId.ToString(),
-                                        TraceLog[mat.Groups[1].Value].Peek().ThreadId.ToString(), 
+                                        TraceLog[mat.Groups[1].Value].Peek().ThreadId.ToString(),
                                         mat.Groups[2].Value,
                                         (Convert.ToInt32(TraceLog[mat.Groups[1].Value].Peek().LastCreatedId) + 1).ToString(),
-                                        mat.Groups[4].Value, 
+                                        mat.Groups[4].Value,
                                         mat.Groups[5].Value,
                                         Convert.ToInt32(TraceLog[mat.Groups[1].Value].Peek().LastCreatedId) + 1));
                                 }
@@ -1086,7 +1078,7 @@ namespace Profiler
                                 {
                                     TraceLogInfo info = TraceLog[mat.Groups[1].Value].Pop();
                                     info.EndTime = Convert.ToInt32(mat.Groups[2].Value);
-                                    if (TraceLog[mat.Groups[1].Value].Count > 0)TraceLog[mat.Groups[1].Value].Peek().LastCreatedId = info.LastCreatedId;
+                                    if (TraceLog[mat.Groups[1].Value].Count > 0) TraceLog[mat.Groups[1].Value].Peek().LastCreatedId = info.LastCreatedId;
                                     Trace.Enqueue(info);
                                 }
                             }
@@ -1094,9 +1086,9 @@ namespace Profiler
 
                     }
                 }
-              
+
             }).Start();
-           
+
         }
         public string GetPath()
         {
@@ -1143,8 +1135,8 @@ namespace Profiler
             //method_signature - 53
             //caller_method_id - 54
             //callee_method_id - 55
-            int count=Trace.Count;
-            StringBuilder dataStr=new StringBuilder();
+            int count = Trace.Count;
+            StringBuilder dataStr = new StringBuilder();
             dataStr.AppendFormat("uid={0}&agent_type=DOTNET_PROFILER&profiler_array_json=[", uid);
             for (int index = 0; index < count; index++)
             {
@@ -1165,8 +1157,8 @@ namespace Profiler
             {
                 MessageQueue.Delete(queueName);
             }
-           return MessageQueue.Create(queueName, false);
-           
+            return MessageQueue.Create(queueName, false);
+
         }
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -1182,13 +1174,13 @@ namespace Profiler
         }
         private void frmProfiler_FormClosing(object sender, FormClosingEventArgs e)
         {
-            
+
         }
 
     }
     class TraceLogInfo
     {
-      
+
         public string ParentMethodId { set; get; }
         public string ThreadId { get; set; }
         public int StartTime { get; set; }
@@ -1219,7 +1211,7 @@ namespace Profiler
                 else return string.Empty;
             }
         }
-        public TraceLogInfo(string parentmethodid, string threadid,string starttime, string methodid, string logstarttime, string methodname,int lastcreatedid)
+        public TraceLogInfo(string parentmethodid, string threadid, string starttime, string methodid, string logstarttime, string methodname, int lastcreatedid)
         {
             ParentMethodId = parentmethodid;
             ThreadId = threadid;
@@ -1228,8 +1220,8 @@ namespace Profiler
             Path = methodname;
             LogStartime = Convert.ToDateTime(logstarttime).ToUniversalTime().ToString("yyyy-MM-dd HH:mm:ss");
             LastCreatedId = lastcreatedid;
-           // test = Convert.ToDateTime(logstarttime);
+            // test = Convert.ToDateTime(logstarttime);
         }
-      
+
     }
 }

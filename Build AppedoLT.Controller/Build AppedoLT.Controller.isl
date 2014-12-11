@@ -350,8 +350,7 @@
 		<row><td>ISX_DEFAULTCOMPONENT</td><td>{88016442-564D-4BAD-B189-C3AD44FCEDE7}</td><td>INSTALLDIR</td><td>2</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>ISX_DEFAULTCOMPONENT1</td><td>{5F3F4CA5-1EC2-4EA5-95EA-84EE433FCE59}</td><td>DATA</td><td>2</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>ISX_DEFAULTCOMPONENT2</td><td>{811F28D8-6CAA-4989-8BA6-E45D0686FB27}</td><td>VARIABLES</td><td>2</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
-		<row><td>System.Data.SQLite.dll</td><td>{CB6A7E42-42D4-4B62-8B9C-74C882EFEAD0}</td><td>INSTALLDIR</td><td>2</td><td/><td>system.data.sqlite.dll</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
-		<row><td>sqlite3.exe</td><td>{93A42E9E-F85A-4172-BA8E-C0F7E295AEAC}</td><td>INSTALLDIR</td><td>2</td><td/><td>sqlite3.exe</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>sqlite3.exe</td><td>{C47F5ACA-B960-4641-9107-CC8C559E2C46}</td><td>INSTALLDIR</td><td>2</td><td/><td>sqlite3.exe</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 	</table>
 
 	<table name="Condition">
@@ -1887,7 +1886,6 @@
 		<row><td>AlwaysInstall</td><td>ISX_DEFAULTCOMPONENT</td></row>
 		<row><td>AlwaysInstall</td><td>ISX_DEFAULTCOMPONENT1</td></row>
 		<row><td>AlwaysInstall</td><td>ISX_DEFAULTCOMPONENT2</td></row>
-		<row><td>AlwaysInstall</td><td>System.Data.SQLite.dll</td></row>
 		<row><td>AlwaysInstall</td><td>sqlite3.exe</td></row>
 	</table>
 
@@ -1909,17 +1907,16 @@
 		<row><td>appedolt.controller.primary_</td><td>AppedoLT.Controller.Primary_output</td><td>AppedoLT.Controller.Primary output</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;AppedoLT.Controller1&gt;|Built</td><td>3</td><td/></row>
 		<row><td>appedolt.core.debug_symbols</td><td>AppedoLT.Core.Debug_Symbols</td><td>AppedoLT.Core.Debug Symbols</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;AppedoLT.Core&gt;|Symbols</td><td>3</td><td/></row>
 		<row><td>appedolt.dataaccesslayer.deb</td><td>AppedoLT.DataAccessLayer.Debug_Symbols</td><td>AppedoLT.DataAccessLayer.Debug Symbols</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;AppedoLT.DataAccessLayer&gt;|Symbols</td><td>3</td><td/></row>
-		<row><td>commands.txt</td><td>ISX_DEFAULTCOMPONENT</td><td>commands.txt</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Rasith\AppedoLT\AppedoLT.Controller\bin\Debug\commands.txt</td><td>1</td><td/></row>
-		<row><td>controller.xml</td><td>ISX_DEFAULTCOMPONENT</td><td>CONTRO~1.XML|Controller.xml</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Rasith\AppedoLT\AppedoLT.Controller\bin\Controller.xml</td><td>1</td><td/></row>
-		<row><td>database.db</td><td>ISX_DEFAULTCOMPONENT</td><td>database.db</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Rasith\AppedoLT\AppedoLT.Controller\bin\Debug\database.db</td><td>1</td><td/></row>
-		<row><td>database_jmeter.db</td><td>ISX_DEFAULTCOMPONENT</td><td>DATABA~1.DB|database_jmeter.db</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Rasith\AppedoLT\AppedoLT.Controller\bin\Debug\database_jmeter.db</td><td>1</td><td/></row>
-		<row><td>error.xslt</td><td>ISX_DEFAULTCOMPONENT</td><td>ERROR~1.XSL|error.xslt</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Rasith\AppedoLT\AppedoLT.Controller\bin\Debug\error.xslt</td><td>1</td><td/></row>
-		<row><td>execute.bat</td><td>ISX_DEFAULTCOMPONENT</td><td>execute.bat</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Rasith\AppedoLT\AppedoLT.Controller\bin\Debug\execute.bat</td><td>1</td><td/></row>
-		<row><td>log.xslt</td><td>ISX_DEFAULTCOMPONENT</td><td>LOG~1.XSL|log.xslt</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Rasith\AppedoLT\AppedoLT.Controller\bin\Debug\log.xslt</td><td>1</td><td/></row>
-		<row><td>report.xslt</td><td>ISX_DEFAULTCOMPONENT</td><td>REPORT~1.XSL|report.xslt</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Rasith\AppedoLT\AppedoLT.Controller\bin\Debug\report.xslt</td><td>1</td><td/></row>
-		<row><td>reportjmeter.xslt</td><td>ISX_DEFAULTCOMPONENT</td><td>REPORT~1.XSL|reportjmeter.xslt</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Rasith\AppedoLT\AppedoLT.Controller\bin\Debug\reportjmeter.xslt</td><td>1</td><td/></row>
-		<row><td>sqlite3.exe</td><td>sqlite3.exe</td><td>sqlite3.exe</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Rasith\AppedoLT\AppedoLT.Controller\bin\Debug\sqlite3.exe</td><td>1</td><td/></row>
-		<row><td>system.data.sqlite.dll</td><td>System.Data.SQLite.dll</td><td>SYSTEM~1.DLL|System.Data.SQLite.dll</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Rasith\AppedoLT\AppedoLT\Sqlite\64bit\System.Data.SQLite.dll</td><td>1</td><td/></row>
+		<row><td>commands.txt</td><td>ISX_DEFAULTCOMPONENT</td><td>commands.txt</td><td>0</td><td/><td/><td/><td>1</td><td>E:\AppedoLT\AppedoLT.Controller\bin\Debug\commands.txt</td><td>1</td><td/></row>
+		<row><td>controller.xml</td><td>ISX_DEFAULTCOMPONENT</td><td>CONTRO~1.XML|Controller.xml</td><td>0</td><td/><td/><td/><td>1</td><td>E:\AppedoLT\AppedoLT.Controller\bin\Controller.xml</td><td>1</td><td/></row>
+		<row><td>database.db</td><td>ISX_DEFAULTCOMPONENT</td><td>database.db</td><td>0</td><td/><td/><td/><td>1</td><td>E:\AppedoLT\AppedoLT.Controller\bin\Debug\database.db</td><td>1</td><td/></row>
+		<row><td>database_jmeter.db</td><td>ISX_DEFAULTCOMPONENT</td><td>DATABA~1.DB|database_jmeter.db</td><td>0</td><td/><td/><td/><td>1</td><td>E:\AppedoLT\AppedoLT.Controller\bin\Debug\database_jmeter.db</td><td>1</td><td/></row>
+		<row><td>error.xslt</td><td>ISX_DEFAULTCOMPONENT</td><td>ERROR~1.XSL|error.xslt</td><td>0</td><td/><td/><td/><td>1</td><td>E:\AppedoLT\AppedoLT.Controller\bin\Debug\error.xslt</td><td>1</td><td/></row>
+		<row><td>execute.bat</td><td>ISX_DEFAULTCOMPONENT</td><td>execute.bat</td><td>0</td><td/><td/><td/><td>1</td><td>E:\AppedoLT\AppedoLT.Controller\bin\Debug\execute.bat</td><td>1</td><td/></row>
+		<row><td>log.xslt</td><td>ISX_DEFAULTCOMPONENT</td><td>LOG~1.XSL|log.xslt</td><td>0</td><td/><td/><td/><td>1</td><td>E:\AppedoLT\AppedoLT.Controller\bin\Debug\log.xslt</td><td>1</td><td/></row>
+		<row><td>report.xslt</td><td>ISX_DEFAULTCOMPONENT</td><td>REPORT~1.XSL|report.xslt</td><td>0</td><td/><td/><td/><td>1</td><td>E:\AppedoLT\AppedoLT.Controller\bin\Debug\report.xslt</td><td>1</td><td/></row>
+		<row><td>reportjmeter.xslt</td><td>ISX_DEFAULTCOMPONENT</td><td>REPORT~1.XSL|reportjmeter.xslt</td><td>0</td><td/><td/><td/><td>1</td><td>E:\AppedoLT\AppedoLT.Controller\bin\Debug\reportjmeter.xslt</td><td>1</td><td/></row>
+		<row><td>sqlite3.exe</td><td>sqlite3.exe</td><td>sqlite3.exe</td><td>0</td><td/><td/><td/><td>1</td><td>E:\AppedoLT\AppedoLT.Controller\bin\Debug\sqlite3.exe</td><td>1</td><td/></row>
 	</table>
 
 	<table name="FileSFPCatalog">
@@ -2072,8 +2069,7 @@
 		<row><td>ISX_DEFAULTCOMPONENT</td><td/><td/><td>_249865E7_E4B2_4DF6_8A8C_6B0EEA5A415E_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>ISX_DEFAULTCOMPONENT1</td><td/><td/><td>_9D8C578F_7B0C_4EAC_899F_E0E508D70C7D_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>ISX_DEFAULTCOMPONENT2</td><td/><td/><td>_DE34151C_2203_4F54_9438_1FBA8ECCE4E6_FILTER</td><td/><td/><td/><td/></row>
-		<row><td>System.Data.SQLite.dll</td><td/><td/><td>_1B6D5E98_4D14_4A4A_811F_5BCCADA7C6AA_FILTER</td><td/><td/><td/><td/></row>
-		<row><td>sqlite3.exe</td><td/><td/><td>_74005273_77D8_4B61_871C_B562CCE026A7_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>sqlite3.exe</td><td/><td/><td>_3C48C023_24AC_4BF2_9B7D_BE6234F8B4E3_FILTER</td><td/><td/><td/><td/></row>
 	</table>
 
 	<table name="ISCustomActionReference">
@@ -3509,6 +3505,7 @@
 		<row><td>IDS_PROGMSG_XML_UPDATE_FILE</td><td>1033</td><td>Updating XML file %s...</td><td>0</td><td/><td>1797449487</td></row>
 		<row><td>IDS_SETUPEXE_EXPIRE_MSG</td><td>1033</td><td>This setup works until %s. The setup will now exit.</td><td>0</td><td/><td>1797449487</td></row>
 		<row><td>IDS_SETUPEXE_LAUNCH_COND_E</td><td>1033</td><td>This setup was built with an evaluation version of InstallShield and can only be launched from setup.exe.</td><td>0</td><td/><td>1797449487</td></row>
+		<row><td>IDS_SHORTCUT_DISPLAY_NAME1</td><td>1033</td><td>LAUNCH~1.EXE|Launch sqlite3.exe</td><td>0</td><td/><td>1445075792</td></row>
 		<row><td>IDS_SQLBROWSE_INTRO</td><td>1033</td><td>From the list of servers below, select the database server you would like to target.</td><td>0</td><td/><td>1797449487</td></row>
 		<row><td>IDS_SQLBROWSE_INTRO_DB</td><td>1033</td><td>From the list of catalog names below, select the database catalog you would like to target.</td><td>0</td><td/><td>1797449487</td></row>
 		<row><td>IDS_SQLBROWSE_INTRO_TEMPLATE</td><td>1033</td><td>[IS_SQLBROWSE_INTRO]</td><td>0</td><td/><td>1797449487</td></row>
@@ -3917,6 +3914,7 @@
 		<row><td>NewShortcut12_25324C7A9BD84A0D8375486D27D05ECE.exe</td><td/><td>&lt;VSSolutionFolder&gt;\AppedoLT\bin\Debug\logic.ico</td><td>0</td></row>
 		<row><td>NewShortcut1_41305FD25B654624ABDAD3FBCE0789F5.exe</td><td/><td>&lt;VSSolutionFolder&gt;\AppedoLT\bin\Debug\logic.ico</td><td>0</td></row>
 		<row><td>NewShortcut1_AED0F2132EDE45CC919444FBB435A3F9.exe</td><td/><td>&lt;VSSolutionFolder&gt;\Floodgates\bin\Debug\logic.ico</td><td>0</td></row>
+		<row><td>sqlite3.exe_12DC60AF0ADC428BB3E3FAC0BC16CF12.exe</td><td/><td>&lt;ISProductFolder&gt;\redist\Language Independent\OS Independent\GenericExe.ico</td><td>0</td></row>
 	</table>
 
 	<table name="IniFile">
@@ -4504,9 +4502,8 @@ UwBpAG4AZwBsAGUASQBtAGEAZwBlAAEARQB4AHAAcgBlAHMAcwA=
 		<col def="L255">FileName</col>
 		<col def="s72">DirProperty</col>
 		<col def="i2">InstallMode</col>
-		<row><td>FileKey1</td><td>sqlite3.exe</td><td/><td>appedo</td><td>2</td></row>
-		<row><td>FileKey2</td><td>sqlite3.exe</td><td/><td>appedo_1_appedolt_controller</td><td>2</td></row>
 		<row><td>NewShortcut11</td><td>AppedoLT.Controller.Primary_output</td><td/><td>appedo_1_appedolt_controller</td><td>2</td></row>
+		<row><td>sqlite3.exe</td><td>sqlite3.exe</td><td/><td>appedo_1_appedolt_controller</td><td>2</td></row>
 	</table>
 
 	<table name="RemoveIniFile">
@@ -4595,6 +4592,7 @@ UwBpAG4AZwBsAGUASQBtAGEAZwBlAAEARQB4AHAAcgBlAHMAcwA=
 		<row><td>NewShortcut1</td><td>StartupFolder</td><td>##ID_STRING5##</td><td>AppedoLT.Controller.Primary_output</td><td>AlwaysInstall</td><td/><td/><td/><td>NewShortcut1_41305FD25B654624ABDAD3FBCE0789F5.exe</td><td>0</td><td>1</td><td>INSTALLDIR</td><td/><td/><td/><td/><td/><td/><td/></row>
 		<row><td>NewShortcut11</td><td>appedo_1_appedolt_controller</td><td>##ID_STRING6##</td><td>AppedoLT.Controller.Primary_output</td><td>AlwaysInstall</td><td/><td/><td/><td>NewShortcut11_0771E2E9C72F4457BAC4FB4932A531B9.exe</td><td>0</td><td>1</td><td>INSTALLDIR</td><td/><td/><td/><td/><td/><td/><td/></row>
 		<row><td>NewShortcut12</td><td>DesktopFolder</td><td>##ID_STRING7##</td><td>AppedoLT.Controller.Primary_output</td><td>AlwaysInstall</td><td/><td/><td/><td>NewShortcut12_25324C7A9BD84A0D8375486D27D05ECE.exe</td><td>0</td><td>1</td><td>INSTALLDIR</td><td/><td/><td/><td/><td/><td/><td/></row>
+		<row><td>sqlite3.exe</td><td>appedo_1_appedolt_controller</td><td>##IDS_SHORTCUT_DISPLAY_NAME1##</td><td>sqlite3.exe</td><td>AlwaysInstall</td><td/><td/><td/><td>sqlite3.exe_12DC60AF0ADC428BB3E3FAC0BC16CF12.exe</td><td>0</td><td>1</td><td>INSTALLDIR</td><td/><td/><td/><td/><td/><td/><td/></row>
 	</table>
 
 	<table name="Signature">

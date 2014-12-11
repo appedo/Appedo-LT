@@ -15,19 +15,22 @@ namespace AppedoLTController
     class Controller
     {
         Thread _CollectorThread = null;
+        Constants _constants = Constants.GetInstance();
+        private XmlNode _RunNode = null;
+        private string _SourceIp = null;
+        ControllerStatus _staus = ControllerStatus.Idle;
+
         public int CreatedUser = 0;
         public int CompletedUser = 0;
         public string ScriptWiseStatus { get; set; }
-        Constants _constants = Constants.GetInstance();
-
-        public string ReportName = string.Empty;
-
-        ControllerStatus _staus = ControllerStatus.Idle;
+        public string RunId = string.Empty;
         public ControllerStatus Status { get { return _staus; } }
 
-        public Controller(string soureIP, string reportName)
+        public Controller(string soureIP, string runid, XmlNode runNode)
         {
-            ReportName = reportName;
+            RunId = runid;
+            _SourceIp = soureIP;
+            _RunNode = runNode;
         }
 
         public void Start()
@@ -39,7 +42,7 @@ namespace AppedoLTController
 
         public void Stop()
         {
-            foreach (XmlNode loadGen in ControllerXml.GetInstance().doc.SelectSingleNode("//runs/run[@reportname='" + ReportName + "']").SelectNodes("loadgen"))
+            foreach (XmlNode loadGen in _RunNode.SelectNodes("loadgen"))
             {
                 try
                 {
@@ -70,7 +73,7 @@ namespace AppedoLTController
             {
                 try
                 {
-                    loadGens = ControllerXml.GetInstance().doc.SelectSingleNode("//runs/run[@reportname='" + ReportName + "']").SelectNodes("loadgen");
+                    loadGens = _RunNode.SelectNodes("loadgen");
                     Thread.Sleep(5000);
                     scriptwisestatus = new StringBuilder();
                     foreach (XmlNode loadGen in loadGens)
@@ -100,13 +103,14 @@ namespace AppedoLTController
                         }
                     }
                     ScriptWiseStatus = GetStatusconcatenate(scriptwisestatus.ToString());
+                    SendScriptWiseStatus(ScriptWiseStatus);
                     CreatedUser = totalCreated;
                     CompletedUser = totalCompleted;
                     if (runcompleted == loadGens.Count)
                     {
                         Thread.Sleep(10000);
                         _staus = ControllerStatus.RunCompleted;
-                        new ResultFileGenerator(ReportName).Genarate();
+                        new ResultFileGenerator(RunId).Genarate();
                         _staus = ControllerStatus.ReportGenerateCompleted;
                         break;
 
@@ -119,9 +123,8 @@ namespace AppedoLTController
                         Thread.Sleep(10000);
                         ExceptionHandler.WritetoEventLog(ex.StackTrace + ex.Message + Environment.NewLine + ControllerXml.GetInstance().doc.InnerText);
                         _staus = ControllerStatus.RunCompleted;
-                        new ResultFileGenerator(ReportName).Genarate();
+                        new ResultFileGenerator(RunId).Genarate();
                         _staus = ControllerStatus.ReportGenerateCompleted;
-
                         break;
                     }
                     catch (Exception ex1)
@@ -185,6 +188,30 @@ namespace AppedoLTController
             }
 
             return summary.ToString();
+        }
+        private void SendScriptWiseStatus(string scriptWiseStatus)
+        {
+            Dictionary<string, string> header = new Dictionary<string, string>();
+            Trasport server = null;
+            TrasportData data = null;
+            try
+            {
+                header["runid"] = RunId;
+                server = new Trasport(_SourceIp, Constants.GetInstance().AppedoPort);
+                data = new TrasportData("scriptwisestatus", scriptWiseStatus, header);
+                server.Send(data);
+                data = server.Receive();
+            }
+            catch (Exception ex)
+            {
+                ExceptionHandler.WritetoEventLog(ex.StackTrace + Environment.NewLine + ex.Message);
+            }
+            finally
+            {
+                server = null;
+                header = null;
+                data = null;
+            }
         }
 
     }

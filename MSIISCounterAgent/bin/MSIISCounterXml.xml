@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <counters>
+    <counter id="10000001" category="Web Service" countername="Bytes Sent/sec" instance="_Total" scale="1" />
+    <counter id="10000002" category="Web Service" countername="Bytes Received/sec" instance="_Total" scale="1" />
+    <counter id="10000003" category="Web Service" countername="Bytes total/sec" instance="_Total" scale="1" />
+    <counter id="10000004" category="Web Service" countername="Connection attempts/sec" instance="_Total" scale="1" />
+    <counter id="10000005" category="Web Service" countername="Get requests/sec" instance="_Total" scale="1" />
+    <counter id="10000006" category="ASP.NET" countername="Requests Queued" instance="" scale="1" />
+    <counter id="10000007" category="ASP.NET Applications" countername="Sessions Active" instance="__Total__" scale="1" />
+  </counters>
+</root>

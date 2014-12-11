@@ -19,7 +19,7 @@ namespace MSSQLCounterAgent
                         StringBuilder xml = new StringBuilder();
                         xml.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>");
                         xml.Append("<root>");
-                        xml.Append(@"<counters uid=""""  type=""MSSQL"">");
+                        xml.Append(@"<counters>");
                         xml.Append(@"<counter id=""26000001"" category=""SQLServer:Buffer Manager"" countername=""Lazy writes/sec"" instance="""" scale=""1""/>");
                         xml.Append(@"<counter id=""26000002"" category=""SQLServer:Buffer Manager"" countername=""Page life expectancy"" instance="""" scale=""1""/>");
                         xml.Append(@"<counter id=""26000003"" category=""SQLServer:Buffer Manager"" countername=""Page reads/sec"" instance="""" scale=""1""/>");

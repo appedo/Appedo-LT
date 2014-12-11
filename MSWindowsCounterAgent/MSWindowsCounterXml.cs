@@ -19,7 +19,7 @@ namespace MSWindowsCounterAgent
                         StringBuilder xml = new StringBuilder();
                         xml.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>");
                         xml.Append("<root>");
-                        xml.Append(@"<counters uid=""""  type=""WINDOWS"">");
+                        xml.Append(@"<counters>");
                         xml.Append(@"<counter id=""1000001"" category=""PhysicalDisk"" countername=""% Disk Time"" instance=""_Total"" scale=""1""/>");
                         xml.Append(@"<counter id=""1000002"" category=""PhysicalDisk"" countername=""Disk Reads/sec"" instance=""_Total"" scale=""1""/>");
                         xml.Append(@"<counter id=""1000003"" category=""PhysicalDisk"" countername=""Current Disk Queue Length"" instance=""_Total"" scale=""1""/>");

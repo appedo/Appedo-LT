@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
-  <counters uid="9" type="WINDOWS">
+  <counters>
     <counter id="1000001" category="PhysicalDisk" countername="% Disk Time" instance="_Total" scale="1" />
     <counter id="1000002" category="PhysicalDisk" countername="Disk Reads/sec" instance="_Total" scale="1" />
     <counter id="1000003" category="PhysicalDisk" countername="Current Disk Queue Length" instance="_Total" scale="1" />

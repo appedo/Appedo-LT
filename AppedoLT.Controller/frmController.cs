@@ -219,12 +219,11 @@ namespace AppedoLTController
                                        server = new Trasport(AppedoServer, Constants.GetInstance().AppedoPort);
                                        RunOperation(server, data);
                                    }
-                                   else
-                                   {
-                                       isClientRunning = false;
-                                       //AppedoServer = string.Empty;
-                                       break;
-                                   }
+                               }
+                               else
+                               {
+                                   isClientRunning = false;
+                                   break;
                                }
                            }
                            else
@@ -233,43 +232,14 @@ namespace AppedoLTController
                                    {
                                        List<string> statusList = GetStatusList();
                                        List<string> CompletedReportId = new List<string>();
-
                                        StringBuilder status = new StringBuilder();
                                        try
                                        {
-                                           Trasport server = new Trasport(AppedoServer, Constants.GetInstance().AppedoPort);
-                                           TrasportData data = null;
-                                           try
-                                           {
-                                               foreach (string users in Controllers.Keys)
-                                               {
-                                                   if (Controllers[users].ScriptWiseStatus != string.Empty)
-                                                   {
-                                                       Dictionary<string, string> header = new Dictionary<string, string>();
-                                                       header["runid"] = Controllers[users].ReportName;
-                                                       server = new Trasport(AppedoServer, Constants.GetInstance().AppedoPort);
-                                                       data = new TrasportData("scriptwisestatus", Controllers[users].ScriptWiseStatus, header);
-                                                       server.Send(data);
-                                                       data = server.Receive();
-                                                   }
-                                               }
-                                           }
-                                           catch (Exception ex)
-                                           {
-                                               ExceptionHandler.WritetoEventLog(ex.StackTrace + ex.Message);
-                                           }
-
                                            foreach (string stu in statusList)
                                            {
                                                if (stu.Split(',')[3] == "1") CompletedReportId.Add(stu.Split(',')[0]);
                                                status.AppendLine(stu);
                                            }
-
-                                           //server = new Trasport(AppedoServer, Constants.GetInstance().AppedoPort);
-                                           //data = new TrasportData("status", status.ToString(), null);
-                                           //server.Send(data);
-                                           //data = server.Receive();
-                                           //if (data.Operation.ToLower() == "ok" && CompletedReportId.Count > 0)
 
                                            if (CompletedReportId.Count > 0)
                                            {
@@ -294,6 +264,7 @@ namespace AppedoLTController
                                        {
                                            statusList = null;
                                            status = null;
+                                           CompletedReportId = null;
                                        }
                                    }
                                }
@@ -380,46 +351,50 @@ namespace AppedoLTController
                         data.Header.Add("runid", runid);
 
                         int runningThread = 0;
-                        foreach (XmlNode loadGenNode in ControllerXml.GetInstance().doc.SelectSingleNode("//runs/run[@reportname='" + runid + "']").SelectNodes("loadgen"))
+                        XmlNode runNode = ControllerXml.GetInstance().doc.SelectSingleNode("//runs/run[@reportname='" + runid + "']");
+                        if (runNode != null)
                         {
-                            try
+                            foreach (XmlNode loadGenNode in runNode.SelectNodes("loadgen"))
                             {
-                                runningThread++;
-                                new Thread(() =>
+                                try
                                 {
-                                    try
+                                    runningThread++;
+                                    new Thread(() =>
                                     {
-                                        Trasport loadGen = new Trasport(loadGenNode.Attributes["ipaddress"].Value, "8889", 120000);
-                                        loadGen.Send(data);
-                                        loadGen.Receive();
-                                        loadGen.Close();
-                                        loadGenNode.Attributes["runstarted"].Value = true.ToString();
-                                    }
-                                    catch (Exception ex)
-                                    {
-                                        ExceptionHandler.WritetoEventLog(ex.StackTrace + ex.Message);
-                                    }
-                                    finally
-                                    {
-                                        runningThread--;
-                                    }
-                                }).Start();
+                                        try
+                                        {
+                                            Trasport loadGen = new Trasport(loadGenNode.Attributes["ipaddress"].Value, "8889", 120000);
+                                            loadGen.Send(data);
+                                            loadGen.Receive();
+                                            loadGen.Close();
+                                            loadGenNode.Attributes["runstarted"].Value = true.ToString();
+                                        }
+                                        catch (Exception ex)
+                                        {
+                                            ExceptionHandler.WritetoEventLog(ex.StackTrace + ex.Message);
+                                        }
+                                        finally
+                                        {
+                                            runningThread--;
+                                        }
+                                    }).Start();
+                                }
+                                catch (Exception ex)
+                                {
+                                    ExceptionHandler.WritetoEventLog(ex.StackTrace + ex.Message);
+                                }
                             }
-                            catch (Exception ex)
+                            while (runningThread != 0)
                             {
-                                ExceptionHandler.WritetoEventLog(ex.StackTrace + ex.Message);
+                                Thread.Sleep(2000);
                             }
-                        }
-                        while (runningThread != 0)
-                        {
-                            Thread.Sleep(2000);
-                        }
 
-                        _ControllerXml.Save();
+                            _ControllerXml.Save();
 
-                        Controller controller = new Controller(server.IPAddressStr, runid);
-                        controller.Start();
-                        Controllers.Add(runid, controller);
+                            Controller controller = new Controller(server.IPAddressStr, runid, runNode);
+                            controller.Start();
+                            Controllers.Add(runid, controller);
+                        }
                         server.Send(new TrasportData("OK", string.Empty, null));
                     }
                 }
@@ -479,7 +454,7 @@ namespace AppedoLTController
                                     {
                                         runDetail.AppendChild(_ControllerXml.CreadLoadGen(ip, ip));
                                         loadGens.Add(loadGen.tcpClient);
-                                       if(unavailableIpAddress.Contains(ip)==true) unavailableIpAddress.Remove(ip);
+                                        if (unavailableIpAddress.Contains(ip) == true) unavailableIpAddress.Remove(ip);
                                         break;
                                     }
                                     loadGen.Close();
@@ -527,7 +502,7 @@ namespace AppedoLTController
                 foreach (string users in Controllers.Keys)
                 {
                     ctrl = Controllers[users];
-                    statusList.Add(string.Format("{0},{1},{2},{3}", ctrl.ReportName, ctrl.CreatedUser, ctrl.CompletedUser, ctrl.Status == ControllerStatus.ReportGenerateCompleted ? 1 : 0));
+                    statusList.Add(string.Format("{0},{1},{2},{3}", ctrl.RunId, ctrl.CreatedUser, ctrl.CompletedUser, ctrl.Status == ControllerStatus.ReportGenerateCompleted ? 1 : 0));
                 }
             }
             catch (Exception ex)
