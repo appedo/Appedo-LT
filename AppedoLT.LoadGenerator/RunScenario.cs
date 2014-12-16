@@ -24,6 +24,7 @@ namespace AppedoLTLoadGenerator
         private int _tempCreatedUser = 0;
         private int _tempCompletedUser = 0;
         private DataServer _dataServer = DataServer.GetInstance();
+        private string _distribution = string.Empty;
 
         public int IsRunCompleted
         {
@@ -42,9 +43,10 @@ namespace AppedoLTLoadGenerator
             }
         }
 
-        public RunScenario(string scenarioXml)
+        public RunScenario(string scenarioXml, string distribution)
         {
             _scenarioXml = scenarioXml;
+            _distribution = distribution;
             _statusUpdateTimer = new System.Timers.Timer(1000);
             _statusUpdateTimer.Enabled = true;
             _statusUpdateTimer.Elapsed += new ElapsedEventHandler(StatusUpdateTimer_Tick);
@@ -127,7 +129,7 @@ namespace AppedoLTLoadGenerator
             }
         }
 
-        public void Start()
+        public bool Start()
         {
             XmlDocument scenario = new XmlDocument();
             scenario.LoadXml(_scenarioXml);
@@ -140,7 +142,7 @@ namespace AppedoLTLoadGenerator
                 string scriptid = script.Attributes["id"].Value;
                 XmlNode setting = script.SelectNodes("//script[@id='" + scriptid + "']//setting")[0];
                 XmlNode vuscript = script.SelectNodes("//script[@id='" + scriptid + "']//vuscript")[0];
-                ScriptExecutor scriptRunnerSce = new ScriptExecutor(setting, vuscript, executionReport.ReportName);
+                ScriptExecutor scriptRunnerSce = new ScriptExecutor(setting, vuscript, executionReport.ReportName,_distribution);
                 if (scriptRunnerSce.StartUserId > 0)
                 {
                     _scriptExecutorList.Add(scriptRunnerSce);
@@ -155,10 +157,12 @@ namespace AppedoLTLoadGenerator
             if (_scriptExecutorList.Count > 0)
             {
                 _statusUpdateTimer.Start();
+                return true;
             }
             else
             {
                 executionReport.ExecutionStatus = Status.Completed;
+                return false;
             }
         }
 

@@ -55,7 +55,7 @@ namespace AppedoLTLoadGenerator
         }
 
 
-        public XmlNode CreadRun(string runid, string reportfoldername, string scenarioname, string totalloadgenused, string currentloadgenid, string souceip, string loadgenname)
+        public XmlNode CreadRun(string runid, string reportfoldername, string scenarioname, string totalloadgenused, string currentloadgenid, string souceip, string loadgenname,string distribution)
         {
             XmlNode run=null;
             if(doc.SelectSingleNode("//runs/run[@runid='"+runid+"']")!=null)
@@ -73,6 +73,7 @@ namespace AppedoLTLoadGenerator
             run.Attributes.Append(GetAttribute("reportfoldername", reportfoldername));
             run.Attributes.Append(GetAttribute("loadgenname", loadgenname));
             run.Attributes.Append(GetAttribute("scenariostarttime", DateTime.Now.ToString()));
+            run.Attributes.Append(GetAttribute("distribution", distribution));
             return run;
         }
 

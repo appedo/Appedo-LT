@@ -68,14 +68,14 @@ namespace Profiler
             InitializeComponent();
             try
             {
-                if (ConfigurationSettings.AppSettings["uid"] == string.Empty)
+                if (System.Configuration.ConfigurationManager.AppSettings["uid"] == string.Empty)
                 {
                     MessageBox.Show("UID is missing. Please download again.");
                     Environment.Exit(1);
                 }
                 else
                 {
-                    uid = ConfigurationSettings.AppSettings["uid"];
+                    uid = System.Configuration.ConfigurationManager.AppSettings["uid"];
                     dataSendUrl = GetPath() + "/collectProfilerStack";
                     DoWorkThread = new Thread(new ThreadStart(DoWork));
                     DoWorkThread.Start();
@@ -217,7 +217,7 @@ namespace Profiler
                 "OMV_USAGE=" + CreateUsageString(),
                 "OMV_FORCE_GC_ON_COMMENT=1",
                 "OMV_INITIAL_SETTING=" + CreateInitialString(),
-                "OMV_TargetCLRVersion="+ConfigurationSettings.AppSettings["clrversion"],
+                "OMV_TargetCLRVersion="+System.Configuration.ConfigurationManager.AppSettings["clrversion"],
                 "OMV_WindowsStoreApp=0"
             };
         }
@@ -1092,7 +1092,7 @@ namespace Profiler
         }
         public string GetPath()
         {
-            return string.Format("{0}://{1}:{2}/{3}", ConfigurationSettings.AppSettings["protocol"], ConfigurationSettings.AppSettings["server"], ConfigurationSettings.AppSettings["port"], ConfigurationSettings.AppSettings["path"]);
+            return string.Format("{0}://{1}:{2}/{3}", System.Configuration.ConfigurationManager.AppSettings["protocol"], System.Configuration.ConfigurationManager.AppSettings["server"], System.Configuration.ConfigurationManager.AppSettings["port"], System.Configuration.ConfigurationManager.AppSettings["path"]);
         }
         public string GetPageContent(string Url, string data)
         {

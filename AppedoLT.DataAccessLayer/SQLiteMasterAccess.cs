@@ -15,12 +15,12 @@ namespace AppedoLT.DataAccessLayer
     {
         #region Variable Declarations
 
-        public static SQLiteConnection con = new SQLiteConnection(ConfigurationSettings.AppSettings["SQLiteConnectionString"]);
+        public static SQLiteConnection con = new SQLiteConnection(System.Configuration.ConfigurationManager.AppSettings["SQLiteConnectionString"]);
         protected internal SQLiteCommand com;
         protected internal SQLiteDataReader rd;
         protected internal SQLiteDataAdapter adp;
         private static SQLiteMasterAccess instance;
-        public string _ConnectionString = System.Configuration.ConfigurationSettings.AppSettings["SQLiteConnectionString"];
+        public string _ConnectionString = System.Configuration.ConfigurationManager.AppSettings["SQLiteConnectionString"];
         #endregion
 
         #region Static

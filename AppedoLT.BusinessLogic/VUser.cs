@@ -678,6 +678,7 @@ namespace AppedoLT.BusinessLogic
                                                         }
                                                         catch (Exception ex)
                                                         {
+                                                            ExceptionHandler.WritetoEventLog(ex.Message + Environment.NewLine + ex.StackTrace);
                                                         }
                                                         finally
                                                         {

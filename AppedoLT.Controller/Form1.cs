@@ -28,7 +28,7 @@ namespace AppedoLTController
 
         private void button1_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(ConfigurationSettings.AppSettings["resultuploadip"]);
+            MessageBox.Show(System.Configuration.ConfigurationManager.AppSettings["resultuploadip"]);
         }
 
     }

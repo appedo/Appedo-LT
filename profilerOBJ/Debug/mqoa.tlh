@@ -1,9 +1,9 @@
-﻿// Created by Microsoft (R) C/C++ Compiler Version 12.00.21005.1 (fe555632).
+﻿// Created by Microsoft (R) C/C++ Compiler Version 12.00.21005.1 (38715d73).
 //
-// d:\rasith\appedolt\profilerobj\debug\mqoa.tlh
+// e:\appedolt\profilerobj\debug\mqoa.tlh
 //
 // C++ source equivalent of Win32 type library mqoa.dll
-// compiler-generated file created 12/02/14 at 18:27:31 - DO NOT EDIT!
+// compiler-generated file created 12/12/14 at 12:02:00 - DO NOT EDIT!
 
 #pragma once
 #pragma pack(push, 8)
@@ -4832,7 +4832,7 @@ IMSMQQuery4 : IDispatch
 // Wrapper method implementations
 //
 
-#include "d:\rasith\appedolt\profilerobj\debug\mqoa.tli"
+#include "e:\appedolt\profilerobj\debug\mqoa.tli"
 
 } // namespace MSMQ
 

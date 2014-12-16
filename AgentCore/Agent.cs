@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.Configuration;
 using System.Text.RegularExpressions;
@@ -148,7 +147,7 @@ namespace AgentCore
         }
         private string GetPath()
         {
-            return string.Format("{0}://{1}:{2}/{3}", ConfigurationSettings.AppSettings["protocol"], ConfigurationSettings.AppSettings["server"], ConfigurationSettings.AppSettings["port"], ConfigurationSettings.AppSettings["path"]);
+            return string.Format("{0}://{1}:{2}/{3}", System.Configuration.ConfigurationManager.AppSettings["protocol"], System.Configuration.ConfigurationManager.AppSettings["server"], System.Configuration.ConfigurationManager.AppSettings["port"], System.Configuration.ConfigurationManager.AppSettings["path"]);
         }
         private void SetTotalPhysicalMemory()
         {

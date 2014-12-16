@@ -38,6 +38,7 @@ namespace AppedoLTController
             this.Visible = false;
             try
             {
+                AppedoServer = ControllerXml.GetInstance().doc.SelectSingleNode("//runs").Attributes["lastrequestsourceip"].Value;
                 serverSocket.Start();
                 DoWorkThread = new Thread(new ThreadStart(DoWork));
                 DoWorkThread.Start();
@@ -49,6 +50,7 @@ namespace AppedoLTController
                 ni.ShowBalloonTip(1000);
                 ni.ContextMenuStrip = contextMenuStrip1;
                 worker.RunWorkerAsync();
+               
             }
             catch (Exception ex)
             {
@@ -60,6 +62,7 @@ namespace AppedoLTController
         {
             try
             {
+               
                 CollectFailedTest();
                 StartClient();
                 while ((true))
@@ -219,12 +222,13 @@ namespace AppedoLTController
                                        server = new Trasport(AppedoServer, Constants.GetInstance().AppedoPort);
                                        RunOperation(server, data);
                                    }
+                                   else
+                                   {
+                                       isClientRunning = false;
+                                       break;
+                                   }
                                }
-                               else
-                               {
-                                   isClientRunning = false;
-                                   break;
-                               }
+                              
                            }
                            else
                            {

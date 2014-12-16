@@ -32,7 +32,6 @@ namespace AppedoLT.BusinessLogic
         public bool IsRunCompleted = false;
         public string Scriptid { get; set; }
         public string Scriptname { get; set; }
-
         public System.Diagnostics.Stopwatch elapsedTime = new System.Diagnostics.Stopwatch();
         public int StartUserId { get { return _startUserid; } private set { } }
         public List<VUser> UserList
@@ -135,7 +134,102 @@ namespace AppedoLT.BusinessLogic
                 ExceptionHandler.WritetoEventLog(ex.StackTrace + Environment.NewLine + ex.Message);
             }
         }
+        public ScriptExecutor(XmlNode settingNode, XmlNode vuScript, string reportName, string distribution)
+        {
+            try
+            {
+                Scriptid = vuScript.Attributes["id"].Value;
+                Scriptname = vuScript.Attributes["name"].Value;
+                VUScriptSetting setting = new VUScriptSetting();
+                setting.Type = settingNode.Attributes["type"].Value;
+                setting.BrowserCache = Convert.ToBoolean(settingNode.Attributes["browsercache"].Value);
+                setting.DurationTime = settingNode.Attributes["durationtime"].Value;
+                setting.IncrementUser = settingNode.Attributes["incrementuser"].Value;
+                setting.IncrementTime = settingNode.Attributes["incrementtime"].Value;
+                setting.Iterations = settingNode.Attributes["iterations"].Value;
+                setting.MaxUser = settingNode.Attributes["maxuser"].Value;
+                setting.StartUser = settingNode.Attributes["startuser"].Value;
 
+                _vuScript = vuScript;
+                _setting = setting;
+                _reportName = reportName;
+
+                _createdUserCount = setting.StartUserId;
+
+                tmrRun.Interval = 100;
+
+                if (int.Parse(_setting.GetVUCreationIntervel().ToString()) < 1)
+                {
+                    tmrVUCreator.Interval = 1;
+                }
+                else
+                {
+                    tmrVUCreator.Interval = int.Parse(_setting.GetVUCreationIntervel().ToString());
+                }
+
+                tmrVUCreator.Elapsed += new ElapsedEventHandler(tmrVUCreator_Tick);
+
+                #region Load Distrubution
+
+
+                int maxUser = Convert.ToInt16(settingNode.Attributes["maxuser"].Value);
+                string[] distributionValues = distribution.Split(',');
+
+                Dictionary<int, int> userDistribution = new Dictionary<int, int>();
+
+                for (int index = 1; index <= Status.TotalLoadGenUsed; index++)
+                {
+                    userDistribution.Add(index, (int)Math.Round((Convert.ToInt16(distributionValues[index - 1]) / 100.0) * maxUser));
+                }
+                int userDistributionSum = userDistribution.Sum(v => v.Value);
+                if (userDistributionSum != maxUser)
+                {
+                    if (userDistributionSum < maxUser)
+                    {
+                        int key = userDistribution.FirstOrDefault(x => x.Value == userDistribution.Min(y => y.Value)).Key;
+                        userDistribution[key] += (maxUser - userDistributionSum);
+                    }
+                    else
+                    {
+                        int key = userDistribution.Last(x => x.Value == userDistribution.Max(y => y.Value)).Key;
+                        userDistribution[key] -= (userDistributionSum - maxUser);
+                    }
+                }
+                int sumUser = 0;
+                for (int index = 1; index <= Status.TotalLoadGenUsed; index++)
+                {
+                    if (Status.CurrentLoadGenid == index)
+                    {
+                        if (userDistribution[index] == 0)
+                        {
+                            _startUserid = 0;
+                        }
+                        else
+                        {
+                            _startUserid = sumUser + 1;
+                            _endUserid = sumUser + userDistribution[index];
+                        }
+                        break;
+                    }
+                    else if (userDistribution[index] == 0)
+                    {
+                        _startUserid = 0;
+                        _endUserid = 0;
+                        break;
+                    }
+                    sumUser += userDistribution[index];
+                }
+                #endregion
+
+                tmrRun.Elapsed += new ElapsedEventHandler(tmrRun_Tick);
+                Worker.DoWork += new DoWorkEventHandler(DoWork);
+
+            }
+            catch (Exception ex)
+            {
+                ExceptionHandler.WritetoEventLog(ex.StackTrace + Environment.NewLine + ex.Message);
+            }
+        }
         public void Run()
         {
             try

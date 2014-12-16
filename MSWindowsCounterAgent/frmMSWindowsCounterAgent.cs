@@ -22,8 +22,8 @@ namespace MSWindowsCounterAgent
             {
                 try
                 {
-                    string type =ConfigurationSettings.AppSettings["type"];
-                    string uid=ConfigurationSettings.AppSettings["uid"];
+                    string type =System.Configuration.ConfigurationManager.AppSettings["type"];
+                    string uid=System.Configuration.ConfigurationManager.AppSettings["uid"];
                     if (uid == string.Empty)
                     {
                         MessageBox.Show("UID is missing. Please download again.");

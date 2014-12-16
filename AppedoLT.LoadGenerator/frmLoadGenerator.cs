@@ -85,7 +85,8 @@ namespace AppedoLTLoadGenerator
                                                                                             data.Header["totalloadgen"] == null ? "1" : data.Header["totalloadgen"],
                                                                                             data.Header["currentloadgenid"] == null ? "1" : data.Header["currentloadgenid"],
                                                                                             ((IPEndPoint)controller.tcpClient.Client.RemoteEndPoint).Address.ToString(),
-                                                                                            data.Header["loadgenname"] == null ? string.Empty : data.Header["loadgenname"]
+                                                                                            data.Header["loadgenname"] == null ? string.Empty : data.Header["loadgenname"],
+                                                                                             data.Header["distribution"] == null ? string.Empty : data.Header["distribution"]
                                                                                            ));
 
                                                 _loadTestAgent.Save();
@@ -107,21 +108,22 @@ namespace AppedoLTLoadGenerator
                                             {
                                                 executionReport.ExecutionStatus = Status.Running;
                                                 DataServer.GetInstance().logs.Clear();
-                                                UpdateStatus();
                                                 XmlNode runNode = _loadTestAgent.doc.SelectSingleNode("//runs/run[@runid='" + data.Header["runid"] + "']");
-
                                                 executionReport.ReportName = runNode.Attributes["reportfoldername"].Value;
                                                 executionReport.ScenarioName = runNode.Attributes["scenarioname"].Value;
                                                 executionReport.TotalLoadGenUsed = Convert.ToInt16(runNode.Attributes["totalloadgenused"].Value);
                                                 executionReport.CurrentLoadGenid = Convert.ToInt16(runNode.Attributes["currentloadgenid"].Value);
                                                 executionReport.LoadGenName = runNode.Attributes["loadgenname"].Value;
 
-                                                run = new AppedoLTLoadGenerator.RunScenario(runScripts[data.Header["runid"]]);
-                                                run.Start();
-                                                ni.Text = "Running...";
-                                                ni.BalloonTipText = "Running...";
-                                                ni.ShowBalloonTip(2000);
-                                                if (runScripts.ContainsKey(data.Header["runid"]) == true) runScripts.Remove(data.Header["runid"]);
+                                                run = new AppedoLTLoadGenerator.RunScenario(runScripts[data.Header["runid"]], runNode.Attributes["distribution"].Value);
+                                                if (run.Start() == true)
+                                                {
+                                                    ni.Text = "Running...";
+                                                    ni.BalloonTipText = "Running...";
+                                                    ni.ShowBalloonTip(2000);
+                                                    if (runScripts.ContainsKey(data.Header["runid"]) == true) runScripts.Remove(data.Header["runid"]);
+                                                    UpdateStatus();
+                                                }
                                             }
                                         }
                                         break;

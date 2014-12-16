@@ -137,6 +137,7 @@ namespace AppedoLT.BusinessLogic
                         }
                         catch (ArgumentException ex)
                         {
+                            ExceptionHandler.WritetoEventLog(ex.Message + Environment.NewLine + ex.StackTrace);
                             _Constants.HeaderExcludeList.Add(hed.Attributes["name"].Value);
                         }
                         catch

@@ -128,7 +128,7 @@ namespace AppedoLT.Core
             {
                 if (_recodingIPAddress == string.Empty)
                 {
-                    _recodingIPAddress = ConfigurationSettings.AppSettings["RecordingIPAddress"];
+                    _recodingIPAddress = System.Configuration.ConfigurationManager.AppSettings["RecordingIPAddress"];
                 }
                 return _recodingIPAddress;
             }
@@ -140,7 +140,7 @@ namespace AppedoLT.Core
             {
                 if (_recodingPort == string.Empty)
                 {
-                    _recodingPort = ConfigurationSettings.AppSettings["RecordingPort"];
+                    _recodingPort = System.Configuration.ConfigurationManager.AppSettings["RecordingPort"];
                 }
                 return _recodingPort;
             }
@@ -152,7 +152,7 @@ namespace AppedoLT.Core
             {
                 if (_uploadIPAddress == string.Empty)
                 {
-                    _uploadIPAddress = ConfigurationSettings.AppSettings["uploadip"];
+                    _uploadIPAddress = System.Configuration.ConfigurationManager.AppSettings["uploadip"];
                 }
                 return _uploadIPAddress;
             }
@@ -164,7 +164,7 @@ namespace AppedoLT.Core
             {
                 if (_uploadPort == string.Empty)
                 {
-                    _uploadPort = ConfigurationSettings.AppSettings["uploadport"];
+                    _uploadPort = System.Configuration.ConfigurationManager.AppSettings["uploadport"];
                 }
                 return _uploadPort;
             }
@@ -176,7 +176,7 @@ namespace AppedoLT.Core
             {
                 if (_uploadPort == string.Empty)
                 {
-                    _uploadPort = ConfigurationSettings.AppSettings["appedoport"];
+                    _uploadPort = System.Configuration.ConfigurationManager.AppSettings["appedoport"];
                 }
                 return _uploadPort;
             }
@@ -227,7 +227,7 @@ namespace AppedoLT.Core
                 {
                     try
                     {
-                        _recordConncetion = Convert.ToInt16(System.Configuration.ConfigurationSettings.AppSettings["RecordConncetion"]);
+                        _recordConncetion = Convert.ToInt16(System.Configuration.ConfigurationManager.AppSettings["RecordConncetion"]);
                     }
                     catch (Exception ex)
                     {
@@ -245,7 +245,7 @@ namespace AppedoLT.Core
                 {
                     try
                     {
-                        _requestTimeOut = Convert.ToInt32(System.Configuration.ConfigurationSettings.AppSettings["RequstTimeout"]);
+                        _requestTimeOut = Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["RequstTimeout"]);
                     }
                     catch (Exception ex)
                     {
@@ -263,7 +263,7 @@ namespace AppedoLT.Core
                 {
                     try
                     {
-                        _maxUser = Convert.ToInt32(Decrypt(System.Configuration.ConfigurationSettings.AppSettings["users"]));
+                        _maxUser = Convert.ToInt32(Decrypt(System.Configuration.ConfigurationManager.AppSettings["users"]));
                     }
                     catch (Exception ex)
                     {
