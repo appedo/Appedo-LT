@@ -474,3 +474,926 @@ Unable to read data from the transport connection: An existing connection was fo
    at AppedoLTController.ResultFileGenerator.ReceiveAllChartData(String reportName) in e:\AppedoLT\AppedoLT.Controller\ResultFileGenerator.cs:line 265
 Unable to read data from the transport connection: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.
 ---------------------------------------
+13:21:14 17 December 2014 
+   at System.Data.SQLite.SQLite3.Prepare(SQLiteConnection cnn, String strSql, SQLiteStatement previous, UInt32 timeoutMS, String& strRemain)
+   at System.Data.SQLite.SQLiteCommand.BuildNextCommand()
+   at System.Data.SQLite.SQLiteCommand.GetStatement(Int32 index)
+   at System.Data.SQLite.SQLiteDataReader.NextResult()
+   at System.Data.SQLite.SQLiteDataReader..ctor(SQLiteCommand cmd, CommandBehavior behave)
+   at System.Data.SQLite.SQLiteCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.SQLite.SQLiteCommand.ExecuteNonQuery()
+   at AppedoLT.DataAccessLayer.ReportMaster.Executequery(String reportName, String query) in e:\AppedoLT\AppedoLT.DataAccessLayer\ReportMaster.cs:line 621SQLite error
+no such table: AM.reportdata
+---------------------------------------
+13:21:15 17 December 2014 
+   at System.Data.SQLite.SQLite3.Prepare(SQLiteConnection cnn, String strSql, SQLiteStatement previous, UInt32 timeoutMS, String& strRemain)
+   at System.Data.SQLite.SQLiteCommand.BuildNextCommand()
+   at System.Data.SQLite.SQLiteCommand.GetStatement(Int32 index)
+   at System.Data.SQLite.SQLiteDataReader.NextResult()
+   at System.Data.SQLite.SQLiteDataReader..ctor(SQLiteCommand cmd, CommandBehavior behave)
+   at System.Data.SQLite.SQLiteCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.SQLite.SQLiteCommand.ExecuteReader()
+   at AppedoLT.DataAccessLayer.Result.GetReader(String query, SQLiteConnection _con) in e:\AppedoLT\AppedoLT.DataAccessLayer\Result.cs:line 594
+   at AppedoLT.DataAccessLayer.Result.GetSummaryReportByScript(String reportName, XmlNode runNode) in e:\AppedoLT\AppedoLT.DataAccessLayer\Result.cs:line 366SQLite error
+no such table: requests_12
+---------------------------------------
+13:21:40 17 December 2014 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 87
+   at AppedoLTController.ResultFileGenerator.ReceiveAllChartData(String reportName) in e:\AppedoLT\AppedoLT.Controller\ResultFileGenerator.cs:line 264
+A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+13:23:50 17 December 2014 
+   at System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   at System.Number.ParseInt32(String s, NumberStyles style, NumberFormatInfo info)
+   at AppedoLT.Core.Trasport.Receive() in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 72
+   at AppedoLTController.frmController.<>c__DisplayClass3.<DoWork>b__2() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 78Input string was not in a correct format.
+---------------------------------------
+13:36:40 17 December 2014 
+   at System.Data.SQLite.SQLite3.Prepare(SQLiteConnection cnn, String strSql, SQLiteStatement previous, UInt32 timeoutMS, String& strRemain)
+   at System.Data.SQLite.SQLiteCommand.BuildNextCommand()
+   at System.Data.SQLite.SQLiteCommand.GetStatement(Int32 index)
+   at System.Data.SQLite.SQLiteDataReader.NextResult()
+   at System.Data.SQLite.SQLiteDataReader..ctor(SQLiteCommand cmd, CommandBehavior behave)
+   at System.Data.SQLite.SQLiteCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.SQLite.SQLiteCommand.ExecuteNonQuery()
+   at AppedoLT.DataAccessLayer.ReportMaster.Executequery(String reportName, String query) in e:\AppedoLT\AppedoLT.DataAccessLayer\ReportMaster.cs:line 621SQLite error
+no such table: AM.reportdata
+---------------------------------------
+13:36:40 17 December 2014 
+   at System.Data.SQLite.SQLite3.Prepare(SQLiteConnection cnn, String strSql, SQLiteStatement previous, UInt32 timeoutMS, String& strRemain)
+   at System.Data.SQLite.SQLiteCommand.BuildNextCommand()
+   at System.Data.SQLite.SQLiteCommand.GetStatement(Int32 index)
+   at System.Data.SQLite.SQLiteDataReader.NextResult()
+   at System.Data.SQLite.SQLiteDataReader..ctor(SQLiteCommand cmd, CommandBehavior behave)
+   at System.Data.SQLite.SQLiteCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.SQLite.SQLiteCommand.ExecuteReader()
+   at AppedoLT.DataAccessLayer.Result.GetReader(String query, SQLiteConnection _con) in e:\AppedoLT\AppedoLT.DataAccessLayer\Result.cs:line 594
+   at AppedoLT.DataAccessLayer.Result.GetSummaryReportByScript(String reportName, XmlNode runNode) in e:\AppedoLT\AppedoLT.DataAccessLayer\Result.cs:line 366SQLite error
+no such table: requests_12
+---------------------------------------
+13:37:05 17 December 2014 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 87
+   at AppedoLTController.ResultFileGenerator.ReceiveAllChartData(String reportName) in e:\AppedoLT\AppedoLT.Controller\ResultFileGenerator.cs:line 264
+A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+13:52:06 17 December 2014 
+   at System.Data.SQLite.SQLite3.Prepare(SQLiteConnection cnn, String strSql, SQLiteStatement previous, UInt32 timeoutMS, String& strRemain)
+   at System.Data.SQLite.SQLiteCommand.BuildNextCommand()
+   at System.Data.SQLite.SQLiteCommand.GetStatement(Int32 index)
+   at System.Data.SQLite.SQLiteDataReader.NextResult()
+   at System.Data.SQLite.SQLiteDataReader..ctor(SQLiteCommand cmd, CommandBehavior behave)
+   at System.Data.SQLite.SQLiteCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.SQLite.SQLiteCommand.ExecuteNonQuery()
+   at AppedoLT.DataAccessLayer.ReportMaster.Executequery(String reportName, String query) in e:\AppedoLT\AppedoLT.DataAccessLayer\ReportMaster.cs:line 621SQLite error
+no such table: AM.reportdata
+---------------------------------------
+13:52:06 17 December 2014 
+   at System.Data.SQLite.SQLite3.Prepare(SQLiteConnection cnn, String strSql, SQLiteStatement previous, UInt32 timeoutMS, String& strRemain)
+   at System.Data.SQLite.SQLiteCommand.BuildNextCommand()
+   at System.Data.SQLite.SQLiteCommand.GetStatement(Int32 index)
+   at System.Data.SQLite.SQLiteDataReader.NextResult()
+   at System.Data.SQLite.SQLiteDataReader..ctor(SQLiteCommand cmd, CommandBehavior behave)
+   at System.Data.SQLite.SQLiteCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.SQLite.SQLiteCommand.ExecuteReader()
+   at AppedoLT.DataAccessLayer.Result.GetReader(String query, SQLiteConnection _con) in e:\AppedoLT\AppedoLT.DataAccessLayer\Result.cs:line 594
+   at AppedoLT.DataAccessLayer.Result.GetSummaryReportByScript(String reportName, XmlNode runNode) in e:\AppedoLT\AppedoLT.DataAccessLayer\Result.cs:line 366SQLite error
+no such table: requests_12
+---------------------------------------
+13:52:26 17 December 2014 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 87
+   at AppedoLTController.ResultFileGenerator.ReceiveAllChartData(String reportName) in e:\AppedoLT\AppedoLT.Controller\ResultFileGenerator.cs:line 264
+A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+14:07:27 17 December 2014 
+   at System.Data.SQLite.SQLite3.Prepare(SQLiteConnection cnn, String strSql, SQLiteStatement previous, UInt32 timeoutMS, String& strRemain)
+   at System.Data.SQLite.SQLiteCommand.BuildNextCommand()
+   at System.Data.SQLite.SQLiteCommand.GetStatement(Int32 index)
+   at System.Data.SQLite.SQLiteDataReader.NextResult()
+   at System.Data.SQLite.SQLiteDataReader..ctor(SQLiteCommand cmd, CommandBehavior behave)
+   at System.Data.SQLite.SQLiteCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.SQLite.SQLiteCommand.ExecuteNonQuery()
+   at AppedoLT.DataAccessLayer.ReportMaster.Executequery(String reportName, String query) in e:\AppedoLT\AppedoLT.DataAccessLayer\ReportMaster.cs:line 621SQLite error
+no such table: AM.reportdata
+---------------------------------------
+14:07:27 17 December 2014 
+   at System.Data.SQLite.SQLite3.Prepare(SQLiteConnection cnn, String strSql, SQLiteStatement previous, UInt32 timeoutMS, String& strRemain)
+   at System.Data.SQLite.SQLiteCommand.BuildNextCommand()
+   at System.Data.SQLite.SQLiteCommand.GetStatement(Int32 index)
+   at System.Data.SQLite.SQLiteDataReader.NextResult()
+   at System.Data.SQLite.SQLiteDataReader..ctor(SQLiteCommand cmd, CommandBehavior behave)
+   at System.Data.SQLite.SQLiteCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.SQLite.SQLiteCommand.ExecuteReader()
+   at AppedoLT.DataAccessLayer.Result.GetReader(String query, SQLiteConnection _con) in e:\AppedoLT\AppedoLT.DataAccessLayer\Result.cs:line 594
+   at AppedoLT.DataAccessLayer.Result.GetSummaryReportByScript(String reportName, XmlNode runNode) in e:\AppedoLT\AppedoLT.DataAccessLayer\Result.cs:line 366SQLite error
+no such table: requests_12
+---------------------------------------
+14:07:52 17 December 2014 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 87
+   at AppedoLTController.ResultFileGenerator.ReceiveAllChartData(String reportName) in e:\AppedoLT\AppedoLT.Controller\ResultFileGenerator.cs:line 264
+A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+14:22:53 17 December 2014 
+   at System.Data.SQLite.SQLite3.Prepare(SQLiteConnection cnn, String strSql, SQLiteStatement previous, UInt32 timeoutMS, String& strRemain)
+   at System.Data.SQLite.SQLiteCommand.BuildNextCommand()
+   at System.Data.SQLite.SQLiteCommand.GetStatement(Int32 index)
+   at System.Data.SQLite.SQLiteDataReader.NextResult()
+   at System.Data.SQLite.SQLiteDataReader..ctor(SQLiteCommand cmd, CommandBehavior behave)
+   at System.Data.SQLite.SQLiteCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.SQLite.SQLiteCommand.ExecuteNonQuery()
+   at AppedoLT.DataAccessLayer.ReportMaster.Executequery(String reportName, String query) in e:\AppedoLT\AppedoLT.DataAccessLayer\ReportMaster.cs:line 621SQLite error
+no such table: AM.reportdata
+---------------------------------------
+14:22:53 17 December 2014 
+   at System.Data.SQLite.SQLite3.Prepare(SQLiteConnection cnn, String strSql, SQLiteStatement previous, UInt32 timeoutMS, String& strRemain)
+   at System.Data.SQLite.SQLiteCommand.BuildNextCommand()
+   at System.Data.SQLite.SQLiteCommand.GetStatement(Int32 index)
+   at System.Data.SQLite.SQLiteDataReader.NextResult()
+   at System.Data.SQLite.SQLiteDataReader..ctor(SQLiteCommand cmd, CommandBehavior behave)
+   at System.Data.SQLite.SQLiteCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.SQLite.SQLiteCommand.ExecuteReader()
+   at AppedoLT.DataAccessLayer.Result.GetReader(String query, SQLiteConnection _con) in e:\AppedoLT\AppedoLT.DataAccessLayer\Result.cs:line 594
+   at AppedoLT.DataAccessLayer.Result.GetSummaryReportByScript(String reportName, XmlNode runNode) in e:\AppedoLT\AppedoLT.DataAccessLayer\Result.cs:line 366SQLite error
+no such table: requests_12
+---------------------------------------
+14:23:18 17 December 2014 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 87
+   at AppedoLTController.ResultFileGenerator.ReceiveAllChartData(String reportName) in e:\AppedoLT\AppedoLT.Controller\ResultFileGenerator.cs:line 264
+A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+14:38:18 17 December 2014 
+   at System.Data.SQLite.SQLite3.Prepare(SQLiteConnection cnn, String strSql, SQLiteStatement previous, UInt32 timeoutMS, String& strRemain)
+   at System.Data.SQLite.SQLiteCommand.BuildNextCommand()
+   at System.Data.SQLite.SQLiteCommand.GetStatement(Int32 index)
+   at System.Data.SQLite.SQLiteDataReader.NextResult()
+   at System.Data.SQLite.SQLiteDataReader..ctor(SQLiteCommand cmd, CommandBehavior behave)
+   at System.Data.SQLite.SQLiteCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.SQLite.SQLiteCommand.ExecuteNonQuery()
+   at AppedoLT.DataAccessLayer.ReportMaster.Executequery(String reportName, String query) in e:\AppedoLT\AppedoLT.DataAccessLayer\ReportMaster.cs:line 621SQLite error
+no such table: AM.reportdata
+---------------------------------------
+14:38:18 17 December 2014 
+   at System.Data.SQLite.SQLite3.Prepare(SQLiteConnection cnn, String strSql, SQLiteStatement previous, UInt32 timeoutMS, String& strRemain)
+   at System.Data.SQLite.SQLiteCommand.BuildNextCommand()
+   at System.Data.SQLite.SQLiteCommand.GetStatement(Int32 index)
+   at System.Data.SQLite.SQLiteDataReader.NextResult()
+   at System.Data.SQLite.SQLiteDataReader..ctor(SQLiteCommand cmd, CommandBehavior behave)
+   at System.Data.SQLite.SQLiteCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.SQLite.SQLiteCommand.ExecuteReader()
+   at AppedoLT.DataAccessLayer.Result.GetReader(String query, SQLiteConnection _con) in e:\AppedoLT\AppedoLT.DataAccessLayer\Result.cs:line 594
+   at AppedoLT.DataAccessLayer.Result.GetSummaryReportByScript(String reportName, XmlNode runNode) in e:\AppedoLT\AppedoLT.DataAccessLayer\Result.cs:line 366SQLite error
+no such table: requests_12
+---------------------------------------
+14:38:38 17 December 2014 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 87
+   at AppedoLTController.ResultFileGenerator.ReceiveAllChartData(String reportName) in e:\AppedoLT\AppedoLT.Controller\ResultFileGenerator.cs:line 264
+A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+14:49:58 17 December 2014 
+   at System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   at System.Number.ParseInt32(String s, NumberStyles style, NumberFormatInfo info)
+   at AppedoLT.Core.Trasport.Receive() in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 72
+   at AppedoLTController.frmController.<>c__DisplayClass3.<DoWork>b__2() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 78Input string was not in a correct format.
+---------------------------------------
+14:53:38 17 December 2014 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 87
+   at AppedoLTController.frmController.<CollectFailedTest>b__6() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 302A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+15:08:39 17 December 2014 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 87
+   at AppedoLTController.frmController.<CollectFailedTest>b__6() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 302A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+15:23:40 17 December 2014 
+   at System.Data.SQLite.SQLite3.Prepare(SQLiteConnection cnn, String strSql, SQLiteStatement previous, UInt32 timeoutMS, String& strRemain)
+   at System.Data.SQLite.SQLiteCommand.BuildNextCommand()
+   at System.Data.SQLite.SQLiteCommand.GetStatement(Int32 index)
+   at System.Data.SQLite.SQLiteDataReader.NextResult()
+   at System.Data.SQLite.SQLiteDataReader..ctor(SQLiteCommand cmd, CommandBehavior behave)
+   at System.Data.SQLite.SQLiteCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.SQLite.SQLiteCommand.ExecuteNonQuery()
+   at AppedoLT.DataAccessLayer.ReportMaster.Executequery(String reportName, String query) in e:\AppedoLT\AppedoLT.DataAccessLayer\ReportMaster.cs:line 621SQLite error
+no such table: AM.reportdata
+---------------------------------------
+15:23:40 17 December 2014 
+   at System.Data.SQLite.SQLite3.Prepare(SQLiteConnection cnn, String strSql, SQLiteStatement previous, UInt32 timeoutMS, String& strRemain)
+   at System.Data.SQLite.SQLiteCommand.BuildNextCommand()
+   at System.Data.SQLite.SQLiteCommand.GetStatement(Int32 index)
+   at System.Data.SQLite.SQLiteDataReader.NextResult()
+   at System.Data.SQLite.SQLiteDataReader..ctor(SQLiteCommand cmd, CommandBehavior behave)
+   at System.Data.SQLite.SQLiteCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.SQLite.SQLiteCommand.ExecuteReader()
+   at AppedoLT.DataAccessLayer.Result.GetReader(String query, SQLiteConnection _con) in e:\AppedoLT\AppedoLT.DataAccessLayer\Result.cs:line 594
+   at AppedoLT.DataAccessLayer.Result.GetSummaryReportByScript(String reportName, XmlNode runNode) in e:\AppedoLT\AppedoLT.DataAccessLayer\Result.cs:line 366SQLite error
+no such table: requests_12
+---------------------------------------
+15:24:05 17 December 2014 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 87
+   at AppedoLTController.ResultFileGenerator.ReceiveAllChartData(String reportName) in e:\AppedoLT\AppedoLT.Controller\ResultFileGenerator.cs:line 264
+A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+15:39:05 17 December 2014 
+   at System.Data.SQLite.SQLite3.Prepare(SQLiteConnection cnn, String strSql, SQLiteStatement previous, UInt32 timeoutMS, String& strRemain)
+   at System.Data.SQLite.SQLiteCommand.BuildNextCommand()
+   at System.Data.SQLite.SQLiteCommand.GetStatement(Int32 index)
+   at System.Data.SQLite.SQLiteDataReader.NextResult()
+   at System.Data.SQLite.SQLiteDataReader..ctor(SQLiteCommand cmd, CommandBehavior behave)
+   at System.Data.SQLite.SQLiteCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.SQLite.SQLiteCommand.ExecuteNonQuery()
+   at AppedoLT.DataAccessLayer.ReportMaster.Executequery(String reportName, String query) in e:\AppedoLT\AppedoLT.DataAccessLayer\ReportMaster.cs:line 621SQLite error
+no such table: AM.reportdata
+---------------------------------------
+15:39:05 17 December 2014 
+   at System.Data.SQLite.SQLite3.Prepare(SQLiteConnection cnn, String strSql, SQLiteStatement previous, UInt32 timeoutMS, String& strRemain)
+   at System.Data.SQLite.SQLiteCommand.BuildNextCommand()
+   at System.Data.SQLite.SQLiteCommand.GetStatement(Int32 index)
+   at System.Data.SQLite.SQLiteDataReader.NextResult()
+   at System.Data.SQLite.SQLiteDataReader..ctor(SQLiteCommand cmd, CommandBehavior behave)
+   at System.Data.SQLite.SQLiteCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.SQLite.SQLiteCommand.ExecuteReader()
+   at AppedoLT.DataAccessLayer.Result.GetReader(String query, SQLiteConnection _con) in e:\AppedoLT\AppedoLT.DataAccessLayer\Result.cs:line 594
+   at AppedoLT.DataAccessLayer.Result.GetSummaryReportByScript(String reportName, XmlNode runNode) in e:\AppedoLT\AppedoLT.DataAccessLayer\Result.cs:line 366SQLite error
+no such table: requests_12
+---------------------------------------
+15:39:30 17 December 2014 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 87
+   at AppedoLTController.ResultFileGenerator.ReceiveAllChartData(String reportName) in e:\AppedoLT\AppedoLT.Controller\ResultFileGenerator.cs:line 264
+A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+15:54:31 17 December 2014 
+   at System.Data.SQLite.SQLite3.Prepare(SQLiteConnection cnn, String strSql, SQLiteStatement previous, UInt32 timeoutMS, String& strRemain)
+   at System.Data.SQLite.SQLiteCommand.BuildNextCommand()
+   at System.Data.SQLite.SQLiteCommand.GetStatement(Int32 index)
+   at System.Data.SQLite.SQLiteDataReader.NextResult()
+   at System.Data.SQLite.SQLiteDataReader..ctor(SQLiteCommand cmd, CommandBehavior behave)
+   at System.Data.SQLite.SQLiteCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.SQLite.SQLiteCommand.ExecuteNonQuery()
+   at AppedoLT.DataAccessLayer.ReportMaster.Executequery(String reportName, String query) in e:\AppedoLT\AppedoLT.DataAccessLayer\ReportMaster.cs:line 621SQLite error
+no such table: AM.reportdata
+---------------------------------------
+15:54:31 17 December 2014 
+   at System.Data.SQLite.SQLite3.Prepare(SQLiteConnection cnn, String strSql, SQLiteStatement previous, UInt32 timeoutMS, String& strRemain)
+   at System.Data.SQLite.SQLiteCommand.BuildNextCommand()
+   at System.Data.SQLite.SQLiteCommand.GetStatement(Int32 index)
+   at System.Data.SQLite.SQLiteDataReader.NextResult()
+   at System.Data.SQLite.SQLiteDataReader..ctor(SQLiteCommand cmd, CommandBehavior behave)
+   at System.Data.SQLite.SQLiteCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.SQLite.SQLiteCommand.ExecuteReader()
+   at AppedoLT.DataAccessLayer.Result.GetReader(String query, SQLiteConnection _con) in e:\AppedoLT\AppedoLT.DataAccessLayer\Result.cs:line 594
+   at AppedoLT.DataAccessLayer.Result.GetSummaryReportByScript(String reportName, XmlNode runNode) in e:\AppedoLT\AppedoLT.DataAccessLayer\Result.cs:line 366SQLite error
+no such table: requests_12
+---------------------------------------
+15:54:51 17 December 2014 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 87
+   at AppedoLTController.ResultFileGenerator.ReceiveAllChartData(String reportName) in e:\AppedoLT\AppedoLT.Controller\ResultFileGenerator.cs:line 264
+A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+16:09:52 17 December 2014 
+   at System.Data.SQLite.SQLite3.Prepare(SQLiteConnection cnn, String strSql, SQLiteStatement previous, UInt32 timeoutMS, String& strRemain)
+   at System.Data.SQLite.SQLiteCommand.BuildNextCommand()
+   at System.Data.SQLite.SQLiteCommand.GetStatement(Int32 index)
+   at System.Data.SQLite.SQLiteDataReader.NextResult()
+   at System.Data.SQLite.SQLiteDataReader..ctor(SQLiteCommand cmd, CommandBehavior behave)
+   at System.Data.SQLite.SQLiteCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.SQLite.SQLiteCommand.ExecuteNonQuery()
+   at AppedoLT.DataAccessLayer.ReportMaster.Executequery(String reportName, String query) in e:\AppedoLT\AppedoLT.DataAccessLayer\ReportMaster.cs:line 621SQLite error
+no such table: AM.reportdata
+---------------------------------------
+16:09:52 17 December 2014 
+   at System.Data.SQLite.SQLite3.Prepare(SQLiteConnection cnn, String strSql, SQLiteStatement previous, UInt32 timeoutMS, String& strRemain)
+   at System.Data.SQLite.SQLiteCommand.BuildNextCommand()
+   at System.Data.SQLite.SQLiteCommand.GetStatement(Int32 index)
+   at System.Data.SQLite.SQLiteDataReader.NextResult()
+   at System.Data.SQLite.SQLiteDataReader..ctor(SQLiteCommand cmd, CommandBehavior behave)
+   at System.Data.SQLite.SQLiteCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.SQLite.SQLiteCommand.ExecuteReader()
+   at AppedoLT.DataAccessLayer.Result.GetReader(String query, SQLiteConnection _con) in e:\AppedoLT\AppedoLT.DataAccessLayer\Result.cs:line 594
+   at AppedoLT.DataAccessLayer.Result.GetSummaryReportByScript(String reportName, XmlNode runNode) in e:\AppedoLT\AppedoLT.DataAccessLayer\Result.cs:line 366SQLite error
+no such table: requests_12
+---------------------------------------
+16:10:17 17 December 2014 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 87
+   at AppedoLTController.ResultFileGenerator.ReceiveAllChartData(String reportName) in e:\AppedoLT\AppedoLT.Controller\ResultFileGenerator.cs:line 264
+A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+16:25:17 17 December 2014 
+   at System.Data.SQLite.SQLite3.Prepare(SQLiteConnection cnn, String strSql, SQLiteStatement previous, UInt32 timeoutMS, String& strRemain)
+   at System.Data.SQLite.SQLiteCommand.BuildNextCommand()
+   at System.Data.SQLite.SQLiteCommand.GetStatement(Int32 index)
+   at System.Data.SQLite.SQLiteDataReader.NextResult()
+   at System.Data.SQLite.SQLiteDataReader..ctor(SQLiteCommand cmd, CommandBehavior behave)
+   at System.Data.SQLite.SQLiteCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.SQLite.SQLiteCommand.ExecuteNonQuery()
+   at AppedoLT.DataAccessLayer.ReportMaster.Executequery(String reportName, String query) in e:\AppedoLT\AppedoLT.DataAccessLayer\ReportMaster.cs:line 621SQLite error
+no such table: AM.reportdata
+---------------------------------------
+16:25:17 17 December 2014 
+   at System.Data.SQLite.SQLite3.Prepare(SQLiteConnection cnn, String strSql, SQLiteStatement previous, UInt32 timeoutMS, String& strRemain)
+   at System.Data.SQLite.SQLiteCommand.BuildNextCommand()
+   at System.Data.SQLite.SQLiteCommand.GetStatement(Int32 index)
+   at System.Data.SQLite.SQLiteDataReader.NextResult()
+   at System.Data.SQLite.SQLiteDataReader..ctor(SQLiteCommand cmd, CommandBehavior behave)
+   at System.Data.SQLite.SQLiteCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.SQLite.SQLiteCommand.ExecuteReader()
+   at AppedoLT.DataAccessLayer.Result.GetReader(String query, SQLiteConnection _con) in e:\AppedoLT\AppedoLT.DataAccessLayer\Result.cs:line 594
+   at AppedoLT.DataAccessLayer.Result.GetSummaryReportByScript(String reportName, XmlNode runNode) in e:\AppedoLT\AppedoLT.DataAccessLayer\Result.cs:line 366SQLite error
+no such table: requests_12
+---------------------------------------
+16:25:42 17 December 2014 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 87
+   at AppedoLTController.ResultFileGenerator.ReceiveAllChartData(String reportName) in e:\AppedoLT\AppedoLT.Controller\ResultFileGenerator.cs:line 264
+A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+16:40:42 17 December 2014 
+   at System.Data.SQLite.SQLite3.Prepare(SQLiteConnection cnn, String strSql, SQLiteStatement previous, UInt32 timeoutMS, String& strRemain)
+   at System.Data.SQLite.SQLiteCommand.BuildNextCommand()
+   at System.Data.SQLite.SQLiteCommand.GetStatement(Int32 index)
+   at System.Data.SQLite.SQLiteDataReader.NextResult()
+   at System.Data.SQLite.SQLiteDataReader..ctor(SQLiteCommand cmd, CommandBehavior behave)
+   at System.Data.SQLite.SQLiteCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.SQLite.SQLiteCommand.ExecuteNonQuery()
+   at AppedoLT.DataAccessLayer.ReportMaster.Executequery(String reportName, String query) in e:\AppedoLT\AppedoLT.DataAccessLayer\ReportMaster.cs:line 621SQLite error
+no such table: AM.reportdata
+---------------------------------------
+16:40:42 17 December 2014 
+   at System.Data.SQLite.SQLite3.Prepare(SQLiteConnection cnn, String strSql, SQLiteStatement previous, UInt32 timeoutMS, String& strRemain)
+   at System.Data.SQLite.SQLiteCommand.BuildNextCommand()
+   at System.Data.SQLite.SQLiteCommand.GetStatement(Int32 index)
+   at System.Data.SQLite.SQLiteDataReader.NextResult()
+   at System.Data.SQLite.SQLiteDataReader..ctor(SQLiteCommand cmd, CommandBehavior behave)
+   at System.Data.SQLite.SQLiteCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.SQLite.SQLiteCommand.ExecuteReader()
+   at AppedoLT.DataAccessLayer.Result.GetReader(String query, SQLiteConnection _con) in e:\AppedoLT\AppedoLT.DataAccessLayer\Result.cs:line 594
+   at AppedoLT.DataAccessLayer.Result.GetSummaryReportByScript(String reportName, XmlNode runNode) in e:\AppedoLT\AppedoLT.DataAccessLayer\Result.cs:line 366SQLite error
+no such table: requests_12
+---------------------------------------
+16:41:07 17 December 2014 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 87
+   at AppedoLTController.ResultFileGenerator.ReceiveAllChartData(String reportName) in e:\AppedoLT\AppedoLT.Controller\ResultFileGenerator.cs:line 264
+A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+16:41:07 17 December 2014 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 87
+   at AppedoLTController.ResultFileGenerator.SendResultFile(String runid) in e:\AppedoLT\AppedoLT.Controller\ResultFileGenerator.cs:line 164
+   at AppedoLTController.ResultFileGenerator.Genarate() in e:\AppedoLT\AppedoLT.Controller\ResultFileGenerator.cs:line 40
+   at AppedoLTController.frmController.<CollectFailedTest>b__6() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 303A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+16:56:08 17 December 2014 
+   at System.Data.SQLite.SQLite3.Prepare(SQLiteConnection cnn, String strSql, SQLiteStatement previous, UInt32 timeoutMS, String& strRemain)
+   at System.Data.SQLite.SQLiteCommand.BuildNextCommand()
+   at System.Data.SQLite.SQLiteCommand.GetStatement(Int32 index)
+   at System.Data.SQLite.SQLiteDataReader.NextResult()
+   at System.Data.SQLite.SQLiteDataReader..ctor(SQLiteCommand cmd, CommandBehavior behave)
+   at System.Data.SQLite.SQLiteCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.SQLite.SQLiteCommand.ExecuteNonQuery()
+   at AppedoLT.DataAccessLayer.ReportMaster.Executequery(String reportName, String query) in e:\AppedoLT\AppedoLT.DataAccessLayer\ReportMaster.cs:line 621SQLite error
+no such table: AM.reportdata
+---------------------------------------
+16:56:08 17 December 2014 
+   at System.Data.SQLite.SQLite3.Prepare(SQLiteConnection cnn, String strSql, SQLiteStatement previous, UInt32 timeoutMS, String& strRemain)
+   at System.Data.SQLite.SQLiteCommand.BuildNextCommand()
+   at System.Data.SQLite.SQLiteCommand.GetStatement(Int32 index)
+   at System.Data.SQLite.SQLiteDataReader.NextResult()
+   at System.Data.SQLite.SQLiteDataReader..ctor(SQLiteCommand cmd, CommandBehavior behave)
+   at System.Data.SQLite.SQLiteCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.SQLite.SQLiteCommand.ExecuteReader()
+   at AppedoLT.DataAccessLayer.Result.GetReader(String query, SQLiteConnection _con) in e:\AppedoLT\AppedoLT.DataAccessLayer\Result.cs:line 594
+   at AppedoLT.DataAccessLayer.Result.GetSummaryReportByScript(String reportName, XmlNode runNode) in e:\AppedoLT\AppedoLT.DataAccessLayer\Result.cs:line 366SQLite error
+no such table: requests_12
+---------------------------------------
+16:56:33 17 December 2014 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 87
+   at AppedoLTController.ResultFileGenerator.ReceiveAllChartData(String reportName) in e:\AppedoLT\AppedoLT.Controller\ResultFileGenerator.cs:line 264
+A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+17:11:28 17 December 2014 
+   at System.Data.SQLite.SQLite3.Prepare(SQLiteConnection cnn, String strSql, SQLiteStatement previous, UInt32 timeoutMS, String& strRemain)
+   at System.Data.SQLite.SQLiteCommand.BuildNextCommand()
+   at System.Data.SQLite.SQLiteCommand.GetStatement(Int32 index)
+   at System.Data.SQLite.SQLiteDataReader.NextResult()
+   at System.Data.SQLite.SQLiteDataReader..ctor(SQLiteCommand cmd, CommandBehavior behave)
+   at System.Data.SQLite.SQLiteCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.SQLite.SQLiteCommand.ExecuteNonQuery()
+   at AppedoLT.DataAccessLayer.ReportMaster.Executequery(String reportName, String query) in e:\AppedoLT\AppedoLT.DataAccessLayer\ReportMaster.cs:line 621SQLite error
+no such table: AM.reportdata
+---------------------------------------
+17:11:28 17 December 2014 
+   at System.Data.SQLite.SQLite3.Prepare(SQLiteConnection cnn, String strSql, SQLiteStatement previous, UInt32 timeoutMS, String& strRemain)
+   at System.Data.SQLite.SQLiteCommand.BuildNextCommand()
+   at System.Data.SQLite.SQLiteCommand.GetStatement(Int32 index)
+   at System.Data.SQLite.SQLiteDataReader.NextResult()
+   at System.Data.SQLite.SQLiteDataReader..ctor(SQLiteCommand cmd, CommandBehavior behave)
+   at System.Data.SQLite.SQLiteCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.SQLite.SQLiteCommand.ExecuteReader()
+   at AppedoLT.DataAccessLayer.Result.GetReader(String query, SQLiteConnection _con) in e:\AppedoLT\AppedoLT.DataAccessLayer\Result.cs:line 594
+   at AppedoLT.DataAccessLayer.Result.GetSummaryReportByScript(String reportName, XmlNode runNode) in e:\AppedoLT\AppedoLT.DataAccessLayer\Result.cs:line 366SQLite error
+no such table: requests_12
+---------------------------------------
+17:11:53 17 December 2014 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 87
+   at AppedoLTController.ResultFileGenerator.ReceiveAllChartData(String reportName) in e:\AppedoLT\AppedoLT.Controller\ResultFileGenerator.cs:line 264
+A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+17:26:54 17 December 2014 
+   at System.Data.SQLite.SQLite3.Prepare(SQLiteConnection cnn, String strSql, SQLiteStatement previous, UInt32 timeoutMS, String& strRemain)
+   at System.Data.SQLite.SQLiteCommand.BuildNextCommand()
+   at System.Data.SQLite.SQLiteCommand.GetStatement(Int32 index)
+   at System.Data.SQLite.SQLiteDataReader.NextResult()
+   at System.Data.SQLite.SQLiteDataReader..ctor(SQLiteCommand cmd, CommandBehavior behave)
+   at System.Data.SQLite.SQLiteCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.SQLite.SQLiteCommand.ExecuteNonQuery()
+   at AppedoLT.DataAccessLayer.ReportMaster.Executequery(String reportName, String query) in e:\AppedoLT\AppedoLT.DataAccessLayer\ReportMaster.cs:line 621SQLite error
+no such table: AM.reportdata
+---------------------------------------
+17:26:54 17 December 2014 
+   at System.Data.SQLite.SQLite3.Prepare(SQLiteConnection cnn, String strSql, SQLiteStatement previous, UInt32 timeoutMS, String& strRemain)
+   at System.Data.SQLite.SQLiteCommand.BuildNextCommand()
+   at System.Data.SQLite.SQLiteCommand.GetStatement(Int32 index)
+   at System.Data.SQLite.SQLiteDataReader.NextResult()
+   at System.Data.SQLite.SQLiteDataReader..ctor(SQLiteCommand cmd, CommandBehavior behave)
+   at System.Data.SQLite.SQLiteCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.SQLite.SQLiteCommand.ExecuteReader()
+   at AppedoLT.DataAccessLayer.Result.GetReader(String query, SQLiteConnection _con) in e:\AppedoLT\AppedoLT.DataAccessLayer\Result.cs:line 594
+   at AppedoLT.DataAccessLayer.Result.GetSummaryReportByScript(String reportName, XmlNode runNode) in e:\AppedoLT\AppedoLT.DataAccessLayer\Result.cs:line 366SQLite error
+no such table: requests_12
+---------------------------------------
+17:27:19 17 December 2014 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 87
+   at AppedoLTController.ResultFileGenerator.ReceiveAllChartData(String reportName) in e:\AppedoLT\AppedoLT.Controller\ResultFileGenerator.cs:line 264
+A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+17:33:24 17 December 2014 
+   at System.Net.IPAddress.InternalParse(String ipString, Boolean tryParse)
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 46
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port, Int32 requesttimeout) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 35
+   at AppedoLTController.frmController.SendDataToLoadGen(Trasport server, TrasportData data) in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 454An invalid IP address was specified.
+---------------------------------------
+17:33:29 17 December 2014 
+   at System.Net.IPAddress.InternalParse(String ipString, Boolean tryParse)
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 46
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port, Int32 requesttimeout) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 35
+   at AppedoLTController.frmController.SendDataToLoadGen(Trasport server, TrasportData data) in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 454An invalid IP address was specified.
+---------------------------------------
+17:33:29 17 December 2014 
+   at System.Net.IPAddress.InternalParse(String ipString, Boolean tryParse)
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 46
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port, Int32 requesttimeout) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 35
+   at AppedoLTController.frmController.SendDataToLoadGen(Trasport server, TrasportData data) in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 454An invalid IP address was specified.
+---------------------------------------
+17:33:29 17 December 2014 
+   at System.Net.IPAddress.InternalParse(String ipString, Boolean tryParse)
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 46
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port, Int32 requesttimeout) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 35
+   at AppedoLTController.frmController.SendDataToLoadGen(Trasport server, TrasportData data) in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 454An invalid IP address was specified.
+---------------------------------------
+17:33:29 17 December 2014 
+   at System.Net.IPAddress.InternalParse(String ipString, Boolean tryParse)
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 46
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port, Int32 requesttimeout) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 35
+   at AppedoLTController.frmController.SendDataToLoadGen(Trasport server, TrasportData data) in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 454An invalid IP address was specified.
+---------------------------------------
+17:33:29 17 December 2014 
+   at System.Net.IPAddress.InternalParse(String ipString, Boolean tryParse)
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 46
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port, Int32 requesttimeout) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 35
+   at AppedoLTController.frmController.SendDataToLoadGen(Trasport server, TrasportData data) in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 454An invalid IP address was specified.
+---------------------------------------
+17:33:34 17 December 2014 
+   at System.Net.IPAddress.InternalParse(String ipString, Boolean tryParse)
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 46
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port, Int32 requesttimeout) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 35
+   at AppedoLTController.frmController.SendDataToLoadGen(Trasport server, TrasportData data) in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 454An invalid IP address was specified.
+---------------------------------------
+17:33:34 17 December 2014 
+   at System.Net.IPAddress.InternalParse(String ipString, Boolean tryParse)
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 46
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port, Int32 requesttimeout) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 35
+   at AppedoLTController.frmController.SendDataToLoadGen(Trasport server, TrasportData data) in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 454An invalid IP address was specified.
+---------------------------------------
+17:33:34 17 December 2014 
+   at System.Net.IPAddress.InternalParse(String ipString, Boolean tryParse)
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 46
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port, Int32 requesttimeout) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 35
+   at AppedoLTController.frmController.SendDataToLoadGen(Trasport server, TrasportData data) in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 454An invalid IP address was specified.
+---------------------------------------
+17:33:34 17 December 2014 
+   at System.Net.IPAddress.InternalParse(String ipString, Boolean tryParse)
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 46
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port, Int32 requesttimeout) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 35
+   at AppedoLTController.frmController.SendDataToLoadGen(Trasport server, TrasportData data) in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 454An invalid IP address was specified.
+---------------------------------------
+17:42:19 17 December 2014 
+   at System.Data.SQLite.SQLite3.Prepare(SQLiteConnection cnn, String strSql, SQLiteStatement previous, UInt32 timeoutMS, String& strRemain)
+   at System.Data.SQLite.SQLiteCommand.BuildNextCommand()
+   at System.Data.SQLite.SQLiteCommand.GetStatement(Int32 index)
+   at System.Data.SQLite.SQLiteDataReader.NextResult()
+   at System.Data.SQLite.SQLiteDataReader..ctor(SQLiteCommand cmd, CommandBehavior behave)
+   at System.Data.SQLite.SQLiteCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.SQLite.SQLiteCommand.ExecuteNonQuery()
+   at AppedoLT.DataAccessLayer.ReportMaster.Executequery(String reportName, String query) in e:\AppedoLT\AppedoLT.DataAccessLayer\ReportMaster.cs:line 621SQLite error
+no such table: AM.reportdata
+---------------------------------------
+17:42:19 17 December 2014 
+   at System.Data.SQLite.SQLite3.Prepare(SQLiteConnection cnn, String strSql, SQLiteStatement previous, UInt32 timeoutMS, String& strRemain)
+   at System.Data.SQLite.SQLiteCommand.BuildNextCommand()
+   at System.Data.SQLite.SQLiteCommand.GetStatement(Int32 index)
+   at System.Data.SQLite.SQLiteDataReader.NextResult()
+   at System.Data.SQLite.SQLiteDataReader..ctor(SQLiteCommand cmd, CommandBehavior behave)
+   at System.Data.SQLite.SQLiteCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.SQLite.SQLiteCommand.ExecuteReader()
+   at AppedoLT.DataAccessLayer.Result.GetReader(String query, SQLiteConnection _con) in e:\AppedoLT\AppedoLT.DataAccessLayer\Result.cs:line 594
+   at AppedoLT.DataAccessLayer.Result.GetSummaryReportByScript(String reportName, XmlNode runNode) in e:\AppedoLT\AppedoLT.DataAccessLayer\Result.cs:line 366SQLite error
+no such table: requests_12
+---------------------------------------
+17:42:44 17 December 2014 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 87
+   at AppedoLTController.ResultFileGenerator.ReceiveAllChartData(String reportName) in e:\AppedoLT\AppedoLT.Controller\ResultFileGenerator.cs:line 264
+A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+17:57:44 17 December 2014 
+   at System.Data.SQLite.SQLite3.Prepare(SQLiteConnection cnn, String strSql, SQLiteStatement previous, UInt32 timeoutMS, String& strRemain)
+   at System.Data.SQLite.SQLiteCommand.BuildNextCommand()
+   at System.Data.SQLite.SQLiteCommand.GetStatement(Int32 index)
+   at System.Data.SQLite.SQLiteDataReader.NextResult()
+   at System.Data.SQLite.SQLiteDataReader..ctor(SQLiteCommand cmd, CommandBehavior behave)
+   at System.Data.SQLite.SQLiteCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.SQLite.SQLiteCommand.ExecuteNonQuery()
+   at AppedoLT.DataAccessLayer.ReportMaster.Executequery(String reportName, String query) in e:\AppedoLT\AppedoLT.DataAccessLayer\ReportMaster.cs:line 621SQLite error
+no such table: AM.reportdata
+---------------------------------------
+17:57:44 17 December 2014 
+   at System.Data.SQLite.SQLite3.Prepare(SQLiteConnection cnn, String strSql, SQLiteStatement previous, UInt32 timeoutMS, String& strRemain)
+   at System.Data.SQLite.SQLiteCommand.BuildNextCommand()
+   at System.Data.SQLite.SQLiteCommand.GetStatement(Int32 index)
+   at System.Data.SQLite.SQLiteDataReader.NextResult()
+   at System.Data.SQLite.SQLiteDataReader..ctor(SQLiteCommand cmd, CommandBehavior behave)
+   at System.Data.SQLite.SQLiteCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.SQLite.SQLiteCommand.ExecuteReader()
+   at AppedoLT.DataAccessLayer.Result.GetReader(String query, SQLiteConnection _con) in e:\AppedoLT\AppedoLT.DataAccessLayer\Result.cs:line 594
+   at AppedoLT.DataAccessLayer.Result.GetSummaryReportByScript(String reportName, XmlNode runNode) in e:\AppedoLT\AppedoLT.DataAccessLayer\Result.cs:line 366SQLite error
+no such table: requests_12
+---------------------------------------
+17:58:10 17 December 2014 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 87
+   at AppedoLTController.ResultFileGenerator.ReceiveAllChartData(String reportName) in e:\AppedoLT\AppedoLT.Controller\ResultFileGenerator.cs:line 264
+A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+18:13:10 17 December 2014 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 87
+   at AppedoLTController.frmController.<CollectFailedTest>b__6() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 302A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+18:28:10 17 December 2014 
+   at System.Data.SQLite.SQLite3.Prepare(SQLiteConnection cnn, String strSql, SQLiteStatement previous, UInt32 timeoutMS, String& strRemain)
+   at System.Data.SQLite.SQLiteCommand.BuildNextCommand()
+   at System.Data.SQLite.SQLiteCommand.GetStatement(Int32 index)
+   at System.Data.SQLite.SQLiteDataReader.NextResult()
+   at System.Data.SQLite.SQLiteDataReader..ctor(SQLiteCommand cmd, CommandBehavior behave)
+   at System.Data.SQLite.SQLiteCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.SQLite.SQLiteCommand.ExecuteNonQuery()
+   at AppedoLT.DataAccessLayer.ReportMaster.Executequery(String reportName, String query) in e:\AppedoLT\AppedoLT.DataAccessLayer\ReportMaster.cs:line 621SQLite error
+no such table: AM.reportdata
+---------------------------------------
+18:28:10 17 December 2014 
+   at System.Data.SQLite.SQLite3.Prepare(SQLiteConnection cnn, String strSql, SQLiteStatement previous, UInt32 timeoutMS, String& strRemain)
+   at System.Data.SQLite.SQLiteCommand.BuildNextCommand()
+   at System.Data.SQLite.SQLiteCommand.GetStatement(Int32 index)
+   at System.Data.SQLite.SQLiteDataReader.NextResult()
+   at System.Data.SQLite.SQLiteDataReader..ctor(SQLiteCommand cmd, CommandBehavior behave)
+   at System.Data.SQLite.SQLiteCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.SQLite.SQLiteCommand.ExecuteReader()
+   at AppedoLT.DataAccessLayer.Result.GetReader(String query, SQLiteConnection _con) in e:\AppedoLT\AppedoLT.DataAccessLayer\Result.cs:line 594
+   at AppedoLT.DataAccessLayer.Result.GetSummaryReportByScript(String reportName, XmlNode runNode) in e:\AppedoLT\AppedoLT.DataAccessLayer\Result.cs:line 366SQLite error
+no such table: requests_12
+---------------------------------------
+18:28:30 17 December 2014 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 87
+   at AppedoLTController.ResultFileGenerator.ReceiveAllChartData(String reportName) in e:\AppedoLT\AppedoLT.Controller\ResultFileGenerator.cs:line 264
+A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+18:48:26 18 December 2014 
+   at System.Data.SQLite.SQLite3.Prepare(SQLiteConnection cnn, String strSql, SQLiteStatement previous, UInt32 timeoutMS, String& strRemain)
+   at System.Data.SQLite.SQLiteCommand.BuildNextCommand()
+   at System.Data.SQLite.SQLiteCommand.GetStatement(Int32 index)
+   at System.Data.SQLite.SQLiteDataReader.NextResult()
+   at System.Data.SQLite.SQLiteDataReader..ctor(SQLiteCommand cmd, CommandBehavior behave)
+   at System.Data.SQLite.SQLiteCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.SQLite.SQLiteCommand.ExecuteNonQuery()
+   at AppedoLT.DataAccessLayer.ReportMaster.Executequery(String reportName, String query) in e:\AppedoLT\AppedoLT.DataAccessLayer\ReportMaster.cs:line 621SQLite error
+no such table: AM.reportdata
+---------------------------------------
+18:48:31 18 December 2014 
+   at System.Data.SQLite.SQLite3.Prepare(SQLiteConnection cnn, String strSql, SQLiteStatement previous, UInt32 timeoutMS, String& strRemain)
+   at System.Data.SQLite.SQLiteCommand.BuildNextCommand()
+   at System.Data.SQLite.SQLiteCommand.GetStatement(Int32 index)
+   at System.Data.SQLite.SQLiteDataReader.NextResult()
+   at System.Data.SQLite.SQLiteDataReader..ctor(SQLiteCommand cmd, CommandBehavior behave)
+   at System.Data.SQLite.SQLiteCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.SQLite.SQLiteCommand.ExecuteReader()
+   at AppedoLT.DataAccessLayer.Result.GetReader(String query, SQLiteConnection _con) in e:\AppedoLT\AppedoLT.DataAccessLayer\Result.cs:line 594
+   at AppedoLT.DataAccessLayer.Result.GetSummaryReportByScript(String reportName, XmlNode runNode) in e:\AppedoLT\AppedoLT.DataAccessLayer\Result.cs:line 366SQLite error
+no such table: requests_12
+---------------------------------------
+18:48:51 18 December 2014 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 88
+   at AppedoLTController.frmController.SendDataToLoadGen(Trasport server, TrasportData data) in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 458A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+18:48:56 18 December 2014 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 88
+   at AppedoLTController.frmController.SendDataToLoadGen(Trasport server, TrasportData data) in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 458A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+18:48:56 18 December 2014 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 88
+   at AppedoLTController.frmController.SendDataToLoadGen(Trasport server, TrasportData data) in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 458A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+18:48:56 18 December 2014 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 88
+   at AppedoLTController.frmController.SendDataToLoadGen(Trasport server, TrasportData data) in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 458A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+18:49:01 18 December 2014 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 88
+   at AppedoLTController.frmController.SendDataToLoadGen(Trasport server, TrasportData data) in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 458A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+18:49:01 18 December 2014 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 88
+   at AppedoLTController.frmController.SendDataToLoadGen(Trasport server, TrasportData data) in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 458A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+18:49:06 18 December 2014 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 88
+   at AppedoLTController.frmController.SendDataToLoadGen(Trasport server, TrasportData data) in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 458A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+18:49:06 18 December 2014 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 88
+   at AppedoLTController.frmController.SendDataToLoadGen(Trasport server, TrasportData data) in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 458A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+18:49:06 18 December 2014 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 88
+   at AppedoLTController.frmController.SendDataToLoadGen(Trasport server, TrasportData data) in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 458A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+18:49:11 18 December 2014 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 88
+   at AppedoLTController.frmController.SendDataToLoadGen(Trasport server, TrasportData data) in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 458A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+18:49:31 18 December 2014 
+   at System.Net.Sockets.NetworkStream.Read(Byte[] buffer, Int32 offset, Int32 size)
+   at AppedoLT.Core.Trasport.ReadHeader(Stream stream) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 137
+   at AppedoLT.Core.Trasport.Receive() in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 66
+   at AppedoLTController.ResultFileGenerator.ReceiveAllChartData(String reportName) in e:\AppedoLT\AppedoLT.Controller\ResultFileGenerator.cs:line 265
+Unable to read data from the transport connection: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.
+---------------------------------------
+18:52:30 18 December 2014 
+   at System.Data.SQLite.SQLite3.Prepare(SQLiteConnection cnn, String strSql, SQLiteStatement previous, UInt32 timeoutMS, String& strRemain)
+   at System.Data.SQLite.SQLiteCommand.BuildNextCommand()
+   at System.Data.SQLite.SQLiteCommand.GetStatement(Int32 index)
+   at System.Data.SQLite.SQLiteDataReader.NextResult()
+   at System.Data.SQLite.SQLiteDataReader..ctor(SQLiteCommand cmd, CommandBehavior behave)
+   at System.Data.SQLite.SQLiteCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.SQLite.SQLiteCommand.ExecuteNonQuery()
+   at AppedoLT.DataAccessLayer.ReportMaster.Executequery(String reportName, String query) in e:\AppedoLT\AppedoLT.DataAccessLayer\ReportMaster.cs:line 621SQLite error
+no such table: AM.reportdata
+---------------------------------------
+18:52:35 18 December 2014 
+   at System.Data.SQLite.SQLite3.Prepare(SQLiteConnection cnn, String strSql, SQLiteStatement previous, UInt32 timeoutMS, String& strRemain)
+   at System.Data.SQLite.SQLiteCommand.BuildNextCommand()
+   at System.Data.SQLite.SQLiteCommand.GetStatement(Int32 index)
+   at System.Data.SQLite.SQLiteDataReader.NextResult()
+   at System.Data.SQLite.SQLiteDataReader..ctor(SQLiteCommand cmd, CommandBehavior behave)
+   at System.Data.SQLite.SQLiteCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.SQLite.SQLiteCommand.ExecuteReader()
+   at AppedoLT.DataAccessLayer.Result.GetReader(String query, SQLiteConnection _con) in e:\AppedoLT\AppedoLT.DataAccessLayer\Result.cs:line 594
+   at AppedoLT.DataAccessLayer.Result.GetSummaryReportByScript(String reportName, XmlNode runNode) in e:\AppedoLT\AppedoLT.DataAccessLayer\Result.cs:line 366SQLite error
+no such table: requests_12
+---------------------------------------
+18:53:35 18 December 2014 
+   at System.Net.Sockets.NetworkStream.Read(Byte[] buffer, Int32 offset, Int32 size)
+   at AppedoLT.Core.Trasport.ReadHeader(Stream stream) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 137
+   at AppedoLT.Core.Trasport.Receive() in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 66
+   at AppedoLTController.ResultFileGenerator.ReceiveAllChartData(String reportName) in e:\AppedoLT\AppedoLT.Controller\ResultFileGenerator.cs:line 265
+Unable to read data from the transport connection: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.
+---------------------------------------
+18:56:27 18 December 2014 
+   at System.Data.SQLite.SQLite3.Prepare(SQLiteConnection cnn, String strSql, SQLiteStatement previous, UInt32 timeoutMS, String& strRemain)
+   at System.Data.SQLite.SQLiteCommand.BuildNextCommand()
+   at System.Data.SQLite.SQLiteCommand.GetStatement(Int32 index)
+   at System.Data.SQLite.SQLiteDataReader.NextResult()
+   at System.Data.SQLite.SQLiteDataReader..ctor(SQLiteCommand cmd, CommandBehavior behave)
+   at System.Data.SQLite.SQLiteCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.SQLite.SQLiteCommand.ExecuteNonQuery()
+   at AppedoLT.DataAccessLayer.ReportMaster.Executequery(String reportName, String query) in e:\AppedoLT\AppedoLT.DataAccessLayer\ReportMaster.cs:line 621SQLite error
+no such table: AM.reportdata
+---------------------------------------
+18:56:32 18 December 2014 
+   at System.Data.SQLite.SQLite3.Prepare(SQLiteConnection cnn, String strSql, SQLiteStatement previous, UInt32 timeoutMS, String& strRemain)
+   at System.Data.SQLite.SQLiteCommand.BuildNextCommand()
+   at System.Data.SQLite.SQLiteCommand.GetStatement(Int32 index)
+   at System.Data.SQLite.SQLiteDataReader.NextResult()
+   at System.Data.SQLite.SQLiteDataReader..ctor(SQLiteCommand cmd, CommandBehavior behave)
+   at System.Data.SQLite.SQLiteCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.SQLite.SQLiteCommand.ExecuteReader()
+   at AppedoLT.DataAccessLayer.Result.GetReader(String query, SQLiteConnection _con) in e:\AppedoLT\AppedoLT.DataAccessLayer\Result.cs:line 594
+   at AppedoLT.DataAccessLayer.Result.GetSummaryReportByScript(String reportName, XmlNode runNode) in e:\AppedoLT\AppedoLT.DataAccessLayer\Result.cs:line 366SQLite error
+no such table: requests_12
+---------------------------------------
+18:57:21 18 December 2014 
+   at System.Data.SQLite.SQLite3.Prepare(SQLiteConnection cnn, String strSql, SQLiteStatement previous, UInt32 timeoutMS, String& strRemain)
+   at System.Data.SQLite.SQLiteCommand.BuildNextCommand()
+   at System.Data.SQLite.SQLiteCommand.GetStatement(Int32 index)
+   at System.Data.SQLite.SQLiteDataReader.NextResult()
+   at System.Data.SQLite.SQLiteDataReader..ctor(SQLiteCommand cmd, CommandBehavior behave)
+   at System.Data.SQLite.SQLiteCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.SQLite.SQLiteCommand.ExecuteNonQuery()
+   at AppedoLT.DataAccessLayer.ReportMaster.Executequery(String reportName, String query) in e:\AppedoLT\AppedoLT.DataAccessLayer\ReportMaster.cs:line 621SQLite error
+no such table: AM.reportdata
+---------------------------------------
+18:57:26 18 December 2014 
+   at System.Data.SQLite.SQLite3.Prepare(SQLiteConnection cnn, String strSql, SQLiteStatement previous, UInt32 timeoutMS, String& strRemain)
+   at System.Data.SQLite.SQLiteCommand.BuildNextCommand()
+   at System.Data.SQLite.SQLiteCommand.GetStatement(Int32 index)
+   at System.Data.SQLite.SQLiteDataReader.NextResult()
+   at System.Data.SQLite.SQLiteDataReader..ctor(SQLiteCommand cmd, CommandBehavior behave)
+   at System.Data.SQLite.SQLiteCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.SQLite.SQLiteCommand.ExecuteReader()
+   at AppedoLT.DataAccessLayer.Result.GetReader(String query, SQLiteConnection _con) in e:\AppedoLT\AppedoLT.DataAccessLayer\Result.cs:line 594
+   at AppedoLT.DataAccessLayer.Result.GetSummaryReportByScript(String reportName, XmlNode runNode) in e:\AppedoLT\AppedoLT.DataAccessLayer\Result.cs:line 366SQLite error
+no such table: requests_12
+---------------------------------------
+18:58:26 18 December 2014 
+   at System.Net.Sockets.NetworkStream.Read(Byte[] buffer, Int32 offset, Int32 size)
+   at AppedoLT.Core.Trasport.ReadHeader(Stream stream) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 137
+   at AppedoLT.Core.Trasport.Receive() in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 66
+   at AppedoLTController.ResultFileGenerator.ReceiveAllChartData(String reportName) in e:\AppedoLT\AppedoLT.Controller\ResultFileGenerator.cs:line 265
+Unable to read data from the transport connection: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.
+---------------------------------------
+18:59:36 18 December 2014 
+   at System.Net.Sockets.NetworkStream.Read(Byte[] buffer, Int32 offset, Int32 size)
+   at AppedoLT.Core.Trasport.ReadHeader(Stream stream) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 137
+   at AppedoLT.Core.Trasport.Receive() in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 66
+   at AppedoLTController.Controller.DoWork() in e:\AppedoLT\AppedoLT.Controller\Controller.cs:line 86Unable to read data from the transport connection: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.
+---------------------------------------
+19:04:46 18 December 2014 
+   at System.Net.Sockets.NetworkStream.Read(Byte[] buffer, Int32 offset, Int32 size)
+   at AppedoLT.Core.Trasport.ReadHeader(Stream stream) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 137
+   at AppedoLT.Core.Trasport.Receive() in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 66
+   at AppedoLTController.ResultFileGenerator.ReceiveAllChartData(String reportName) in e:\AppedoLT\AppedoLT.Controller\ResultFileGenerator.cs:line 265
+Unable to read data from the transport connection: An existing connection was forcibly closed by the remote host.
+---------------------------------------
+19:04:46 18 December 2014 
+   at AppedoLTController.ResultFileGenerator..ctor(String runtid) in e:\AppedoLT\AppedoLT.Controller\ResultFileGenerator.cs:line 27
+   at AppedoLTController.frmController.<CollectFailedTest>b__6() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 306Object reference not set to an instance of an object.
+---------------------------------------
+11:49:18 19 December 2014 
+   at System.Data.SQLite.SQLite3.Prepare(SQLiteConnection cnn, String strSql, SQLiteStatement previous, UInt32 timeoutMS, String& strRemain)
+   at System.Data.SQLite.SQLiteCommand.BuildNextCommand()
+   at System.Data.SQLite.SQLiteCommand.GetStatement(Int32 index)
+   at System.Data.SQLite.SQLiteDataReader.NextResult()
+   at System.Data.SQLite.SQLiteDataReader..ctor(SQLiteCommand cmd, CommandBehavior behave)
+   at System.Data.SQLite.SQLiteCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.SQLite.SQLiteCommand.ExecuteNonQuery()
+   at AppedoLT.DataAccessLayer.ReportMaster.Executequery(String reportName, String query) in e:\AppedoLT\AppedoLT.DataAccessLayer\ReportMaster.cs:line 621SQLite error
+no such table: AM.reportdata
+---------------------------------------
+11:49:23 19 December 2014 
+   at System.Data.SQLite.SQLite3.Prepare(SQLiteConnection cnn, String strSql, SQLiteStatement previous, UInt32 timeoutMS, String& strRemain)
+   at System.Data.SQLite.SQLiteCommand.BuildNextCommand()
+   at System.Data.SQLite.SQLiteCommand.GetStatement(Int32 index)
+   at System.Data.SQLite.SQLiteDataReader.NextResult()
+   at System.Data.SQLite.SQLiteDataReader..ctor(SQLiteCommand cmd, CommandBehavior behave)
+   at System.Data.SQLite.SQLiteCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.SQLite.SQLiteCommand.ExecuteReader()
+   at AppedoLT.DataAccessLayer.Result.GetReader(String query, SQLiteConnection _con) in e:\AppedoLT\AppedoLT.DataAccessLayer\Result.cs:line 594
+   at AppedoLT.DataAccessLayer.Result.GetSummaryReportByScript(String reportName, XmlNode runNode) in e:\AppedoLT\AppedoLT.DataAccessLayer\Result.cs:line 366SQLite error
+no such table: requests_12
+---------------------------------------
+11:50:23 19 December 2014 
+   at System.Net.Sockets.NetworkStream.Read(Byte[] buffer, Int32 offset, Int32 size)
+   at AppedoLT.Core.Trasport.ReadHeader(Stream stream) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 137
+   at AppedoLT.Core.Trasport.Receive() in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 66
+   at AppedoLTController.ResultFileGenerator.ReceiveAllChartData(String reportName) in e:\AppedoLT\AppedoLT.Controller\ResultFileGenerator.cs:line 265
+Unable to read data from the transport connection: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.
+---------------------------------------
+11:51:33 19 December 2014 
+   at System.Net.Sockets.NetworkStream.Read(Byte[] buffer, Int32 offset, Int32 size)
+   at AppedoLT.Core.Trasport.ReadHeader(Stream stream) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 137
+   at AppedoLT.Core.Trasport.Receive() in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 66
+   at AppedoLTController.ResultFileGenerator.ReceiveAllChartData(String reportName) in e:\AppedoLT\AppedoLT.Controller\ResultFileGenerator.cs:line 265
+Unable to read data from the transport connection: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.
+---------------------------------------
+12:06:33 19 December 2014 
+   at System.Data.SQLite.SQLite3.Prepare(SQLiteConnection cnn, String strSql, SQLiteStatement previous, UInt32 timeoutMS, String& strRemain)
+   at System.Data.SQLite.SQLiteCommand.BuildNextCommand()
+   at System.Data.SQLite.SQLiteCommand.GetStatement(Int32 index)
+   at System.Data.SQLite.SQLiteDataReader.NextResult()
+   at System.Data.SQLite.SQLiteDataReader..ctor(SQLiteCommand cmd, CommandBehavior behave)
+   at System.Data.SQLite.SQLiteCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.SQLite.SQLiteCommand.ExecuteNonQuery()
+   at AppedoLT.DataAccessLayer.ReportMaster.Executequery(String reportName, String query) in e:\AppedoLT\AppedoLT.DataAccessLayer\ReportMaster.cs:line 621SQLite error
+no such table: AM.reportdata
+---------------------------------------
+12:06:33 19 December 2014 
+   at System.Data.SQLite.SQLite3.Prepare(SQLiteConnection cnn, String strSql, SQLiteStatement previous, UInt32 timeoutMS, String& strRemain)
+   at System.Data.SQLite.SQLiteCommand.BuildNextCommand()
+   at System.Data.SQLite.SQLiteCommand.GetStatement(Int32 index)
+   at System.Data.SQLite.SQLiteDataReader.NextResult()
+   at System.Data.SQLite.SQLiteDataReader..ctor(SQLiteCommand cmd, CommandBehavior behave)
+   at System.Data.SQLite.SQLiteCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.SQLite.SQLiteCommand.ExecuteReader()
+   at AppedoLT.DataAccessLayer.Result.GetReader(String query, SQLiteConnection _con) in e:\AppedoLT\AppedoLT.DataAccessLayer\Result.cs:line 594
+   at AppedoLT.DataAccessLayer.Result.GetSummaryReportByScript(String reportName, XmlNode runNode) in e:\AppedoLT\AppedoLT.DataAccessLayer\Result.cs:line 366SQLite error
+no such table: requests_12
+---------------------------------------
+12:07:34 19 December 2014 
+   at System.Net.Sockets.NetworkStream.Read(Byte[] buffer, Int32 offset, Int32 size)
+   at AppedoLT.Core.Trasport.ReadHeader(Stream stream) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 137
+   at AppedoLT.Core.Trasport.Receive() in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 66
+   at AppedoLTController.ResultFileGenerator.ReceiveAllChartData(String reportName) in e:\AppedoLT\AppedoLT.Controller\ResultFileGenerator.cs:line 265
+Unable to read data from the transport connection: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.
+---------------------------------------
+12:22:34 19 December 2014 
+   at System.Data.SQLite.SQLite3.Prepare(SQLiteConnection cnn, String strSql, SQLiteStatement previous, UInt32 timeoutMS, String& strRemain)
+   at System.Data.SQLite.SQLiteCommand.BuildNextCommand()
+   at System.Data.SQLite.SQLiteCommand.GetStatement(Int32 index)
+   at System.Data.SQLite.SQLiteDataReader.NextResult()
+   at System.Data.SQLite.SQLiteDataReader..ctor(SQLiteCommand cmd, CommandBehavior behave)
+   at System.Data.SQLite.SQLiteCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.SQLite.SQLiteCommand.ExecuteNonQuery()
+   at AppedoLT.DataAccessLayer.ReportMaster.Executequery(String reportName, String query) in e:\AppedoLT\AppedoLT.DataAccessLayer\ReportMaster.cs:line 621SQLite error
+no such table: AM.reportdata
+---------------------------------------
+12:22:34 19 December 2014 
+   at System.Data.SQLite.SQLite3.Prepare(SQLiteConnection cnn, String strSql, SQLiteStatement previous, UInt32 timeoutMS, String& strRemain)
+   at System.Data.SQLite.SQLiteCommand.BuildNextCommand()
+   at System.Data.SQLite.SQLiteCommand.GetStatement(Int32 index)
+   at System.Data.SQLite.SQLiteDataReader.NextResult()
+   at System.Data.SQLite.SQLiteDataReader..ctor(SQLiteCommand cmd, CommandBehavior behave)
+   at System.Data.SQLite.SQLiteCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.SQLite.SQLiteCommand.ExecuteReader()
+   at AppedoLT.DataAccessLayer.Result.GetReader(String query, SQLiteConnection _con) in e:\AppedoLT\AppedoLT.DataAccessLayer\Result.cs:line 594
+   at AppedoLT.DataAccessLayer.Result.GetSummaryReportByScript(String reportName, XmlNode runNode) in e:\AppedoLT\AppedoLT.DataAccessLayer\Result.cs:line 366SQLite error
+no such table: requests_12
+---------------------------------------
+12:23:39 19 December 2014 
+   at System.Net.Sockets.NetworkStream.Read(Byte[] buffer, Int32 offset, Int32 size)
+   at AppedoLT.Core.Trasport.ReadHeader(Stream stream) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 137
+   at AppedoLT.Core.Trasport.Receive() in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 66
+   at AppedoLTController.ResultFileGenerator.ReceiveAllChartData(String reportName) in e:\AppedoLT\AppedoLT.Controller\ResultFileGenerator.cs:line 265
+Unable to read data from the transport connection: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.
+---------------------------------------
+12:38:40 19 December 2014 
+   at System.Data.SQLite.SQLite3.Prepare(SQLiteConnection cnn, String strSql, SQLiteStatement previous, UInt32 timeoutMS, String& strRemain)
+   at System.Data.SQLite.SQLiteCommand.BuildNextCommand()
+   at System.Data.SQLite.SQLiteCommand.GetStatement(Int32 index)
+   at System.Data.SQLite.SQLiteDataReader.NextResult()
+   at System.Data.SQLite.SQLiteDataReader..ctor(SQLiteCommand cmd, CommandBehavior behave)
+   at System.Data.SQLite.SQLiteCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.SQLite.SQLiteCommand.ExecuteNonQuery()
+   at AppedoLT.DataAccessLayer.ReportMaster.Executequery(String reportName, String query) in e:\AppedoLT\AppedoLT.DataAccessLayer\ReportMaster.cs:line 621SQLite error
+no such table: AM.reportdata
+---------------------------------------
+12:38:40 19 December 2014 
+   at System.Data.SQLite.SQLite3.Prepare(SQLiteConnection cnn, String strSql, SQLiteStatement previous, UInt32 timeoutMS, String& strRemain)
+   at System.Data.SQLite.SQLiteCommand.BuildNextCommand()
+   at System.Data.SQLite.SQLiteCommand.GetStatement(Int32 index)
+   at System.Data.SQLite.SQLiteDataReader.NextResult()
+   at System.Data.SQLite.SQLiteDataReader..ctor(SQLiteCommand cmd, CommandBehavior behave)
+   at System.Data.SQLite.SQLiteCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.SQLite.SQLiteCommand.ExecuteReader()
+   at AppedoLT.DataAccessLayer.Result.GetReader(String query, SQLiteConnection _con) in e:\AppedoLT\AppedoLT.DataAccessLayer\Result.cs:line 594
+   at AppedoLT.DataAccessLayer.Result.GetSummaryReportByScript(String reportName, XmlNode runNode) in e:\AppedoLT\AppedoLT.DataAccessLayer\Result.cs:line 366SQLite error
+no such table: requests_12
+---------------------------------------
+12:39:40 19 December 2014 
+   at System.Net.Sockets.NetworkStream.Read(Byte[] buffer, Int32 offset, Int32 size)
+   at AppedoLT.Core.Trasport.ReadHeader(Stream stream) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 137
+   at AppedoLT.Core.Trasport.Receive() in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 66
+   at AppedoLTController.ResultFileGenerator.ReceiveAllChartData(String reportName) in e:\AppedoLT\AppedoLT.Controller\ResultFileGenerator.cs:line 265
+Unable to read data from the transport connection: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.
+---------------------------------------

@@ -21,15 +21,15 @@ namespace MSIISCounterAgent
             try
             {
                 string type = System.Configuration.ConfigurationManager.AppSettings["type"];
-                string uid = System.Configuration.ConfigurationManager.AppSettings["uid"];
-                if (uid == string.Empty)
+                string guid = System.Configuration.ConfigurationManager.AppSettings["guid"];
+                if (guid == string.Empty)
                 {
-                    MessageBox.Show("UID is missing. Please download again.");
+                    MessageBox.Show("GUID is missing. Please download again.");
                     Environment.Exit(1);
                 }
                 else
                 {
-                    agent = new Agent(counterXML, true, uid, type);
+                    agent = new Agent(counterXML, true, guid, type);
                     DoWorkThread = new Thread(new ThreadStart(DoWork));
                     DoWorkThread.Start();
                     ni.Icon = new Form().Icon;
@@ -56,7 +56,7 @@ namespace MSIISCounterAgent
                     try
                     {
                         agent.SendCounter();
-                        Thread.Sleep(30000);
+                        Thread.Sleep(20000);
                     }
                     catch (Exception ex)
                     {

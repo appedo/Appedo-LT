@@ -65,6 +65,7 @@ namespace AppedoLT.Core
 
             header.Append(ReadHeader(stream));
             objTrasportData.Operation = new Regex("(.*): ([0-9]*)").Match(header.ToString()).Groups[1].Value;
+           
             foreach (Match match in (new Regex("(.*)= (.*)\r\n").Matches(header.ToString())))
             {
                 objTrasportData.Header.Add(match.Groups[1].Value, match.Groups[2].Value);

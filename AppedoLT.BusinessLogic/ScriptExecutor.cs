@@ -290,6 +290,7 @@ namespace AppedoLT.BusinessLogic
                 if (_setting.Type == "1")
                 {
                     _completedUserCount = _usersList.FindAll(f => f.WorkCompleted == true).Count;
+                    StatusSummary.TotalVUserCompleted = _completedUserCount;
                     if ((_endUserid - (_startUserid - 1)) == _completedUserCount)
                     {
                         lock (userCompletedLock)

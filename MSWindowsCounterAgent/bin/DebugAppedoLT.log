@@ -1,0 +1,33 @@
+Log Entry : 
+15:34:13 10 December 2014 
+--Log entry goes here--
+   at MSWindowsCounterAgent.frmMSWindowsCounterAgent.DoWork() in e:\AppedoLT\MSWindowsCounterAgent\frmMSWindowsCounterAgent.cs:line 65Object reference not set to an instance of an object.
+---------------------------------------
+Log Entry : 
+15:34:13 10 December 2014 
+--Log entry goes here--
+   at MSWindowsCounterAgent.frmMSWindowsCounterAgent.DoWork() in e:\AppedoLT\MSWindowsCounterAgent\frmMSWindowsCounterAgent.cs:line 65Object reference not set to an instance of an object.
+---------------------------------------
+Log Entry : 
+15:34:13 10 December 2014 
+--Log entry goes here--
+   at MSWindowsCounterAgent.frmMSWindowsCounterAgent.DoWork() in e:\AppedoLT\MSWindowsCounterAgent\frmMSWindowsCounterAgent.cs:line 65Object reference not set to an instance of an object.
+---------------------------------------
+Log Entry : 
+15:34:13 10 December 2014 
+--Log entry goes here--
+   at MSWindowsCounterAgent.frmMSWindowsCounterAgent.DoWork() in e:\AppedoLT\MSWindowsCounterAgent\frmMSWindowsCounterAgent.cs:line 65Object reference not set to an instance of an object.
+---------------------------------------
+Log Entry : 
+15:39:24 10 December 2014 
+--Log entry goes here--
+   at System.Uri.CreateThis(String uri, Boolean dontEscape, UriKind uriKind)
+   at System.Net.WebRequest.Create(String requestUriString)
+   at AgentCore.Utility.GetPageContent(String Url, String data) in e:\AppedoLT\AgentCore\Utility.cs:line 52Invalid URI: The URI is empty.
+---------------------------------------
+Log Entry : 
+15:44:26 10 December 2014 
+--Log entry goes here--
+   at System.Net.HttpWebRequest.GetResponse()
+   at AgentCore.Utility.GetPageContent(String Url, String data) in e:\AppedoLT\AgentCore\Utility.cs:line 59The remote server returned an error: (404) Not Found.
+---------------------------------------

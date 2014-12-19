@@ -55,7 +55,6 @@
       <DependentUpon>frmProfiler.cs</DependentUpon>
     </Compile>
     <Compile Include="NamedManualResetEvent.cs" />
-    <Compile Include="ProfilerXml.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RegisterDLL.cs" />

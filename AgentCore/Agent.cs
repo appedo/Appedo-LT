@@ -16,7 +16,7 @@ namespace AgentCore
 
         Dictionary<string, PerformanceCounter> Counters = new Dictionary<string, PerformanceCounter>();
         Dictionary<string, List<PerformanceCounter>> CountersAllInstance = new Dictionary<string, List<PerformanceCounter>>();
-        private string _uid = string.Empty;
+        private string _guid = string.Empty;
         private string _type = string.Empty;
         string path = string.Empty;
         string dataSendUrl = string.Empty;
@@ -25,10 +25,10 @@ namespace AgentCore
         bool IsWindowsCounter = false;
        
 
-        public Agent(XmlFileProccessor xml, bool isWindowsCounter,string uid,string type)
+        public Agent(XmlFileProccessor xml, bool isWindowsCounter,string guid,string type)
         {
             IsWindowsCounter = isWindowsCounter;
-            _uid = uid;
+            _guid = guid;
             _type=type;
             if (IsWindowsCounter == true) SetTotalPhysicalMemory();
             path = GetPath();
@@ -140,7 +140,7 @@ namespace AgentCore
                 }
             }
             if (IsWindowsCounter == true) data.Append("1000015").Append("=").Append(totalPhysicalMemory).Append(",");
-            data.Append(1001).Append("=\"").Append(_uid).Append("\",");
+            data.Append(1001).Append("=\"").Append(_guid).Append("\",");
             data.Append(1002).Append("=\"").Append(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff")).Append("\"}").Append("&");
             data.Append("agent_type=").Append(_type);
             return data.ToString();

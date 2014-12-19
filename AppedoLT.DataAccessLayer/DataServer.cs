@@ -242,7 +242,6 @@ namespace AppedoLT.DataAccessLayer
                 {
                     reportDT.Enqueue(rd);
                 }
-
             }
             catch (Exception ex)
             {
@@ -257,6 +256,21 @@ namespace AppedoLT.DataAccessLayer
                 transcations.Clear();
                 errors.Clear();
                 logs.Clear();
+                using (FileStream stream = new FileStream(Constants.GetInstance().ExecutingAssemblyLocation + "\\out.txt", FileMode.Truncate))
+                {
+                };
+                using (FileStream stream = new FileStream(Constants.GetInstance().ExecutingAssemblyLocation + "\\error.txt", FileMode.Truncate))
+                {
+                };
+                using (FileStream stream = new FileStream(Constants.GetInstance().ExecutingAssemblyLocation + "\\transaction.txt", FileMode.Truncate))
+                {
+                };
+                using (FileStream stream = new FileStream(Constants.GetInstance().ExecutingAssemblyLocation + "\\log.txt", FileMode.Truncate))
+                { };
+                reportDataFile = new StreamWriter(Constants.GetInstance().ExecutingAssemblyLocation + "\\out.txt");
+                errorFile = new StreamWriter(Constants.GetInstance().ExecutingAssemblyLocation + "\\error.txt");
+                transactionFile = new StreamWriter(Constants.GetInstance().ExecutingAssemblyLocation + "\\transaction.txt");
+                logsFile = new StreamWriter(Constants.GetInstance().ExecutingAssemblyLocation + "\\log.txt");
             }
             catch (Exception ex)
             {

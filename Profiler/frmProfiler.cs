@@ -47,8 +47,8 @@ namespace Profiler
         string trayText = "Appedo Profile Agent.";
         string trayTipText = "Appedo Profile.";
         MessageQueue myQueue;
-        ProfilerXml xml = ProfilerXml.GetInstance();
-        string uid = string.Empty;
+       
+        string guid = string.Empty;
         string dataSendUrl;
 
         object lockobj = new object();
@@ -68,14 +68,14 @@ namespace Profiler
             InitializeComponent();
             try
             {
-                if (System.Configuration.ConfigurationManager.AppSettings["uid"] == string.Empty)
+                if (System.Configuration.ConfigurationManager.AppSettings["guid"] == string.Empty)
                 {
-                    MessageBox.Show("UID is missing. Please download again.");
+                    MessageBox.Show("GUID is missing. Please download again.");
                     Environment.Exit(1);
                 }
                 else
                 {
-                    uid = System.Configuration.ConfigurationManager.AppSettings["uid"];
+                    guid = System.Configuration.ConfigurationManager.AppSettings["guid"];
                     dataSendUrl = GetPath() + "/collectProfilerStack";
                     DoWorkThread = new Thread(new ThreadStart(DoWork));
                     DoWorkThread.Start();
@@ -1137,7 +1137,7 @@ namespace Profiler
             //callee_method_id - 55
             int count = Trace.Count;
             StringBuilder dataStr = new StringBuilder();
-            dataStr.AppendFormat("uid={0}&agent_type=DOTNET_PROFILER&profiler_array_json=[", uid);
+            dataStr.AppendFormat("guid={0}&agent_type=DOTNET_PROFILER&profiler_array_json=[", guid);
             for (int index = 0; index < count; index++)
             {
                 TraceLogInfo info = Trace.Dequeue();

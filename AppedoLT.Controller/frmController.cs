@@ -1,4 +1,5 @@
-﻿using AppedoLT.Core;
+﻿
+using AppedoLT.Core;
 using AppedoLT.DataAccessLayer;
 using System;
 using System.Collections.Generic;
@@ -50,7 +51,6 @@ namespace AppedoLTController
                 ni.ShowBalloonTip(1000);
                 ni.ContextMenuStrip = contextMenuStrip1;
                 worker.RunWorkerAsync();
-               
             }
             catch (Exception ex)
             {
@@ -208,7 +208,6 @@ namespace AppedoLTController
                                Thread.Sleep(5000);
                                if (AppedoServer != string.Empty)
                                {
-
                                    TrasportData data = new TrasportData("isqueueavailable", string.Empty, null);
                                    Trasport server = new Trasport(AppedoServer, Constants.GetInstance().AppedoPort);
                                    server.Send(data);
@@ -228,7 +227,6 @@ namespace AppedoLTController
                                        break;
                                    }
                                }
-                              
                            }
                            else
                            {
@@ -282,6 +280,11 @@ namespace AppedoLTController
                        }
                    }
                }).Start();
+        }
+
+        void StartClientforlicensed()
+        {
+
         }
 
         void CollectFailedTest()
@@ -781,6 +784,22 @@ namespace AppedoLTController
                 ExceptionHandler.WritetoEventLog(ex.StackTrace + ex.Message);
             }
         }
+
+        private void CreateInstance(string imageId, string region, string InstanceType, string accessKey = "AKIAIA6JPHHN75UVLRYA", string secretAccessKey = "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", string secGroupName = "default")
+        {
+            //var ec2Client = new Amazon.EC2.AmazonEC2Client(accessKey, secretAccessKey, Amazon.RegionEndpoint.GetBySystemName(region));
+            //List<string> groups = new List<string>() { secGroupName };
+            //var launchRequest = new RunInstancesRequest()
+            //{
+            //    ImageId = amiID,
+            //    InstanceType = "t1.micro",
+            //    MinCount = 1,
+            //    MaxCount = 1,
+            //    KeyName = keyPairName,
+            //    SecurityGroupIds = groups
+            //};
+        }
+
     }
 
     /// <summary>

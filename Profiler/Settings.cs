@@ -16,7 +16,7 @@ namespace Profiler
 {
     public partial class Settings : Form
     {
-        ProfilerXml xml = ProfilerXml.GetInstance();
+       
         public string uid = string.Empty;
 
         public Settings()
@@ -27,32 +27,32 @@ namespace Profiler
 
         private void btnSubmit_Click(object sender, EventArgs e)
         {
-            try
-            {
-                string path = GetPath();
-                path = path + "/getConfigurations";
-                string data = string.Format("agent_type={0}&guid={1}", xml.doc.SelectSingleNode("//root/type").Attributes["value"].Value, txtGuid.Text);
-                data = GetPageContent(path, data);
-                uid = new Regex(".* \"uid\": \"(.*?)\"").Match(data).Groups[1].Value;
-                if(uid==string.Empty)
-                {
-                    MessageBox.Show("Invaild GUID");
-                    this.DialogResult = DialogResult.None;
-                }
-                else
-                {
-                    xml.doc.SelectSingleNode("//root/guid").Attributes["value"].Value = txtGuid.Text;
-                    xml.doc.SelectSingleNode("//root/uid").Attributes["value"].Value = uid;
-                    xml.doc.SelectSingleNode("//root/clrversion").Attributes["value"].Value = ddlClrVer.Text;
-                    xml.Save();
-                }
+            //try
+            //{
+            //    string path = GetPath();
+            //    path = path + "/getConfigurations";
+            //    string data = string.Format("agent_type={0}&guid={1}", xml.doc.SelectSingleNode("//root/type").Attributes["value"].Value, txtGuid.Text);
+            //    data = GetPageContent(path, data);
+            //    uid = new Regex(".* \"uid\": \"(.*?)\"").Match(data).Groups[1].Value;
+            //    if(uid==string.Empty)
+            //    {
+            //        MessageBox.Show("Invaild GUID");
+            //        this.DialogResult = DialogResult.None;
+            //    }
+            //    else
+            //    {
+            //        //xml.doc.SelectSingleNode("//root/guid").Attributes["value"].Value = txtGuid.Text;
+            //        //xml.doc.SelectSingleNode("//root/uid").Attributes["value"].Value = uid;
+            //        //xml.doc.SelectSingleNode("//root/clrversion").Attributes["value"].Value = ddlClrVer.Text;
+            //        //xml.Save();
+            //    }
 
-            }
-            catch(Exception ex)
-            {
-                this.DialogResult = DialogResult.None;
-                MessageBox.Show(ex.Message);
-            }
+            //}
+            //catch(Exception ex)
+            //{
+            //    this.DialogResult = DialogResult.None;
+            //    MessageBox.Show(ex.Message);
+            //}
         }
         private string GetPath()
         {
