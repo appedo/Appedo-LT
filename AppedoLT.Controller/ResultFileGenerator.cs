@@ -170,14 +170,14 @@ namespace AppedoLTController
             string folderPath = Constants.GetInstance().ExecutingAssemblyLocation + "\\Data\\" + reportname;
             try
             {
-               
+
 
                 if (Directory.Exists(folderPath))
                 {
                     Directory.Delete(folderPath, true);
                     if (Directory.Exists(folderPath)) Directory.Delete(folderPath);
                 }
-                
+
             }
             catch (Exception ex)
             {

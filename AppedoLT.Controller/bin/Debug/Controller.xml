@@ -1,11 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
-  <runs lastrequestsourceip="192.168.1.160">
-    <run reportname="742" sourceip="192.168.1.160">
-      <scripts>
-        <script id="12" name="script2" />
-      </scripts>
-      <loadgen ipaddress="192.168.1.100" hostname="192.168.1.100" resultfilereceived="False" chartresultfilereceived="False" runstarted="False" />
-    </run>
+  <runs appedoipaddress="192.168.1.140">
   </runs>
 </root>

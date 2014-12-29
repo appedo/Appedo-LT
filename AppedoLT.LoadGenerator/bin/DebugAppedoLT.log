@@ -69,3 +69,126 @@ The process cannot access the file 'E:\AppedoLT\AppedoLT.LoadGenerator\bin\Debug
 11:50:29 19 December 2014 
    at AppedoLTLoadGenerator.LoadGenerator.<>c__DisplayClass1.<worker_DoWork>b__0() in e:\AppedoLT\AppedoLT.LoadGenerator\frmLoadGenerator.cs:line 197Object reference not set to an instance of an object.
 ---------------------------------------
+15:45:04 25 December 2014 
+The process cannot access the file 'E:\AppedoLT\AppedoLT.LoadGenerator\bin\Debug\out.txt' because it is being used by another process.
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options, String msgPath, Boolean bFromProxy)
+   at System.IO.FileStream..ctor(String path, FileMode mode)
+   at AppedoLT.DataAccessLayer.DataServer.ClearData() in e:\AppedoLT\AppedoLT.DataAccessLayer\DataServer.cs:line 259
+---------------------------------------
+16:00:00 25 December 2014 
+The process cannot access the file 'E:\AppedoLT\AppedoLT.LoadGenerator\bin\Debug\out.txt' because it is being used by another process.
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options, String msgPath, Boolean bFromProxy)
+   at System.IO.FileStream..ctor(String path, FileMode mode)
+   at AppedoLT.DataAccessLayer.DataServer.ClearData() in e:\AppedoLT\AppedoLT.DataAccessLayer\DataServer.cs:line 259
+---------------------------------------
+16:21:20 25 December 2014 
+The process cannot access the file 'E:\AppedoLT\AppedoLT.LoadGenerator\bin\Debug\out.txt' because it is being used by another process.
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options, String msgPath, Boolean bFromProxy)
+   at System.IO.FileStream..ctor(String path, FileMode mode)
+   at AppedoLT.DataAccessLayer.DataServer.ClearData() in e:\AppedoLT\AppedoLT.DataAccessLayer\DataServer.cs:line 259
+---------------------------------------
+16:31:01 25 December 2014 
+The process cannot access the file 'E:\AppedoLT\AppedoLT.LoadGenerator\bin\Debug\out.txt' because it is being used by another process.
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options, String msgPath, Boolean bFromProxy)
+   at System.IO.FileStream..ctor(String path, FileMode mode)
+   at AppedoLT.DataAccessLayer.DataServer.ClearData() in e:\AppedoLT\AppedoLT.DataAccessLayer\DataServer.cs:line 259
+---------------------------------------
+16:36:36 25 December 2014 
+The process cannot access the file 'E:\AppedoLT\AppedoLT.LoadGenerator\bin\Debug\out.txt' because it is being used by another process.
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options, String msgPath, Boolean bFromProxy)
+   at System.IO.FileStream..ctor(String path, FileMode mode)
+   at AppedoLT.DataAccessLayer.DataServer.ClearData() in e:\AppedoLT\AppedoLT.DataAccessLayer\DataServer.cs:line 259
+---------------------------------------
+16:43:06 25 December 2014 
+The process cannot access the file 'E:\AppedoLT\AppedoLT.LoadGenerator\bin\Debug\out.txt' because it is being used by another process.
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options, String msgPath, Boolean bFromProxy)
+   at System.IO.FileStream..ctor(String path, FileMode mode)
+   at AppedoLT.DataAccessLayer.DataServer.ClearData() in e:\AppedoLT\AppedoLT.DataAccessLayer\DataServer.cs:line 259
+---------------------------------------
+16:51:12 25 December 2014 
+The process cannot access the file 'E:\AppedoLT\AppedoLT.LoadGenerator\bin\Debug\out.txt' because it is being used by another process.
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options, String msgPath, Boolean bFromProxy)
+   at System.IO.FileStream..ctor(String path, FileMode mode)
+   at AppedoLT.DataAccessLayer.DataServer.ClearData() in e:\AppedoLT\AppedoLT.DataAccessLayer\DataServer.cs:line 259
+---------------------------------------
+16:52:17 25 December 2014 
+   at System.Net.ConnectStream.Read(Byte[] buffer, Int32 offset, Int32 size)
+   at AppedoLT.BusinessLogic.HttpRequest.ReadResponseBody(String contentType, Int64 contentLength, Stream responseStream, MemoryStream& responseBody) in e:\AppedoLT\AppedoLT.BusinessLogic\HttpRequest.cs:line 615
+The request was aborted: The request was canceled.
+---------------------------------------
+16:52:17 25 December 2014 
+   at System.Net.ConnectStream.Read(Byte[] buffer, Int32 offset, Int32 size)
+   at AppedoLT.BusinessLogic.HttpRequest.ReadResponseBody(String contentType, Int64 contentLength, Stream responseStream, MemoryStream& responseBody) in e:\AppedoLT\AppedoLT.BusinessLogic\HttpRequest.cs:line 615
+The request was aborted: The request was canceled.
+---------------------------------------
+16:52:17 25 December 2014 
+   at System.Net.ConnectStream.Read(Byte[] buffer, Int32 offset, Int32 size)
+   at AppedoLT.BusinessLogic.HttpRequest.ReadResponseBody(String contentType, Int64 contentLength, Stream responseStream, MemoryStream& responseBody) in e:\AppedoLT\AppedoLT.BusinessLogic\HttpRequest.cs:line 615
+The request was aborted: The request was canceled.
+---------------------------------------
+16:53:12 25 December 2014 
+The process cannot access the file 'E:\AppedoLT\AppedoLT.LoadGenerator\bin\Debug\out.txt' because it is being used by another process.
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options, String msgPath, Boolean bFromProxy)
+   at System.IO.FileStream..ctor(String path, FileMode mode)
+   at AppedoLT.DataAccessLayer.DataServer.ClearData() in e:\AppedoLT\AppedoLT.DataAccessLayer\DataServer.cs:line 259
+---------------------------------------
+16:54:17 25 December 2014 
+   at System.Net.ConnectStream.Read(Byte[] buffer, Int32 offset, Int32 size)
+   at AppedoLT.BusinessLogic.HttpRequest.ReadResponseBody(String contentType, Int64 contentLength, Stream responseStream, MemoryStream& responseBody) in e:\AppedoLT\AppedoLT.BusinessLogic\HttpRequest.cs:line 615
+The request was aborted: The request was canceled.
+---------------------------------------
+16:54:17 25 December 2014 
+   at System.Net.ConnectStream.Read(Byte[] buffer, Int32 offset, Int32 size)
+   at AppedoLT.BusinessLogic.HttpRequest.ReadResponseBody(String contentType, Int64 contentLength, Stream responseStream, MemoryStream& responseBody) in e:\AppedoLT\AppedoLT.BusinessLogic\HttpRequest.cs:line 615
+The request was aborted: The request was canceled.
+---------------------------------------
+16:54:17 25 December 2014 
+   at System.Net.ConnectStream.Read(Byte[] buffer, Int32 offset, Int32 size)
+   at AppedoLT.BusinessLogic.HttpRequest.ReadResponseBody(String contentType, Int64 contentLength, Stream responseStream, MemoryStream& responseBody) in e:\AppedoLT\AppedoLT.BusinessLogic\HttpRequest.cs:line 615
+The request was aborted: The request was canceled.
+---------------------------------------
+16:55:28 25 December 2014 
+The process cannot access the file 'E:\AppedoLT\AppedoLT.LoadGenerator\bin\Debug\out.txt' because it is being used by another process.
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options, String msgPath, Boolean bFromProxy)
+   at System.IO.FileStream..ctor(String path, FileMode mode)
+   at AppedoLT.DataAccessLayer.DataServer.ClearData() in e:\AppedoLT\AppedoLT.DataAccessLayer\DataServer.cs:line 259
+---------------------------------------
+16:56:28 25 December 2014 
+   at System.Net.ConnectStream.Read(Byte[] buffer, Int32 offset, Int32 size)
+   at AppedoLT.BusinessLogic.HttpRequest.ReadResponseBody(String contentType, Int64 contentLength, Stream responseStream, MemoryStream& responseBody) in e:\AppedoLT\AppedoLT.BusinessLogic\HttpRequest.cs:line 615
+The request was aborted: The request was canceled.
+---------------------------------------
+16:58:23 25 December 2014 
+The process cannot access the file 'E:\AppedoLT\AppedoLT.LoadGenerator\bin\Debug\out.txt' because it is being used by another process.
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options, String msgPath, Boolean bFromProxy)
+   at System.IO.FileStream..ctor(String path, FileMode mode)
+   at AppedoLT.DataAccessLayer.DataServer.ClearData() in e:\AppedoLT\AppedoLT.DataAccessLayer\DataServer.cs:line 259
+---------------------------------------
+11:47:42 26 December 2014 
+The process cannot access the file 'E:\AppedoLT\AppedoLT.LoadGenerator\bin\Debug\out.txt' because it is being used by another process.
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options, String msgPath, Boolean bFromProxy)
+   at System.IO.FileStream..ctor(String path, FileMode mode)
+   at AppedoLT.DataAccessLayer.DataServer.ClearData() in e:\AppedoLT\AppedoLT.DataAccessLayer\DataServer.cs:line 259
+---------------------------------------

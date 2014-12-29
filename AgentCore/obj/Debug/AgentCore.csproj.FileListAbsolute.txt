@@ -21,3 +21,4 @@ E:\AppedoLT\AgentCore\obj\Debug\AgentCore.Properties.Resources.resources
 E:\AppedoLT\AgentCore\obj\Debug\AgentCore.csproj.GenerateResource.Cache
 E:\AppedoLT\AgentCore\obj\Debug\AgentCore.dll
 E:\AppedoLT\AgentCore\obj\Debug\AgentCore.pdb
+E:\AppedoLT\AgentCore\obj\Debug\AgentCore.csprojResolveAssemblyReference.cache

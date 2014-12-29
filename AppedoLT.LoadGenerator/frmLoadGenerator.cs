@@ -1,4 +1,5 @@
-﻿using AppedoLT.Core;
+﻿
+using AppedoLT.Core;
 using AppedoLT.DataAccessLayer;
 using System;
 using System.Collections.Generic;
@@ -28,7 +29,7 @@ namespace AppedoLTLoadGenerator
         public LoadGenerator()
         {
             InitializeComponent();
-          
+            
             worker.DoWork += new DoWorkEventHandler(worker_DoWork);
             try
             {

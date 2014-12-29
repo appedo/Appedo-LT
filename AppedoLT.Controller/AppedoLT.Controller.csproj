@@ -49,7 +49,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="AWSSDK">
-      <HintPath>AWS\AWSSDK.dll</HintPath>
+      <HintPath>C:\Program Files (x86)\AWS SDK for .NET\bin\Net35\AWSSDK.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
@@ -68,24 +68,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controller.cs" />
-    <Compile Include="ControllerService.cs" />
-    <Compile Include="Customer.cs" />
-    <Compile Include="FileRepository.cs" />
-    <Compile Include="FileService.cs" />
-    <Compile Include="Form1.cs">
+    <Compile Include="frmAppedoIP.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="frmAppedoIP.Designer.cs">
+      <DependentUpon>frmAppedoIP.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controller.cs" />
     <Compile Include="frmController.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmController.Designer.cs">
       <DependentUpon>frmController.cs</DependentUpon>
     </Compile>
-    <Compile Include="IControllerService.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ControllerXml.cs" />
@@ -96,8 +91,8 @@
       <DependentUpon>ReportGenerate.cs</DependentUpon>
     </Compile>
     <Compile Include="ResultFileGenerator.cs" />
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="frmAppedoIP.resx">
+      <DependentUpon>frmAppedoIP.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmController.resx">
       <DependentUpon>frmController.cs</DependentUpon>

@@ -1,4 +1,5 @@
 ﻿
+using Amazon.EC2.Model;
 using AppedoLT.Core;
 using AppedoLT.DataAccessLayer;
 using System;
@@ -27,7 +28,7 @@ namespace AppedoLTController
         ControllerXml _ControllerXml = ControllerXml.GetInstance();
 
         Thread DoWorkThread = null;
-        Dictionary<string, Controller> Controllers = new Dictionary<string, Controller>();
+        Dictionary<string, Controller> Controllers = Controller.Controllers;
 
         object test = new object();
         string AppedoServer = string.Empty;
@@ -39,7 +40,14 @@ namespace AppedoLTController
             this.Visible = false;
             try
             {
-                AppedoServer = ControllerXml.GetInstance().doc.SelectSingleNode("//runs").Attributes["lastrequestsourceip"].Value;
+                AppedoServer = ControllerXml.GetInstance().doc.SelectSingleNode("//runs").Attributes["appedoipaddress"].Value;
+                if (AppedoServer == string.Empty)
+                {
+                    if ((new frmAppedoIP().ShowDialog() != DialogResult.OK))
+                    {
+                        Environment.Exit(1);
+                    }
+                }
                 serverSocket.Start();
                 DoWorkThread = new Thread(new ThreadStart(DoWork));
                 DoWorkThread.Start();
@@ -62,7 +70,6 @@ namespace AppedoLTController
         {
             try
             {
-               
                 CollectFailedTest();
                 StartClient();
                 while ((true))
@@ -89,7 +96,7 @@ namespace AppedoLTController
                                      break;
 
                                  case "test":
-                                     UIclient.Send(new TrasportData("response", "ok", null));
+                                     UIclient.Send(new TrasportData("ok", string.Empty, null));
                                      break;
 
 
@@ -198,79 +205,30 @@ namespace AppedoLTController
             new Thread(() =>
                {
                    isClientRunning = true;
-                   Thread.Sleep(10000);
                    while (true)
                    {
                        try
                        {
-                           if (Controllers.Count == 0)
+                           if (AppedoServer != string.Empty)
                            {
-                               Thread.Sleep(5000);
-                               if (AppedoServer != string.Empty)
+                               TrasportData data = new TrasportData("isqueueavailable", string.Empty, null);
+                               Trasport server = new Trasport(AppedoServer, Constants.GetInstance().AppedoPort);
+                               server.Send(data);
+                               data = server.Receive();
+                               if (data.Header["status"] == "1")
                                {
-                                   TrasportData data = new TrasportData("isqueueavailable", string.Empty, null);
-                                   Trasport server = new Trasport(AppedoServer, Constants.GetInstance().AppedoPort);
+                                   server = new Trasport(AppedoServer, Constants.GetInstance().AppedoPort);
+                                   data = new TrasportData("getrundetail", string.Empty, null);
                                    server.Send(data);
                                    data = server.Receive();
-                                   if (data.Header["status"] == "1")
-                                   {
-                                       server = new Trasport(AppedoServer, Constants.GetInstance().AppedoPort);
-                                       data = new TrasportData("run", string.Empty, null);
-                                       server.Send(data);
-                                       data = server.Receive();
-                                       server = new Trasport(AppedoServer, Constants.GetInstance().AppedoPort);
-                                       RunOperation(server, data);
-                                   }
-                                   else
-                                   {
-                                       isClientRunning = false;
-                                       break;
-                                   }
+                                   server = new Trasport(AppedoServer, Constants.GetInstance().AppedoPort);
+                                   server.Send(new TrasportData("ok", string.Empty, null));
+                                   new Thread(() => { RunOperation(server, data); }).Start();
                                }
-                           }
-                           else
-                           {
+                               else
                                {
-                                   {
-                                       List<string> statusList = GetStatusList();
-                                       List<string> CompletedReportId = new List<string>();
-                                       StringBuilder status = new StringBuilder();
-                                       try
-                                       {
-                                           foreach (string stu in statusList)
-                                           {
-                                               if (stu.Split(',')[3] == "1") CompletedReportId.Add(stu.Split(',')[0]);
-                                               status.AppendLine(stu);
-                                           }
-
-                                           if (CompletedReportId.Count > 0)
-                                           {
-                                               foreach (string runid in CompletedReportId)
-                                               {
-                                                   try
-                                                   {
-                                                       Controllers.Remove(runid);
-                                                   }
-                                                   catch (Exception ex)
-                                                   {
-                                                       ExceptionHandler.WritetoEventLog(ex.StackTrace + ex.Message);
-                                                   }
-                                               }
-                                           }
-                                       }
-                                       catch (Exception ex)
-                                       {
-                                           ExceptionHandler.WritetoEventLog(ex.StackTrace + ex.Message);
-                                       }
-                                       finally
-                                       {
-                                           statusList = null;
-                                           status = null;
-                                           CompletedReportId = null;
-                                       }
-                                   }
+                                   Thread.Sleep(20000);
                                }
-                               Thread.Sleep(5000);
                            }
                        }
                        catch (Exception ex)
@@ -280,11 +238,6 @@ namespace AppedoLTController
                        }
                    }
                }).Start();
-        }
-
-        void StartClientforlicensed()
-        {
-
         }
 
         void CollectFailedTest()
@@ -311,7 +264,7 @@ namespace AppedoLTController
                         {
                             ExceptionHandler.WritetoEventLog(ex.StackTrace + ex.Message);
                         }
-                        Thread.Sleep(900000);
+                        Thread.Sleep(20000);
                     }
                 }).Start();
         }
@@ -485,7 +438,6 @@ namespace AppedoLTController
                     }
                 }
 
-                _ControllerXml.doc.SelectSingleNode("root/runs").Attributes["lastrequestsourceip"].Value = runDetail.Attributes["sourceip"].Value;
                 _ControllerXml.doc.SelectSingleNode("root/runs").AppendChild(runDetail);
                 _ControllerXml.Save();
             }
@@ -767,39 +719,93 @@ namespace AppedoLTController
 
         private void trimQueueToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            try
+            //try
+            //{
+            //    if (_ControllerXml.doc.SelectSingleNode("root/runs").Attributes["lastrequestsourceip"].Value != string.Empty)
+            //    {
+            //        AppedoServer = _ControllerXml.doc.SelectSingleNode("root/runs").Attributes["lastrequestsourceip"].Value;
+            //        if (isClientRunning == false)
+            //        {
+            //            StartClient();
+            //            MessageBox.Show("Started");
+            //        }
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    ExceptionHandler.WritetoEventLog(ex.StackTrace + ex.Message);
+            //}
+        }
+
+        private void CreateInstance(string imageId, string region, string InstanceType,string keyPairName, string accessKey, string secretAccessKey , string secGroupName)
+        {
+            var ec2Client = new Amazon.EC2.AmazonEC2Client(accessKey, secretAccessKey, Amazon.RegionEndpoint.GetBySystemName(region));
+         
+            List<string> groups = new List<string>();
+            foreach(string group in secGroupName.Split(','))
             {
-                if (_ControllerXml.doc.SelectSingleNode("root/runs").Attributes["lastrequestsourceip"].Value != string.Empty)
+                groups.Add(group);
+            }
+            var launchRequest = new RunInstancesRequest()
+            {
+                ImageId = imageId,
+                InstanceType = InstanceType,
+                MinCount = 1,
+                MaxCount = 1,
+                KeyName = keyPairName,
+                SecurityGroupIds = groups
+            };
+            var launchResponse = ec2Client.RunInstances(launchRequest);
+            List<Instance> instances = launchResponse.Reservation.Instances;
+            string ipAddress = string.Empty;
+            foreach (Instance item in instances)
+            {
+                while (true)
                 {
-                    AppedoServer = _ControllerXml.doc.SelectSingleNode("root/runs").Attributes["lastrequestsourceip"].Value;
-                    if (isClientRunning == false)
+                    if (item.PublicIpAddress != string.Empty)
                     {
-                        StartClient();
-                        MessageBox.Show("Started");
+                        ipAddress = item.PublicIpAddress;
+                        break;
+                    }
+                    else
+                    {
+                        Thread.Sleep(1000);
                     }
                 }
             }
-            catch (Exception ex)
+        }
+        private void GetAvailableInstanceOn(string imageId, string region, string InstanceType, string keyPairName, string accessKey, string secretAccessKey, string secGroupName)
+        {
+            var ec2Client = new Amazon.EC2.AmazonEC2Client(accessKey, secretAccessKey, Amazon.RegionEndpoint.GetBySystemName(region));
+
+            List<string> groups = new List<string>();
+            foreach (string group in secGroupName.Split(','))
             {
-                ExceptionHandler.WritetoEventLog(ex.StackTrace + ex.Message);
+                groups.Add(group);
+            }
+            var launchRequest = new RunInstancesRequest()
+            {
+                ImageId = imageId,
+                InstanceType = InstanceType,
+                MinCount = 1,
+                MaxCount = 1,
+                KeyName = keyPairName,
+                SecurityGroupIds = groups
+            };
+            var launchResponse = ec2Client.RunInstances(launchRequest);
+            List<Instance> instances = launchResponse.Reservation.Instances;
+            string ipAddress = string.Empty;
+            foreach (Instance item in instances)
+            {
+                while (true)
+                {
+                    if (item.PublicIpAddress != string.Empty)
+                    {
+                        ipAddress = item.PublicIpAddress;
+                    }
+                }
             }
         }
-
-        private void CreateInstance(string imageId, string region, string InstanceType, string accessKey = "AKIAIA6JPHHN75UVLRYA", string secretAccessKey = "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", string secGroupName = "default")
-        {
-            //var ec2Client = new Amazon.EC2.AmazonEC2Client(accessKey, secretAccessKey, Amazon.RegionEndpoint.GetBySystemName(region));
-            //List<string> groups = new List<string>() { secGroupName };
-            //var launchRequest = new RunInstancesRequest()
-            //{
-            //    ImageId = amiID,
-            //    InstanceType = "t1.micro",
-            //    MinCount = 1,
-            //    MaxCount = 1,
-            //    KeyName = keyPairName,
-            //    SecurityGroupIds = groups
-            //};
-        }
-
     }
 
     /// <summary>

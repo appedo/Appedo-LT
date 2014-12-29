@@ -44,7 +44,10 @@ namespace AppedoLT.Core
         {
             TcpClient client = new TcpClient();
             var result = client.BeginConnect(IPAddress.Parse(ipaddress), int.Parse(port), null, null);
-            result.AsyncWaitHandle.WaitOne(TimeSpan.FromSeconds(60));
+            if (!result.AsyncWaitHandle.WaitOne(TimeSpan.FromSeconds(20)))
+            {
+                throw new Exception("Failed to connect " + ipaddress );
+            }
             client.ReceiveTimeout = 1000000;
             client.SendTimeout = 1000000;
             return client;

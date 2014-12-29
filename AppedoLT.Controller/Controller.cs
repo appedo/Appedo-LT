@@ -14,6 +14,7 @@ namespace AppedoLTController
 {
     class Controller
     {
+        
         Thread _CollectorThread = null;
         Constants _constants = Constants.GetInstance();
         private XmlNode _RunNode = null;
@@ -25,6 +26,7 @@ namespace AppedoLTController
         public string ScriptWiseStatus { get; set; }
         public string RunId = string.Empty;
         public ControllerStatus Status { get { return _staus; } }
+        public static Dictionary<string, Controller> Controllers = new Dictionary<string, Controller>();
 
         public Controller(string soureIP, string runid, XmlNode runNode)
         {
@@ -112,9 +114,11 @@ namespace AppedoLTController
                         _staus = ControllerStatus.RunCompleted;
                         new ResultFileGenerator(RunId).Genarate();
                         _staus = ControllerStatus.ReportGenerateCompleted;
+                        Controllers.Remove(RunId);
                         break;
-
+                        
                     }
+
                 }
                 catch (Exception ex)
                 {

@@ -19,4 +19,3 @@ E:\AppedoLT\AppedoLT.Core\obj\Debug\AppedoLT.Core.UCTime.resources
 E:\AppedoLT\AppedoLT.Core\obj\Debug\AppedoLT.Core.csproj.GenerateResource.Cache
 E:\AppedoLT\AppedoLT.Core\obj\Debug\AppedoLT.Core.dll
 E:\AppedoLT\AppedoLT.Core\obj\Debug\AppedoLT.Core.pdb
-E:\AppedoLT\AppedoLT.Core\obj\Debug\AppedoLT.Core.csprojResolveAssemblyReference.cache
