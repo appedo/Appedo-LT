@@ -4399,7 +4399,7 @@ UwBpAG4AZwBsAGUASQBtAGEAZwBlAAEARQB4AHAAcgBlAHMAcwA=
 		<row><td>PROGRAMFILETOLAUNCHATEND</td><td>[INSTALLDIR]AppedoLT.LoadGenerator.Primary output</td><td/></row>
 		<row><td>ProductCode</td><td>{0A856E7C-DEA6-4A79-9302-EC76A7DF9677}</td><td/></row>
 		<row><td>ProductName</td><td>AppedoLT LoadGenerator</td><td/></row>
-		<row><td>ProductVersion</td><td>1.0.0.6</td><td/></row>
+		<row><td>ProductVersion</td><td>1.0.0.7</td><td/></row>
 		<row><td>ProgressType0</td><td>install</td><td/></row>
 		<row><td>ProgressType1</td><td>Installing</td><td/></row>
 		<row><td>ProgressType2</td><td>installed</td><td/></row>

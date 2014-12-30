@@ -88,11 +88,13 @@ namespace AppedoLTController
                              {
 
                                  case "run":
+
                                      RunOperation(UIclient, data);
                                      if (isClientRunning == false)
                                      {
                                          StartClient();
                                      }
+
                                      break;
 
                                  case "test":
@@ -264,7 +266,7 @@ namespace AppedoLTController
                         {
                             ExceptionHandler.WritetoEventLog(ex.StackTrace + ex.Message);
                         }
-                        Thread.Sleep(20000);
+                        Thread.Sleep(10000);
                     }
                 }).Start();
         }
