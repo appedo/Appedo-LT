@@ -1,5 +1,0 @@
-.separator ,
-.import out_loadgen.txt reportdata
-.import error_loadgen.txt error
-.import transaction_loadgen.txt transactions
-.import log_loadgen.txt log

@@ -1,2 +1,0 @@
-.separator ,
-.import monitor.txt monitor
