@@ -6,14 +6,14 @@ using System.Diagnostics;
 using System.Configuration;
 using System.Text.RegularExpressions;
 using System.Xml;
-
+using System.Web.UI;
 
 namespace AgentCore
 {
     public class Agent
     {
         Utility constants = Utility.GetInstance();
-
+        
         Dictionary<string, PerformanceCounter> Counters = new Dictionary<string, PerformanceCounter>();
         Dictionary<string, List<PerformanceCounter>> CountersAllInstance = new Dictionary<string, List<PerformanceCounter>>();
         private string _guid = string.Empty;
@@ -24,7 +24,7 @@ namespace AgentCore
         string totalPhysicalMemory = "0";
         bool IsWindowsCounter = false;
        
-
+        
         public Agent(XmlFileProccessor xml, bool isWindowsCounter,string guid,string type)
         {
             IsWindowsCounter = isWindowsCounter;
@@ -79,11 +79,24 @@ namespace AgentCore
             }
 
         }
+        public Agent(string guid, string type)
+        {
+            _guid = guid;
+            _type = type;
+            dataSendUrl = GetPath() + "/collectCounters";
+            CountersDetail detail = Utility.GetInstance().Deserialise<CountersDetail>(constants.GetPageContent(path = GetPath() + "/getConfigurations", string.Format("guid={0}&command=firstrequest", guid)));
+            SetCounterList(detail);
+        }
         public void SendCounter()
         {
             try
             {
-                constants.GetPageContent(dataSendUrl, GetCountersValue());
+                string responseStr= constants.GetPageContent(dataSendUrl, GetCountersValue());
+                if(responseStr.Contains("newCounterSet"))
+                {
+                    CountersDetail detail = Utility.GetInstance().Deserialise<CountersDetail>(responseStr);
+                    SetCounterList(detail);
+                }
             }
             catch (Exception ex)
             {
@@ -99,6 +112,35 @@ namespace AgentCore
             catch
             {
 
+            }
+        }
+        public void SetCounterList(CountersDetail details)
+        {
+          
+            string[] detail = null;
+            Counters.Clear();
+            foreach (newCounterSet counterWithIndance in details.newCounterSet)
+            {
+                try
+                {
+                    detail = counterWithIndance.query.Split(',');
+                    if (detail[0].ToLower() == "false")
+                    {
+                        PerformanceCounter counter = new PerformanceCounter(detail[1], detail[2]);
+                        counter.NextValue();
+                        Counters.Add(counterWithIndance.counter_id.ToString(), counter);
+                    }
+                    else if (detail[3].ToLower().StartsWith("_"))
+                    {
+                        PerformanceCounter counter = new PerformanceCounter(detail[1], detail[2], detail[3]);
+                        counter.NextValue();
+                        Counters.Add(counterWithIndance.counter_id.ToString(), counter);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    ExceptionHandler.WritetoEventLog(ex.StackTrace + Environment.NewLine + ex.Message);
+                }
             }
         }
         private string GetCountersValue()

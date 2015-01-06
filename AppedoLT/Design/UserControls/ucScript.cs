@@ -176,7 +176,7 @@ namespace AppedoLT
                     server.Close();
 
 
-                    MessageBox.Show("Uploaded succesfully.");
+                    MessageBox.Show("Uploaded successfully.");
                 }
             }
             catch (Exception ex)

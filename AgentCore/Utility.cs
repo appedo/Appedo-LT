@@ -2,6 +2,8 @@
 using System.IO;
 using System.Net;
 using System.Reflection;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Json;
 using System.Text;
 
 namespace AgentCore
@@ -74,6 +76,40 @@ namespace AgentCore
             }
             return PageContent;
         }
-
+        public CountersDetail GetCountersDetail(string responseStr)
+        {
+            CountersDetail res = Deserialise<CountersDetail>(responseStr);
+            return res;
+        }
+        public T Deserialise<T>(string json)
+        {
+           DataContractJsonSerializer deserializer = new DataContractJsonSerializer(typeof(T));
+           using (MemoryStream stream = new MemoryStream(Encoding.Unicode.GetBytes(json)))
+           {
+               T result = (T)deserializer.ReadObject(stream);
+               return result;
+           }
+        }
     }
+
+   [DataContract]
+   public class CountersDetail
+   {
+       [DataMember(Name = "success")]
+       public bool success { get; set; }
+       [DataMember(Name = "failure")]
+       public bool failure { get; set; }
+       [DataMember(Name = "newCounterSet")]
+       public newCounterSet[] newCounterSet { get; set; }
+
+   }
+   [DataContract]
+   public class newCounterSet
+   {
+       [DataMember(Name = "counter_id")]
+       public int counter_id { get; set; }
+
+       [DataMember(Name = "query")]
+       public string query { get; set; }
+   }
 }

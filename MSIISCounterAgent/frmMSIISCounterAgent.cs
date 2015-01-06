@@ -18,6 +18,8 @@ namespace MSIISCounterAgent
         public frmMSIISCounterAgent()
         {
             InitializeComponent();
+           
+
             try
             {
                 string type = System.Configuration.ConfigurationManager.AppSettings["type"];
@@ -29,7 +31,8 @@ namespace MSIISCounterAgent
                 }
                 else
                 {
-                    agent = new Agent(counterXML, true, guid, type);
+                    //agent = new Agent(counterXML, true, guid, type);
+                    agent = new Agent(guid,type);
                     DoWorkThread = new Thread(new ThreadStart(DoWork));
                     DoWorkThread.Start();
                     ni.Icon = new Form().Icon;
