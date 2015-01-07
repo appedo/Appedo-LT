@@ -15,7 +15,6 @@ using System.Xml;
 using System.Net.Sockets;
 using System.Collections;
 
-
 namespace AppedoLT.Core
 {
     public enum VariableType { Extractor = 0, File, String, Constant, Counter, Sql,RandomNumber,RandomString,Number,CurrentDate }
