@@ -99,15 +99,29 @@ namespace Profiler
         {
             try
             {
+                string profileData = string.Empty;
+                string response = string.Empty;
                 while (true)
                 {
                     try
                     {
-                        //  Thread.Sleep(30000);
-                        if (Trace.Count > 0)
+                        if (profileData != string.Empty)
                         {
-                            // GetProfilerData();
-                            GetPageContent(dataSendUrl, GetProfilerData());
+                            response = GetPageContent(dataSendUrl, profileData);
+                            if (response != string.Empty) profileData = string.Empty;
+                        }
+                        else
+                        {
+                            if (Trace.Count > 0)
+                            {
+                                profileData = GetProfilerData();
+                                response=  GetPageContent(dataSendUrl, profileData);
+                                if(response!=string.Empty)  profileData = string.Empty;
+                            }
+                            else
+                            {
+                                Thread.Sleep(1000);
+                            }
                         }
                     }
                     catch (Exception ex)

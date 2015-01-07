@@ -3988,7 +3988,7 @@ UwBpAG4AZwBsAGUASQBtAGEAZwBlAAEARQB4AHAAcgBlAHMAcwA=
 		<row><td>ISTheme</td><td>InstallShield Blue.theme</td></row>
 		<row><td>ISUSLock</td><td>{4F7280F6-C8CE-4881-9D1C-C5D49D6841E9}</td></row>
 		<row><td>ISUSSignature</td><td>{97296520-5979-4F29-A4CD-0AD4A1E71D6E}</td></row>
-		<row><td>ISVisitedViews</td><td>viewAssistant,viewShortcuts,viewISToday,viewAppFiles</td></row>
+		<row><td>ISVisitedViews</td><td>viewAssistant,viewShortcuts,viewISToday,viewAppFiles,viewProject</td></row>
 		<row><td>Limited</td><td>1</td></row>
 		<row><td>LockPermissionMode</td><td>1</td></row>
 		<row><td>MsiExecCmdLineOptions</td><td/></row>
@@ -4365,7 +4365,7 @@ UwBpAG4AZwBsAGUASQBtAGEAZwBlAAEARQB4AHAAcgBlAHMAcwA=
 		<row><td>PROGRAMFILETOLAUNCHATEND</td><td>[INSTALLDIR]MSIISCounterAgent.Primary output</td><td/></row>
 		<row><td>ProductCode</td><td>{01876EBC-999C-408C-8988-865671C9A2CE}</td><td/></row>
 		<row><td>ProductName</td><td>Appedo_MSIISCounter_Agent</td><td/></row>
-		<row><td>ProductVersion</td><td>1.0.0.2</td><td/></row>
+		<row><td>ProductVersion</td><td>1.0.0.3</td><td/></row>
 		<row><td>ProgressType0</td><td>install</td><td/></row>
 		<row><td>ProgressType1</td><td>Installing</td><td/></row>
 		<row><td>ProgressType2</td><td>installed</td><td/></row>

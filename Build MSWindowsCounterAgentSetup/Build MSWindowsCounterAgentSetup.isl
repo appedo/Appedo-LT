@@ -3990,7 +3990,7 @@ UwBpAG4AZwBsAGUASQBtAGEAZwBlAAEARQB4AHAAcgBlAHMAcwA=
 		<row><td>ISTheme</td><td>InstallShield Blue.theme</td></row>
 		<row><td>ISUSLock</td><td>{34837E46-3741-4E99-8E39-0BC4D2526B3E}</td></row>
 		<row><td>ISUSSignature</td><td>{295ED37A-33DD-4902-8D99-A3186E1C88E8}</td></row>
-		<row><td>ISVisitedViews</td><td>viewAssistant,viewShortcuts,viewAppFiles,viewUI,viewSystemSearch,viewFeatureFiles,viewObjects,viewDependencies</td></row>
+		<row><td>ISVisitedViews</td><td>viewAssistant,viewShortcuts,viewAppFiles,viewUI,viewSystemSearch,viewFeatureFiles,viewObjects,viewDependencies,viewProject</td></row>
 		<row><td>Limited</td><td>1</td></row>
 		<row><td>LockPermissionMode</td><td>1</td></row>
 		<row><td>MsiExecCmdLineOptions</td><td/></row>
@@ -4365,7 +4365,7 @@ UwBpAG4AZwBsAGUASQBtAGEAZwBlAAEARQB4AHAAcgBlAHMAcwA=
 		<row><td>PROGMSG_IIS_ROLLBACKWEBSERVICEEXTENSIONS</td><td>##IDS_PROGMSG_IIS_ROLLBACKWEBSERVICEEXTENSIONS##</td><td/></row>
 		<row><td>ProductCode</td><td>{0923EB68-15D6-4BB8-A3ED-7D738E58BCE1}</td><td/></row>
 		<row><td>ProductName</td><td>Appedo_MSWindowsCounter_Agent</td><td/></row>
-		<row><td>ProductVersion</td><td>1.0.0.2</td><td/></row>
+		<row><td>ProductVersion</td><td>1.0.0.3</td><td/></row>
 		<row><td>ProgressType0</td><td>install</td><td/></row>
 		<row><td>ProgressType1</td><td>Installing</td><td/></row>
 		<row><td>ProgressType2</td><td>installed</td><td/></row>
