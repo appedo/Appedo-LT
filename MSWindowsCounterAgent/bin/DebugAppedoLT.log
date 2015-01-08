@@ -31,3 +31,9 @@ Log Entry :
    at System.Net.HttpWebRequest.GetResponse()
    at AgentCore.Utility.GetPageContent(String Url, String data) in e:\AppedoLT\AgentCore\Utility.cs:line 59The remote server returned an error: (404) Not Found.
 ---------------------------------------
+Log Entry : 
+01:26:51 09 January 2015 
+--Log entry goes here--
+   at System.Net.HttpWebRequest.GetResponse()
+   at AgentCore.Utility.GetPageContent(String Url, String data) in e:\AppedoLT\AgentCore\Utility.cs:line 61The underlying connection was closed: A connection that was expected to be kept alive was closed by the server.
+---------------------------------------

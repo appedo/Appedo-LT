@@ -7,6 +7,7 @@ using System.Configuration;
 using System.Text.RegularExpressions;
 using System.Xml;
 using System.Web.UI;
+using System.Threading;
 
 namespace AgentCore
 {
@@ -81,11 +82,32 @@ namespace AgentCore
         }
         public Agent(string guid, string type)
         {
-            _guid = guid;
-            _type = type;
-            dataSendUrl = GetPath() + "/collectCounters";
-            CountersDetail detail = Utility.GetInstance().Deserialise<CountersDetail>(constants.GetPageContent(path = GetPath() + "/getConfigurations", string.Format("guid={0}&command=firstrequest", guid)));
-            SetCounterList(detail);
+            while (true)
+            {
+                try
+                {
+                    _guid = guid;
+                    _type = type;
+                    dataSendUrl = GetPath() + "/collectCounters";
+                    string pageContent = constants.GetPageContent(path = GetPath() + "/getConfigurations", string.Format("guid={0}&command=firstrequest", guid));
+                    if (pageContent != string.Empty)
+                    {
+                        CountersDetail detail = Utility.GetInstance().Deserialise<CountersDetail>(pageContent);
+                        SetCounterList(detail);
+                        break;
+                    }
+                    else
+                    {
+                        Thread.Sleep(1000);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Thread.Sleep(1000);
+                    ExceptionHandler.WritetoEventLog(ex.StackTrace + Environment.NewLine + ex.Message);
+                }
+
+            }
         }
         public void SendCounter()
         {
@@ -123,13 +145,14 @@ namespace AgentCore
             {
                 try
                 {
-                    detail = counterWithIndance.query.Split(',');
-                    if (detail[0].ToLower() == "false")
+                    detail = counterWithIndance.query.Trim('"').Split(',');
+                    if (detail[0].ToLower() == "false" || detail[3]==string.Empty)
                     {
                         PerformanceCounter counter = new PerformanceCounter(detail[1], detail[2]);
                         counter.NextValue();
                         Counters.Add(counterWithIndance.counter_id.ToString(), counter);
                     }
+
                     else if (detail[3].ToLower().StartsWith("_"))
                     {
                         PerformanceCounter counter = new PerformanceCounter(detail[1], detail[2], detail[3]);
