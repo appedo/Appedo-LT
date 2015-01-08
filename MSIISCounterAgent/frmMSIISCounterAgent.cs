@@ -1,6 +1,5 @@
 ﻿using AgentCore;
 using System;
-using System.Configuration;
 using System.Threading;
 using System.Windows.Forms;
 
@@ -17,9 +16,8 @@ namespace MSIISCounterAgent
 
         public frmMSIISCounterAgent()
         {
-            InitializeComponent();
-           
 
+            InitializeComponent();
             try
             {
                 string type = System.Configuration.ConfigurationManager.AppSettings["type"];

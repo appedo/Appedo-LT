@@ -56,6 +56,7 @@ namespace AppedoLTLoadGenerator
         {
             try
             {
+                Thread.Sleep(1000);
                 _tempCreatedUser = 0;
                 _tempCompletedUser = 0;
                 foreach (ScriptExecutor scripts in _scriptExecutorList)

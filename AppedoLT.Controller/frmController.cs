@@ -65,7 +65,11 @@ namespace AppedoLTController
                 MessageBox.Show(ex.Message);
             }
         }
-
+        public void ShowMessage(string msg)
+        {
+            ni.BalloonTipText = msg;
+            ni.ShowBalloonTip(1000);
+        }
         void DoWork()
         {
             try
@@ -76,7 +80,7 @@ namespace AppedoLTController
                 {
                     if (serverSocket == null) serverSocket = new TcpListener(8888);
                     Trasport UIclient = new Trasport(serverSocket.AcceptTcpClient());
-                    AppedoServer = UIclient.IPAddressStr;
+                  
                     new Thread(() =>
                      {
                          string runid = string.Empty;
@@ -235,7 +239,7 @@ namespace AppedoLTController
                        }
                        catch (Exception ex)
                        {
-                           Thread.Sleep(60000);
+                           Thread.Sleep(10000);
                            ExceptionHandler.WritetoEventLog(ex.StackTrace + ex.Message);
                        }
                    }
@@ -256,8 +260,10 @@ namespace AppedoLTController
                                 {
                                     Dictionary<string, string> runid = new Dictionary<string, string>();
                                     runid.Add("runid", runnode.Attributes["reportname"].Value);
+
                                     Trasport server = new Trasport(runnode.Attributes["sourceip"].Value, Constants.GetInstance().AppedoPort);
                                     server.Send(new TrasportData("updaterunidstatus", string.Empty, runid));
+
                                     new ResultFileGenerator(runnode.Attributes["reportname"].Value).Genarate();
                                 }
                             }
@@ -270,7 +276,10 @@ namespace AppedoLTController
                     }
                 }).Start();
         }
+        void StopScenarioForFaildRun(XmlNode runnode)
+        {
 
+        }
         void RunOperation(Trasport server, TrasportData data)
         {
             #region Run
@@ -301,22 +310,105 @@ namespace AppedoLTController
                 else if (Controllers.ContainsKey(runid) == false)
                 {
                     // GenerateReportFolder(runid);
-                    List<string> unAvailableLoadGens = SendDataToLoadGen(server, data);
+                    ShowMessage("Run received " + runid);
+                    List<string> unAvailableLoadGens = new List<string>();
+                    #region SendData
+                    XmlNode runDetail = null;
+                    try
+                    {
+                        data.Operation = "savescenario";
+                        GenerateReportFolder(runid);
+                        XmlDocument runXml = new XmlDocument();
+                        runXml.LoadXml(data.DataStr);
+
+                        runDetail = _ControllerXml.CreateRun(runid, runXml.SelectSingleNode("root"), ((IPEndPoint)server.tcpClient.Client.RemoteEndPoint).Address.ToString());
+                       
+                        List<TcpClient> loadGens = new List<TcpClient>();
+                        string[] loadGenIps = data.Header["loadgens"].Split(',');
+                        int loadGenId = 1;
+                        foreach (string ip in loadGenIps)
+                        {
+                            try
+                            {
+                                unAvailableLoadGens.Add(ip);
+                                if (data.Header.ContainsKey("totalloadgen") == false)
+                                {
+                                    data.Header.Add("totalloadgen", loadGenIps.Length.ToString());
+                                    data.Header.Add("currentloadgenid", loadGenId++.ToString());
+                                    data.Header.Add("loadgenname", ip);
+                                }
+                                else
+                                {
+                                    data.Header["totalloadgen"] = loadGenIps.Length.ToString();
+                                    data.Header["currentloadgenid"] = loadGenId++.ToString();
+                                    data.Header["loadgenname"] = ip;
+                                }
+                                try
+                                {
+                                    TrasportData response = null;
+                                    for (int index = 0; index < 10; index++)
+                                    {
+                                        try
+                                        {
+                                            Trasport loadGen = new Trasport(ip, "8889", 60000);
+                                            loadGen.Send(data);
+                                            response = loadGen.Receive();
+                                            if (response.Operation == "ok")
+                                            {
+                                                runDetail.AppendChild(_ControllerXml.CreadLoadGen(ip, ip));
+                                                loadGens.Add(loadGen.tcpClient);
+                                                if (unAvailableLoadGens.Contains(ip) == true) unAvailableLoadGens.Remove(ip);
+                                                break;
+                                            }
+                                            loadGen.Close();
+                                        }
+                                        catch (Exception ex)
+                                        {
+                                            Thread.Sleep(1000);
+                                            ExceptionHandler.WritetoEventLog(ex.StackTrace + ex.Message);
+                                        }
+                                    }
+                                }
+                                catch (Exception ex)
+                                {
+                                    ExceptionHandler.WritetoEventLog(ex.StackTrace + ex.Message);
+                                }
+
+                            }
+                            catch (Exception ex)
+                            {
+                                ExceptionHandler.WritetoEventLog(ex.StackTrace + ex.Message);
+                            }
+                        }
+
+                        
+                    }
+                    catch (Exception ex)
+                    {
+                        ExceptionHandler.WritetoEventLog(ex.StackTrace + ex.Message);
+                    }
+
+                   
+
+                    #endregion
+
                     if (unAvailableLoadGens.Count > 0)
                     {
+                        ShowMessage("Loadgens not available " + runid);
                         return;
                     }
                     else
                     {
+
                         data.Operation = "run";
                         data.Header.Clear();
                         data.Header.Add("runid", runid);
 
                         int runningThread = 0;
-                        XmlNode runNode = ControllerXml.GetInstance().doc.SelectSingleNode("//runs/run[@reportname='" + runid + "']");
-                        if (runNode != null)
+                       // XmlNode runNode = ControllerXml.GetInstance().doc.SelectSingleNode("//runs/run[@reportname='" + runid + "']");
+                        if (runDetail != null)
                         {
-                            foreach (XmlNode loadGenNode in runNode.SelectNodes("loadgen"))
+                            foreach (XmlNode loadGenNode in runDetail.SelectNodes("loadgen"))
                             {
                                 try
                                 {
@@ -350,12 +442,16 @@ namespace AppedoLTController
                             {
                                 Thread.Sleep(2000);
                             }
-
-                            _ControllerXml.Save();
-
-                            Controller controller = new Controller(server.IPAddressStr, runid, runNode);
-                            controller.Start();
-                            Controllers.Add(runid, controller);
+                            if (runDetail != null)
+                            {
+                                ShowMessage("Run started " + runid);
+                                Controller controller = new Controller(server.IPAddressStr, runid, runDetail);
+                                Controllers.Add(runid, controller);
+                                _ControllerXml.doc.SelectSingleNode("root/runs").AppendChild(runDetail);
+                                _ControllerXml.Save();
+                                controller.Start();
+                               
+                            }
                         }
                         server.Send(new TrasportData("OK", string.Empty, null));
                     }
@@ -369,89 +465,91 @@ namespace AppedoLTController
             #endregion
         }
 
-        private List<string> SendDataToLoadGen(Trasport server, TrasportData data)
-        {
-            #region Run
-            List<string> unavailableIpAddress = new List<string>();
-            try
-            {
-                string runid = data.Header["runid"];
-                data.Operation = "savescenario";
+        //private List<string> SendDataToLoadGen(Trasport server, TrasportData data)
+        //{
+        //    #region Run
+        //    List<string> unavailableIpAddress = new List<string>();
+        //    try
+        //    {
+        //        string runid = data.Header["runid"];
+        //        data.Operation = "savescenario";
 
-                GenerateReportFolder(runid);
-                XmlDocument runXml = new XmlDocument();
-                runXml.LoadXml(data.DataStr);
-                XmlNode runDetail = _ControllerXml.CreateRun(runid, runXml.SelectSingleNode("root"), ((IPEndPoint)server.tcpClient.Client.RemoteEndPoint).Address.ToString());
-                List<TcpClient> loadGens = new List<TcpClient>();
-                string[] loadGenIps = data.Header["loadgens"].Split(',');
-                int loadGenId = 1;
-                foreach (string ip in loadGenIps)
-                {
-                    try
-                    {
-                        unavailableIpAddress.Add(ip);
-                        if (data.Header.ContainsKey("totalloadgen") == false)
-                        {
-                            data.Header.Add("totalloadgen", loadGenIps.Length.ToString());
-                            data.Header.Add("currentloadgenid", loadGenId++.ToString());
-                            data.Header.Add("loadgenname", ip);
-                        }
-                        else
-                        {
-                            data.Header["totalloadgen"] = loadGenIps.Length.ToString();
-                            data.Header["currentloadgenid"] = loadGenId++.ToString();
-                            data.Header["loadgenname"] = ip;
-                        }
-                        try
-                        {
-                            TrasportData response = null;
-                            for (int index = 0; index < 10; index++)
-                            {
-                                try
-                                {
-                                    Trasport loadGen = new Trasport(ip, "8889", 60000);
-                                    loadGen.Send(data);
-                                    response = loadGen.Receive();
-                                    if (response.Operation == "ok")
-                                    {
-                                        runDetail.AppendChild(_ControllerXml.CreadLoadGen(ip, ip));
-                                        loadGens.Add(loadGen.tcpClient);
-                                        if (unavailableIpAddress.Contains(ip) == true) unavailableIpAddress.Remove(ip);
-                                        break;
-                                    }
-                                    loadGen.Close();
-                                }
-                                catch (Exception ex)
-                                {
-                                    Thread.Sleep(1000);
-                                    ExceptionHandler.WritetoEventLog(ex.StackTrace + ex.Message);
-                                }
-                            }
-                        }
-                        catch (Exception ex)
-                        {
-                            ExceptionHandler.WritetoEventLog(ex.StackTrace + ex.Message);
-                        }
+        //        GenerateReportFolder(runid);
+        //        XmlDocument runXml = new XmlDocument();
+        //        runXml.LoadXml(data.DataStr);
 
-                    }
-                    catch (Exception ex)
-                    {
-                        ExceptionHandler.WritetoEventLog(ex.StackTrace + ex.Message);
-                    }
-                }
+        //        XmlNode runDetail = _ControllerXml.CreateRun(runid, runXml.SelectSingleNode("root"), ((IPEndPoint)server.tcpClient.Client.RemoteEndPoint).Address.ToString());
+        //        //runDetail1 = runDetail;
+        //        List<TcpClient> loadGens = new List<TcpClient>();
+        //        string[] loadGenIps = data.Header["loadgens"].Split(',');
+        //        int loadGenId = 1;
+        //        foreach (string ip in loadGenIps)
+        //        {
+        //            try
+        //            {
+        //                unavailableIpAddress.Add(ip);
+        //                if (data.Header.ContainsKey("totalloadgen") == false)
+        //                {
+        //                    data.Header.Add("totalloadgen", loadGenIps.Length.ToString());
+        //                    data.Header.Add("currentloadgenid", loadGenId++.ToString());
+        //                    data.Header.Add("loadgenname", ip);
+        //                }
+        //                else
+        //                {
+        //                    data.Header["totalloadgen"] = loadGenIps.Length.ToString();
+        //                    data.Header["currentloadgenid"] = loadGenId++.ToString();
+        //                    data.Header["loadgenname"] = ip;
+        //                }
+        //                try
+        //                {
+        //                    TrasportData response = null;
+        //                    for (int index = 0; index < 10; index++)
+        //                    {
+        //                        try
+        //                        {
+        //                            Trasport loadGen = new Trasport(ip, "8889", 60000);
+        //                            loadGen.Send(data);
+        //                            response = loadGen.Receive();
+        //                            if (response.Operation == "ok")
+        //                            {
+        //                                runDetail.AppendChild(_ControllerXml.CreadLoadGen(ip, ip));
+        //                                loadGens.Add(loadGen.tcpClient);
+        //                                if (unavailableIpAddress.Contains(ip) == true) unavailableIpAddress.Remove(ip);
+        //                                break;
+        //                            }
+        //                            loadGen.Close();
+        //                        }
+        //                        catch (Exception ex)
+        //                        {
+        //                            Thread.Sleep(1000);
+        //                            ExceptionHandler.WritetoEventLog(ex.StackTrace + ex.Message);
+        //                        }
+        //                    }
+        //                }
+        //                catch (Exception ex)
+        //                {
+        //                    ExceptionHandler.WritetoEventLog(ex.StackTrace + ex.Message);
+        //                }
 
-                _ControllerXml.doc.SelectSingleNode("root/runs").AppendChild(runDetail);
-                _ControllerXml.Save();
-            }
-            catch (Exception ex)
-            {
-                ExceptionHandler.WritetoEventLog(ex.StackTrace + ex.Message);
-            }
+        //            }
+        //            catch (Exception ex)
+        //            {
+        //                ExceptionHandler.WritetoEventLog(ex.StackTrace + ex.Message);
+        //            }
+        //        }
 
-            return unavailableIpAddress;
+        //        _ControllerXml.doc.SelectSingleNode("root/runs").AppendChild(runDetail);
+        //        _ControllerXml.Save();
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        ExceptionHandler.WritetoEventLog(ex.StackTrace + ex.Message);
+        //    }
 
-            #endregion
-        }
+        //    return unavailableIpAddress;
+
+        //    #endregion
+        //}
 
         public List<string> GetStatusList()
         {
