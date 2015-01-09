@@ -37,4 +37,3 @@ E:\AppedoLT\Profiler\obj\Debug\Profiler.Properties.Resources.resources
 E:\AppedoLT\Profiler\obj\Debug\Profiler.Settings.resources
 E:\AppedoLT\Profiler\obj\Debug\Profiler.WaitingForConnectionForm.resources
 E:\AppedoLT\Profiler\obj\Debug\Profiler.csproj.GenerateResource.Cache
-E:\AppedoLT\Profiler\obj\Debug\Profiler.csprojResolveAssemblyReference.cache

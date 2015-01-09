@@ -975,19 +975,19 @@ void PrfInfo::AddFunction( FunctionID functionID, SIZE_T internalID )
 						&& wcsncmp(pFunctionInfo->m_functionName, L"T_",2) != 0 
 						&& wcsncmp(pFunctionInfo->m_functionName, L"Bid::", 5) != 0
 						&& wcsncmp(pFunctionInfo->m_functionName, L"Bid::", 5) != 0
-						//&& wcsncmp(pFunctionInfo->m_functionName, L"ASP.global_asax::", 17) != 0
+						&& wcsncmp(pFunctionInfo->m_functionName, L"ASP.global_asax::", 17) != 0
 						&& wcsncmp(pFunctionInfo->m_functionName, L"<", 1) != 0 
 						&& wcsncmp(pFunctionInfo->m_functionName, L"System.", 7) != 0
 						&& wcsncmp(pFunctionInfo->m_functionName, L"Telerik.", 8) != 0 
 						&& wcsncmp(pFunctionInfo->m_functionName, L"Microsoft.", 10) != 0 
-						//&& wcsncmp(pFunctionInfo->m_functionName, L"__ASP", 5) != 0
+						&& wcsncmp(pFunctionInfo->m_functionName, L"__ASP", 5) != 0
 						&& wcsncmp(pFunctionInfo->m_functionName, L"SNINativeMethodWrapper::", 24) != 0
 						&& wcsncmp(pFunctionInfo->m_functionName, L"NativeOledbWrapper::", 20) != 0
 						&& !(wcsstr(pFunctionInfo->m_functionName, L"::__BuildControl") != 0) 
 						&& !(wcsstr(pFunctionInfo->m_functionName, L"::.") != 0)
 						&& !(wcsstr(pFunctionInfo->m_functionName, L"::GetTypeHashCode") != 0)
 						&& !(wcsstr(pFunctionInfo->m_functionName, L"_OnItemDataBound") != 0)
-						//&& !(wcsstr(pFunctionInfo->m_functionName, L"_aspx::ProcessRequest") != 0)
+						&& !(wcsstr(pFunctionInfo->m_functionName, L"_aspx::ProcessRequest") != 0)
 						&& !(wcsstr(pFunctionInfo->m_functionName, L"_aspx::__RenderContent") != 0)
 						)// && wcscmp(pFunctionInfo->m_functionName, L"::__BuildControl") == 0 )
 						{

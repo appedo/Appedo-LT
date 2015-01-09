@@ -3918,3 +3918,254 @@ Unable to read data from the transport connection: A connection attempt failed b
    at System.Net.Sockets.TcpListener.AcceptTcpClient()
    at AppedoLTController.frmController.DoWork() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 82A blocking operation was interrupted by a call to WSACancelBlockingCall
 ---------------------------------------
+15:01:28 09 January 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 51
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 221Failed to connect 54.204.120.110
+---------------------------------------
+15:02:43 09 January 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 51
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 221Failed to connect 54.204.120.110
+---------------------------------------
+15:03:13 09 January 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 51
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 221Failed to connect 54.204.120.110
+---------------------------------------
+15:04:43 09 January 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 51
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 221Failed to connect 54.204.120.110
+---------------------------------------
+15:05:13 09 January 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 51
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 221Failed to connect 54.204.120.110
+---------------------------------------
+15:06:08 09 January 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 51
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 221Failed to connect 54.204.120.110
+---------------------------------------
+15:11:18 09 January 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 51
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 221Failed to connect 54.204.120.110
+---------------------------------------
+15:14:08 09 January 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 51
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 221Failed to connect 54.204.120.110
+---------------------------------------
+15:14:38 09 January 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 51
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 221Failed to connect 54.204.120.110
+---------------------------------------
+15:21:48 09 January 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 51
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 221Failed to connect 54.204.120.110
+---------------------------------------
+15:22:48 09 January 2015 
+   at System.Net.Sockets.NetworkStream.Read(Byte[] buffer, Int32 offset, Int32 size)
+   at AppedoLT.Core.Trasport.ReadHeader(Stream stream) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 140
+   at AppedoLT.Core.Trasport.Receive() in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 69
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 223Unable to read data from the transport connection: An existing connection was forcibly closed by the remote host.
+---------------------------------------
+15:25:48 09 January 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 51
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 221Failed to connect 54.204.120.110
+---------------------------------------
+15:31:13 09 January 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 51
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 221Failed to connect 54.204.120.110
+---------------------------------------
+15:32:03 09 January 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 51
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 221Failed to connect 54.204.120.110
+---------------------------------------
+15:33:18 09 January 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 51
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 221Failed to connect 54.204.120.110
+---------------------------------------
+15:34:13 09 January 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 51
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 221Failed to connect 54.204.120.110
+---------------------------------------
+15:35:33 09 January 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 51
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 221Failed to connect 54.204.120.110
+---------------------------------------
+15:43:18 09 January 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 51
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 221Failed to connect 54.204.120.110
+---------------------------------------
+15:44:13 09 January 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 51
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 221Failed to connect 54.204.120.110
+---------------------------------------
+15:45:49 09 January 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 51
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 221Failed to connect 54.204.120.110
+---------------------------------------
+15:46:19 09 January 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 51
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 221Failed to connect 54.204.120.110
+---------------------------------------
+15:53:09 09 January 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 51
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 221Failed to connect 54.204.120.110
+---------------------------------------
+15:54:04 09 January 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 51
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 221Failed to connect 54.204.120.110
+---------------------------------------
+15:54:34 09 January 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 51
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 221Failed to connect 54.204.120.110
+---------------------------------------
+15:55:49 09 January 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 51
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 221Failed to connect 54.204.120.110
+---------------------------------------
+15:56:19 09 January 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 51
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 221Failed to connect 54.204.120.110
+---------------------------------------
+16:09:04 09 January 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 51
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 221Failed to connect 54.204.120.110
+---------------------------------------
+16:10:29 09 January 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 51
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 221Failed to connect 54.204.120.110
+---------------------------------------
+16:10:59 09 January 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 51
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 221Failed to connect 54.204.120.110
+---------------------------------------
+16:13:39 09 January 2015 
+   at System.Net.Sockets.NetworkStream.Read(Byte[] buffer, Int32 offset, Int32 size)
+   at AppedoLT.Core.Trasport.ReadHeader(Stream stream) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 140
+   at AppedoLT.Core.Trasport.Receive() in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 69
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 223Unable to read data from the transport connection: An existing connection was forcibly closed by the remote host.
+---------------------------------------
+16:15:54 09 January 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 51
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 221Failed to connect 54.204.120.110
+---------------------------------------
+16:16:24 09 January 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 51
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 221Failed to connect 54.204.120.110
+---------------------------------------
+16:17:39 09 January 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 51
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 221Failed to connect 54.204.120.110
+---------------------------------------
+16:18:09 09 January 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 51
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 221Failed to connect 54.204.120.110
+---------------------------------------
+16:18:39 09 January 2015 
+   at System.Net.Sockets.NetworkStream.Read(Byte[] buffer, Int32 offset, Int32 size)
+   at AppedoLT.Core.Trasport.ReadHeader(Stream stream) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 140
+   at AppedoLT.Core.Trasport.Receive() in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 69
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 223Unable to read data from the transport connection: An existing connection was forcibly closed by the remote host.
+---------------------------------------
+16:19:54 09 January 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 51
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 221Failed to connect 54.204.120.110
+---------------------------------------
+16:23:19 09 January 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 51
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 221Failed to connect 54.204.120.110
+---------------------------------------
+16:23:54 09 January 2015 
+   at System.Net.Sockets.NetworkStream.Read(Byte[] buffer, Int32 offset, Int32 size)
+   at AppedoLT.Core.Trasport.ReadHeader(Stream stream) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 140
+   at AppedoLT.Core.Trasport.Receive() in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 69
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 223Unable to read data from the transport connection: An existing connection was forcibly closed by the remote host.
+---------------------------------------
+16:26:14 09 January 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 51
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 221Failed to connect 54.204.120.110
+---------------------------------------
+16:29:00 09 January 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 51
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 221Failed to connect 54.204.120.110
+---------------------------------------
+16:34:37 09 January 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 51
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 221Failed to connect 54.204.120.110
+---------------------------------------
+16:36:28 09 January 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 51
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.Controller.SendScriptWiseStatus(String scriptWiseStatus) in e:\AppedoLT\AppedoLT.Controller\Controller.cs:line 204
+Failed to connect 54.204.120.110
+---------------------------------------
+16:36:58 09 January 2015 
+   at System.Net.Sockets.NetworkStream.Read(Byte[] buffer, Int32 offset, Int32 size)
+   at AppedoLT.Core.Trasport.ReadHeader(Stream stream) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 140
+   at AppedoLT.Core.Trasport.Receive() in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 69
+   at AppedoLTController.Controller.SendScriptWiseStatus(String scriptWiseStatus) in e:\AppedoLT\AppedoLT.Controller\Controller.cs:line 207
+Unable to read data from the transport connection: An existing connection was forcibly closed by the remote host.
+---------------------------------------
+16:37:38 09 January 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 51
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.Controller.SendScriptWiseStatus(String scriptWiseStatus) in e:\AppedoLT\AppedoLT.Controller\Controller.cs:line 204
+Failed to connect 54.204.120.110
+---------------------------------------
+16:37:53 09 January 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 51
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 221Failed to connect 54.204.120.110
+---------------------------------------
+16:38:43 09 January 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 51
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 221Failed to connect 54.204.120.110
+---------------------------------------
+16:38:53 09 January 2015 
+   at System.Net.Sockets.NetworkStream.Read(Byte[] buffer, Int32 offset, Int32 size)
+   at AppedoLT.Core.Trasport.ReadHeader(Stream stream) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 140
+   at AppedoLT.Core.Trasport.Receive() in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 69
+   at AppedoLTController.Controller.SendScriptWiseStatus(String scriptWiseStatus) in e:\AppedoLT\AppedoLT.Controller\Controller.cs:line 207
+Unable to read data from the transport connection: An existing connection was forcibly closed by the remote host.
+---------------------------------------
+18:03:19 09 January 2015 
+   at System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   at System.Number.ParseInt32(String s, NumberStyles style, NumberFormatInfo info)
+   at AppedoLT.Core.Trasport.Receive() in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 76
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229Input string was not in a correct format.
+---------------------------------------

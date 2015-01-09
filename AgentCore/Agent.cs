@@ -146,13 +146,12 @@ namespace AgentCore
                 try
                 {
                     detail = counterWithIndance.query.Trim('"').Split(',');
-                    if (detail[0].ToLower() == "false" || detail[3]==string.Empty)
+                    if (detail[0].ToLower() == "false" || detail[0].ToLower().Trim() == "0" || detail[3] == string.Empty)
                     {
                         PerformanceCounter counter = new PerformanceCounter(detail[1], detail[2]);
                         counter.NextValue();
                         Counters.Add(counterWithIndance.counter_id.ToString(), counter);
                     }
-
                     else if (detail[3].ToLower().StartsWith("_"))
                     {
                         PerformanceCounter counter = new PerformanceCounter(detail[1], detail[2], detail[3]);
