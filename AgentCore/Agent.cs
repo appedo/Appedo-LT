@@ -1,36 +1,32 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Diagnostics;
-using System.Configuration;
-using System.Text.RegularExpressions;
-using System.Xml;
-using System.Web.UI;
+using System.Text;
 using System.Threading;
+using System.Xml;
 
 namespace AgentCore
 {
     public class Agent
     {
         Utility constants = Utility.GetInstance();
-        
+
         Dictionary<string, PerformanceCounter> Counters = new Dictionary<string, PerformanceCounter>();
         Dictionary<string, List<PerformanceCounter>> CountersAllInstance = new Dictionary<string, List<PerformanceCounter>>();
         private string _guid = string.Empty;
         private string _type = string.Empty;
         string path = string.Empty;
         string dataSendUrl = string.Empty;
-      
+
         string totalPhysicalMemory = "0";
         bool IsWindowsCounter = false;
-       
-        
-        public Agent(XmlFileProccessor xml, bool isWindowsCounter,string guid,string type)
+
+
+        public Agent(XmlFileProccessor xml, bool isWindowsCounter, string guid, string type)
         {
             IsWindowsCounter = isWindowsCounter;
             _guid = guid;
-            _type=type;
+            _type = type;
             if (IsWindowsCounter == true) SetTotalPhysicalMemory();
             path = GetPath();
             dataSendUrl = path + "/collectCounters";
@@ -94,7 +90,11 @@ namespace AgentCore
                     {
                         CountersDetail detail = Utility.GetInstance().Deserialise<CountersDetail>(pageContent);
                         SetCounterList(detail);
-                        break;
+                        if (detail.newCounterSet.Length > 0) break;
+                        else
+                        {
+                            Thread.Sleep(1000);
+                        }
                     }
                     else
                     {
@@ -113,8 +113,8 @@ namespace AgentCore
         {
             try
             {
-                string responseStr= constants.GetPageContent(dataSendUrl, GetCountersValue());
-                if(responseStr.Contains("newCounterSet"))
+                string responseStr = constants.GetPageContent(dataSendUrl, GetCountersValue());
+                if (responseStr.Contains("newCounterSet"))
                 {
                     CountersDetail detail = Utility.GetInstance().Deserialise<CountersDetail>(responseStr);
                     SetCounterList(detail);
@@ -138,7 +138,7 @@ namespace AgentCore
         }
         public void SetCounterList(CountersDetail details)
         {
-          
+
             string[] detail = null;
             Counters.Clear();
             foreach (newCounterSet counterWithIndance in details.newCounterSet)
@@ -165,6 +165,7 @@ namespace AgentCore
                 }
             }
         }
+
         private string GetCountersValue()
         {
             StringBuilder data = new StringBuilder();
