@@ -1,1 +1,0 @@
-sqlite3 "D:\Rasith\Floodgates\Controller\bin\Debug\Data\66301411761169140\database.db" < "D:\Rasith\Floodgates\Controller\bin\Debug\commands.txt"

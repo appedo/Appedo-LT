@@ -37,3 +37,48 @@ Log Entry :
    at System.Net.HttpWebRequest.GetResponse()
    at AgentCore.Utility.GetPageContent(String Url, String data) in e:\AppedoLT\AgentCore\Utility.cs:line 61The underlying connection was closed: A connection that was expected to be kept alive was closed by the server.
 ---------------------------------------
+Log Entry : 
+19:21:13 12 January 2015 
+--Log entry goes here--
+First request sent successfully
+---------------------------------------
+Log Entry : 
+19:21:31 12 January 2015 
+--Log entry goes here--
+counter_params_json={29=913158100.00,1001="39dcf3e6-754c-4066-81f5-dfbf15f12c72",1002="2015-01-12 19:21:26.532"}&agent_type=WINDOWS
+---------------------------------------
+Log Entry : 
+19:24:28 12 January 2015 
+--Log entry goes here--
+First request sent successfully
+---------------------------------------
+Log Entry : 
+19:26:05 12 January 2015 
+--Log entry goes here--
+counter_params_json={29=872792100.00,30=852264.00,1001="39dcf3e6-754c-4066-81f5-dfbf15f12c72",1002="2015-01-12 19:24:31.154"}&agent_type=WINDOWS
+---------------------------------------
+Log Entry : 
+19:33:40 12 January 2015 
+--Log entry goes here--
+First request sent successfully
+---------------------------------------
+Log Entry : 
+20:04:19 12 January 2015 
+--Log entry goes here--
+First request sent successfully
+---------------------------------------
+Log Entry : 
+20:05:03 12 January 2015 
+--Log entry goes here--
+counter_params_json={74=1235575000.00,1001="697aa8b3-863b-4002-89e1-37e1c253a1d8",1002="2015-01-12 20:04:19.072"}&agent_type=WINDOWS
+---------------------------------------
+Log Entry : 
+20:13:15 12 January 2015 
+--Log entry goes here--
+First request sent successfully
+---------------------------------------
+Log Entry : 
+20:13:20 12 January 2015 
+--Log entry goes here--
+counter_params_json={74=1050624000.00,75=1026000.00,1001="697aa8b3-863b-4002-89e1-37e1c253a1d8",1002="2015-01-12 20:13:17.283"}&agent_type=WINDOWS
+---------------------------------------

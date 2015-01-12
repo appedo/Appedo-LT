@@ -4365,7 +4365,7 @@ UwBpAG4AZwBsAGUASQBtAGEAZwBlAAEARQB4AHAAcgBlAHMAcwA=
 		<row><td>PROGRAMFILETOLAUNCHATEND</td><td>[INSTALLDIR]MSWindowsCounterAgent.Primary output</td><td/></row>
 		<row><td>ProductCode</td><td>{33C34919-F018-4E84-ACBC-03E55622E1C0}</td><td/></row>
 		<row><td>ProductName</td><td>Appedo_MSSQLCounter_Agent</td><td/></row>
-		<row><td>ProductVersion</td><td>1.0.0.3</td><td/></row>
+		<row><td>ProductVersion</td><td>1.0.0.4</td><td/></row>
 		<row><td>ProgressType0</td><td>install</td><td/></row>
 		<row><td>ProgressType1</td><td>Installing</td><td/></row>
 		<row><td>ProgressType2</td><td>installed</td><td/></row>

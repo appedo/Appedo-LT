@@ -4333,8 +4333,8 @@ UwBpAG4AZwBsAGUASQBtAGEAZwBlAAEARQB4AHAAcgBlAHMAcwA=
 		<row><td>IS_SQLSERVER_USERNAME</td><td>sa</td><td/></row>
 		<row><td>InstallChoice</td><td>AR</td><td/></row>
 		<row><td>LAUNCHPROGRAM</td><td>1</td><td/></row>
-		<row><td>LAUNCHPROGRAMCOMPCODE</td><td>{F01A5FB1-135F-4065-ACC4-6D00AAF64D67}</td><td/></row>
-		<row><td>LAUNCHPROGRAMFILEKEY</td><td>msiiscounteragent.primary_ou</td><td/></row>
+		<row><td>LAUNCHPROGRAMCOMPCODE</td><td>{BBCE2A39-121A-4E0D-BE9A-F3F1465E6A37}</td><td/></row>
+		<row><td>LAUNCHPROGRAMFILEKEY</td><td>mssqlcounteragent.primary_ou</td><td/></row>
 		<row><td>LAUNCHREADME</td><td>1</td><td/></row>
 		<row><td>Manufacturer</td><td>##COMPANY_NAME##</td><td/></row>
 		<row><td>PIDKEY</td><td/><td/></row>
@@ -4362,10 +4362,10 @@ UwBpAG4AZwBsAGUASQBtAGEAZwBlAAEARQB4AHAAcgBlAHMAcwA=
 		<row><td>PROGMSG_IIS_ROLLBACKAPPPOOLS</td><td>##IDS_PROGMSG_IIS_ROLLBACKAPPPOOLS##</td><td/></row>
 		<row><td>PROGMSG_IIS_ROLLBACKVROOTS</td><td>##IDS_PROGMSG_IIS_ROLLBACKVROOTS##</td><td/></row>
 		<row><td>PROGMSG_IIS_ROLLBACKWEBSERVICEEXTENSIONS</td><td>##IDS_PROGMSG_IIS_ROLLBACKWEBSERVICEEXTENSIONS##</td><td/></row>
-		<row><td>PROGRAMFILETOLAUNCHATEND</td><td>[INSTALLDIR]MSIISCounterAgent.Primary output</td><td/></row>
+		<row><td>PROGRAMFILETOLAUNCHATEND</td><td>[INSTALLDIR]MSSQLCounterAgent.Primary output</td><td/></row>
 		<row><td>ProductCode</td><td>{01876EBC-999C-408C-8988-865671C9A2CE}</td><td/></row>
 		<row><td>ProductName</td><td>Appedo_MSIISCounter_Agent</td><td/></row>
-		<row><td>ProductVersion</td><td>1.0.0.3</td><td/></row>
+		<row><td>ProductVersion</td><td>1.0.0.4</td><td/></row>
 		<row><td>ProgressType0</td><td>install</td><td/></row>
 		<row><td>ProgressType1</td><td>Installing</td><td/></row>
 		<row><td>ProgressType2</td><td>installed</td><td/></row>

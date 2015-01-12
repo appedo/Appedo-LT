@@ -170,8 +170,6 @@ namespace AppedoLTController
             string folderPath = Constants.GetInstance().ExecutingAssemblyLocation + "\\Data\\" + reportname;
             try
             {
-
-
                 if (Directory.Exists(folderPath))
                 {
                     Directory.Delete(folderPath, true);
@@ -187,10 +185,8 @@ namespace AppedoLTController
         }
         private void UpdateReportStatus()
         {
-
             try
             {
-
                 double totalPer = ReportMaster.Status.Count * 100;
                 double competedPer = 0;
                 while (totalPer > competedPer)

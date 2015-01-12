@@ -17,10 +17,11 @@ namespace AgentCore
         private string _type = string.Empty;
         string path = string.Empty;
         string dataSendUrl = string.Empty;
-
+        string counterValue = string.Empty;
         string totalPhysicalMemory = "0";
         bool IsWindowsCounter = false;
-
+        bool isFirstCounterValue = true;
+        string responseStr = string.Empty;
 
         public Agent(XmlFileProccessor xml, bool isWindowsCounter, string guid, string type)
         {
@@ -90,7 +91,11 @@ namespace AgentCore
                     {
                         CountersDetail detail = Utility.GetInstance().Deserialise<CountersDetail>(pageContent);
                         SetCounterList(detail);
-                        if (detail.newCounterSet.Length > 0) break;
+                        if (detail.newCounterSet.Length > 0)
+                        {
+                            ExceptionHandler.WritetoEventLog("First request sent successfully");
+                            break;
+                        }
                         else
                         {
                             Thread.Sleep(1000);
@@ -113,7 +118,15 @@ namespace AgentCore
         {
             try
             {
-                string responseStr = constants.GetPageContent(dataSendUrl, GetCountersValue());
+                counterValue = GetCountersValue();
+                responseStr = constants.GetPageContent(dataSendUrl, counterValue);
+
+                if (isFirstCounterValue)
+                {
+                    ExceptionHandler.WritetoEventLog(counterValue);
+                    isFirstCounterValue = false;
+                }
+
                 if (responseStr.Contains("newCounterSet"))
                 {
                     CountersDetail detail = Utility.GetInstance().Deserialise<CountersDetail>(responseStr);
@@ -207,7 +220,7 @@ namespace AgentCore
             if (IsWindowsCounter == true) data.Append("1000015").Append("=").Append(totalPhysicalMemory).Append(",");
             data.Append(1001).Append("=\"").Append(_guid).Append("\",");
             data.Append(1002).Append("=\"").Append(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff")).Append("\"}").Append("&");
-            data.Append("agent_type=").Append(_type);
+            data.Append("agent_type=").Append(_type).Append("&guid=").Append(_guid);
             return data.ToString();
         }
         private string GetPath()
