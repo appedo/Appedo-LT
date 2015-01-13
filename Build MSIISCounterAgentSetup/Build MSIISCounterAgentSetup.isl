@@ -2644,7 +2644,7 @@
 		<col def="I2">Encoded</col>
 		<col def="S0">Comment</col>
 		<col def="I4">TimeStamp</col>
-		<row><td>COMPANY_NAME</td><td>1033</td><td>Appedo</td><td>0</td><td/><td>732088046</td></row>
+		<row><td>COMPANY_NAME</td><td>1033</td><td>Appedo</td><td>0</td><td/><td>1755513772</td></row>
 		<row><td>DN_AlwaysInstall</td><td>1033</td><td>Always Install</td><td>0</td><td/><td>732085998</td></row>
 		<row><td>IDPROP_EXPRESS_LAUNCH_CONDITION_COLOR</td><td>1033</td><td>The color settings of your system are not adequate for running [ProductName].</td><td>0</td><td/><td>732085998</td></row>
 		<row><td>IDPROP_EXPRESS_LAUNCH_CONDITION_OS</td><td>1033</td><td>The operating system is not adequate for running [ProductName].</td><td>0</td><td/><td>732085998</td></row>
@@ -3744,8 +3744,8 @@
 		<row><td>IDS__TargetReq_DESC_PROCESSOR</td><td>1033</td><td>The processor is not adequate for running [ProductName].</td><td>0</td><td/><td>732085998</td></row>
 		<row><td>IDS__TargetReq_DESC_RAM</td><td>1033</td><td>The amount of RAM is not adequate for running [ProductName].</td><td>0</td><td/><td>732085998</td></row>
 		<row><td>IDS__TargetReq_DESC_RESOLUTION</td><td>1033</td><td>The screen resolution is not adequate for running [ProductName].</td><td>0</td><td/><td>732085998</td></row>
-		<row><td>ID_STRING1</td><td>1033</td><td>http://www.Appedo.com</td><td>0</td><td/><td>732088046</td></row>
-		<row><td>ID_STRING2</td><td>1033</td><td>Appedo</td><td>0</td><td/><td>732088046</td></row>
+		<row><td>ID_STRING1</td><td>1033</td><td>http://www.Appedo.com</td><td>0</td><td/><td>1755513772</td></row>
+		<row><td>ID_STRING2</td><td>1033</td><td>Appedo</td><td>0</td><td/><td>1755513772</td></row>
 		<row><td>ID_STRING3</td><td>1033</td><td>APPEDO~1|Appedo MS IIS Counter Agent</td><td>0</td><td/><td>732065582</td></row>
 		<row><td>IIDS_UITEXT_FeatureUninstalled</td><td>1033</td><td>This feature will remain uninstalled.</td><td>0</td><td/><td>732085998</td></row>
 	</table>
@@ -4333,8 +4333,8 @@ UwBpAG4AZwBsAGUASQBtAGEAZwBlAAEARQB4AHAAcgBlAHMAcwA=
 		<row><td>IS_SQLSERVER_USERNAME</td><td>sa</td><td/></row>
 		<row><td>InstallChoice</td><td>AR</td><td/></row>
 		<row><td>LAUNCHPROGRAM</td><td>1</td><td/></row>
-		<row><td>LAUNCHPROGRAMCOMPCODE</td><td>{BBCE2A39-121A-4E0D-BE9A-F3F1465E6A37}</td><td/></row>
-		<row><td>LAUNCHPROGRAMFILEKEY</td><td>mssqlcounteragent.primary_ou</td><td/></row>
+		<row><td>LAUNCHPROGRAMCOMPCODE</td><td>{F01A5FB1-135F-4065-ACC4-6D00AAF64D67}</td><td/></row>
+		<row><td>LAUNCHPROGRAMFILEKEY</td><td>msiiscounteragent.primary_ou</td><td/></row>
 		<row><td>LAUNCHREADME</td><td>1</td><td/></row>
 		<row><td>Manufacturer</td><td>##COMPANY_NAME##</td><td/></row>
 		<row><td>PIDKEY</td><td/><td/></row>
@@ -4362,7 +4362,7 @@ UwBpAG4AZwBsAGUASQBtAGEAZwBlAAEARQB4AHAAcgBlAHMAcwA=
 		<row><td>PROGMSG_IIS_ROLLBACKAPPPOOLS</td><td>##IDS_PROGMSG_IIS_ROLLBACKAPPPOOLS##</td><td/></row>
 		<row><td>PROGMSG_IIS_ROLLBACKVROOTS</td><td>##IDS_PROGMSG_IIS_ROLLBACKVROOTS##</td><td/></row>
 		<row><td>PROGMSG_IIS_ROLLBACKWEBSERVICEEXTENSIONS</td><td>##IDS_PROGMSG_IIS_ROLLBACKWEBSERVICEEXTENSIONS##</td><td/></row>
-		<row><td>PROGRAMFILETOLAUNCHATEND</td><td>[INSTALLDIR]MSSQLCounterAgent.Primary output</td><td/></row>
+		<row><td>PROGRAMFILETOLAUNCHATEND</td><td>[INSTALLDIR]MSIISCounterAgent.Primary output</td><td/></row>
 		<row><td>ProductCode</td><td>{01876EBC-999C-408C-8988-865671C9A2CE}</td><td/></row>
 		<row><td>ProductName</td><td>Appedo_MSIISCounter_Agent</td><td/></row>
 		<row><td>ProductVersion</td><td>1.0.0.4</td><td/></row>

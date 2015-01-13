@@ -47,6 +47,10 @@ namespace AppedoLTController
                     {
                         Environment.Exit(1);
                     }
+                    else
+                    {
+                        AppedoServer = ControllerXml.GetInstance().doc.SelectSingleNode("//runs").Attributes["appedoipaddress"].Value;
+                    }
                 }
                 serverSocket.Start();
                 DoWorkThread = new Thread(new ThreadStart(DoWork));

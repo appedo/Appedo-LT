@@ -14,10 +14,3 @@ D:\Rasith\AppedoLT\AgentCore\obj\Debug\AgentCore.Properties.Resources.resources
 D:\Rasith\AppedoLT\AgentCore\obj\Debug\AgentCore.csproj.GenerateResource.Cache
 D:\Rasith\AppedoLT\AgentCore\obj\Debug\AgentCore.dll
 D:\Rasith\AppedoLT\AgentCore\obj\Debug\AgentCore.pdb
-E:\AppedoLT\AgentCore\bin\Debug\AgentCore.dll.config
-E:\AppedoLT\AgentCore\bin\Debug\AgentCore.dll
-E:\AppedoLT\AgentCore\bin\Debug\AgentCore.pdb
-E:\AppedoLT\AgentCore\obj\Debug\AgentCore.Properties.Resources.resources
-E:\AppedoLT\AgentCore\obj\Debug\AgentCore.csproj.GenerateResource.Cache
-E:\AppedoLT\AgentCore\obj\Debug\AgentCore.dll
-E:\AppedoLT\AgentCore\obj\Debug\AgentCore.pdb

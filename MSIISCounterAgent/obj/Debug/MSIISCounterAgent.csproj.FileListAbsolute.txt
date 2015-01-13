@@ -20,14 +20,3 @@ D:\Rasith\AppedoLT\MSIISCounterAgent\obj\Debug\MSIISCounterAgent.Properties.Reso
 D:\Rasith\AppedoLT\MSIISCounterAgent\obj\Debug\MSIISCounterAgent.csproj.GenerateResource.Cache
 D:\Rasith\AppedoLT\MSIISCounterAgent\obj\Debug\MSIISCounterAgent.exe
 D:\Rasith\AppedoLT\MSIISCounterAgent\obj\Debug\MSIISCounterAgent.pdb
-E:\AppedoLT\MSIISCounterAgent\bin\Debug\MSIISCounterAgent.exe.config
-E:\AppedoLT\MSIISCounterAgent\bin\Debug\MSIISCounterAgent.exe
-E:\AppedoLT\MSIISCounterAgent\bin\Debug\MSIISCounterAgent.pdb
-E:\AppedoLT\MSIISCounterAgent\bin\Debug\AgentCore.dll
-E:\AppedoLT\MSIISCounterAgent\bin\Debug\AgentCore.pdb
-E:\AppedoLT\MSIISCounterAgent\obj\Debug\MSIISCounterAgent.csprojResolveAssemblyReference.cache
-E:\AppedoLT\MSIISCounterAgent\obj\Debug\MSIISCounterAgent.frmMSIISCounterAgent.resources
-E:\AppedoLT\MSIISCounterAgent\obj\Debug\MSIISCounterAgent.Properties.Resources.resources
-E:\AppedoLT\MSIISCounterAgent\obj\Debug\MSIISCounterAgent.csproj.GenerateResource.Cache
-E:\AppedoLT\MSIISCounterAgent\obj\Debug\MSIISCounterAgent.exe
-E:\AppedoLT\MSIISCounterAgent\obj\Debug\MSIISCounterAgent.pdb
