@@ -4371,7 +4371,7 @@ UwBpAG4AZwBsAGUASQBtAGEAZwBlAAEARQB4AHAAcgBlAHMAcwA=
 		<row><td>PROGRAMFILETOLAUNCHATEND</td><td>[INSTALLDIR]MSWindowsCounterAgent.Primary output</td><td/></row>
 		<row><td>ProductCode</td><td>{0923EB68-15D6-4BB8-A3ED-7D738E58BCE1}</td><td/></row>
 		<row><td>ProductName</td><td>Appedo_MSWindowsCounter_Agent</td><td/></row>
-		<row><td>ProductVersion</td><td>1.0.0.4</td><td/></row>
+		<row><td>ProductVersion</td><td>1.0.0.5</td><td/></row>
 		<row><td>ProgressType0</td><td>install</td><td/></row>
 		<row><td>ProgressType1</td><td>Installing</td><td/></row>
 		<row><td>ProgressType2</td><td>installed</td><td/></row>

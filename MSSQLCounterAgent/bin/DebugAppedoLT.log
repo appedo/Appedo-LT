@@ -1,0 +1,10 @@
+Log Entry : 
+17:30:39 12 January 2015 
+--Log entry goes here--
+   at System.Diagnostics.PerformanceCounterLib.CounterExists(String machine, String category, String counter)
+   at System.Diagnostics.PerformanceCounter.InitializeImpl()
+   at System.Diagnostics.PerformanceCounter..ctor(String categoryName, String counterName, String instanceName, Boolean readOnly)
+   at System.Diagnostics.PerformanceCounter..ctor(String categoryName, String counterName)
+   at AgentCore.Agent.SetCounterList(CountersDetail details) in e:\AppedoLT\AgentCore\Agent.cs:line 151
+Category does not exist.
+---------------------------------------
