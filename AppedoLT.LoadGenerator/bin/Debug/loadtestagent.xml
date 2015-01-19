@@ -283,4 +283,5 @@
   <run runid="19007" scenarioname="Test1" isresultfileSent="False" runcompleted="False" totalloadgenused="1" currentloadgenid="1" sourceip="127.0.0.1" reportfoldername="19007_127_0_0_1" loadgenname="127.0.0.1" scenariostarttime="12/5/2014 8:58:51 AM" />
   <run runid="19008" scenarioname="Test1" isresultfileSent="False" runcompleted="False" totalloadgenused="1" currentloadgenid="1" sourceip="127.0.0.1" reportfoldername="19008_127_0_0_1" loadgenname="127.0.0.1" scenariostarttime="12/5/2014 9:00:21 AM" />
   <run runid="19009" scenarioname="Test1" isresultfileSent="False" runcompleted="False" totalloadgenused="1" currentloadgenid="1" sourceip="127.0.0.1" reportfoldername="19009_127_0_0_1" loadgenname="127.0.0.1" scenariostarttime="12/5/2014 9:01:11 AM" />
+  <run runid="909" scenarioname="QAMDemo" isresultfileSent="False" runcompleted="False" totalloadgenused="1" currentloadgenid="1" sourceip="192.168.1.70" reportfoldername="909_192_168_1_70" loadgenname="192.168.1.70" scenariostarttime="08-01-2015 21:34:24" distribution="100" />
 </runs>

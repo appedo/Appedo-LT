@@ -71,3 +71,63 @@ Log Entry :
    at System.Net.HttpWebRequest.GetRequestStream()
    at AgentCore.Utility.GetPageContent(String Url, String data) in d:\Rasith\AppedoLT\AgentCore\Utility.cs:line 55Unable to connect to the remote server
 ---------------------------------------
+Log Entry : 
+00:57:16 09 January 2015 
+--Log entry goes here--
+   at System.Diagnostics.CounterDefinitionSample.GetInstanceValue(String instanceName)
+   at System.Diagnostics.PerformanceCounter.NextSample()
+   at System.Diagnostics.PerformanceCounter.NextValue()
+   at AgentCore.Agent.SetCounterList(CountersDetail details) in e:\AppedoLT\AgentCore\Agent.cs:line 136
+Instance '_Total"' does not exist in the specified Category.
+---------------------------------------
+Log Entry : 
+00:57:16 09 January 2015 
+--Log entry goes here--
+   at System.Diagnostics.CounterDefinitionSample.GetInstanceValue(String instanceName)
+   at System.Diagnostics.PerformanceCounter.NextSample()
+   at System.Diagnostics.PerformanceCounter.NextValue()
+   at AgentCore.Agent.SetCounterList(CountersDetail details) in e:\AppedoLT\AgentCore\Agent.cs:line 136
+Instance '_Total"' does not exist in the specified Category.
+---------------------------------------
+Log Entry : 
+00:57:30 09 January 2015 
+--Log entry goes here--
+   at System.Diagnostics.CounterDefinitionSample.GetInstanceValue(String instanceName)
+   at System.Diagnostics.PerformanceCounter.NextSample()
+   at System.Diagnostics.PerformanceCounter.NextValue()
+   at AgentCore.Agent.SetCounterList(CountersDetail details) in e:\AppedoLT\AgentCore\Agent.cs:line 136
+Instance '_Total"' does not exist in the specified Category.
+---------------------------------------
+Log Entry : 
+00:57:30 09 January 2015 
+--Log entry goes here--
+   at System.Diagnostics.CounterDefinitionSample.GetInstanceValue(String instanceName)
+   at System.Diagnostics.PerformanceCounter.NextSample()
+   at System.Diagnostics.PerformanceCounter.NextValue()
+   at AgentCore.Agent.SetCounterList(CountersDetail details) in e:\AppedoLT\AgentCore\Agent.cs:line 136
+Instance '_Total"' does not exist in the specified Category.
+---------------------------------------
+Log Entry : 
+00:58:27 09 January 2015 
+--Log entry goes here--
+   at System.Diagnostics.CounterDefinitionSample.GetInstanceValue(String instanceName)
+   at System.Diagnostics.PerformanceCounter.NextSample()
+   at System.Diagnostics.PerformanceCounter.NextValue()
+   at AgentCore.Agent.SetCounterList(CountersDetail details) in e:\AppedoLT\AgentCore\Agent.cs:line 136
+Instance '_Total"' does not exist in the specified Category.
+---------------------------------------
+Log Entry : 
+00:58:27 09 January 2015 
+--Log entry goes here--
+   at System.Diagnostics.CounterDefinitionSample.GetInstanceValue(String instanceName)
+   at System.Diagnostics.PerformanceCounter.NextSample()
+   at System.Diagnostics.PerformanceCounter.NextValue()
+   at AgentCore.Agent.SetCounterList(CountersDetail details) in e:\AppedoLT\AgentCore\Agent.cs:line 136
+Instance '_Total"' does not exist in the specified Category.
+---------------------------------------
+Log Entry : 
+01:12:28 09 January 2015 
+--Log entry goes here--
+   at System.Net.HttpWebRequest.GetResponse()
+   at AgentCore.Utility.GetPageContent(String Url, String data)The underlying connection was closed: A connection that was expected to be kept alive was closed by the server.
+---------------------------------------

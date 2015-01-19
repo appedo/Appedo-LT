@@ -1,35 +1,33 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Diagnostics;
-using System.Configuration;
-using System.Text.RegularExpressions;
+using System.Text;
+using System.Threading;
 using System.Xml;
-using System.Web.UI;
 
 namespace AgentCore
 {
     public class Agent
     {
         Utility constants = Utility.GetInstance();
-        
+
         Dictionary<string, PerformanceCounter> Counters = new Dictionary<string, PerformanceCounter>();
         Dictionary<string, List<PerformanceCounter>> CountersAllInstance = new Dictionary<string, List<PerformanceCounter>>();
         private string _guid = string.Empty;
         private string _type = string.Empty;
         string path = string.Empty;
         string dataSendUrl = string.Empty;
-      
+        string counterValue = string.Empty;
         string totalPhysicalMemory = "0";
         bool IsWindowsCounter = false;
-       
-        
-        public Agent(XmlFileProccessor xml, bool isWindowsCounter,string guid,string type)
+        bool isFirstCounterValue = true;
+        string responseStr = string.Empty;
+
+        public Agent(XmlFileProccessor xml, bool isWindowsCounter, string guid, string type)
         {
             IsWindowsCounter = isWindowsCounter;
             _guid = guid;
-            _type=type;
+            _type = type;
             if (IsWindowsCounter == true) SetTotalPhysicalMemory();
             path = GetPath();
             dataSendUrl = path + "/collectCounters";
@@ -81,18 +79,55 @@ namespace AgentCore
         }
         public Agent(string guid, string type)
         {
-            _guid = guid;
-            _type = type;
-            dataSendUrl = GetPath() + "/collectCounters";
-            CountersDetail detail = Utility.GetInstance().Deserialise<CountersDetail>(constants.GetPageContent(path = GetPath() + "/getConfigurations", string.Format("guid={0}&command=firstrequest", guid)));
-            SetCounterList(detail);
+            while (true)
+            {
+                try
+                {
+                    _guid = guid;
+                    _type = type;
+                    dataSendUrl = GetPath() + "/collectCounters";
+                    string pageContent = constants.GetPageContent(path = GetPath() + "/getConfigurations", string.Format("guid={0}&command=firstrequest", guid));
+                    if (pageContent != string.Empty)
+                    {
+                        CountersDetail detail = Utility.GetInstance().Deserialise<CountersDetail>(pageContent);
+                        SetCounterList(detail);
+                        if (detail.newCounterSet.Length > 0)
+                        {
+                            ExceptionHandler.WritetoEventLog("First request sent successfully");
+                            break;
+                        }
+                        else
+                        {
+                            Thread.Sleep(1000);
+                        }
+                    }
+                    else
+                    {
+                        Thread.Sleep(1000);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Thread.Sleep(1000);
+                    ExceptionHandler.WritetoEventLog(ex.StackTrace + Environment.NewLine + ex.Message);
+                }
+
+            }
         }
         public void SendCounter()
         {
             try
             {
-                string responseStr= constants.GetPageContent(dataSendUrl, GetCountersValue());
-                if(responseStr.Contains("newCounterSet"))
+                counterValue = GetCountersValue();
+                responseStr = constants.GetPageContent(dataSendUrl, counterValue);
+
+                if (isFirstCounterValue)
+                {
+                    ExceptionHandler.WritetoEventLog(counterValue);
+                    isFirstCounterValue = false;
+                }
+
+                if (responseStr.Contains("newCounterSet"))
                 {
                     CountersDetail detail = Utility.GetInstance().Deserialise<CountersDetail>(responseStr);
                     SetCounterList(detail);
@@ -116,15 +151,15 @@ namespace AgentCore
         }
         public void SetCounterList(CountersDetail details)
         {
-          
+
             string[] detail = null;
             Counters.Clear();
             foreach (newCounterSet counterWithIndance in details.newCounterSet)
             {
                 try
                 {
-                    detail = counterWithIndance.query.Split(',');
-                    if (detail[0].ToLower() == "false")
+                    detail = counterWithIndance.query.Trim('"').Split(',');
+                    if (detail[0].ToLower() == "false" || detail[0].ToLower().Trim() == "0" || detail[3] == string.Empty)
                     {
                         PerformanceCounter counter = new PerformanceCounter(detail[1], detail[2]);
                         counter.NextValue();
@@ -143,6 +178,7 @@ namespace AgentCore
                 }
             }
         }
+
         private string GetCountersValue()
         {
             StringBuilder data = new StringBuilder();
@@ -184,7 +220,7 @@ namespace AgentCore
             if (IsWindowsCounter == true) data.Append("1000015").Append("=").Append(totalPhysicalMemory).Append(",");
             data.Append(1001).Append("=\"").Append(_guid).Append("\",");
             data.Append(1002).Append("=\"").Append(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff")).Append("\"}").Append("&");
-            data.Append("agent_type=").Append(_type);
+            data.Append("agent_type=").Append(_type).Append("&guid=").Append(_guid);
             return data.ToString();
         }
         private string GetPath()

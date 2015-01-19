@@ -32,9 +32,9 @@ E:\AppedoLT\Profiler\obj\Debug\DotNetProfiler.exe
 E:\AppedoLT\Profiler\obj\Debug\DotNetProfiler.pdb
 E:\AppedoLT\Win32\Debug\DotNetProfiler.exe
 E:\AppedoLT\Win32\Debug\DotNetProfiler.pdb
-E:\AppedoLT\Profiler\obj\Debug\Profiler.csprojResolveAssemblyReference.cache
 E:\AppedoLT\Profiler\obj\Debug\Profiler.frmProfiler.resources
 E:\AppedoLT\Profiler\obj\Debug\Profiler.Properties.Resources.resources
 E:\AppedoLT\Profiler\obj\Debug\Profiler.Settings.resources
 E:\AppedoLT\Profiler\obj\Debug\Profiler.WaitingForConnectionForm.resources
 E:\AppedoLT\Profiler\obj\Debug\Profiler.csproj.GenerateResource.Cache
+E:\AppedoLT\Profiler\obj\Debug\Profiler.csprojResolveAssemblyReference.cache

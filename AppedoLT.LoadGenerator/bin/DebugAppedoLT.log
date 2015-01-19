@@ -200,3 +200,78 @@ The process cannot access the file 'E:\AppedoLT\AppedoLT.LoadGenerator\bin\Debug
    at System.IO.FileStream..ctor(String path, FileMode mode)
    at AppedoLT.DataAccessLayer.DataServer.ClearData() in e:\AppedoLT\AppedoLT.DataAccessLayer\DataServer.cs:line 259
 ---------------------------------------
+16:46:00 08 January 2015 
+The process cannot access the file 'E:\AppedoLT\AppedoLT.LoadGenerator\bin\Debug\out.txt' because it is being used by another process.
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options, String msgPath, Boolean bFromProxy)
+   at System.IO.FileStream..ctor(String path, FileMode mode)
+   at AppedoLT.DataAccessLayer.DataServer.ClearData() in e:\AppedoLT\AppedoLT.DataAccessLayer\DataServer.cs:line 263
+---------------------------------------
+16:48:37 08 January 2015 
+   at AppedoLTLoadGenerator.LoadGenerator.<>c__DisplayClass1.<worker_DoWork>b__0() in e:\AppedoLT\AppedoLT.LoadGenerator\frmLoadGenerator.cs:line 198Object reference not set to an instance of an object.
+---------------------------------------
+16:54:17 08 January 2015 
+   at AppedoLTLoadGenerator.LoadGenerator.<>c__DisplayClass1.<worker_DoWork>b__0() in e:\AppedoLT\AppedoLT.LoadGenerator\frmLoadGenerator.cs:line 198Object reference not set to an instance of an object.
+---------------------------------------
+16:54:47 08 January 2015 
+   at AppedoLTLoadGenerator.LoadGenerator.<>c__DisplayClass1.<worker_DoWork>b__0() in e:\AppedoLT\AppedoLT.LoadGenerator\frmLoadGenerator.cs:line 198Object reference not set to an instance of an object.
+---------------------------------------
+16:58:47 08 January 2015 
+The process cannot access the file 'E:\AppedoLT\AppedoLT.LoadGenerator\bin\Debug\out.txt' because it is being used by another process.
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options, String msgPath, Boolean bFromProxy)
+   at System.IO.FileStream..ctor(String path, FileMode mode)
+   at AppedoLT.DataAccessLayer.DataServer.ClearData() in e:\AppedoLT\AppedoLT.DataAccessLayer\DataServer.cs:line 263
+---------------------------------------
+17:01:07 08 January 2015 
+   at System.Data.SQLite.SQLiteDataReader.VerifyType(Int32 i, DbType typ)
+   at System.Data.SQLite.SQLiteDataReader.GetDateTime(Int32 i)
+   at AppedoLT.DataAccessLayer.ReportMaster..ctor(String reportName, DateTime ScenarioStartTime, String loagGenName) in e:\AppedoLT\AppedoLT.DataAccessLayer\ReportMaster.cs:line 107Specified cast is not valid.
+---------------------------------------
+21:39:08 08 January 2015 
+The process cannot access the file 'E:\AppedoLT\AppedoLT.LoadGenerator\bin\Debug\out.txt' because it is being used by another process.
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options, String msgPath, Boolean bFromProxy)
+   at System.IO.FileStream..ctor(String path, FileMode mode)
+   at AppedoLT.DataAccessLayer.DataServer.ClearData() in e:\AppedoLT\AppedoLT.DataAccessLayer\DataServer.cs:line 263
+---------------------------------------
+21:40:33 08 January 2015 
+   at System.Data.SQLite.SQLiteDataReader.VerifyType(Int32 i, DbType typ)
+   at System.Data.SQLite.SQLiteDataReader.GetDateTime(Int32 i)
+   at AppedoLT.DataAccessLayer.ReportMaster..ctor(String reportName, DateTime ScenarioStartTime, String loagGenName) in e:\AppedoLT\AppedoLT.DataAccessLayer\ReportMaster.cs:line 107Specified cast is not valid.
+---------------------------------------
+22:29:34 08 January 2015 
+The process cannot access the file 'E:\AppedoLT\AppedoLT.LoadGenerator\bin\Debug\out.txt' because it is being used by another process.
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options, String msgPath, Boolean bFromProxy)
+   at System.IO.FileStream..ctor(String path, FileMode mode)
+   at AppedoLT.DataAccessLayer.DataServer.ClearData() in e:\AppedoLT\AppedoLT.DataAccessLayer\DataServer.cs:line 263
+---------------------------------------
+22:30:59 08 January 2015 
+   at System.Data.SQLite.SQLiteDataReader.VerifyType(Int32 i, DbType typ)
+   at System.Data.SQLite.SQLiteDataReader.GetDateTime(Int32 i)
+   at AppedoLT.DataAccessLayer.ReportMaster..ctor(String reportName, DateTime ScenarioStartTime, String loagGenName) in e:\AppedoLT\AppedoLT.DataAccessLayer\ReportMaster.cs:line 107Specified cast is not valid.
+---------------------------------------
+23:24:54 08 January 2015 
+The process cannot access the file 'E:\AppedoLT\AppedoLT.LoadGenerator\bin\Debug\out.txt' because it is being used by another process.
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options, String msgPath, Boolean bFromProxy)
+   at System.IO.FileStream..ctor(String path, FileMode mode)
+   at AppedoLT.DataAccessLayer.DataServer.ClearData() in e:\AppedoLT\AppedoLT.DataAccessLayer\DataServer.cs:line 263
+---------------------------------------
+23:26:19 08 January 2015 
+   at System.Data.SQLite.SQLiteDataReader.VerifyType(Int32 i, DbType typ)
+   at System.Data.SQLite.SQLiteDataReader.GetDateTime(Int32 i)
+   at AppedoLT.DataAccessLayer.ReportMaster..ctor(String reportName, DateTime ScenarioStartTime, String loagGenName) in e:\AppedoLT\AppedoLT.DataAccessLayer\ReportMaster.cs:line 107Specified cast is not valid.
+---------------------------------------
+23:28:45 08 January 2015 
+   at AppedoLTLoadGenerator.LoadGenerator.<>c__DisplayClass1.<worker_DoWork>b__0() in e:\AppedoLT\AppedoLT.LoadGenerator\frmLoadGenerator.cs:line 134Object reference not set to an instance of an object.
+---------------------------------------
+23:32:43 08 January 2015 
+   at AppedoLTLoadGenerator.LoadGenerator.<>c__DisplayClass1.<worker_DoWork>b__0() in e:\AppedoLT\AppedoLT.LoadGenerator\frmLoadGenerator.cs:line 198Object reference not set to an instance of an object.
+---------------------------------------

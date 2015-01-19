@@ -987,7 +987,7 @@ void PrfInfo::AddFunction( FunctionID functionID, SIZE_T internalID )
 						&& !(wcsstr(pFunctionInfo->m_functionName, L"::.") != 0)
 						&& !(wcsstr(pFunctionInfo->m_functionName, L"::GetTypeHashCode") != 0)
 						&& !(wcsstr(pFunctionInfo->m_functionName, L"_OnItemDataBound") != 0)
-						//&& !(wcsstr(pFunctionInfo->m_functionName, L"_aspx::ProcessRequest") != 0)
+						&& !(wcsstr(pFunctionInfo->m_functionName, L"_aspx::ProcessRequest") != 0)
 						&& !(wcsstr(pFunctionInfo->m_functionName, L"_aspx::__RenderContent") != 0)
 						)// && wcscmp(pFunctionInfo->m_functionName, L"::__BuildControl") == 0 )
 						{
