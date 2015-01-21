@@ -4425,7 +4425,7 @@ UwBpAG4AZwBsAGUASQBtAGEAZwBlAAEARQB4AHAAcgBlAHMAcwA=
 		<row><td>PROGRAMFILETOLAUNCHATEND</td><td>[INSTALLDIR]AppedoLT.Controller.Primary output</td><td/></row>
 		<row><td>ProductCode</td><td>{E07B4F1B-2ACA-46ED-AE07-E91E2B900B6B}</td><td/></row>
 		<row><td>ProductName</td><td>AppedoLT Controller</td><td/></row>
-		<row><td>ProductVersion</td><td>1.0.0.10</td><td/></row>
+		<row><td>ProductVersion</td><td>1.0.0.11</td><td/></row>
 		<row><td>ProgressType0</td><td>install</td><td/></row>
 		<row><td>ProgressType1</td><td>Installing</td><td/></row>
 		<row><td>ProgressType2</td><td>installed</td><td/></row>

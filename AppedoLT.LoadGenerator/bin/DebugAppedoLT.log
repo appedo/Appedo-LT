@@ -275,3 +275,19 @@ The process cannot access the file 'E:\AppedoLT\AppedoLT.LoadGenerator\bin\Debug
 23:32:43 08 January 2015 
    at AppedoLTLoadGenerator.LoadGenerator.<>c__DisplayClass1.<worker_DoWork>b__0() in e:\AppedoLT\AppedoLT.LoadGenerator\frmLoadGenerator.cs:line 198Object reference not set to an instance of an object.
 ---------------------------------------
+11:48:36 21 January 2015 
+   at System.Data.SQLite.SQLite3.Prepare(SQLiteConnection cnn, String strSql, SQLiteStatement previous, UInt32 timeoutMS, String& strRemain)
+   at System.Data.SQLite.SQLiteCommand.BuildNextCommand()
+   at System.Data.SQLite.SQLiteCommand.GetStatement(Int32 index)
+   at System.Data.SQLite.SQLiteDataReader.NextResult()
+   at System.Data.SQLite.SQLiteDataReader..ctor(SQLiteCommand cmd, CommandBehavior behave)
+   at System.Data.SQLite.SQLiteCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.SQLite.SQLiteCommand.ExecuteNonQuery()
+   at AppedoLT.DataAccessLayer.ReportMaster.SetUserRunTime() in e:\AppedoLT\AppedoLT.DataAccessLayer\ReportMaster.cs:line 183SQLite error
+index idx_userruntime already exists
+---------------------------------------
+12:00:02 21 January 2015 
+   at System.Net.ConnectStream.Read(Byte[] buffer, Int32 offset, Int32 size)
+   at AppedoLT.BusinessLogic.HttpRequest.ReadResponseBody(String contentType, Int64 contentLength, Stream responseStream, MemoryStream& responseBody) in e:\AppedoLT\AppedoLT.BusinessLogic\HttpRequest.cs:line 615
+The request was aborted: The request was canceled.
+---------------------------------------
