@@ -1451,3 +1451,1619 @@
    at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
    at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 230A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
 ---------------------------------------
+20:08:29 21 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 230A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+20:09:04 21 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 230A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+20:09:34 21 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 230A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+20:10:04 21 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 230A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+20:10:34 21 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 230A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+20:11:04 21 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 230A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+20:11:39 21 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 230A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+20:12:09 21 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 230A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+20:12:39 21 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 230A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+20:21:29 21 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 230A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+20:31:34 21 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.Controller.SendScriptWiseStatus(String scriptWiseStatus) in e:\AppedoLT\AppedoLT.Controller\Controller.cs:line 224
+A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+20:31:44 21 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 230A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+20:33:44 21 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.Controller.SendScriptWiseStatus(String scriptWiseStatus) in e:\AppedoLT\AppedoLT.Controller\Controller.cs:line 224
+A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+20:33:54 21 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 230A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+20:34:09 21 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.Controller.SendScriptWiseStatus(String scriptWiseStatus) in e:\AppedoLT\AppedoLT.Controller\Controller.cs:line 224
+A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+20:34:29 21 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 230A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+20:34:34 21 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.Controller.SendScriptWiseStatus(String scriptWiseStatus) in e:\AppedoLT\AppedoLT.Controller\Controller.cs:line 224
+A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+20:38:39 21 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.RunOperation(Trasport server, TrasportData data) in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 361A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+20:38:59 21 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.RunOperation(Trasport server, TrasportData data) in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 361A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+20:39:24 21 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.RunOperation(Trasport server, TrasportData data) in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 361A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+20:39:24 21 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.RunOperation(Trasport server, TrasportData data) in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 361A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+20:39:29 21 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.RunOperation(Trasport server, TrasportData data) in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 361A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+20:39:34 21 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.RunOperation(Trasport server, TrasportData data) in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 361A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+20:39:34 21 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.RunOperation(Trasport server, TrasportData data) in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 361A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+20:41:39 21 January 2015 
+956:
+21-01-2015 20:30:48: Rundetail saved on 192.168.1.70
+21-01-2015 20:30:48: Run started on 192.168.1.70
+21-01-2015 20:30:51: Run started 
+21-01-2015 20:36:04: Run completed
+21-01-2015 20:36:14: Report is generating
+21-01-2015 20:41:31: Received data file from 192.168.1.70
+21-01-2015 20:41:33: Summary report genetated
+21-01-2015 20:41:34: Summary chart genetated
+21-01-2015 20:41:36: Chart file is received from 192.168.1.70
+21-01-2015 20:41:36: Summaryreport sent successfully.
+21-01-2015 20:41:36: result sent successfully.
+21-01-2015 20:41:36: node deleted successfully.
+21-01-2015 20:41:36: Directory deleted successfully.
+
+
+---------------------------------------
+20:41:49 21 January 2015 
+962:
+21-01-2015 20:36:14: Rundetail saved on 192.168.1.70
+21-01-2015 20:36:14: Run started on 192.168.1.70
+21-01-2015 20:36:16: Run started 
+21-01-2015 20:41:31: Run completed
+21-01-2015 20:41:41: Report is generating
+21-01-2015 20:41:43: Received data file from 192.168.1.70
+21-01-2015 20:41:45: Summary report genetated
+21-01-2015 20:41:46: Summary chart genetated
+21-01-2015 20:41:48: Chart file is received from 192.168.1.70
+21-01-2015 20:41:48: Summaryreport sent successfully.
+21-01-2015 20:41:48: result sent successfully.
+21-01-2015 20:41:48: node deleted successfully.
+21-01-2015 20:41:48: Directory deleted successfully.
+
+
+---------------------------------------
+20:45:29 21 January 2015 
+963:
+21-01-2015 20:39:35: Rundetail saved on 54.160.110.234
+21-01-2015 20:39:37: Run started on 54.160.110.234
+21-01-2015 20:39:39: Run started 
+21-01-2015 20:45:03: Run completed
+21-01-2015 20:45:13: Report is generating
+21-01-2015 20:45:18: Received data file from 54.160.110.234
+21-01-2015 20:45:21: Summary report genetated
+21-01-2015 20:45:21: Summary chart genetated
+21-01-2015 20:45:24: Chart file is received from 54.160.110.234
+21-01-2015 20:45:24: Summaryreport sent successfully.
+21-01-2015 20:45:24: result sent successfully.
+21-01-2015 20:45:24: node deleted successfully.
+21-01-2015 20:45:25: Directory deleted successfully.
+
+
+---------------------------------------
+20:47:54 21 January 2015 
+964:
+21-01-2015 20:42:14: Rundetail saved on 192.168.1.70
+21-01-2015 20:42:14: Run started on 192.168.1.70
+21-01-2015 20:42:16: Run started 
+21-01-2015 20:47:35: Run completed
+21-01-2015 20:47:45: Report is generating
+21-01-2015 20:47:47: Received data file from 192.168.1.70
+21-01-2015 20:47:49: Summary report genetated
+21-01-2015 20:47:50: Summary chart genetated
+21-01-2015 20:47:52: Chart file is received from 192.168.1.70
+21-01-2015 20:47:52: Summaryreport sent successfully.
+21-01-2015 20:47:52: result sent successfully.
+21-01-2015 20:47:52: node deleted successfully.
+21-01-2015 20:47:52: Directory deleted successfully.
+
+
+---------------------------------------
+20:50:29 21 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 230A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+20:50:59 21 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 230A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+20:51:29 21 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 230A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+20:51:59 21 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 230A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+20:52:29 21 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 230A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+20:53:04 21 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 230A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+20:53:34 21 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 230A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+12:17:37 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+12:18:12 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+12:18:43 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+12:21:33 22 January 2015 
+965:
+22-01-2015 12:20:04: Rundetail saved on 192.168.1.70
+22-01-2015 12:20:04: Run started on 192.168.1.70
+22-01-2015 12:20:06: Run started 
+22-01-2015 12:20:51: Stop request received 
+22-01-2015 12:20:51: Stop request sent to loadgen 192.168.1.70
+22-01-2015 12:20:59: Run completed
+22-01-2015 12:21:09: Report is generating
+22-01-2015 12:21:11: Received data file from 192.168.1.70
+22-01-2015 12:21:23: Summary report genetated
+22-01-2015 12:21:26: Summary chart genetated
+22-01-2015 12:21:28: Chart file is received from 192.168.1.70
+22-01-2015 12:21:28: Summaryreport sent successfully.
+22-01-2015 12:21:29: result sent successfully.
+22-01-2015 12:21:29: node deleted successfully.
+22-01-2015 12:21:29: Directory deleted successfully.
+
+
+---------------------------------------
+12:32:38 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+14:11:30 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+14:12:00 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+14:12:30 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+14:13:00 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+14:13:35 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+14:14:05 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+14:14:35 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+14:15:05 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+14:15:35 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+14:16:10 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+14:16:40 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+14:17:10 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+14:17:40 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+14:18:10 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+14:18:45 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+14:19:15 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+14:19:45 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+14:20:15 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+14:20:45 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+14:21:20 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+14:21:50 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+14:22:20 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+14:22:50 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+14:23:20 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+14:23:55 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+14:24:25 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+14:24:56 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+14:25:26 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+14:25:56 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+14:26:31 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+14:27:01 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+14:27:31 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+14:28:01 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+14:28:31 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+14:29:06 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+14:29:36 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+14:30:06 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+14:30:36 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+14:31:06 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+14:31:41 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+14:32:11 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+14:32:41 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+14:33:11 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+14:33:41 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+14:34:16 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+14:34:46 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+14:35:16 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+14:35:46 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+14:36:16 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+14:36:52 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+14:37:22 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+14:37:52 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+14:38:22 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+14:38:52 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+14:39:27 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+14:39:57 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+14:40:27 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+14:40:57 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+14:41:27 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+14:42:02 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+14:42:32 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+14:43:02 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+14:43:32 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+14:44:02 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+14:44:37 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+14:45:07 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+14:45:37 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+14:46:07 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+14:46:37 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+14:47:12 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+14:47:42 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+14:48:12 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+14:48:42 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+14:49:12 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+14:49:47 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+14:50:17 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+14:50:47 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+14:51:17 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+14:51:47 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+14:52:22 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+14:52:52 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+14:53:22 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+14:53:52 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+14:54:22 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+14:54:57 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+14:55:27 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+14:55:57 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+14:56:27 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+14:56:57 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+14:57:33 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+14:58:03 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+14:58:33 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+14:59:03 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+14:59:33 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+15:00:08 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+15:00:38 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+15:01:08 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+15:01:38 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+15:02:08 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+15:02:43 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+15:03:13 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+15:03:43 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+15:04:13 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+15:04:43 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+15:05:18 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+15:05:48 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+15:06:18 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+15:06:48 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+15:07:18 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+15:07:53 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+15:08:23 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+15:08:53 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+15:09:23 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+15:09:53 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+15:10:28 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+15:10:58 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+15:11:28 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+15:11:59 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+15:12:29 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+15:13:04 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+16:11:54 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+16:12:25 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+16:12:55 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+16:22:15 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+16:22:50 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+16:23:20 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+16:23:50 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+16:24:20 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+16:24:50 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+16:25:25 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+16:25:55 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+16:26:25 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+16:26:55 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+16:27:25 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+16:28:00 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+16:28:30 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+16:29:00 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+16:29:30 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+16:30:00 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+16:30:35 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+16:31:05 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+16:31:35 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+16:32:05 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+16:32:36 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+16:33:11 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+16:33:41 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+16:34:11 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+16:34:41 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+16:35:11 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+16:35:46 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+16:36:16 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+16:36:46 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+16:37:16 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+16:37:46 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+16:38:21 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+16:38:51 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+16:39:21 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+16:39:51 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+16:40:21 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+16:40:56 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+16:41:26 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+16:41:56 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+16:42:26 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+16:42:56 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+16:43:27 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+16:44:02 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+16:44:32 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+16:45:02 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+16:45:32 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+16:46:07 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+16:46:37 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+16:47:07 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+16:47:37 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+16:48:07 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+16:48:42 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+16:49:12 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+16:49:42 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+16:50:12 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+16:50:42 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+16:51:12 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+16:51:47 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+16:52:17 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+16:52:47 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+16:53:17 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+16:53:47 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+16:54:22 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+16:54:52 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+16:55:22 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+16:55:52 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+16:56:22 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+16:56:57 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+16:57:27 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+16:57:58 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+16:58:28 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+16:58:58 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+16:59:33 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+17:00:03 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+17:00:33 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+17:01:03 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+17:01:33 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+17:02:08 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+17:02:38 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+17:03:08 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+17:03:38 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+17:04:08 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+17:04:43 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+17:05:13 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+17:05:43 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+17:06:13 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+17:06:43 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+17:07:18 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+17:07:48 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+17:08:18 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+17:08:48 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+17:09:18 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+17:09:53 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+17:10:23 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+17:10:53 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+17:11:23 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+17:11:53 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+17:12:29 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+17:12:59 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+17:13:29 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+17:13:59 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+17:14:29 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+17:15:04 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+17:15:34 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+17:16:04 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+17:16:34 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+17:17:04 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+17:17:39 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+17:18:09 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+17:18:39 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+17:19:09 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+17:19:39 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+17:20:14 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+17:20:44 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+17:21:14 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+17:21:44 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+17:22:14 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+17:22:49 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+17:23:19 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+17:23:49 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+17:24:19 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+17:24:49 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+17:25:24 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+17:25:54 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+17:26:25 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+17:26:55 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+17:27:25 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+17:28:00 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+17:28:30 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+17:29:00 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+17:29:30 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+17:30:00 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+17:30:35 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+17:31:05 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+18:24:26 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+18:24:56 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+18:25:26 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+18:26:01 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+18:26:31 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+18:27:01 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+18:27:31 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+18:28:01 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+18:28:36 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+18:29:06 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+18:29:36 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------
+18:30:06 22 January 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 92
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 229A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied
+---------------------------------------

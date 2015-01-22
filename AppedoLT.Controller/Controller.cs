@@ -44,6 +44,7 @@ namespace AppedoLTController
         }
         public void Stop()
         {
+            ExceptionHandler.LogRunDetail(RunId, "Stop request received ");
             foreach (XmlNode loadGen in _RunNode.SelectNodes("loadgen"))
             {
                 for (int index = 0; index < 20; index++)
@@ -54,6 +55,7 @@ namespace AppedoLTController
                         loadGenConnection.Send(new TrasportData("stop", string.Empty, null));
                         TrasportData data = loadGenConnection.Receive();
                         loadGenConnection.Close();
+                        ExceptionHandler.LogRunDetail(RunId, "Stop request sent to loadgen " + loadGen.Attributes["ipaddress"].Value);
                         break;
                     }
                     catch (Exception ex)

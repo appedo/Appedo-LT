@@ -1,5 +1,4 @@
-﻿
-using Amazon.EC2.Model;
+﻿using Amazon.EC2.Model;
 using AppedoLT.Core;
 using AppedoLT.DataAccessLayer;
 using System;
