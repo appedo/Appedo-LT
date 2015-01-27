@@ -68,11 +68,7 @@ namespace AppedoLTController
                 MessageBox.Show(ex.Message);
             }
         }
-        public void ShowMessage(string msg)
-        {
-            ni.BalloonTipText = msg;
-            ni.ShowBalloonTip(1000);
-        }
+      
         void DoWork()
         {
             try
@@ -307,16 +303,28 @@ namespace AppedoLTController
                     ExceptionHandler.LogRunDetail(runid, "Empty scenario received");
                     Dictionary<string, string> headerrunid = new Dictionary<string, string>();
                     headerrunid.Add("runid", runid);
-                    server.Send(new TrasportData("updaterunidstatus", string.Empty, headerrunid));
-                    ExceptionHandler.LogRunDetail(data.Header["runid"], "updaterunidstatus called");
-                    ni.BalloonTipText = "Empty scenario received for run id " + runid;
-                    ni.ShowBalloonTip(1000);
-                    ExceptionHandler.WritetoEventLog("Empty scenario received for run id " + runid);
+                    ExceptionHandler.LogRunDetail(runid, "Empty scenario received for run id " + runid);
+                    for (int index = 0; index < 20; index++)
+                    {
+                        try
+                        {
+                            Trasport Appedoserver = new Trasport(AppedoServer, Constants.GetInstance().AppedoPort);
+                            Appedoserver.Send(new TrasportData("failedrunidstatus", ExceptionHandler.GetLog(runid), headerrunid));
+                            Appedoserver.Receive();
+                            ExceptionHandler.RunDetaillog.Remove(runid);
+                            break;
+                        }
+                        catch (Exception ex)
+                        {
+                            ExceptionHandler.WritetoEventLog(ex.StackTrace + ex.Message);
+                        }
+                    }
+
                 }
                 else if (Controllers.ContainsKey(runid) == false)
                 {
                     // GenerateReportFolder(runid);
-                    ShowMessage("Run received " + runid);
+
                     List<string> unAvailableLoadGens = new List<string>();
                     #region SendData
                     XmlNode runDetail = null;
@@ -328,7 +336,7 @@ namespace AppedoLTController
                         runXml.LoadXml(data.DataStr);
 
                         runDetail = _ControllerXml.CreateRun(runid, runXml.SelectSingleNode("root"), ((IPEndPoint)server.tcpClient.Client.RemoteEndPoint).Address.ToString());
-                       
+
                         List<TcpClient> loadGens = new List<TcpClient>();
                         string[] loadGenIps = data.Header["loadgens"].Split(',');
                         int loadGenId = 1;
@@ -356,7 +364,8 @@ namespace AppedoLTController
                                     {
                                         try
                                         {
-                                            Trasport loadGen = new Trasport(ip, "8889", 60000);
+                                            Trasport loadGen = new Trasport(ip, "8889");
+
                                             loadGen.Send(data);
                                             response = loadGen.Receive();
                                             if (response.Operation == "ok")
@@ -371,7 +380,7 @@ namespace AppedoLTController
                                         }
                                         catch (Exception ex)
                                         {
-                                            Thread.Sleep(1000);
+                                            Thread.Sleep(30000);
                                             ExceptionHandler.WritetoEventLog(ex.StackTrace + ex.Message);
                                         }
                                     }
@@ -388,7 +397,7 @@ namespace AppedoLTController
                             }
                         }
 
-                        
+
                     }
                     catch (Exception ex)
                     {
@@ -399,11 +408,27 @@ namespace AppedoLTController
 
                     if (unAvailableLoadGens.Count > 0)
                     {
+                        Dictionary<string, string> headerrunid = new Dictionary<string, string>();
+                        headerrunid.Add("runid", runid);
                         foreach (string gen in unAvailableLoadGens)
                         {
-                            ExceptionHandler.LogRunDetail(runid, gen + " Loadgens not available ");
+                            ExceptionHandler.LogRunDetail(runid, gen + " Loadgens not available. Run Failed ");
                         }
-                        ShowMessage("Loadgens not available " + runid);
+                        for (int index = 0; index < 20; index++)
+                        {
+                            try
+                            {
+                                Trasport Appedoserver = new Trasport(AppedoServer, Constants.GetInstance().AppedoPort);
+                                Appedoserver.Send(new TrasportData("failedrunidstatus", ExceptionHandler.GetLog(runid), headerrunid));
+                                Appedoserver.Receive();
+                                ExceptionHandler.RunDetaillog.Remove(runid);
+                                break;
+                            }
+                            catch (Exception ex)
+                            {
+                                ExceptionHandler.WritetoEventLog(ex.StackTrace + ex.Message);
+                            }
+                        }
                         return;
                     }
                     else
@@ -414,7 +439,7 @@ namespace AppedoLTController
                         data.Header.Add("runid", runid);
 
                         int runningThread = 0;
-                       // XmlNode runNode = ControllerXml.GetInstance().doc.SelectSingleNode("//runs/run[@reportname='" + runid + "']");
+                        // XmlNode runNode = ControllerXml.GetInstance().doc.SelectSingleNode("//runs/run[@reportname='" + runid + "']");
                         if (runDetail != null)
                         {
                             foreach (XmlNode loadGenNode in runDetail.SelectNodes("loadgen"))
@@ -456,14 +481,13 @@ namespace AppedoLTController
                             }
                             if (runDetail != null)
                             {
-                                ShowMessage("Run started " + runid);
                                 ExceptionHandler.LogRunDetail(runid, "Run started ");
                                 Controller controller = new Controller(server.IPAddressStr, runid, runDetail);
                                 Controllers.Add(runid, controller);
                                 _ControllerXml.doc.SelectSingleNode("root/runs").AppendChild(runDetail);
                                 _ControllerXml.Save();
                                 controller.Start();
-                               
+
                             }
                         }
                         server.Send(new TrasportData("OK", string.Empty, null));

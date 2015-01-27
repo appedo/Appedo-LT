@@ -20,7 +20,7 @@ namespace AppedoLTController
         string _runid = string.Empty;
         string _sourceIp = string.Empty;
         Constants _constants = Constants.GetInstance();
-       
+        int _index = 0;
         public ResultFileGenerator(string runtid)
         {
             _runid = runtid;
@@ -51,7 +51,7 @@ namespace AppedoLTController
                 string filePath;
                 int readCount = 0;
 
-                for (int index = 0; index < 20; index++)
+                for (_index = 0; _index < 20; _index++)
                 {
                     XmlNodeList result = ControllerXml.GetInstance().doc.SelectSingleNode("//runs/run[@reportname='" + _runid + "']").SelectNodes("loadgen[@resultfilereceived='False' and @runstarted='True']");
                     if (result.Count == 0) break;
@@ -140,7 +140,7 @@ namespace AppedoLTController
             if (File.Exists(reportSummaryFile) == true )
             {
                 server = new Trasport(_sourceIp, Constants.GetInstance().AppedoPort);
-                for (int index = 0; index < 20; index++)
+                for (_index = 0; _index < 20; _index++)
                 {
                     try
                     {
@@ -154,7 +154,7 @@ namespace AppedoLTController
                 }
                 if (File.Exists(chartSummaryFile) == true)
                 {
-                    for (int index = 0; index < 20; index++)
+                    for (_index = 0; _index < 20; _index++)
                     {
                         try
                         {
@@ -177,6 +177,19 @@ namespace AppedoLTController
                         }
                         DeleteReportFolder(runid);
                     }
+                    for (_index = 0; _index < 20; _index++)
+                    {
+                        try
+                        {
+                            response = new TrasportData("log", ExceptionHandler.GetLog(_runid),header);
+                            server = new Trasport(_sourceIp, Constants.GetInstance().AppedoPort);
+                            server.Send(response);
+                            response = server.Receive();
+                            ExceptionHandler.RunDetaillog.Remove(_runid);
+                            break;
+                        }
+                        catch { }
+                    }
                 }
             }
             else
@@ -196,8 +209,6 @@ namespace AppedoLTController
                 {
                     Directory.Delete(folderPath, true);
                     ExceptionHandler.LogRunDetail(_runid, "Directory deleted successfully.");
-                    ExceptionHandler.WritetoEventLog(ExceptionHandler.GetLog(_runid));
-                    ExceptionHandler.RunDetaillog.Remove(_runid);
                 }
 
             }
@@ -269,7 +280,7 @@ namespace AppedoLTController
                 if (File.Exists(filePath) == false) File.Create(filePath);
                 using (FileStream stream = new FileStream(filePath, FileMode.Append, FileAccess.Write, FileShare.Write))
                 {
-                    for (int index = 0; index < 10; index++)
+                    for (_index = 0; _index < 10; _index++)
                     {
                         XmlNodeList result = ControllerXml.GetInstance().doc.SelectSingleNode("//runs/run[@reportname='" + reportName + "']").SelectNodes("loadgen[@chartresultfilereceived='False']");
                         if (result.Count == 0) break;

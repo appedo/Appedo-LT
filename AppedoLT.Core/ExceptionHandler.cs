@@ -211,7 +211,7 @@ namespace AppedoLT.Core
             StringBuilder logDetail = new StringBuilder();
             try
             {
-                logDetail.Append(runid).Append(":").AppendLine().AppendLine(RunDetaillog[runid].ToString());
+               logDetail.AppendLine(RunDetaillog[runid].ToString());
             }
             catch (Exception ex)
             {

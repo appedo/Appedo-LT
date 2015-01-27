@@ -64,7 +64,7 @@ namespace AppedoLT
                 ddlParentContainer.SelectedIndexChanged += new EventHandler(ddlParentContainer_SelectedIndexChanged);
                 String certFilePath = String.Empty;
                 if (ConfigurationManager.AppSettings["CertificateFile"] != null)
-                    certFilePath =Constants.GetInstance().CertificatePath ;
+                    certFilePath = Constants.GetInstance().CertificatePath;
                 _certificate = new X509Certificate2(certFilePath, "pass@12345");
             }
             catch (Exception ex)
@@ -122,7 +122,7 @@ namespace AppedoLT
             {
                 while (true)
                 {
-                    
+
                     if (processingRequestCount >= Constants.GetInstance().RecordConnection)
                     {
                         Thread.Sleep(1000);
@@ -152,10 +152,9 @@ namespace AppedoLT
                 pro.Process();
                 if (((IRequestProcessor)pro) != null)
                 {
-                    lock (RecordData)
-                    {
-                        RecordData.Enqueue((IRequestProcessor)pro);
-                    }
+                    Thread.Sleep(10);
+                    RecordData.Enqueue((IRequestProcessor)pro);
+
                 }
             }
             catch (Exception ex)
@@ -179,10 +178,7 @@ namespace AppedoLT
                     else
                     {
                         IRequestProcessor data;
-                        lock (RecordData)
-                        {
-                            data = RecordData.Dequeue();
-                        }
+                        data = RecordData.Dequeue();
                         Thread.Sleep(100);
                         string requestContentType = string.Empty;
                         string responseContentType = string.Empty;
@@ -271,7 +267,7 @@ namespace AppedoLT
                                 {
                                     #region QueryStringParameters
                                     XmlNode parameters = _repositoryXml.doc.CreateElement("querystringparams");
-                                    NameValueCollection nameAndValue = HttpUtility.ParseQueryString(data.url.Query,Encoding.ASCII);
+                                    NameValueCollection nameAndValue = HttpUtility.ParseQueryString(data.url.Query, Encoding.ASCII);
                                     foreach (string key in nameAndValue.AllKeys)
                                     {
                                         XmlNode parameter = _repositoryXml.doc.CreateElement("querystringparam");
@@ -399,7 +395,7 @@ namespace AppedoLT
                                             }
                                             #endregion
                                         }
-                                        else if (requestContentType.ToLower().StartsWith("text/") || requestContentType.ToLower().StartsWith("application/json") || requestContentType==string.Empty)
+                                        else if (requestContentType.ToLower().StartsWith("text/") || requestContentType.ToLower().StartsWith("application/json") || requestContentType == string.Empty)
                                         {
                                             parameters.Attributes.Append(_repositoryXml.GetAttribute("type", "text"));
 

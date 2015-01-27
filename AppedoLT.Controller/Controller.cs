@@ -119,8 +119,8 @@ namespace AppedoLTController
                             if (failedCount[loadGen.Attributes["ipaddress"].Value] > 5)
                             {
                                 runcompleted++;
+                                ExceptionHandler.LogRunDetail(RunId, "Unable to connect " + loadGen.Attributes["ipaddress"].Value + " " + ex.Message);
                             }
-                            ExceptionHandler.LogRunDetail(RunId, "Unable to connect " + loadGen.Attributes["ipaddress"].Value + " " + ex.Message);
                         }
                     }
                     ScriptWiseStatus = GetStatusconcatenate(scriptwisestatus.ToString());
