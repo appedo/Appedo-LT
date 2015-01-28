@@ -1,5 +1,5 @@
-﻿Build started 28-01-2015 11:08:21.
-     1>Project "E:\AppedoLT\profilerOBJ\ProfilerOBJ.vcxproj" on node 5 (Rebuild target(s)).
+﻿Build started 28-01-2015 16:20:37.
+     1>Project "E:\AppedoLT\profilerOBJ\ProfilerOBJ.vcxproj" on node 2 (Rebuild target(s)).
      1>_MASM:
          Assembling amd64\asmhelpers.asm...
        ClCompile:
@@ -27,4 +27,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:40.86
+Time Elapsed 00:00:28.65
