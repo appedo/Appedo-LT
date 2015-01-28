@@ -113,7 +113,7 @@ namespace AppedoLT
             // 
             // tabiExtrator.ContentPanel
             // 
-            this.tabiExtrator.ContentPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(248)))));
+            this.tabiExtrator.ContentPanel.BackColor = System.Drawing.SystemColors.ControlLight;
             this.tabiExtrator.ContentPanel.CausesValidation = true;
             this.tabiExtrator.ContentPanel.Controls.Add(this.panel1);
             this.tabiExtrator.ContentPanel.Controls.Add(this.radLabel3);
@@ -164,6 +164,7 @@ namespace AppedoLT
             this.rbtnSimple.AutoSize = true;
             this.rbtnSimple.Checked = true;
             this.rbtnSimple.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rbtnSimple.ForeColor = System.Drawing.Color.Black;
             this.rbtnSimple.Location = new System.Drawing.Point(3, 2);
             this.rbtnSimple.Name = "rbtnSimple";
             this.rbtnSimple.Size = new System.Drawing.Size(64, 17);
@@ -177,6 +178,7 @@ namespace AppedoLT
             // 
             this.rbtnAdvanced.AutoSize = true;
             this.rbtnAdvanced.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rbtnAdvanced.ForeColor = System.Drawing.Color.Black;
             this.rbtnAdvanced.Location = new System.Drawing.Point(86, 2);
             this.rbtnAdvanced.Name = "rbtnAdvanced";
             this.rbtnAdvanced.Size = new System.Drawing.Size(135, 17);
@@ -187,8 +189,13 @@ namespace AppedoLT
             // radLabel3
             // 
             this.radLabel3.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radLabel3.ForeColor = System.Drawing.Color.Black;
             this.radLabel3.Location = new System.Drawing.Point(12, 47);
             this.radLabel3.Name = "radLabel3";
+            // 
+            // 
+            // 
+            this.radLabel3.RootElement.ForeColor = System.Drawing.Color.Black;
             this.radLabel3.Size = new System.Drawing.Size(46, 17);
             this.radLabel3.TabIndex = 27;
             this.radLabel3.Text = "Mode :";
@@ -196,8 +203,13 @@ namespace AppedoLT
             // radLabel4
             // 
             this.radLabel4.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radLabel4.ForeColor = System.Drawing.Color.Black;
             this.radLabel4.Location = new System.Drawing.Point(12, 101);
             this.radLabel4.Name = "radLabel4";
+            // 
+            // 
+            // 
+            this.radLabel4.RootElement.ForeColor = System.Drawing.Color.Black;
             this.radLabel4.Size = new System.Drawing.Size(65, 17);
             this.radLabel4.TabIndex = 10;
             this.radLabel4.Text = "End with :";
@@ -227,8 +239,13 @@ namespace AppedoLT
             // radLabel5
             // 
             this.radLabel5.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radLabel5.ForeColor = System.Drawing.Color.Black;
             this.radLabel5.Location = new System.Drawing.Point(12, 72);
             this.radLabel5.Name = "radLabel5";
+            // 
+            // 
+            // 
+            this.radLabel5.RootElement.ForeColor = System.Drawing.Color.Black;
             this.radLabel5.Size = new System.Drawing.Size(72, 17);
             this.radLabel5.TabIndex = 9;
             this.radLabel5.Text = "Start with :";
@@ -263,8 +280,13 @@ namespace AppedoLT
             // radLabel2
             // 
             this.radLabel2.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radLabel2.ForeColor = System.Drawing.Color.Black;
             this.radLabel2.Location = new System.Drawing.Point(12, 159);
             this.radLabel2.Name = "radLabel2";
+            // 
+            // 
+            // 
+            this.radLabel2.RootElement.ForeColor = System.Drawing.Color.Black;
             this.radLabel2.Size = new System.Drawing.Size(86, 17);
             this.radLabel2.TabIndex = 25;
             this.radLabel2.Text = "Group Index :";
@@ -282,8 +304,13 @@ namespace AppedoLT
             // radLabel7
             // 
             this.radLabel7.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radLabel7.ForeColor = System.Drawing.Color.Black;
             this.radLabel7.Location = new System.Drawing.Point(12, 130);
             this.radLabel7.Name = "radLabel7";
+            // 
+            // 
+            // 
+            this.radLabel7.RootElement.ForeColor = System.Drawing.Color.Black;
             this.radLabel7.Size = new System.Drawing.Size(124, 17);
             this.radLabel7.TabIndex = 24;
             this.radLabel7.Text = "Regular Expression :";
@@ -316,8 +343,13 @@ namespace AppedoLT
             // radLabel1
             // 
             this.radLabel1.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radLabel1.ForeColor = System.Drawing.Color.Black;
             this.radLabel1.Location = new System.Drawing.Point(12, 188);
             this.radLabel1.Name = "radLabel1";
+            // 
+            // 
+            // 
+            this.radLabel1.RootElement.ForeColor = System.Drawing.Color.Black;
             this.radLabel1.Size = new System.Drawing.Size(99, 17);
             this.radLabel1.TabIndex = 17;
             this.radLabel1.Text = "Selection Type :";
@@ -327,6 +359,7 @@ namespace AppedoLT
             this.rbtnSingleOccurrence.AutoSize = true;
             this.rbtnSingleOccurrence.Checked = true;
             this.rbtnSingleOccurrence.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rbtnSingleOccurrence.ForeColor = System.Drawing.Color.Black;
             this.rbtnSingleOccurrence.Location = new System.Drawing.Point(276, 188);
             this.rbtnSingleOccurrence.Name = "rbtnSingleOccurrence";
             this.rbtnSingleOccurrence.Size = new System.Drawing.Size(60, 17);
@@ -341,6 +374,7 @@ namespace AppedoLT
             // 
             this.rbtnRandomOccurrence.AutoSize = true;
             this.rbtnRandomOccurrence.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rbtnRandomOccurrence.ForeColor = System.Drawing.Color.Black;
             this.rbtnRandomOccurrence.Location = new System.Drawing.Point(198, 188);
             this.rbtnRandomOccurrence.Name = "rbtnRandomOccurrence";
             this.rbtnRandomOccurrence.Size = new System.Drawing.Size(72, 17);
@@ -354,6 +388,7 @@ namespace AppedoLT
             // 
             this.rbtnAllOccurrence.AutoSize = true;
             this.rbtnAllOccurrence.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rbtnAllOccurrence.ForeColor = System.Drawing.Color.Black;
             this.rbtnAllOccurrence.Location = new System.Drawing.Point(140, 188);
             this.rbtnAllOccurrence.Name = "rbtnAllOccurrence";
             this.rbtnAllOccurrence.Size = new System.Drawing.Size(43, 17);
@@ -390,8 +425,13 @@ namespace AppedoLT
             // lblResult
             // 
             this.lblResult.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblResult.ForeColor = System.Drawing.Color.Black;
             this.lblResult.Location = new System.Drawing.Point(12, 213);
             this.lblResult.Name = "lblResult";
+            // 
+            // 
+            // 
+            this.lblResult.RootElement.ForeColor = System.Drawing.Color.Black;
             this.lblResult.Size = new System.Drawing.Size(51, 17);
             this.lblResult.TabIndex = 9;
             this.lblResult.Text = "Result :";
@@ -418,8 +458,13 @@ namespace AppedoLT
             // lblOrdinal
             // 
             this.lblOrdinal.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblOrdinal.Location = new System.Drawing.Point(399, 188);
+            this.lblOrdinal.ForeColor = System.Drawing.Color.Black;
+            this.lblOrdinal.Location = new System.Drawing.Point(401, 191);
             this.lblOrdinal.Name = "lblOrdinal";
+            // 
+            // 
+            // 
+            this.lblOrdinal.RootElement.ForeColor = System.Drawing.Color.Black;
             this.lblOrdinal.Size = new System.Drawing.Size(47, 17);
             this.lblOrdinal.TabIndex = 9;
             this.lblOrdinal.Text = "Ordinal";
@@ -427,8 +472,13 @@ namespace AppedoLT
             // lblName
             // 
             this.lblName.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblName.ForeColor = System.Drawing.Color.Black;
             this.lblName.Location = new System.Drawing.Point(12, 18);
             this.lblName.Name = "lblName";
+            // 
+            // 
+            // 
+            this.lblName.RootElement.ForeColor = System.Drawing.Color.Black;
             this.lblName.Size = new System.Drawing.Size(48, 17);
             this.lblName.TabIndex = 4;
             this.lblName.Text = "Name :";

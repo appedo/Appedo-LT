@@ -934,7 +934,7 @@ namespace AppedoLT
 
                 if (tvScenarios.SelectedNode.Level == 0)
                 {
-                    objUCLoadGen.Visible = true;
+                  //  objUCLoadGen.Visible = true;
                 }
                 else if (tvScenarios.SelectedNode.Level == 1)
                 {
