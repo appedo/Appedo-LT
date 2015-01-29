@@ -46,6 +46,7 @@ namespace AppedoLT
         Thread storeData = null;
         bool isStop = false;
         int processingRequestCount = 0;
+        Thread StoreData = null;
 
         public Record(Label lblResult, RadTextBox txtContainer, RadComboBox ddlParentContainer, XmlNode vuScriptXml)
         {
@@ -64,7 +65,7 @@ namespace AppedoLT
                 ddlParentContainer.SelectedIndexChanged += new EventHandler(ddlParentContainer_SelectedIndexChanged);
                 String certFilePath = String.Empty;
                 if (ConfigurationManager.AppSettings["CertificateFile"] != null)
-                    certFilePath =Constants.GetInstance().CertificatePath ;
+                    certFilePath = Constants.GetInstance().CertificatePath;
                 _certificate = new X509Certificate2(certFilePath, "pass@12345");
             }
             catch (Exception ex)
@@ -78,13 +79,50 @@ namespace AppedoLT
             try
             {
                 _worker.RunWorkerAsync();
-                storeData = new Thread(new ThreadStart(StoreResult));
-                storeData.Start();
+                StoreData = new Thread(new ThreadStart(StoreResult));
+                StoreData.Start();
+                AutoRecovery();
             }
             catch (Exception ex)
             {
                 ExceptionHandler.WritetoEventLog(ex.Message + Environment.NewLine + ex.StackTrace);
             }
+        }
+
+        public void AutoRecovery()
+        {
+            int priviousCount = 0;
+            new Thread(() =>
+                {
+                    while (true)
+                    {
+                        priviousCount = RecordData.Count;
+                        Thread.Sleep(30000);
+                        {
+                            lock (StoreData)
+                            {
+                                if (isStop = true) break;
+                                if (RecordData.Count != 0 && priviousCount == RecordData.Count)
+                                {
+                                    try
+                                    {
+                                        StoreData.Abort();
+                                    }
+                                    catch
+                                    {
+
+                                    }
+                                    StoreData = new Thread(new ThreadStart(StoreResult));
+                                    StoreData.Start();
+                                }
+                                priviousCount = RecordData.Count;
+                            }
+                        }
+                        
+                    }
+
+                }).Start();
+
         }
 
         public void Stop()
@@ -93,11 +131,36 @@ namespace AppedoLT
             {
                 isStop = true;
                 connectionManager.CloseAllConnetions();
+
+                int priviousCount = 0;
+                int count = 0;
                 while (true)
                 {
                     if (RecordData.Count > 0)
                     {
                         Thread.Sleep(1000);
+                        count++;
+
+                        if (count > 10 && RecordData.Count != 0 && priviousCount == RecordData.Count)
+                        {
+                            lock (StoreData)
+                            {
+                                try
+                                {
+                                    StoreData.Abort();
+                                    StoreData = new Thread(new ThreadStart(StoreResult));
+                                    StoreData.Start();
+                                    count = 0;
+                                }
+                                catch
+                                {
+
+                                }
+                                priviousCount = RecordData.Count;
+                            }
+                        }
+                     if( count >10)   priviousCount = RecordData.Count;
+
                     }
                     else
                     {
@@ -108,6 +171,7 @@ namespace AppedoLT
                 _repositoryXml.Save();
                 _listener.Stop();
                 AppedoLT.Core.Constants.GetInstance().ReSetFirefoxProxy();
+                StoreData.Abort();
             }
             catch (Exception ex)
             {
@@ -122,7 +186,7 @@ namespace AppedoLT
             {
                 while (true)
                 {
-                    
+
                     if (processingRequestCount >= Constants.GetInstance().RecordConnection)
                     {
                         Thread.Sleep(1000);
@@ -152,15 +216,20 @@ namespace AppedoLT
                 pro.Process();
                 if (((IRequestProcessor)pro) != null)
                 {
-                    lock (RecordData)
+                    IRequestProcessor response = (IRequestProcessor)pro;
+                    if (response.url != null)
                     {
-                        RecordData.Enqueue((IRequestProcessor)pro);
+                        lock (response)
+                        {
+                            RecordData.Enqueue(response);
+                        }
                     }
                 }
+
             }
             catch (Exception ex)
             {
-                ExceptionHandler.WritetoEventLog(ex.Message + Environment.NewLine + ex.StackTrace);
+
             }
             finally
             {
@@ -174,22 +243,21 @@ namespace AppedoLT
             {
                 try
                 {
-                    if (RecordData.Count == 0 && isStop == true) break;
+                    if (RecordData.Count == 0 && isStop == true)
+                    {
+                        break;
+                    }
                     if (RecordData.Count == 0) Thread.Sleep(2000);
                     else
                     {
                         IRequestProcessor data;
-                        lock (RecordData)
-                        {
-                            data = RecordData.Dequeue();
-                        }
-                        Thread.Sleep(100);
+                        data = RecordData.Dequeue();
                         string requestContentType = string.Empty;
                         string responseContentType = string.Empty;
                         string reqFilename = "req_" + data.Requestid + ".bin";
                         string resFilename = "res_" + data.Requestid;
                         string contentEncoding = string.Empty;
-
+                        // ExceptionHandler.WritetoEventLog(data.Requestid+" 1");
                         Regex expressForhead = new Regex("([A-Z]*) (.*) ([A-Z]*)/(.*)");
                         Regex expressForHeaders = new Regex("(.*?): (.*?)\r\n");
                         if (data.RequestHeader != null)
@@ -271,7 +339,7 @@ namespace AppedoLT
                                 {
                                     #region QueryStringParameters
                                     XmlNode parameters = _repositoryXml.doc.CreateElement("querystringparams");
-                                    NameValueCollection nameAndValue = HttpUtility.ParseQueryString(data.url.Query,Encoding.ASCII);
+                                    NameValueCollection nameAndValue = HttpUtility.ParseQueryString(data.url.Query, Encoding.ASCII);
                                     foreach (string key in nameAndValue.AllKeys)
                                     {
                                         XmlNode parameter = _repositoryXml.doc.CreateElement("querystringparam");
@@ -399,7 +467,7 @@ namespace AppedoLT
                                             }
                                             #endregion
                                         }
-                                        else if (requestContentType.ToLower().StartsWith("text/") || requestContentType.ToLower().StartsWith("application/json") || requestContentType==string.Empty)
+                                        else if (requestContentType.ToLower().StartsWith("text/") || requestContentType.ToLower().StartsWith("application/json") || requestContentType == string.Empty)
                                         {
                                             parameters.Attributes.Append(_repositoryXml.GetAttribute("type", "text"));
 
@@ -628,6 +696,7 @@ namespace AppedoLT
                                 if (_lastInsertedPage != null)
                                 {
                                     _lastInsertedPage.AppendChild(request);
+
                                 }
                                 else
                                 {
@@ -639,9 +708,11 @@ namespace AppedoLT
                 }
                 catch (Exception ex)
                 {
+                    Thread.Sleep(1000);
                     ExceptionHandler.WritetoEventLog(ex.Message + Environment.NewLine + ex.StackTrace);
                 }
             }
+
         }
 
         private void CreateFirstLevelContainers()

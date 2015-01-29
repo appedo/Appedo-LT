@@ -275,3 +275,136 @@ The process cannot access the file 'E:\AppedoLT\AppedoLT.LoadGenerator\bin\Debug
 23:32:43 08 January 2015 
    at AppedoLTLoadGenerator.LoadGenerator.<>c__DisplayClass1.<worker_DoWork>b__0() in e:\AppedoLT\AppedoLT.LoadGenerator\frmLoadGenerator.cs:line 198Object reference not set to an instance of an object.
 ---------------------------------------
+11:48:36 21 January 2015 
+   at System.Data.SQLite.SQLite3.Prepare(SQLiteConnection cnn, String strSql, SQLiteStatement previous, UInt32 timeoutMS, String& strRemain)
+   at System.Data.SQLite.SQLiteCommand.BuildNextCommand()
+   at System.Data.SQLite.SQLiteCommand.GetStatement(Int32 index)
+   at System.Data.SQLite.SQLiteDataReader.NextResult()
+   at System.Data.SQLite.SQLiteDataReader..ctor(SQLiteCommand cmd, CommandBehavior behave)
+   at System.Data.SQLite.SQLiteCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.SQLite.SQLiteCommand.ExecuteNonQuery()
+   at AppedoLT.DataAccessLayer.ReportMaster.SetUserRunTime() in e:\AppedoLT\AppedoLT.DataAccessLayer\ReportMaster.cs:line 183SQLite error
+index idx_userruntime already exists
+---------------------------------------
+12:00:02 21 January 2015 
+   at System.Net.ConnectStream.Read(Byte[] buffer, Int32 offset, Int32 size)
+   at AppedoLT.BusinessLogic.HttpRequest.ReadResponseBody(String contentType, Int64 contentLength, Stream responseStream, MemoryStream& responseBody) in e:\AppedoLT\AppedoLT.BusinessLogic\HttpRequest.cs:line 615
+The request was aborted: The request was canceled.
+---------------------------------------
+18:22:44 23 January 2015 
+   at AppedoLT.BusinessLogic.VariableManager..ctor(XmlNode variableNode) in e:\AppedoLT\AppedoLT.BusinessLogic\VariableManager.cs:line 66
+   at AppedoLTLoadGenerator.RunScenario.Start() in e:\AppedoLT\AppedoLT.LoadGenerator\RunScenario.cs:line 138
+   at AppedoLTLoadGenerator.LoadGenerator.<>c__DisplayClass1.<worker_DoWork>b__0() in e:\AppedoLT\AppedoLT.LoadGenerator\frmLoadGenerator.cs:line 120Object reference not set to an instance of an object.
+---------------------------------------
+18:53:03 23 January 2015 
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.Directory.Delete(String fullPath, String userPath, Boolean recursive, Boolean checkHost)
+   at AppedoLTLoadGenerator.LoadGenerator.<>c__DisplayClass1.<worker_DoWork>b__0() in e:\AppedoLT\AppedoLT.LoadGenerator\frmLoadGenerator.cs:line 176Could not find a part of the path 'E:\AppedoLT\AppedoLT.LoadGenerator\bin\Debug\966_192_168_1_70'.
+---------------------------------------
+18:53:13 23 January 2015 
+   at AppedoLTLoadGenerator.LoadGenerator.<>c__DisplayClass1.<worker_DoWork>b__0() in e:\AppedoLT\AppedoLT.LoadGenerator\frmLoadGenerator.cs:line 201Object reference not set to an instance of an object.
+---------------------------------------
+18:55:33 23 January 2015 
+   at AppedoLTLoadGenerator.LoadGenerator.<>c__DisplayClass1.<worker_DoWork>b__0() in e:\AppedoLT\AppedoLT.LoadGenerator\frmLoadGenerator.cs:line 201Object reference not set to an instance of an object.
+---------------------------------------
+18:55:58 23 January 2015 
+   at AppedoLT.BusinessLogic.VariableManager..ctor(XmlNode variableNode) in e:\AppedoLT\AppedoLT.BusinessLogic\VariableManager.cs:line 66
+   at AppedoLTLoadGenerator.RunScenario.Start() in e:\AppedoLT\AppedoLT.LoadGenerator\RunScenario.cs:line 138
+   at AppedoLTLoadGenerator.LoadGenerator.<>c__DisplayClass1.<worker_DoWork>b__0() in e:\AppedoLT\AppedoLT.LoadGenerator\frmLoadGenerator.cs:line 120Object reference not set to an instance of an object.
+---------------------------------------
+18:56:58 23 January 2015 
+   at AppedoLTLoadGenerator.LoadGenerator.<>c__DisplayClass1.<worker_DoWork>b__0() in e:\AppedoLT\AppedoLT.LoadGenerator\frmLoadGenerator.cs:line 201Object reference not set to an instance of an object.
+---------------------------------------
+18:59:35 23 January 2015 
+   at AppedoLTLoadGenerator.LoadGenerator.<>c__DisplayClass1.<worker_DoWork>b__0() in e:\AppedoLT\AppedoLT.LoadGenerator\frmLoadGenerator.cs:line 201Object reference not set to an instance of an object.
+---------------------------------------
+18:59:40 23 January 2015 
+   at AppedoLTLoadGenerator.LoadGenerator.<>c__DisplayClass1.<worker_DoWork>b__0() in e:\AppedoLT\AppedoLT.LoadGenerator\frmLoadGenerator.cs:line 201Object reference not set to an instance of an object.
+---------------------------------------
+19:00:29 23 January 2015 
+   at AppedoLTLoadGenerator.LoadGenerator.<>c__DisplayClass1.<worker_DoWork>b__0() in e:\AppedoLT\AppedoLT.LoadGenerator\frmLoadGenerator.cs:line 201Object reference not set to an instance of an object.
+---------------------------------------
+19:01:34 23 January 2015 
+   at AppedoLTLoadGenerator.LoadGenerator.<>c__DisplayClass1.<worker_DoWork>b__0() in e:\AppedoLT\AppedoLT.LoadGenerator\frmLoadGenerator.cs:line 201Object reference not set to an instance of an object.
+---------------------------------------
+19:02:34 23 January 2015 
+   at AppedoLTLoadGenerator.LoadGenerator.<>c__DisplayClass1.<worker_DoWork>b__0() in e:\AppedoLT\AppedoLT.LoadGenerator\frmLoadGenerator.cs:line 201Object reference not set to an instance of an object.
+---------------------------------------
+19:03:43 23 January 2015 
+   at AppedoLTLoadGenerator.LoadGenerator.<>c__DisplayClass1.<worker_DoWork>b__0() in e:\AppedoLT\AppedoLT.LoadGenerator\frmLoadGenerator.cs:line 201Object reference not set to an instance of an object.
+---------------------------------------
+19:05:58 23 January 2015 
+   at AppedoLT.BusinessLogic.VariableManager..ctor(XmlNode variableNode) in e:\AppedoLT\AppedoLT.BusinessLogic\VariableManager.cs:line 66
+   at AppedoLTLoadGenerator.RunScenario.Start() in e:\AppedoLT\AppedoLT.LoadGenerator\RunScenario.cs:line 138
+   at AppedoLTLoadGenerator.LoadGenerator.<>c__DisplayClass1.<worker_DoWork>b__0() in e:\AppedoLT\AppedoLT.LoadGenerator\frmLoadGenerator.cs:line 120Object reference not set to an instance of an object.
+---------------------------------------
+19:08:19 23 January 2015 
+   at AppedoLTLoadGenerator.LoadGenerator.<>c__DisplayClass1.<worker_DoWork>b__0() in e:\AppedoLT\AppedoLT.LoadGenerator\frmLoadGenerator.cs:line 201Object reference not set to an instance of an object.
+---------------------------------------
+19:09:24 23 January 2015 
+   at AppedoLTLoadGenerator.LoadGenerator.<>c__DisplayClass1.<worker_DoWork>b__0() in e:\AppedoLT\AppedoLT.LoadGenerator\frmLoadGenerator.cs:line 201Object reference not set to an instance of an object.
+---------------------------------------
+19:14:53 23 January 2015 
+   at AppedoLTLoadGenerator.LoadGenerator.<>c__DisplayClass1.<worker_DoWork>b__0() in e:\AppedoLT\AppedoLT.LoadGenerator\frmLoadGenerator.cs:line 201Object reference not set to an instance of an object.
+---------------------------------------
+19:15:58 23 January 2015 
+   at AppedoLTLoadGenerator.LoadGenerator.<>c__DisplayClass1.<worker_DoWork>b__0() in e:\AppedoLT\AppedoLT.LoadGenerator\frmLoadGenerator.cs:line 201Object reference not set to an instance of an object.
+---------------------------------------
+19:16:51 23 January 2015 
+   at AppedoLTLoadGenerator.LoadGenerator.<>c__DisplayClass1.<worker_DoWork>b__0() in e:\AppedoLT\AppedoLT.LoadGenerator\frmLoadGenerator.cs:line 201Object reference not set to an instance of an object.
+---------------------------------------
+19:17:19 23 January 2015 
+   at AppedoLTLoadGenerator.LoadGenerator.<>c__DisplayClass1.<worker_DoWork>b__0() in e:\AppedoLT\AppedoLT.LoadGenerator\frmLoadGenerator.cs:line 201Object reference not set to an instance of an object.
+---------------------------------------
+19:17:29 23 January 2015 
+   at AppedoLTLoadGenerator.LoadGenerator.<>c__DisplayClass1.<worker_DoWork>b__0() in e:\AppedoLT\AppedoLT.LoadGenerator\frmLoadGenerator.cs:line 201Object reference not set to an instance of an object.
+---------------------------------------
+19:17:39 23 January 2015 
+   at AppedoLTLoadGenerator.LoadGenerator.<>c__DisplayClass1.<worker_DoWork>b__0() in e:\AppedoLT\AppedoLT.LoadGenerator\frmLoadGenerator.cs:line 201Object reference not set to an instance of an object.
+---------------------------------------
+19:18:44 23 January 2015 
+   at AppedoLTLoadGenerator.LoadGenerator.<>c__DisplayClass1.<worker_DoWork>b__0() in e:\AppedoLT\AppedoLT.LoadGenerator\frmLoadGenerator.cs:line 201Object reference not set to an instance of an object.
+---------------------------------------
+19:18:49 23 January 2015 
+   at AppedoLTLoadGenerator.LoadGenerator.<>c__DisplayClass1.<worker_DoWork>b__0() in e:\AppedoLT\AppedoLT.LoadGenerator\frmLoadGenerator.cs:line 201Object reference not set to an instance of an object.
+---------------------------------------
+19:18:54 23 January 2015 
+   at AppedoLTLoadGenerator.LoadGenerator.<>c__DisplayClass1.<worker_DoWork>b__0() in e:\AppedoLT\AppedoLT.LoadGenerator\frmLoadGenerator.cs:line 201Object reference not set to an instance of an object.
+---------------------------------------
+19:19:09 23 January 2015 
+   at AppedoLTLoadGenerator.LoadGenerator.<>c__DisplayClass1.<worker_DoWork>b__0() in e:\AppedoLT\AppedoLT.LoadGenerator\frmLoadGenerator.cs:line 201Object reference not set to an instance of an object.
+---------------------------------------
+19:20:41 23 January 2015 
+   at AppedoLTLoadGenerator.LoadGenerator.<>c__DisplayClass1.<worker_DoWork>b__0() in e:\AppedoLT\AppedoLT.LoadGenerator\frmLoadGenerator.cs:line 201Object reference not set to an instance of an object.
+---------------------------------------
+19:22:05 23 January 2015 
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.Directory.Delete(String fullPath, String userPath, Boolean recursive, Boolean checkHost)
+   at AppedoLTLoadGenerator.LoadGenerator.<>c__DisplayClass1.<worker_DoWork>b__0() in e:\AppedoLT\AppedoLT.LoadGenerator\frmLoadGenerator.cs:line 176Could not find a part of the path 'E:\AppedoLT\AppedoLT.LoadGenerator\bin\Debug\972_192_168_1_70'.
+---------------------------------------
+19:22:05 23 January 2015 
+   at AppedoLTLoadGenerator.LoadGenerator.<>c__DisplayClass1.<worker_DoWork>b__0() in e:\AppedoLT\AppedoLT.LoadGenerator\frmLoadGenerator.cs:line 201Object reference not set to an instance of an object.
+---------------------------------------
+14:42:22 27 January 2015 
+   at AppedoLTLoadGenerator.LoadGenerator.<>c__DisplayClass1.<worker_DoWork>b__0() in e:\AppedoLT\AppedoLT.LoadGenerator\frmLoadGenerator.cs:line 201Object reference not set to an instance of an object.
+---------------------------------------
+14:43:27 27 January 2015 
+   at AppedoLTLoadGenerator.LoadGenerator.<>c__DisplayClass1.<worker_DoWork>b__0() in e:\AppedoLT\AppedoLT.LoadGenerator\frmLoadGenerator.cs:line 201Object reference not set to an instance of an object.
+---------------------------------------
+14:44:32 27 January 2015 
+   at AppedoLTLoadGenerator.LoadGenerator.<>c__DisplayClass1.<worker_DoWork>b__0() in e:\AppedoLT\AppedoLT.LoadGenerator\frmLoadGenerator.cs:line 201Object reference not set to an instance of an object.
+---------------------------------------
+14:45:32 27 January 2015 
+   at AppedoLTLoadGenerator.LoadGenerator.<>c__DisplayClass1.<worker_DoWork>b__0() in e:\AppedoLT\AppedoLT.LoadGenerator\frmLoadGenerator.cs:line 201Object reference not set to an instance of an object.
+---------------------------------------
+14:48:48 27 January 2015 
+   at System.Data.SQLite.SQLite3.Prepare(SQLiteConnection cnn, String strSql, SQLiteStatement previous, UInt32 timeoutMS, String& strRemain)
+   at System.Data.SQLite.SQLiteCommand.BuildNextCommand()
+   at System.Data.SQLite.SQLiteCommand.GetStatement(Int32 index)
+   at System.Data.SQLite.SQLiteDataReader.NextResult()
+   at System.Data.SQLite.SQLiteDataReader..ctor(SQLiteCommand cmd, CommandBehavior behave)
+   at System.Data.SQLite.SQLiteCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.SQLite.SQLiteCommand.ExecuteNonQuery()
+   at AppedoLT.DataAccessLayer.ReportMaster.SetUserRunTime() in e:\AppedoLT\AppedoLT.DataAccessLayer\ReportMaster.cs:line 183SQLite error
+index idx_userruntime already exists
+---------------------------------------

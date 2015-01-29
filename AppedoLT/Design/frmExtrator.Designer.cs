@@ -59,11 +59,6 @@ namespace AppedoLT
             this.txtName = new Telerik.WinControls.UI.RadTextBox();
             this.tabiTest = new Telerik.WinControls.UI.TabItem();
             this.txtResponse = new Telerik.WinControls.UI.RadTextBox();
-            this.telerikTheme1 = new Telerik.WinControls.Themes.TelerikTheme();
-            this.windows7Theme1 = new Telerik.WinControls.Themes.Windows7Theme();
-            this.vistaTheme1 = new Telerik.WinControls.Themes.VistaTheme();
-            this.office2010Theme1 = new Telerik.WinControls.Themes.Office2010Theme();
-            this.office2007SilverTheme1 = new Telerik.WinControls.Themes.Office2007SilverTheme();
             ((System.ComponentModel.ISupportInitialize)(this.radTabStrip1)).BeginInit();
             this.radTabStrip1.SuspendLayout();
             this.tabiExtrator.ContentPanel.SuspendLayout();
@@ -98,7 +93,7 @@ namespace AppedoLT
             // 
             this.radTabStrip1.AutoScrollMargin = new System.Drawing.Size(0, 0);
             this.radTabStrip1.AutoScrollMinSize = new System.Drawing.Size(0, 0);
-            this.radTabStrip1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(219)))), ((int)(((byte)(255)))));
+            this.radTabStrip1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
             this.radTabStrip1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.radTabStrip1.Items.AddRange(new Telerik.WinControls.RadItem[] {
             this.tabiExtrator,
@@ -118,7 +113,7 @@ namespace AppedoLT
             // 
             // tabiExtrator.ContentPanel
             // 
-            this.tabiExtrator.ContentPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(219)))), ((int)(((byte)(255)))));
+            this.tabiExtrator.ContentPanel.BackColor = System.Drawing.SystemColors.ControlLight;
             this.tabiExtrator.ContentPanel.CausesValidation = true;
             this.tabiExtrator.ContentPanel.Controls.Add(this.panel1);
             this.tabiExtrator.ContentPanel.Controls.Add(this.radLabel3);
@@ -145,8 +140,8 @@ namespace AppedoLT
             this.tabiExtrator.ContentPanel.Controls.Add(this.lblName);
             this.tabiExtrator.ContentPanel.Controls.Add(this.txtOrdinal);
             this.tabiExtrator.ContentPanel.Controls.Add(this.txtName);
-            this.tabiExtrator.ContentPanel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.tabiExtrator.ContentPanel.ForeColor = System.Drawing.Color.Black;
+            this.tabiExtrator.ContentPanel.Font = new System.Drawing.Font("Segoe UI", 8.25F);
+            this.tabiExtrator.ContentPanel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(66)))), ((int)(((byte)(139)))));
             this.tabiExtrator.ContentPanel.Location = new System.Drawing.Point(0, 24);
             this.tabiExtrator.ContentPanel.Size = new System.Drawing.Size(456, 331);
             this.tabiExtrator.IsSelected = true;
@@ -169,6 +164,7 @@ namespace AppedoLT
             this.rbtnSimple.AutoSize = true;
             this.rbtnSimple.Checked = true;
             this.rbtnSimple.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rbtnSimple.ForeColor = System.Drawing.Color.Black;
             this.rbtnSimple.Location = new System.Drawing.Point(3, 2);
             this.rbtnSimple.Name = "rbtnSimple";
             this.rbtnSimple.Size = new System.Drawing.Size(64, 17);
@@ -182,6 +178,7 @@ namespace AppedoLT
             // 
             this.rbtnAdvanced.AutoSize = true;
             this.rbtnAdvanced.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rbtnAdvanced.ForeColor = System.Drawing.Color.Black;
             this.rbtnAdvanced.Location = new System.Drawing.Point(86, 2);
             this.rbtnAdvanced.Name = "rbtnAdvanced";
             this.rbtnAdvanced.Size = new System.Drawing.Size(135, 17);
@@ -192,8 +189,13 @@ namespace AppedoLT
             // radLabel3
             // 
             this.radLabel3.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radLabel3.ForeColor = System.Drawing.Color.Black;
             this.radLabel3.Location = new System.Drawing.Point(12, 47);
             this.radLabel3.Name = "radLabel3";
+            // 
+            // 
+            // 
+            this.radLabel3.RootElement.ForeColor = System.Drawing.Color.Black;
             this.radLabel3.Size = new System.Drawing.Size(46, 17);
             this.radLabel3.TabIndex = 27;
             this.radLabel3.Text = "Mode :";
@@ -201,8 +203,13 @@ namespace AppedoLT
             // radLabel4
             // 
             this.radLabel4.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radLabel4.ForeColor = System.Drawing.Color.Black;
             this.radLabel4.Location = new System.Drawing.Point(12, 101);
             this.radLabel4.Name = "radLabel4";
+            // 
+            // 
+            // 
+            this.radLabel4.RootElement.ForeColor = System.Drawing.Color.Black;
             this.radLabel4.Size = new System.Drawing.Size(65, 17);
             this.radLabel4.TabIndex = 10;
             this.radLabel4.Text = "End with :";
@@ -212,12 +219,12 @@ namespace AppedoLT
             this.txtEndwith.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtEndwith.Location = new System.Drawing.Point(140, 101);
             this.txtEndwith.Name = "txtEndwith";
-            this.txtEndwith.Size = new System.Drawing.Size(287, 21);
+            this.txtEndwith.Size = new System.Drawing.Size(287, 19);
             this.txtEndwith.TabIndex = 3;
             this.txtEndwith.TabStop = false;
             this.txtEndwith.ThemeName = "Office2010";
-            this.txtEndwith.Leave += new System.EventHandler(this.txtLeave);
             this.txtEndwith.TextChanged += new System.EventHandler(this.txtEndwith_TextChanged);
+            this.txtEndwith.Leave += new System.EventHandler(this.txtLeave);
             // 
             // btnEndWith
             // 
@@ -232,8 +239,13 @@ namespace AppedoLT
             // radLabel5
             // 
             this.radLabel5.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radLabel5.ForeColor = System.Drawing.Color.Black;
             this.radLabel5.Location = new System.Drawing.Point(12, 72);
             this.radLabel5.Name = "radLabel5";
+            // 
+            // 
+            // 
+            this.radLabel5.RootElement.ForeColor = System.Drawing.Color.Black;
             this.radLabel5.Size = new System.Drawing.Size(72, 17);
             this.radLabel5.TabIndex = 9;
             this.radLabel5.Text = "Start with :";
@@ -244,32 +256,37 @@ namespace AppedoLT
             this.txtGroupIndex.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtGroupIndex.Location = new System.Drawing.Point(140, 159);
             this.txtGroupIndex.Name = "txtGroupIndex";
-            this.txtGroupIndex.Size = new System.Drawing.Size(46, 21);
+            this.txtGroupIndex.Size = new System.Drawing.Size(46, 19);
             this.txtGroupIndex.TabIndex = 5;
             this.txtGroupIndex.TabStop = false;
             this.txtGroupIndex.Text = "1";
             this.txtGroupIndex.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtGroupIndex.ThemeName = "Office2010";
-            this.txtGroupIndex.Leave += new System.EventHandler(this.txtLeave);
             this.txtGroupIndex.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtGroupIndex_KeyPress);
+            this.txtGroupIndex.Leave += new System.EventHandler(this.txtLeave);
             // 
             // txtStartwith
             // 
             this.txtStartwith.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtStartwith.Location = new System.Drawing.Point(140, 72);
             this.txtStartwith.Name = "txtStartwith";
-            this.txtStartwith.Size = new System.Drawing.Size(287, 21);
+            this.txtStartwith.Size = new System.Drawing.Size(287, 19);
             this.txtStartwith.TabIndex = 2;
             this.txtStartwith.TabStop = false;
             this.txtStartwith.ThemeName = "Office2010";
-            this.txtStartwith.Leave += new System.EventHandler(this.txtLeave);
             this.txtStartwith.TextChanged += new System.EventHandler(this.txtStartwith_TextChanged);
+            this.txtStartwith.Leave += new System.EventHandler(this.txtLeave);
             // 
             // radLabel2
             // 
             this.radLabel2.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radLabel2.ForeColor = System.Drawing.Color.Black;
             this.radLabel2.Location = new System.Drawing.Point(12, 159);
             this.radLabel2.Name = "radLabel2";
+            // 
+            // 
+            // 
+            this.radLabel2.RootElement.ForeColor = System.Drawing.Color.Black;
             this.radLabel2.Size = new System.Drawing.Size(86, 17);
             this.radLabel2.TabIndex = 25;
             this.radLabel2.Text = "Group Index :";
@@ -287,8 +304,13 @@ namespace AppedoLT
             // radLabel7
             // 
             this.radLabel7.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radLabel7.ForeColor = System.Drawing.Color.Black;
             this.radLabel7.Location = new System.Drawing.Point(12, 130);
             this.radLabel7.Name = "radLabel7";
+            // 
+            // 
+            // 
+            this.radLabel7.RootElement.ForeColor = System.Drawing.Color.Black;
             this.radLabel7.Size = new System.Drawing.Size(124, 17);
             this.radLabel7.TabIndex = 24;
             this.radLabel7.Text = "Regular Expression :";
@@ -299,7 +321,7 @@ namespace AppedoLT
             this.txtRegEx.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtRegEx.Location = new System.Drawing.Point(140, 130);
             this.txtRegEx.Name = "txtRegEx";
-            this.txtRegEx.Size = new System.Drawing.Size(308, 21);
+            this.txtRegEx.Size = new System.Drawing.Size(308, 19);
             this.txtRegEx.TabIndex = 4;
             this.txtRegEx.TabStop = false;
             this.txtRegEx.Text = "(.*?)";
@@ -321,8 +343,13 @@ namespace AppedoLT
             // radLabel1
             // 
             this.radLabel1.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radLabel1.ForeColor = System.Drawing.Color.Black;
             this.radLabel1.Location = new System.Drawing.Point(12, 188);
             this.radLabel1.Name = "radLabel1";
+            // 
+            // 
+            // 
+            this.radLabel1.RootElement.ForeColor = System.Drawing.Color.Black;
             this.radLabel1.Size = new System.Drawing.Size(99, 17);
             this.radLabel1.TabIndex = 17;
             this.radLabel1.Text = "Selection Type :";
@@ -332,6 +359,7 @@ namespace AppedoLT
             this.rbtnSingleOccurrence.AutoSize = true;
             this.rbtnSingleOccurrence.Checked = true;
             this.rbtnSingleOccurrence.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rbtnSingleOccurrence.ForeColor = System.Drawing.Color.Black;
             this.rbtnSingleOccurrence.Location = new System.Drawing.Point(276, 188);
             this.rbtnSingleOccurrence.Name = "rbtnSingleOccurrence";
             this.rbtnSingleOccurrence.Size = new System.Drawing.Size(60, 17);
@@ -339,26 +367,28 @@ namespace AppedoLT
             this.rbtnSingleOccurrence.TabStop = true;
             this.rbtnSingleOccurrence.Text = "Single";
             this.rbtnSingleOccurrence.UseVisualStyleBackColor = true;
-            this.rbtnSingleOccurrence.Leave += new System.EventHandler(this.txtLeave);
             this.rbtnSingleOccurrence.CheckedChanged += new System.EventHandler(this.txtLeave);
+            this.rbtnSingleOccurrence.Leave += new System.EventHandler(this.txtLeave);
             // 
             // rbtnRandomOccurrence
             // 
             this.rbtnRandomOccurrence.AutoSize = true;
             this.rbtnRandomOccurrence.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rbtnRandomOccurrence.ForeColor = System.Drawing.Color.Black;
             this.rbtnRandomOccurrence.Location = new System.Drawing.Point(198, 188);
             this.rbtnRandomOccurrence.Name = "rbtnRandomOccurrence";
             this.rbtnRandomOccurrence.Size = new System.Drawing.Size(72, 17);
             this.rbtnRandomOccurrence.TabIndex = 7;
             this.rbtnRandomOccurrence.Text = "Random";
             this.rbtnRandomOccurrence.UseVisualStyleBackColor = true;
-            this.rbtnRandomOccurrence.Leave += new System.EventHandler(this.txtLeave);
             this.rbtnRandomOccurrence.CheckedChanged += new System.EventHandler(this.txtLeave);
+            this.rbtnRandomOccurrence.Leave += new System.EventHandler(this.txtLeave);
             // 
             // rbtnAllOccurrence
             // 
             this.rbtnAllOccurrence.AutoSize = true;
             this.rbtnAllOccurrence.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rbtnAllOccurrence.ForeColor = System.Drawing.Color.Black;
             this.rbtnAllOccurrence.Location = new System.Drawing.Point(140, 188);
             this.rbtnAllOccurrence.Name = "rbtnAllOccurrence";
             this.rbtnAllOccurrence.Size = new System.Drawing.Size(43, 17);
@@ -395,17 +425,22 @@ namespace AppedoLT
             // lblResult
             // 
             this.lblResult.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblResult.ForeColor = System.Drawing.Color.Black;
             this.lblResult.Location = new System.Drawing.Point(12, 213);
             this.lblResult.Name = "lblResult";
+            // 
+            // 
+            // 
+            this.lblResult.RootElement.ForeColor = System.Drawing.Color.Black;
             this.lblResult.Size = new System.Drawing.Size(51, 17);
             this.lblResult.TabIndex = 9;
             this.lblResult.Text = "Result :";
             // 
             // txtResult
             // 
-            this.txtResult.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtResult.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtResult.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtResult.Location = new System.Drawing.Point(140, 213);
             this.txtResult.Multiline = true;
@@ -423,8 +458,13 @@ namespace AppedoLT
             // lblOrdinal
             // 
             this.lblOrdinal.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblOrdinal.Location = new System.Drawing.Point(399, 188);
+            this.lblOrdinal.ForeColor = System.Drawing.Color.Black;
+            this.lblOrdinal.Location = new System.Drawing.Point(401, 191);
             this.lblOrdinal.Name = "lblOrdinal";
+            // 
+            // 
+            // 
+            this.lblOrdinal.RootElement.ForeColor = System.Drawing.Color.Black;
             this.lblOrdinal.Size = new System.Drawing.Size(47, 17);
             this.lblOrdinal.TabIndex = 9;
             this.lblOrdinal.Text = "Ordinal";
@@ -432,8 +472,13 @@ namespace AppedoLT
             // lblName
             // 
             this.lblName.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblName.ForeColor = System.Drawing.Color.Black;
             this.lblName.Location = new System.Drawing.Point(12, 18);
             this.lblName.Name = "lblName";
+            // 
+            // 
+            // 
+            this.lblName.RootElement.ForeColor = System.Drawing.Color.Black;
             this.lblName.Size = new System.Drawing.Size(48, 17);
             this.lblName.TabIndex = 4;
             this.lblName.Text = "Name :";
@@ -448,16 +493,16 @@ namespace AppedoLT
             this.txtOrdinal.Text = "1";
             this.txtOrdinal.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtOrdinal.ThemeName = "Office2010";
-            this.txtOrdinal.Leave += new System.EventHandler(this.txtLeave);
             this.txtOrdinal.Enter += new System.EventHandler(this.txtOrdinal_Enter);
             this.txtOrdinal.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtOrdinal_KeyPress);
+            this.txtOrdinal.Leave += new System.EventHandler(this.txtLeave);
             // 
             // txtName
             // 
             this.txtName.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtName.Location = new System.Drawing.Point(140, 18);
             this.txtName.Name = "txtName";
-            this.txtName.Size = new System.Drawing.Size(308, 21);
+            this.txtName.Size = new System.Drawing.Size(308, 19);
             this.txtName.TabIndex = 0;
             this.txtName.TabStop = false;
             this.txtName.ThemeName = "Office2010";
@@ -472,8 +517,8 @@ namespace AppedoLT
             this.tabiTest.ContentPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(248)))));
             this.tabiTest.ContentPanel.CausesValidation = true;
             this.tabiTest.ContentPanel.Controls.Add(this.txtResponse);
-            this.tabiTest.ContentPanel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.tabiTest.ContentPanel.ForeColor = System.Drawing.Color.Black;
+            this.tabiTest.ContentPanel.Font = new System.Drawing.Font("Segoe UI", 8.25F);
+            this.tabiTest.ContentPanel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(66)))), ((int)(((byte)(139)))));
             this.tabiTest.ContentPanel.Location = new System.Drawing.Point(0, 24);
             this.tabiTest.ContentPanel.Size = new System.Drawing.Size(456, 331);
             this.tabiTest.Margin = new System.Windows.Forms.Padding(4, 0, 0, 0);
@@ -569,11 +614,6 @@ namespace AppedoLT
         private System.Windows.Forms.RadioButton rbtnRandomOccurrence;
         private System.Windows.Forms.RadioButton rbtnAllOccurrence;
         private Telerik.WinControls.UI.RadButton btnShowResult;
-        private Telerik.WinControls.Themes.TelerikTheme telerikTheme1;
-        private Telerik.WinControls.Themes.Windows7Theme windows7Theme1;
-        private Telerik.WinControls.Themes.VistaTheme vistaTheme1;
-        private Telerik.WinControls.Themes.Office2010Theme office2010Theme1;
-        private Telerik.WinControls.Themes.Office2007SilverTheme office2007SilverTheme1;
         private Telerik.WinControls.UI.RadLabel radLabel4;
         private Telerik.WinControls.UI.RadLabel radLabel5;
         private Telerik.WinControls.UI.RadTextBox txtEndwith;

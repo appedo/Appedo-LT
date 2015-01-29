@@ -1,3 +1,6 @@
+using AppedoLT.BusinessLogic;
+using AppedoLT.Core;
+using AppedoLT.DataAccessLayer;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -11,9 +14,6 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using System.Windows.Forms;
 using System.Xml;
-using AppedoLT.Core;
-using AppedoLT.DataAccessLayer;
-using AppedoLT.BusinessLogic;
 using Telerik.WinControls.UI;
 
 namespace AppedoLT
@@ -319,7 +319,6 @@ namespace AppedoLT
             {
                 return true;
             }
-
         }
 
         private bool ValidateLicence1(XmlNode scenario)
@@ -935,7 +934,7 @@ namespace AppedoLT
 
                 if (tvScenarios.SelectedNode.Level == 0)
                 {
-                    objUCLoadGen.Visible = true;
+                  //  objUCLoadGen.Visible = true;
                 }
                 else if (tvScenarios.SelectedNode.Level == 1)
                 {
@@ -1284,6 +1283,5 @@ namespace AppedoLT
         {
             btnRun_Click(null, null);
         }
-
     }
 }

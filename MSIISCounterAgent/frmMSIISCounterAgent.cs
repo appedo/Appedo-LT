@@ -18,6 +18,7 @@ namespace MSIISCounterAgent
         {
 
             InitializeComponent();
+            
             try
             {
                 string type = System.Configuration.ConfigurationManager.AppSettings["type"];

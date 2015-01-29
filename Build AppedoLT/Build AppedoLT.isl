@@ -2722,7 +2722,7 @@
 		<col def="I2">Encoded</col>
 		<col def="S0">Comment</col>
 		<col def="I4">TimeStamp</col>
-		<row><td>COMPANY_NAME</td><td>1033</td><td>Appedo</td><td>0</td><td/><td>1570950224</td></row>
+		<row><td>COMPANY_NAME</td><td>1033</td><td>Appedo</td><td>0</td><td/><td>1889763629</td></row>
 		<row><td>DN_AlwaysInstall</td><td>1033</td><td>Always Install</td><td>0</td><td/><td>-761108851</td></row>
 		<row><td>IDPROP_EXPRESS_LAUNCH_CONDITION_COLOR</td><td>1033</td><td>The color settings of your system are not adequate for running [ProductName].</td><td>0</td><td/><td>-761108851</td></row>
 		<row><td>IDPROP_EXPRESS_LAUNCH_CONDITION_DOTNETVERSION40CLIENT</td><td>1033</td><td>Microsoft .NET Framework 4.0 Client Package or greater needs to be installed for this installation to continue.</td><td>0</td><td/><td>-626909397</td></row>
@@ -3828,8 +3828,8 @@
 		<row><td>ID_STRING1</td><td>1033</td><td/><td>0</td><td/><td>-761106803</td></row>
 		<row><td>ID_STRING10</td><td>1033</td><td>AppedoLT</td><td>0</td><td/><td>773987852</td></row>
 		<row><td>ID_STRING11</td><td>1033</td><td>AppedoLT</td><td>0</td><td/><td>773989900</td></row>
-		<row><td>ID_STRING2</td><td>1033</td><td>http://www.Appedo.com</td><td>0</td><td/><td>1570950224</td></row>
-		<row><td>ID_STRING3</td><td>1033</td><td>Appedo</td><td>0</td><td/><td>1570950224</td></row>
+		<row><td>ID_STRING2</td><td>1033</td><td>http://www.Appedo.com</td><td>0</td><td/><td>1889763629</td></row>
+		<row><td>ID_STRING3</td><td>1033</td><td>Appedo</td><td>0</td><td/><td>1889763629</td></row>
 		<row><td>ID_STRING4</td><td>1033</td><td>FLOODG~1|FloodGates</td><td>0</td><td/><td>-761090450</td></row>
 		<row><td>ID_STRING5</td><td>1033</td><td>AppedoLT</td><td>0</td><td/><td>-1792933555</td></row>
 		<row><td>ID_STRING6</td><td>1033</td><td>STARTL~1|Start Loadgen</td><td>0</td><td/><td>-761097808</td></row>
@@ -3950,7 +3950,6 @@
 		<row><td>NewShortcut31_865C4765791148ADAE90711808C9D12E.exe</td><td/><td>&lt;VSSolutionFolder&gt;\AppedoLT\bin\Debug\logic.ico</td><td>0</td></row>
 		<row><td>NewShortcut32_CB21EE23BCD04FDE96C2A5AEC4624579.exe</td><td/><td>&lt;VSSolutionFolder&gt;\AppedoLT\bin\Debug\logic.ico</td><td>0</td></row>
 		<row><td>NewShortcut3_E542D03B5318421094FC4992B5D94FCA.exe</td><td/><td>&lt;VSSolutionFolder&gt;\AppedoLT\bin\Debug\logic.ico</td><td>0</td></row>
-		<row><td>sqlite3.exe_004BC50AD1E240469338E41A6C7AD36C.exe</td><td/><td>&lt;ISProductFolder&gt;\redist\Language Independent\OS Independent\GenericExe.ico</td><td>0</td></row>
 	</table>
 
 	<table name="IniFile">
@@ -4459,7 +4458,7 @@ RABWAEQALQA1AAEARQB4AHAAcgBlAHMAcwA=
 		<row><td>PROGMSG_IIS_ROLLBACKWEBSERVICEEXTENSIONS</td><td>##IDS_PROGMSG_IIS_ROLLBACKWEBSERVICEEXTENSIONS##</td><td/></row>
 		<row><td>ProductCode</td><td>{D2249B1B-B432-4203-A634-BBBE6D9D8C47}</td><td/></row>
 		<row><td>ProductName</td><td>AppedoLT</td><td/></row>
-		<row><td>ProductVersion</td><td>3.0.0.23</td><td/></row>
+		<row><td>ProductVersion</td><td>3.0.0.24</td><td/></row>
 		<row><td>ProgressType0</td><td>install</td><td/></row>
 		<row><td>ProgressType1</td><td>Installing</td><td/></row>
 		<row><td>ProgressType2</td><td>installed</td><td/></row>
@@ -4537,7 +4536,6 @@ RABWAEQALQA1AAEARQB4AHAAcgBlAHMAcwA=
 		<col def="s72">DirProperty</col>
 		<col def="i2">InstallMode</col>
 		<row><td>NewShortcut31</td><td>AppedoLT.Primary_output</td><td/><td>appedolt</td><td>2</td></row>
-		<row><td>sqlite3.exe</td><td>sqlite3.exe</td><td/><td>appedolt</td><td>2</td></row>
 	</table>
 
 	<table name="RemoveIniFile">
@@ -4626,7 +4624,6 @@ RABWAEQALQA1AAEARQB4AHAAcgBlAHMAcwA=
 		<row><td>NewShortcut3</td><td>StartupFolder</td><td>##ID_STRING9##</td><td>AppedoLT.Primary_output</td><td>AlwaysInstall</td><td/><td/><td/><td>NewShortcut3_E542D03B5318421094FC4992B5D94FCA.exe</td><td>0</td><td>1</td><td>INSTALLDIR</td><td/><td/><td/><td/><td/><td/><td/></row>
 		<row><td>NewShortcut31</td><td>appedolt</td><td>##ID_STRING10##</td><td>AppedoLT.Primary_output</td><td>AlwaysInstall</td><td/><td/><td/><td>NewShortcut31_865C4765791148ADAE90711808C9D12E.exe</td><td>0</td><td>1</td><td>INSTALLDIR</td><td/><td/><td/><td/><td/><td/><td/></row>
 		<row><td>NewShortcut32</td><td>DesktopFolder</td><td>##ID_STRING11##</td><td>AppedoLT.Primary_output</td><td>AlwaysInstall</td><td/><td/><td/><td>NewShortcut32_CB21EE23BCD04FDE96C2A5AEC4624579.exe</td><td>0</td><td>1</td><td>INSTALLDIR</td><td/><td/><td/><td/><td/><td/><td/></row>
-		<row><td>sqlite3.exe</td><td>appedolt</td><td>##IDS_SHORTCUT_DISPLAY_NAME1##</td><td>sqlite3.exe</td><td>AlwaysInstall</td><td/><td/><td/><td>sqlite3.exe_004BC50AD1E240469338E41A6C7AD36C.exe</td><td>0</td><td>1</td><td>INSTALLDIR</td><td/><td/><td/><td/><td/><td/><td/></row>
 	</table>
 
 	<table name="Signature">
