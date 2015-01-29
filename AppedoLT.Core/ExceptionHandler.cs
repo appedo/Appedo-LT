@@ -4,7 +4,6 @@ using System.Reflection;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
-using System.Text;
 namespace AppedoLT.Core
 {
     /// <summary>
@@ -15,7 +14,6 @@ namespace AppedoLT.Core
         private static bool isErrorLogRunning = false;
 
         public static Queue<string> errorLogs = new Queue<string>();
-        public static Dictionary<string, StringBuilder> RunDetaillog = new Dictionary<string, StringBuilder>();
 
         public static void WritetoEventLog(string strMessage)
         {
@@ -75,21 +73,6 @@ namespace AppedoLT.Core
             catch
             {
             }
-        }
-        public static void LogRunDetail(string runid, string msg)
-        {
-            try
-            {
-                if (RunDetaillog.ContainsKey(runid) == false)
-                {
-                    RunDetaillog.Add(runid, new StringBuilder());
-                }
-                else
-                {
-                    if (RunDetaillog[runid] != null) RunDetaillog[runid].Append(DateTime.Now.ToString()).Append(": ").AppendLine(msg);
-                }
-            }
-            catch { }
         }
         public static void WriteResponse(string filename, string strMessage)
         {
@@ -190,34 +173,6 @@ namespace AppedoLT.Core
             }
             catch { }
         }
-        public static string GetLog()
-        {
-            StringBuilder logDetail = new StringBuilder();
-            try
-            {
-                foreach (string key in RunDetaillog.Keys)
-                {
-                    logDetail.Append(key).Append(":").AppendLine().AppendLine(RunDetaillog[key].ToString()).AppendLine();
-                }
-            }
-            catch (Exception ex)
-            {
-                ExceptionHandler.WritetoEventLog(ex.StackTrace + Environment.NewLine + ex.Message);
-            }
-            return logDetail.ToString();
-        }
-        public static string GetLog(string runid)
-        {
-            StringBuilder logDetail = new StringBuilder();
-            try
-            {
-               logDetail.AppendLine(RunDetaillog[runid].ToString());
-            }
-            catch (Exception ex)
-            {
-                ExceptionHandler.WritetoEventLog(ex.StackTrace + Environment.NewLine + ex.Message);
-            }
-            return logDetail.ToString();
-        }
+        
     }
 }

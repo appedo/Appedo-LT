@@ -86,7 +86,7 @@ namespace AppedoLT.Core
                 RequestBody = new MemoryStream();
                 ResponseBody = new MemoryStream();
                 _buffer = new byte[_bufferSize];
-                
+
                 _browserStream = browserTcpClient.GetStream();
                 RequestHeader = ReceiveRequestHeader();
                 SetUrl();
@@ -400,61 +400,57 @@ namespace AppedoLT.Core
         #region utility
         private void SetUrl()
         {
-            object obj = new object();
-            lock (obj)
+            if (_host == string.Empty && _port == -1)
             {
-                if (_host == string.Empty && _port == -1)
+                MatchCollection matches = new Regex("(.*) (.*) (.*)\r\n").Matches(RequestHeader);
+                if (matches.Count > 0)
                 {
-                    MatchCollection matches = new Regex("(.*) (.*) (.*)\r\n").Matches(RequestHeader);
-                    if (matches.Count > 0)
-                    {
-                        try
-                        {
-                            string tempUrl = matches[0].Groups[2].Value;
-                            if (tempUrl.ToLower().StartsWith("http") == true)
-                            {
-                                url = new Uri(matches[0].Groups[2].Value);
-                            }
-                            else
-                            {
-                                MatchCollection matches1 = new Regex("Host: (.*)\r\n").Matches(RequestHeader);
-                                string host = matches1[0].Groups[1].Value;
-                                url = new Uri(string.Format("http://{0}{1}", host, matches[0].Groups[2].Value));
-                            }
-                            _port = url.Port;
-                            RequestHeader = RequestHeader.Replace(RequestHeader.Split(new string[] { "\r\n" }, StringSplitOptions.None)[0], string.Format("{0} {1} {2}", matches[0].Groups[1].Value, url.PathAndQuery, matches[0].Groups[3].Value));
-                        }
-                        catch (Exception ex)
-                        {
-                            ExceptionHandler.WritetoEventLog(ex.Message + Environment.NewLine + ex.StackTrace);
-                        }
-                    }
-                }
-                else
-                {
-                    MatchCollection matches = new Regex("(.*) (.*) (.*)\r\n").Matches(RequestHeader);
-                    if (matches.Count > 0)
+                    try
                     {
                         string tempUrl = matches[0].Groups[2].Value;
                         if (tempUrl.ToLower().StartsWith("http") == true)
                         {
-                            url = new Uri(string.Format("https://{0}:{1}{2}", _host, _port, matches[0].Groups[2].Value));
+                            url = new Uri(matches[0].Groups[2].Value);
                         }
                         else
                         {
                             MatchCollection matches1 = new Regex("Host: (.*)\r\n").Matches(RequestHeader);
                             string host = matches1[0].Groups[1].Value;
-                            if (host.Contains(":") == false)
-                            {
-                                url = new Uri(string.Format("https://{0}:{1}{2}", host, _port, matches[0].Groups[2].Value));
-                            }
-                            else
-                            {
-                                url = new Uri(string.Format("https://{0}{1}", host, matches[0].Groups[2].Value));
-                            }
+                            url = new Uri(string.Format("http://{0}{1}", host, matches[0].Groups[2].Value));
                         }
                         _port = url.Port;
+                        RequestHeader = RequestHeader.Replace(RequestHeader.Split(new string[] { "\r\n" }, StringSplitOptions.None)[0], string.Format("{0} {1} {2}", matches[0].Groups[1].Value, url.PathAndQuery, matches[0].Groups[3].Value));
                     }
+                    catch (Exception ex)
+                    {
+                        ExceptionHandler.WritetoEventLog(ex.Message + Environment.NewLine + ex.StackTrace);
+                    }
+                }
+            }
+            else
+            {
+                MatchCollection matches = new Regex("(.*) (.*) (.*)\r\n").Matches(RequestHeader);
+                if (matches.Count > 0)
+                {
+                    string tempUrl = matches[0].Groups[2].Value;
+                    if (tempUrl.ToLower().StartsWith("http") == true)
+                    {
+                        url = new Uri(string.Format("https://{0}:{1}{2}", _host, _port, matches[0].Groups[2].Value));
+                    }
+                    else
+                    {
+                        MatchCollection matches1 = new Regex("Host: (.*)\r\n").Matches(RequestHeader);
+                        string host = matches1[0].Groups[1].Value;
+                        if (host.Contains(":") == false)
+                        {
+                            url = new Uri(string.Format("https://{0}:{1}{2}", host, _port, matches[0].Groups[2].Value));
+                        }
+                        else
+                        {
+                            url = new Uri(string.Format("https://{0}{1}", host, matches[0].Groups[2].Value));
+                        }
+                    }
+                    _port = url.Port;
                 }
             }
         }

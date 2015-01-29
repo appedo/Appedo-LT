@@ -14,20 +14,19 @@ namespace AppedoLTController
 {
     class Controller
     {
-        public static Dictionary<string, Controller> Controllers = new Dictionary<string, Controller>();
-
+        
         Thread _CollectorThread = null;
         Constants _constants = Constants.GetInstance();
         private XmlNode _RunNode = null;
         private string _SourceIp = null;
         ControllerStatus _staus = ControllerStatus.Idle;
-        StringBuilder _log = null;
+
         public int CreatedUser = 0;
         public int CompletedUser = 0;
         public string ScriptWiseStatus { get; set; }
         public string RunId = string.Empty;
         public ControllerStatus Status { get { return _staus; } }
-        public string LastSentStatus = string.Empty;
+        public static Dictionary<string, Controller> Controllers = new Dictionary<string, Controller>();
 
         public Controller(string soureIP, string runid, XmlNode runNode)
         {
@@ -42,29 +41,27 @@ namespace AppedoLTController
             _CollectorThread.Start();
             _staus = ControllerStatus.Running;
         }
+
         public void Stop()
         {
-            ExceptionHandler.LogRunDetail(RunId, "Stop request received ");
             foreach (XmlNode loadGen in _RunNode.SelectNodes("loadgen"))
             {
-                for (int index = 0; index < 20; index++)
+                try
                 {
-                    try
-                    {
-                        Trasport loadGenConnection = new Trasport(loadGen.Attributes["ipaddress"].Value, "8889");
-                        loadGenConnection.Send(new TrasportData("stop", string.Empty, null));
-                        TrasportData data = loadGenConnection.Receive();
-                        loadGenConnection.Close();
-                        ExceptionHandler.LogRunDetail(RunId, "Stop request sent to loadgen " + loadGen.Attributes["ipaddress"].Value);
-                        break;
-                    }
-                    catch (Exception ex)
-                    {
-                        ExceptionHandler.WritetoEventLog(ex.StackTrace + ex.Message);
-                    }
+                    #region Retrive Created & Completed UserCount
+                    Trasport loadGenConnection = new Trasport(loadGen.Attributes["ipaddress"].Value, "8889");
+                    loadGenConnection.Send(new TrasportData("stop", string.Empty, null));
+                    TrasportData data = loadGenConnection.Receive();
+                    loadGenConnection.Close();
+                    #endregion
+                }
+                catch (Exception ex)
+                {
+                    ExceptionHandler.WritetoEventLog(ex.StackTrace + ex.Message);
                 }
             }
         }
+
         private void DoWork()
         {
             Regex log = new Regex("createduser: ([0-9]*)\r\ncompleteduser: ([0-9]*)\r\niscompleted: ([0-9]*)");
@@ -73,7 +70,6 @@ namespace AppedoLTController
             int runcompleted = 0;
             XmlNodeList loadGens;
             StringBuilder scriptwisestatus = null;
-            Dictionary<string, int> failedCount = new Dictionary<string, int>();
 
             while (true)
             {
@@ -100,27 +96,12 @@ namespace AppedoLTController
                             loadGenConnection.Send(new TrasportData("scriptwisestatus", string.Empty, null));
                             scriptwisestatus.Append(loadGenConnection.Receive().DataStr);
 
-                            if (failedCount.ContainsKey(loadGen.Attributes["ipaddress"].Value) == true)
-                            {
-                                failedCount.Remove(loadGen.Attributes["ipaddress"].Value);
-                            }
                             #endregion
                         }
                         catch (Exception ex)
                         {
-                            if (failedCount.ContainsKey(loadGen.Attributes["ipaddress"].Value) == false)
-                            {
-                                failedCount.Add(loadGen.Attributes["ipaddress"].Value, 1);
-                            }
-                            else
-                            {
-                                failedCount[loadGen.Attributes["ipaddress"].Value]++;
-                            }
-                            if (failedCount[loadGen.Attributes["ipaddress"].Value] > 5)
-                            {
-                                runcompleted++;
-                                ExceptionHandler.LogRunDetail(RunId, "Unable to connect " + loadGen.Attributes["ipaddress"].Value + " " + ex.Message);
-                            }
+                            runcompleted++;
+                            ExceptionHandler.WritetoEventLog(ex.StackTrace + ex.Message);
                         }
                     }
                     ScriptWiseStatus = GetStatusconcatenate(scriptwisestatus.ToString());
@@ -129,15 +110,13 @@ namespace AppedoLTController
                     CompletedUser = totalCompleted;
                     if (runcompleted == loadGens.Count)
                     {
-                        ExceptionHandler.LogRunDetail(RunId, "Run completed");
                         Thread.Sleep(10000);
                         _staus = ControllerStatus.RunCompleted;
-                        ExceptionHandler.LogRunDetail(RunId, "Report is generating");
                         new ResultFileGenerator(RunId).Genarate();
                         _staus = ControllerStatus.ReportGenerateCompleted;
                         Controllers.Remove(RunId);
                         break;
-
+                        
                     }
 
                 }
@@ -167,6 +146,7 @@ namespace AppedoLTController
                 }
             }
         }
+
         private string GetStatusconcatenate(string allStatus)
         {
             Dictionary<string, string> scriptWiseResult = new Dictionary<string, string>();
@@ -225,7 +205,6 @@ namespace AppedoLTController
                 data = new TrasportData("scriptwisestatus", scriptWiseStatus, header);
                 server.Send(data);
                 data = server.Receive();
-                LastSentStatus = scriptWiseStatus;
             }
             catch (Exception ex)
             {
