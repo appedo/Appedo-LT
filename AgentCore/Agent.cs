@@ -4,7 +4,6 @@ using System.Diagnostics;
 using System.Text;
 using System.Threading;
 using System.Xml;
-using System.Windows.Forms;
 
 namespace AgentCore
 {
@@ -90,32 +89,16 @@ namespace AgentCore
                     string pageContent = constants.GetPageContent(path = GetPath() + "/getConfigurations", string.Format("guid={0}&command=firstrequest", guid));
                     if (pageContent != string.Empty)
                     {
-                        if (pageContent.Contains("\"message\": \"kill\"") == true)
+                        CountersDetail detail = Utility.GetInstance().Deserialise<CountersDetail>(pageContent);
+                        SetCounterList(detail);
+                        if (detail.newCounterSet.Length > 0)
                         {
-                            MessageBox.Show(type + " agent is deleted. Please uninstall."); ;
-                            Environment.Exit(1);
+                            ExceptionHandler.WritetoEventLog("First request sent successfully");
+                            break;
                         }
                         else
                         {
-                            try
-                            {
-                                CountersDetail detail = Utility.GetInstance().Deserialise<CountersDetail>(pageContent);
-                                SetCounterList(detail);
-                                if (detail.newCounterSet.Length > 0)
-                                {
-                                    ExceptionHandler.WritetoEventLog("First request sent successfully");
-                                    break;
-                                }
-                                else
-                                {
-                                    Thread.Sleep(1000);
-                                }
-                            }
-                            catch (Exception ex)
-                            {
-                                Thread.Sleep(1000);
-                                ExceptionHandler.WritetoEventLog(ex.StackTrace + Environment.NewLine + ex.Message);
-                            }
+                            Thread.Sleep(1000);
                         }
                     }
                     else
@@ -149,11 +132,6 @@ namespace AgentCore
                     CountersDetail detail = Utility.GetInstance().Deserialise<CountersDetail>(responseStr);
                     SetCounterList(detail);
                 }
-                else if (responseStr.Contains("\"message\": \"kill\"") == true)
-                {
-                    Environment.Exit(1);
-                }
-
             }
             catch (Exception ex)
             {

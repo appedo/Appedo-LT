@@ -28,7 +28,7 @@ namespace AppedoLT.Core
         {
             _ipaddress = ipaddress;
             tcpClient = Connect(ipaddress, port);
-            tcpClient.ReceiveTimeout = 600000;
+            tcpClient.ReceiveTimeout = 120000;
         }
         public Trasport(string ipaddress, string port, int requesttimeout)
         {
@@ -45,14 +45,12 @@ namespace AppedoLT.Core
         {
             TcpClient client = new TcpClient();
             var result = client.BeginConnect(IPAddress.Parse(ipaddress), int.Parse(port), null, null);
-            result.AsyncWaitHandle.WaitOne(TimeSpan.FromSeconds(5));
-           
-            if(client.Connected==false)
+            if (!result.AsyncWaitHandle.WaitOne(TimeSpan.FromSeconds(30)))
             {
-                 throw new Exception("Failed to connect " + ipaddress );
+                throw new Exception("Failed to connect " + ipaddress );
             }
-            client.ReceiveTimeout = 600000;
-            client.SendTimeout = 600000;
+            client.ReceiveTimeout = 120000;
+            client.SendTimeout = 120000;
             return client;
         }
         public void Close()

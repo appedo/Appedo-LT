@@ -148,14 +148,12 @@ namespace AppedoLTLoadGenerator
                                                 Thread.Sleep(5000);
                                             }
                                             string reportName = data.Header["reportname"];
-                                            string directoryPath = string.Empty;
                                             DirectoryInfo dicinfo = new DirectoryInfo(Constants.GetInstance().ExecutingAssemblyLocation + "\\Data");
                                             string filePath = string.Empty;
                                             foreach (DirectoryInfo info in dicinfo.GetDirectories())
                                             {
                                                 if (new Regex(reportName + "_[0-9]*_[0-9]*_[0-9]*_[0-9]*").Match(info.Name).Success)
                                                 {
-                                                    directoryPath=info.Name;
                                                     foreach (FileInfo fileInfo in info.GetFiles("database.db"))
                                                     {
                                                         filePath = fileInfo.FullName;
@@ -173,7 +171,6 @@ namespace AppedoLTLoadGenerator
                                                 {
                                                   LoadTestAgentXml.GetInstance().doc.SelectSingleNode("//runs").RemoveChild( LoadTestAgentXml.GetInstance().doc.SelectSingleNode("//runs/run[@runid='" + reportName + "']"));
                                                   LoadTestAgentXml.GetInstance().Save();
-                                                 // Directory.Delete(directoryPath,true);
                                                 }
                                               }
                                             }
