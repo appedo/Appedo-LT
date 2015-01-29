@@ -97,7 +97,7 @@ namespace AppedoLT
                     while (true)
                     {
                         priviousCount = RecordData.Count;
-                        Thread.Sleep(30000);
+                        Thread.Sleep(60000);
                         {
                             lock (StoreData)
                             {
@@ -118,7 +118,7 @@ namespace AppedoLT
                                 priviousCount = RecordData.Count;
                             }
                         }
-                        
+
                     }
 
                 }).Start();
@@ -159,7 +159,7 @@ namespace AppedoLT
                                 priviousCount = RecordData.Count;
                             }
                         }
-                     if( count >10)   priviousCount = RecordData.Count;
+                        if (count > 10) priviousCount = RecordData.Count;
 
                     }
                     else
@@ -194,8 +194,9 @@ namespace AppedoLT
                     else
                     {
                         TcpClient client = _listener.AcceptTcpClient();
-                        Thread th = new Thread(new ParameterizedThreadStart(ProceessClient));
-                        th.Start(client);
+                      //  ProceessClient(client);
+                          Thread th = new Thread(new ParameterizedThreadStart(ProceessClient));
+                         th.Start(client);
                     }
                 }
             }
@@ -547,23 +548,30 @@ namespace AppedoLT
                                             {
                                                 while (true)
                                                 {
-                                                    string length = ReceiveGZipHeader(data.ResponseBody);
-                                                    int contentLength = int.Parse(length.Trim(), System.Globalization.NumberStyles.HexNumber);
-                                                    if (contentLength == 0)
+                                                    try
                                                     {
+                                                        string length = ReceiveGZipHeader(data.ResponseBody);
+
+                                                        int contentLength = length.Trim() == string.Empty ? 0 : int.Parse(length.Trim(), System.Globalization.NumberStyles.HexNumber);
+                                                        if (contentLength == 0)
+                                                        {
+                                                            readConut = data.ResponseBody.Read(buffer, 0, 2);
+                                                            break;
+                                                        }
+                                                        buffer = new byte[contentLength];
+                                                        while (contentLength > 0)
+                                                        {
+                                                            readConut = data.ResponseBody.Read(buffer, 0, contentLength);
+                                                            tem.Write(buffer, 0, readConut);
+                                                            contentLength -= readConut;
+                                                        }
+
                                                         readConut = data.ResponseBody.Read(buffer, 0, 2);
+                                                    }
+                                                    catch
+                                                    {
                                                         break;
                                                     }
-                                                    buffer = new byte[contentLength];
-                                                    while (contentLength > 0)
-                                                    {
-                                                        readConut = data.ResponseBody.Read(buffer, 0, contentLength);
-                                                        tem.Write(buffer, 0, readConut);
-                                                        contentLength -= readConut;
-                                                    }
-
-                                                    readConut = data.ResponseBody.Read(buffer, 0, 2);
-
                                                 }
                                                 data.ResponseBody = tem;
                                                 data.ResponseBody.Position = 0;

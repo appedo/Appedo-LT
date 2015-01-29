@@ -86,9 +86,10 @@ namespace AppedoLT.Core
                 RequestBody = new MemoryStream();
                 ResponseBody = new MemoryStream();
                 _buffer = new byte[_bufferSize];
-                
+
                 _browserStream = browserTcpClient.GetStream();
                 RequestHeader = ReceiveRequestHeader();
+
                 SetUrl();
 
 
@@ -290,7 +291,7 @@ namespace AppedoLT.Core
             Match firstLine = new Regex("(.*?) (.*?) (.*?)\r\n").Match(RequestHeader);
             if (firstLine.Success == true)
             {
-                 string header = RequestHeader.Remove(0, firstLine.Value.Length);
+                string header = RequestHeader.Remove(0, firstLine.Value.Length);
                 _server.Write(Encoding.Default.GetBytes(firstLine.Value), 0, firstLine.Value.Length);
                 _server.Write(Encoding.Default.GetBytes(header), 0, header.Length);
             }
@@ -350,27 +351,57 @@ namespace AppedoLT.Core
                     while (true)
                     {
                         string length = ReceiveGZipHeader(_server);
+                        
+
                         responseBody.Write(Encoding.Default.GetBytes(length), 0, length.Length);
-                        _browserStream.Write(Encoding.Default.GetBytes(length), 0, length.Length);
+                        try
+                        {
+                            _browserStream.Write(Encoding.Default.GetBytes(length), 0, length.Length);
+                        }
+                        catch
+                        {
+
+                        }
                         contentLength = int.Parse(length.Trim(), System.Globalization.NumberStyles.HexNumber);
 
                         if (contentLength == 0)
                         {
                             _bytesRead = _server.Read(_buffer, 0, 2);
                             responseBody.Write(_buffer, 0, _bytesRead);
-                            _browserStream.Write(_buffer, 0, _bytesRead);
+                            try
+                            {
+                                _browserStream.Write(_buffer, 0, _bytesRead);
+                            }
+                            catch
+                            {
+
+                            }
                             break;
                         }
                         while (contentLength > 0)
                         {
                             _bytesRead = _server.Read(_buffer, 0, contentLength);
                             responseBody.Write(_buffer, 0, _bytesRead);
-                            _browserStream.Write(_buffer, 0, _bytesRead);
+                            try
+                            {
+                                _browserStream.Write(_buffer, 0, _bytesRead);
+                            }
+                            catch
+                            {
+
+                            }
                             contentLength -= _bytesRead;
                         }
                         _bytesRead = _server.Read(_buffer, 0, 2);
                         responseBody.Write(_buffer, 0, _bytesRead);
-                        _browserStream.Write(_buffer, 0, _bytesRead);
+                        try
+                        {
+                            _browserStream.Write(_buffer, 0, _bytesRead);
+                        }
+                        catch
+                        {
+
+                        }
                     }
                 }
                 else if (_ServerTcpClient.Available > 0)

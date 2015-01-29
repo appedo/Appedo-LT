@@ -649,7 +649,6 @@ namespace AppedoLTController
             return folderPath;
         }
 
-
         private string DeleteReportFolder(string reportname)
         {
             string folderPath = Constants.GetInstance().ExecutingAssemblyLocation + "\\Data\\" + reportname;
@@ -912,6 +911,7 @@ namespace AppedoLTController
                 }
             }
         }
+       
         private void GetAvailableInstanceOn(string imageId, string region, string InstanceType, string keyPairName, string accessKey, string secretAccessKey, string secGroupName)
         {
             var ec2Client = new Amazon.EC2.AmazonEC2Client(accessKey, secretAccessKey, Amazon.RegionEndpoint.GetBySystemName(region));
