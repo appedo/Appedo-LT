@@ -3835,7 +3835,6 @@
 		<row><td>ID_STRING6</td><td>1033</td><td>STARTL~1|Start Loadgen</td><td>0</td><td/><td>-761097808</td></row>
 		<row><td>ID_STRING7</td><td>1033</td><td>FLOODG~1|FloodGates</td><td>0</td><td/><td>-626869710</td></row>
 		<row><td>ID_STRING8</td><td>1033</td><td>AppedoLT</td><td>0</td><td/><td>1570921680</td></row>
-		<row><td>ID_STRING9</td><td>1033</td><td>AppedoLT</td><td>0</td><td/><td>774012396</td></row>
 		<row><td>IIDS_UITEXT_FeatureUninstalled</td><td>1033</td><td>This feature will remain uninstalled.</td><td>0</td><td/><td>-761108851</td></row>
 	</table>
 
@@ -3949,7 +3948,6 @@
 		<row><td>NewShortcut2_54A8479F4DEB4054AC9F556F80C7169B.exe</td><td/><td>&lt;VSSolutionFolder&gt;\Floodgates\bin\Debug\logic.ico</td><td>0</td></row>
 		<row><td>NewShortcut31_865C4765791148ADAE90711808C9D12E.exe</td><td/><td>&lt;VSSolutionFolder&gt;\AppedoLT\bin\Debug\logic.ico</td><td>0</td></row>
 		<row><td>NewShortcut32_CB21EE23BCD04FDE96C2A5AEC4624579.exe</td><td/><td>&lt;VSSolutionFolder&gt;\AppedoLT\bin\Debug\logic.ico</td><td>0</td></row>
-		<row><td>NewShortcut3_E542D03B5318421094FC4992B5D94FCA.exe</td><td/><td>&lt;VSSolutionFolder&gt;\AppedoLT\bin\Debug\logic.ico</td><td>0</td></row>
 	</table>
 
 	<table name="IniFile">
@@ -4621,7 +4619,6 @@ RABWAEQALQA1AAEARQB4AHAAcgBlAHMAcwA=
 		<col def="S255">ISComments</col>
 		<col def="S255">ISShortcutName</col>
 		<col def="I4">ISAttributes</col>
-		<row><td>NewShortcut3</td><td>StartupFolder</td><td>##ID_STRING9##</td><td>AppedoLT.Primary_output</td><td>AlwaysInstall</td><td/><td/><td/><td>NewShortcut3_E542D03B5318421094FC4992B5D94FCA.exe</td><td>0</td><td>1</td><td>INSTALLDIR</td><td/><td/><td/><td/><td/><td/><td/></row>
 		<row><td>NewShortcut31</td><td>appedolt</td><td>##ID_STRING10##</td><td>AppedoLT.Primary_output</td><td>AlwaysInstall</td><td/><td/><td/><td>NewShortcut31_865C4765791148ADAE90711808C9D12E.exe</td><td>0</td><td>1</td><td>INSTALLDIR</td><td/><td/><td/><td/><td/><td/><td/></row>
 		<row><td>NewShortcut32</td><td>DesktopFolder</td><td>##ID_STRING11##</td><td>AppedoLT.Primary_output</td><td>AlwaysInstall</td><td/><td/><td/><td>NewShortcut32_CB21EE23BCD04FDE96C2A5AEC4624579.exe</td><td>0</td><td>1</td><td>INSTALLDIR</td><td/><td/><td/><td/><td/><td/><td/></row>
 	</table>
