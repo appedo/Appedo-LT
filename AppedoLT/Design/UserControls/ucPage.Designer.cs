@@ -32,10 +32,12 @@
             this.txtPageDelay = new Telerik.WinControls.UI.RadTextBox();
             this.lblDelay = new Telerik.WinControls.UI.RadLabel();
             this.lblPagename = new Telerik.WinControls.UI.RadLabel();
+            this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
             ((System.ComponentModel.ISupportInitialize)(this.lblPage)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPageDelay)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblDelay)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblPagename)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
             this.SuspendLayout();
             // 
             // lblPage
@@ -51,13 +53,13 @@
             this.txtPageDelay.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
             this.txtPageDelay.Location = new System.Drawing.Point(100, 50);
             this.txtPageDelay.Name = "txtPageDelay";
-            this.txtPageDelay.Size = new System.Drawing.Size(175, 20);
+            this.txtPageDelay.Size = new System.Drawing.Size(175, 18);
             this.txtPageDelay.TabIndex = 18;
             this.txtPageDelay.TabStop = false;
             this.txtPageDelay.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtPageDelay.ThemeName = "Office2010";
-            this.txtPageDelay.Validated += new System.EventHandler(this.txt_Validated);
             this.txtPageDelay.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtDelay_KeyPress);
+            this.txtPageDelay.Validated += new System.EventHandler(this.txt_Validated);
             // 
             // lblDelay
             // 
@@ -78,10 +80,20 @@
             this.lblPagename.TabIndex = 16;
             this.lblPagename.Text = "Page Name :";
             // 
+            // radLabel1
+            // 
+            this.radLabel1.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold);
+            this.radLabel1.Location = new System.Drawing.Point(277, 51);
+            this.radLabel1.Name = "radLabel1";
+            this.radLabel1.Size = new System.Drawing.Size(25, 17);
+            this.radLabel1.TabIndex = 20;
+            this.radLabel1.Text = "ms";
+            // 
             // ucPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.radLabel1);
             this.Controls.Add(this.lblPage);
             this.Controls.Add(this.txtPageDelay);
             this.Controls.Add(this.lblDelay);
@@ -94,6 +106,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtPageDelay)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblDelay)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblPagename)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -105,5 +118,6 @@
         private Telerik.WinControls.UI.RadTextBox txtPageDelay;
         private Telerik.WinControls.UI.RadLabel lblDelay;
         private Telerik.WinControls.UI.RadLabel lblPagename;
+        private Telerik.WinControls.UI.RadLabel radLabel1;
     }
 }

@@ -294,9 +294,9 @@
             // 
             // radPanel1
             // 
-            this.radPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.radPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.radPanel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(219)))), ((int)(((byte)(255)))));
             this.radPanel1.Controls.Add(this.btnSummarReport);
             this.radPanel1.Controls.Add(this.btnRefresh);
@@ -346,9 +346,9 @@
             // 
             // radSplitContainer1
             // 
-            this.radSplitContainer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.radSplitContainer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.radSplitContainer1.Controls.Add(this.splitPanel1);
             this.radSplitContainer1.Controls.Add(this.splitPanel2);
             this.radSplitContainer1.EnableTheming = false;
@@ -383,9 +383,9 @@
             // 
             // trvReportType
             // 
-            this.trvReportType.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.trvReportType.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.trvReportType.BackColor = System.Drawing.SystemColors.Window;
             this.trvReportType.Cursor = System.Windows.Forms.Cursors.Default;
             this.trvReportType.DataMember = "";
@@ -436,7 +436,7 @@
             // 
             // pnlTransactionSummaryReport
             // 
-            this.pnlTransactionSummaryReport.BackColor = System.Drawing.Color.Transparent;
+            this.pnlTransactionSummaryReport.BackColor = System.Drawing.Color.White;
             this.pnlTransactionSummaryReport.Controls.Add(this.grdTransactionSummaryReport);
             this.pnlTransactionSummaryReport.Controls.Add(this.radLabel84);
             this.pnlTransactionSummaryReport.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -447,9 +447,9 @@
             // 
             // grdTransactionSummaryReport
             // 
-            this.grdTransactionSummaryReport.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.grdTransactionSummaryReport.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.grdTransactionSummaryReport.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grdTransactionSummaryReport.Location = new System.Drawing.Point(3, 49);
             // 
@@ -480,7 +480,7 @@
             // 
             // pnlRequestSummaryReport
             // 
-            this.pnlRequestSummaryReport.BackColor = System.Drawing.Color.Transparent;
+            this.pnlRequestSummaryReport.BackColor = System.Drawing.Color.White;
             this.pnlRequestSummaryReport.Controls.Add(this.grdRequestSummaryReport);
             this.pnlRequestSummaryReport.Controls.Add(this.radLabel29);
             this.pnlRequestSummaryReport.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -491,9 +491,9 @@
             // 
             // grdRequestSummaryReport
             // 
-            this.grdRequestSummaryReport.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.grdRequestSummaryReport.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.grdRequestSummaryReport.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grdRequestSummaryReport.Location = new System.Drawing.Point(3, 45);
             // 
@@ -524,7 +524,7 @@
             // 
             // pnlContainerSummaryReport
             // 
-            this.pnlContainerSummaryReport.BackColor = System.Drawing.Color.Transparent;
+            this.pnlContainerSummaryReport.BackColor = System.Drawing.Color.White;
             this.pnlContainerSummaryReport.Controls.Add(this.grdContainerSummaryReport);
             this.pnlContainerSummaryReport.Controls.Add(this.radLabel11);
             this.pnlContainerSummaryReport.Location = new System.Drawing.Point(381, 486);
@@ -534,9 +534,9 @@
             // 
             // grdContainerSummaryReport
             // 
-            this.grdContainerSummaryReport.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.grdContainerSummaryReport.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.grdContainerSummaryReport.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grdContainerSummaryReport.Location = new System.Drawing.Point(3, 44);
             // 
@@ -568,7 +568,7 @@
             // 
             // pnlPageSummaryReport
             // 
-            this.pnlPageSummaryReport.BackColor = System.Drawing.Color.Transparent;
+            this.pnlPageSummaryReport.BackColor = System.Drawing.Color.White;
             this.pnlPageSummaryReport.Controls.Add(this.grdPageSummaryReport);
             this.pnlPageSummaryReport.Controls.Add(this.radLabel5);
             this.pnlPageSummaryReport.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -579,9 +579,9 @@
             // 
             // grdPageSummaryReport
             // 
-            this.grdPageSummaryReport.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.grdPageSummaryReport.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.grdPageSummaryReport.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grdPageSummaryReport.Location = new System.Drawing.Point(3, 50);
             // 

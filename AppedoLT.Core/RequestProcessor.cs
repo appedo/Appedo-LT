@@ -306,6 +306,7 @@ namespace AppedoLT.Core
 
                 while ((_bytesRead = RequestBody.Read(_buffer, 0, _buffer.Length)) > 0)
                 {
+                    
                     _server.Write(_buffer, 0, _bytesRead);
                 }
                 RequestBody.Seek(0, SeekOrigin.Begin);

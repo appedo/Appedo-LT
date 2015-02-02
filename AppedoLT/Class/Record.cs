@@ -91,37 +91,37 @@ namespace AppedoLT
 
         public void AutoRecovery()
         {
-            int priviousCount = 0;
-            new Thread(() =>
-                {
-                    while (true)
-                    {
-                        priviousCount = RecordData.Count;
-                        Thread.Sleep(60000);
-                        {
-                            lock (StoreData)
-                            {
-                                if (isStop = true) break;
-                                if (RecordData.Count != 0 && priviousCount == RecordData.Count)
-                                {
-                                    try
-                                    {
-                                        StoreData.Abort();
-                                    }
-                                    catch
-                                    {
+            //int priviousCount = 0;
+            //new Thread(() =>
+            //    {
+            //        while (true)
+            //        {
+            //            priviousCount = RecordData.Count;
+            //            Thread.Sleep(60000);
+            //            {
+            //                lock (StoreData)
+            //                {
+            //                    if (isStop = true) break;
+            //                    if (RecordData.Count != 0 && priviousCount == RecordData.Count)
+            //                    {
+            //                        try
+            //                        {
+            //                            StoreData.Abort();
+            //                        }
+            //                        catch
+            //                        {
 
-                                    }
-                                    StoreData = new Thread(new ThreadStart(StoreResult));
-                                    StoreData.Start();
-                                }
-                                priviousCount = RecordData.Count;
-                            }
-                        }
+            //                        }
+            //                        StoreData = new Thread(new ThreadStart(StoreResult));
+            //                        StoreData.Start();
+            //                    }
+            //                    priviousCount = RecordData.Count;
+            //                }
+            //            }
 
-                    }
+            //        }
 
-                }).Start();
+            //    }).Start();
 
         }
 
@@ -131,17 +131,28 @@ namespace AppedoLT
             {
                 isStop = true;
                 connectionManager.CloseAllConnetions();
-
                 int priviousCount = 0;
                 int count = 0;
+
+                while (true)
+                {
+                    count++;
+                    if (RecordData.Count > 0) Thread.Sleep(1000);
+                    else break;
+
+                    if (count > 20)
+                    {
+                        break;
+                    }
+                }
+
                 while (true)
                 {
                     if (RecordData.Count > 0)
                     {
                         Thread.Sleep(1000);
                         count++;
-
-                        if (count > 10 && RecordData.Count != 0 && priviousCount == RecordData.Count)
+                        if (count > 30 && RecordData.Count != 0 && priviousCount == RecordData.Count)
                         {
                             lock (StoreData)
                             {
@@ -159,7 +170,7 @@ namespace AppedoLT
                                 priviousCount = RecordData.Count;
                             }
                         }
-                        if (count > 10) priviousCount = RecordData.Count;
+                        if (count > 30) priviousCount = RecordData.Count;
 
                     }
                     else
@@ -167,6 +178,7 @@ namespace AppedoLT
                         break;
                     }
                 }
+
                 _pageDelay.Stop();
                 _repositoryXml.Save();
                 _listener.Stop();
@@ -194,9 +206,9 @@ namespace AppedoLT
                     else
                     {
                         TcpClient client = _listener.AcceptTcpClient();
-                      //  ProceessClient(client);
-                          Thread th = new Thread(new ParameterizedThreadStart(ProceessClient));
-                         th.Start(client);
+                        // ProceessClient(client);
+                        Thread th = new Thread(new ParameterizedThreadStart(ProceessClient));
+                        th.Start(client);
                     }
                 }
             }
@@ -218,7 +230,7 @@ namespace AppedoLT
                 if (((IRequestProcessor)pro) != null)
                 {
                     IRequestProcessor response = (IRequestProcessor)pro;
-                    if (response.url != null)
+                    if (response.url != null && response.url.AbsoluteUri != string.Empty)
                     {
                         lock (response)
                         {
@@ -258,7 +270,6 @@ namespace AppedoLT
                         string reqFilename = "req_" + data.Requestid + ".bin";
                         string resFilename = "res_" + data.Requestid;
                         string contentEncoding = string.Empty;
-                        // ExceptionHandler.WritetoEventLog(data.Requestid+" 1");
                         Regex expressForhead = new Regex("([A-Z]*) (.*) ([A-Z]*)/(.*)");
                         Regex expressForHeaders = new Regex("(.*?): (.*?)\r\n");
                         if (data.RequestHeader != null)
@@ -292,6 +303,7 @@ namespace AppedoLT
                                 #endregion
 
                                 matchs = expressForHeaders.Matches(data.RequestHeader);
+                                bool isWebServiceRequest = false;
 
                                 #region Headers
                                 if (matchs.Count > 0)
@@ -305,6 +317,10 @@ namespace AppedoLT
                                         if (match.Groups[1].Value == "Content-Type")
                                         {
                                             requestContentType = match.Groups[2].Value;
+                                        }
+                                        if (match.Groups[1].Value == "X-Requested-With")
+                                        {
+                                            isWebServiceRequest = true;
                                         }
                                         headers.AppendChild(header);
                                     }
@@ -468,7 +484,7 @@ namespace AppedoLT
                                             }
                                             #endregion
                                         }
-                                        else if (requestContentType.ToLower().StartsWith("text/") || requestContentType.ToLower().StartsWith("application/json") || requestContentType == string.Empty)
+                                        else if (isWebServiceRequest == true || requestContentType.ToLower().StartsWith("text/") || requestContentType.ToLower().StartsWith("application/json") || requestContentType == string.Empty)
                                         {
                                             parameters.Attributes.Append(_repositoryXml.GetAttribute("type", "text"));
 
@@ -704,7 +720,6 @@ namespace AppedoLT
                                 if (_lastInsertedPage != null)
                                 {
                                     _lastInsertedPage.AppendChild(request);
-
                                 }
                                 else
                                 {
@@ -720,7 +735,6 @@ namespace AppedoLT
                     ExceptionHandler.WritetoEventLog(ex.Message + Environment.NewLine + ex.StackTrace);
                 }
             }
-
         }
 
         private void CreateFirstLevelContainers()
@@ -744,7 +758,6 @@ namespace AppedoLT
             {
                 ExceptionHandler.WritetoEventLog(ex.Message + Environment.NewLine + ex.StackTrace);
             }
-
         }
 
         private void ddlParentContainer_SelectedIndexChanged(object sender, EventArgs e)
