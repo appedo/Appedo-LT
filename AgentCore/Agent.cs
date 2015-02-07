@@ -2,16 +2,17 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading;
-using System.Xml;
+using System.Web;
 using System.Windows.Forms;
+using System.Xml;
 
 namespace AgentCore
 {
     public class Agent
     {
         Utility constants = Utility.GetInstance();
-
         Dictionary<string, PerformanceCounter> Counters = new Dictionary<string, PerformanceCounter>();
         Dictionary<string, List<PerformanceCounter>> CountersAllInstance = new Dictionary<string, List<PerformanceCounter>>();
         private string _guid = string.Empty;
@@ -76,8 +77,8 @@ namespace AgentCore
                     ExceptionHandler.WritetoEventLog(ex.StackTrace + Environment.NewLine + ex.Message);
                 }
             }
-
         }
+
         public Agent(string guid, string type)
         {
             while (true)
@@ -128,9 +129,9 @@ namespace AgentCore
                     Thread.Sleep(1000);
                     ExceptionHandler.WritetoEventLog(ex.StackTrace + Environment.NewLine + ex.Message);
                 }
-
             }
         }
+
         public void SendCounter()
         {
             try
@@ -153,43 +154,39 @@ namespace AgentCore
                 {
                     Environment.Exit(1);
                 }
-
             }
             catch (Exception ex)
             {
                 ExceptionHandler.WritetoEventLog(ex.StackTrace + Environment.NewLine + ex.Message);
             }
         }
-        public void SaveCounters()
-        {
-            try
-            {
-                ExceptionHandler.WritetoEventLog(GetCountersValue());
-            }
-            catch
-            {
 
-            }
-        }
         public void SetCounterList(CountersDetail details)
         {
-
-            string[] detail = null;
             Counters.Clear();
+            ParentCounterList parentCounterList = new ParentCounterList();
+            parentCounterList.ParentCounter = new List<ParentCounter>();
+            Regex regex = new Regex("(.*),(.*),(.*),(.*)");
+            Match match = null;
+
             foreach (newCounterSet counterWithIndance in details.newCounterSet)
             {
                 try
                 {
-                    detail = counterWithIndance.query.Trim('"').Split(',');
-                    if (detail[0].ToLower() == "false" || detail[0].ToLower().Trim() == "0" || detail[3] == string.Empty)
+                    match = regex.Match(counterWithIndance.query.Trim('"'));
+                    if (match.Groups[1].Value.ToLower() == "false" || match.Groups[1].Value.ToLower().Trim() == "0")
                     {
-                        PerformanceCounter counter = new PerformanceCounter(detail[1], detail[2]);
+                        PerformanceCounter counter = new PerformanceCounter(match.Groups[2].Value, match.Groups[3].Value);
                         counter.NextValue();
                         Counters.Add(counterWithIndance.counter_id.ToString(), counter);
                     }
-                    else if (detail[3].ToLower().StartsWith("_"))
+                    else if (match.Groups[1].Value.ToLower() == "true" && match.Groups[4].Value == string.Empty)
                     {
-                        PerformanceCounter counter = new PerformanceCounter(detail[1], detail[2], detail[3]);
+                        parentCounterList.ParentCounter.Add(GetChdCounter(counterWithIndance.counter_id.ToString(), match.Groups[2].Value, match.Groups[3].Value));
+                    }
+                    else if (match.Groups[1].Value.ToLower() == "true")
+                    {
+                        PerformanceCounter counter = new PerformanceCounter(match.Groups[2].Value, match.Groups[3].Value, match.Groups[4].Value);
                         counter.NextValue();
                         Counters.Add(counterWithIndance.counter_id.ToString(), counter);
                     }
@@ -198,6 +195,10 @@ namespace AgentCore
                 {
                     ExceptionHandler.WritetoEventLog(ex.StackTrace + Environment.NewLine + ex.Message);
                 }
+            }
+            if (parentCounterList.ParentCounter.Count > 0)
+            {
+                string pageContent = constants.GetPageContent(path = GetPath() + "/getConfigurations", string.Format("guid={0}&command=childCounterset&strnewCounterSet={1}", _guid,System.Text.Encoding.Default.GetString(Utility.GetInstance().Serialise(parentCounterList))));
             }
         }
 
@@ -245,10 +246,12 @@ namespace AgentCore
             data.Append("agent_type=").Append(_type).Append("&guid=").Append(_guid);
             return data.ToString();
         }
+
         private string GetPath()
         {
             return string.Format("{0}://{1}:{2}/{3}", System.Configuration.ConfigurationManager.AppSettings["protocol"], System.Configuration.ConfigurationManager.AppSettings["server"], System.Configuration.ConfigurationManager.AppSettings["port"], System.Configuration.ConfigurationManager.AppSettings["path"]);
         }
+
         private void SetTotalPhysicalMemory()
         {
             try
@@ -259,6 +262,28 @@ namespace AgentCore
             {
                 ExceptionHandler.WritetoEventLog(ex.StackTrace + ex.Message);
             }
+        }
+
+        private ParentCounter GetChdCounter(string counterid, string Category, string name)
+        {
+            ParentCounter parentCounter = new ParentCounter();
+            parentCounter.ParentCounterId = counterid;
+            parentCounter.ChildCounterDetail = new List<ChildCounterDetail>();
+
+
+            PerformanceCounterCategory category = new PerformanceCounterCategory(Category);
+            StringBuilder strInstance = new StringBuilder();
+
+            foreach (string instancename in category.GetInstanceNames())
+            {
+                ChildCounterDetail child = new ChildCounterDetail();
+                child.Name =HttpUtility.UrlEncode(name);
+                child.HasInstace = true;
+                child.InstanceName = HttpUtility.UrlEncode(instancename);
+                child.Category = HttpUtility.UrlEncode(Category);
+                parentCounter.ChildCounterDetail.Add(child);
+            }
+            return parentCounter;
         }
     }
 }

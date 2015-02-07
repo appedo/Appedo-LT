@@ -28,8 +28,7 @@ namespace AppedoLT.Core
                     System.Text.RegularExpressions.RegexOptions.IgnorePatternWhitespace
                   | System.Text.RegularExpressions.RegexOptions.Multiline
                   | System.Text.RegularExpressions.RegexOptions.IgnoreCase);
-                Regex reg = new Regex(Delim
-                  + @"(?=(?:[^\""]*\""[^\""]*\"")*(?![^\""]*\""))", options);
+                Regex reg = new Regex(Delim + @"(?=(?:[^\""]*\""[^\""]*\"")*(?![^\""]*\""))", options);
                 // var csvArray = reg.Split(row.Replace("\n", "").Replace("\r", ""));
                 var csvArray = reg.Split(row.Trim());
                 for (int i = 0; i < csvArray.Length; i++)

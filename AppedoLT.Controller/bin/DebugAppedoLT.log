@@ -39,3 +39,1098 @@
    at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
    at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 224Failed to connect 192.168.1.140
 ---------------------------------------
+17:04:02 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 224Failed to connect 192.168.1.140
+---------------------------------------
+17:04:17 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 224Failed to connect 192.168.1.140
+---------------------------------------
+17:04:32 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 224Failed to connect 192.168.1.140
+---------------------------------------
+17:04:47 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 224Failed to connect 192.168.1.140
+---------------------------------------
+17:05:02 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 224Failed to connect 192.168.1.140
+---------------------------------------
+17:05:22 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 224Failed to connect 192.168.1.140
+---------------------------------------
+17:05:37 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 224Failed to connect 192.168.1.140
+---------------------------------------
+17:05:52 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 224Failed to connect 192.168.1.140
+---------------------------------------
+17:06:07 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 224Failed to connect 192.168.1.140
+---------------------------------------
+17:06:22 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 224Failed to connect 192.168.1.140
+---------------------------------------
+17:06:37 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 224Failed to connect 192.168.1.140
+---------------------------------------
+17:06:52 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 224Failed to connect 192.168.1.140
+---------------------------------------
+17:07:07 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 224Failed to connect 192.168.1.140
+---------------------------------------
+17:07:22 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 224Failed to connect 192.168.1.140
+---------------------------------------
+17:07:37 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 224Failed to connect 192.168.1.140
+---------------------------------------
+17:07:52 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 224Failed to connect 192.168.1.140
+---------------------------------------
+17:08:07 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 224Failed to connect 192.168.1.140
+---------------------------------------
+17:08:22 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 224Failed to connect 192.168.1.140
+---------------------------------------
+17:08:37 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 224Failed to connect 192.168.1.140
+---------------------------------------
+17:08:52 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 224Failed to connect 192.168.1.140
+---------------------------------------
+17:09:07 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 224Failed to connect 192.168.1.140
+---------------------------------------
+17:09:22 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 224Failed to connect 192.168.1.140
+---------------------------------------
+17:09:37 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 224Failed to connect 192.168.1.140
+---------------------------------------
+17:09:52 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 224Failed to connect 192.168.1.140
+---------------------------------------
+17:10:08 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 224Failed to connect 192.168.1.140
+---------------------------------------
+17:10:24 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 224Failed to connect 192.168.1.140
+---------------------------------------
+17:10:40 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 224Failed to connect 192.168.1.140
+---------------------------------------
+17:10:56 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 224Failed to connect 192.168.1.140
+---------------------------------------
+17:11:21 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 224Failed to connect 192.168.1.140
+---------------------------------------
+17:11:36 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 224Failed to connect 192.168.1.140
+---------------------------------------
+17:11:51 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 224Failed to connect 192.168.1.140
+---------------------------------------
+17:12:06 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 224Failed to connect 192.168.1.140
+---------------------------------------
+17:12:21 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 224Failed to connect 192.168.1.140
+---------------------------------------
+17:12:36 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 224Failed to connect 192.168.1.140
+---------------------------------------
+17:12:51 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 224Failed to connect 192.168.1.140
+---------------------------------------
+17:13:06 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 224Failed to connect 192.168.1.140
+---------------------------------------
+17:13:21 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 224Failed to connect 192.168.1.140
+---------------------------------------
+17:13:36 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 224Failed to connect 192.168.1.140
+---------------------------------------
+17:13:51 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 224Failed to connect 192.168.1.140
+---------------------------------------
+17:18:56 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 224Failed to connect 192.168.1.140
+---------------------------------------
+17:19:16 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 224Failed to connect 192.168.1.140
+---------------------------------------
+17:19:31 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 224Failed to connect 192.168.1.140
+---------------------------------------
+17:19:46 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 224Failed to connect 192.168.1.140
+---------------------------------------
+17:20:01 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 224Failed to connect 192.168.1.140
+---------------------------------------
+17:20:16 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 224Failed to connect 192.168.1.140
+---------------------------------------
+17:20:31 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 224Failed to connect 192.168.1.140
+---------------------------------------
+17:20:46 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 224Failed to connect 192.168.1.140
+---------------------------------------
+17:21:01 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 224Failed to connect 192.168.1.140
+---------------------------------------
+17:21:40 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 224Failed to connect 192.168.1.140
+---------------------------------------
+17:21:45 05 February 2015 
+   at System.Data.SQLite.SQLite3.Prepare(SQLiteConnection cnn, String strSql, SQLiteStatement previous, UInt32 timeoutMS, String& strRemain)
+   at System.Data.SQLite.SQLiteCommand.BuildNextCommand()
+   at System.Data.SQLite.SQLiteCommand.GetStatement(Int32 index)
+   at System.Data.SQLite.SQLiteDataReader.NextResult()
+   at System.Data.SQLite.SQLiteDataReader..ctor(SQLiteCommand cmd, CommandBehavior behave)
+   at System.Data.SQLite.SQLiteCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.SQLite.SQLiteCommand.ExecuteNonQuery()
+   at AppedoLT.DataAccessLayer.JmeterReportMaster.Executequery(String newReportName, String query) in e:\AppedoLT\AppedoLT.DataAccessLayer\JmeterReportMaster.cs:line 315SQLite error
+table requests_1 already exists
+---------------------------------------
+17:22:29 05 February 2015 
+   at System.Data.SQLite.SQLite3.Prepare(SQLiteConnection cnn, String strSql, SQLiteStatement previous, UInt32 timeoutMS, String& strRemain)
+   at System.Data.SQLite.SQLiteCommand.BuildNextCommand()
+   at System.Data.SQLite.SQLiteCommand.GetStatement(Int32 index)
+   at System.Data.SQLite.SQLiteDataReader.NextResult()
+   at System.Data.SQLite.SQLiteDataReader..ctor(SQLiteCommand cmd, CommandBehavior behave)
+   at System.Data.SQLite.SQLiteCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.SQLite.SQLiteCommand.ExecuteReader()
+   at AppedoLT.DataAccessLayer.Result.GetReader(String query, SQLiteConnection _con)
+   at AppedoLT.DataAccessLayer.Result.GetSummaryReportJmeterByScript(String reportName, DataTable runNode)SQLite error
+no such column: loadgen
+---------------------------------------
+17:22:29 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5()Failed to connect 192.168.1.140
+---------------------------------------
+17:22:35 05 February 2015 
+   at System.Data.SQLite.SQLite3.Prepare(SQLiteConnection cnn, String strSql, SQLiteStatement previous, UInt32 timeoutMS, String& strRemain)
+   at System.Data.SQLite.SQLiteCommand.BuildNextCommand()
+   at System.Data.SQLite.SQLiteCommand.GetStatement(Int32 index)
+   at System.Data.SQLite.SQLiteDataReader.NextResult()
+   at System.Data.SQLite.SQLiteDataReader..ctor(SQLiteCommand cmd, CommandBehavior behave)
+   at System.Data.SQLite.SQLiteCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.SQLite.SQLiteCommand.ExecuteNonQuery()
+   at AppedoLT.DataAccessLayer.JmeterReportMaster.Executequery(String newReportName, String query)SQLite error
+table requests_1 already exists
+---------------------------------------
+17:22:41 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5()Failed to connect 192.168.1.140
+---------------------------------------
+17:23:01 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5()Failed to connect 192.168.1.140
+---------------------------------------
+17:23:16 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5()Failed to connect 192.168.1.140
+---------------------------------------
+17:23:31 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5()Failed to connect 192.168.1.140
+---------------------------------------
+17:23:46 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5()Failed to connect 192.168.1.140
+---------------------------------------
+17:24:01 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5()Failed to connect 192.168.1.140
+---------------------------------------
+17:24:16 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5()Failed to connect 192.168.1.140
+---------------------------------------
+17:24:31 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5()Failed to connect 192.168.1.140
+---------------------------------------
+17:24:46 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5()Failed to connect 192.168.1.140
+---------------------------------------
+17:25:01 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5()Failed to connect 192.168.1.140
+---------------------------------------
+17:25:16 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5()Failed to connect 192.168.1.140
+---------------------------------------
+17:25:31 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5()Failed to connect 192.168.1.140
+---------------------------------------
+17:25:46 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5()Failed to connect 192.168.1.140
+---------------------------------------
+17:26:01 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5()Failed to connect 192.168.1.140
+---------------------------------------
+17:26:16 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5()Failed to connect 192.168.1.140
+---------------------------------------
+17:26:31 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5()Failed to connect 192.168.1.140
+---------------------------------------
+17:26:46 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5()Failed to connect 192.168.1.140
+---------------------------------------
+17:27:01 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5()Failed to connect 192.168.1.140
+---------------------------------------
+17:27:16 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5()Failed to connect 192.168.1.140
+---------------------------------------
+17:27:31 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5()Failed to connect 192.168.1.140
+---------------------------------------
+17:27:46 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5()Failed to connect 192.168.1.140
+---------------------------------------
+17:28:01 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5()Failed to connect 192.168.1.140
+---------------------------------------
+17:28:16 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5()Failed to connect 192.168.1.140
+---------------------------------------
+17:28:31 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5()Failed to connect 192.168.1.140
+---------------------------------------
+17:28:46 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5()Failed to connect 192.168.1.140
+---------------------------------------
+17:29:01 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5()Failed to connect 192.168.1.140
+---------------------------------------
+17:29:16 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5()Failed to connect 192.168.1.140
+---------------------------------------
+17:29:31 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5()Failed to connect 192.168.1.140
+---------------------------------------
+17:29:46 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5()Failed to connect 192.168.1.140
+---------------------------------------
+17:30:01 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5()Failed to connect 192.168.1.140
+---------------------------------------
+17:30:16 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5()Failed to connect 192.168.1.140
+---------------------------------------
+17:30:31 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5()Failed to connect 192.168.1.140
+---------------------------------------
+17:30:46 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5()Failed to connect 192.168.1.140
+---------------------------------------
+17:31:01 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5()Failed to connect 192.168.1.140
+---------------------------------------
+17:31:16 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5()Failed to connect 192.168.1.140
+---------------------------------------
+17:31:31 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5()Failed to connect 192.168.1.140
+---------------------------------------
+17:31:46 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5()Failed to connect 192.168.1.140
+---------------------------------------
+17:32:01 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5()Failed to connect 192.168.1.140
+---------------------------------------
+17:32:16 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5()Failed to connect 192.168.1.140
+---------------------------------------
+17:32:31 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5()Failed to connect 192.168.1.140
+---------------------------------------
+17:32:46 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5()Failed to connect 192.168.1.140
+---------------------------------------
+17:33:01 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5()Failed to connect 192.168.1.140
+---------------------------------------
+17:33:16 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5()Failed to connect 192.168.1.140
+---------------------------------------
+17:33:31 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5()Failed to connect 192.168.1.140
+---------------------------------------
+17:33:46 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5()Failed to connect 192.168.1.140
+---------------------------------------
+17:34:01 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5()Failed to connect 192.168.1.140
+---------------------------------------
+17:34:16 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5()Failed to connect 192.168.1.140
+---------------------------------------
+17:34:31 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5()Failed to connect 192.168.1.140
+---------------------------------------
+17:34:46 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5()Failed to connect 192.168.1.140
+---------------------------------------
+17:35:01 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5()Failed to connect 192.168.1.140
+---------------------------------------
+17:35:16 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5()Failed to connect 192.168.1.140
+---------------------------------------
+17:35:31 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5()Failed to connect 192.168.1.140
+---------------------------------------
+17:35:46 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5()Failed to connect 192.168.1.140
+---------------------------------------
+17:36:02 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5()Failed to connect 192.168.1.140
+---------------------------------------
+17:36:17 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5()Failed to connect 192.168.1.140
+---------------------------------------
+17:36:32 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5()Failed to connect 192.168.1.140
+---------------------------------------
+17:36:47 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5()Failed to connect 192.168.1.140
+---------------------------------------
+17:37:02 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5()Failed to connect 192.168.1.140
+---------------------------------------
+17:37:17 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5()Failed to connect 192.168.1.140
+---------------------------------------
+17:37:32 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5()Failed to connect 192.168.1.140
+---------------------------------------
+17:37:47 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5()Failed to connect 192.168.1.140
+---------------------------------------
+17:38:02 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5()Failed to connect 192.168.1.140
+---------------------------------------
+17:38:17 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5()Failed to connect 192.168.1.140
+---------------------------------------
+17:38:32 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5()Failed to connect 192.168.1.140
+---------------------------------------
+17:38:47 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5()Failed to connect 192.168.1.140
+---------------------------------------
+17:39:02 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5()Failed to connect 192.168.1.140
+---------------------------------------
+17:39:17 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5()Failed to connect 192.168.1.140
+---------------------------------------
+17:39:32 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5()Failed to connect 192.168.1.140
+---------------------------------------
+18:36:03 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 238Failed to connect 192.168.1.140
+---------------------------------------
+18:36:23 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 238Failed to connect 192.168.1.140
+---------------------------------------
+18:36:38 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 238Failed to connect 192.168.1.140
+---------------------------------------
+18:36:53 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 238Failed to connect 192.168.1.140
+---------------------------------------
+18:37:08 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 238Failed to connect 192.168.1.140
+---------------------------------------
+18:37:23 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 238Failed to connect 192.168.1.140
+---------------------------------------
+18:37:38 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 238Failed to connect 192.168.1.140
+---------------------------------------
+18:37:53 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 238Failed to connect 192.168.1.140
+---------------------------------------
+18:38:08 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 238Failed to connect 192.168.1.140
+---------------------------------------
+18:38:23 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 238Failed to connect 192.168.1.140
+---------------------------------------
+18:38:38 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 238Failed to connect 192.168.1.140
+---------------------------------------
+18:38:53 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 238Failed to connect 192.168.1.140
+---------------------------------------
+18:39:08 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 238Failed to connect 192.168.1.140
+---------------------------------------
+18:39:23 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 238Failed to connect 192.168.1.140
+---------------------------------------
+18:39:38 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 238Failed to connect 192.168.1.140
+---------------------------------------
+18:39:53 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 238Failed to connect 192.168.1.140
+---------------------------------------
+18:40:08 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 238Failed to connect 192.168.1.140
+---------------------------------------
+18:40:23 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 238Failed to connect 192.168.1.140
+---------------------------------------
+18:40:38 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 238Failed to connect 192.168.1.140
+---------------------------------------
+18:40:53 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 238Failed to connect 192.168.1.140
+---------------------------------------
+18:41:08 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 238Failed to connect 192.168.1.140
+---------------------------------------
+18:41:23 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 238Failed to connect 192.168.1.140
+---------------------------------------
+18:41:38 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 238Failed to connect 192.168.1.140
+---------------------------------------
+18:41:53 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 238Failed to connect 192.168.1.140
+---------------------------------------
+18:42:08 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 238Failed to connect 192.168.1.140
+---------------------------------------
+18:42:18 05 February 2015 
+   at System.Net.Sockets.NetworkStream.Read(Byte[] buffer, Int32 offset, Int32 size)
+   at AppedoLT.Core.Trasport.ReadHeader(Stream stream) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 143
+   at AppedoLT.Core.Trasport.Receive() in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 72
+   at AppedoLTController.frmController.<>c__DisplayClass3.<DoWork>b__2() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 88Unable to read data from the transport connection: An existing connection was forcibly closed by the remote host.
+---------------------------------------
+18:42:23 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 238Failed to connect 192.168.1.140
+---------------------------------------
+18:42:38 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 238Failed to connect 192.168.1.140
+---------------------------------------
+18:42:53 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 238Failed to connect 192.168.1.140
+---------------------------------------
+18:43:08 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 238Failed to connect 192.168.1.140
+---------------------------------------
+18:43:23 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 238Failed to connect 192.168.1.140
+---------------------------------------
+18:43:38 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 238Failed to connect 192.168.1.140
+---------------------------------------
+18:43:53 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 238Failed to connect 192.168.1.140
+---------------------------------------
+18:43:58 05 February 2015 
+   at System.Net.Sockets.NetworkStream.Read(Byte[] buffer, Int32 offset, Int32 size)
+   at AppedoLT.Core.Trasport.ReadHeader(Stream stream) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 143
+   at AppedoLT.Core.Trasport.Receive() in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 72
+   at AppedoLTController.frmController.<>c__DisplayClass3.<DoWork>b__2() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 88Unable to read data from the transport connection: An existing connection was forcibly closed by the remote host.
+---------------------------------------
+18:43:58 05 February 2015 
+   at System.Net.Sockets.NetworkStream.Read(Byte[] buffer, Int32 offset, Int32 size)
+   at AppedoLT.Core.Trasport.ReadHeader(Stream stream) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 143
+   at AppedoLT.Core.Trasport.Receive() in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 72
+   at AppedoLTController.frmController.<>c__DisplayClass3.<DoWork>b__2() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 88Unable to read data from the transport connection: An existing connection was forcibly closed by the remote host.
+---------------------------------------
+18:44:03 05 February 2015 
+   at System.Net.Sockets.NetworkStream.Read(Byte[] buffer, Int32 offset, Int32 size)
+   at AppedoLT.Core.Trasport.ReadHeader(Stream stream) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 143
+   at AppedoLT.Core.Trasport.Receive() in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 72
+   at AppedoLTController.frmController.<>c__DisplayClass3.<DoWork>b__2() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 88Unable to read data from the transport connection: An existing connection was forcibly closed by the remote host.
+---------------------------------------
+18:44:08 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 238Failed to connect 192.168.1.140
+---------------------------------------
+18:44:23 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 238Failed to connect 192.168.1.140
+---------------------------------------
+18:44:38 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 238Failed to connect 192.168.1.140
+---------------------------------------
+18:44:53 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 238Failed to connect 192.168.1.140
+---------------------------------------
+18:45:08 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 238Failed to connect 192.168.1.140
+---------------------------------------
+18:45:23 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 238Failed to connect 192.168.1.140
+---------------------------------------
+18:45:38 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 238Failed to connect 192.168.1.140
+---------------------------------------
+18:45:53 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 238Failed to connect 192.168.1.140
+---------------------------------------
+18:46:08 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 238Failed to connect 192.168.1.140
+---------------------------------------
+18:46:23 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 238Failed to connect 192.168.1.140
+---------------------------------------
+18:46:38 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 238Failed to connect 192.168.1.140
+---------------------------------------
+18:46:53 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 238Failed to connect 192.168.1.140
+---------------------------------------
+18:47:08 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 238Failed to connect 192.168.1.140
+---------------------------------------
+18:47:18 05 February 2015 
+   at System.Net.Sockets.NetworkStream.Read(Byte[] buffer, Int32 offset, Int32 size)
+   at AppedoLT.Core.Trasport.ReadHeader(Stream stream) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 143
+   at AppedoLT.Core.Trasport.Receive() in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 72
+   at AppedoLTController.frmController.<>c__DisplayClass3.<DoWork>b__2() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 88Unable to read data from the transport connection: An existing connection was forcibly closed by the remote host.
+---------------------------------------
+18:47:23 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 238Failed to connect 192.168.1.140
+---------------------------------------
+18:47:38 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 238Failed to connect 192.168.1.140
+---------------------------------------
+18:47:53 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 238Failed to connect 192.168.1.140
+---------------------------------------
+18:48:08 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 238Failed to connect 192.168.1.140
+---------------------------------------
+18:48:23 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 238Failed to connect 192.168.1.140
+---------------------------------------
+18:48:38 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 238Failed to connect 192.168.1.140
+---------------------------------------
+18:48:53 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 238Failed to connect 192.168.1.140
+---------------------------------------
+18:49:08 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 238Failed to connect 192.168.1.140
+---------------------------------------
+18:49:23 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 238Failed to connect 192.168.1.140
+---------------------------------------
+18:49:38 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 238Failed to connect 192.168.1.140
+---------------------------------------
+18:49:53 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 238Failed to connect 192.168.1.140
+---------------------------------------
+18:50:08 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 238Failed to connect 192.168.1.140
+---------------------------------------
+18:50:23 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 238Failed to connect 192.168.1.140
+---------------------------------------
+18:50:38 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 238Failed to connect 192.168.1.140
+---------------------------------------
+18:50:53 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 238Failed to connect 192.168.1.140
+---------------------------------------
+18:51:08 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 238Failed to connect 192.168.1.140
+---------------------------------------
+18:51:23 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 238Failed to connect 192.168.1.140
+---------------------------------------
+18:51:39 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 238Failed to connect 192.168.1.140
+---------------------------------------
+18:52:06 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 238Failed to connect 192.168.1.140
+---------------------------------------
+18:52:24 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 238Failed to connect 192.168.1.140
+---------------------------------------
+18:52:39 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 238Failed to connect 192.168.1.140
+---------------------------------------
+18:52:55 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 238Failed to connect 192.168.1.140
+---------------------------------------
+18:54:27 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 239Failed to connect 192.168.1.140
+---------------------------------------
+18:54:42 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 239Failed to connect 192.168.1.140
+---------------------------------------
+18:55:02 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 239Failed to connect 192.168.1.140
+---------------------------------------
+18:55:17 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 239Failed to connect 192.168.1.140
+---------------------------------------
+18:55:32 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 239Failed to connect 192.168.1.140
+---------------------------------------
+18:55:47 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 239Failed to connect 192.168.1.140
+---------------------------------------
+18:56:02 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 239Failed to connect 192.168.1.140
+---------------------------------------
+18:56:17 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 239Failed to connect 192.168.1.140
+---------------------------------------
+18:56:32 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 239Failed to connect 192.168.1.140
+---------------------------------------
+18:56:47 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 239Failed to connect 192.168.1.140
+---------------------------------------
+18:57:02 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 239Failed to connect 192.168.1.140
+---------------------------------------
+18:57:17 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 239Failed to connect 192.168.1.140
+---------------------------------------
+18:57:32 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 239Failed to connect 192.168.1.140
+---------------------------------------
+18:57:47 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 239Failed to connect 192.168.1.140
+---------------------------------------
+18:57:57 05 February 2015 
+   at System.Net.Sockets.NetworkStream.Read(Byte[] buffer, Int32 offset, Int32 size)
+   at AppedoLT.Core.Trasport.ReadHeader(Stream stream) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 143
+   at AppedoLT.Core.Trasport.Receive() in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 72
+   at AppedoLTController.frmController.<>c__DisplayClass3.<DoWork>b__2() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 88Unable to read data from the transport connection: An existing connection was forcibly closed by the remote host.
+---------------------------------------
+18:58:02 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 239Failed to connect 192.168.1.140
+---------------------------------------
+18:58:17 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 239Failed to connect 192.168.1.140
+---------------------------------------
+18:58:32 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 239Failed to connect 192.168.1.140
+---------------------------------------
+18:58:47 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 239Failed to connect 192.168.1.140
+---------------------------------------
+18:59:02 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 239Failed to connect 192.168.1.140
+---------------------------------------
+18:59:24 05 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLTController.frmController.<StartClient>b__5() in e:\AppedoLT\AppedoLT.Controller\frmController.cs:line 239Failed to connect 192.168.1.140
+---------------------------------------

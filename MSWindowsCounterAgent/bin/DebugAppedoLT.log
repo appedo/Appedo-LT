@@ -82,3 +82,684 @@ Log Entry :
 --Log entry goes here--
 counter_params_json={74=1050624000.00,75=1026000.00,1001="697aa8b3-863b-4002-89e1-37e1c253a1d8",1002="2015-01-12 20:13:17.283"}&agent_type=WINDOWS
 ---------------------------------------
+Log Entry : 
+11:25:03 06 February 2015 
+--Log entry goes here--
+   at System.Net.HttpWebRequest.GetResponse()
+   at AgentCore.Utility.GetPageContent(String Url, String data) in e:\AppedoLT\AgentCore\Utility.cs:line 62The remote server returned an error: (404) Not Found.
+---------------------------------------
+Log Entry : 
+14:45:14 06 February 2015 
+--Log entry goes here--
+   at AgentCore.Agent.SetCounterList(CountersDetail details)
+Object reference not set to an instance of an object.
+---------------------------------------
+Log Entry : 
+15:47:54 06 February 2015 
+--Log entry goes here--
+First request sent successfully
+---------------------------------------
+Log Entry : 
+15:47:59 06 February 2015 
+--Log entry goes here--
+counter_params_json={321=45.50,322=46.31,1001="56b409e6-c516-479e-85f2-d241205a4c92",1002="2015-02-06 15:47:54.256"}&agent_type=WINDOWS&guid=56b409e6-c516-479e-85f2-d241205a4c92
+---------------------------------------
+Log Entry : 
+11:08:24 07 February 2015 
+--Log entry goes here--
+First request sent successfully
+---------------------------------------
+Log Entry : 
+11:08:29 07 February 2015 
+--Log entry goes here--
+counter_params_json={1001="904784e9-4791-417f-97e4-e4c391befa5f",1002="2015-02-07 11:08:24.886"}&agent_type=WINDOWS&guid=904784e9-4791-417f-97e4-e4c391befa5f
+---------------------------------------
+Log Entry : 
+11:10:45 07 February 2015 
+--Log entry goes here--
+   at System.Net.HttpWebRequest.GetResponse()
+   at AgentCore.Utility.GetPageContent(String Url, String data) in e:\AppedoLT\AgentCore\Utility.cs:line 63The operation has timed out
+---------------------------------------
+Log Entry : 
+11:10:45 07 February 2015 
+--Log entry goes here--
+First request sent successfully
+---------------------------------------
+Log Entry : 
+11:10:50 07 February 2015 
+--Log entry goes here--
+counter_params_json={1001="904784e9-4791-417f-97e4-e4c391befa5f",1002="2015-02-07 11:10:45.448"}&agent_type=WINDOWS&guid=904784e9-4791-417f-97e4-e4c391befa5f
+---------------------------------------
+Log Entry : 
+11:12:47 07 February 2015 
+--Log entry goes here--
+   at System.Net.HttpWebRequest.GetResponse()
+   at AgentCore.Utility.GetPageContent(String Url, String data) in e:\AppedoLT\AgentCore\Utility.cs:line 63The operation has timed out
+---------------------------------------
+Log Entry : 
+11:12:47 07 February 2015 
+--Log entry goes here--
+First request sent successfully
+---------------------------------------
+Log Entry : 
+11:12:52 07 February 2015 
+--Log entry goes here--
+counter_params_json={1001="904784e9-4791-417f-97e4-e4c391befa5f",1002="2015-02-07 11:12:47.165"}&agent_type=WINDOWS&guid=904784e9-4791-417f-97e4-e4c391befa5f
+---------------------------------------
+Log Entry : 
+11:14:38 07 February 2015 
+--Log entry goes here--
+First request sent successfully
+---------------------------------------
+Log Entry : 
+11:14:43 07 February 2015 
+--Log entry goes here--
+counter_params_json={1001="904784e9-4791-417f-97e4-e4c391befa5f",1002="2015-02-07 11:14:38.921"}&agent_type=WINDOWS&guid=904784e9-4791-417f-97e4-e4c391befa5f
+---------------------------------------
+Log Entry : 
+11:16:32 07 February 2015 
+--Log entry goes here--
+   at System.Net.HttpWebRequest.GetResponse()
+   at AgentCore.Utility.GetPageContent(String Url, String data) in e:\AppedoLT\AgentCore\Utility.cs:line 63The operation has timed out
+---------------------------------------
+Log Entry : 
+11:16:32 07 February 2015 
+--Log entry goes here--
+First request sent successfully
+---------------------------------------
+Log Entry : 
+11:16:37 07 February 2015 
+--Log entry goes here--
+counter_params_json={1001="904784e9-4791-417f-97e4-e4c391befa5f",1002="2015-02-07 11:16:32.884"}&agent_type=WINDOWS&guid=904784e9-4791-417f-97e4-e4c391befa5f
+---------------------------------------
+Log Entry : 
+11:21:03 07 February 2015 
+--Log entry goes here--
+First request sent successfully
+---------------------------------------
+Log Entry : 
+11:21:08 07 February 2015 
+--Log entry goes here--
+counter_params_json={1001="904784e9-4791-417f-97e4-e4c391befa5f",1002="2015-02-07 11:21:03.819"}&agent_type=WINDOWS&guid=904784e9-4791-417f-97e4-e4c391befa5f
+---------------------------------------
+Log Entry : 
+11:23:10 07 February 2015 
+--Log entry goes here--
+   at System.Net.HttpWebRequest.GetResponse()
+   at AgentCore.Utility.GetPageContent(String Url, String data) in e:\AppedoLT\AgentCore\Utility.cs:line 63The operation has timed out
+---------------------------------------
+Log Entry : 
+11:23:10 07 February 2015 
+--Log entry goes here--
+First request sent successfully
+---------------------------------------
+Log Entry : 
+11:23:15 07 February 2015 
+--Log entry goes here--
+counter_params_json={1001="904784e9-4791-417f-97e4-e4c391befa5f",1002="2015-02-07 11:23:10.510"}&agent_type=WINDOWS&guid=904784e9-4791-417f-97e4-e4c391befa5f
+---------------------------------------
+Log Entry : 
+11:24:06 07 February 2015 
+--Log entry goes here--
+   at System.Net.HttpWebRequest.GetResponse()
+   at AgentCore.Utility.GetPageContent(String Url, String data) in e:\AppedoLT\AgentCore\Utility.cs:line 63The underlying connection was closed: An unexpected error occurred on a receive.
+---------------------------------------
+Log Entry : 
+11:24:06 07 February 2015 
+--Log entry goes here--
+First request sent successfully
+---------------------------------------
+Log Entry : 
+11:24:51 07 February 2015 
+--Log entry goes here--
+   at System.Net.HttpWebRequest.GetRequestStream(TransportContext& context)
+   at System.Net.HttpWebRequest.GetRequestStream()
+   at AgentCore.Utility.GetPageContent(String Url, String data) in e:\AppedoLT\AgentCore\Utility.cs:line 59Unable to connect to the remote server
+---------------------------------------
+Log Entry : 
+11:24:51 07 February 2015 
+--Log entry goes here--
+counter_params_json={1001="904784e9-4791-417f-97e4-e4c391befa5f",1002="2015-02-07 11:24:06.846"}&agent_type=WINDOWS&guid=904784e9-4791-417f-97e4-e4c391befa5f
+---------------------------------------
+Log Entry : 
+11:25:31 07 February 2015 
+--Log entry goes here--
+   at System.Net.HttpWebRequest.GetRequestStream(TransportContext& context)
+   at System.Net.HttpWebRequest.GetRequestStream()
+   at AgentCore.Utility.GetPageContent(String Url, String data) in e:\AppedoLT\AgentCore\Utility.cs:line 59Unable to connect to the remote server
+---------------------------------------
+Log Entry : 
+11:26:11 07 February 2015 
+--Log entry goes here--
+   at System.Net.HttpWebRequest.GetRequestStream(TransportContext& context)
+   at System.Net.HttpWebRequest.GetRequestStream()
+   at AgentCore.Utility.GetPageContent(String Url, String data) in e:\AppedoLT\AgentCore\Utility.cs:line 59Unable to connect to the remote server
+---------------------------------------
+Log Entry : 
+11:26:57 07 February 2015 
+--Log entry goes here--
+   at System.Net.HttpWebRequest.GetRequestStream(TransportContext& context)
+   at System.Net.HttpWebRequest.GetRequestStream()
+   at AgentCore.Utility.GetPageContent(String Url, String data) in e:\AppedoLT\AgentCore\Utility.cs:line 59Unable to connect to the remote server
+---------------------------------------
+Log Entry : 
+11:27:37 07 February 2015 
+--Log entry goes here--
+   at System.Net.HttpWebRequest.GetRequestStream(TransportContext& context)
+   at System.Net.HttpWebRequest.GetRequestStream()
+   at AgentCore.Utility.GetPageContent(String Url, String data) in e:\AppedoLT\AgentCore\Utility.cs:line 59Unable to connect to the remote server
+---------------------------------------
+Log Entry : 
+11:28:17 07 February 2015 
+--Log entry goes here--
+   at System.Net.HttpWebRequest.GetRequestStream(TransportContext& context)
+   at System.Net.HttpWebRequest.GetRequestStream()
+   at AgentCore.Utility.GetPageContent(String Url, String data) in e:\AppedoLT\AgentCore\Utility.cs:line 59Unable to connect to the remote server
+---------------------------------------
+Log Entry : 
+11:28:57 07 February 2015 
+--Log entry goes here--
+   at System.Net.HttpWebRequest.GetRequestStream(TransportContext& context)
+   at System.Net.HttpWebRequest.GetRequestStream()
+   at AgentCore.Utility.GetPageContent(String Url, String data) in e:\AppedoLT\AgentCore\Utility.cs:line 59Unable to connect to the remote server
+---------------------------------------
+Log Entry : 
+11:29:37 07 February 2015 
+--Log entry goes here--
+   at System.Net.HttpWebRequest.GetRequestStream(TransportContext& context)
+   at System.Net.HttpWebRequest.GetRequestStream()
+   at AgentCore.Utility.GetPageContent(String Url, String data) in e:\AppedoLT\AgentCore\Utility.cs:line 59Unable to connect to the remote server
+---------------------------------------
+Log Entry : 
+11:30:22 07 February 2015 
+--Log entry goes here--
+   at System.Net.HttpWebRequest.GetRequestStream(TransportContext& context)
+   at System.Net.HttpWebRequest.GetRequestStream()
+   at AgentCore.Utility.GetPageContent(String Url, String data) in e:\AppedoLT\AgentCore\Utility.cs:line 59Unable to connect to the remote server
+---------------------------------------
+Log Entry : 
+11:31:02 07 February 2015 
+--Log entry goes here--
+   at System.Net.HttpWebRequest.GetRequestStream(TransportContext& context)
+   at System.Net.HttpWebRequest.GetRequestStream()
+   at AgentCore.Utility.GetPageContent(String Url, String data) in e:\AppedoLT\AgentCore\Utility.cs:line 59Unable to connect to the remote server
+---------------------------------------
+Log Entry : 
+11:31:42 07 February 2015 
+--Log entry goes here--
+   at System.Net.HttpWebRequest.GetRequestStream(TransportContext& context)
+   at System.Net.HttpWebRequest.GetRequestStream()
+   at AgentCore.Utility.GetPageContent(String Url, String data) in e:\AppedoLT\AgentCore\Utility.cs:line 59Unable to connect to the remote server
+---------------------------------------
+Log Entry : 
+11:32:22 07 February 2015 
+--Log entry goes here--
+   at System.Net.HttpWebRequest.GetRequestStream(TransportContext& context)
+   at System.Net.HttpWebRequest.GetRequestStream()
+   at AgentCore.Utility.GetPageContent(String Url, String data) in e:\AppedoLT\AgentCore\Utility.cs:line 59Unable to connect to the remote server
+---------------------------------------
+Log Entry : 
+11:33:02 07 February 2015 
+--Log entry goes here--
+   at System.Net.HttpWebRequest.GetRequestStream(TransportContext& context)
+   at System.Net.HttpWebRequest.GetRequestStream()
+   at AgentCore.Utility.GetPageContent(String Url, String data) in e:\AppedoLT\AgentCore\Utility.cs:line 59Unable to connect to the remote server
+---------------------------------------
+Log Entry : 
+11:33:47 07 February 2015 
+--Log entry goes here--
+   at System.Net.HttpWebRequest.GetRequestStream(TransportContext& context)
+   at System.Net.HttpWebRequest.GetRequestStream()
+   at AgentCore.Utility.GetPageContent(String Url, String data) in e:\AppedoLT\AgentCore\Utility.cs:line 59Unable to connect to the remote server
+---------------------------------------
+Log Entry : 
+11:34:27 07 February 2015 
+--Log entry goes here--
+   at System.Net.HttpWebRequest.GetRequestStream(TransportContext& context)
+   at System.Net.HttpWebRequest.GetRequestStream()
+   at AgentCore.Utility.GetPageContent(String Url, String data) in e:\AppedoLT\AgentCore\Utility.cs:line 59Unable to connect to the remote server
+---------------------------------------
+Log Entry : 
+11:36:06 07 February 2015 
+--Log entry goes here--
+   at System.Net.HttpWebRequest.GetResponse()
+   at AgentCore.Utility.GetPageContent(String Url, String data) in e:\AppedoLT\AgentCore\Utility.cs:line 63The underlying connection was closed: An unexpected error occurred on a receive.
+---------------------------------------
+Log Entry : 
+11:36:06 07 February 2015 
+--Log entry goes here--
+First request sent successfully
+---------------------------------------
+Log Entry : 
+11:38:11 07 February 2015 
+--Log entry goes here--
+   at System.Net.HttpWebRequest.GetResponse()
+   at AgentCore.Utility.GetPageContent(String Url, String data) in e:\AppedoLT\AgentCore\Utility.cs:line 63The underlying connection was closed: An unexpected error occurred on a receive.
+---------------------------------------
+Log Entry : 
+11:38:11 07 February 2015 
+--Log entry goes here--
+First request sent successfully
+---------------------------------------
+Log Entry : 
+11:38:21 07 February 2015 
+--Log entry goes here--
+counter_params_json={1001="904784e9-4791-417f-97e4-e4c391befa5f",1002="2015-02-07 11:38:11.402"}&agent_type=WINDOWS&guid=904784e9-4791-417f-97e4-e4c391befa5f
+---------------------------------------
+Log Entry : 
+11:39:32 07 February 2015 
+--Log entry goes here--
+   at System.Net.HttpWebRequest.GetResponse()
+   at AgentCore.Utility.GetPageContent(String Url, String data) in e:\AppedoLT\AgentCore\Utility.cs:line 63The underlying connection was closed: An unexpected error occurred on a receive.
+---------------------------------------
+Log Entry : 
+11:39:32 07 February 2015 
+--Log entry goes here--
+First request sent successfully
+---------------------------------------
+Log Entry : 
+11:39:42 07 February 2015 
+--Log entry goes here--
+counter_params_json={1001="904784e9-4791-417f-97e4-e4c391befa5f",1002="2015-02-07 11:39:32.128"}&agent_type=WINDOWS&guid=904784e9-4791-417f-97e4-e4c391befa5f
+---------------------------------------
+Log Entry : 
+11:41:58 07 February 2015 
+--Log entry goes here--
+   at System.Net.HttpWebRequest.GetResponse()
+   at AgentCore.Utility.GetPageContent(String Url, String data) in e:\AppedoLT\AgentCore\Utility.cs:line 63The operation has timed out
+---------------------------------------
+Log Entry : 
+11:41:58 07 February 2015 
+--Log entry goes here--
+First request sent successfully
+---------------------------------------
+Log Entry : 
+11:42:03 07 February 2015 
+--Log entry goes here--
+counter_params_json={1001="904784e9-4791-417f-97e4-e4c391befa5f",1002="2015-02-07 11:41:58.478"}&agent_type=WINDOWS&guid=904784e9-4791-417f-97e4-e4c391befa5f
+---------------------------------------
+Log Entry : 
+11:48:41 07 February 2015 
+--Log entry goes here--
+First request sent successfully
+---------------------------------------
+Log Entry : 
+11:48:46 07 February 2015 
+--Log entry goes here--
+counter_params_json={1001="904784e9-4791-417f-97e4-e4c391befa5f",1002="2015-02-07 11:48:41.983"}&agent_type=WINDOWS&guid=904784e9-4791-417f-97e4-e4c391befa5f
+---------------------------------------
+Log Entry : 
+11:51:43 07 February 2015 
+--Log entry goes here--
+   at System.Net.HttpWebRequest.GetResponse()
+   at AgentCore.Utility.GetPageContent(String Url, String data) in e:\AppedoLT\AgentCore\Utility.cs:line 63The operation has timed out
+---------------------------------------
+Log Entry : 
+11:51:43 07 February 2015 
+--Log entry goes here--
+First request sent successfully
+---------------------------------------
+Log Entry : 
+11:51:48 07 February 2015 
+--Log entry goes here--
+counter_params_json={1001="904784e9-4791-417f-97e4-e4c391befa5f",1002="2015-02-07 11:51:43.991"}&agent_type=WINDOWS&guid=904784e9-4791-417f-97e4-e4c391befa5f
+---------------------------------------
+Log Entry : 
+11:54:17 07 February 2015 
+--Log entry goes here--
+   at System.Net.HttpWebRequest.GetResponse()
+   at AgentCore.Utility.GetPageContent(String Url, String data) in e:\AppedoLT\AgentCore\Utility.cs:line 63The operation has timed out
+---------------------------------------
+Log Entry : 
+11:54:17 07 February 2015 
+--Log entry goes here--
+First request sent successfully
+---------------------------------------
+Log Entry : 
+11:54:22 07 February 2015 
+--Log entry goes here--
+counter_params_json={1001="904784e9-4791-417f-97e4-e4c391befa5f",1002="2015-02-07 11:54:17.052"}&agent_type=WINDOWS&guid=904784e9-4791-417f-97e4-e4c391befa5f
+---------------------------------------
+Log Entry : 
+11:56:57 07 February 2015 
+--Log entry goes here--
+   at System.Net.HttpWebRequest.GetResponse()
+   at AgentCore.Utility.GetPageContent(String Url, String data) in e:\AppedoLT\AgentCore\Utility.cs:line 63The operation has timed out
+---------------------------------------
+Log Entry : 
+11:56:57 07 February 2015 
+--Log entry goes here--
+First request sent successfully
+---------------------------------------
+Log Entry : 
+11:57:02 07 February 2015 
+--Log entry goes here--
+counter_params_json={1001="904784e9-4791-417f-97e4-e4c391befa5f",1002="2015-02-07 11:56:57.207"}&agent_type=WINDOWS&guid=904784e9-4791-417f-97e4-e4c391befa5f
+---------------------------------------
+Log Entry : 
+12:02:53 07 February 2015 
+--Log entry goes here--
+   at System.Net.HttpWebRequest.GetResponse()
+   at AgentCore.Utility.GetPageContent(String Url, String data) in e:\AppedoLT\AgentCore\Utility.cs:line 63The underlying connection was closed: An unexpected error occurred on a receive.
+---------------------------------------
+Log Entry : 
+12:02:53 07 February 2015 
+--Log entry goes here--
+First request sent successfully
+---------------------------------------
+Log Entry : 
+12:03:38 07 February 2015 
+--Log entry goes here--
+   at System.Net.HttpWebRequest.GetRequestStream(TransportContext& context)
+   at System.Net.HttpWebRequest.GetRequestStream()
+   at AgentCore.Utility.GetPageContent(String Url, String data) in e:\AppedoLT\AgentCore\Utility.cs:line 59Unable to connect to the remote server
+---------------------------------------
+Log Entry : 
+12:03:38 07 February 2015 
+--Log entry goes here--
+counter_params_json={1001="904784e9-4791-417f-97e4-e4c391befa5f",1002="2015-02-07 12:02:53.355"}&agent_type=WINDOWS&guid=904784e9-4791-417f-97e4-e4c391befa5f
+---------------------------------------
+Log Entry : 
+12:04:18 07 February 2015 
+--Log entry goes here--
+   at System.Net.HttpWebRequest.GetRequestStream(TransportContext& context)
+   at System.Net.HttpWebRequest.GetRequestStream()
+   at AgentCore.Utility.GetPageContent(String Url, String data) in e:\AppedoLT\AgentCore\Utility.cs:line 59Unable to connect to the remote server
+---------------------------------------
+Log Entry : 
+12:04:58 07 February 2015 
+--Log entry goes here--
+   at System.Net.HttpWebRequest.GetRequestStream(TransportContext& context)
+   at System.Net.HttpWebRequest.GetRequestStream()
+   at AgentCore.Utility.GetPageContent(String Url, String data) in e:\AppedoLT\AgentCore\Utility.cs:line 59Unable to connect to the remote server
+---------------------------------------
+Log Entry : 
+12:05:43 07 February 2015 
+--Log entry goes here--
+   at System.Net.HttpWebRequest.GetRequestStream(TransportContext& context)
+   at System.Net.HttpWebRequest.GetRequestStream()
+   at AgentCore.Utility.GetPageContent(String Url, String data) in e:\AppedoLT\AgentCore\Utility.cs:line 59Unable to connect to the remote server
+---------------------------------------
+Log Entry : 
+12:06:23 07 February 2015 
+--Log entry goes here--
+   at System.Net.HttpWebRequest.GetRequestStream(TransportContext& context)
+   at System.Net.HttpWebRequest.GetRequestStream()
+   at AgentCore.Utility.GetPageContent(String Url, String data) in e:\AppedoLT\AgentCore\Utility.cs:line 59Unable to connect to the remote server
+---------------------------------------
+Log Entry : 
+12:07:03 07 February 2015 
+--Log entry goes here--
+   at System.Net.HttpWebRequest.GetRequestStream(TransportContext& context)
+   at System.Net.HttpWebRequest.GetRequestStream()
+   at AgentCore.Utility.GetPageContent(String Url, String data) in e:\AppedoLT\AgentCore\Utility.cs:line 59Unable to connect to the remote server
+---------------------------------------
+Log Entry : 
+12:09:09 07 February 2015 
+--Log entry goes here--
+   at System.Net.HttpWebRequest.GetResponse()
+   at AgentCore.Utility.GetPageContent(String Url, String data) in e:\AppedoLT\AgentCore\Utility.cs:line 63The operation has timed out
+---------------------------------------
+Log Entry : 
+12:09:09 07 February 2015 
+--Log entry goes here--
+First request sent successfully
+---------------------------------------
+Log Entry : 
+12:09:14 07 February 2015 
+--Log entry goes here--
+counter_params_json={1001="904784e9-4791-417f-97e4-e4c391befa5f",1002="2015-02-07 12:09:09.972"}&agent_type=WINDOWS&guid=904784e9-4791-417f-97e4-e4c391befa5f
+---------------------------------------
+Log Entry : 
+12:13:35 07 February 2015 
+--Log entry goes here--
+   at System.Net.HttpWebRequest.GetRequestStream(TransportContext& context)
+   at System.Net.HttpWebRequest.GetRequestStream()
+   at AgentCore.Utility.GetPageContent(String Url, String data) in e:\AppedoLT\AgentCore\Utility.cs:line 59Unable to connect to the remote server
+---------------------------------------
+Log Entry : 
+12:19:40 07 February 2015 
+--Log entry goes here--
+   at System.Net.HttpWebRequest.GetRequestStream(TransportContext& context)
+   at System.Net.HttpWebRequest.GetRequestStream()
+   at AgentCore.Utility.GetPageContent(String Url, String data) in e:\AppedoLT\AgentCore\Utility.cs:line 59Unable to connect to the remote server
+---------------------------------------
+Log Entry : 
+12:20:21 07 February 2015 
+--Log entry goes here--
+   at System.Net.HttpWebRequest.GetRequestStream(TransportContext& context)
+   at System.Net.HttpWebRequest.GetRequestStream()
+   at AgentCore.Utility.GetPageContent(String Url, String data) in e:\AppedoLT\AgentCore\Utility.cs:line 59Unable to connect to the remote server
+---------------------------------------
+Log Entry : 
+12:21:18 07 February 2015 
+--Log entry goes here--
+   at System.Net.HttpWebRequest.GetRequestStream(TransportContext& context)
+   at System.Net.HttpWebRequest.GetRequestStream()
+   at AgentCore.Utility.GetPageContent(String Url, String data) in e:\AppedoLT\AgentCore\Utility.cs:line 59Unable to connect to the remote server
+---------------------------------------
+Log Entry : 
+12:21:43 07 February 2015 
+--Log entry goes here--
+   at System.Net.HttpWebRequest.GetRequestStream(TransportContext& context)
+   at System.Net.HttpWebRequest.GetRequestStream()
+   at AgentCore.Utility.GetPageContent(String Url, String data) in e:\AppedoLT\AgentCore\Utility.cs:line 59Unable to connect to the remote server
+---------------------------------------
+Log Entry : 
+12:22:03 07 February 2015 
+--Log entry goes here--
+   at System.Net.HttpWebRequest.GetRequestStream(TransportContext& context)
+   at System.Net.HttpWebRequest.GetRequestStream()
+   at AgentCore.Utility.GetPageContent(String Url, String data) in e:\AppedoLT\AgentCore\Utility.cs:line 59Unable to connect to the remote server
+---------------------------------------
+Log Entry : 
+12:22:28 07 February 2015 
+--Log entry goes here--
+   at System.Net.HttpWebRequest.GetRequestStream(TransportContext& context)
+   at System.Net.HttpWebRequest.GetRequestStream()
+   at AgentCore.Utility.GetPageContent(String Url, String data) in e:\AppedoLT\AgentCore\Utility.cs:line 59Unable to connect to the remote server
+---------------------------------------
+Log Entry : 
+12:22:48 07 February 2015 
+--Log entry goes here--
+   at System.Net.HttpWebRequest.GetRequestStream(TransportContext& context)
+   at System.Net.HttpWebRequest.GetRequestStream()
+   at AgentCore.Utility.GetPageContent(String Url, String data) in e:\AppedoLT\AgentCore\Utility.cs:line 59Unable to connect to the remote server
+---------------------------------------
+Log Entry : 
+12:23:13 07 February 2015 
+--Log entry goes here--
+   at System.Net.HttpWebRequest.GetRequestStream(TransportContext& context)
+   at System.Net.HttpWebRequest.GetRequestStream()
+   at AgentCore.Utility.GetPageContent(String Url, String data) in e:\AppedoLT\AgentCore\Utility.cs:line 59Unable to connect to the remote server
+---------------------------------------
+Log Entry : 
+12:24:43 07 February 2015 
+--Log entry goes here--
+First request sent successfully
+---------------------------------------
+Log Entry : 
+12:24:48 07 February 2015 
+--Log entry goes here--
+counter_params_json={420=16384.00,421=29696.00,1001="0ec5f7f1-249c-4dd2-aaae-7146f36ed803",1002="2015-02-07 12:24:43.886"}&agent_type=WINDOWS&guid=0ec5f7f1-249c-4dd2-aaae-7146f36ed803
+---------------------------------------
+Log Entry : 
+12:25:15 07 February 2015 
+--Log entry goes here--
+First request sent successfully
+---------------------------------------
+Log Entry : 
+12:25:20 07 February 2015 
+--Log entry goes here--
+counter_params_json={420=0.00,421=0.00,1001="0ec5f7f1-249c-4dd2-aaae-7146f36ed803",1002="2015-02-07 12:25:15.866"}&agent_type=WINDOWS&guid=0ec5f7f1-249c-4dd2-aaae-7146f36ed803
+---------------------------------------
+Log Entry : 
+12:27:05 07 February 2015 
+--Log entry goes here--
+First request sent successfully
+---------------------------------------
+Log Entry : 
+12:27:10 07 February 2015 
+--Log entry goes here--
+counter_params_json={1001="0ec5f7f1-249c-4dd2-aaae-7146f36ed803",1002="2015-02-07 12:27:05.086"}&agent_type=WINDOWS&guid=0ec5f7f1-249c-4dd2-aaae-7146f36ed803
+---------------------------------------
+Log Entry : 
+12:29:10 07 February 2015 
+--Log entry goes here--
+First request sent successfully
+---------------------------------------
+Log Entry : 
+12:29:15 07 February 2015 
+--Log entry goes here--
+counter_params_json={1001="0ec5f7f1-249c-4dd2-aaae-7146f36ed803",1002="2015-02-07 12:29:10.043"}&agent_type=WINDOWS&guid=0ec5f7f1-249c-4dd2-aaae-7146f36ed803
+---------------------------------------
+Log Entry : 
+12:30:15 07 February 2015 
+--Log entry goes here--
+   at System.Diagnostics.PerformanceCounter.NextSample()
+   at System.Diagnostics.PerformanceCounter.NextValue()
+   at AgentCore.Agent.SetCounterList(CountersDetail details) in e:\AppedoLT\AgentCore\Agent.cs:line 179
+Counter is not single instance, an instance name needs to be specified.
+---------------------------------------
+Log Entry : 
+12:30:15 07 February 2015 
+--Log entry goes here--
+   at System.Diagnostics.PerformanceCounter.NextSample()
+   at System.Diagnostics.PerformanceCounter.NextValue()
+   at AgentCore.Agent.SetCounterList(CountersDetail details) in e:\AppedoLT\AgentCore\Agent.cs:line 179
+Counter is not single instance, an instance name needs to be specified.
+---------------------------------------
+Log Entry : 
+12:30:15 07 February 2015 
+--Log entry goes here--
+   at System.Diagnostics.PerformanceCounter.NextSample()
+   at System.Diagnostics.PerformanceCounter.NextValue()
+   at AgentCore.Agent.SetCounterList(CountersDetail details) in e:\AppedoLT\AgentCore\Agent.cs:line 179
+Counter is not single instance, an instance name needs to be specified.
+---------------------------------------
+Log Entry : 
+12:30:15 07 February 2015 
+--Log entry goes here--
+   at System.Diagnostics.PerformanceCounter.NextSample()
+   at System.Diagnostics.PerformanceCounter.NextValue()
+   at AgentCore.Agent.SetCounterList(CountersDetail details) in e:\AppedoLT\AgentCore\Agent.cs:line 179
+Counter is not single instance, an instance name needs to be specified.
+---------------------------------------
+Log Entry : 
+12:38:14 07 February 2015 
+--Log entry goes here--
+First request sent successfully
+---------------------------------------
+Log Entry : 
+12:38:35 07 February 2015 
+--Log entry goes here--
+counter_params_json={1001="0ec5f7f1-249c-4dd2-aaae-7146f36ed803",1002="2015-02-07 12:38:25.866"}&agent_type=WINDOWS&guid=0ec5f7f1-249c-4dd2-aaae-7146f36ed803
+---------------------------------------
+Log Entry : 
+12:49:50 07 February 2015 
+--Log entry goes here--
+   at System.Net.HttpWebRequest.GetResponse()
+   at AgentCore.Utility.GetPageContent(String Url, String data) in e:\AppedoLT\AgentCore\Utility.cs:line 63The remote server returned an error: (500) Internal Server Error.
+---------------------------------------
+Log Entry : 
+12:49:50 07 February 2015 
+--Log entry goes here--
+First request sent successfully
+---------------------------------------
+Log Entry : 
+12:49:55 07 February 2015 
+--Log entry goes here--
+counter_params_json={729=0.00,730=20480.00,734=20480.00,1001="0ec5f7f1-249c-4dd2-aaae-7146f36ed803",1002="2015-02-07 12:49:50.707"}&agent_type=WINDOWS&guid=0ec5f7f1-249c-4dd2-aaae-7146f36ed803
+---------------------------------------
+Log Entry : 
+12:51:46 07 February 2015 
+--Log entry goes here--
+   at System.Net.HttpWebRequest.GetResponse()
+   at AgentCore.Utility.GetPageContent(String Url, String data) in e:\AppedoLT\AgentCore\Utility.cs:line 63The remote server returned an error: (500) Internal Server Error.
+---------------------------------------
+Log Entry : 
+13:00:24 07 February 2015 
+--Log entry goes here--
+   at System.Net.HttpWebRequest.GetResponse()
+   at AgentCore.Utility.GetPageContent(String Url, String data) in e:\AppedoLT\AgentCore\Utility.cs:line 64The remote server returned an error: (500) Internal Server Error.
+---------------------------------------
+Log Entry : 
+13:00:24 07 February 2015 
+--Log entry goes here--
+First request sent successfully
+---------------------------------------
+Log Entry : 
+13:00:29 07 February 2015 
+--Log entry goes here--
+counter_params_json={729=0.00,730=0.00,734=0.00,1001="0ec5f7f1-249c-4dd2-aaae-7146f36ed803",1002="2015-02-07 13:00:24.469"}&agent_type=WINDOWS&guid=0ec5f7f1-249c-4dd2-aaae-7146f36ed803
+---------------------------------------
+Log Entry : 
+13:02:29 07 February 2015 
+--Log entry goes here--
+   at System.Net.HttpWebRequest.GetResponse()
+   at AgentCore.Utility.GetPageContent(String Url, String data) in e:\AppedoLT\AgentCore\Utility.cs:line 64The remote server returned an error: (500) Internal Server Error.
+---------------------------------------
+Log Entry : 
+13:02:29 07 February 2015 
+--Log entry goes here--
+First request sent successfully
+---------------------------------------
+Log Entry : 
+13:02:34 07 February 2015 
+--Log entry goes here--
+counter_params_json={729=0.00,730=0.00,734=0.00,1001="0ec5f7f1-249c-4dd2-aaae-7146f36ed803",1002="2015-02-07 13:02:29.714"}&agent_type=WINDOWS&guid=0ec5f7f1-249c-4dd2-aaae-7146f36ed803
+---------------------------------------
+Log Entry : 
+13:49:51 07 February 2015 
+--Log entry goes here--
+   at System.Net.HttpWebRequest.GetResponse()
+   at AgentCore.Utility.GetPageContent(String Url, String data) in e:\AppedoLT\AgentCore\Utility.cs:line 63The remote server returned an error: (500) Internal Server Error.
+---------------------------------------
+Log Entry : 
+13:50:06 07 February 2015 
+--Log entry goes here--
+   at System.Net.HttpWebRequest.GetResponse()
+   at AgentCore.Utility.GetPageContent(String Url, String data) in e:\AppedoLT\AgentCore\Utility.cs:line 63The remote server returned an error: (500) Internal Server Error.
+---------------------------------------
+Log Entry : 
+13:50:56 07 February 2015 
+--Log entry goes here--
+   at System.Net.HttpWebRequest.GetResponse()
+   at AgentCore.Utility.GetPageContent(String Url, String data) in e:\AppedoLT\AgentCore\Utility.cs:line 63The remote server returned an error: (500) Internal Server Error.
+---------------------------------------
+Log Entry : 
+13:51:01 07 February 2015 
+--Log entry goes here--
+   at System.Net.HttpWebRequest.GetResponse()
+   at AgentCore.Utility.GetPageContent(String Url, String data) in e:\AppedoLT\AgentCore\Utility.cs:line 63The remote server returned an error: (500) Internal Server Error.
+---------------------------------------
+Log Entry : 
+13:55:05 07 February 2015 
+--Log entry goes here--
+First request sent successfully
+---------------------------------------
+Log Entry : 
+13:55:19 07 February 2015 
+--Log entry goes here--
+counter_params_json={729=0.00,730=0.00,734=0.00,1001="0ec5f7f1-249c-4dd2-aaae-7146f36ed803",1002="2015-02-07 13:55:05.540"}&agent_type=WINDOWS&guid=0ec5f7f1-249c-4dd2-aaae-7146f36ed803
+---------------------------------------
+Log Entry : 
+14:04:10 07 February 2015 
+--Log entry goes here--
+First request sent successfully
+---------------------------------------
+Log Entry : 
+14:05:09 07 February 2015 
+--Log entry goes here--
+counter_params_json={729=0.00,730=32768.00,734=4423.44,1001="0ec5f7f1-249c-4dd2-aaae-7146f36ed803",1002="2015-02-07 14:04:10.919"}&agent_type=WINDOWS&guid=0ec5f7f1-249c-4dd2-aaae-7146f36ed803
+---------------------------------------
+Log Entry : 
+16:37:58 07 February 2015 
+--Log entry goes here--
+First request sent successfully
+---------------------------------------
+Log Entry : 
+16:38:03 07 February 2015 
+--Log entry goes here--
+counter_params_json={325=0.00,326=0.00,1001="05dd4eb4-c02f-4337-8c81-27ef34616ba8",1002="2015-02-07 16:37:58.274"}&agent_type=WINDOWS&guid=05dd4eb4-c02f-4337-8c81-27ef34616ba8
+---------------------------------------

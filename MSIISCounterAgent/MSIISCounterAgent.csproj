@@ -73,6 +73,10 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="bin\DebugAppedoLT.log" />
+    <None Include="bin\Debug\MSIISCounterAgent.exe.config" />
+    <None Include="bin\Debug\MSIISCounterAgent.vshost.exe.config" />
+    <None Include="bin\Debug\MSIISCounterAgent.vshost.exe.manifest" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -93,6 +97,15 @@
       <Project>{01908292-8589-4166-bbf6-5e39d8a0c84e}</Project>
       <Name>AgentCore</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="bin\Debug\AgentCore.dll" />
+    <Content Include="bin\Debug\AgentCore.pdb" />
+    <Content Include="bin\Debug\MSIISCounterAgent.exe" />
+    <Content Include="bin\Debug\MSIISCounterAgent.pdb" />
+    <Content Include="bin\Debug\MSIISCounterAgent.vshost.exe" />
+    <Content Include="bin\Debug\MSIISCounterXml.xml" />
+    <Content Include="bin\MSIISCounterXml.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

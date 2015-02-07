@@ -29,3 +29,4 @@ E:\AppedoLT\MSSQLCounterAgent\obj\Debug\MSSQLCounterAgent.Properties.Resources.r
 E:\AppedoLT\MSSQLCounterAgent\obj\Debug\MSSQLCounterAgent.csproj.GenerateResource.Cache
 E:\AppedoLT\MSSQLCounterAgent\obj\Debug\MSSQLCounterAgent.exe
 E:\AppedoLT\MSSQLCounterAgent\obj\Debug\MSSQLCounterAgent.pdb
+E:\AppedoLT\MSSQLCounterAgent\obj\Debug\MSSQLCounterAgent.csprojResolveAssemblyReference.cache

@@ -624,6 +624,11 @@
     <None Include="App.config">
       <SubType>Designer</SubType>
     </None>
+    <Content Include="Appedo.pfx" />
+    <Content Include="database.db" />
+    <Content Include="databasemonitor.db" />
+    <Content Include="execute.bat" />
+    <Content Include="execute_monitor.bat" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -781,37 +786,25 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="bin\Debug\commands_loadgen.txt" />
-    <Content Include="bin\Debug\Project\recorded-requests\req_09bd15d5-d998-453e-b013-842f96cea4bf.txt" />
-    <Content Include="bin\Debug\Project\recorded-requests\req_0df6d922-f1f6-4f03-8e63-4f9cfc31f418.txt" />
-    <Content Include="bin\Debug\Project\recorded-requests\req_4433db8a-6dfb-441b-89db-e5c3034eaf7a.txt" />
-    <Content Include="bin\Debug\Project\recorded-requests\req_b4d7f499-7ad7-4b1f-84c4-c29cca4a4313.txt" />
-    <Content Include="bin\Debug\Project\recorded-requests\req_c926871e-a0e3-491a-9551-b953211e282e.txt" />
-    <Content Include="bin\Debug\Project\repository.xml" />
-    <Content Include="bin\Debug\Project\scenario.xml" />
-    <Content Include="bin\Debug\Project\settings.xml" />
-    <Content Include="bin\Debug\sqlite3.exe" />
-    <Content Include="bin\Debug\VUScripts.xml">
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="obj\Debug\Telerik.WinControls.GridView.dll" />
-    <Content Include="obj\Debug\Telerik.WinControls.UI.Design.dll" />
-    <Content Include="obj\Debug\Telerik.WinControls.UI.dll" />
-    <Content Include="obj\Debug\TelerikCommon.dll" />
-    <Content Include="obj\Release\Telerik.WinControls.GridView.dll" />
-    <Content Include="obj\Release\Telerik.WinControls.UI.Design.dll" />
-    <Content Include="obj\Release\Telerik.WinControls.UI.dll" />
-    <Content Include="obj\Release\TelerikCommon.dll" />
-    <None Include="bin\Debug\execute.bat" />
-    <None Include="bin\Debug\Softsmith.pfx" />
+    <Content Include="sqlite3.exe" />
     <None Include="Cert\Softsmith Certificate Authority.cer" />
     <None Include="Cert\Softsmith Private Key.pvk" />
     <None Include="Cert\Softsmith.cer" />
     <None Include="Cert\Softsmith.pfx" />
     <None Include="Resources\floppy_disk_16.gif" />
+    <None Include="ErrorCode.txt" />
+    <Content Include="Appedo.ico" />
+    <Content Include="Appedo.png" />
+    <Content Include="commands.txt" />
+    <Content Include="commands_monitor.txt" />
+    <Content Include="error.xslt" />
+    <Content Include="green.jpg" />
+    <Content Include="log.xslt" />
+    <Content Include="logic.ico" />
+    <Content Include="red.JPG" />
+    <Content Include="report.xslt" />
     <Content Include="Resources\form-background.jpg" />
-    <Content Include="TextFile1.txt" />
-    <Content Include="ErrorCode.txt" />
+    <None Include="TextFile1.txt" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
@@ -846,7 +839,7 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="bin\Debug\NewFolder1\" />
+    <Folder Include="bin\Debug\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AppedoLT.BusinessLogic\AppedoLT.BusinessLogic.csproj">

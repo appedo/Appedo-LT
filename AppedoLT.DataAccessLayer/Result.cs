@@ -515,6 +515,116 @@ namespace AppedoLT.DataAccessLayer
             return result;
         }
 
+        public XmlNode GetSummaryReportJmeterByScript(string reportName, DataTable runNode)
+        {
+            XmlNode result = null;
+            try
+            {
+                string reportFolder = Constants.GetInstance().DataFolderPath + "\\" + reportName + "\\Report";
+                string databasePath = Constants.GetInstance().DataFolderPath + "\\" + reportName;
+
+                using (SQLiteConnection _con = new SQLiteConnection("Data Source=" + databasePath + "\\database.db;Version=3;New=True;Compress=True;"))
+                {
+                    try
+                    {
+                        _con.Open();
+                        int index = 0;
+                        XmlDocument doc = new XmlDocument();
+                        doc.LoadXml("<?xml version=\"1.0\" encoding=\"utf-8\"?><report></report>");
+                        XmlNode report = doc.SelectSingleNode("//report");
+
+                        SQLiteDataReader reader = null;
+
+                        XmlNode summaryNode = doc.CreateElement("summaryreport");
+                        reader = GetReader("select * from summaryreport", _con);
+                        reader.Read();
+                        while (reader.HasRows == true)
+                        {
+                            XmlNode val = summaryNode.OwnerDocument.CreateElement("val");
+                            for (index = 0; index < reader.FieldCount; index++)
+                            {
+                                val.Attributes.Append(GetAttribute(summaryNode.OwnerDocument, reader.GetName(index), reader[reader.GetName(index)].ToString()));
+                            }
+                            summaryNode.AppendChild(val);
+                            reader.Read();
+                        }
+                        report.AppendChild(summaryNode);
+
+                        //XmlNode logNode = doc.CreateElement("log");
+                        //reader = GetReader("select * from log", _con);
+                        //reader.Read();
+                        //while (reader.HasRows == true)
+                        //{
+                        //    XmlNode val = logNode.OwnerDocument.CreateElement("val");
+                        //    for (index = 0; index < reader.FieldCount; index++)
+                        //    {
+                        //        val.Attributes.Append(GetAttribute(summaryNode.OwnerDocument, reader.GetName(index), reader[reader.GetName(index)].ToString()));
+                        //    }
+                        //    logNode.AppendChild(val);
+                        //    reader.Read();
+                        //}
+                        //report.AppendChild(logNode);
+
+                        XmlNode errorNode = doc.CreateElement("error");
+                        reader = GetReader("select loadgen,epochtimestamp,address,responsecode,httpresponsemessage,threadgroupname,responsesize from jmeterdata where success='false'", _con);
+                        reader.Read();
+                        while (reader.HasRows == true)
+                        {
+                            XmlNode val = errorNode.OwnerDocument.CreateElement("val");
+                            for (index = 0; index < reader.FieldCount; index++)
+                            {
+                                val.Attributes.Append(GetAttribute(summaryNode.OwnerDocument, reader.GetName(index), reader[reader.GetName(index)].ToString()));
+                            }
+                            errorNode.AppendChild(val);
+                            reader.Read();
+                        }
+                        report.AppendChild(errorNode);
+
+
+                        string[] tables = new string[] { "requests", "requestresponse", "requestresponse90", "containerresponse", "containerresponse90", "throughput", "hitcount", "errorcount", "errorcode", };
+                        foreach (DataRow script in runNode.Rows)
+                        {
+                            XmlNode scriptNode = doc.CreateElement("script");
+                            scriptNode.Attributes.Append(GetAttribute(doc, "name", script["scriptname"].ToString()));
+                            scriptNode.Attributes.Append(GetAttribute(doc, "id", script["id"].ToString()));
+
+                            foreach (string table in tables)
+                            {
+                                XmlNode tableNode = doc.CreateElement(table);
+                                reader = GetReader(string.Format("select * from {0}_{1}", table, script["id"].ToString()), _con);
+                                reader.Read();
+                                while (reader.HasRows == true)
+                                {
+                                    XmlNode val = tableNode.OwnerDocument.CreateElement("val");
+                                    for (index = 0; index < reader.FieldCount; index++)
+                                    {
+                                        val.Attributes.Append(GetAttribute(tableNode.OwnerDocument, reader.GetName(index), reader[reader.GetName(index)].ToString()));
+                                    }
+                                    tableNode.AppendChild(val);
+                                    reader.Read();
+                                }
+                                scriptNode.AppendChild(tableNode);
+                            }
+
+                            report.AppendChild(scriptNode);
+                        }
+                        _con.Close();
+                        doc.Save(reportFolder + "\\summary.xml");
+                        TransformXMLJmeter(reportFolder);
+                    }
+                    catch (Exception ex)
+                    {
+                        ExceptionHandler.WritetoEventLog(ex.StackTrace + ex.Message);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return result;
+        }
+
         public static void TransformXMLJmeter(string reportFolderPath)
         {
             // Create a resolver with default credentials.

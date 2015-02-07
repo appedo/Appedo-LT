@@ -31,21 +31,9 @@
 	<ItemGroup/>
 	<ItemGroup/>
 	<ItemGroup>
-		<ProjectReference Include="..\AppedoLT.BusinessLogic\AppedoLT.BusinessLogic.csproj">
-			<Name>AppedoLT.BusinessLogic</Name>
-			<Project>{A482E44A-82E8-4CBF-9624-A8293BC2B437}</Project>
-		</ProjectReference>
 		<ProjectReference Include="..\AppedoLT.Controller\AppedoLT.Controller.csproj">
 			<Name>AppedoLT.Controller</Name>
 			<Project>{FD491976-C9CA-4A1B-ACF5-9C6420B00EF7}</Project>
-		</ProjectReference>
-		<ProjectReference Include="..\AppedoLT.Core\AppedoLT.Core.csproj">
-			<Name>AppedoLT.Core</Name>
-			<Project>{0FD4A43E-E7BC-45BD-8897-537A46A0D54D}</Project>
-		</ProjectReference>
-		<ProjectReference Include="..\AppedoLT.DataAccessLayer\AppedoLT.DataAccessLayer.csproj">
-			<Name>AppedoLT.DataAccessLayer</Name>
-			<Project>{32074F4C-9AA8-42C8-A711-97BFF96E4C82}</Project>
 		</ProjectReference>
 	</ItemGroup>
 </Project>

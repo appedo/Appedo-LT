@@ -1,7 +1,0 @@
-POST /SS_Monitor_Webservice/collectCounters HTTP/1.1
-Host: 192.168.1.16:8080
-Content-Length: 177
-Expect: 100-continue
-Proxy-Connection: Keep-Alive
-
-counter_params_json={10000001=0.00,10000002=0.00,10000003=0.00,10000004=0.00,10000005=0.00,10000006=0.00,10000007=0.00,1001="13",1002="2014-10-13 15:48:35.871"}&agent_type=MSIIS

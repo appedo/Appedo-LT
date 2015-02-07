@@ -1053,6 +1053,7 @@
 	<table name="CreateFolder">
 		<col key="yes" def="s72">Directory_</col>
 		<col key="yes" def="s72">Component_</col>
+		<row><td>INSTALLDIR</td><td>ISX_DEFAULTCOMPONENT</td></row>
 	</table>
 
 	<table name="CustomAction">
@@ -1884,7 +1885,6 @@
 		<col def="I4">ISAttributes</col>
 		<col def="S72">ISComponentSubFolder_</col>
 		<row><td>mswindowscounteragent.primar</td><td>MSWindowsCounterAgent.Primary_output1</td><td>MSWindowsCounterAgent.Primary output</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;MSWindowsCounterAgent&gt;|Built</td><td>3</td><td/></row>
-		<row><td>mswindowscounterxml.xml</td><td>ISX_DEFAULTCOMPONENT</td><td>MSWIND~1.XML|MSWindowsCounterXml.xml</td><td>0</td><td/><td/><td/><td>1</td><td>E:\AppedoLT\MSWindowsCounterAgent\bin\Debug\MSWindowsCounterXml.xml</td><td>1</td><td/></row>
 	</table>
 
 	<table name="FileSFPCatalog">
@@ -4371,7 +4371,7 @@ UwBpAG4AZwBsAGUASQBtAGEAZwBlAAEARQB4AHAAcgBlAHMAcwA=
 		<row><td>PROGRAMFILETOLAUNCHATEND</td><td>[INSTALLDIR]MSWindowsCounterAgent.Primary output</td><td/></row>
 		<row><td>ProductCode</td><td>{0923EB68-15D6-4BB8-A3ED-7D738E58BCE1}</td><td/></row>
 		<row><td>ProductName</td><td>Appedo_MSWindowsCounter_Agent</td><td/></row>
-		<row><td>ProductVersion</td><td>1.0.0.5</td><td/></row>
+		<row><td>ProductVersion</td><td>1.0.0.6</td><td/></row>
 		<row><td>ProgressType0</td><td>install</td><td/></row>
 		<row><td>ProgressType1</td><td>Installing</td><td/></row>
 		<row><td>ProgressType2</td><td>installed</td><td/></row>

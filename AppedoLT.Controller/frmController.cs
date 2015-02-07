@@ -129,7 +129,8 @@ namespace AppedoLTController
 
                                  case "resultfilejmeter":
                                      {
-                                         GenerateReportFolderJmeter(data.Header["reportid"]);
+                                         string reportid = data.Header["reportid"];
+                                         GenerateReportFolderJmeter(reportid);
                                          File.Delete(constants.ExecutingAssemblyLocation + "\\result.csv");
                                          using (FileStream file = new FileStream(constants.ExecutingAssemblyLocation + "\\result.csv", FileMode.OpenOrCreate, FileAccess.Write, FileShare.None))
                                          {
@@ -150,12 +151,26 @@ namespace AppedoLTController
                                              data = new TrasportData("SUMMARYREPORT", null, reportSummaryFile);
                                              UIclient.Send(data);
                                              response = UIclient.Receive();
+
+                                             string folderPath = Constants.GetInstance().ExecutingAssemblyLocation + "\\Data\\" + reportid;
+                                             try
+                                             {
+                                                 if (Directory.Exists(folderPath))
+                                                 {
+                                                     Directory.Delete(folderPath, true);
+                                                 }
+                                             }
+                                             catch (Exception ex)
+                                             {
+                                                 ExceptionHandler.WritetoEventLog(ex.StackTrace + ex.Message);
+                                             }
                                          }
                                          else
                                          {
                                              data = new TrasportData("ERROR", "Unable to get report", null);
                                              UIclient.Send(data);
                                          }
+
                                          break;
 
                                      }
@@ -733,8 +748,9 @@ namespace AppedoLTController
                 DataTable scriptlist = mas.GetJMeterScriptList();
                 string query = GetQueryJMeter(reportName, scriptlist);
                 mas.Executequery(reportName, query);
-                Result.GetInstance().GetSummaryReportByScript(reportName, scriptlist);
+                Result.GetInstance().GetSummaryReportJmeterByScript(reportName, scriptlist);
                 mas.GenerateReports();
+                
             }
             catch (Exception ex)
             {

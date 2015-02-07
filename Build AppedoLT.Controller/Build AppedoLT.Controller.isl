@@ -341,12 +341,8 @@
 		<col def="S0">ISDotNetInstallerArgsCommit</col>
 		<col def="S0">ISDotNetInstallerArgsUninstall</col>
 		<col def="S0">ISDotNetInstallerArgsRollback</col>
-		<row><td>AppedoLT.BusinessLogic.Debug_Symbols</td><td>{D52CCAFC-9856-4EDE-8969-5F0D52972574}</td><td>INSTALLDIR</td><td>2</td><td/><td>appedolt.businesslogic.debug</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
-		<row><td>AppedoLT.Controller.Debug_Symbols</td><td>{5B2B6865-0C42-4957-B575-264EADA84B30}</td><td>INSTALLDIR</td><td>2</td><td/><td>appedolt.controller.debug_sy</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>AppedoLT.Controller.Debug_Symbols1</td><td>{40FF7DF0-4708-4FCA-A9DB-2C22D6D0F192}</td><td>INSTALLDIR</td><td>2</td><td/><td>appedolt.controller.debug_sy1</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>AppedoLT.Controller.Primary_output</td><td>{74C20E8A-532A-4C08-89BA-014337FA1407}</td><td>INSTALLDIR</td><td>2</td><td/><td>appedolt.controller.primary_</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
-		<row><td>AppedoLT.Core.Debug_Symbols</td><td>{8775EEAC-C5C8-4FBB-B133-9A0388EF5217}</td><td>INSTALLDIR</td><td>2</td><td/><td>appedolt.core.debug_symbols</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
-		<row><td>AppedoLT.DataAccessLayer.Debug_Symbols</td><td>{D94703DB-CBBD-458D-AC4A-17D54D04E095}</td><td>INSTALLDIR</td><td>2</td><td/><td>appedolt.dataaccesslayer.deb</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>ISX_DEFAULTCOMPONENT</td><td>{88016442-564D-4BAD-B189-C3AD44FCEDE7}</td><td>INSTALLDIR</td><td>2</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>ISX_DEFAULTCOMPONENT1</td><td>{5F3F4CA5-1EC2-4EA5-95EA-84EE433FCE59}</td><td>DATA</td><td>2</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>ISX_DEFAULTCOMPONENT2</td><td>{811F28D8-6CAA-4989-8BA6-E45D0686FB27}</td><td>VARIABLES</td><td>2</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
@@ -1877,12 +1873,8 @@
 	<table name="FeatureComponents">
 		<col key="yes" def="s38">Feature_</col>
 		<col key="yes" def="s72">Component_</col>
-		<row><td>AlwaysInstall</td><td>AppedoLT.BusinessLogic.Debug_Symbols</td></row>
-		<row><td>AlwaysInstall</td><td>AppedoLT.Controller.Debug_Symbols</td></row>
 		<row><td>AlwaysInstall</td><td>AppedoLT.Controller.Debug_Symbols1</td></row>
 		<row><td>AlwaysInstall</td><td>AppedoLT.Controller.Primary_output</td></row>
-		<row><td>AlwaysInstall</td><td>AppedoLT.Core.Debug_Symbols</td></row>
-		<row><td>AlwaysInstall</td><td>AppedoLT.DataAccessLayer.Debug_Symbols</td></row>
 		<row><td>AlwaysInstall</td><td>ISX_DEFAULTCOMPONENT</td></row>
 		<row><td>AlwaysInstall</td><td>ISX_DEFAULTCOMPONENT1</td></row>
 		<row><td>AlwaysInstall</td><td>ISX_DEFAULTCOMPONENT2</td></row>
@@ -1901,12 +1893,8 @@
 		<col def="S255">ISBuildSourcePath</col>
 		<col def="I4">ISAttributes</col>
 		<col def="S72">ISComponentSubFolder_</col>
-		<row><td>appedolt.businesslogic.debug</td><td>AppedoLT.BusinessLogic.Debug_Symbols</td><td>AppedoLT.BusinessLogic.Debug Symbols</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;AppedoLT.BusinessLogic&gt;|Symbols</td><td>3</td><td/></row>
-		<row><td>appedolt.controller.debug_sy</td><td>AppedoLT.Controller.Debug_Symbols</td><td>AppedoLT.Controller.Debug Symbols</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;AppedoLT.Controller1&gt;|Symbols</td><td>3</td><td/></row>
 		<row><td>appedolt.controller.debug_sy1</td><td>AppedoLT.Controller.Debug_Symbols1</td><td>AppedoLT.Controller.Debug Symbols</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;AppedoLT.Controller1&gt;|Symbols</td><td>3</td><td/></row>
 		<row><td>appedolt.controller.primary_</td><td>AppedoLT.Controller.Primary_output</td><td>AppedoLT.Controller.Primary output</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;AppedoLT.Controller1&gt;|Built</td><td>3</td><td/></row>
-		<row><td>appedolt.core.debug_symbols</td><td>AppedoLT.Core.Debug_Symbols</td><td>AppedoLT.Core.Debug Symbols</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;AppedoLT.Core&gt;|Symbols</td><td>3</td><td/></row>
-		<row><td>appedolt.dataaccesslayer.deb</td><td>AppedoLT.DataAccessLayer.Debug_Symbols</td><td>AppedoLT.DataAccessLayer.Debug Symbols</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;AppedoLT.DataAccessLayer&gt;|Symbols</td><td>3</td><td/></row>
 		<row><td>commands.txt</td><td>ISX_DEFAULTCOMPONENT</td><td>commands.txt</td><td>0</td><td/><td/><td/><td>1</td><td>E:\AppedoLT\AppedoLT.Controller\bin\Debug\commands.txt</td><td>1</td><td/></row>
 		<row><td>controller.xml</td><td>ISX_DEFAULTCOMPONENT</td><td>CONTRO~1.XML|Controller.xml</td><td>0</td><td/><td/><td/><td>1</td><td>E:\AppedoLT\AppedoLT.Controller\bin\Controller.xml</td><td>1</td><td/></row>
 		<row><td>database.db</td><td>ISX_DEFAULTCOMPONENT</td><td>database.db</td><td>0</td><td/><td/><td/><td>1</td><td>E:\AppedoLT\AppedoLT.Controller\bin\Debug\database.db</td><td>1</td><td/></row>
@@ -2060,12 +2048,8 @@
 		<col def="S0">FTPLocation</col>
 		<col def="S0">HTTPLocation</col>
 		<col def="S0">Miscellaneous</col>
-		<row><td>AppedoLT.BusinessLogic.Debug_Symbols</td><td/><td/><td>_81039069_2467_4BB8_A244_2730E6BAA2A9_FILTER</td><td/><td/><td/><td/></row>
-		<row><td>AppedoLT.Controller.Debug_Symbols</td><td/><td/><td>_348E8FFA_D502_44CA_ADE9_5595F7736C5B_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>AppedoLT.Controller.Debug_Symbols1</td><td/><td/><td>_827C4CCD_3ECD_4ADE_AADC_4A952FC82C19_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>AppedoLT.Controller.Primary_output</td><td/><td/><td>_3DF4A951_9547_431A_85CB_758782DFCF28_FILTER</td><td/><td/><td/><td/></row>
-		<row><td>AppedoLT.Core.Debug_Symbols</td><td/><td/><td>_A1A81F3D_4C45_4DF4_B626_484350D1340A_FILTER</td><td/><td/><td/><td/></row>
-		<row><td>AppedoLT.DataAccessLayer.Debug_Symbols</td><td/><td/><td>_6C836CB0_7EE5_4047_90FA_700E4B89B4F2_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>ISX_DEFAULTCOMPONENT</td><td/><td/><td>_249865E7_E4B2_4DF6_8A8C_6B0EEA5A415E_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>ISX_DEFAULTCOMPONENT1</td><td/><td/><td>_9D8C578F_7B0C_4EAC_899F_E0E508D70C7D_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>ISX_DEFAULTCOMPONENT2</td><td/><td/><td>_DE34151C_2203_4F54_9438_1FBA8ECCE4E6_FILTER</td><td/><td/><td/><td/></row>
@@ -4425,7 +4409,7 @@ UwBpAG4AZwBsAGUASQBtAGEAZwBlAAEARQB4AHAAcgBlAHMAcwA=
 		<row><td>PROGRAMFILETOLAUNCHATEND</td><td>[INSTALLDIR]AppedoLT.Controller.Primary output</td><td/></row>
 		<row><td>ProductCode</td><td>{E07B4F1B-2ACA-46ED-AE07-E91E2B900B6B}</td><td/></row>
 		<row><td>ProductName</td><td>AppedoLT Controller</td><td/></row>
-		<row><td>ProductVersion</td><td>1.0.0.12</td><td/></row>
+		<row><td>ProductVersion</td><td>1.0.0.13</td><td/></row>
 		<row><td>ProgressType0</td><td>install</td><td/></row>
 		<row><td>ProgressType1</td><td>Installing</td><td/></row>
 		<row><td>ProgressType2</td><td>installed</td><td/></row>

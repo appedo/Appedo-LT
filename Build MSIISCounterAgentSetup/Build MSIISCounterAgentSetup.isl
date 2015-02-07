@@ -1051,6 +1051,7 @@
 	<table name="CreateFolder">
 		<col key="yes" def="s72">Directory_</col>
 		<col key="yes" def="s72">Component_</col>
+		<row><td>INSTALLDIR</td><td>ISX_DEFAULTCOMPONENT</td></row>
 	</table>
 
 	<table name="CustomAction">
@@ -1881,7 +1882,6 @@
 		<col def="I4">ISAttributes</col>
 		<col def="S72">ISComponentSubFolder_</col>
 		<row><td>msiiscounteragent.primary_ou</td><td>MSIISCounterAgent.Primary_output</td><td>MSIISCounterAgent.Primary output</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;MSIISCounterAgent&gt;|Built</td><td>3</td><td/></row>
-		<row><td>msiiscounterxml.xml</td><td>ISX_DEFAULTCOMPONENT</td><td>MSIISC~1.XML|MSIISCounterXml.xml</td><td>0</td><td/><td/><td/><td>1</td><td>E:\AppedoLT\MSIISCounterAgent\bin\Debug\MSIISCounterXml.xml</td><td>1</td><td/></row>
 	</table>
 
 	<table name="FileSFPCatalog">
@@ -4365,7 +4365,7 @@ UwBpAG4AZwBsAGUASQBtAGEAZwBlAAEARQB4AHAAcgBlAHMAcwA=
 		<row><td>PROGRAMFILETOLAUNCHATEND</td><td>[INSTALLDIR]MSIISCounterAgent.Primary output</td><td/></row>
 		<row><td>ProductCode</td><td>{01876EBC-999C-408C-8988-865671C9A2CE}</td><td/></row>
 		<row><td>ProductName</td><td>Appedo_MSIISCounter_Agent</td><td/></row>
-		<row><td>ProductVersion</td><td>1.0.0.5</td><td/></row>
+		<row><td>ProductVersion</td><td>1.0.0.6</td><td/></row>
 		<row><td>ProgressType0</td><td>install</td><td/></row>
 		<row><td>ProgressType1</td><td>Installing</td><td/></row>
 		<row><td>ProgressType2</td><td>installed</td><td/></row>

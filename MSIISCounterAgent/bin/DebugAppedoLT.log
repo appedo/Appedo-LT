@@ -36,3 +36,51 @@ Log Entry :
 --Log entry goes here--
 counter_params_json={101=0.00,100=0.00,1001="aeacd47c-4a56-4271-b668-028d62f5d332",1002="2015-01-14 11:21:21.968"}&agent_type=MSIIS&guid=aeacd47c-4a56-4271-b668-028d62f5d332
 ---------------------------------------
+Log Entry : 
+11:57:03 05 February 2015 
+--Log entry goes here--
+   at System.Net.HttpWebRequest.GetResponse()
+   at AgentCore.Utility.GetPageContent(String Url, String data) in e:\AppedoLT\AgentCore\Utility.cs:line 61The remote server returned an error: (500) Internal Server Error.
+---------------------------------------
+Log Entry : 
+11:57:08 05 February 2015 
+--Log entry goes here--
+   at System.Net.HttpWebRequest.GetResponse()
+   at AgentCore.Utility.GetPageContent(String Url, String data) in e:\AppedoLT\AgentCore\Utility.cs:line 61The remote server returned an error: (500) Internal Server Error.
+---------------------------------------
+Log Entry : 
+11:57:08 05 February 2015 
+--Log entry goes here--
+   at System.Net.HttpWebRequest.GetResponse()
+   at AgentCore.Utility.GetPageContent(String Url, String data) in e:\AppedoLT\AgentCore\Utility.cs:line 61The remote server returned an error: (500) Internal Server Error.
+---------------------------------------
+Log Entry : 
+11:57:13 05 February 2015 
+--Log entry goes here--
+   at System.Net.HttpWebRequest.GetResponse()
+   at AgentCore.Utility.GetPageContent(String Url, String data) in e:\AppedoLT\AgentCore\Utility.cs:line 61The remote server returned an error: (500) Internal Server Error.
+---------------------------------------
+Log Entry : 
+11:57:13 05 February 2015 
+--Log entry goes here--
+   at System.Net.HttpWebRequest.GetResponse()
+   at AgentCore.Utility.GetPageContent(String Url, String data) in e:\AppedoLT\AgentCore\Utility.cs:line 61The remote server returned an error: (500) Internal Server Error.
+---------------------------------------
+Log Entry : 
+11:57:13 05 February 2015 
+--Log entry goes here--
+   at System.Net.HttpWebRequest.GetResponse()
+   at AgentCore.Utility.GetPageContent(String Url, String data) in e:\AppedoLT\AgentCore\Utility.cs:line 61The remote server returned an error: (500) Internal Server Error.
+---------------------------------------
+Log Entry : 
+11:57:18 05 February 2015 
+--Log entry goes here--
+   at System.Net.HttpWebRequest.GetResponse()
+   at AgentCore.Utility.GetPageContent(String Url, String data) in e:\AppedoLT\AgentCore\Utility.cs:line 61The remote server returned an error: (500) Internal Server Error.
+---------------------------------------
+Log Entry : 
+11:57:18 05 February 2015 
+--Log entry goes here--
+   at System.Net.HttpWebRequest.GetResponse()
+   at AgentCore.Utility.GetPageContent(String Url, String data) in e:\AppedoLT\AgentCore\Utility.cs:line 61The remote server returned an error: (500) Internal Server Error.
+---------------------------------------

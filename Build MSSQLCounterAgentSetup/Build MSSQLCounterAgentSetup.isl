@@ -1051,6 +1051,7 @@
 	<table name="CreateFolder">
 		<col key="yes" def="s72">Directory_</col>
 		<col key="yes" def="s72">Component_</col>
+		<row><td>INSTALLDIR</td><td>ISX_DEFAULTCOMPONENT</td></row>
 	</table>
 
 	<table name="CustomAction">
@@ -1881,7 +1882,6 @@
 		<col def="I4">ISAttributes</col>
 		<col def="S72">ISComponentSubFolder_</col>
 		<row><td>mssqlcounteragent.primary_ou</td><td>MSSQLCounterAgent.Primary_output</td><td>MSSQLCounterAgent.Primary output</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;MSSQLCounterAgent&gt;|Built</td><td>3</td><td/></row>
-		<row><td>mssqlcounterxml.xml</td><td>ISX_DEFAULTCOMPONENT</td><td>MSSQLC~1.XML|MSSQLCounterXml.xml</td><td>0</td><td/><td/><td/><td>1</td><td>E:\AppedoLT\MSSQLCounterAgent\bin\Debug\MSSQLCounterXml.xml</td><td>1</td><td/></row>
 	</table>
 
 	<table name="FileSFPCatalog">
@@ -4365,7 +4365,7 @@ UwBpAG4AZwBsAGUASQBtAGEAZwBlAAEARQB4AHAAcgBlAHMAcwA=
 		<row><td>PROGRAMFILETOLAUNCHATEND</td><td>[INSTALLDIR]MSSQLCounterAgent.Primary output</td><td/></row>
 		<row><td>ProductCode</td><td>{33C34919-F018-4E84-ACBC-03E55622E1C0}</td><td/></row>
 		<row><td>ProductName</td><td>Appedo_MSSQLCounter_Agent</td><td/></row>
-		<row><td>ProductVersion</td><td>1.0.0.5</td><td/></row>
+		<row><td>ProductVersion</td><td>1.0.0.6</td><td/></row>
 		<row><td>ProgressType0</td><td>install</td><td/></row>
 		<row><td>ProgressType1</td><td>Installing</td><td/></row>
 		<row><td>ProgressType2</td><td>installed</td><td/></row>

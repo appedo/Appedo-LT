@@ -1,9 +1,0 @@
-GET / HTTP/1.1
-Host: stage.cbazaar.in
-User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:35.0) Gecko/20100101 Firefox/35.0
-Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
-Accept-Language: en-US,en;q=0.5
-Accept-Encoding: gzip, deflate
-Cookie: __cfduid=d58c4d8f703f64a371ae662c6c2ff88421422438671
-Connection: keep-alive
-

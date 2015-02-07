@@ -13,6 +13,7 @@ namespace AppedoLT
     public partial class frmLogin : Form
     {
         public string Userid { get; set; }
+
         public frmLogin()
         {
             InitializeComponent();
@@ -58,6 +59,7 @@ namespace AppedoLT
         {
 
         }
+
         private bool ValidateData()
         {
             if(txtEmailid.Text.Trim()==string.Empty)
