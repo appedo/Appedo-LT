@@ -44,6 +44,7 @@
     <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="System" />
     <Reference Include="System.configuration" />
+    <Reference Include="System.Configuration.Install" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
@@ -74,6 +75,9 @@
     <Compile Include="Expression\FunctionEval.cs" />
     <Compile Include="Expression\IExpression.cs" />
     <Compile Include="Expression\RegexObjects.cs" />
+    <Compile Include="InstallerClass.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="IntTextBox.cs">
       <SubType>Component</SubType>
     </Compile>

@@ -341,6 +341,7 @@
 		<col def="S0">ISDotNetInstallerArgsUninstall</col>
 		<col def="S0">ISDotNetInstallerArgsRollback</col>
 		<row><td>ISX_DEFAULTCOMPONENT</td><td>{07938432-7F1B-4109-B19A-95ABABA29318}</td><td>INSTALLDIR</td><td>2</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>MSSQLCounterAgent.Content_Files</td><td>{E6DAE6D2-D61B-4680-9634-9DCDA9625A2F}</td><td>INSTALLDIR</td><td>2</td><td/><td>mssqlcounteragent.content_fi</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>MSSQLCounterAgent.Primary_output</td><td>{BBCE2A39-121A-4E0D-BE9A-F3F1465E6A37}</td><td>INSTALLDIR</td><td>2</td><td/><td>mssqlcounteragent.primary_ou</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 	</table>
 
@@ -1866,6 +1867,7 @@
 		<col key="yes" def="s38">Feature_</col>
 		<col key="yes" def="s72">Component_</col>
 		<row><td>AlwaysInstall</td><td>ISX_DEFAULTCOMPONENT</td></row>
+		<row><td>AlwaysInstall</td><td>MSSQLCounterAgent.Content_Files</td></row>
 		<row><td>AlwaysInstall</td><td>MSSQLCounterAgent.Primary_output</td></row>
 	</table>
 
@@ -1881,6 +1883,7 @@
 		<col def="S255">ISBuildSourcePath</col>
 		<col def="I4">ISAttributes</col>
 		<col def="S72">ISComponentSubFolder_</col>
+		<row><td>mssqlcounteragent.content_fi</td><td>MSSQLCounterAgent.Content_Files</td><td>MSSQLCounterAgent.Content Files</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;MSSQLCounterAgent&gt;|ContentFiles</td><td>3</td><td/></row>
 		<row><td>mssqlcounteragent.primary_ou</td><td>MSSQLCounterAgent.Primary_output</td><td>MSSQLCounterAgent.Primary output</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;MSSQLCounterAgent&gt;|Built</td><td>3</td><td/></row>
 	</table>
 
@@ -2026,6 +2029,7 @@
 		<col def="S0">HTTPLocation</col>
 		<col def="S0">Miscellaneous</col>
 		<row><td>ISX_DEFAULTCOMPONENT</td><td/><td/><td>_5B12EB8C_2C63_4C91_B3C0_C375D51B55F7_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>MSSQLCounterAgent.Content_Files</td><td/><td/><td>_965AF820_8E1A_4180_A46D_75DBD6D4641C_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>MSSQLCounterAgent.Primary_output</td><td/><td/><td>_50496905_6B38_41EE_88CC_3CD711C96502_FILTER</td><td/><td/><td/><td/></row>
 	</table>
 
@@ -2644,7 +2648,7 @@
 		<col def="I2">Encoded</col>
 		<col def="S0">Comment</col>
 		<col def="I4">TimeStamp</col>
-		<row><td>COMPANY_NAME</td><td>1033</td><td>Appedo</td><td>0</td><td/><td>1814195661</td></row>
+		<row><td>COMPANY_NAME</td><td>1033</td><td>Appedo</td><td>0</td><td/><td>1227035502</td></row>
 		<row><td>DN_AlwaysInstall</td><td>1033</td><td>Always Install</td><td>0</td><td/><td>1814193613</td></row>
 		<row><td>IDPROP_EXPRESS_LAUNCH_CONDITION_COLOR</td><td>1033</td><td>The color settings of your system are not adequate for running [ProductName].</td><td>0</td><td/><td>1814193613</td></row>
 		<row><td>IDPROP_EXPRESS_LAUNCH_CONDITION_OS</td><td>1033</td><td>The operating system is not adequate for running [ProductName].</td><td>0</td><td/><td>1814193613</td></row>
@@ -3744,8 +3748,8 @@
 		<row><td>IDS__TargetReq_DESC_PROCESSOR</td><td>1033</td><td>The processor is not adequate for running [ProductName].</td><td>0</td><td/><td>1814193613</td></row>
 		<row><td>IDS__TargetReq_DESC_RAM</td><td>1033</td><td>The amount of RAM is not adequate for running [ProductName].</td><td>0</td><td/><td>1814193613</td></row>
 		<row><td>IDS__TargetReq_DESC_RESOLUTION</td><td>1033</td><td>The screen resolution is not adequate for running [ProductName].</td><td>0</td><td/><td>1814193613</td></row>
-		<row><td>ID_STRING1</td><td>1033</td><td>http://www.Appedo.com</td><td>0</td><td/><td>1814195661</td></row>
-		<row><td>ID_STRING2</td><td>1033</td><td>Appedo</td><td>0</td><td/><td>1814195661</td></row>
+		<row><td>ID_STRING1</td><td>1033</td><td>http://www.Appedo.com</td><td>0</td><td/><td>1227035502</td></row>
+		<row><td>ID_STRING2</td><td>1033</td><td>Appedo</td><td>0</td><td/><td>1227035502</td></row>
 		<row><td>ID_STRING3</td><td>1033</td><td>MSSQLC~1|MSSQL Counter Agent</td><td>0</td><td/><td>1814191629</td></row>
 		<row><td>IIDS_UITEXT_FeatureUninstalled</td><td>1033</td><td>This feature will remain uninstalled.</td><td>0</td><td/><td>1814193613</td></row>
 	</table>
@@ -4333,8 +4337,8 @@ UwBpAG4AZwBsAGUASQBtAGEAZwBlAAEARQB4AHAAcgBlAHMAcwA=
 		<row><td>IS_SQLSERVER_USERNAME</td><td>sa</td><td/></row>
 		<row><td>InstallChoice</td><td>AR</td><td/></row>
 		<row><td>LAUNCHPROGRAM</td><td>1</td><td/></row>
-		<row><td>LAUNCHPROGRAMCOMPCODE</td><td>{BBCE2A39-121A-4E0D-BE9A-F3F1465E6A37}</td><td/></row>
-		<row><td>LAUNCHPROGRAMFILEKEY</td><td>mssqlcounteragent.primary_ou</td><td/></row>
+		<row><td>LAUNCHPROGRAMCOMPCODE</td><td>{AE9113BB-9FB1-427F-989A-81DB4013A243}</td><td/></row>
+		<row><td>LAUNCHPROGRAMFILEKEY</td><td>mswindowscounteragent.primar</td><td/></row>
 		<row><td>LAUNCHREADME</td><td>1</td><td/></row>
 		<row><td>Manufacturer</td><td>##COMPANY_NAME##</td><td/></row>
 		<row><td>PIDKEY</td><td/><td/></row>
@@ -4362,7 +4366,7 @@ UwBpAG4AZwBsAGUASQBtAGEAZwBlAAEARQB4AHAAcgBlAHMAcwA=
 		<row><td>PROGMSG_IIS_ROLLBACKAPPPOOLS</td><td>##IDS_PROGMSG_IIS_ROLLBACKAPPPOOLS##</td><td/></row>
 		<row><td>PROGMSG_IIS_ROLLBACKVROOTS</td><td>##IDS_PROGMSG_IIS_ROLLBACKVROOTS##</td><td/></row>
 		<row><td>PROGMSG_IIS_ROLLBACKWEBSERVICEEXTENSIONS</td><td>##IDS_PROGMSG_IIS_ROLLBACKWEBSERVICEEXTENSIONS##</td><td/></row>
-		<row><td>PROGRAMFILETOLAUNCHATEND</td><td>[INSTALLDIR]MSSQLCounterAgent.Primary output</td><td/></row>
+		<row><td>PROGRAMFILETOLAUNCHATEND</td><td>[INSTALLDIR]MSWindowsCounterAgent.Primary output</td><td/></row>
 		<row><td>ProductCode</td><td>{33C34919-F018-4E84-ACBC-03E55622E1C0}</td><td/></row>
 		<row><td>ProductName</td><td>Appedo_MSSQLCounter_Agent</td><td/></row>
 		<row><td>ProductVersion</td><td>1.0.0.6</td><td/></row>

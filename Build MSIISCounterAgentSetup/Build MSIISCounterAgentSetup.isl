@@ -341,6 +341,7 @@
 		<col def="S0">ISDotNetInstallerArgsUninstall</col>
 		<col def="S0">ISDotNetInstallerArgsRollback</col>
 		<row><td>ISX_DEFAULTCOMPONENT</td><td>{0350AA51-7170-4622-BA7E-977B1BD93EF3}</td><td>INSTALLDIR</td><td>2</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>MSIISCounterAgent.Debug_Symbols</td><td>{4B650D1F-057B-412A-A8DA-A700BE3B5B8B}</td><td>INSTALLDIR</td><td>2</td><td/><td>msiiscounteragent.debug_symb</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>MSIISCounterAgent.Primary_output</td><td>{F01A5FB1-135F-4065-ACC4-6D00AAF64D67}</td><td>INSTALLDIR</td><td>2</td><td/><td>msiiscounteragent.primary_ou</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 	</table>
 
@@ -1866,6 +1867,7 @@
 		<col key="yes" def="s38">Feature_</col>
 		<col key="yes" def="s72">Component_</col>
 		<row><td>AlwaysInstall</td><td>ISX_DEFAULTCOMPONENT</td></row>
+		<row><td>AlwaysInstall</td><td>MSIISCounterAgent.Debug_Symbols</td></row>
 		<row><td>AlwaysInstall</td><td>MSIISCounterAgent.Primary_output</td></row>
 	</table>
 
@@ -1881,6 +1883,7 @@
 		<col def="S255">ISBuildSourcePath</col>
 		<col def="I4">ISAttributes</col>
 		<col def="S72">ISComponentSubFolder_</col>
+		<row><td>msiiscounteragent.debug_symb</td><td>MSIISCounterAgent.Debug_Symbols</td><td>MSIISCounterAgent.Debug Symbols</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;MSIISCounterAgent&gt;|Symbols</td><td>3</td><td/></row>
 		<row><td>msiiscounteragent.primary_ou</td><td>MSIISCounterAgent.Primary_output</td><td>MSIISCounterAgent.Primary output</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;MSIISCounterAgent&gt;|Built</td><td>3</td><td/></row>
 	</table>
 
@@ -2026,6 +2029,7 @@
 		<col def="S0">HTTPLocation</col>
 		<col def="S0">Miscellaneous</col>
 		<row><td>ISX_DEFAULTCOMPONENT</td><td/><td/><td>_4D69E160_834C_49F8_9FDC_DC245C13C7B9_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>MSIISCounterAgent.Debug_Symbols</td><td/><td/><td>_257D765B_B225_41B9_B38B_04C930D05B2C_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>MSIISCounterAgent.Primary_output</td><td/><td/><td>_600AB596_09F5_419F_AAB8_6034F65BEA8C_FILTER</td><td/><td/><td/><td/></row>
 	</table>
 
@@ -2644,7 +2648,7 @@
 		<col def="I2">Encoded</col>
 		<col def="S0">Comment</col>
 		<col def="I4">TimeStamp</col>
-		<row><td>COMPANY_NAME</td><td>1033</td><td>Appedo</td><td>0</td><td/><td>1755513772</td></row>
+		<row><td>COMPANY_NAME</td><td>1033</td><td>Appedo</td><td>0</td><td/><td>1227082510</td></row>
 		<row><td>DN_AlwaysInstall</td><td>1033</td><td>Always Install</td><td>0</td><td/><td>732085998</td></row>
 		<row><td>IDPROP_EXPRESS_LAUNCH_CONDITION_COLOR</td><td>1033</td><td>The color settings of your system are not adequate for running [ProductName].</td><td>0</td><td/><td>732085998</td></row>
 		<row><td>IDPROP_EXPRESS_LAUNCH_CONDITION_OS</td><td>1033</td><td>The operating system is not adequate for running [ProductName].</td><td>0</td><td/><td>732085998</td></row>
@@ -3744,8 +3748,8 @@
 		<row><td>IDS__TargetReq_DESC_PROCESSOR</td><td>1033</td><td>The processor is not adequate for running [ProductName].</td><td>0</td><td/><td>732085998</td></row>
 		<row><td>IDS__TargetReq_DESC_RAM</td><td>1033</td><td>The amount of RAM is not adequate for running [ProductName].</td><td>0</td><td/><td>732085998</td></row>
 		<row><td>IDS__TargetReq_DESC_RESOLUTION</td><td>1033</td><td>The screen resolution is not adequate for running [ProductName].</td><td>0</td><td/><td>732085998</td></row>
-		<row><td>ID_STRING1</td><td>1033</td><td>http://www.Appedo.com</td><td>0</td><td/><td>1755513772</td></row>
-		<row><td>ID_STRING2</td><td>1033</td><td>Appedo</td><td>0</td><td/><td>1755513772</td></row>
+		<row><td>ID_STRING1</td><td>1033</td><td>http://www.Appedo.com</td><td>0</td><td/><td>1227082510</td></row>
+		<row><td>ID_STRING2</td><td>1033</td><td>Appedo</td><td>0</td><td/><td>1227082510</td></row>
 		<row><td>ID_STRING3</td><td>1033</td><td>APPEDO~1|Appedo MS IIS Counter Agent</td><td>0</td><td/><td>732065582</td></row>
 		<row><td>IIDS_UITEXT_FeatureUninstalled</td><td>1033</td><td>This feature will remain uninstalled.</td><td>0</td><td/><td>732085998</td></row>
 	</table>
@@ -4333,8 +4337,8 @@ UwBpAG4AZwBsAGUASQBtAGEAZwBlAAEARQB4AHAAcgBlAHMAcwA=
 		<row><td>IS_SQLSERVER_USERNAME</td><td>sa</td><td/></row>
 		<row><td>InstallChoice</td><td>AR</td><td/></row>
 		<row><td>LAUNCHPROGRAM</td><td>1</td><td/></row>
-		<row><td>LAUNCHPROGRAMCOMPCODE</td><td>{F01A5FB1-135F-4065-ACC4-6D00AAF64D67}</td><td/></row>
-		<row><td>LAUNCHPROGRAMFILEKEY</td><td>msiiscounteragent.primary_ou</td><td/></row>
+		<row><td>LAUNCHPROGRAMCOMPCODE</td><td>{AE9113BB-9FB1-427F-989A-81DB4013A243}</td><td/></row>
+		<row><td>LAUNCHPROGRAMFILEKEY</td><td>mswindowscounteragent.primar</td><td/></row>
 		<row><td>LAUNCHREADME</td><td>1</td><td/></row>
 		<row><td>Manufacturer</td><td>##COMPANY_NAME##</td><td/></row>
 		<row><td>PIDKEY</td><td/><td/></row>
@@ -4362,7 +4366,7 @@ UwBpAG4AZwBsAGUASQBtAGEAZwBlAAEARQB4AHAAcgBlAHMAcwA=
 		<row><td>PROGMSG_IIS_ROLLBACKAPPPOOLS</td><td>##IDS_PROGMSG_IIS_ROLLBACKAPPPOOLS##</td><td/></row>
 		<row><td>PROGMSG_IIS_ROLLBACKVROOTS</td><td>##IDS_PROGMSG_IIS_ROLLBACKVROOTS##</td><td/></row>
 		<row><td>PROGMSG_IIS_ROLLBACKWEBSERVICEEXTENSIONS</td><td>##IDS_PROGMSG_IIS_ROLLBACKWEBSERVICEEXTENSIONS##</td><td/></row>
-		<row><td>PROGRAMFILETOLAUNCHATEND</td><td>[INSTALLDIR]MSIISCounterAgent.Primary output</td><td/></row>
+		<row><td>PROGRAMFILETOLAUNCHATEND</td><td>[INSTALLDIR]MSWindowsCounterAgent.Primary output</td><td/></row>
 		<row><td>ProductCode</td><td>{01876EBC-999C-408C-8988-865671C9A2CE}</td><td/></row>
 		<row><td>ProductName</td><td>Appedo_MSIISCounter_Agent</td><td/></row>
 		<row><td>ProductVersion</td><td>1.0.0.6</td><td/></row>

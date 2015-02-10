@@ -1,4 +1,4 @@
-﻿using Amazon.EC2.Model;
+﻿
 using AppedoLT.Core;
 using AppedoLT.DataAccessLayer;
 using System;
@@ -890,76 +890,76 @@ namespace AppedoLTController
             //}
         }
 
-        private void CreateInstance(string imageId, string region, string InstanceType,string keyPairName, string accessKey, string secretAccessKey , string secGroupName)
-        {
-            var ec2Client = new Amazon.EC2.AmazonEC2Client(accessKey, secretAccessKey, Amazon.RegionEndpoint.GetBySystemName(region));
+        //private void CreateInstance(string imageId, string region, string InstanceType,string keyPairName, string accessKey, string secretAccessKey , string secGroupName)
+        //{
+        //    var ec2Client = new Amazon.EC2.AmazonEC2Client(accessKey, secretAccessKey, Amazon.RegionEndpoint.GetBySystemName(region));
          
-            List<string> groups = new List<string>();
-            foreach(string group in secGroupName.Split(','))
-            {
-                groups.Add(group);
-            }
-            var launchRequest = new RunInstancesRequest()
-            {
-                ImageId = imageId,
-                InstanceType = InstanceType,
-                MinCount = 1,
-                MaxCount = 1,
-                KeyName = keyPairName,
-                SecurityGroupIds = groups
-            };
-            var launchResponse = ec2Client.RunInstances(launchRequest);
-            List<Instance> instances = launchResponse.Reservation.Instances;
-            string ipAddress = string.Empty;
-            foreach (Instance item in instances)
-            {
-                while (true)
-                {
-                    if (item.PublicIpAddress != string.Empty)
-                    {
-                        ipAddress = item.PublicIpAddress;
-                        break;
-                    }
-                    else
-                    {
-                        Thread.Sleep(1000);
-                    }
-                }
-            }
-        }
+        //    List<string> groups = new List<string>();
+        //    foreach(string group in secGroupName.Split(','))
+        //    {
+        //        groups.Add(group);
+        //    }
+        //    var launchRequest = new RunInstancesRequest()
+        //    {
+        //        ImageId = imageId,
+        //        InstanceType = InstanceType,
+        //        MinCount = 1,
+        //        MaxCount = 1,
+        //        KeyName = keyPairName,
+        //        SecurityGroupIds = groups
+        //    };
+        //    var launchResponse = ec2Client.RunInstances(launchRequest);
+        //    List<Instance> instances = launchResponse.Reservation.Instances;
+        //    string ipAddress = string.Empty;
+        //    foreach (Instance item in instances)
+        //    {
+        //        while (true)
+        //        {
+        //            if (item.PublicIpAddress != string.Empty)
+        //            {
+        //                ipAddress = item.PublicIpAddress;
+        //                break;
+        //            }
+        //            else
+        //            {
+        //                Thread.Sleep(1000);
+        //            }
+        //        }
+        //    }
+        //}
        
-        private void GetAvailableInstanceOn(string imageId, string region, string InstanceType, string keyPairName, string accessKey, string secretAccessKey, string secGroupName)
-        {
-            var ec2Client = new Amazon.EC2.AmazonEC2Client(accessKey, secretAccessKey, Amazon.RegionEndpoint.GetBySystemName(region));
+        //private void GetAvailableInstanceOn(string imageId, string region, string InstanceType, string keyPairName, string accessKey, string secretAccessKey, string secGroupName)
+        //{
+        //    var ec2Client = new Amazon.EC2.AmazonEC2Client(accessKey, secretAccessKey, Amazon.RegionEndpoint.GetBySystemName(region));
 
-            List<string> groups = new List<string>();
-            foreach (string group in secGroupName.Split(','))
-            {
-                groups.Add(group);
-            }
-            var launchRequest = new RunInstancesRequest()
-            {
-                ImageId = imageId,
-                InstanceType = InstanceType,
-                MinCount = 1,
-                MaxCount = 1,
-                KeyName = keyPairName,
-                SecurityGroupIds = groups
-            };
-            var launchResponse = ec2Client.RunInstances(launchRequest);
-            List<Instance> instances = launchResponse.Reservation.Instances;
-            string ipAddress = string.Empty;
-            foreach (Instance item in instances)
-            {
-                while (true)
-                {
-                    if (item.PublicIpAddress != string.Empty)
-                    {
-                        ipAddress = item.PublicIpAddress;
-                    }
-                }
-            }
-        }
+        //    List<string> groups = new List<string>();
+        //    foreach (string group in secGroupName.Split(','))
+        //    {
+        //        groups.Add(group);
+        //    }
+        //    var launchRequest = new RunInstancesRequest()
+        //    {
+        //        ImageId = imageId,
+        //        InstanceType = InstanceType,
+        //        MinCount = 1,
+        //        MaxCount = 1,
+        //        KeyName = keyPairName,
+        //        SecurityGroupIds = groups
+        //    };
+        //    var launchResponse = ec2Client.RunInstances(launchRequest);
+        //    List<Instance> instances = launchResponse.Reservation.Instances;
+        //    string ipAddress = string.Empty;
+        //    foreach (Instance item in instances)
+        //    {
+        //        while (true)
+        //        {
+        //            if (item.PublicIpAddress != string.Empty)
+        //            {
+        //                ipAddress = item.PublicIpAddress;
+        //            }
+        //        }
+        //    }
+        //}
     }
 
     /// <summary>

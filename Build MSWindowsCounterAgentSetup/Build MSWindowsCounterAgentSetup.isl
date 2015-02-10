@@ -342,6 +342,7 @@
 		<col def="S0">ISDotNetInstallerArgsUninstall</col>
 		<col def="S0">ISDotNetInstallerArgsRollback</col>
 		<row><td>ISX_DEFAULTCOMPONENT</td><td>{DC9C9506-6212-4040-B2FE-85C5E2F4A14F}</td><td>INSTALLDIR</td><td>2</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>MSWindowsCounterAgent.Content_Files</td><td>{E5B62ADE-466A-4531-BE18-700E73EC8454}</td><td>INSTALLDIR</td><td>2</td><td/><td>mswindowscounteragent.conten</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>MSWindowsCounterAgent.Primary_output</td><td>{7CBAFAF6-B4A9-4E31-B48A-9B2E327931C5}</td><td>INSTALLDIR</td><td>2</td><td/><td>mswindowscounteragent.primar</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>MSWindowsCounterAgent.Primary_output1</td><td>{AE9113BB-9FB1-427F-989A-81DB4013A243}</td><td>INSTALLDIR</td><td>2</td><td/><td>mswindowscounteragent.primar</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 	</table>
@@ -1868,6 +1869,7 @@
 		<col key="yes" def="s38">Feature_</col>
 		<col key="yes" def="s72">Component_</col>
 		<row><td>AlwaysInstall</td><td>ISX_DEFAULTCOMPONENT</td></row>
+		<row><td>AlwaysInstall</td><td>MSWindowsCounterAgent.Content_Files</td></row>
 		<row><td>AlwaysInstall</td><td>MSWindowsCounterAgent.Primary_output</td></row>
 		<row><td>AlwaysInstall</td><td>MSWindowsCounterAgent.Primary_output1</td></row>
 	</table>
@@ -1884,6 +1886,7 @@
 		<col def="S255">ISBuildSourcePath</col>
 		<col def="I4">ISAttributes</col>
 		<col def="S72">ISComponentSubFolder_</col>
+		<row><td>mswindowscounteragent.conten</td><td>MSWindowsCounterAgent.Content_Files</td><td>MSWindowsCounterAgent.Content Files</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;MSWindowsCounterAgent&gt;|ContentFiles</td><td>3</td><td/></row>
 		<row><td>mswindowscounteragent.primar</td><td>MSWindowsCounterAgent.Primary_output1</td><td>MSWindowsCounterAgent.Primary output</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;MSWindowsCounterAgent&gt;|Built</td><td>3</td><td/></row>
 	</table>
 
@@ -2029,6 +2032,7 @@
 		<col def="S0">HTTPLocation</col>
 		<col def="S0">Miscellaneous</col>
 		<row><td>ISX_DEFAULTCOMPONENT</td><td/><td/><td>_3B256BFE_2E21_43FE_8546_7BDD5D0DB4E2_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>MSWindowsCounterAgent.Content_Files</td><td/><td/><td>_5E8EB8D9_6292_48F4_AC46_D765BA321014_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>MSWindowsCounterAgent.Primary_output</td><td/><td/><td>_F7B6A80D_E80E_424A_823B_848B1E244E57_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>MSWindowsCounterAgent.Primary_output1</td><td/><td/><td>_8F3366F8_0F4E_4856_9461_F8C379A18A38_FILTER</td><td/><td/><td/><td/></row>
 	</table>
@@ -2648,7 +2652,7 @@
 		<col def="I2">Encoded</col>
 		<col def="S0">Comment</col>
 		<col def="I4">TimeStamp</col>
-		<row><td>COMPANY_NAME</td><td>1033</td><td>Appedo</td><td>0</td><td/><td>1621345585</td></row>
+		<row><td>COMPANY_NAME</td><td>1033</td><td>Appedo</td><td>0</td><td/><td>1227031438</td></row>
 		<row><td>DN_AlwaysInstall</td><td>1033</td><td>Always Install</td><td>0</td><td/><td>195185076</td></row>
 		<row><td>IDPROP_EXPRESS_LAUNCH_CONDITION_COLOR</td><td>1033</td><td>The color settings of your system are not adequate for running [ProductName].</td><td>0</td><td/><td>195185076</td></row>
 		<row><td>IDPROP_EXPRESS_LAUNCH_CONDITION_DOTNETVERSION40CLIENT</td><td>1033</td><td>Microsoft .NET Framework 4.0 Client Package or greater needs to be installed for this installation to continue.</td><td>0</td><td/><td>195170836</td></row>
@@ -3749,8 +3753,8 @@
 		<row><td>IDS__TargetReq_DESC_PROCESSOR</td><td>1033</td><td>The processor is not adequate for running [ProductName].</td><td>0</td><td/><td>195185076</td></row>
 		<row><td>IDS__TargetReq_DESC_RAM</td><td>1033</td><td>The amount of RAM is not adequate for running [ProductName].</td><td>0</td><td/><td>195185076</td></row>
 		<row><td>IDS__TargetReq_DESC_RESOLUTION</td><td>1033</td><td>The screen resolution is not adequate for running [ProductName].</td><td>0</td><td/><td>195185076</td></row>
-		<row><td>ID_STRING1</td><td>1033</td><td>http://www.Appedo.com</td><td>0</td><td/><td>1621345585</td></row>
-		<row><td>ID_STRING2</td><td>1033</td><td>Appedo</td><td>0</td><td/><td>1621345585</td></row>
+		<row><td>ID_STRING1</td><td>1033</td><td>http://www.Appedo.com</td><td>0</td><td/><td>1227031438</td></row>
+		<row><td>ID_STRING2</td><td>1033</td><td>Appedo</td><td>0</td><td/><td>1227031438</td></row>
 		<row><td>ID_STRING3</td><td>1033</td><td>MSWIND~1|MS Windows Counter Agent</td><td>0</td><td/><td>195205780</td></row>
 		<row><td>IIDS_UITEXT_FeatureUninstalled</td><td>1033</td><td>This feature will remain uninstalled.</td><td>0</td><td/><td>195185076</td></row>
 	</table>
@@ -4339,8 +4343,8 @@ UwBpAG4AZwBsAGUASQBtAGEAZwBlAAEARQB4AHAAcgBlAHMAcwA=
 		<row><td>IS_SQLSERVER_USERNAME</td><td>sa</td><td/></row>
 		<row><td>InstallChoice</td><td>AR</td><td/></row>
 		<row><td>LAUNCHPROGRAM</td><td>1</td><td/></row>
-		<row><td>LAUNCHPROGRAMCOMPCODE</td><td>{AE9113BB-9FB1-427F-989A-81DB4013A243}</td><td/></row>
-		<row><td>LAUNCHPROGRAMFILEKEY</td><td>mswindowscounteragent.primar</td><td/></row>
+		<row><td>LAUNCHPROGRAMCOMPCODE</td><td>{BBCE2A39-121A-4E0D-BE9A-F3F1465E6A37}</td><td/></row>
+		<row><td>LAUNCHPROGRAMFILEKEY</td><td>mssqlcounteragent.primary_ou</td><td/></row>
 		<row><td>LAUNCHREADME</td><td>1</td><td/></row>
 		<row><td>Manufacturer</td><td>##COMPANY_NAME##</td><td/></row>
 		<row><td>PIDKEY</td><td/><td/></row>
@@ -4368,7 +4372,7 @@ UwBpAG4AZwBsAGUASQBtAGEAZwBlAAEARQB4AHAAcgBlAHMAcwA=
 		<row><td>PROGMSG_IIS_ROLLBACKAPPPOOLS</td><td>##IDS_PROGMSG_IIS_ROLLBACKAPPPOOLS##</td><td/></row>
 		<row><td>PROGMSG_IIS_ROLLBACKVROOTS</td><td>##IDS_PROGMSG_IIS_ROLLBACKVROOTS##</td><td/></row>
 		<row><td>PROGMSG_IIS_ROLLBACKWEBSERVICEEXTENSIONS</td><td>##IDS_PROGMSG_IIS_ROLLBACKWEBSERVICEEXTENSIONS##</td><td/></row>
-		<row><td>PROGRAMFILETOLAUNCHATEND</td><td>[INSTALLDIR]MSWindowsCounterAgent.Primary output</td><td/></row>
+		<row><td>PROGRAMFILETOLAUNCHATEND</td><td>[INSTALLDIR]MSSQLCounterAgent.Primary output</td><td/></row>
 		<row><td>ProductCode</td><td>{0923EB68-15D6-4BB8-A3ED-7D738E58BCE1}</td><td/></row>
 		<row><td>ProductName</td><td>Appedo_MSWindowsCounter_Agent</td><td/></row>
 		<row><td>ProductVersion</td><td>1.0.0.6</td><td/></row>

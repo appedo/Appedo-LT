@@ -4338,8 +4338,8 @@ UwBpAG4AZwBsAGUASQBtAGEAZwBlAAEARQB4AHAAcgBlAHMAcwA=
 		<row><td>IS_SQLSERVER_USERNAME</td><td>sa</td><td/></row>
 		<row><td>InstallChoice</td><td>AR</td><td/></row>
 		<row><td>LAUNCHPROGRAM</td><td>1</td><td/></row>
-		<row><td>LAUNCHPROGRAMCOMPCODE</td><td>{B4142FC6-7987-42B2-AE44-46BA9C478043}</td><td/></row>
-		<row><td>LAUNCHPROGRAMFILEKEY</td><td>profiler.primary_output</td><td/></row>
+		<row><td>LAUNCHPROGRAMCOMPCODE</td><td>{E1E81F26-1F41-4FC7-9919-845D79106DAE}</td><td/></row>
+		<row><td>LAUNCHPROGRAMFILEKEY</td><td>appedolt.primary_output1</td><td/></row>
 		<row><td>LAUNCHREADME</td><td>1</td><td/></row>
 		<row><td>Manufacturer</td><td>##COMPANY_NAME##</td><td/></row>
 		<row><td>PIDKEY</td><td/><td/></row>
@@ -4367,7 +4367,7 @@ UwBpAG4AZwBsAGUASQBtAGEAZwBlAAEARQB4AHAAcgBlAHMAcwA=
 		<row><td>PROGMSG_IIS_ROLLBACKAPPPOOLS</td><td>##IDS_PROGMSG_IIS_ROLLBACKAPPPOOLS##</td><td/></row>
 		<row><td>PROGMSG_IIS_ROLLBACKVROOTS</td><td>##IDS_PROGMSG_IIS_ROLLBACKVROOTS##</td><td/></row>
 		<row><td>PROGMSG_IIS_ROLLBACKWEBSERVICEEXTENSIONS</td><td>##IDS_PROGMSG_IIS_ROLLBACKWEBSERVICEEXTENSIONS##</td><td/></row>
-		<row><td>PROGRAMFILETOLAUNCHATEND</td><td>[INSTALLDIR]Profiler.Primary output</td><td/></row>
+		<row><td>PROGRAMFILETOLAUNCHATEND</td><td>[INSTALLDIR]AppedoLT.Primary output</td><td/></row>
 		<row><td>ProductCode</td><td>{E4483987-DF1B-43D6-AFDE-33C78FD3BB15}</td><td/></row>
 		<row><td>ProductName</td><td>Appedo_DotNetProfiler</td><td/></row>
 		<row><td>ProductVersion</td><td>1.0.0.2</td><td/></row>

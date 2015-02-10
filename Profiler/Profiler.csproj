@@ -8,7 +8,7 @@
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Profiler</RootNamespace>
-    <AssemblyName>DotNetProfiler</AssemblyName>
+    <AssemblyName>AppedoCLRProfiler</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -35,6 +35,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
+    <Reference Include="System.Configuration.Install" />
     <Reference Include="System.Core" />
     <Reference Include="System.Messaging" />
     <Reference Include="System.Xml.Linq" />
@@ -53,6 +54,9 @@
     </Compile>
     <Compile Include="frmProfiler.Designer.cs">
       <DependentUpon>frmProfiler.cs</DependentUpon>
+    </Compile>
+    <Compile Include="InstallerClass.cs">
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="NamedManualResetEvent.cs" />
     <Compile Include="Program.cs" />

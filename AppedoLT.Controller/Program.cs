@@ -17,6 +17,7 @@ namespace AppedoLTController
         static void Main()
         {
             bool createdNew = true;
+           
             Process current = Process.GetCurrentProcess();
             using (Mutex mutex = new Mutex(true, current.ProcessName, out createdNew))
             {
