@@ -82,12 +82,6 @@
         "Entry"
         {
         "MsmKey" = "8:_82A2BDC60F13DFBAB3A4C4FDA54EF44D"
-        "OwnerKey" = "8:_706EFD29B270CC3B57DA30D16A490C4C"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_82A2BDC60F13DFBAB3A4C4FDA54EF44D"
         "OwnerKey" = "8:_0B631FA7DFCF8DE277A2CBE63769E7BD"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -95,6 +89,18 @@
         {
         "MsmKey" = "8:_82A2BDC60F13DFBAB3A4C4FDA54EF44D"
         "OwnerKey" = "8:_75CA0F3DAC374998BB5F833832106E21"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_82A2BDC60F13DFBAB3A4C4FDA54EF44D"
+        "OwnerKey" = "8:_706EFD29B270CC3B57DA30D16A490C4C"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_9A513AA656C547B29833DF05DAE770A9"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -107,12 +113,6 @@
         {
         "MsmKey" = "8:_B57257EED2B585D440D50E80BCCC2E31"
         "OwnerKey" = "8:_75CA0F3DAC374998BB5F833832106E21"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_0B631FA7DFCF8DE277A2CBE63769E7BD"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -154,6 +154,12 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_0B631FA7DFCF8DE277A2CBE63769E7BD"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_82A2BDC60F13DFBAB3A4C4FDA54EF44D"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -165,8 +171,8 @@
         "DisplayName" = "8:Debug"
         "IsDebugOnly" = "11:TRUE"
         "IsReleaseOnly" = "11:FALSE"
-        "OutputFilename" = "8:Debug\\Build AppedoLT.LoadGenerator.msi"
-        "PackageFilesAs" = "3:2"
+        "OutputFilename" = "8:Debug\\APPEDO_LT_LOAD_GENERATOR.msi"
+        "PackageFilesAs" = "3:1"
         "PackageFileSize" = "3:-2147483648"
         "CabType" = "3:1"
         "Compression" = "3:2"
@@ -175,13 +181,29 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.5"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.5 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.5"
+                    }
+                }
+            }
         }
         "Release"
         {
         "DisplayName" = "8:Release"
         "IsDebugOnly" = "11:FALSE"
         "IsReleaseOnly" = "11:TRUE"
-        "OutputFilename" = "8:Release\\Build AppedoLT.LoadGenerator.msi"
+        "OutputFilename" = "8:Release\\APPEDO_LT_LOAD_GENERATOR.msi"
         "PackageFilesAs" = "3:2"
         "PackageFileSize" = "3:-2147483648"
         "CabType" = "3:1"
@@ -191,6 +213,22 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.5"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.5 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.5"
+                    }
+                }
+            }
         }
     }
     "Deployable"
@@ -462,6 +500,26 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_9A513AA656C547B29833DF05DAE770A9"
+            {
+            "SourcePath" = "8:..\\AppedoLT\\logic.ico"
+            "TargetName" = "8:logic.ico"
+            "Tag" = "8:"
+            "Folder" = "8:_DD960546DE5D4C51B33A55EC3C31EE14"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_B57257EED2B585D440D50E80BCCC2E31"
             {
             "AssemblyRegister" = "3:1"
@@ -508,6 +566,17 @@
             "Property" = "8:ProgramMenuFolder"
                 "Folders"
                 {
+                    "{9EF0B969-E518-4E46-987F-47570745A589}:_6CB47045EF3943159B221720232FC254"
+                    {
+                    "Name" = "8:Appedo"
+                    "AlwaysCreate" = "11:FALSE"
+                    "Condition" = "8:"
+                    "Transitive" = "11:FALSE"
+                    "Property" = "8:_E33EC492645D4338BFE3FF125317FA2D"
+                        "Folders"
+                        {
+                        }
+                    }
                 }
             }
             "{3C67513D-01DD-4637-8A68-80971EB9504F}:_BFA8654B78E94B9A8338E353642FABF7"
@@ -522,7 +591,7 @@
                 {
                     "{9EF0B969-E518-4E46-987F-47570745A589}:_DD960546DE5D4C51B33A55EC3C31EE14"
                     {
-                    "Name" = "8:AppedoLT Loadgen"
+                    "Name" = "8:APPEDO_LT_LOAD_GENERATOR"
                     "AlwaysCreate" = "11:FALSE"
                     "Condition" = "8:"
                     "Transitive" = "11:FALSE"
@@ -559,20 +628,20 @@
         "Product"
         {
         "Name" = "8:Microsoft Visual Studio"
-        "ProductName" = "8:AppedoLT LoadGenerator"
-        "ProductCode" = "8:{EBB0F943-A931-4FCA-8269-3209F64EE0A1}"
-        "PackageCode" = "8:{E2E46372-5C0C-46C8-BD79-3C40EE8736F0}"
+        "ProductName" = "8:APPEDO_LT_LOAD_GENERATOR"
+        "ProductCode" = "8:{F74680CF-2684-426B-99A7-6D87D7E2691A}"
+        "PackageCode" = "8:{753FE2D5-96B9-4DBB-99E7-1E2616F44B89}"
         "UpgradeCode" = "8:{FDF822FA-D49E-4533-BE33-97FB08C152F3}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:FALSE"
-        "ProductVersion" = "8:1.0.0"
+        "ProductVersion" = "8:1.0.8"
         "Manufacturer" = "8:Appedo"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
-        "Title" = "8:AppedoLT LoadGenerator"
+        "Title" = "8:APPEDO_LT_LOAD_GENERATOR"
         "Subject" = "8:"
         "ARPCONTACT" = "8:Appedo"
         "Keywords" = "8:"
@@ -683,7 +752,7 @@
         {
             "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_8E62061C321B45E9880DC2D27E395567"
             {
-            "Name" = "8:AppedoLT LoadGenerator"
+            "Name" = "8:APPEDO_LT_LOAD_GENERATOR"
             "Arguments" = "8:"
             "Description" = "8:"
             "ShowCmd" = "3:1"
@@ -692,21 +761,21 @@
             "Target" = "8:_75CA0F3DAC374998BB5F833832106E21"
             "Folder" = "8:_EA0D7ABFA85845DF9CBAE573F944A732"
             "WorkingFolder" = "8:_DD960546DE5D4C51B33A55EC3C31EE14"
-            "Icon" = "8:"
+            "Icon" = "8:_9A513AA656C547B29833DF05DAE770A9"
             "Feature" = "8:"
             }
             "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_BD83A55562C14CCEB020DB9EA79ED537"
             {
-            "Name" = "8:AppedoLT LoadGenerator"
+            "Name" = "8:APPEDO_LT_LOAD_GENERATOR"
             "Arguments" = "8:"
             "Description" = "8:"
             "ShowCmd" = "3:1"
             "IconIndex" = "3:0"
             "Transitive" = "11:FALSE"
             "Target" = "8:_75CA0F3DAC374998BB5F833832106E21"
-            "Folder" = "8:_0C852089E0EE4704B328FB0B9C98728A"
+            "Folder" = "8:_6CB47045EF3943159B221720232FC254"
             "WorkingFolder" = "8:_DD960546DE5D4C51B33A55EC3C31EE14"
-            "Icon" = "8:"
+            "Icon" = "8:_9A513AA656C547B29833DF05DAE770A9"
             "Feature" = "8:"
             }
         }
@@ -1138,7 +1207,7 @@
             }
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_75CA0F3DAC374998BB5F833832106E21"
             {
-            "SourcePath" = "8:..\\AppedoLT.LoadGenerator\\obj\\Debug\\AppedoLTLoadGenerator.exe"
+            "SourcePath" = "8:..\\AppedoLT.LoadGenerator\\obj\\Debug\\APPEDO_LT_LOAD_GENERATOR.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_DD960546DE5D4C51B33A55EC3C31EE14"

@@ -40,7 +40,7 @@ namespace AppedoLTController
                 if (!Directory.Exists(".\\Upload")) Directory.CreateDirectory(".\\Upload");
                 if (!Directory.Exists(".\\Variables")) Directory.CreateDirectory(".\\Variables");
                 Process.Start(Path.GetDirectoryName(
-                  Assembly.GetExecutingAssembly().Location) + "\\AppedoLTController.exe");
+                  Assembly.GetExecutingAssembly().Location) + "\\APPEDO_LT_CONTROLLER.exe");
             }
             catch
             {

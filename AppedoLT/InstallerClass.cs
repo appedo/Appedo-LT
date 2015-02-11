@@ -43,7 +43,7 @@ namespace AppedoLT
                 if (!Directory.Exists(".\\Upload")) Directory.CreateDirectory(".\\Upload");
                 if (!Directory.Exists(".\\Variables")) Directory.CreateDirectory(".\\Variables");
                 Process.Start(Path.GetDirectoryName(
-                  Assembly.GetExecutingAssembly().Location) + "\\AppedoLT.exe");
+                  Assembly.GetExecutingAssembly().Location) + "\\APPEDO_LT.exe");
             }
             catch
             {

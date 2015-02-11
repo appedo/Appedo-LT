@@ -79,7 +79,7 @@
       <Name>AppedoLT.Core</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
+  <ItemGroup Condition=" '$(Platform)' == 'x86' " >
     <Content Include="Sqlite\64\System.Data.SQLite.DLL" />
     <Content Include="Sqlite\System.Data.SQLite.DLL" />
   </ItemGroup>

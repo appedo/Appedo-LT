@@ -73,11 +73,6 @@ D:\Rasith\AppedoLT\Floodgates\obj\x86\Debug\Floodgates.UCServer.resources
 D:\Rasith\AppedoLT\Floodgates\obj\x86\Debug\AppedoLT.csproj.GenerateResource.Cache
 D:\Rasith\AppedoLT\Floodgates\obj\x86\Debug\AppedoLT.exe
 D:\Rasith\AppedoLT\Floodgates\obj\x86\Debug\AppedoLT.pdb
-E:\AppedoLT\AppedoLT\bin\Debug\AppedoLT.exe.config
-E:\AppedoLT\AppedoLT\obj\x86\Debug\AppedoLT.exe
-E:\AppedoLT\AppedoLT\obj\x86\Debug\AppedoLT.pdb
-E:\AppedoLT\AppedoLT\bin\Debug\AppedoLT.exe
-E:\AppedoLT\AppedoLT\bin\Debug\AppedoLT.pdb
 E:\AppedoLT\AppedoLT\bin\Debug\AppedoLT.BusinessLogic.dll
 E:\AppedoLT\AppedoLT\bin\Debug\AppedoLT.Core.dll
 E:\AppedoLT\AppedoLT\bin\Debug\AppedoLT.DataAccessLayer.dll
@@ -164,3 +159,8 @@ E:\AppedoLT\AppedoLT\bin\Debug\logic.ico
 E:\AppedoLT\AppedoLT\bin\Debug\red.JPG
 E:\AppedoLT\AppedoLT\bin\Debug\report.xslt
 E:\AppedoLT\AppedoLT\bin\Debug\reportjmeter.xslt
+E:\AppedoLT\AppedoLT\bin\Debug\APPEDO_LT.exe.config
+E:\AppedoLT\AppedoLT\bin\Debug\APPEDO_LT.exe
+E:\AppedoLT\AppedoLT\bin\Debug\APPEDO_LT.pdb
+E:\AppedoLT\AppedoLT\obj\x86\Debug\APPEDO_LT.exe
+E:\AppedoLT\AppedoLT\obj\x86\Debug\APPEDO_LT.pdb

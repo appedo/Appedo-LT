@@ -28,7 +28,6 @@ D:\Rasith\AppedoLT\AppedoLT.LoadGenerator\obj\Debug\AppedoLT.LoadGenerator.Prope
 D:\Rasith\AppedoLT\AppedoLT.LoadGenerator\obj\Debug\AppedoLT.LoadGenerator.csproj.GenerateResource.Cache
 D:\Rasith\AppedoLT\AppedoLT.LoadGenerator\obj\Debug\AppedoLTLoadGenerator.exe
 D:\Rasith\AppedoLT\AppedoLT.LoadGenerator\obj\Debug\AppedoLTLoadGenerator.pdb
-E:\AppedoLT\AppedoLT.LoadGenerator\bin\Debug\AppedoLTLoadGenerator.exe
 E:\AppedoLT\AppedoLT.LoadGenerator\bin\Debug\AppedoLT.Core.dll
 E:\AppedoLT\AppedoLT.LoadGenerator\bin\Debug\AppedoLT.DataAccessLayer.dll
 E:\AppedoLT\AppedoLT.LoadGenerator\bin\Debug\AppedoLT.BusinessLogic.dll
@@ -39,13 +38,14 @@ E:\AppedoLT\AppedoLT.LoadGenerator\obj\Debug\AppedoLT.LoadGenerator.csprojResolv
 E:\AppedoLT\AppedoLT.LoadGenerator\obj\Debug\AppedoLTLoadGenerator.LoadGenerator.resources
 E:\AppedoLT\AppedoLT.LoadGenerator\obj\Debug\AppedoLT.LoadGenerator.Properties.Resources.resources
 E:\AppedoLT\AppedoLT.LoadGenerator\obj\Debug\AppedoLT.LoadGenerator.csproj.GenerateResource.Cache
-E:\AppedoLT\AppedoLT.LoadGenerator\obj\Debug\AppedoLTLoadGenerator.exe
-E:\AppedoLT\AppedoLT.LoadGenerator\obj\Debug\AppedoLTLoadGenerator.pdb
 E:\AppedoLT\AppedoLT.LoadGenerator\bin\Debug\commands.txt
 E:\AppedoLT\AppedoLT.LoadGenerator\bin\Debug\database.db
 E:\AppedoLT\AppedoLT.LoadGenerator\bin\Debug\execute.bat
 E:\AppedoLT\AppedoLT.LoadGenerator\bin\Debug\loadtestagent.xml
 E:\AppedoLT\AppedoLT.LoadGenerator\bin\Debug\sqlite3.exe
-E:\AppedoLT\AppedoLT.LoadGenerator\bin\Debug\AppedoLTLoadGenerator.exe.config
-E:\AppedoLT\AppedoLT.LoadGenerator\bin\Debug\AppedoLTLoadGenerator.pdb
 E:\AppedoLT\AppedoLT.LoadGenerator\bin\Debug\System.Data.SQLite.dll
+E:\AppedoLT\AppedoLT.LoadGenerator\bin\Debug\APPEDO_LT_LOAD_GENERATOR.exe.config
+E:\AppedoLT\AppedoLT.LoadGenerator\bin\Debug\APPEDO_LT_LOAD_GENERATOR.exe
+E:\AppedoLT\AppedoLT.LoadGenerator\bin\Debug\APPEDO_LT_LOAD_GENERATOR.pdb
+E:\AppedoLT\AppedoLT.LoadGenerator\obj\Debug\APPEDO_LT_LOAD_GENERATOR.exe
+E:\AppedoLT\AppedoLT.LoadGenerator\obj\Debug\APPEDO_LT_LOAD_GENERATOR.pdb
