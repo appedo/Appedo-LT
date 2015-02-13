@@ -34,6 +34,7 @@ namespace AppedoLT
                     if (respose.Operation.ToLower() == "ok" && respose.Header["success"] == "1")
                     {
                         Userid = respose.Header["userid"];
+                        Design.mnuiLogin.Text = "&Logout";
                     }
                     else
                     {

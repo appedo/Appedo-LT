@@ -19,6 +19,8 @@ namespace AppedoLT
         private RadTreeNode _treeNode = null;
         private static UCHttpRequest _instance;
         private Constants _constant = Constants.GetInstance();
+        string _scriptId = string.Empty;
+
         public static UCHttpRequest GetInstance()
         {
             if (_instance == null)
@@ -34,8 +36,9 @@ namespace AppedoLT
             ddlPostContentType.DataSource = _constant.HttpPostContentType;
         }
 
-        public UCHttpRequest GetControl(XmlNode xmlNode, RadTreeNode treeNode)
+        public UCHttpRequest GetControl(string scriptid,XmlNode xmlNode, RadTreeNode treeNode)
         {
+            _scriptId = scriptid;
             _treeNode = treeNode;
             this.SetRequest(xmlNode);
             this.Tag = xmlNode;
@@ -76,10 +79,10 @@ namespace AppedoLT
                 txtPath.Tag = _request.Attributes["Path"];
                 try
                 {
-                    txtRequest.Text = Utility.GetFileContent(Constants.GetInstance().ExecutingAssemblyLocation + "\\Request\\" + _request.Attributes["reqFilename"].Value);
-                    txtResponse.Text = _request.Attributes["ResponseHeader"].Value + Utility.GetFileContent(Constants.GetInstance().ExecutingAssemblyLocation + "\\Response\\" + _request.Attributes["resFilename"].Value);
+                    txtRequest.Text = Utility.GetFileContent(Constants.GetInstance().ExecutingAssemblyLocation + "\\ScriptResource\\" + _scriptId +"\\"+ _request.Attributes["reqFilename"].Value);
+                    txtResponse.Text = _request.Attributes["ResponseHeader"].Value + Utility.GetFileContent(Constants.GetInstance().ExecutingAssemblyLocation + "\\ScriptResource\\" + _scriptId + "\\" + _request.Attributes["resFilename"].Value);
                     webBrowserResponse.DocumentText = txtResponse.Text;
-                    pictureBox1.Image = Image.FromFile(Constants.GetInstance().ExecutingAssemblyLocation + "\\Response\\" + _request.Attributes["resFilename"].Value);
+                    pictureBox1.Image = Image.FromFile(Constants.GetInstance().ExecutingAssemblyLocation + "\\ScriptResource\\" + _scriptId + "\\" + _request.Attributes["resFilename"].Value);
                     tabiResponseImage.Visibility =Telerik.WinControls.ElementVisibility.Visible;
                     tabWebBrowser.Visibility = Telerik.WinControls.ElementVisibility.Collapsed;
                     if (radTabStrip2.SelectedTab == tabWebBrowser || radTabStrip2.SelectedTab == tabiResponseImage)

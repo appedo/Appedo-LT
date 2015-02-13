@@ -7,14 +7,13 @@ using AppedoLT.DataAccessLayer;
 using System.Net;
 using System.Text;
 using System.IO;
-
 using System.Collections.Generic;
 
 namespace AppedoLT
 {
     public partial class ucScript : UserControl
     {
-        public static string UserId = string.Empty;
+       
 
         RadTreeNode _treeNode = null;
         private static ucScript _instance;
@@ -143,39 +142,39 @@ namespace AppedoLT
 
             try
             {
-                if (ucScript.UserId == string.Empty)
+                if (Constants.GetInstance().UserId == string.Empty)
                 {
                     frmLogin login = new frmLogin();
                     if (login.ShowDialog() == DialogResult.OK && login.Userid != string.Empty)
                     {
-                        ucScript.UserId = login.Userid;
+                        Constants.GetInstance().UserId = login.Userid;
                     }
                     else
                     {
                         return;
                     }
                 }
-                if (ucScript.UserId != string.Empty)
+                if (Constants.GetInstance().UserId != string.Empty)
                 {
                     ValidateVariableVersion();
                     TrasportData respose = null;
                     Dictionary<string, string> header = new Dictionary<string, string>();
 
-                    header.Add("userid", ucScript.UserId);
+                    header.Add("userid", Constants.GetInstance().UserId);
                     Trasport server = new Trasport(Constants.GetInstance().UploadIPAddress, Constants.GetInstance().UploadPort);
                     server.Send(new TrasportData("VARIABLES", GetVariableXmlWithContent(), header));
                     respose = server.Receive();
                     server.Close();
                     header.Clear();
 
-                    header.Add("userid", ucScript.UserId);
-                     server = new Trasport(Constants.GetInstance().UploadIPAddress, Constants.GetInstance().UploadPort);
-                    string vuscriptXML = ((XmlNode)_treeNode.Tag).OuterXml;
-                    server.Send(new TrasportData("VUSCRIPT", vuscriptXML, header));
+                    server = new Trasport(Constants.GetInstance().UploadIPAddress, Constants.GetInstance().UploadPort);
+                    string id = ((XmlNode)_treeNode.Tag).Attributes["id"].Value;
+                    string name = ((XmlNode)_treeNode.Tag).Attributes["name"].Value;
+                    header.Add("userid", Constants.GetInstance().UserId);
+                    header.Add("scriptname", name);
+                    server.Send(new TrasportData("VUSCRIPT", header, MakeScriptZip(id, name)));
                     server.Receive();
                     server.Close();
-
-
                     MessageBox.Show("Uploaded successfully.");
                 }
             }
@@ -185,6 +184,20 @@ namespace AppedoLT
             }
         }
 
+        private string MakeScriptZip(string scriptid,string scriptName)
+        {
+            string _scriptResourcePath = Constants.GetInstance().ExecutingAssemblyLocation + "\\ScriptResource\\" + scriptid;
+            string filePath = _scriptResourcePath + "\\" + "VUScript.xml";
+            string zipPath=Constants.GetInstance().ExecutingAssemblyLocation + "\\ScriptResource\\" + scriptName + ".rar";
+            if (File.Exists(filePath)) File.Delete(filePath);
+            string vuscriptXML = ((XmlNode)_treeNode.Tag).OuterXml;
+            using (FileStream stream = new FileStream(filePath, FileMode.OpenOrCreate, FileAccess.Write))
+            {
+                stream.Write(ASCIIEncoding.ASCII.GetBytes(vuscriptXML), 0, vuscriptXML.Length);
+            }
+            Constants.GetInstance().Zip(_scriptResourcePath, zipPath);
+            return zipPath;
+        }
         private string GetVariableXmlWithContent()
         {
             XmlDocument doc = new XmlDocument();

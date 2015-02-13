@@ -54,3 +54,4 @@ E:\AppedoLT\AppedoLT.Controller\bin\Debug\APPEDO_LT_CONTROLLER.exe
 E:\AppedoLT\AppedoLT.Controller\bin\Debug\APPEDO_LT_CONTROLLER.pdb
 E:\AppedoLT\AppedoLT.Controller\obj\Debug\APPEDO_LT_CONTROLLER.exe
 E:\AppedoLT\AppedoLT.Controller\obj\Debug\APPEDO_LT_CONTROLLER.pdb
+E:\AppedoLT\AppedoLT.Controller\bin\Debug\Ionic.Zip.dll

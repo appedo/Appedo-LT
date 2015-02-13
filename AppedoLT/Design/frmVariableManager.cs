@@ -503,34 +503,34 @@ namespace AppedoLT
         {
             try
             {
-                 if (ucScript.UserId == string.Empty)
-                {
-                    frmLogin login = new frmLogin();
-                    if (login.ShowDialog() == DialogResult.OK && login.Userid!=string.Empty)
-                    {
-                        ucScript.UserId = login.Userid;
-                    }
-                    else
-                    {
-                        return;
-                    }
-                }
-                 if (ucScript.UserId != string.Empty)
-                 {
-                     ValidateVariableVersion();
+                // if (ucScript.UserId == string.Empty)
+                //{
+                //    frmLogin login = new frmLogin();
+                //    if (login.ShowDialog() == DialogResult.OK && login.Userid!=string.Empty)
+                //    {
+                //        ucScript.UserId = login.Userid;
+                //    }
+                //    else
+                //    {
+                //        return;
+                //    }
+                //}
+                // if (ucScript.UserId != string.Empty)
+                // {
+                //     ValidateVariableVersion();
 
-                     TrasportData respose = null;
-                     Dictionary<string, string> header = new Dictionary<string, string>();
+                //     TrasportData respose = null;
+                //     Dictionary<string, string> header = new Dictionary<string, string>();
 
-                     header.Add("userid", ucScript.UserId);
-                     Trasport server = new Trasport(Constants.GetInstance().UploadIPAddress, Constants.GetInstance().UploadPort);
-                     server.Send(new TrasportData("VARIABLES", GetVariableXmlWithContent(), header));
-                     respose = server.Receive();
-                     server.Close();
-                     header.Clear();
+                //     header.Add("userid", ucScript.UserId);
+                //     Trasport server = new Trasport(Constants.GetInstance().UploadIPAddress, Constants.GetInstance().UploadPort);
+                //     server.Send(new TrasportData("VARIABLES", GetVariableXmlWithContent(), header));
+                //     respose = server.Receive();
+                //     server.Close();
+                //     header.Clear();
 
-                     MessageBox.Show("Uploaded succesfully.");
-                 }
+                //     MessageBox.Show("Uploaded succesfully.");
+                // }
             }
             catch(Exception ex)
             {

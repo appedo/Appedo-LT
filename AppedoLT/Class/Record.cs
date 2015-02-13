@@ -47,12 +47,17 @@ namespace AppedoLT
         bool isStop = false;
         int processingRequestCount = 0;
         Thread StoreData = null;
-
+        string _scriptResourcePath = string.Empty;
+        string _scriptid = string.Empty;
         public Record(Label lblResult, RadTextBox txtContainer, RadComboBox ddlParentContainer, XmlNode vuScriptXml)
         {
             try
             {
                 _uvScript = vuScriptXml;
+                _scriptid = vuScriptXml.Attributes["id"].Value;
+                _scriptResourcePath = Constants.GetInstance().ExecutingAssemblyLocation + "\\ScriptResource\\" + vuScriptXml.Attributes["id"].Value;
+                if (Directory.Exists(_scriptResourcePath) == true) Directory.Delete(_scriptResourcePath, true);
+                Directory.CreateDirectory(_scriptResourcePath);
                 isStop = false;
                 _txtContainer = txtContainer;
                 _lblResult = lblResult;
@@ -224,7 +229,7 @@ namespace AppedoLT
             {
                 processingRequestCount++;
                 TcpClient client = (TcpClient)clientObj;
-                RequestProcessor pro = new RequestProcessor(client, this.connectionManager, RepositoryXml.GetInstance().RequestId, _txtContainer.Text, _lblResult);
+                RequestProcessor pro = new RequestProcessor(client, this.connectionManager, RepositoryXml.GetInstance().GetId(_scriptid), _txtContainer.Text, _lblResult);
                 pro.Process();
                 if (((IRequestProcessor)pro) != null)
                 {
@@ -266,8 +271,8 @@ namespace AppedoLT
                         data = RecordData.Dequeue();
                         string requestContentType = string.Empty;
                         string responseContentType = string.Empty;
-                        string reqFilename = "req_" + data.Requestid + ".bin";
-                        string resFilename = "res_" + data.Requestid;
+                        string reqFilename = data.Requestid + "_req.bin";
+                        string resFilename = data.Requestid+"_res";
                         string contentEncoding = string.Empty;
                         Regex expressForhead = new Regex("([A-Z]*) (.*) ([A-Z]*)/(.*)");
                         Regex expressForHeaders = new Regex("(.*?): (.*?)\r\n");
@@ -547,7 +552,7 @@ namespace AppedoLT
 
                                 #region Write response to file
 
-                                using (FileStream stream = new FileStream(Constants.GetInstance().ExecutingAssemblyLocation + "//Response//" + resFilename, FileMode.OpenOrCreate, FileAccess.Write))
+                                using (FileStream stream = new FileStream(_scriptResourcePath +"\\"+ resFilename, FileMode.OpenOrCreate, FileAccess.Write))
                                 {
                                     if (data.ResponseBody.Length > 0)
                                     {
@@ -641,7 +646,7 @@ namespace AppedoLT
                                 #region NewContainer
                                 if (_selectedFirstLevelContainer.ChildNodes.Count == 0 || _selectedFirstLevelContainer.LastChild.Attributes["name"].Value != data.ContainerName)
                                 {
-                                    XmlNode container = _repositoryXml.CreateContainer(data.ContainerName);
+                                    XmlNode container = _repositoryXml.CreateContainer(_scriptid,data.ContainerName);
                                     _selectedFirstLevelContainer.AppendChild(container);
                                     _lastInsertedContainer = container;
                                 }
@@ -680,7 +685,7 @@ namespace AppedoLT
                                                 _pageDelay.Reset();
                                                 _pageDelay.Start();
                                             }
-                                            page.Attributes.Append(_repositoryXml.GetAttribute("id", _repositoryXml.PageId));
+                                            page.Attributes.Append(_repositoryXml.GetAttribute("id", _repositoryXml.GetId(_scriptid)));
                                             page.Attributes.Append(_repositoryXml.GetAttribute("name", data.url.LocalPath));
                                             page.Attributes.Append(_repositoryXml.GetAttribute("starttime", DateTime.Now.Ticks.ToString()));
                                             _lastInsertedContainer.AppendChild(page);
@@ -696,7 +701,7 @@ namespace AppedoLT
                                 #endregion
 
                                 #region Write request to file
-                                using (FileStream stream = new FileStream(Constants.GetInstance().ExecutingAssemblyLocation + "//Request//" + reqFilename, FileMode.OpenOrCreate, FileAccess.Write))
+                                using (FileStream stream = new FileStream(_scriptResourcePath +"\\"+ reqFilename, FileMode.OpenOrCreate, FileAccess.Write))
                                 {
                                     stream.Write(Encoding.Default.GetBytes(data.RequestHeader), 0, data.RequestHeader.Length);
 
@@ -740,16 +745,16 @@ namespace AppedoLT
         {
             try
             {
-                XmlNode container = _repositoryXml.CreateContainer("Initialize");
+                XmlNode container = _repositoryXml.CreateContainer(_scriptid,"Initialize");
                 _uvScript.AppendChild(container);
                 _ddlParentContainer.Items[0].Tag = container;
 
-                container = _repositoryXml.CreateContainer("Actions");
+                container = _repositoryXml.CreateContainer(_scriptid,"Actions");
                 _uvScript.AppendChild(container);
                 _ddlParentContainer.Items[1].Tag = container;
                 _selectedFirstLevelContainer = container;
 
-                container = _repositoryXml.CreateContainer("End");
+                container = _repositoryXml.CreateContainer(_scriptid,"End");
                 _uvScript.AppendChild(container);
                 _ddlParentContainer.Items[2].Tag = container;
             }

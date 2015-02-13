@@ -49,3 +49,4 @@ E:\AppedoLT\AppedoLT.LoadGenerator\bin\Debug\APPEDO_LT_LOAD_GENERATOR.exe
 E:\AppedoLT\AppedoLT.LoadGenerator\bin\Debug\APPEDO_LT_LOAD_GENERATOR.pdb
 E:\AppedoLT\AppedoLT.LoadGenerator\obj\Debug\APPEDO_LT_LOAD_GENERATOR.exe
 E:\AppedoLT\AppedoLT.LoadGenerator\obj\Debug\APPEDO_LT_LOAD_GENERATOR.pdb
+E:\AppedoLT\AppedoLT.LoadGenerator\bin\Debug\Ionic.Zip.dll

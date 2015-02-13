@@ -8,13 +8,8 @@ namespace AppedoLT
 {
     class RepositoryXml
     {
-
+        private object _logObj = new object();
         private int _scriptId;
-        private int _containerId;
-        private int _requestId;
-        private int _loopId;
-        private int _logId;
-        private int _pageId;
         public int _scenarioId;
 
         public string ScriptId
@@ -23,79 +18,32 @@ namespace AppedoLT
             {
                 lock (new object())
                 {
+                   
                     return (++_scriptId).ToString();
                 }
             }
         }
-        public string ContainerId
-        {
-            get
-            {
-                lock (new object())
-                {
-                    return (++_containerId).ToString();
-                }
-            }
-        }
-        public string RequestId
-        {
-            get
-            {
-                lock (new object())
-                {
-                    return (++_requestId).ToString();
-                }
-            }
-        }
-        public string LoopId
-        {
-            get
-            {
-                lock (new object())
-                {
-                    return (++_loopId).ToString();
-                }
-            }
-        }
-        public string LogId
-        {
-            get
-            {
-                lock (new object())
-                {
-                    return (++_logId).ToString();
-                }
-            }
-        }
-        public string PageId
-        {
-            get
-            {
-                lock (new object())
-                {
-                    return (++_pageId).ToString();
-                }
-            }
-        }
+
         public string ScenarioId
         {
             get
             {
                 lock (new object())
                 {
+
                     return (++_scenarioId).ToString();
                 }
             }
         }
 
-        public XmlDocument doc=new XmlDocument();
-        public  XmlAttribute GetAttribute(string name, string value)
+        public XmlDocument doc = new XmlDocument();
+        public XmlAttribute GetAttribute(string name, string value)
         {
             XmlAttribute att = doc.CreateAttribute(name);
             att.Value = value;
             return att;
         }
-       
+
         private static RepositoryXml instance;
         public static RepositoryXml GetInstance()
         {
@@ -120,13 +68,7 @@ namespace AppedoLT
                         xml.Append("<root>");
                         xml.Append("<uniquenumbers>");
                         xml.Append("<script lastcreatedid=\"0\" />");
-                        xml.Append("<container lastcreatedid=\"0\" />");
-                        xml.Append("<request lastcreatedid=\"0\" />");
-                        xml.Append("<delay lastcreatedid=\"0\" />");
-                        xml.Append("<loop lastcreatedid=\"0\" />");
-                        xml.Append("<page lastcreatedid=\"0\" />");
                         xml.Append("<scenario lastcreatedid=\"0\" />");
-                        xml.Append("<log lastcreatedid=\"0\" />");
                         xml.Append("</uniquenumbers>");
                         xml.Append("<vuscripts/>");
                         xml.Append("<scenarios/>");
@@ -139,12 +81,7 @@ namespace AppedoLT
                 }
                 doc.Load(file);
                 _scriptId = Convert.ToInt32(doc.SelectSingleNode("root/uniquenumbers/script").Attributes["lastcreatedid"].Value);
-                _containerId = Convert.ToInt32(doc.SelectSingleNode("root/uniquenumbers/container").Attributes["lastcreatedid"].Value);
-                _requestId = Convert.ToInt32(doc.SelectSingleNode("root/uniquenumbers/request").Attributes["lastcreatedid"].Value);
-                _loopId = Convert.ToInt32(doc.SelectSingleNode("root/uniquenumbers/loop").Attributes["lastcreatedid"].Value);
-                _pageId = Convert.ToInt32(doc.SelectSingleNode("root/uniquenumbers/page").Attributes["lastcreatedid"].Value);
                 _scenarioId = Convert.ToInt32(doc.SelectSingleNode("root/uniquenumbers/scenario").Attributes["lastcreatedid"].Value);
-                _logId = Convert.ToInt32(doc.SelectSingleNode("root/uniquenumbers/log").Attributes["lastcreatedid"].Value);
             }
             catch (Exception ex)
             {
@@ -154,22 +91,18 @@ namespace AppedoLT
         public void Save()
         {
             doc.SelectSingleNode("root/uniquenumbers/script").Attributes["lastcreatedid"].Value = _scriptId.ToString();
-            doc.SelectSingleNode("root/uniquenumbers/container").Attributes["lastcreatedid"].Value = _containerId.ToString();
-            doc.SelectSingleNode("root/uniquenumbers/request").Attributes["lastcreatedid"].Value = _requestId.ToString();
-            doc.SelectSingleNode("root/uniquenumbers/loop").Attributes["lastcreatedid"].Value = _loopId.ToString();
-            doc.SelectSingleNode("root/uniquenumbers/page").Attributes["lastcreatedid"].Value = _pageId.ToString();
+
             doc.SelectSingleNode("root/uniquenumbers/scenario").Attributes["lastcreatedid"].Value = _scenarioId.ToString();
-            doc.SelectSingleNode("root/uniquenumbers/log").Attributes["lastcreatedid"].Value = _logId.ToString();
 
             doc.Save(Constants.GetInstance().ExecutingAssemblyLocation + "\\VUScripts.xml");
         }
-        
-        public XmlNode CreateContainer(string name)
+
+        public XmlNode CreateContainer(string scriptid,string name)
         {
             #region NewContainer
             XmlNode container = doc.CreateElement("container");
             container.Attributes.Append(GetAttribute("name", name));
-            container.Attributes.Append(GetAttribute("id", ContainerId));
+            container.Attributes.Append(GetAttribute("id", GetId(scriptid)));
             return container;
             #endregion
         }
@@ -181,11 +114,11 @@ namespace AppedoLT
             return delay;
             #endregion
         }
-        public XmlNode CreateLog()
+        public XmlNode CreateLog(string scriptid)
         {
             #region NewContainer
             XmlNode log = doc.CreateElement("log");
-            log.Attributes.Append(GetAttribute("id", LogId));
+            log.Attributes.Append(GetAttribute("id", GetId(scriptid)));
             log.Attributes.Append(GetAttribute("name", string.Empty));
             log.Attributes.Append(GetAttribute("message", string.Empty));
             return log;
@@ -200,7 +133,7 @@ namespace AppedoLT
             XmlNode then = doc.CreateElement("then");
             then.Attributes.Append(GetAttribute("id", DateTime.Now.Ticks.ToString()));
 
-            XmlNode els =doc.CreateElement("else");
+            XmlNode els = doc.CreateElement("else");
             then.Attributes.Append(GetAttribute("id", DateTime.Now.Ticks.ToString()));
 
             ifthenelse.AppendChild(then);
@@ -208,19 +141,19 @@ namespace AppedoLT
 
             return ifthenelse;
         }
-        public XmlNode CreateLoop(string name)
+        public XmlNode CreateLoop(string scriptid, string name)
         {
             XmlNode loop = doc.CreateElement("loop");
-            loop.Attributes.Append(GetAttribute("id", LoopId));
+            loop.Attributes.Append(GetAttribute("id", GetId(scriptid)));
             loop.Attributes.Append(GetAttribute("loopcount", "0"));
             loop.Attributes.Append(GetAttribute("name", name));
 
             return loop;
         }
-        public XmlNode CreateWhileLoop()
+        public XmlNode CreateWhileLoop(string scriptid)
         {
             XmlNode whileLoop = doc.CreateElement("whileloop");
-            whileLoop.Attributes.Append(GetAttribute("id", LoopId));
+            whileLoop.Attributes.Append(GetAttribute("id", GetId(scriptid)));
             whileLoop.Attributes.Append(GetAttribute("condition", string.Empty));
             return whileLoop;
         }
@@ -266,18 +199,37 @@ namespace AppedoLT
             if (doc.SelectNodes("//loadgens").Count == 0)
             {
                 doc.SelectSingleNode("//root").AppendChild(doc.CreateElement("loadgens"));
-               
+
             }
-            XmlNode loadGen=doc.SelectSingleNode("//root//loadgens//loadgen[@ipaddress='"+ipAddress+"']");
-            if(loadGen==null)
+            XmlNode loadGen = doc.SelectSingleNode("//root//loadgens//loadgen[@ipaddress='" + ipAddress + "']");
+            if (loadGen == null)
             {
                 loadGen = doc.CreateElement("loadgen");
-                loadGen.Attributes.Append(GetAttribute("ipaddress",ipAddress));
+                loadGen.Attributes.Append(GetAttribute("ipaddress", ipAddress));
                 loadGen.Attributes.Append(GetAttribute("hostname", hostname));
                 loadGen.Attributes.Append(GetAttribute("isdefaultzone", isDefaultZone.ToString()));
                 loadGen.Attributes.Append(GetAttribute("ischecked", isChecked.ToString()));
                 doc.SelectSingleNode("//root//loadgens").AppendChild(loadGen);
             }
         }
+        public string GetId(string scriptid)
+        {
+            lock (_logObj)
+            {
+                XmlNode node = RepositoryXml.GetInstance().doc.SelectSingleNode("//vuscripts/vuscript[@id='" + scriptid + "']");
+                if (node != null)
+                {
+                    int id = int.Parse(node.Attributes["autoid"].Value);
+                    id++;
+                    node.Attributes["autoid"].Value = id.ToString();
+                    return id.ToString();
+                }
+                else
+                {
+                    return ((int)DateTime.Now.Ticks / 100000).ToString();
+                }
+            }
+        }
+
     }
 }
