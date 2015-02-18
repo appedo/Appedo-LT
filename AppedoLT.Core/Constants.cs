@@ -927,9 +927,11 @@ namespace AppedoLT.Core
         }
         public void UnZip(string zipFilePath, string destinationPath)
         {
-            ZipFile zip = new ZipFile(zipFilePath);
-            
-            zip.ExtractAll(destinationPath);
+            using (ZipFile zip = new ZipFile(zipFilePath))
+            {
+
+                zip.ExtractAll(destinationPath);
+            }
         }
     }
 

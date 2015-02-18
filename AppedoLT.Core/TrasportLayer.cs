@@ -12,6 +12,7 @@ namespace AppedoLT.Core
 {
     public class Trasport
     {
+        private int ReadBufferSize = 8192;
         private string _ipaddress = string.Empty;
         public string IPAddressStr { get { return _ipaddress; } set { _ipaddress = value; } }
         public TcpClient tcpClient;
@@ -86,6 +87,49 @@ namespace AppedoLT.Core
             }
              objTrasportData.DataStream.Write(bytes,0,contentLength);
              if (objTrasportData.DataStream.Length > 0) objTrasportData.DataStream.Seek(0, SeekOrigin.Begin);
+            return objTrasportData;
+        }
+        public TrasportData Receive(string filePath)
+        {
+            Stream stream = tcpClient.GetStream();
+            TrasportData objTrasportData = new TrasportData();
+
+            StringBuilder header = new StringBuilder();
+            StringBuilder response = new StringBuilder();
+            int readCount = 0;
+            int contentLength = 0;
+
+            header.Append(ReadHeader(stream));
+            objTrasportData.Operation = new Regex("(.*): ([0-9]*)").Match(header.ToString()).Groups[1].Value;
+
+            foreach (Match match in (new Regex("(.*)= (.*)\r\n").Matches(header.ToString())))
+            {
+                objTrasportData.Header.Add(match.Groups[1].Value, match.Groups[2].Value);
+            }
+            contentLength = Convert.ToInt32(new Regex("(.*): ([0-9]*)").Match(header.ToString()).Groups[2].Value);
+
+            byte[] bytes = new byte[ReadBufferSize];
+
+            using (FileStream file = new FileStream(filePath, FileMode.OpenOrCreate, FileAccess.ReadWrite))
+            {
+                while (contentLength>0)
+                {
+                    readCount = 0;
+                    if (contentLength >= ReadBufferSize)
+                    {
+                        readCount += stream.Read(bytes, 0, ReadBufferSize);
+                        file.Write(bytes, 0, readCount);
+                        contentLength = contentLength - readCount;
+                    }
+                    else
+                    {
+                        readCount += stream.Read(bytes, 0, contentLength);
+                        file.Write(bytes, 0, readCount);
+                        contentLength = contentLength - readCount;
+                    }
+                }
+            }
+            objTrasportData.FilePath = filePath;         
             return objTrasportData;
         }
         public  void Send( TrasportData objTrasportData)

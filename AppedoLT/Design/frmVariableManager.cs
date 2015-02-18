@@ -503,34 +503,35 @@ namespace AppedoLT
         {
             try
             {
-                // if (ucScript.UserId == string.Empty)
-                //{
-                //    frmLogin login = new frmLogin();
-                //    if (login.ShowDialog() == DialogResult.OK && login.Userid!=string.Empty)
-                //    {
-                //        ucScript.UserId = login.Userid;
-                //    }
-                //    else
-                //    {
-                //        return;
-                //    }
-                //}
-                // if (ucScript.UserId != string.Empty)
-                // {
-                //     ValidateVariableVersion();
 
-                //     TrasportData respose = null;
-                //     Dictionary<string, string> header = new Dictionary<string, string>();
+                if (Constants.GetInstance().UserId == string.Empty)
+                {
+                    frmLogin login = new frmLogin();
+                    if (login.ShowDialog() == DialogResult.OK && login.Userid != string.Empty)
+                    {
+                        Constants.GetInstance().UserId = login.Userid;
+                    }
+                    else
+                    {
+                        return;
+                    }
+                }
+                if (Constants.GetInstance().UserId != string.Empty)
+                {
+                    ValidateVariableVersion();
 
-                //     header.Add("userid", ucScript.UserId);
-                //     Trasport server = new Trasport(Constants.GetInstance().UploadIPAddress, Constants.GetInstance().UploadPort);
-                //     server.Send(new TrasportData("VARIABLES", GetVariableXmlWithContent(), header));
-                //     respose = server.Receive();
-                //     server.Close();
-                //     header.Clear();
+                    TrasportData respose = null;
+                    Dictionary<string, string> header = new Dictionary<string, string>();
 
-                //     MessageBox.Show("Uploaded succesfully.");
-                // }
+                    header.Add("userid", Constants.GetInstance().UserId);
+                    Trasport server = new Trasport(Constants.GetInstance().UploadIPAddress, Constants.GetInstance().UploadPort);
+                    server.Send(new TrasportData("VARIABLES", GetVariableXmlWithContent(), header));
+                    respose = server.Receive();
+                    server.Close();
+                    header.Clear();
+
+                    MessageBox.Show("Uploaded succesfully.");
+                }
             }
             catch(Exception ex)
             {
@@ -595,6 +596,47 @@ namespace AppedoLT
                 }
             }
             return doc.OuterXml;
+        }
+
+        private void btnDownload_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+                if (Constants.GetInstance().UserId == string.Empty)
+                {
+                    frmLogin login = new frmLogin();
+                    if (login.ShowDialog() == DialogResult.OK && login.Userid != string.Empty)
+                    {
+                        Constants.GetInstance().UserId = login.Userid;
+                    }
+                    else
+                    {
+                        return;
+                    }
+                }
+                if (Constants.GetInstance().UserId != string.Empty)
+                {
+                   // ValidateVariableVersion();
+
+                    TrasportData respose = null;
+                    Dictionary<string, string> header = new Dictionary<string, string>();
+
+                    header.Add("userid", Constants.GetInstance().UserId);
+                    Trasport server = new Trasport(Constants.GetInstance().UploadIPAddress, Constants.GetInstance().UploadPort);
+                    server.Send(new TrasportData("GETVARIABLES", string.Empty, header));
+                    respose = server.Receive();
+                    server.Close();
+                    header.Clear();
+
+                    MessageBox.Show("Downloaded succesfully.");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Unable to upload");
+                ExceptionHandler.WritetoEventLog(ex.StackTrace + Environment.NewLine + ex.Message);
+            }
         }
     }
 }

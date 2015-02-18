@@ -60,9 +60,10 @@
             this.txtPassword.Location = new System.Drawing.Point(87, 41);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.PasswordChar = '*';
-            this.txtPassword.Size = new System.Drawing.Size(287, 21);
+            this.txtPassword.Size = new System.Drawing.Size(287, 19);
             this.txtPassword.TabIndex = 12;
             this.txtPassword.TabStop = false;
+            this.txtPassword.Text = "appedo";
             this.txtPassword.ThemeName = "Office2010";
             // 
             // radLabel5
@@ -79,9 +80,10 @@
             this.txtEmailid.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtEmailid.Location = new System.Drawing.Point(87, 12);
             this.txtEmailid.Name = "txtEmailid";
-            this.txtEmailid.Size = new System.Drawing.Size(287, 21);
+            this.txtEmailid.Size = new System.Drawing.Size(287, 19);
             this.txtEmailid.TabIndex = 11;
             this.txtEmailid.TabStop = false;
+            this.txtEmailid.Text = "navin_b@appedo.com";
             this.txtEmailid.ThemeName = "Office2010";
             // 
             // btnCancel

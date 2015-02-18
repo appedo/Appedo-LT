@@ -134,7 +134,7 @@
     <Reference Include="Telerik.WinControls.Themes.Telerik, Version=2010.1.10.504, Culture=neutral, PublicKeyToken=5bb2a467cbec794e" />
     <Reference Include="Telerik.WinControls.Themes.Vista, Version=2010.1.10.504, Culture=neutral, PublicKeyToken=5bb2a467cbec794e" />
     <Reference Include="Telerik.WinControls.Themes.Windows7, Version=2010.1.10.504, Culture=neutral, PublicKeyToken=5bb2a467cbec794e" />
-    <Reference Include="Telerik.WinControls.UI, Version=2010.1.10.504, Culture=neutral, PublicKeyToken=5bb2a467cbec794e" />
+    <Reference Include="Telerik.WinControls.UI, Version=2010.1.10.504, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL" />
     <Reference Include="TelerikCommon, Version=2010.1.10.504, Culture=neutral, PublicKeyToken=5bb2a467cbec794e" />
   </ItemGroup>
   <ItemGroup>
@@ -222,6 +222,12 @@
     </Compile>
     <Compile Include="frmMessageBox.Designer.cs">
       <DependentUpon>frmMessageBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmScriptNameList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmScriptNameList.Designer.cs">
+      <DependentUpon>frmScriptNameList.cs</DependentUpon>
     </Compile>
     <Compile Include="frmUserCount.cs">
       <SubType>Form</SubType>
@@ -426,6 +432,9 @@
     <EmbeddedResource Include="frmMessageBox.resx">
       <DependentUpon>frmMessageBox.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmScriptNameList.resx">
+      <DependentUpon>frmScriptNameList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmUserCount.resx">
       <DependentUpon>frmUserCount.cs</DependentUpon>
@@ -893,15 +902,8 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PreBuildEvent>if not exist "$(TargetDir)Data" mkdir "$(TargetDir)Data"
-if not exist "$(TargetDir)DataMonitor" mkdir "$(TargetDir)DataMonitor"
-if not exist "$(TargetDir)Exported Charts" mkdir "$(TargetDir)Exported Charts"
-if not exist "$(TargetDir)Exported Reports" mkdir "$(TargetDir)Exported Reports"
-if not exist "$(TargetDir)MonitorData" mkdir "$(TargetDir)MonitorData"
-if not exist "$(TargetDir)Request" mkdir "$(TargetDir)Request"
-if not exist "$(TargetDir)Response" mkdir "$(TargetDir)Response"
-if not exist "$(TargetDir)Upload" mkdir "$(TargetDir)Upload"
-if not exist "$(TargetDir)Variables" mkdir "$(TargetDir)Variables"</PreBuildEvent>
+    <PreBuildEvent>
+    </PreBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

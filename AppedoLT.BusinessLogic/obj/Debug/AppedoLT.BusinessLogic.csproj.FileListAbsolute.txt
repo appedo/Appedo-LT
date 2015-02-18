@@ -26,10 +26,10 @@ E:\AppedoLT\AppedoLT.BusinessLogic\bin\Debug\AppedoLT.BusinessLogic.dll
 E:\AppedoLT\AppedoLT.BusinessLogic\bin\Debug\AppedoLT.BusinessLogic.pdb
 E:\AppedoLT\AppedoLT.BusinessLogic\bin\Debug\AppedoLT.Core.dll
 E:\AppedoLT\AppedoLT.BusinessLogic\bin\Debug\AppedoLT.DataAccessLayer.dll
+E:\AppedoLT\AppedoLT.BusinessLogic\bin\Debug\Ionic.Zip.dll
 E:\AppedoLT\AppedoLT.BusinessLogic\bin\Debug\System.Data.SQLite.dll
 E:\AppedoLT\AppedoLT.BusinessLogic\bin\Debug\AppedoLT.Core.pdb
 E:\AppedoLT\AppedoLT.BusinessLogic\bin\Debug\AppedoLT.DataAccessLayer.pdb
 E:\AppedoLT\AppedoLT.BusinessLogic\obj\Debug\AppedoLT.BusinessLogic.csprojResolveAssemblyReference.cache
 E:\AppedoLT\AppedoLT.BusinessLogic\obj\Debug\AppedoLT.BusinessLogic.dll
 E:\AppedoLT\AppedoLT.BusinessLogic\obj\Debug\AppedoLT.BusinessLogic.pdb
-E:\AppedoLT\AppedoLT.BusinessLogic\bin\Debug\Ionic.Zip.dll

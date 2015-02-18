@@ -844,3 +844,361 @@ A blocking operation was interrupted by a call to WSACancelBlockingCall
    at System.Net.Sockets.TcpListener.AcceptTcpClient()
    at AppedoLT.Record.DoWork(Object sender, DoWorkEventArgs e) in e:\AppedoLT\AppedoLT\Class\Record.cs:line 213
 ---------------------------------------
+10:57:01 16 February 2015 
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.FileSystemEnumerableIterator`1.CommonInit()
+   at System.IO.FileSystemEnumerableIterator`1..ctor(String path, String originalUserPath, String searchPattern, SearchOption searchOption, SearchResultHandler`1 resultHandler, Boolean checkHost)
+   at System.IO.DirectoryInfo.InternalGetDirectories(String searchPattern, SearchOption searchOption)
+   at AppedoLT.DataAccessLayer.Result.GetReportNameList(String ReportName) in e:\AppedoLT\AppedoLT.DataAccessLayer\Result.cs:line 42
+   at AppedoLT.userControlReports.LoadReportName(String repoerName) in e:\AppedoLT\AppedoLT\Report\userControlReports.cs:line 66Could not find a part of the path 'E:\AppedoLT\AppedoLT\bin\Debug\Data'.
+---------------------------------------
+15:20:17 16 February 2015 
+Could not find file 'E:\AppedoLT\AppedoLT\bin\Debug\Response\4_res.html'.
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   at System.IO.StreamReader..ctor(String path, Encoding encoding, Boolean detectEncodingFromByteOrderMarks, Int32 bufferSize, Boolean checkHost)
+   at System.IO.File.InternalReadAllText(String path, Encoding encoding, Boolean checkHost)
+   at AppedoLT.Record.StoreResult() in e:\AppedoLT\AppedoLT\Class\Record.cs:line 662
+---------------------------------------
+15:20:47 16 February 2015 
+Could not find file 'E:\AppedoLT\AppedoLT\bin\Debug\Response\33_res.html'.
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   at System.IO.StreamReader..ctor(String path, Encoding encoding, Boolean detectEncodingFromByteOrderMarks, Int32 bufferSize, Boolean checkHost)
+   at System.IO.File.InternalReadAllText(String path, Encoding encoding, Boolean checkHost)
+   at AppedoLT.Record.StoreResult() in e:\AppedoLT\AppedoLT\Class\Record.cs:line 662
+---------------------------------------
+15:20:47 16 February 2015 
+Could not find file 'E:\AppedoLT\AppedoLT\bin\Debug\Response\37_res.html'.
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   at System.IO.StreamReader..ctor(String path, Encoding encoding, Boolean detectEncodingFromByteOrderMarks, Int32 bufferSize, Boolean checkHost)
+   at System.IO.File.InternalReadAllText(String path, Encoding encoding, Boolean checkHost)
+   at AppedoLT.Record.StoreResult() in e:\AppedoLT\AppedoLT\Class\Record.cs:line 662
+---------------------------------------
+15:21:02 16 February 2015 
+A blocking operation was interrupted by a call to WSACancelBlockingCall
+   at System.Net.Sockets.Socket.Accept()
+   at System.Net.Sockets.TcpListener.AcceptTcpClient()
+   at AppedoLT.Record.DoWork(Object sender, DoWorkEventArgs e) in e:\AppedoLT\AppedoLT\Class\Record.cs:line 213
+---------------------------------------
+15:33:19 16 February 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer, Int32 offset, Int32 size, SocketFlags socketFlags)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 108
+   at AppedoLT.ucScript.btnUpload_Click(Object sender, EventArgs e) in e:\AppedoLT\AppedoLT\Design\UserControls\ucScript.cs:line 175
+An existing connection was forcibly closed by the remote host
+---------------------------------------
+15:35:49 16 February 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer, Int32 offset, Int32 size, SocketFlags socketFlags)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 108
+   at AppedoLT.ucScript.btnUpload_Click(Object sender, EventArgs e) in e:\AppedoLT\AppedoLT\Design\UserControls\ucScript.cs:line 175
+An existing connection was forcibly closed by the remote host
+---------------------------------------
+15:38:21 16 February 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer, Int32 offset, Int32 size, SocketFlags socketFlags)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 108
+   at AppedoLT.ucScript.btnUpload_Click(Object sender, EventArgs e) in e:\AppedoLT\AppedoLT\Design\UserControls\ucScript.cs:line 175
+An existing connection was forcibly closed by the remote host
+---------------------------------------
+15:39:43 16 February 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer, Int32 offset, Int32 size, SocketFlags socketFlags)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 108
+   at AppedoLT.ucScript.btnUpload_Click(Object sender, EventArgs e) in e:\AppedoLT\AppedoLT\Design\UserControls\ucScript.cs:line 175
+An existing connection was forcibly closed by the remote host
+---------------------------------------
+15:42:09 16 February 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer, Int32 offset, Int32 size, SocketFlags socketFlags)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 108
+   at AppedoLT.ucScript.btnUpload_Click(Object sender, EventArgs e) in e:\AppedoLT\AppedoLT\Design\UserControls\ucScript.cs:line 175
+An existing connection was forcibly closed by the remote host
+---------------------------------------
+15:42:14 16 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLT.ucScript.btnUpload_Click(Object sender, EventArgs e) in e:\AppedoLT\AppedoLT\Design\UserControls\ucScript.cs:line 164
+Failed to connect 192.168.1.110
+---------------------------------------
+15:49:09 16 February 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer, Int32 offset, Int32 size, SocketFlags socketFlags)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 108
+   at AppedoLT.ucScript.btnUpload_Click(Object sender, EventArgs e) in e:\AppedoLT\AppedoLT\Design\UserControls\ucScript.cs:line 175
+An existing connection was forcibly closed by the remote host
+---------------------------------------
+16:16:20 16 February 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer, Int32 offset, Int32 size, SocketFlags socketFlags)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 108
+   at AppedoLT.ucScript.btnUpload_Click(Object sender, EventArgs e) in e:\AppedoLT\AppedoLT\Design\UserControls\ucScript.cs:line 175
+An existing connection was forcibly closed by the remote host
+---------------------------------------
+16:26:01 16 February 2015 
+   at System.Net.Sockets.NetworkStream.Read(Byte[] buffer, Int32 offset, Int32 size)
+   at AppedoLT.Core.Trasport.ReadHeader(Stream stream) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 143
+   at AppedoLT.Core.Trasport.Receive() in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 72
+   at AppedoLT.ucScript.btnUpload_Click(Object sender, EventArgs e) in e:\AppedoLT\AppedoLT\Design\UserControls\ucScript.cs:line 176
+Unable to read data from the transport connection: An existing connection was forcibly closed by the remote host.
+---------------------------------------
+16:39:52 16 February 2015 
+   at System.Net.Sockets.NetworkStream.Read(Byte[] buffer, Int32 offset, Int32 size)
+   at AppedoLT.Core.Trasport.ReadHeader(Stream stream) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 143
+   at AppedoLT.Core.Trasport.Receive() in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 72
+   at AppedoLT.ucScript.btnUpload_Click(Object sender, EventArgs e) in e:\AppedoLT\AppedoLT\Design\UserControls\ucScript.cs:line 176
+Unable to read data from the transport connection: An existing connection was forcibly closed by the remote host.
+---------------------------------------
+16:46:07 16 February 2015 
+   at System.Net.Sockets.Socket.Send(Byte[] buffer, Int32 offset, Int32 size, SocketFlags socketFlags)
+   at AppedoLT.Core.Trasport.Send(TrasportData objTrasportData) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 108
+   at AppedoLT.ucScript.btnUpload_Click(Object sender, EventArgs e) in e:\AppedoLT\AppedoLT\Design\UserControls\ucScript.cs:line 175
+An existing connection was forcibly closed by the remote host
+---------------------------------------
+16:51:57 16 February 2015 
+   at System.Net.Sockets.NetworkStream.Read(Byte[] buffer, Int32 offset, Int32 size)
+   at AppedoLT.Core.Trasport.ReadHeader(Stream stream) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 143
+   at AppedoLT.Core.Trasport.Receive() in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 72
+   at AppedoLT.ucScript.btnUpload_Click(Object sender, EventArgs e) in e:\AppedoLT\AppedoLT\Design\UserControls\ucScript.cs:line 176
+Unable to read data from the transport connection: An existing connection was forcibly closed by the remote host.
+---------------------------------------
+16:51:57 16 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 54
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 30
+   at AppedoLT.ucScript.btnUpload_Click(Object sender, EventArgs e) in e:\AppedoLT\AppedoLT\Design\UserControls\ucScript.cs:line 164
+Failed to connect 192.168.1.110
+---------------------------------------
+16:58:02 16 February 2015 
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options, String msgPath, Boolean bFromProxy)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access)
+   at AppedoLT.ucScript.MakeScriptZip(String scriptid, String scriptName) in e:\AppedoLT\AppedoLT\Design\UserControls\ucScript.cs:line 194
+   at AppedoLT.ucScript.btnUpload_Click(Object sender, EventArgs e) in e:\AppedoLT\AppedoLT\Design\UserControls\ucScript.cs:line 175
+Could not find a part of the path 'E:\AppedoLT\AppedoLT\bin\Debug\ScriptResource\1\VUScript.xml'.
+---------------------------------------
+17:00:15 16 February 2015 
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options, String msgPath, Boolean bFromProxy)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access)
+   at AppedoLT.ucScript.MakeScriptZip(String scriptid, String scriptName) in e:\AppedoLT\AppedoLT\Design\UserControls\ucScript.cs:line 194
+   at AppedoLT.ucScript.btnUpload_Click(Object sender, EventArgs e) in e:\AppedoLT\AppedoLT\Design\UserControls\ucScript.cs:line 175
+Could not find a part of the path 'E:\AppedoLT\AppedoLT\bin\Debug\ScriptResource\1\VUScript.xml'.
+---------------------------------------
+17:01:25 16 February 2015 
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options, String msgPath, Boolean bFromProxy)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access)
+   at AppedoLT.ucScript.MakeScriptZip(String scriptid, String scriptName) in e:\AppedoLT\AppedoLT\Design\UserControls\ucScript.cs:line 194
+   at AppedoLT.ucScript.btnUpload_Click(Object sender, EventArgs e) in e:\AppedoLT\AppedoLT\Design\UserControls\ucScript.cs:line 175
+Could not find a part of the path 'E:\AppedoLT\AppedoLT\bin\Debug\ScriptResource\1\VUScript.xml'.
+---------------------------------------
+17:02:34 16 February 2015 
+Could not find file 'E:\AppedoLT\AppedoLT\bin\Debug\Response\4_res.html'.
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   at System.IO.StreamReader..ctor(String path, Encoding encoding, Boolean detectEncodingFromByteOrderMarks, Int32 bufferSize, Boolean checkHost)
+   at System.IO.File.InternalReadAllText(String path, Encoding encoding, Boolean checkHost)
+   at AppedoLT.Record.StoreResult() in e:\AppedoLT\AppedoLT\Class\Record.cs:line 662
+---------------------------------------
+17:02:39 16 February 2015 
+Could not find file 'E:\AppedoLT\AppedoLT\bin\Debug\Response\32_res.html'.
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   at System.IO.StreamReader..ctor(String path, Encoding encoding, Boolean detectEncodingFromByteOrderMarks, Int32 bufferSize, Boolean checkHost)
+   at System.IO.File.InternalReadAllText(String path, Encoding encoding, Boolean checkHost)
+   at AppedoLT.Record.StoreResult() in e:\AppedoLT\AppedoLT\Class\Record.cs:line 662
+---------------------------------------
+17:02:39 16 February 2015 
+Could not find file 'E:\AppedoLT\AppedoLT\bin\Debug\Response\37_res.html'.
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   at System.IO.StreamReader..ctor(String path, Encoding encoding, Boolean detectEncodingFromByteOrderMarks, Int32 bufferSize, Boolean checkHost)
+   at System.IO.File.InternalReadAllText(String path, Encoding encoding, Boolean checkHost)
+   at AppedoLT.Record.StoreResult() in e:\AppedoLT\AppedoLT\Class\Record.cs:line 662
+---------------------------------------
+17:02:44 16 February 2015 
+Could not find file 'E:\AppedoLT\AppedoLT\bin\Debug\Response\43_res.html'.
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   at System.IO.StreamReader..ctor(String path, Encoding encoding, Boolean detectEncodingFromByteOrderMarks, Int32 bufferSize, Boolean checkHost)
+   at System.IO.File.InternalReadAllText(String path, Encoding encoding, Boolean checkHost)
+   at AppedoLT.Record.StoreResult() in e:\AppedoLT\AppedoLT\Class\Record.cs:line 662
+---------------------------------------
+17:02:44 16 February 2015 
+Could not find file 'E:\AppedoLT\AppedoLT\bin\Debug\Response\49_res.html'.
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   at System.IO.StreamReader..ctor(String path, Encoding encoding, Boolean detectEncodingFromByteOrderMarks, Int32 bufferSize, Boolean checkHost)
+   at System.IO.File.InternalReadAllText(String path, Encoding encoding, Boolean checkHost)
+   at AppedoLT.Record.StoreResult() in e:\AppedoLT\AppedoLT\Class\Record.cs:line 662
+---------------------------------------
+17:02:44 16 February 2015 
+Could not find file 'E:\AppedoLT\AppedoLT\bin\Debug\Response\51_res.html'.
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   at System.IO.StreamReader..ctor(String path, Encoding encoding, Boolean detectEncodingFromByteOrderMarks, Int32 bufferSize, Boolean checkHost)
+   at System.IO.File.InternalReadAllText(String path, Encoding encoding, Boolean checkHost)
+   at AppedoLT.Record.StoreResult() in e:\AppedoLT\AppedoLT\Class\Record.cs:line 662
+---------------------------------------
+17:02:44 16 February 2015 
+A blocking operation was interrupted by a call to WSACancelBlockingCall
+   at System.Net.Sockets.Socket.Accept()
+   at System.Net.Sockets.TcpListener.AcceptTcpClient()
+   at AppedoLT.Record.DoWork(Object sender, DoWorkEventArgs e) in e:\AppedoLT\AppedoLT\Class\Record.cs:line 213
+---------------------------------------
+12:10:26 18 February 2015 
+   at AppedoLT.ucDesign.LoadTreeItem() in e:\AppedoLT\AppedoLT\ucDesign.cs:line 53
+Object reference not set to an instance of an object.
+---------------------------------------
+14:41:22 18 February 2015 
+Could not find a part of the path 'E:\AppedoLT\AppedoLT\bin\Debug\Response\7_res.html'.
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   at System.IO.StreamReader..ctor(String path, Encoding encoding, Boolean detectEncodingFromByteOrderMarks, Int32 bufferSize, Boolean checkHost)
+   at System.IO.File.InternalReadAllText(String path, Encoding encoding, Boolean checkHost)
+   at AppedoLT.Record.StoreResult() in e:\AppedoLT\AppedoLT\Class\Record.cs:line 662
+---------------------------------------
+14:41:32 18 February 2015 
+Could not find a part of the path 'E:\AppedoLT\AppedoLT\bin\Debug\Response\25_res.html'.
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   at System.IO.StreamReader..ctor(String path, Encoding encoding, Boolean detectEncodingFromByteOrderMarks, Int32 bufferSize, Boolean checkHost)
+   at System.IO.File.InternalReadAllText(String path, Encoding encoding, Boolean checkHost)
+   at AppedoLT.Record.StoreResult() in e:\AppedoLT\AppedoLT\Class\Record.cs:line 662
+---------------------------------------
+14:41:32 18 February 2015 
+Could not find a part of the path 'E:\AppedoLT\AppedoLT\bin\Debug\Response\34_res.html'.
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   at System.IO.StreamReader..ctor(String path, Encoding encoding, Boolean detectEncodingFromByteOrderMarks, Int32 bufferSize, Boolean checkHost)
+   at System.IO.File.InternalReadAllText(String path, Encoding encoding, Boolean checkHost)
+   at AppedoLT.Record.StoreResult() in e:\AppedoLT\AppedoLT\Class\Record.cs:line 662
+---------------------------------------
+14:41:32 18 February 2015 
+Could not find a part of the path 'E:\AppedoLT\AppedoLT\bin\Debug\Response\38_res.html'.
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   at System.IO.StreamReader..ctor(String path, Encoding encoding, Boolean detectEncodingFromByteOrderMarks, Int32 bufferSize, Boolean checkHost)
+   at System.IO.File.InternalReadAllText(String path, Encoding encoding, Boolean checkHost)
+   at AppedoLT.Record.StoreResult() in e:\AppedoLT\AppedoLT\Class\Record.cs:line 662
+---------------------------------------
+14:41:37 18 February 2015 
+Could not find a part of the path 'E:\AppedoLT\AppedoLT\bin\Debug\Response\42_res.html'.
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   at System.IO.StreamReader..ctor(String path, Encoding encoding, Boolean detectEncodingFromByteOrderMarks, Int32 bufferSize, Boolean checkHost)
+   at System.IO.File.InternalReadAllText(String path, Encoding encoding, Boolean checkHost)
+   at AppedoLT.Record.StoreResult() in e:\AppedoLT\AppedoLT\Class\Record.cs:line 662
+---------------------------------------
+14:41:37 18 February 2015 
+Could not find a part of the path 'E:\AppedoLT\AppedoLT\bin\Debug\Response\60_res.html'.
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   at System.IO.StreamReader..ctor(String path, Encoding encoding, Boolean detectEncodingFromByteOrderMarks, Int32 bufferSize, Boolean checkHost)
+   at System.IO.File.InternalReadAllText(String path, Encoding encoding, Boolean checkHost)
+   at AppedoLT.Record.StoreResult() in e:\AppedoLT\AppedoLT\Class\Record.cs:line 662
+---------------------------------------
+14:41:42 18 February 2015 
+Could not find a part of the path 'E:\AppedoLT\AppedoLT\bin\Debug\Response\66_res.html'.
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   at System.IO.StreamReader..ctor(String path, Encoding encoding, Boolean detectEncodingFromByteOrderMarks, Int32 bufferSize, Boolean checkHost)
+   at System.IO.File.InternalReadAllText(String path, Encoding encoding, Boolean checkHost)
+   at AppedoLT.Record.StoreResult() in e:\AppedoLT\AppedoLT\Class\Record.cs:line 662
+---------------------------------------
+14:41:47 18 February 2015 
+Could not find a part of the path 'E:\AppedoLT\AppedoLT\bin\Debug\Response\73_res.html'.
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   at System.IO.StreamReader..ctor(String path, Encoding encoding, Boolean detectEncodingFromByteOrderMarks, Int32 bufferSize, Boolean checkHost)
+   at System.IO.File.InternalReadAllText(String path, Encoding encoding, Boolean checkHost)
+   at AppedoLT.Record.StoreResult() in e:\AppedoLT\AppedoLT\Class\Record.cs:line 662
+---------------------------------------
+14:41:47 18 February 2015 
+Could not find a part of the path 'E:\AppedoLT\AppedoLT\bin\Debug\Response\76_res.html'.
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   at System.IO.StreamReader..ctor(String path, Encoding encoding, Boolean detectEncodingFromByteOrderMarks, Int32 bufferSize, Boolean checkHost)
+   at System.IO.File.InternalReadAllText(String path, Encoding encoding, Boolean checkHost)
+   at AppedoLT.Record.StoreResult() in e:\AppedoLT\AppedoLT\Class\Record.cs:line 662
+---------------------------------------
+14:41:47 18 February 2015 
+Could not find a part of the path 'E:\AppedoLT\AppedoLT\bin\Debug\Response\83_res.html'.
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   at System.IO.StreamReader..ctor(String path, Encoding encoding, Boolean detectEncodingFromByteOrderMarks, Int32 bufferSize, Boolean checkHost)
+   at System.IO.File.InternalReadAllText(String path, Encoding encoding, Boolean checkHost)
+   at AppedoLT.Record.StoreResult() in e:\AppedoLT\AppedoLT\Class\Record.cs:line 662
+---------------------------------------
+14:41:47 18 February 2015 
+Could not find a part of the path 'E:\AppedoLT\AppedoLT\bin\Debug\Response\87_res.html'.
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   at System.IO.StreamReader..ctor(String path, Encoding encoding, Boolean detectEncodingFromByteOrderMarks, Int32 bufferSize, Boolean checkHost)
+   at System.IO.File.InternalReadAllText(String path, Encoding encoding, Boolean checkHost)
+   at AppedoLT.Record.StoreResult() in e:\AppedoLT\AppedoLT\Class\Record.cs:line 662
+---------------------------------------
+14:41:52 18 February 2015 
+A blocking operation was interrupted by a call to WSACancelBlockingCall
+   at System.Net.Sockets.Socket.Accept()
+   at System.Net.Sockets.TcpListener.AcceptTcpClient()
+   at AppedoLT.Record.DoWork(Object sender, DoWorkEventArgs e) in e:\AppedoLT\AppedoLT\Class\Record.cs:line 213
+---------------------------------------
+16:19:46 18 February 2015 
+Could not find a part of the path 'E:\AppedoLT\AppedoLT\bin\Debug\Response\4_res.html'.
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   at System.IO.StreamReader..ctor(String path, Encoding encoding, Boolean detectEncodingFromByteOrderMarks, Int32 bufferSize, Boolean checkHost)
+   at System.IO.File.InternalReadAllText(String path, Encoding encoding, Boolean checkHost)
+   at AppedoLT.Record.StoreResult() in e:\AppedoLT\AppedoLT\Class\Record.cs:line 662
+---------------------------------------
+16:19:51 18 February 2015 
+Could not find a part of the path 'E:\AppedoLT\AppedoLT\bin\Debug\Response\9_res.html'.
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   at System.IO.StreamReader..ctor(String path, Encoding encoding, Boolean detectEncodingFromByteOrderMarks, Int32 bufferSize, Boolean checkHost)
+   at System.IO.File.InternalReadAllText(String path, Encoding encoding, Boolean checkHost)
+   at AppedoLT.Record.StoreResult() in e:\AppedoLT\AppedoLT\Class\Record.cs:line 662
+---------------------------------------
+16:19:51 18 February 2015 
+A blocking operation was interrupted by a call to WSACancelBlockingCall
+   at System.Net.Sockets.Socket.Accept()
+   at System.Net.Sockets.TcpListener.AcceptTcpClient()
+   at AppedoLT.Record.DoWork(Object sender, DoWorkEventArgs e) in e:\AppedoLT\AppedoLT\Class\Record.cs:line 213
+---------------------------------------
+16:57:51 18 February 2015 
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.FileSystemEnumerableIterator`1.CommonInit()
+   at System.IO.FileSystemEnumerableIterator`1..ctor(String path, String originalUserPath, String searchPattern, SearchOption searchOption, SearchResultHandler`1 resultHandler, Boolean checkHost)
+   at System.IO.DirectoryInfo.InternalGetFiles(String searchPattern, SearchOption searchOption)
+   at AppedoLT.RepositoryXml.Save() in e:\AppedoLT\AppedoLT\Class\RepositoryXml.cs:line 110
+Could not find a part of the path 'E:\AppedoLT\AppedoLT\bin\Debug\ScriptResource\8'.
+---------------------------------------
+17:01:56 18 February 2015 
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.FileSystemEnumerableIterator`1.CommonInit()
+   at System.IO.FileSystemEnumerableIterator`1..ctor(String path, String originalUserPath, String searchPattern, SearchOption searchOption, SearchResultHandler`1 resultHandler, Boolean checkHost)
+   at System.IO.DirectoryInfo.InternalGetFiles(String searchPattern, SearchOption searchOption)
+   at AppedoLT.RepositoryXml.Save() in e:\AppedoLT\AppedoLT\Class\RepositoryXml.cs:line 110
+Could not find a part of the path 'E:\AppedoLT\AppedoLT\bin\Debug\ScriptResource\9'.
+---------------------------------------

@@ -18,7 +18,7 @@ namespace AppedoLT
             {
                 lock (new object())
                 {
-                   
+
                     return (++_scriptId).ToString();
                 }
             }
@@ -88,16 +88,45 @@ namespace AppedoLT
                 ExceptionHandler.WritetoEventLog(ex.Message + Environment.NewLine + ex.StackTrace);
             }
         }
-        public void Save()
+        public void Save(bool deleteUnwantedResource=true)
         {
             doc.SelectSingleNode("root/uniquenumbers/script").Attributes["lastcreatedid"].Value = _scriptId.ToString();
 
             doc.SelectSingleNode("root/uniquenumbers/scenario").Attributes["lastcreatedid"].Value = _scenarioId.ToString();
 
+            if (deleteUnwantedResource == true)
+            {
+                try
+                {
+                    DirectoryInfo info = new DirectoryInfo(Constants.GetInstance().ExecutingAssemblyLocation + "\\ScriptResource");
+                    foreach (DirectoryInfo dic in info.GetDirectories())
+                    {
+                        if (doc.SelectSingleNode("//vuscript[@id='" + dic.Name + "']") == null)
+                        {
+                            Directory.Delete(dic.FullName, true);
+                        }
+                    }
+                    foreach (XmlNode script in doc.SelectNodes("//vuscript"))
+                    {
+                        info = new DirectoryInfo(Constants.GetInstance().ExecutingAssemblyLocation + "\\ScriptResource\\" + script.Attributes["id"].Value);
+                        foreach (FileInfo fileName in info.GetFiles())
+                        {
+                            if (script.SelectSingleNode("//request[@reqFilename='" + fileName.Name + "' or @resFilename='" + fileName.Name + "']") == null)
+                            {
+                                File.Delete(fileName.FullName);
+                            }
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    ExceptionHandler.WritetoEventLog(ex.StackTrace + Environment.NewLine + ex.Message);
+                }
+            }
             doc.Save(Constants.GetInstance().ExecutingAssemblyLocation + "\\VUScripts.xml");
         }
 
-        public XmlNode CreateContainer(string scriptid,string name)
+        public XmlNode CreateContainer(string scriptid, string name)
         {
             #region NewContainer
             XmlNode container = doc.CreateElement("container");

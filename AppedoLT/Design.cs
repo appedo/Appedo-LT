@@ -36,6 +36,15 @@ namespace AppedoLT
             try
             {
                 InitializeComponent();
+                Directory.SetCurrentDirectory(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location));
+                if (!Directory.Exists(".\\Data")) Directory.CreateDirectory(".\\Data");
+                if (!Directory.Exists(".\\DataMonitor")) Directory.CreateDirectory(".\\DataMonitor");
+                if (!Directory.Exists(".\\Exported Charts")) Directory.CreateDirectory(".\\Exported Charts");
+                if (!Directory.Exists(".\\Exported Reports")) Directory.CreateDirectory(".\\Exported Reports");
+                if (!Directory.Exists(".\\MonitorData")) Directory.CreateDirectory(".\\MonitorData");
+                if (!Directory.Exists(".\\ScriptResource")) Directory.CreateDirectory(".\\ScriptResource");
+                if (!Directory.Exists(".\\Upload")) Directory.CreateDirectory(".\\Upload");
+                if (!Directory.Exists(".\\Variables")) Directory.CreateDirectory(".\\Variables");
                 _ucDesignObj = ucDesign.GetInstance();
                 tabiVUscript.ContentPanel.Controls.Add(_ucDesignObj);
                 ListView.CheckForIllegalCrossThreadCalls = false;
@@ -48,6 +57,8 @@ namespace AppedoLT
             catch (Exception ex)
             {
                 ExceptionHandler.WritetoEventLog(ex.StackTrace + Environment.NewLine + ex.Message);
+                MessageBox.Show(ex.Message);
+                Environment.Exit(1);
             }
         }
 

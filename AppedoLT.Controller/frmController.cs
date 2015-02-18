@@ -9,6 +9,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Net;
 using System.Net.Sockets;
+using System.Reflection;
 using System.Text;
 using System.Threading;
 using System.Windows.Forms;
@@ -39,6 +40,11 @@ namespace AppedoLTController
             this.Visible = false;
             try
             {
+                Directory.SetCurrentDirectory(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location));
+                if (!Directory.Exists(".\\Data")) Directory.CreateDirectory(".\\Data");
+                if (!Directory.Exists(".\\Upload")) Directory.CreateDirectory(".\\Upload");
+                if (!Directory.Exists(".\\Variables")) Directory.CreateDirectory(".\\Variables");
+
                 AppedoServer = ControllerXml.GetInstance().doc.SelectSingleNode("//runs").Attributes["appedoipaddress"].Value;
                 if (AppedoServer == string.Empty)
                 {

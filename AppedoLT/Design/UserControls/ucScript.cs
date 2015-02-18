@@ -14,7 +14,6 @@ namespace AppedoLT
     public partial class ucScript : UserControl
     {
        
-
         RadTreeNode _treeNode = null;
         private static ucScript _instance;
 
@@ -172,9 +171,11 @@ namespace AppedoLT
                     string name = ((XmlNode)_treeNode.Tag).Attributes["name"].Value;
                     header.Add("userid", Constants.GetInstance().UserId);
                     header.Add("scriptname", name);
-                    server.Send(new TrasportData("VUSCRIPT", header, MakeScriptZip(id, name)));
+                    string zipFilePath=MakeScriptZip(id, name);
+                    server.Send(new TrasportData("VUSCRIPT", header, zipFilePath));
                     server.Receive();
                     server.Close();
+                    File.Delete(zipFilePath);
                     MessageBox.Show("Uploaded successfully.");
                 }
             }
@@ -190,7 +191,7 @@ namespace AppedoLT
             string filePath = _scriptResourcePath + "\\" + "VUScript.xml";
             string zipPath=Constants.GetInstance().ExecutingAssemblyLocation + "\\ScriptResource\\" + scriptName + ".rar";
             if (File.Exists(filePath)) File.Delete(filePath);
-            string vuscriptXML = ((XmlNode)_treeNode.Tag).OuterXml;
+            string vuscriptXML = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>"+((XmlNode)_treeNode.Tag).OuterXml;
             using (FileStream stream = new FileStream(filePath, FileMode.OpenOrCreate, FileAccess.Write))
             {
                 stream.Write(ASCIIEncoding.ASCII.GetBytes(vuscriptXML), 0, vuscriptXML.Length);

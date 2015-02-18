@@ -6,11 +6,14 @@ using System.Xml;
 using AppedoLT.Core;
 using Telerik.WinControls.UI;
 using System.IO;
+using System.Reflection;
+using System.Collections.Generic;
 
 namespace AppedoLT
 {
     public partial class ucDesign : UserControl
     {
+        private bool isDeleteHapped = false;
 
         private RepositoryXml _repositoryXml = RepositoryXml.GetInstance();
         private Color _treeNodeDefaultColor;
@@ -25,9 +28,11 @@ namespace AppedoLT
         private ucDesign()
         {
             InitializeComponent();
+           
             this.Dock = DockStyle.Fill;
             _treeNodeDefaultColor = tvRequest.BackColor;
             LoadTreeItem();
+            
         }
 
         #region Design
@@ -41,6 +46,7 @@ namespace AppedoLT
                 foreach (XmlNode vuscript in _repositoryXml.doc.SelectNodes("root/vuscripts/vuscript"))
                 {
                     RadTreeNode vuScriptNode = new RadTreeNode();
+                   
                     vuScriptNode.Text = vuscript.Attributes["name"].Value;
                     vuScriptNode.Tag = vuscript;
                     vuScriptNode.ImageKey = "scripts.gif";
@@ -750,7 +756,6 @@ namespace AppedoLT
                             if (node.Attributes["Address"] != null)
                             {
                                 #region HTTPRequest
-                            
                                 this.pnlMaster.Controls.Add(UCHttpRequest.GetInstance().GetControl(((XmlNode) GetRootParent(tvRequest.SelectedNode).Tag).Attributes["id"].Value,node, tvRequest.SelectedNode));
                                 #endregion
                             }
@@ -866,6 +871,7 @@ namespace AppedoLT
                         {
                             ((XmlNode)tvRequest.SelectedNode.Tag).ParentNode.RemoveChild((XmlNode)tvRequest.SelectedNode.Tag);
                             tvRequest.SelectedNode.Remove();
+                            isDeleteHapped = true;
                             this.pnlMaster.Controls.Clear();
                         }
                     }
@@ -878,7 +884,7 @@ namespace AppedoLT
                         if (tvRequest.SelectedNode.Parent != null) parentNode = tvRequest.SelectedNode.Parent;
                         ((XmlNode)tvRequest.SelectedNode.Tag).ParentNode.RemoveChild((XmlNode)tvRequest.SelectedNode.Tag);
                         tvRequest.SelectedNode.Remove();
-                       
+                        isDeleteHapped = true;
                     }
                     this.pnlMaster.Controls.Clear();
                 }
@@ -1059,9 +1065,40 @@ namespace AppedoLT
         {
             try
             {
-                string tempPath = Path.GetTempPath();
-                
-                Constants.GetInstance().UnZip(tempPath + "qam.rar", tempPath + "qam");
+                if (Constants.GetInstance().UserId == string.Empty)
+                {
+                    frmLogin login = new frmLogin();
+                    if (login.ShowDialog() == DialogResult.OK && login.Userid != string.Empty)
+                    {
+                        Constants.GetInstance().UserId = login.Userid;
+                    }
+                    else
+                    {
+                        return;
+                    }
+                }
+                if (Constants.GetInstance().UserId != string.Empty)
+                {
+
+                    TrasportData respose = null;
+                    Dictionary<string, string> header = new Dictionary<string, string>();
+                    string scripts = string.Empty;
+                    header.Add("userid", Constants.GetInstance().UserId);
+                    Trasport server = new Trasport(Constants.GetInstance().UploadIPAddress, Constants.GetInstance().UploadPort);
+                    server.Send(new TrasportData("AVAILABLESCRIPTS", string.Empty, header));
+                    respose = server.Receive();
+                    scripts = respose.Header["scripts"];
+                    server.Close();
+
+
+                    frmScriptNameList frm = new frmScriptNameList(GetAvailableScript(),scripts,this);
+                    frm.ShowDialog();
+
+                    // Constants.GetInstance().UnZip(filePath, Constants.GetInstance().ExecutingAssemblyLocation + "\\ScriptResource\\" + scripts.Split(',')[0] + "1.zip");
+                    //server.Close();
+
+
+                }
 
             }
             catch(Exception ex)
@@ -1070,7 +1107,29 @@ namespace AppedoLT
             }
 
         }
+       
+        void StoreScript(string scriptName)
+        {
+            //string scriptZipPath = Constants.GetInstance().ExecutingAssemblyLocation + "//ScriptResource/" + scriptName + ".rar";
+            //if(File.Exists(scriptZipPath)==true)
+            //{
 
+            //}
+        }
+
+        List<string> GetAvailableScript()
+        {
+            List<string> list = new List<string>();
+            foreach(RadTreeNode node in tvRequest.Nodes)
+            {
+                list.Add(node.Text);
+            }
+            return list;
+        }
+        //string GetAvailableScript()
+        //{
+        //    StringBuilder 
+        //}
         #endregion
 
     }
