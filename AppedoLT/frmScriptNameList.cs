@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
+using System.Threading;
 using System.Windows.Forms;
 using System.Xml;
 using Telerik.WinControls.UI;
@@ -64,8 +65,10 @@ namespace AppedoLT
                 header.Add("userid", userid);
                 header.Add("scriptname", scriptName);
                 server.Send(new TrasportData("GETSCRIPT", string.Empty, header));
+
                 if (File.Exists(extractFilePath) == true) File.Delete(extractFilePath);
-                TrasportData respose = server.Receive(extractFilePath);
+
+                TrasportData respose = DownloadFile(server, extractFilePath, scriptName);
                 server.Close();
                 Constants.GetInstance().UnZip(extractFilePath, extractFolderPath);
                 File.Delete(extractFilePath);
@@ -177,6 +180,48 @@ namespace AppedoLT
             des.InnerXml = scr.InnerXml;
             RepositoryXml.GetInstance().Save(false);
 
+        }
+        private TrasportData DownloadFile(Trasport server, string filePath,string name)
+        {
+            TrasportData respose = null;
+            int totalByte = 0;
+            int recivedByte = 0;
+            bool Success = true;
+
+            new Thread(() =>
+            {
+                try
+                {
+                    respose = server.Receive(filePath, ref totalByte, ref recivedByte, ref Success);
+                }
+                catch (Exception ex)
+                {
+                    ExceptionHandler.WritetoEventLog(ex.StackTrace + Environment.NewLine + ex.Message);
+                    Success = false;
+                }
+            }).Start();
+
+            while (((totalByte == 0 && recivedByte == 0) || recivedByte < totalByte))
+            {
+                if (totalByte > 0)
+                {
+
+                    frmDownloadProgress frm = new frmDownloadProgress();
+                    frm.Text = "Downloading[" + name + "]...";
+                    new Thread(() =>
+                    {
+                        frm.UpdateStatus(ref totalByte, ref recivedByte, ref Success);
+                    }).Start();
+                    frm.ShowDialog();
+                }
+                if (Success == false) break;
+                Thread.Sleep(1000);
+            }
+            if (Success == false)
+            {
+                throw new Exception("Download Faild");
+            }
+            return respose;
         }
         
     }

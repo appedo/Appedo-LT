@@ -168,3 +168,4 @@ E:\AppedoLT\AppedoLT\bin\Debug\AppedoLT.Core.pdb
 E:\AppedoLT\AppedoLT\bin\Debug\AppedoLT.DataAccessLayer.pdb
 E:\AppedoLT\AppedoLT\obj\Debug\APPEDO_LT.exe
 E:\AppedoLT\AppedoLT\obj\Debug\APPEDO_LT.pdb
+E:\AppedoLT\AppedoLT\obj\Debug\AppedoLT.frmDownloadProgress.resources

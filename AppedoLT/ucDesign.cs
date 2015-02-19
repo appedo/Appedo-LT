@@ -1090,7 +1090,6 @@ namespace AppedoLT
                     scripts = respose.Header["scripts"];
                     server.Close();
 
-
                     frmScriptNameList frm = new frmScriptNameList(GetAvailableScript(),scripts,this);
                     frm.ShowDialog();
 

@@ -1202,3 +1202,252 @@ Could not find a part of the path 'E:\AppedoLT\AppedoLT\bin\Debug\ScriptResource
    at AppedoLT.RepositoryXml.Save() in e:\AppedoLT\AppedoLT\Class\RepositoryXml.cs:line 110
 Could not find a part of the path 'E:\AppedoLT\AppedoLT\bin\Debug\ScriptResource\9'.
 ---------------------------------------
+12:37:42 19 February 2015 
+   at AppedoLT.frmVariableManager.StroreVarialeFile(XmlNode var, String selectedPath) in e:\AppedoLT\AppedoLT\Design\frmVariableManager.cs:line 713
+   at AppedoLT.frmVariableManager.Marge(XmlDocument available, XmlDocument received, String fileLocationPath) in e:\AppedoLT\AppedoLT\Design\frmVariableManager.cs:line 693
+   at AppedoLT.frmVariableManager.btnDownload_Click(Object sender, EventArgs e) in e:\AppedoLT\AppedoLT\Design\frmVariableManager.cs:line 669
+Object reference not set to an instance of an object.
+---------------------------------------
+13:40:12 19 February 2015 
+   at System.Net.Sockets.NetworkStream.Read(Byte[] buffer, Int32 offset, Int32 size)
+   at AppedoLT.Core.Trasport.Receive(String filePath, Int32& totalByte, Int32& totalByteRecceived) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 171
+   at AppedoLT.frmVariableManager.<>c__DisplayClass1.<btnDownload_Click>b__0()
+Cannot access a disposed object.
+Object name: 'System.Net.Sockets.NetworkStream'.
+---------------------------------------
+14:10:15 19 February 2015 
+   at System.Net.Sockets.TcpClient.GetStream()
+   at AppedoLT.Core.Trasport.Receive(String filePath, Int32& totalByte, Int32& totalByteRecceived) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 137
+   at AppedoLT.frmVariableManager.<>c__DisplayClass1.<btnDownload_Click>b__0() in e:\AppedoLT\AppedoLT\Design\frmVariableManager.cs:line 691
+Cannot access a disposed object.
+Object name: 'System.Net.Sockets.TcpClient'.
+---------------------------------------
+14:10:20 19 February 2015 
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options, String msgPath, Boolean bFromProxy)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize)
+   at System.Xml.XmlUrlResolver.GetEntity(Uri absoluteUri, String role, Type ofObjectToReturn)
+   at System.Xml.XmlTextReaderImpl.OpenUrlDelegate(Object xmlResolver)
+   at System.Threading.CompressedStack.runTryCode(Object userData)
+   at System.Runtime.CompilerServices.RuntimeHelpers.ExecuteCodeWithGuaranteedCleanup(TryCode code, CleanupCode backoutCode, Object userData)
+   at System.Threading.CompressedStack.Run(CompressedStack compressedStack, ContextCallback callback, Object state)
+   at System.Xml.XmlTextReaderImpl.OpenUrl()
+   at System.Xml.XmlTextReaderImpl.Read()
+   at System.Xml.XmlLoader.Load(XmlDocument doc, XmlReader reader, Boolean preserveWhitespace)
+   at System.Xml.XmlDocument.Load(XmlReader reader)
+   at System.Xml.XmlDocument.Load(String filename)
+   at AppedoLT.frmVariableManager.btnDownload_Click(Object sender, EventArgs e) in e:\AppedoLT\AppedoLT\Design\frmVariableManager.cs:line 717
+Could not find file 'C:\Users\Administrator\AppData\Local\Temp\635599518106301809.xml'.
+---------------------------------------
+14:12:57 19 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 55
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 31
+   at AppedoLT.frmVariableManager.btnDownload_Click(Object sender, EventArgs e) in e:\AppedoLT\AppedoLT\Design\frmVariableManager.cs:line 659
+Failed to connect 192.168.1.110
+---------------------------------------
+14:15:12 19 February 2015 
+   at System.Net.Sockets.TcpClient.GetStream()
+   at AppedoLT.Core.Trasport.Receive(String filePath, Int32& totalByte, Int32& totalByteRecceived) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 137
+   at AppedoLT.frmVariableManager.<>c__DisplayClass1.<btnDownload_Click>b__0() in e:\AppedoLT\AppedoLT\Design\frmVariableManager.cs:line 691
+Cannot access a disposed object.
+Object name: 'System.Net.Sockets.TcpClient'.
+---------------------------------------
+14:15:17 19 February 2015 
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options, String msgPath, Boolean bFromProxy)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize)
+   at System.Xml.XmlUrlResolver.GetEntity(Uri absoluteUri, String role, Type ofObjectToReturn)
+   at System.Xml.XmlTextReaderImpl.OpenUrlDelegate(Object xmlResolver)
+   at System.Threading.CompressedStack.runTryCode(Object userData)
+   at System.Runtime.CompilerServices.RuntimeHelpers.ExecuteCodeWithGuaranteedCleanup(TryCode code, CleanupCode backoutCode, Object userData)
+   at System.Threading.CompressedStack.Run(CompressedStack compressedStack, ContextCallback callback, Object state)
+   at System.Xml.XmlTextReaderImpl.OpenUrl()
+   at System.Xml.XmlTextReaderImpl.Read()
+   at System.Xml.XmlLoader.Load(XmlDocument doc, XmlReader reader, Boolean preserveWhitespace)
+   at System.Xml.XmlDocument.Load(XmlReader reader)
+   at System.Xml.XmlDocument.Load(String filename)
+   at AppedoLT.frmVariableManager.btnDownload_Click(Object sender, EventArgs e) in e:\AppedoLT\AppedoLT\Design\frmVariableManager.cs:line 717
+Could not find file 'C:\Users\Administrator\AppData\Local\Temp\635599520635976498.xml'.
+---------------------------------------
+14:21:09 19 February 2015 
+   at System.Security.Util.StringExpressionSet.CanonicalizePath(String path, Boolean needFullPath)
+   at System.Security.Util.StringExpressionSet.CreateListFromExpressions(String[] str, Boolean needFullPath)
+   at System.Security.Permissions.FileIOPermission.AddPathList(FileIOPermissionAccess access, AccessControlActions control, String[] pathListOrig, Boolean checkForDuplicates, Boolean needFullPath, Boolean copyPathList)
+   at System.Security.Permissions.FileIOPermission.AddPathList(FileIOPermissionAccess access, String[] pathListOrig, Boolean checkForDuplicates, Boolean needFullPath, Boolean copyPathList)
+   at System.Security.Permissions.FileIOPermission..ctor(FileIOPermissionAccess access, String[] pathList, Boolean checkForDuplicates, Boolean needFullPath)
+   at System.IO.File.InternalCopy(String sourceFileName, String destFileName, Boolean overwrite, Boolean checkHost)
+   at AppedoLT.frmVariableManager.ValidateVariableVersion() in e:\AppedoLT\AppedoLT\Design\frmVariableManager.cs:line 564
+The given path's format is not supported.
+---------------------------------------
+14:52:55 19 February 2015 
+   at System.Net.Sockets.NetworkStream.Read(Byte[] buffer, Int32 offset, Int32 size)
+   at AppedoLT.Core.Trasport.Receive(String filePath, Int32& totalByte, Int32& totalByteRecceived) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 171
+   at AppedoLT.frmVariableManager.<>c__DisplayClass1.<btnDownload_Click>b__0() in e:\AppedoLT\AppedoLT\Design\frmVariableManager.cs:line 691
+Cannot access a disposed object.
+Object name: 'System.Net.Sockets.NetworkStream'.
+---------------------------------------
+14:53:00 19 February 2015 
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options, String msgPath, Boolean bFromProxy)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize)
+   at System.Xml.XmlUrlResolver.GetEntity(Uri absoluteUri, String role, Type ofObjectToReturn)
+   at System.Xml.XmlTextReaderImpl.OpenUrlDelegate(Object xmlResolver)
+   at System.Threading.CompressedStack.runTryCode(Object userData)
+   at System.Runtime.CompilerServices.RuntimeHelpers.ExecuteCodeWithGuaranteedCleanup(TryCode code, CleanupCode backoutCode, Object userData)
+   at System.Threading.CompressedStack.Run(CompressedStack compressedStack, ContextCallback callback, Object state)
+   at System.Xml.XmlTextReaderImpl.OpenUrl()
+   at System.Xml.XmlTextReaderImpl.Read()
+   at System.Xml.XmlLoader.Load(XmlDocument doc, XmlReader reader, Boolean preserveWhitespace)
+   at System.Xml.XmlDocument.Load(XmlReader reader)
+   at System.Xml.XmlDocument.Load(String filename)
+   at AppedoLT.frmVariableManager.btnDownload_Click(Object sender, EventArgs e) in e:\AppedoLT\AppedoLT\Design\frmVariableManager.cs:line 717
+The process cannot access the file 'C:\Users\Administrator\AppData\Local\Temp\635599543597879844.xml' because it is being used by another process.
+---------------------------------------
+15:00:50 19 February 2015 
+   at System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   at System.Number.ParseInt32(String s, NumberStyles style, NumberFormatInfo info)
+   at AppedoLT.Core.Trasport.Receive(String filePath, Int32& totalByte, Int32& totalByteRecceived) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 152
+   at AppedoLT.frmVariableManager.btnDownload_Click(Object sender, EventArgs e) in e:\AppedoLT\AppedoLT\Design\frmVariableManager.cs:line 686
+Input string was not in a correct format.
+---------------------------------------
+15:05:50 19 February 2015 
+   at System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   at System.Number.ParseInt32(String s, NumberStyles style, NumberFormatInfo info)
+   at AppedoLT.Core.Trasport.Receive(String filePath, Int32& totalByte, Int32& totalByteRecceived) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 152
+   at AppedoLT.frmVariableManager.btnDownload_Click(Object sender, EventArgs e) in e:\AppedoLT\AppedoLT\Design\frmVariableManager.cs:line 686
+Input string was not in a correct format.
+---------------------------------------
+15:10:15 19 February 2015 
+   at System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options, String msgPath, Boolean bFromProxy)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access)
+   at AppedoLT.frmVariableManager.StroreVarialeFile(XmlNode var, String selectedPath) in e:\AppedoLT\AppedoLT\Design\frmVariableManager.cs:line 784
+   at AppedoLT.frmVariableManager.Marge(XmlDocument available, XmlDocument received, String fileLocationPath) in e:\AppedoLT\AppedoLT\Design\frmVariableManager.cs:line 755
+   at AppedoLT.frmVariableManager.btnDownload_Click(Object sender, EventArgs e) in e:\AppedoLT\AppedoLT\Design\frmVariableManager.cs:line 718
+The given path's format is not supported.
+---------------------------------------
+15:11:59 19 February 2015 
+   at System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options, String msgPath, Boolean bFromProxy)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access)
+   at AppedoLT.frmVariableManager.StroreVarialeFile(XmlNode var, String selectedPath) in e:\AppedoLT\AppedoLT\Design\frmVariableManager.cs:line 784
+   at AppedoLT.frmVariableManager.Marge(XmlDocument available, XmlDocument received, String fileLocationPath) in e:\AppedoLT\AppedoLT\Design\frmVariableManager.cs:line 755
+   at AppedoLT.frmVariableManager.btnDownload_Click(Object sender, EventArgs e) in e:\AppedoLT\AppedoLT\Design\frmVariableManager.cs:line 718
+The given path's format is not supported.
+---------------------------------------
+15:14:38 19 February 2015 
+   at System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options, String msgPath, Boolean bFromProxy)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access)
+   at AppedoLT.frmVariableManager.StroreVarialeFile(XmlNode var, String selectedPath) in e:\AppedoLT\AppedoLT\Design\frmVariableManager.cs:line 784
+   at AppedoLT.frmVariableManager.Marge(XmlDocument available, XmlDocument received, String fileLocationPath) in e:\AppedoLT\AppedoLT\Design\frmVariableManager.cs:line 755
+   at AppedoLT.frmVariableManager.btnDownload_Click(Object sender, EventArgs e) in e:\AppedoLT\AppedoLT\Design\frmVariableManager.cs:line 718
+The given path's format is not supported.
+---------------------------------------
+15:17:16 19 February 2015 
+   at System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   at System.Number.ParseInt32(String s, NumberStyles style, NumberFormatInfo info)
+   at AppedoLT.Core.Trasport.Receive(String filePath, Int32& totalByte, Int32& totalByteRecceived) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 152
+   at AppedoLT.frmVariableManager.btnDownload_Click(Object sender, EventArgs e) in e:\AppedoLT\AppedoLT\Design\frmVariableManager.cs:line 686
+Input string was not in a correct format.
+---------------------------------------
+15:17:26 19 February 2015 
+   at System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   at System.Number.ParseInt32(String s, NumberStyles style, NumberFormatInfo info)
+   at AppedoLT.Core.Trasport.Receive(String filePath, Int32& totalByte, Int32& totalByteRecceived) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 152
+   at AppedoLT.frmVariableManager.btnDownload_Click(Object sender, EventArgs e) in e:\AppedoLT\AppedoLT\Design\frmVariableManager.cs:line 686
+Input string was not in a correct format.
+---------------------------------------
+15:17:31 19 February 2015 
+   at System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   at System.Number.ParseInt32(String s, NumberStyles style, NumberFormatInfo info)
+   at AppedoLT.Core.Trasport.Receive(String filePath, Int32& totalByte, Int32& totalByteRecceived) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 152
+   at AppedoLT.frmVariableManager.btnDownload_Click(Object sender, EventArgs e) in e:\AppedoLT\AppedoLT\Design\frmVariableManager.cs:line 686
+Input string was not in a correct format.
+---------------------------------------
+15:17:53 19 February 2015 
+   at System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   at System.Number.ParseInt32(String s, NumberStyles style, NumberFormatInfo info)
+   at AppedoLT.Core.Trasport.Receive(String filePath, Int32& totalByte, Int32& totalByteRecceived) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 152
+   at AppedoLT.frmVariableManager.btnDownload_Click(Object sender, EventArgs e) in e:\AppedoLT\AppedoLT\Design\frmVariableManager.cs:line 686
+Input string was not in a correct format.
+---------------------------------------
+15:18:13 19 February 2015 
+   at System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   at System.Number.ParseInt32(String s, NumberStyles style, NumberFormatInfo info)
+   at AppedoLT.Core.Trasport.Receive(String filePath, Int32& totalByte, Int32& totalByteRecceived) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 152
+   at AppedoLT.frmVariableManager.btnDownload_Click(Object sender, EventArgs e) in e:\AppedoLT\AppedoLT\Design\frmVariableManager.cs:line 686
+Input string was not in a correct format.
+---------------------------------------
+15:42:08 19 February 2015 
+   at System.Net.Sockets.NetworkStream.Read(Byte[] buffer, Int32 offset, Int32 size)
+   at AppedoLT.Core.Trasport.Receive(String filePath, Int32& totalByte, Int32& totalByteRecceived) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 166
+   at AppedoLT.frmVariableManager.<>c__DisplayClass1.<btnDownload_Click>b__0()
+Cannot access a disposed object.
+Object name: 'System.Net.Sockets.NetworkStream'.
+---------------------------------------
+15:42:13 19 February 2015 
+   at System.Windows.Forms.Control.CreateHandle()
+   at System.Windows.Forms.Form.CreateHandle()
+   at System.Windows.Forms.Control.get_Handle()
+   at System.Windows.Forms.Form.ShowDialog(IWin32Window owner)
+   at AppedoLT.frmVariableManager.btnDownload_Click(Object sender, EventArgs e)
+Cannot access a disposed object.
+Object name: 'frmDownloadProgress'.
+---------------------------------------
+15:42:26 19 February 2015 
+   at System.Windows.Forms.Control.CreateHandle()
+   at System.Windows.Forms.Form.CreateHandle()
+   at System.Windows.Forms.Control.get_Handle()
+   at System.Windows.Forms.Form.ShowDialog(IWin32Window owner)
+   at AppedoLT.frmVariableManager.btnDownload_Click(Object sender, EventArgs e)
+Cannot access a disposed object.
+Object name: 'frmDownloadProgress'.
+---------------------------------------
+16:45:57 19 February 2015 
+   at System.Net.Sockets.NetworkStream.Read(Byte[] buffer, Int32 offset, Int32 size)
+   at AppedoLT.Core.Trasport.Receive(String filePath, Int32& totalByte, Int32& totalByteRecceived) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 166
+   at AppedoLT.frmVariableManager.<>c__DisplayClass2.<btnDownload_Click>b__0() in e:\AppedoLT\AppedoLT\Design\frmVariableManager.cs:line 691
+Cannot access a disposed object.
+Object name: 'System.Net.Sockets.NetworkStream'.
+---------------------------------------
+17:13:53 19 February 2015 
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options, String msgPath, Boolean bFromProxy)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access)
+   at AppedoLT.frmVariableManager.StroreVarialeFile(XmlNode var, String selectedPath) in e:\AppedoLT\AppedoLT\Design\frmVariableManager.cs:line 796
+   at AppedoLT.frmVariableManager.Marge(XmlDocument available, XmlDocument received, String fileLocationPath) in e:\AppedoLT\AppedoLT\Design\frmVariableManager.cs:line 767
+   at AppedoLT.frmVariableManager.btnDownload_Click(Object sender, EventArgs e) in e:\AppedoLT\AppedoLT\Design\frmVariableManager.cs:line 730
+The process cannot access the file 'E:\AppedoLT\AppedoLT\bin\Debug\Variables\635599623122108369_data.csv' because it is being used by another process.
+---------------------------------------
+18:08:58 19 February 2015 
+   at System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   at System.Number.ParseInt32(String s, NumberStyles style, NumberFormatInfo info)
+   at AppedoLT.Core.Trasport.Receive() in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 81
+   at AppedoLT.frmVariableManager.btnDownload_Click(Object sender, EventArgs e) in e:\AppedoLT\AppedoLT\Design\frmVariableManager.cs:line 662
+Input string was not in a correct format.
+---------------------------------------
+18:09:48 19 February 2015 
+   at System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   at System.Number.ParseInt32(String s, NumberStyles style, NumberFormatInfo info)
+   at AppedoLT.Core.Trasport.Receive() in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 81
+   at AppedoLT.frmVariableManager.btnDownload_Click(Object sender, EventArgs e) in e:\AppedoLT\AppedoLT\Design\frmVariableManager.cs:line 662
+Input string was not in a correct format.
+---------------------------------------
+18:17:10 19 February 2015 
+   at System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   at System.Number.ParseInt32(String s, NumberStyles style, NumberFormatInfo info)
+   at AppedoLT.Core.Trasport.Receive() in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 81
+   at AppedoLT.frmVariableManager.btnDownload_Click(Object sender, EventArgs e) in e:\AppedoLT\AppedoLT\Design\frmVariableManager.cs:line 662
+Input string was not in a correct format.
+---------------------------------------
+19:12:32 19 February 2015 
+   at AppedoLT.Core.Trasport.Connect(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 56
+   at AppedoLT.Core.Trasport..ctor(String ipaddress, String port) in e:\AppedoLT\AppedoLT.Core\TrasportLayer.cs:line 32
+   at AppedoLT.frmVariableManager.btnDownload_Click(Object sender, EventArgs e) in e:\AppedoLT\AppedoLT\Design\frmVariableManager.cs:line 660
+Failed to connect 192.168.1.110
+---------------------------------------

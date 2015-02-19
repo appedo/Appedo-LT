@@ -7,6 +7,7 @@ using System.Net;
 using System.Net.Sockets;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Threading;
 
 namespace AppedoLT.Core
 {
@@ -117,19 +118,70 @@ namespace AppedoLT.Core
                     readCount = 0;
                     if (contentLength >= ReadBufferSize)
                     {
-                        readCount += stream.Read(bytes, 0, ReadBufferSize);
+                        readCount = stream.Read(bytes, 0, ReadBufferSize);
                         file.Write(bytes, 0, readCount);
                         contentLength = contentLength - readCount;
                     }
                     else
                     {
-                        readCount += stream.Read(bytes, 0, contentLength);
+                        readCount = stream.Read(bytes, 0, contentLength);
                         file.Write(bytes, 0, readCount);
                         contentLength = contentLength - readCount;
                     }
                 }
             }
             objTrasportData.FilePath = filePath;         
+            return objTrasportData;
+        }
+        public TrasportData Receive(string filePath,ref int totalByte,ref int totalByteRecceived,ref bool success)
+        {
+            Stream stream = tcpClient.GetStream();
+            TrasportData objTrasportData = new TrasportData();
+
+            StringBuilder header = new StringBuilder();
+            StringBuilder response = new StringBuilder();
+            int readCount = 0;
+            int contentLength = 0;
+
+            header.Append(ReadHeader(stream));
+            objTrasportData.Operation = new Regex("(.*): ([0-9]*)").Match(header.ToString()).Groups[1].Value;
+
+            foreach (Match match in (new Regex("(.*)= (.*)\r\n").Matches(header.ToString())))
+            {
+                objTrasportData.Header.Add(match.Groups[1].Value, match.Groups[2].Value);
+            }
+            contentLength = Convert.ToInt32(new Regex("(.*): ([0-9]*)").Match(header.ToString()).Groups[2].Value);
+            totalByte = contentLength;
+
+            byte[] bytes = new byte[ReadBufferSize];
+
+            using (FileStream file = new FileStream(filePath, FileMode.OpenOrCreate, FileAccess.ReadWrite))
+            {
+                while (contentLength > 0)
+                {
+                    
+                    if (success == false)
+                    {
+                        break;
+                    }
+                    readCount = 0;
+                    if (contentLength >= ReadBufferSize)
+                    {
+                        readCount = stream.Read(bytes, 0, ReadBufferSize);
+                        totalByteRecceived += readCount;
+                        file.Write(bytes, 0, readCount);
+                        contentLength = contentLength - readCount;
+                    }
+                    else
+                    {
+                        readCount = stream.Read(bytes, 0, contentLength);
+                        totalByteRecceived += readCount;
+                        file.Write(bytes, 0, readCount);
+                        contentLength = contentLength - readCount;
+                    }
+                }
+            }
+            objTrasportData.FilePath = filePath;
             return objTrasportData;
         }
         public  void Send( TrasportData objTrasportData)
