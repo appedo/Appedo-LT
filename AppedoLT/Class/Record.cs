@@ -210,9 +210,11 @@ namespace AppedoLT
                     }
                     else
                     {
+
                         TcpClient client = _listener.AcceptTcpClient();
                         Thread th = new Thread(new ParameterizedThreadStart(ProceessClient));
                         th.Start(client);
+
                     }
                 }
             }
@@ -272,7 +274,7 @@ namespace AppedoLT
                         string requestContentType = string.Empty;
                         string responseContentType = string.Empty;
                         string reqFilename = data.Requestid + "_req.bin";
-                        string resFilename = data.Requestid+"_res";
+                        string resFilename = data.Requestid + "_res";
                         string contentEncoding = string.Empty;
                         Regex expressForhead = new Regex("([A-Z]*) (.*) ([A-Z]*)/(.*)");
                         Regex expressForHeaders = new Regex("(.*?): (.*?)\r\n");
@@ -552,7 +554,7 @@ namespace AppedoLT
 
                                 #region Write response to file
 
-                                using (FileStream stream = new FileStream(_scriptResourcePath +"\\"+ resFilename, FileMode.OpenOrCreate, FileAccess.Write))
+                                using (FileStream stream = new FileStream(_scriptResourcePath + "\\" + resFilename, FileMode.OpenOrCreate, FileAccess.Write))
                                 {
                                     if (data.ResponseBody.Length > 0)
                                     {
@@ -646,7 +648,7 @@ namespace AppedoLT
                                 #region NewContainer
                                 if (_selectedFirstLevelContainer.ChildNodes.Count == 0 || _selectedFirstLevelContainer.LastChild.Attributes["name"].Value != data.ContainerName)
                                 {
-                                    XmlNode container = _repositoryXml.CreateContainer(_scriptid,data.ContainerName);
+                                    XmlNode container = _repositoryXml.CreateContainer(_scriptid, data.ContainerName);
                                     _selectedFirstLevelContainer.AppendChild(container);
                                     _lastInsertedContainer = container;
                                 }
@@ -659,7 +661,7 @@ namespace AppedoLT
                                     string pageHtml = string.Empty;
                                     try
                                     {
-                                        pageHtml = File.ReadAllText(Constants.GetInstance().ExecutingAssemblyLocation + "//Response//" + resFilename);
+                                        pageHtml = File.ReadAllText(_scriptResourcePath + "\\" + resFilename);
                                         data.ResponseBody.Position = 0;
                                     }
                                     catch (Exception ex)
@@ -701,7 +703,7 @@ namespace AppedoLT
                                 #endregion
 
                                 #region Write request to file
-                                using (FileStream stream = new FileStream(_scriptResourcePath +"\\"+ reqFilename, FileMode.OpenOrCreate, FileAccess.Write))
+                                using (FileStream stream = new FileStream(_scriptResourcePath + "\\" + reqFilename, FileMode.OpenOrCreate, FileAccess.Write))
                                 {
                                     stream.Write(Encoding.Default.GetBytes(data.RequestHeader), 0, data.RequestHeader.Length);
 
@@ -745,16 +747,16 @@ namespace AppedoLT
         {
             try
             {
-                XmlNode container = _repositoryXml.CreateContainer(_scriptid,"Initialize");
+                XmlNode container = _repositoryXml.CreateContainer(_scriptid, "Initialize");
                 _uvScript.AppendChild(container);
                 _ddlParentContainer.Items[0].Tag = container;
 
-                container = _repositoryXml.CreateContainer(_scriptid,"Actions");
+                container = _repositoryXml.CreateContainer(_scriptid, "Actions");
                 _uvScript.AppendChild(container);
                 _ddlParentContainer.Items[1].Tag = container;
                 _selectedFirstLevelContainer = container;
 
-                container = _repositoryXml.CreateContainer(_scriptid,"End");
+                container = _repositoryXml.CreateContainer(_scriptid, "End");
                 _uvScript.AppendChild(container);
                 _ddlParentContainer.Items[2].Tag = container;
             }
@@ -790,4 +792,3 @@ namespace AppedoLT
         }
     }
 }
-

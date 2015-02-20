@@ -83,7 +83,7 @@
             this.txtEmailid.Size = new System.Drawing.Size(287, 19);
             this.txtEmailid.TabIndex = 11;
             this.txtEmailid.TabStop = false;
-            this.txtEmailid.Text = "navin_b@appedo.com";
+            this.txtEmailid.Text = "sysadmin@appedo.com";
             this.txtEmailid.ThemeName = "Office2010";
             // 
             // btnCancel

@@ -118,11 +118,11 @@ namespace AppedoLT
                 return;
             }
 
-            if (_availableScript.Count>0)
+            if (conflictScript.Count > 0)
             {
                 StringBuilder msg = new StringBuilder();
                 msg.AppendLine("Following script(s) are available on your local machine.");
-                foreach (string name in _availableScript)
+                foreach (string name in conflictScript)
                 {
                     msg.AppendLine(name);
                 }
@@ -184,8 +184,8 @@ namespace AppedoLT
         private TrasportData DownloadFile(Trasport server, string filePath,string name)
         {
             TrasportData respose = null;
-            int totalByte = 0;
-            int recivedByte = 0;
+            long totalByte = 0;
+            long recivedByte = 0;
             bool Success = true;
 
             new Thread(() =>
@@ -206,7 +206,7 @@ namespace AppedoLT
                 if (totalByte > 0)
                 {
 
-                    frmDownloadProgress frm = new frmDownloadProgress();
+                    frmDownloadProgress frm = new frmDownloadProgress(true);
                     frm.Text = "Downloading[" + name + "]...";
                     new Thread(() =>
                     {

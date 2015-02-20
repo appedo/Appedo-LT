@@ -398,7 +398,7 @@ namespace AppedoLT.Core
             }
 
         }
-       private void WriteToBrowser(byte[] buffer,int offset,int count)
+        private void WriteToBrowser(byte[] buffer,int offset,int count)
         {
             try
             {

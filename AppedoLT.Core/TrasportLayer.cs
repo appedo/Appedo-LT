@@ -133,7 +133,7 @@ namespace AppedoLT.Core
             objTrasportData.FilePath = filePath;         
             return objTrasportData;
         }
-        public TrasportData Receive(string filePath,ref int totalByte,ref int totalByteRecceived,ref bool success)
+        public TrasportData Receive(string filePath, ref long totalByte, ref long totalByteRecceived, ref bool success)
         {
             Stream stream = tcpClient.GetStream();
             TrasportData objTrasportData = new TrasportData();
@@ -159,7 +159,6 @@ namespace AppedoLT.Core
             {
                 while (contentLength > 0)
                 {
-                    
                     if (success == false)
                     {
                         break;
@@ -183,6 +182,32 @@ namespace AppedoLT.Core
             }
             objTrasportData.FilePath = filePath;
             return objTrasportData;
+        }
+        public void Send(TrasportData objTrasportData, ref long totalByte, ref long totalByteUploaded, ref bool success)
+        {
+            Socket socket = tcpClient.Client;
+            socket.Send(objTrasportData.GetHeaderBytes());
+
+            if (objTrasportData.FilePath == string.Empty)
+            {
+                totalByte = objTrasportData.DataStream.Length;
+                totalByteUploaded = socket.Send(objTrasportData.DataStream.ToArray());
+
+            }
+            else
+            {
+                byte[] buffer = new byte[8192];
+                int readCount = 0;
+
+                using (FileStream file = new FileStream(objTrasportData.FilePath, FileMode.Open, FileAccess.Read))
+                {
+                    totalByte = file.Length;
+                    while ((readCount = file.Read(buffer, 0, buffer.Length)) > 0)
+                    {
+                        totalByteUploaded += socket.Send(buffer, 0, readCount, SocketFlags.None);
+                    }
+                }
+            }
         }
         public  void Send( TrasportData objTrasportData)
         {

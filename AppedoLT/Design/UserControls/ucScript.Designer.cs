@@ -36,6 +36,7 @@
             this.lblScriptName = new Telerik.WinControls.UI.RadLabel();
             this.lblFileTypes = new Telerik.WinControls.UI.RadLabel();
             this.btnValidate = new Telerik.WinControls.UI.RadButton();
+            this.btnUploadWithData = new Telerik.WinControls.UI.RadButton();
             this.btnUpload = new Telerik.WinControls.UI.RadButton();
             ((System.ComponentModel.ISupportInitialize)(this.btnAutoCorrelate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkDynamicReqEnable)).BeginInit();
@@ -45,13 +46,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.lblScriptName)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblFileTypes)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnValidate)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnUploadWithData)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnUpload)).BeginInit();
             this.SuspendLayout();
             // 
             // btnAutoCorrelate
             // 
             this.btnAutoCorrelate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.btnAutoCorrelate.Location = new System.Drawing.Point(234, 6);
+            this.btnAutoCorrelate.Location = new System.Drawing.Point(351, 6);
             this.btnAutoCorrelate.Name = "btnAutoCorrelate";
             this.btnAutoCorrelate.Size = new System.Drawing.Size(175, 24);
             this.btnAutoCorrelate.TabIndex = 32;
@@ -63,7 +65,7 @@
             // 
             this.chkDynamicReqEnable.Location = new System.Drawing.Point(253, 105);
             this.chkDynamicReqEnable.Name = "chkDynamicReqEnable";
-            this.chkDynamicReqEnable.Size = new System.Drawing.Size(17, 17);
+            this.chkDynamicReqEnable.Size = new System.Drawing.Size(15, 15);
             this.chkDynamicReqEnable.TabIndex = 31;
             this.chkDynamicReqEnable.ThemeName = "Telerik";
             this.chkDynamicReqEnable.Validated += new System.EventHandler(this.chkDynamicReqEnable_Leave);
@@ -129,23 +131,36 @@
             this.btnValidate.ThemeName = "Telerik";
             this.btnValidate.Click += new System.EventHandler(this.btnValidate_Click);
             // 
+            // btnUploadWithData
+            // 
+            this.btnUploadWithData.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold);
+            this.btnUploadWithData.ImageKey = "validate.gif";
+            this.btnUploadWithData.Location = new System.Drawing.Point(195, 6);
+            this.btnUploadWithData.Name = "btnUploadWithData";
+            this.btnUploadWithData.Size = new System.Drawing.Size(124, 24);
+            this.btnUploadWithData.TabIndex = 33;
+            this.btnUploadWithData.Text = "Upload With &Data";
+            this.btnUploadWithData.ThemeName = "Telerik";
+            this.btnUploadWithData.Click += new System.EventHandler(this.btnUpload_Click);
+            // 
             // btnUpload
             // 
             this.btnUpload.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold);
             this.btnUpload.ImageKey = "validate.gif";
             this.btnUpload.Location = new System.Drawing.Point(109, 6);
             this.btnUpload.Name = "btnUpload";
-            this.btnUpload.Size = new System.Drawing.Size(96, 24);
-            this.btnUpload.TabIndex = 33;
+            this.btnUpload.Size = new System.Drawing.Size(80, 24);
+            this.btnUpload.TabIndex = 34;
             this.btnUpload.Text = "&Upload";
             this.btnUpload.ThemeName = "Telerik";
-            this.btnUpload.Click += new System.EventHandler(this.btnUpload_Click);
+            this.btnUpload.Click += new System.EventHandler(this.btnUpload_Click_1);
             // 
             // ucScript
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.btnUpload);
+            this.Controls.Add(this.btnUploadWithData);
             this.Controls.Add(this.btnAutoCorrelate);
             this.Controls.Add(this.chkDynamicReqEnable);
             this.Controls.Add(this.radLabel6);
@@ -165,6 +180,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.lblScriptName)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblFileTypes)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnValidate)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnUploadWithData)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnUpload)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -181,6 +197,7 @@
         private Telerik.WinControls.UI.RadLabel lblScriptName;
         private Telerik.WinControls.UI.RadLabel lblFileTypes;
         private Telerik.WinControls.UI.RadButton btnValidate;
+        private Telerik.WinControls.UI.RadButton btnUploadWithData;
         private Telerik.WinControls.UI.RadButton btnUpload;
     }
 }

@@ -535,7 +535,8 @@ namespace AppedoLT
 
                     header.Add("userid", Constants.GetInstance().UserId);
                     Trasport server = new Trasport(Constants.GetInstance().UploadIPAddress, Constants.GetInstance().UploadPort);
-                    server.Send(new TrasportData("VARIABLES", GetVariableXmlWithContent(), header));
+                    UploadFile(server, new TrasportData("VARIABLES", GetVariableXmlWithContent(), header));
+                   
                     respose = server.Receive();
                     server.Close();
                     header.Clear();
@@ -714,8 +715,8 @@ namespace AppedoLT
         private TrasportData DownloadFile(Trasport server, string filePath)
         {
             TrasportData respose = null;
-            int totalByte = 0;
-            int recivedByte = 0;
+            long totalByte = 0;
+            long recivedByte = 0;
             bool Success = true;
 
             new Thread(() =>
@@ -736,7 +737,7 @@ namespace AppedoLT
                 if (totalByte > 0)
                 {
 
-                    frmDownloadProgress frm = new frmDownloadProgress();
+                    frmDownloadProgress frm = new frmDownloadProgress(true);
                     new Thread(() =>
                     {
                         frm.UpdateStatus(ref totalByte, ref recivedByte, ref Success);
@@ -751,6 +752,48 @@ namespace AppedoLT
                 throw new Exception("Download Faild");
             }
             return respose;
+        }
+
+        private void UploadFile(Trasport server, TrasportData data)
+        {
+
+            long totalByte = 0;
+            long recivedByte = 0;
+            bool Success = true;
+
+            new Thread(() =>
+            {
+                try
+                {
+                    server.Send(data, ref totalByte, ref recivedByte, ref Success);
+                }
+                catch (Exception ex)
+                {
+                    ExceptionHandler.WritetoEventLog(ex.StackTrace + Environment.NewLine + ex.Message);
+                    Success = false;
+                }
+            }).Start();
+
+            while (((totalByte == 0 && recivedByte == 0) || recivedByte < totalByte))
+            {
+                if (totalByte > 0)
+                {
+
+                    frmDownloadProgress frm = new frmDownloadProgress(false);
+                    frm.Text = "Uploading...";
+                    new Thread(() =>
+                    {
+                        frm.UpdateStatus(ref totalByte, ref recivedByte, ref Success);
+                    }).Start();
+                    frm.ShowDialog();
+                }
+                if (Success == false) break;
+                Thread.Sleep(1000);
+            }
+            if (Success == false)
+            {
+                throw new Exception("Upload Faild");
+            }
         }
 
         private void Marge(XmlDocument available, XmlDocument received, string fileLocationPath)

@@ -1093,10 +1093,6 @@ namespace AppedoLT
                     frmScriptNameList frm = new frmScriptNameList(GetAvailableScript(),scripts,this);
                     frm.ShowDialog();
 
-                    // Constants.GetInstance().UnZip(filePath, Constants.GetInstance().ExecutingAssemblyLocation + "\\ScriptResource\\" + scripts.Split(',')[0] + "1.zip");
-                    //server.Close();
-
-
                 }
 
             }
