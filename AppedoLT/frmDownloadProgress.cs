@@ -20,6 +20,11 @@ namespace AppedoLT
             if (isDownload) txtTitle.Text = " Downloaded / Total: ";
             else txtTitle.Text = "Uploaded / Total: ";
         }
+        public frmDownloadProgress(string msg)
+        {
+            InitializeComponent();
+            txtTitle.Text = msg;
+        }
         public void UpdateStatus(ref long total, ref long received, ref bool success)
         {
             progressBar1.Minimum = 0;
@@ -38,7 +43,24 @@ namespace AppedoLT
             this.Close();
 
         }
+        public void UpdateStatusForScript(ref long total, ref long received, ref bool success)
+        {
+            progressBar1.Minimum = 0;
+            progressBar1.Maximum = (int)total;
+            progressBar1.Value = (int)received;
 
+            while (((total == 0 && received == 0) || received < total))
+            {
+
+                progressBar1.Value = (int)received;
+                txtMsg.Text = received.ToString()+ " / " + total.ToString();
+                if (cancel == true) success = false;
+                if (success == false) break;
+                Thread.Sleep(1000);
+            }
+            this.Close();
+
+        }
         private void btnCancel_Click(object sender, EventArgs e)
         {
             cancel = true;

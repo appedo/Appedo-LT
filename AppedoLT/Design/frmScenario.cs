@@ -20,7 +20,7 @@ namespace AppedoLT
         List<XmlNode> _alreadyMappedScripts = new List<XmlNode>();
         string _scenarioId="0";
 
-        public frmScenario(XmlNode VUScripts)
+        public frmScenario(Dictionary<string,string> VUScripts)
         {
         
             InitializeComponent();
@@ -37,9 +37,9 @@ namespace AppedoLT
             if (_scenarioName != String.Empty)
                 txtScenarioName.Enabled = false;
 
-            foreach (XmlNode script in VUScripts.ChildNodes)
+            foreach (string key in VUScripts.Keys)
             {
-                rightList.Rows.Add(script.Attributes["id"].Value, script.Attributes["name"].Value);
+                rightList.Rows.Add(key,VUScripts[key]);
             }
 
             //foreach (XmlNode script in VUScripts.ChildNodes)
@@ -49,7 +49,7 @@ namespace AppedoLT
             //}
             listBoxMove1.SetItems(leftList, rightList);
         }
-        public frmScenario(XmlNode VUScripts,XmlNode scenario)
+        public frmScenario(Dictionary<string, string> VUScripts, XmlNode scenario)
         {
 
             InitializeComponent();
@@ -66,19 +66,20 @@ namespace AppedoLT
             rightList.Columns.Add("id");
             rightList.Columns.Add("name");
 
-            foreach (XmlNode script in VUScripts.ChildNodes)
+            foreach (string key in VUScripts.Keys)
             {
-                if (scenario.SelectSingleNode("script[@id='" + script.Attributes["id"].Value + "']") == null)
+                if (scenario.SelectSingleNode("script[@id='" + key + "']") == null)
                 {
-                    rightList.Rows.Add(script.Attributes["id"].Value, script.Attributes["name"].Value);
+                    rightList.Rows.Add(key, VUScripts[key]);
                 }
                 else
                 {
-                    XmlNode alreadyMapped=scenario.SelectSingleNode("script[@id='"+script.Attributes["id"].Value+"']");
-                    if(alreadyMapped!=null)
-                    { _alreadyMappedScripts.Add(alreadyMapped);
+                    XmlNode alreadyMapped = scenario.SelectSingleNode("script[@id='" + key + "']");
+                    if (alreadyMapped != null)
+                    {
+                        _alreadyMappedScripts.Add(alreadyMapped);
                     }
-                    leftList.Rows.Add(script.Attributes["id"].Value, script.Attributes["name"].Value);
+                    leftList.Rows.Add(key,VUScripts[key]);
                 }
             }
 

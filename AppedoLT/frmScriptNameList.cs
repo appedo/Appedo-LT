@@ -16,7 +16,7 @@ namespace AppedoLT
         ucDesign _parent = null;
         int selectCount = 0;
         string userid = Constants.GetInstance().UserId;
-        string scriptResourcePath = Constants.GetInstance().ExecutingAssemblyLocation + "\\ScriptResource\\";
+        string scriptResourcePath = Constants.GetInstance().ExecutingAssemblyLocation + "\\Scripts\\";
         public frmScriptNameList(List<string> availableScript,string scripts,ucDesign parent)
         {
             InitializeComponent();
@@ -40,6 +40,7 @@ namespace AppedoLT
         bool Download(string scriptName)
         {
             Dictionary<string, string> header = new Dictionary<string, string>();
+
             XmlNode script = RepositoryXml.GetInstance().doc.SelectSingleNode("//vuscript[@name='" + scriptName + "']");
             string scriptid;
             string extractFolderPath=string.Empty;
@@ -47,14 +48,14 @@ namespace AppedoLT
 
             try
             {
-
-                if (script != null)
+                Dictionary<string,string> scripts=VuscriptXml.GetScriptNameAndId();
+                if (scripts.ContainsKey(scriptName))
                 {
-                    scriptid = script.Attributes["id"].Value;
+                    scriptid = scripts[scriptName];
                 }
                 else
                 {
-                    scriptid = RepositoryXml.GetInstance().ScriptId;
+                    scriptid = Constants.GetInstance().UniqueID;
                 }
 
                 extractFolderPath = scriptResourcePath + scriptid + "_" + DateTime.Now.Ticks;
@@ -74,12 +75,9 @@ namespace AppedoLT
                 File.Delete(extractFilePath);
 
                 XmlDocument doc = new XmlDocument();
-
                 doc.Load(extractFolderPath + "\\vuscript.xml");
-                Copynode(scriptid, scriptName, doc.SelectSingleNode("//vuscript"), script);
-                doc = null;
-                File.Delete(extractFolderPath + "\\vuscript.xml");
-
+                doc.SelectSingleNode("//vuscript").Attributes["id"].Value = scriptid;
+                doc.Save(extractFolderPath + "\\vuscript.xml");            
                 if (Directory.Exists(scriptResourcePath + "\\" + scriptid)) Directory.Delete(scriptResourcePath + "\\" + scriptid, true);
                 Directory.Move(extractFolderPath, scriptResourcePath + "\\" + scriptid);
                 return true;
@@ -178,7 +176,7 @@ namespace AppedoLT
             des.Attributes["exclutionfiletypes"].Value = scr.Attributes["exclutionfiletypes"].Value;
             des.Attributes["dynamicreqenable"].Value = scr.Attributes["dynamicreqenable"].Value;
             des.InnerXml = scr.InnerXml;
-            RepositoryXml.GetInstance().Save(false);
+            RepositoryXml.GetInstance().Save();
 
         }
         private TrasportData DownloadFile(Trasport server, string filePath,string name)

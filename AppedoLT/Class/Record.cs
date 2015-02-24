@@ -26,7 +26,7 @@ namespace AppedoLT
         private BackgroundWorker _worker;
         private int _requestCount = 0;
         private TcpListener _listener = null;
-        private RepositoryXml _repositoryXml = RepositoryXml.GetInstance();
+       // private RepositoryXml _repositoryXml = RepositoryXml.GetInstance();
         private RadTextBox _txtContainer;
         private RadComboBox _ddlParentContainer;
         private XmlNode _uvScript;
@@ -49,13 +49,16 @@ namespace AppedoLT
         Thread StoreData = null;
         string _scriptResourcePath = string.Empty;
         string _scriptid = string.Empty;
+        Common _common = Common.GetInstance();
+    
         public Record(Label lblResult, RadTextBox txtContainer, RadComboBox ddlParentContainer, XmlNode vuScriptXml)
         {
             try
             {
                 _uvScript = vuScriptXml;
+               
                 _scriptid = vuScriptXml.Attributes["id"].Value;
-                _scriptResourcePath = Constants.GetInstance().ExecutingAssemblyLocation + "\\ScriptResource\\" + vuScriptXml.Attributes["id"].Value;
+                _scriptResourcePath = Constants.GetInstance().ExecutingAssemblyLocation + "\\Scripts\\" + vuScriptXml.Attributes["id"].Value;
                 if (Directory.Exists(_scriptResourcePath) == true) Directory.Delete(_scriptResourcePath, true);
                 Directory.CreateDirectory(_scriptResourcePath);
                 isStop = false;
@@ -185,7 +188,7 @@ namespace AppedoLT
                 }
 
                 _pageDelay.Stop();
-                _repositoryXml.Save();
+                //_repositoryXml.Save();
                 _listener.Stop();
                 AppedoLT.Core.Constants.GetInstance().ReSetFirefoxProxy();
                 StoreData.Abort();
@@ -231,7 +234,7 @@ namespace AppedoLT
             {
                 processingRequestCount++;
                 TcpClient client = (TcpClient)clientObj;
-                RequestProcessor pro = new RequestProcessor(client, this.connectionManager, RepositoryXml.GetInstance().GetId(_scriptid), _txtContainer.Text, _lblResult);
+                RequestProcessor pro = new RequestProcessor(client, this.connectionManager,  _txtContainer.Text, _lblResult);
                 pro.Process();
                 if (((IRequestProcessor)pro) != null)
                 {
@@ -273,6 +276,7 @@ namespace AppedoLT
                         data = RecordData.Dequeue();
                         string requestContentType = string.Empty;
                         string responseContentType = string.Empty;
+                        data.Requestid = Constants.GetInstance().UniqueID;
                         string reqFilename = data.Requestid + "_req.bin";
                         string resFilename = data.Requestid + "_res";
                         string contentEncoding = string.Empty;
@@ -283,28 +287,28 @@ namespace AppedoLT
                             MatchCollection matchs = expressForhead.Matches(data.RequestHeader);
                             if (matchs.Count > 0)
                             {
-                                XmlNode request = _repositoryXml.doc.CreateElement("request");
+                                XmlNode request = _uvScript.OwnerDocument.CreateElement("request");
 
                                 #region Request attributes
-                                request.Attributes.Append(_repositoryXml.GetAttribute("id", data.Requestid));
-                                request.Attributes.Append(_repositoryXml.GetAttribute("Method", matchs[0].Groups[1].Value));
-                                request.Attributes.Append(_repositoryXml.GetAttribute("Path", data.url.AbsolutePath));
-                                request.Attributes.Append(_repositoryXml.GetAttribute("Protocal", matchs[0].Groups[3].Value));
-                                request.Attributes.Append(_repositoryXml.GetAttribute("Version", matchs[0].Groups[4].Value));
-                                request.Attributes.Append(_repositoryXml.GetAttribute("name", data.url.LocalPath));
-                                request.Attributes.Append(_repositoryXml.GetAttribute("Schema", data.url.Scheme));
-                                request.Attributes.Append(_repositoryXml.GetAttribute("Host", data.url.Host));
-                                request.Attributes.Append(_repositoryXml.GetAttribute("Port", data.url.Port.ToString()));
-                                request.Attributes.Append(_repositoryXml.GetAttribute("QueryString", data.url.Query));
-                                request.Attributes.Append(_repositoryXml.GetAttribute("Address", data.url.AbsoluteUri.Split('?')[0]));
-                                request.Attributes.Append(_repositoryXml.GetAttribute("Url", data.url.AbsoluteUri));
+                                request.Attributes.Append(_common.GetAttribute(_uvScript.OwnerDocument, "id", data.Requestid));
+                                request.Attributes.Append(_common.GetAttribute(_uvScript.OwnerDocument, "Method", matchs[0].Groups[1].Value));
+                                request.Attributes.Append(_common.GetAttribute(_uvScript.OwnerDocument, "Path", data.url.AbsolutePath));
+                                request.Attributes.Append(_common.GetAttribute(_uvScript.OwnerDocument, "Protocal", matchs[0].Groups[3].Value));
+                                request.Attributes.Append(_common.GetAttribute(_uvScript.OwnerDocument, "Version", matchs[0].Groups[4].Value));
+                                request.Attributes.Append(_common.GetAttribute(_uvScript.OwnerDocument, "name", data.url.LocalPath));
+                                request.Attributes.Append(_common.GetAttribute(_uvScript.OwnerDocument, "Schema", data.url.Scheme));
+                                request.Attributes.Append(_common.GetAttribute(_uvScript.OwnerDocument, "Host", data.url.Host));
+                                request.Attributes.Append(_common.GetAttribute(_uvScript.OwnerDocument, "Port", data.url.Port.ToString()));
+                                request.Attributes.Append(_common.GetAttribute(_uvScript.OwnerDocument, "QueryString", data.url.Query));
+                                request.Attributes.Append(_common.GetAttribute(_uvScript.OwnerDocument, "Address", data.url.AbsoluteUri.Split('?')[0]));
+                                request.Attributes.Append(_common.GetAttribute(_uvScript.OwnerDocument, "Url", data.url.AbsoluteUri));
                                 if (data.ResponseCode >= 400 || data.ResponseCode <= 99)
                                 {
-                                    request.Attributes.Append(_repositoryXml.GetAttribute("HasErrorResponse", true.ToString()));
+                                    request.Attributes.Append(_common.GetAttribute(_uvScript.OwnerDocument, "HasErrorResponse", true.ToString()));
                                 }
                                 else
                                 {
-                                    request.Attributes.Append(_repositoryXml.GetAttribute("HasErrorResponse", false.ToString()));
+                                    request.Attributes.Append(_common.GetAttribute(_uvScript.OwnerDocument, "HasErrorResponse", false.ToString()));
                                 }
                                 #endregion
 
@@ -314,12 +318,12 @@ namespace AppedoLT
                                 #region Headers
                                 if (matchs.Count > 0)
                                 {
-                                    XmlNode headers = _repositoryXml.doc.CreateElement("headers");
+                                    XmlNode headers = _uvScript.OwnerDocument.CreateElement("headers");
                                     foreach (Match match in matchs)
                                     {
-                                        XmlNode header = _repositoryXml.doc.CreateElement("header");
-                                        header.Attributes.Append(_repositoryXml.GetAttribute("name", match.Groups[1].Value));
-                                        header.Attributes.Append(_repositoryXml.GetAttribute("value", match.Groups[2].Value));
+                                        XmlNode header = _uvScript.OwnerDocument.CreateElement("header");
+                                        header.Attributes.Append(_common.GetAttribute(_uvScript.OwnerDocument, "name", match.Groups[1].Value));
+                                        header.Attributes.Append(_common.GetAttribute(_uvScript.OwnerDocument, "value", match.Groups[2].Value));
                                         if (match.Groups[1].Value == "Content-Type")
                                         {
                                             requestContentType = match.Groups[2].Value;
@@ -339,7 +343,7 @@ namespace AppedoLT
                                 matchs = expressForHeaders.Matches(data.ResponseHeader);
                                 if (matchs.Count > 0)
                                 {
-                                    request.Attributes.Append(_repositoryXml.GetAttribute("ResponseHeader", data.ResponseHeader));
+                                    request.Attributes.Append(_common.GetAttribute(_uvScript.OwnerDocument, "ResponseHeader", data.ResponseHeader));
                                 }
                                 matchs = new Regex("Content-Type: (.*?)\r\n").Matches(data.ResponseHeader);
                                 if (matchs.Count > 0)
@@ -361,15 +365,15 @@ namespace AppedoLT
                                 if (data.url.Query != null && data.url.Query != "")
                                 {
                                     #region QueryStringParameters
-                                    XmlNode parameters = _repositoryXml.doc.CreateElement("querystringparams");
+                                    XmlNode parameters = _uvScript.OwnerDocument.CreateElement("querystringparams");
                                     NameValueCollection nameAndValue = HttpUtility.ParseQueryString(data.url.Query, Encoding.ASCII);
                                     foreach (string key in nameAndValue.AllKeys)
                                     {
-                                        XmlNode parameter = _repositoryXml.doc.CreateElement("querystringparam");
-                                        parameter.Attributes.Append(_repositoryXml.GetAttribute("name", key));
-                                        parameter.Attributes.Append(_repositoryXml.GetAttribute("value", nameAndValue[key]));
-                                        parameter.Attributes.Append(_repositoryXml.GetAttribute("rawname", HttpUtility.UrlEncode(key)));
-                                        parameter.Attributes.Append(_repositoryXml.GetAttribute("rawvalue", HttpUtility.UrlEncode(nameAndValue[key])));
+                                        XmlNode parameter = _uvScript.OwnerDocument.CreateElement("querystringparam");
+                                        parameter.Attributes.Append(_common.GetAttribute(_uvScript.OwnerDocument, "name", key));
+                                        parameter.Attributes.Append(_common.GetAttribute(_uvScript.OwnerDocument, "value", nameAndValue[key]));
+                                        parameter.Attributes.Append(_common.GetAttribute(_uvScript.OwnerDocument, "rawname", HttpUtility.UrlEncode(key)));
+                                        parameter.Attributes.Append(_common.GetAttribute(_uvScript.OwnerDocument, "rawvalue", HttpUtility.UrlEncode(nameAndValue[key])));
                                         parameters.AppendChild(parameter);
                                     }
                                     request.AppendChild(parameters);
@@ -383,11 +387,11 @@ namespace AppedoLT
                                     string postData = data.RequestBody.Length > 0 ? Encoding.Default.GetString(data.RequestBody.ToArray()) : string.Empty;
                                     if (!(postData == null || postData == string.Empty))
                                     {
-                                        XmlNode parameters = _repositoryXml.doc.CreateElement("params");
+                                        XmlNode parameters = _uvScript.OwnerDocument.CreateElement("params");
 
                                         if (requestContentType.Contains("multipart/form-data"))
                                         {
-                                            parameters.Attributes.Append(_repositoryXml.GetAttribute("type", "multipart/form-data"));
+                                            parameters.Attributes.Append(_common.GetAttribute(_uvScript.OwnerDocument, "type", "multipart/form-data"));
 
                                             #region Multipart
                                             try
@@ -401,14 +405,14 @@ namespace AppedoLT
                                                         break;
                                                     }
                                                 }
-                                                parameters.Attributes.Append(_repositoryXml.GetAttribute("boundary", boundary));
+                                                parameters.Attributes.Append(_common.GetAttribute(_uvScript.OwnerDocument, "boundary", boundary));
 
                                                 foreach (string data1 in postData.Replace("--" + boundary + "--\r\n", string.Empty).Split(new string[] { "--" + boundary + "\r\n" }, StringSplitOptions.None))
                                                 {
 
                                                     try
                                                     {
-                                                        XmlNode param = _repositoryXml.doc.CreateElement("param");
+                                                        XmlNode param = _uvScript.OwnerDocument.CreateElement("param");
                                                         string temp = data1.Substring(0, data1.IndexOf("\r\n\r\n") + 1);
 
                                                         if (data1.Length > 0)
@@ -420,15 +424,15 @@ namespace AppedoLT
                                                             {
                                                                 if (nameAndValue.Contains("Content-Disposition: "))
                                                                 {
-                                                                    param.Attributes.Append(_repositoryXml.GetAttribute("contentdisposition", nameAndValue.Replace("Content-Disposition: ", string.Empty).Trim()));
+                                                                    param.Attributes.Append(_common.GetAttribute(_uvScript.OwnerDocument, "contentdisposition", nameAndValue.Replace("Content-Disposition: ", string.Empty).Trim()));
                                                                 }
                                                                 else if (nameAndValue.Contains(" name="))
                                                                 {
-                                                                    param.Attributes.Append(_repositoryXml.GetAttribute("name", nameAndValue.Replace(" name=", string.Empty).Trim()));
+                                                                    param.Attributes.Append(_common.GetAttribute(_uvScript.OwnerDocument, "name", nameAndValue.Replace(" name=", string.Empty).Trim()));
                                                                 }
                                                                 else if (nameAndValue.Contains(" filename="))
                                                                 {
-                                                                    param.Attributes.Append(_repositoryXml.GetAttribute("filename", nameAndValue.Replace(" filename=", string.Empty).Trim()));
+                                                                    param.Attributes.Append(_common.GetAttribute(_uvScript.OwnerDocument, "filename", nameAndValue.Replace(" filename=", string.Empty).Trim()));
                                                                 }
                                                             }
                                                             if (dis_type.Length > 1)
@@ -437,7 +441,7 @@ namespace AppedoLT
                                                                 {
                                                                     if (nameAndValue.Contains("Content-Type: "))
                                                                     {
-                                                                        param.Attributes.Append(_repositoryXml.GetAttribute("contenttype", nameAndValue.Replace("Content-Type: ", string.Empty).Trim()));
+                                                                        param.Attributes.Append(_common.GetAttribute(_uvScript.OwnerDocument, "contenttype", nameAndValue.Replace("Content-Type: ", string.Empty).Trim()));
                                                                     }
                                                                 }
                                                             }
@@ -448,7 +452,7 @@ namespace AppedoLT
                                                             temp = data1.Replace(temp, string.Empty).TrimStart();
                                                             if (param.Attributes["filename"] == null)
                                                             {
-                                                                param.Attributes.Append(_repositoryXml.GetAttribute("value", temp));
+                                                                param.Attributes.Append(_common.GetAttribute(_uvScript.OwnerDocument, "value", temp));
                                                                 if (param.Attributes["value"].Value.EndsWith("\r\n") == true)
                                                                 {
                                                                     param.Attributes["value"].Value = param.Attributes["value"].Value.Remove(param.Attributes["value"].Value.Length - 2, 2);
@@ -459,7 +463,7 @@ namespace AppedoLT
 
                                                                 if (param.Attributes["filename"] != null && param.Attributes["filename"].Value.Replace("\"", string.Empty) != string.Empty)
                                                                 {
-                                                                    param.Attributes.Append(_repositoryXml.GetAttribute("value", "\\Upload\\" + param.Attributes["filename"].Value.Replace("\"", string.Empty)));
+                                                                    param.Attributes.Append(_common.GetAttribute(_uvScript.OwnerDocument, "value", "\\Upload\\" + param.Attributes["filename"].Value.Replace("\"", string.Empty)));
                                                                     if (Directory.Exists(Path.GetDirectoryName(Constants.GetInstance().ExecutingAssemblyLocation + param.Attributes["value"].Value)) == false)
                                                                     {
                                                                         Directory.CreateDirectory(Path.GetDirectoryName(Constants.GetInstance().ExecutingAssemblyLocation + param.Attributes["value"].Value));
@@ -472,7 +476,7 @@ namespace AppedoLT
                                                                 }
                                                                 else
                                                                 {
-                                                                    param.Attributes.Append(_repositoryXml.GetAttribute("value", string.Empty));
+                                                                    param.Attributes.Append(_common.GetAttribute(_uvScript.OwnerDocument, "value", string.Empty));
                                                                 }
                                                             }
                                                         }
@@ -492,39 +496,39 @@ namespace AppedoLT
                                         }
                                         else if (isWebServiceRequest == true || requestContentType.ToLower().StartsWith("text/") || requestContentType.ToLower().StartsWith("application/json") || requestContentType == string.Empty)
                                         {
-                                            parameters.Attributes.Append(_repositoryXml.GetAttribute("type", "text"));
-
+                                            parameters.Attributes.Append(_common.GetAttribute(_uvScript.OwnerDocument, "type", "text"));
+                                            
                                             #region Text
-                                            XmlNode param = _repositoryXml.doc.CreateElement("Param");
-                                            param.Attributes.Append(_repositoryXml.GetAttribute("name", System.Web.HttpUtility.UrlDecode("Text")));
-                                            param.Attributes.Append(_repositoryXml.GetAttribute("rawname", "Text"));
-                                            param.Attributes.Append(_repositoryXml.GetAttribute("value", System.Web.HttpUtility.UrlDecode(postData)));
-                                            param.Attributes.Append(_repositoryXml.GetAttribute("rawvalue", postData));
+                                            XmlNode param = _uvScript.OwnerDocument.CreateElement("Param");
+                                            param.Attributes.Append(_common.GetAttribute(_uvScript.OwnerDocument, "name", System.Web.HttpUtility.UrlDecode("Text")));
+                                            param.Attributes.Append(_common.GetAttribute(_uvScript.OwnerDocument, "rawname", "Text"));
+                                            param.Attributes.Append(_common.GetAttribute(_uvScript.OwnerDocument, "value", System.Web.HttpUtility.UrlDecode(postData)));
+                                            param.Attributes.Append(_common.GetAttribute(_uvScript.OwnerDocument, "rawvalue", postData));
                                             parameters.AppendChild(param);
                                             #endregion
                                         }
                                         else //if (requestContentType.Contains("application/x-www-form-urlencoded"))
                                         {
-                                            parameters.Attributes.Append(_repositoryXml.GetAttribute("type", "form"));
+                                            parameters.Attributes.Append(_common.GetAttribute(_uvScript.OwnerDocument, "type", "form"));
 
                                             #region Postdata
                                             foreach (string post in postData.Split('&'))
                                             {
-                                                XmlNode param = _repositoryXml.doc.CreateElement("Param");
+                                                XmlNode param = _uvScript.OwnerDocument.CreateElement("Param");
                                                 string[] nameAndValue = post.Split('=');
                                                 if (nameAndValue.Length == 1)
                                                 {
-                                                    param.Attributes.Append(_repositoryXml.GetAttribute("name", System.Web.HttpUtility.UrlDecode(nameAndValue[0])));
-                                                    param.Attributes.Append(_repositoryXml.GetAttribute("value", string.Empty));
-                                                    param.Attributes.Append(_repositoryXml.GetAttribute("rawname", nameAndValue[0]));
-                                                    param.Attributes.Append(_repositoryXml.GetAttribute("rawvalue", string.Empty));
+                                                    param.Attributes.Append(_common.GetAttribute(_uvScript.OwnerDocument, "name", System.Web.HttpUtility.UrlDecode(nameAndValue[0])));
+                                                    param.Attributes.Append(_common.GetAttribute(_uvScript.OwnerDocument, "value", string.Empty));
+                                                    param.Attributes.Append(_common.GetAttribute(_uvScript.OwnerDocument, "rawname", nameAndValue[0]));
+                                                    param.Attributes.Append(_common.GetAttribute(_uvScript.OwnerDocument, "rawvalue", string.Empty));
                                                 }
                                                 else if (nameAndValue.Length == 2)
                                                 {
-                                                    param.Attributes.Append(_repositoryXml.GetAttribute("name", System.Web.HttpUtility.UrlDecode(nameAndValue[0])));
-                                                    param.Attributes.Append(_repositoryXml.GetAttribute("value", System.Web.HttpUtility.UrlDecode(nameAndValue[1])));
-                                                    param.Attributes.Append(_repositoryXml.GetAttribute("rawname", nameAndValue[1]));
-                                                    param.Attributes.Append(_repositoryXml.GetAttribute("rawvalue", string.Empty));
+                                                    param.Attributes.Append(_common.GetAttribute(_uvScript.OwnerDocument, "name", System.Web.HttpUtility.UrlDecode(nameAndValue[0])));
+                                                    param.Attributes.Append(_common.GetAttribute(_uvScript.OwnerDocument, "value", System.Web.HttpUtility.UrlDecode(nameAndValue[1])));
+                                                    param.Attributes.Append(_common.GetAttribute(_uvScript.OwnerDocument, "rawname", nameAndValue[1]));
+                                                    param.Attributes.Append(_common.GetAttribute(_uvScript.OwnerDocument, "rawvalue", string.Empty));
                                                 }
                                                 parameters.AppendChild(param);
                                             }
@@ -534,15 +538,15 @@ namespace AppedoLT
                                     }
                                     else if (postData == string.Empty && requestContentType.ToLower().StartsWith("text/"))
                                     {
-                                        XmlNode parameters = _repositoryXml.doc.CreateElement("params");
-                                        parameters.Attributes.Append(_repositoryXml.GetAttribute("type", "text"));
+                                        XmlNode parameters = _uvScript.OwnerDocument.CreateElement("params");
+                                        parameters.Attributes.Append(_common.GetAttribute(_uvScript.OwnerDocument, "type", "text"));
 
                                         #region Text
-                                        XmlNode param = _repositoryXml.doc.CreateElement("Param");
-                                        param.Attributes.Append(_repositoryXml.GetAttribute("name", System.Web.HttpUtility.UrlDecode("Text")));
-                                        param.Attributes.Append(_repositoryXml.GetAttribute("rawname", "Text"));
-                                        param.Attributes.Append(_repositoryXml.GetAttribute("value", System.Web.HttpUtility.UrlDecode(postData)));
-                                        param.Attributes.Append(_repositoryXml.GetAttribute("rawvalue", postData));
+                                        XmlNode param = _uvScript.OwnerDocument.CreateElement("Param");
+                                        param.Attributes.Append(_common.GetAttribute(_uvScript.OwnerDocument, "name", System.Web.HttpUtility.UrlDecode("Text")));
+                                        param.Attributes.Append(_common.GetAttribute(_uvScript.OwnerDocument, "rawname", "Text"));
+                                        param.Attributes.Append(_common.GetAttribute(_uvScript.OwnerDocument, "value", System.Web.HttpUtility.UrlDecode(postData)));
+                                        param.Attributes.Append(_common.GetAttribute(_uvScript.OwnerDocument, "rawvalue", postData));
                                         parameters.AppendChild(param);
                                         request.AppendChild(parameters);
                                         #endregion
@@ -640,7 +644,7 @@ namespace AppedoLT
                                             }
                                         }
                                     }
-                                    request.Attributes.Append(_repositoryXml.GetAttribute("resFilename", resFilename));
+                                    request.Attributes.Append(_common.GetAttribute(_uvScript.OwnerDocument,"resFilename", resFilename));
 
                                 }
                                 #endregion
@@ -648,7 +652,7 @@ namespace AppedoLT
                                 #region NewContainer
                                 if (_selectedFirstLevelContainer.ChildNodes.Count == 0 || _selectedFirstLevelContainer.LastChild.Attributes["name"].Value != data.ContainerName)
                                 {
-                                    XmlNode container = _repositoryXml.CreateContainer(_scriptid, data.ContainerName);
+                                    XmlNode container = _common.CreateContainer(_uvScript.OwnerDocument, data.ContainerName);
                                     _selectedFirstLevelContainer.AppendChild(container);
                                     _lastInsertedContainer = container;
                                 }
@@ -672,24 +676,24 @@ namespace AppedoLT
                                     {
                                         try
                                         {
-                                            XmlNode page = _repositoryXml.doc.CreateElement("page");
-                                            page.Attributes.Append(_repositoryXml.GetAttribute("pagename", data.url.LocalPath));
-                                            page.Attributes.Append(_repositoryXml.GetAttribute("host", data.url.Host));
+                                            XmlNode page = _uvScript.OwnerDocument.CreateElement("page");
+                                            page.Attributes.Append(_common.GetAttribute(_uvScript.OwnerDocument, "pagename", data.url.LocalPath));
+                                            page.Attributes.Append(_common.GetAttribute(_uvScript.OwnerDocument, "host", data.url.Host));
 
                                             if (_pageDelay.IsRunning == false)
                                             {
-                                                page.Attributes.Append(_repositoryXml.GetAttribute("delay", "0"));
+                                                page.Attributes.Append(_common.GetAttribute(_uvScript.OwnerDocument, "delay", "0"));
                                                 _pageDelay.Start();
                                             }
                                             else
                                             {
-                                                page.Attributes.Append(_repositoryXml.GetAttribute("delay", _pageDelay.ElapsedMilliseconds.ToString()));
+                                                page.Attributes.Append(_common.GetAttribute(_uvScript.OwnerDocument, "delay", _pageDelay.ElapsedMilliseconds.ToString()));
                                                 _pageDelay.Reset();
                                                 _pageDelay.Start();
                                             }
-                                            page.Attributes.Append(_repositoryXml.GetAttribute("id", _repositoryXml.GetId(_scriptid)));
-                                            page.Attributes.Append(_repositoryXml.GetAttribute("name", data.url.LocalPath));
-                                            page.Attributes.Append(_repositoryXml.GetAttribute("starttime", DateTime.Now.Ticks.ToString()));
+                                            page.Attributes.Append(_common.GetAttribute(_uvScript.OwnerDocument, "id", Constants.GetInstance().UniqueID));
+                                            page.Attributes.Append(_common.GetAttribute(_uvScript.OwnerDocument, "name", data.url.LocalPath));
+                                            page.Attributes.Append(_common.GetAttribute(_uvScript.OwnerDocument, "starttime", DateTime.Now.Ticks.ToString()));
                                             _lastInsertedContainer.AppendChild(page);
                                             _lastInsertedPage = page;
                                             _lastPageURL = data.url.AbsoluteUri;
@@ -720,8 +724,8 @@ namespace AppedoLT
                                 }
                                 #endregion
 
-                                request.Attributes.Append(_repositoryXml.GetAttribute("reqFilename", reqFilename));
-                                request.Attributes.Append(_repositoryXml.GetAttribute("IsEnable", true.ToString()));
+                                request.Attributes.Append(_common.GetAttribute(_uvScript.OwnerDocument, "reqFilename", reqFilename));
+                                request.Attributes.Append(_common.GetAttribute(_uvScript.OwnerDocument, "IsEnable", true.ToString()));
 
                                 if (_lastInsertedPage != null)
                                 {
@@ -747,16 +751,16 @@ namespace AppedoLT
         {
             try
             {
-                XmlNode container = _repositoryXml.CreateContainer(_scriptid, "Initialize");
+                XmlNode container = _common.CreateContainer(_uvScript.OwnerDocument,  "Initialize");
                 _uvScript.AppendChild(container);
                 _ddlParentContainer.Items[0].Tag = container;
 
-                container = _repositoryXml.CreateContainer(_scriptid, "Actions");
+                container = _common.CreateContainer(_uvScript.OwnerDocument, "Actions");
                 _uvScript.AppendChild(container);
                 _ddlParentContainer.Items[1].Tag = container;
                 _selectedFirstLevelContainer = container;
 
-                container = _repositoryXml.CreateContainer(_scriptid, "End");
+                container = _common.CreateContainer(_uvScript.OwnerDocument, "End");
                 _uvScript.AppendChild(container);
                 _ddlParentContainer.Items[2].Tag = container;
             }

@@ -20,7 +20,7 @@ namespace AppedoLT
                 this.Location = new System.Drawing.Point((Screen.PrimaryScreen.Bounds.Width / 2) - (this.Size.Width / 2), 2);
                 lblRequest.Text = string.Empty;
                 Label.CheckForIllegalCrossThreadCalls = false;
-                rd = new Record(lblRequest, txtContainer, ddlParentContainer, _vuScript);
+                rd = new Record(lblRequest, txtContainer, ddlParentContainer, _vuScript.OwnerDocument.SelectSingleNode("//vuscript"));
                 frm = _frm;
                 rd.Start();
             }

@@ -36,13 +36,52 @@ namespace AppedoLT
             try
             {
                 InitializeComponent();
+
+                XmlNode vuscripts = RepositoryXml.GetInstance().doc.SelectSingleNode("//vuscripts");
+                if (vuscripts != null && vuscripts.ChildNodes.Count > 0)
+                {
+                    long totalByte = vuscripts.ChildNodes.Count;
+                    long recivedByte = 0;
+                    bool Success = true;
+
+                    new Thread(() =>
+                    {
+                        try
+                        {
+                            Upgrade(ref totalByte, ref recivedByte, ref Success);
+                        }
+                        catch (Exception ex)
+                        {
+                            ExceptionHandler.WritetoEventLog(ex.StackTrace + Environment.NewLine + ex.Message);
+                            Success = false;
+                        }
+                    }).Start();
+
+                    while (((totalByte == 0 && recivedByte == 0) || recivedByte < totalByte))
+                    {
+                        if (totalByte > 0)
+                        {
+
+                            frmDownloadProgress frm = new frmDownloadProgress("Converted / Total");
+                            frm.Text = "Upgrading script...";
+                            new Thread(() =>
+                            {
+                                frm.UpdateStatusForScript(ref totalByte, ref recivedByte, ref Success);
+                            }).Start();
+                            frm.ShowDialog();
+                        }
+                        if (Success == false) break;
+                        Thread.Sleep(1000);
+                    }
+
+                }
                 Directory.SetCurrentDirectory(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location));
                 if (!Directory.Exists(".\\Data")) Directory.CreateDirectory(".\\Data");
                 if (!Directory.Exists(".\\DataMonitor")) Directory.CreateDirectory(".\\DataMonitor");
                 if (!Directory.Exists(".\\Exported Charts")) Directory.CreateDirectory(".\\Exported Charts");
                 if (!Directory.Exists(".\\Exported Reports")) Directory.CreateDirectory(".\\Exported Reports");
                 if (!Directory.Exists(".\\MonitorData")) Directory.CreateDirectory(".\\MonitorData");
-                if (!Directory.Exists(".\\ScriptResource")) Directory.CreateDirectory(".\\ScriptResource");
+                if (!Directory.Exists(".\\Scripts")) Directory.CreateDirectory(".\\Scripts");
                 if (!Directory.Exists(".\\Upload")) Directory.CreateDirectory(".\\Upload");
                 if (!Directory.Exists(".\\Variables")) Directory.CreateDirectory(".\\Variables");
                 _ucDesignObj = ucDesign.GetInstance();
@@ -199,7 +238,7 @@ namespace AppedoLT
             {
                 if (MessageBox.Show("Do you want to save changes?", "Save", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
-                    _repositoryXml.Save();
+                    _ucDesignObj.btnScriptSave_Click(null, null);
                 }
                 Process.GetCurrentProcess().Kill();
                 AppedoLT.Core.Constants.GetInstance().ReSetFirefoxProxy();//(Core.Constants.GetInstance().ExecutingAssemblyLocation + "\\proxyresetff.bat");
@@ -224,17 +263,18 @@ namespace AppedoLT
             {
                 frmVUScriptNameHttp frm = new frmVUScriptNameHttp();
                 frm.ShowDialog();
-                if (frm.node != null)
+                if (frm.vuscriptXml != null)
                 {
-                    frmRecord rd = new frmRecord(this, frm.name, frm.node);
+                    XmlNode vuscriptNode = frm.vuscriptXml.doc.SelectSingleNode("//vuscript");
+                    frmRecord rd = new frmRecord(this, frm.name, vuscriptNode);
                     this.Visible = false;
                     rd.ShowDialog();
-
+                    frm.vuscriptXml.Save();
                     RadTreeNode vuScriptNode = new RadTreeNode();
-                    vuScriptNode.Text = frm.node.Attributes["name"].Value;
-                    vuScriptNode.Tag = frm.node;
+                    vuScriptNode.Text = vuscriptNode.Attributes["name"].Value;
+                    vuScriptNode.Tag = vuscriptNode;
                     vuScriptNode.ImageKey = "scripts.gif";
-                    foreach (XmlNode container in frm.node.ChildNodes)
+                    foreach (XmlNode container in vuscriptNode.ChildNodes)
                     {
                         RadTreeNode containerNode = new RadTreeNode();
                         containerNode.Text = container.Attributes["name"].Value;
@@ -417,16 +457,22 @@ namespace AppedoLT
 
                 foreach (XmlNode script in scenario.ChildNodes)
                 {
-
-                    script.AppendChild(_repositoryXml.doc.SelectSingleNode("//vuscripts/vuscript[@id='" + script.Attributes["id"].Value + "']").Clone());
-                    XmlNode importNode = scenarioDoc.ImportNode(script, true);
-                    XmlAttribute attTotalMachine = scenarioDoc.CreateAttribute("totalloadgen");
-                    XmlAttribute attCurrentMacineid = scenarioDoc.CreateAttribute("currentloadgenid");
-                    attTotalMachine.Value = totalLoadGen.ToString();
-                    attCurrentMacineid.Value = currentLoadGenid.ToString();
-                    importNode.ChildNodes[0].Attributes.Append(attTotalMachine);
-                    importNode.ChildNodes[0].Attributes.Append(attCurrentMacineid);
-                    root.AppendChild(importNode);
+                    VuscriptXml vuscript =new VuscriptXml(script.Attributes["id"].Value);
+                    XmlNode scriptNode=vuscript.doc.SelectSingleNode("//vuscript");
+                    if (scriptNode.HasChildNodes == true)
+                    {
+                        XmlNode tempScript=scriptNode.Clone();
+                        tempScript = _repositoryXml.doc.ImportNode(tempScript, true);
+                        script.AppendChild(tempScript);
+                        XmlNode importNode = scenarioDoc.ImportNode(script, true);
+                        XmlAttribute attTotalMachine = scenarioDoc.CreateAttribute("totalloadgen");
+                        XmlAttribute attCurrentMacineid = scenarioDoc.CreateAttribute("currentloadgenid");
+                        attTotalMachine.Value = totalLoadGen.ToString();
+                        attCurrentMacineid.Value = currentLoadGenid.ToString();
+                        importNode.ChildNodes[0].Attributes.Append(attTotalMachine);
+                        importNode.ChildNodes[0].Attributes.Append(attCurrentMacineid);
+                        root.AppendChild(importNode);
+                    }
                 }
                 root = scenarioDoc.SelectSingleNode("//root");
                 //scenarioDoc.Save(reportName + ".xml");
@@ -887,7 +933,7 @@ namespace AppedoLT
         {
             try
             {
-                frmScenario frmscenario = new frmScenario(_repositoryXml.doc.SelectNodes("root/vuscripts")[0]);
+                frmScenario frmscenario = new frmScenario(VuscriptXml.GetScriptidAndName());
                 if (frmscenario.ShowDialog() == DialogResult.OK)
                 {
                     LoadScenarioTree();
@@ -904,7 +950,7 @@ namespace AppedoLT
             {
                 if (tvScenarios.SelectedNode != null && tvScenarios.SelectedNode.Level == 0)
                 {
-                    frmScenario frmscenario = new frmScenario(_repositoryXml.doc.SelectNodes("root/vuscripts")[0], (XmlNode)tvScenarios.SelectedNode.Tag);
+                    frmScenario frmscenario = new frmScenario(VuscriptXml.GetScriptidAndName(), (XmlNode)tvScenarios.SelectedNode.Tag);
                     if (frmscenario.ShowDialog() == DialogResult.OK)
                     {
                         LoadScenarioTree();
@@ -1324,5 +1370,42 @@ namespace AppedoLT
         {
            
         }
+
+        void Upgrade(ref long totalByte, ref long recivedByte, ref bool Success)
+        {
+            XmlNode vuscripts =RepositoryXml.GetInstance().doc.SelectSingleNode("//vuscripts");
+          //  File.Copy(RepositoryXml.GetInstance().doc.)
+            string sorceRequestFolderPath = ".\\Request\\";
+            string sorceResponseFolderPath = ".\\Response\\";
+            if (vuscripts != null && vuscripts.ChildNodes.Count > 0)
+            {
+                foreach (XmlNode script in vuscripts.ChildNodes)
+                {
+                    try
+                    {
+                        string scriptid = script.Attributes["id"].Value;
+
+                        string desFolderPath = ".\\Scripts\\" + scriptid + "\\";
+                        if (Directory.Exists(desFolderPath)) Directory.Delete(desFolderPath, true);
+                        VuscriptXml vuscriptxml = new VuscriptXml(scriptid, script.OuterXml);
+                        vuscriptxml.Save();
+
+                        foreach (XmlNode request in vuscriptxml.doc.SelectNodes("//request"))
+                        {
+                            if (File.Exists(sorceRequestFolderPath + request.Attributes["reqFilename"].Value)) File.Copy(sorceRequestFolderPath + request.Attributes["reqFilename"].Value, desFolderPath + request.Attributes["reqFilename"].Value);
+                            if (File.Exists(sorceResponseFolderPath + request.Attributes["resFilename"].Value)) File.Copy(sorceResponseFolderPath + request.Attributes["resFilename"].Value, desFolderPath + request.Attributes["resFilename"].Value);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+
+                    }
+                    recivedByte += 1;
+                }
+            }
+            RepositoryXml.GetInstance().doc.SelectSingleNode(".//root").RemoveChild(vuscripts);
+            RepositoryXml.GetInstance().Save();
+        }
+
     }
 }

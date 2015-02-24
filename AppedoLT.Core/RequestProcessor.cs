@@ -69,9 +69,9 @@ namespace AppedoLT.Core
         Label _label = null;
 
         //For Recoding
-        public RequestProcessor(TcpClient browserTcpClient1, ConnectionManager connectionManager1, string requestid, string containerName, Label _label1)
+        public RequestProcessor(TcpClient browserTcpClient1, ConnectionManager connectionManager1, string containerName, Label _label1)
         {
-            Requestid = requestid;
+           
             browserTcpClient = browserTcpClient1;
             connectionManager = connectionManager1;
             _label = _label1;

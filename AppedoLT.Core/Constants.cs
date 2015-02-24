@@ -15,6 +15,7 @@ using System.Xml;
 using System.Net.Sockets;
 using System.Collections;
 using Ionic.Zip;
+using System.Threading;
 
 namespace AppedoLT.Core
 {
@@ -37,6 +38,9 @@ namespace AppedoLT.Core
         private string _uploadIPAddress = string.Empty;
         private string _uploadPort = string.Empty;
         private int _maxUser = 0;
+        private int _uniqueID = 0;
+        private object _logObj = new object();
+        private DateTime _dateTime = new DateTime(2000, 1, 1);
 
         public string ChartsSummaryFileName = "chart_ summary.csv";
         public string ChartsAvgResponse = "chart_useravgresponse.csv";
@@ -933,6 +937,23 @@ namespace AppedoLT.Core
                 zip.ExtractAll(destinationPath);
             }
         }
+        public string UniqueID
+        {
+            get
+            {
+                lock (_logObj)
+                {
+                    if (_uniqueID == 0)
+                    {
+                        Thread.Sleep(1000);
+                        _uniqueID = ((int)(DateTime.UtcNow.Subtract(_dateTime)).TotalSeconds);
+                    }
+                    return (_uniqueID++).ToString();
+                }
+            }
+        }
+
+
     }
 
     public class Tuple<T1, T2>

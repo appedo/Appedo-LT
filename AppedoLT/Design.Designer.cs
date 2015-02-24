@@ -64,7 +64,6 @@ namespace AppedoLT
             this.label3 = new System.Windows.Forms.Label();
             this.lblUserCompleted = new System.Windows.Forms.Label();
             this.pnlScriptSettings = new System.Windows.Forms.Panel();
-            this.objUCLoadGen = new AppedoLT.ucLoadGen();
             this.splitPanel8 = new Telerik.WinControls.UI.SplitPanel();
             this.splcRunErrorReport = new Telerik.WinControls.UI.RadSplitContainer();
             this.splitPanel18 = new Telerik.WinControls.UI.SplitPanel();
@@ -89,11 +88,8 @@ namespace AppedoLT
             this.btnShowReport = new Telerik.WinControls.UI.RadButton();
             this.ddlReportName = new Telerik.WinControls.UI.RadComboBox();
             this.tabiCharts = new Telerik.WinControls.UI.TabItem();
-            this.userControlCharts1 = new AppedoLT.userControlCharts();
             this.tabItem1 = new Telerik.WinControls.UI.TabItem();
-            this.userControlReports1 = new AppedoLT.userControlReports();
             this.tapiMonitor = new Telerik.WinControls.UI.TabItem();
-            this.ucMonitor1 = new AppedoLT.UCMonitor();
             this.imcDesign = new System.Windows.Forms.ImageList(this.components);
             this.tmrExecution = new System.Windows.Forms.Timer(this.components);
             this.splitPanel17 = new Telerik.WinControls.UI.SplitPanel();
@@ -118,6 +114,10 @@ namespace AppedoLT
             mnuiLogin = new Telerik.WinControls.UI.RadMenuItem();
             this.radMenuItem1 = new Telerik.WinControls.UI.RadMenuItem();
             this.imageListForHeading = new System.Windows.Forms.ImageList(this.components);
+            this.objUCLoadGen = new AppedoLT.ucLoadGen();
+            this.userControlCharts1 = new AppedoLT.userControlCharts();
+            this.userControlReports1 = new AppedoLT.userControlReports();
+            this.ucMonitor1 = new AppedoLT.UCMonitor();
             ((System.ComponentModel.ISupportInitialize)(this.tabsDesign)).BeginInit();
             this.tabsDesign.SuspendLayout();
             this.tabiRun.ContentPanel.SuspendLayout();
@@ -652,18 +652,6 @@ namespace AppedoLT
             this.pnlScriptSettings.Size = new System.Drawing.Size(644, 156);
             this.pnlScriptSettings.TabIndex = 28;
             // 
-            // objUCLoadGen
-            // 
-            this.objUCLoadGen.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.objUCLoadGen.Dock = System.Windows.Forms.DockStyle.Left;
-            this.objUCLoadGen.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.objUCLoadGen.Location = new System.Drawing.Point(0, 0);
-            this.objUCLoadGen.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.objUCLoadGen.Name = "objUCLoadGen";
-            this.objUCLoadGen.Size = new System.Drawing.Size(318, 156);
-            this.objUCLoadGen.TabIndex = 0;
-            this.objUCLoadGen.Visible = false;
-            // 
             // splitPanel8
             // 
             this.splitPanel8.Controls.Add(this.splcRunErrorReport);
@@ -965,16 +953,6 @@ namespace AppedoLT
             this.tabiCharts.Text = "Charts";
             this.tabiCharts.Visibility = Telerik.WinControls.ElementVisibility.Collapsed;
             // 
-            // userControlCharts1
-            // 
-            this.userControlCharts1.AutoScroll = true;
-            this.userControlCharts1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(219)))), ((int)(((byte)(255)))));
-            this.userControlCharts1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.userControlCharts1.Location = new System.Drawing.Point(0, 0);
-            this.userControlCharts1.Name = "userControlCharts1";
-            this.userControlCharts1.Size = new System.Drawing.Size(941, 499);
-            this.userControlCharts1.TabIndex = 0;
-            // 
             // tabItem1
             // 
             this.tabItem1.Alignment = System.Drawing.ContentAlignment.BottomLeft;
@@ -998,14 +976,6 @@ namespace AppedoLT
             this.tabItem1.StretchHorizontally = false;
             this.tabItem1.StretchVertically = false;
             this.tabItem1.Text = "Reports";
-            // 
-            // userControlReports1
-            // 
-            this.userControlReports1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.userControlReports1.Location = new System.Drawing.Point(0, 0);
-            this.userControlReports1.Name = "userControlReports1";
-            this.userControlReports1.Size = new System.Drawing.Size(941, 499);
-            this.userControlReports1.TabIndex = 0;
             // 
             // tapiMonitor
             // 
@@ -1031,15 +1001,6 @@ namespace AppedoLT
             this.tapiMonitor.StretchVertically = false;
             this.tapiMonitor.Text = "Monitor";
             this.tapiMonitor.Visibility = Telerik.WinControls.ElementVisibility.Hidden;
-            // 
-            // ucMonitor1
-            // 
-            this.ucMonitor1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ucMonitor1.Location = new System.Drawing.Point(0, 0);
-            this.ucMonitor1.Margin = new System.Windows.Forms.Padding(5, 3, 5, 3);
-            this.ucMonitor1.Name = "ucMonitor1";
-            this.ucMonitor1.Size = new System.Drawing.Size(941, 499);
-            this.ucMonitor1.TabIndex = 0;
             // 
             // imcDesign
             // 
@@ -1222,6 +1183,45 @@ namespace AppedoLT
             this.imageListForHeading.Images.SetKeyName(15, "arrow-right-3.png");
             this.imageListForHeading.Images.SetKeyName(16, "reports_bluebg.gif");
             // 
+            // objUCLoadGen
+            // 
+            this.objUCLoadGen.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.objUCLoadGen.Dock = System.Windows.Forms.DockStyle.Left;
+            this.objUCLoadGen.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.objUCLoadGen.Location = new System.Drawing.Point(0, 0);
+            this.objUCLoadGen.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.objUCLoadGen.Name = "objUCLoadGen";
+            this.objUCLoadGen.Size = new System.Drawing.Size(318, 156);
+            this.objUCLoadGen.TabIndex = 0;
+            this.objUCLoadGen.Visible = false;
+            // 
+            // userControlCharts1
+            // 
+            this.userControlCharts1.AutoScroll = true;
+            this.userControlCharts1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(219)))), ((int)(((byte)(255)))));
+            this.userControlCharts1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.userControlCharts1.Location = new System.Drawing.Point(0, 0);
+            this.userControlCharts1.Name = "userControlCharts1";
+            this.userControlCharts1.Size = new System.Drawing.Size(941, 499);
+            this.userControlCharts1.TabIndex = 0;
+            // 
+            // userControlReports1
+            // 
+            this.userControlReports1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.userControlReports1.Location = new System.Drawing.Point(0, 0);
+            this.userControlReports1.Name = "userControlReports1";
+            this.userControlReports1.Size = new System.Drawing.Size(941, 499);
+            this.userControlReports1.TabIndex = 0;
+            // 
+            // ucMonitor1
+            // 
+            this.ucMonitor1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucMonitor1.Location = new System.Drawing.Point(0, 0);
+            this.ucMonitor1.Margin = new System.Windows.Forms.Padding(5, 3, 5, 3);
+            this.ucMonitor1.Name = "ucMonitor1";
+            this.ucMonitor1.Size = new System.Drawing.Size(941, 499);
+            this.ucMonitor1.TabIndex = 0;
+            // 
             // Design
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1236,7 +1236,7 @@ namespace AppedoLT
             // 
             // 
             this.RootElement.ApplyShapeToControl = true;
-            this.Text = "Appedo";
+            this.Text = "AppedoLT";
             this.ThemeName = "ControlDefault";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Design_FormClosed);

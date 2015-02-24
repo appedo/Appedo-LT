@@ -39,9 +39,9 @@ namespace AppedoLT
             ddlPostContentType.DataSource = _constant.HttpPostContentType;
         }
 
-        public UCHttpRequest GetControl(string scriptid, XmlNode xmlNode, RadTreeNode treeNode)
+        public UCHttpRequest GetControl( XmlNode xmlNode, RadTreeNode treeNode)
         {
-            _scriptId = scriptid;
+            _scriptId = xmlNode.OwnerDocument.SelectSingleNode("//vuscript").Attributes["id"].Value;
             _treeNode = treeNode;
             this.SetRequest(xmlNode);
             this.Tag = xmlNode;
@@ -82,12 +82,12 @@ namespace AppedoLT
                 txtPath.Tag = _request.Attributes["Path"];
                 try
                 {
-                    txtRequest.Text = Utility.GetFileContent(Constants.GetInstance().ExecutingAssemblyLocation + "\\ScriptResource\\" + _scriptId + "\\" + _request.Attributes["reqFilename"].Value);
-                    txtResponse.Text = _request.Attributes["ResponseHeader"].Value + Utility.GetFileContent(Constants.GetInstance().ExecutingAssemblyLocation + "\\ScriptResource\\" + _scriptId + "\\" + _request.Attributes["resFilename"].Value);
+                    txtRequest.Text = Utility.GetFileContent(Constants.GetInstance().ExecutingAssemblyLocation + "\\Scripts\\" + _scriptId + "\\" + _request.Attributes["reqFilename"].Value);
+                    txtResponse.Text = _request.Attributes["ResponseHeader"].Value + Utility.GetFileContent(Constants.GetInstance().ExecutingAssemblyLocation + "\\Scripts\\" + _scriptId + "\\" + _request.Attributes["resFilename"].Value);
                     webBrowserResponse.DocumentText = txtResponse.Text;
                     if (imageTest.IsMatch(_request.Attributes["resFilename"].Value))
                     {
-                        MemoryStream ms = GetStreamFromFile((Constants.GetInstance().ExecutingAssemblyLocation + "\\ScriptResource\\" + _scriptId + "\\" + _request.Attributes["resFilename"].Value));
+                        MemoryStream ms = GetStreamFromFile((Constants.GetInstance().ExecutingAssemblyLocation + "\\Scripts\\" + _scriptId + "\\" + _request.Attributes["resFilename"].Value));
                         pictureBox1.Image = Image.FromStream(ms);
                         tabiResponseImage.Visibility = Telerik.WinControls.ElementVisibility.Visible;
                         tabWebBrowser.Visibility = Telerik.WinControls.ElementVisibility.Collapsed;

@@ -29,6 +29,9 @@ namespace AppedoLT
                     Dictionary<string, string> header = new Dictionary<string, string>();
                     header.Add("userid", txtEmailid.Text);
                     header.Add("pwd", txtPassword.Text);
+                    header.Add("module", Application.ProductName);
+                    header.Add("version", Application.ProductVersion.Remove(Application.ProductVersion.LastIndexOf('.')));
+                   
                     server.Send(new TrasportData("login", string.Empty, header));
                     TrasportData respose = server.Receive();
                     if (respose.Operation.ToLower() == "ok" && respose.Header["success"] == "1")
@@ -38,7 +41,7 @@ namespace AppedoLT
                     }
                     else
                     {
-                        MessageBox.Show("Invalid Email ID or Password");
+                        MessageBox.Show(respose.Header["message"]);
                         this.DialogResult = DialogResult.None;
                     }
                 }

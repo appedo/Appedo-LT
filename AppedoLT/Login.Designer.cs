@@ -63,7 +63,6 @@
             this.txtPassword.Size = new System.Drawing.Size(287, 19);
             this.txtPassword.TabIndex = 12;
             this.txtPassword.TabStop = false;
-            this.txtPassword.Text = "appedo";
             this.txtPassword.ThemeName = "Office2010";
             // 
             // radLabel5
@@ -83,7 +82,6 @@
             this.txtEmailid.Size = new System.Drawing.Size(287, 19);
             this.txtEmailid.TabIndex = 11;
             this.txtEmailid.TabStop = false;
-            this.txtEmailid.Text = "sysadmin@appedo.com";
             this.txtEmailid.ThemeName = "Office2010";
             // 
             // btnCancel
