@@ -16,7 +16,6 @@ namespace AppedoLT
         private FindDig _fDig = null;
         private DataTable _paramTable = new DataTable();
         private DataTable _headerTable = new DataTable();
-        private RepositoryXml _repositoryXml = RepositoryXml.GetInstance();
         private XmlNode _request;
         private RadTreeNode _treeNode = null;
         private static UCHttpRequest _instance;
@@ -400,7 +399,7 @@ namespace AppedoLT
         {
             if (_request.SelectSingleNode("assertions") == null)
             {
-                XmlNode assertions = _repositoryXml.doc.CreateElement("assertions");
+                XmlNode assertions =((XmlNode)this.Tag).OwnerDocument.CreateElement("assertions");
                 frmAssertion parm = new frmAssertion(assertions, null);
                 if (parm.ShowDialog() == DialogResult.OK)
                 {

@@ -397,8 +397,6 @@
     <Content Include="sqlite3.exe">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Sqlite\32bit\System.Data.SQLite.dll" />
-    <Content Include="Sqlite\64bit\System.Data.SQLite.dll" />
     <EmbeddedResource Include="About FloodGates.resx">
       <DependentUpon>About FloodGates.cs</DependentUpon>
       <SubType>Designer</SubType>

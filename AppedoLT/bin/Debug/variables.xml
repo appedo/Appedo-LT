@@ -1,4 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <variables>
   <variable from="variablemanager" modified="635599669982808648" name="test" policy="eachiteration" type="string" value="v1" />
+  <variable columns="name;age" delimiter="," from="variablemanager" location="C:\Users\Administrator\Desktop\ccc\data.csv" modified="635604589586321479" name="sample" policy="eachiteration" start="1" type="file" vituallocation="\Variables\635604584018112009_data.csv">
+    <content>name,age
+rasith,27</content>
+  </variable>
 </variables>

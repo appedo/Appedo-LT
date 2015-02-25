@@ -235,38 +235,46 @@ namespace AppedoLTController
             new Thread(() =>
                {
                    isClientRunning = true;
-                   while (true)
+                   try
                    {
-                       try
+                       while (true)
                        {
-                           if (AppedoServer != string.Empty)
+                           try
                            {
-                               TrasportData data = new TrasportData("isqueueavailable", string.Empty, null);
-                               Trasport server = new Trasport(AppedoServer, Constants.GetInstance().AppedoPort);
-                               server.Send(data);
-                               data = server.Receive();
-                               if (data.Header["status"] == "1")
+                               if (AppedoServer != string.Empty)
                                {
-                                   server = new Trasport(AppedoServer, Constants.GetInstance().AppedoPort);
-                                   data = new TrasportData("getrundetail", string.Empty, null);
+                                   TrasportData data = new TrasportData("isqueueavailable", string.Empty, null);
+                                   Trasport server = new Trasport(AppedoServer, Constants.GetInstance().AppedoPort);
                                    server.Send(data);
                                    data = server.Receive();
-                                   ExceptionHandler.LogRunDetail(data.Header["runid"], "Received Rundetail for runid " + data.Header["runid"]);
-                                   server = new Trasport(AppedoServer, Constants.GetInstance().AppedoPort);
-                                   server.Send(new TrasportData("ok", string.Empty, null));
-                                   new Thread(() => { RunOperation(server, data); }).Start();
-                               }
-                               else
-                               {
-                                   Thread.Sleep(20000);
+                                   if (data.Header["status"] == "1")
+                                   {
+                                       server = new Trasport(AppedoServer, Constants.GetInstance().AppedoPort);
+                                       data = new TrasportData("getrundetail", string.Empty, null);
+                                       server.Send(data);
+                                       data = server.Receive();
+                                       ExceptionHandler.LogRunDetail(data.Header["runid"], "Received Rundetail for runid " + data.Header["runid"]);
+                                       server = new Trasport(AppedoServer, Constants.GetInstance().AppedoPort);
+                                       server.Send(new TrasportData("ok", string.Empty, null));
+                                       new Thread(() => { RunOperation(server, data); }).Start();
+                                   }
+                                   else
+                                   {
+                                       Thread.Sleep(20000);
+                                   }
                                }
                            }
+                           catch (Exception ex)
+                           {
+                               Thread.Sleep(10000);
+                               ExceptionHandler.WritetoEventLog(ex.StackTrace + ex.Message);
+                           }
                        }
-                       catch (Exception ex)
-                       {
-                           Thread.Sleep(10000);
-                           ExceptionHandler.WritetoEventLog(ex.StackTrace + ex.Message);
-                       }
+                   }
+                   catch (Exception ex)
+                   {
+                       ExceptionHandler.WritetoEventLog(ex.StackTrace + ex.Message);
+                       Thread.Sleep(10000);
                    }
                }).Start();
         }
@@ -275,26 +283,34 @@ namespace AppedoLTController
         {
             new Thread(() =>
                 {
-                    while (true)
+                    try
                     {
-                        try
+                        while (true)
                         {
-                            foreach (XmlNode runnode in ControllerXml.GetInstance().doc.SelectNodes("//runs/run"))
+                            try
                             {
-                                if (runnode.Attributes["sourceip"] != null && Controllers.ContainsKey(runnode.Attributes["reportname"].Value) == false)
+                                foreach (XmlNode runnode in ControllerXml.GetInstance().doc.SelectNodes("//runs/run"))
                                 {
-                                    Dictionary<string, string> runid = new Dictionary<string, string>();
-                                    runid.Add("runid", runnode.Attributes["reportname"].Value);
-                                    Trasport server = new Trasport(runnode.Attributes["sourceip"].Value, Constants.GetInstance().AppedoPort);
-                                    server.Send(new TrasportData("updaterunidstatus", string.Empty, runid));
-                                    new ResultFileGenerator(runnode.Attributes["reportname"].Value).Genarate();
+                                    if (runnode.Attributes["sourceip"] != null && Controllers.ContainsKey(runnode.Attributes["reportname"].Value) == false)
+                                    {
+                                        Dictionary<string, string> runid = new Dictionary<string, string>();
+                                        runid.Add("runid", runnode.Attributes["reportname"].Value);
+                                        Trasport server = new Trasport(runnode.Attributes["sourceip"].Value, Constants.GetInstance().AppedoPort);
+                                        server.Send(new TrasportData("updaterunidstatus", string.Empty, runid));
+                                        new ResultFileGenerator(runnode.Attributes["reportname"].Value).Genarate();
+                                    }
                                 }
                             }
+                            catch (Exception ex)
+                            {
+                                ExceptionHandler.WritetoEventLog(ex.StackTrace + ex.Message);
+                            }
+                            Thread.Sleep(10000);
                         }
-                        catch (Exception ex)
-                        {
-                            ExceptionHandler.WritetoEventLog(ex.StackTrace + ex.Message);
-                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        ExceptionHandler.WritetoEventLog(ex.StackTrace + ex.Message);
                         Thread.Sleep(10000);
                     }
                 }).Start();
@@ -518,6 +534,7 @@ namespace AppedoLTController
             catch (Exception ex)
             {
                 ExceptionHandler.WritetoEventLog(ex.StackTrace + ex.Message);
+                Thread.Sleep(2000);
             }
 
             #endregion

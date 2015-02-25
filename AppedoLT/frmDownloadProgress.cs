@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AppedoLT.Core;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -27,20 +28,27 @@ namespace AppedoLT
         }
         public void UpdateStatus(ref long total, ref long received, ref bool success)
         {
-            progressBar1.Minimum = 0;
-            progressBar1.Maximum =(int) total;
-            progressBar1.Value = (int)received;
-
-            while (((total == 0 && received == 0) || received < total))
+            try
             {
-
+                progressBar1.Minimum = 0;
+                progressBar1.Maximum = (int)total;
                 progressBar1.Value = (int)received;
-                txtMsg.Text = string.Format("{0:0.###}", (received / 1024)) + " / " + string.Format("{0:0.###}", (total / 1024)) + " (KB)";
-                if(cancel==true) success = false;
-                if (success == false) break;
-                Thread.Sleep(1000);
+
+                while (((total == 0 && received == 0) || received < total))
+                {
+
+                    progressBar1.Value = (int)received;
+                    txtMsg.Text = string.Format("{0:0.###}", (received / 1024)) + " / " + string.Format("{0:0.###}", (total / 1024)) + " (KB)";
+                    if (cancel == true) success = false;
+                    if (success == false) break;
+                    Thread.Sleep(1000);
+                }
+              if(this!=null)  this.Close();
             }
-            this.Close();
+            catch (Exception ex)
+            {
+                ExceptionHandler.WritetoEventLog(ex.Message + Environment.NewLine + ex.StackTrace);
+            }
 
         }
         public void UpdateStatusForScript(ref long total, ref long received, ref bool success)
@@ -58,7 +66,7 @@ namespace AppedoLT
                 if (success == false) break;
                 Thread.Sleep(1000);
             }
-            this.Close();
+            if (this != null) this.Close();
 
         }
         private void btnCancel_Click(object sender, EventArgs e)

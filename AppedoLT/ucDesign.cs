@@ -159,7 +159,7 @@ namespace AppedoLT
         {
             try
             {
-                XmlNode vuscript = (XmlNode)tvRequest.SelectedNode.Tag;
+                XmlNode vuscript = ((VuscriptXml)tvRequest.SelectedNode.Tag).doc.SelectSingleNode("//vuscript") ;
                 string scriptId = vuscript.Attributes["id"].Value;
                 FlagRequest fRequest;
                 if (_repositoryXml.doc.SelectSingleNode("//flag/flagrequest[@scriptid='" + scriptId + "']") == null)
@@ -1124,7 +1124,6 @@ namespace AppedoLT
                 }
                 if (Constants.GetInstance().UserId != string.Empty)
                 {
-
                     TrasportData respose = null;
                     Dictionary<string, string> header = new Dictionary<string, string>();
                     string scripts = string.Empty;
@@ -1134,10 +1133,8 @@ namespace AppedoLT
                     respose = server.Receive();
                     scripts = respose.Header["scripts"];
                     server.Close();
-
                     frmScriptNameList frm = new frmScriptNameList(GetAvailableScript(),scripts,this);
                     frm.ShowDialog();
-
                 }
 
             }
@@ -1148,15 +1145,6 @@ namespace AppedoLT
 
         }
        
-        void StoreScript(string scriptName)
-        {
-            //string scriptZipPath = Constants.GetInstance().ExecutingAssemblyLocation + "//Scripts/" + scriptName + ".rar";
-            //if(File.Exists(scriptZipPath)==true)
-            //{
-
-            //}
-        }
-
         List<string> GetAvailableScript()
         {
             List<string> list = new List<string>();
@@ -1166,10 +1154,7 @@ namespace AppedoLT
             }
             return list;
         }
-        //string GetAvailableScript()
-        //{
-        //    StringBuilder 
-        //}
+
         #endregion
 
     }
