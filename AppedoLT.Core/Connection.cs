@@ -11,6 +11,8 @@ using System.Configuration;
 using System.Security.Authentication;
 using System.Text.RegularExpressions;
 
+
+
 namespace AppedoLT.Core
 {
     public class Connection
