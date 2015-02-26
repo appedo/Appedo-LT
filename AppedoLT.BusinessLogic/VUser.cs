@@ -64,6 +64,7 @@ namespace AppedoLT.BusinessLogic
         private XmlDocument _doc = null;
         private Thread _userThread;
         private ExecutionReport Status = ExecutionReport.GetInstance();
+        private Queue<Log> _scriptWiseLog = new Queue<Log>();
 
         private Dictionary<string, object> _exVariablesValues = new Dictionary<string, object>();
         private Dictionary<string, TransactionRunTimeDetail> _transactions = new Dictionary<string, TransactionRunTimeDetail>();
@@ -113,9 +114,10 @@ namespace AppedoLT.BusinessLogic
         Dictionary<string, string> receivedCookies = new Dictionary<string, string>();
         public VUserStatus VUserStatus;
 
-        public VUser(int maxUser, string reportName, string type, int userid, int iteration, XmlNode vuScript, bool browserCache, IPAddress ipaddress)
+        public VUser(int maxUser, string reportName, string type, int userid, int iteration, XmlNode vuScript, bool browserCache, IPAddress ipaddress,Queue<Log> scriptWiseLog)
         {
             _doc = vuScript.OwnerDocument;
+            _scriptWiseLog = scriptWiseLog;
             _maxUser = maxUser;
             _browserCache = browserCache;
             _type = type;
@@ -725,7 +727,7 @@ namespace AppedoLT.BusinessLogic
                     string selectionType = exVar.Attributes["selctiontype"].Value;
                     int groupindex = Convert.ToInt32(exVar.Attributes["groupindex"].Value);
 
-                    MatchCollection match = Regex.Matches(req.ResponseStr, exVar.Attributes["regex"].Value);
+                    MatchCollection match = Regex.Matches(req.ResponseStr, exVar.Attributes["regex"].Value, RegexOptions.Singleline | RegexOptions.Multiline);
                     string[] strs = new string[_exVariablesValues.Keys.Count];
                     _exVariablesValues.Keys.CopyTo(strs, 0);
 
@@ -1650,6 +1652,7 @@ namespace AppedoLT.BusinessLogic
                     lock (DataServer.GetInstance().logs)
                     {
                         DataServer.GetInstance().logs.Enqueue(logObj);
+                        _scriptWiseLog.Enqueue(logObj);
                     }
                 }
             }

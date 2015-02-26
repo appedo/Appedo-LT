@@ -164,3 +164,7 @@ E:\AppedoLT\AppedoLT\bin\Debug\APPEDO_LT.exe
 E:\AppedoLT\AppedoLT\bin\Debug\APPEDO_LT.pdb
 E:\AppedoLT\AppedoLT\obj\x86\Debug\APPEDO_LT.exe
 E:\AppedoLT\AppedoLT\obj\x86\Debug\APPEDO_LT.pdb
+E:\AppedoLT\AppedoLT\obj\x86\Debug\AppedoLT.frmDownloadProgress.resources
+E:\AppedoLT\AppedoLT\obj\x86\Debug\AppedoLT.frmScriptNameList.resources
+E:\AppedoLT\AppedoLT\obj\x86\Debug\AppedoLT.frmScriptUpgrade.resources
+E:\AppedoLT\AppedoLT\bin\Debug\Ionic.Zip.dll

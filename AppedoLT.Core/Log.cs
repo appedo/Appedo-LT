@@ -4,6 +4,8 @@ namespace AppedoLT.Core
 {
     public class Log
     {
+        private string _message = string.Empty;
+
         public string loadGen = Constants.GetInstance().LoadGen;
         public string reportname = string.Empty;
         public string scenarioname = string.Empty;
@@ -14,6 +16,7 @@ namespace AppedoLT.Core
         public string userid = string.Empty;
         public string iterationid = string.Empty;
         public string message = string.Empty;
+       // public string message { set { _message = "\"" ++ "\""; } get { return  _message} }
         public DateTime time = new DateTime();
 
         public override string ToString()

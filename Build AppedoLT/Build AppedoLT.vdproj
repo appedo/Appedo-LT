@@ -445,62 +445,6 @@
     {
         "CustomAction"
         {
-            "{4AA51A2D-7D85-4A59-BA75-B0809FC8B380}:_12C743FC2DFD4E51A22323364F94604A"
-            {
-            "Name" = "8:Primary output from AppedoLT (Active)"
-            "Condition" = "8:"
-            "Object" = "8:_ADED4203457140B492DADD574BE2445F"
-            "FileType" = "3:2"
-            "InstallAction" = "3:1"
-            "Arguments" = "8:"
-            "EntryPoint" = "8:"
-            "Sequence" = "3:1"
-            "Identifier" = "8:_0D76AAD9_E473_4CAE_8EC6_BCD714951E9A"
-            "InstallerClass" = "11:TRUE"
-            "CustomActionData" = "8:"
-            }
-            "{4AA51A2D-7D85-4A59-BA75-B0809FC8B380}:_610AAFD55DDC45429AAD7E356D84D8E1"
-            {
-            "Name" = "8:Primary output from AppedoLT (Active)"
-            "Condition" = "8:"
-            "Object" = "8:_ADED4203457140B492DADD574BE2445F"
-            "FileType" = "3:2"
-            "InstallAction" = "3:4"
-            "Arguments" = "8:"
-            "EntryPoint" = "8:"
-            "Sequence" = "3:1"
-            "Identifier" = "8:_AE0827E2_CD13_442D_86A4_C256EA29CBC3"
-            "InstallerClass" = "11:TRUE"
-            "CustomActionData" = "8:"
-            }
-            "{4AA51A2D-7D85-4A59-BA75-B0809FC8B380}:_6CD6DD77F91044E59C9ED7F0443CE263"
-            {
-            "Name" = "8:Primary output from AppedoLT (Active)"
-            "Condition" = "8:"
-            "Object" = "8:_ADED4203457140B492DADD574BE2445F"
-            "FileType" = "3:2"
-            "InstallAction" = "3:2"
-            "Arguments" = "8:"
-            "EntryPoint" = "8:"
-            "Sequence" = "3:1"
-            "Identifier" = "8:_F13D9FF1_EC88_4DB4_9A36_529B5582A490"
-            "InstallerClass" = "11:TRUE"
-            "CustomActionData" = "8:"
-            }
-            "{4AA51A2D-7D85-4A59-BA75-B0809FC8B380}:_780FD07548934BED99D27BCA5FE0FF49"
-            {
-            "Name" = "8:Primary output from AppedoLT (Active)"
-            "Condition" = "8:"
-            "Object" = "8:_ADED4203457140B492DADD574BE2445F"
-            "FileType" = "3:2"
-            "InstallAction" = "3:3"
-            "Arguments" = "8:"
-            "EntryPoint" = "8:"
-            "Sequence" = "3:1"
-            "Identifier" = "8:_26FD9CF7_C1DF_4846_B1A6_AF64B17D0289"
-            "InstallerClass" = "11:TRUE"
-            "CustomActionData" = "8:"
-            }
         }
         "DefaultFeature"
         {
@@ -1160,15 +1104,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:APPEDO_LT"
-        "ProductCode" = "8:{DF1FFCAB-D62F-47F2-BBD6-81BAD5732C1A}"
-        "PackageCode" = "8:{72591A05-E1AA-4B89-AD88-7FABDE2965EB}"
+        "ProductCode" = "8:{68D2405D-19E3-43E3-9E91-8054565FA32F}"
+        "PackageCode" = "8:{AEE4AEEB-007F-4311-8FD2-517D1510C6F1}"
         "UpgradeCode" = "8:{CB15E76E-67E8-47B2-9DAF-D40EDBB52CA2}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:TRUE"
-        "ProductVersion" = "8:3.0.27"
+        "ProductVersion" = "8:3.0.28"
         "Manufacturer" = "8:Appedo"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
@@ -1738,7 +1682,7 @@
             }
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_ADED4203457140B492DADD574BE2445F"
             {
-            "SourcePath" = "8:..\\AppedoLT\\obj\\Debug\\APPEDO_LT.exe"
+            "SourcePath" = "8:..\\AppedoLT\\obj\\x64\\Debug\\APPEDO_LT.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_2CDDFE479C084CBDBBC397E4CB0B4192"

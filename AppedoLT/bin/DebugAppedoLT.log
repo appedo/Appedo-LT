@@ -3071,3 +3071,27 @@ Unable to cast object of type 'AppedoLT.VuscriptXml' to type 'System.Xml.XmlNode
    at AppedoLT.ucDesign.searchToolStripMenuItem_Click(Object sender, EventArgs e) in e:\AppedoLT\AppedoLT\ucDesign.cs:line 162
 Unable to cast object of type 'AppedoLT.VuscriptXml' to type 'System.Xml.XmlNode'.
 ---------------------------------------
+18:01:13 25 February 2015 
+Cannot access a closed Stream.
+   at System.IO.__Error.StreamIsClosed()
+   at System.IO.MemoryStream.set_Position(Int64 value)
+   at AppedoLT.Record.StoreResult() in e:\AppedoLT\AppedoLT\Class\Record.cs:line 669
+---------------------------------------
+18:01:18 25 February 2015 
+Cannot access a closed Stream.
+   at System.IO.__Error.StreamIsClosed()
+   at System.IO.MemoryStream.set_Position(Int64 value)
+   at AppedoLT.Record.StoreResult() in e:\AppedoLT\AppedoLT\Class\Record.cs:line 669
+---------------------------------------
+18:01:18 25 February 2015 
+A blocking operation was interrupted by a call to WSACancelBlockingCall
+   at System.Net.Sockets.Socket.Accept()
+   at System.Net.Sockets.TcpListener.AcceptTcpClient()
+   at AppedoLT.Record.DoWork(Object sender, DoWorkEventArgs e) in e:\AppedoLT\AppedoLT\Class\Record.cs:line 217
+---------------------------------------
+18:06:31 25 February 2015 
+A blocking operation was interrupted by a call to WSACancelBlockingCall
+   at System.Net.Sockets.Socket.Accept()
+   at System.Net.Sockets.TcpListener.AcceptTcpClient()
+   at AppedoLT.Record.DoWork(Object sender, DoWorkEventArgs e) in e:\AppedoLT\AppedoLT\Class\Record.cs:line 217
+---------------------------------------
