@@ -113,7 +113,7 @@ namespace AppedoLT
             // 
             // tabiExtrator.ContentPanel
             // 
-            this.tabiExtrator.ContentPanel.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.tabiExtrator.ContentPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(248)))));
             this.tabiExtrator.ContentPanel.CausesValidation = true;
             this.tabiExtrator.ContentPanel.Controls.Add(this.panel1);
             this.tabiExtrator.ContentPanel.Controls.Add(this.radLabel3);

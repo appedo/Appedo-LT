@@ -75,6 +75,8 @@ namespace AppedoLT
                 txtUrl.Text = _request.Attributes["Url"].Value;
                 txtUrl.Tag = _request.Attributes["Url"];
                 ddlMethod.Tag = _request.Attributes["Method"];
+                txtSchema.Text = _request.Attributes["Schema"].Value;
+                txtSchema.Tag = _request.Attributes["Schema"];
                 txtServer.Text = _request.Attributes["Host"].Value;
                 txtServer.Tag = _request.Attributes["Host"];
                 txtPath.Text = _request.Attributes["Path"].Value;

@@ -3095,3 +3095,9 @@ A blocking operation was interrupted by a call to WSACancelBlockingCall
    at System.Net.Sockets.TcpListener.AcceptTcpClient()
    at AppedoLT.Record.DoWork(Object sender, DoWorkEventArgs e) in e:\AppedoLT\AppedoLT\Class\Record.cs:line 217
 ---------------------------------------
+16:16:49 26 February 2015 
+A blocking operation was interrupted by a call to WSACancelBlockingCall
+   at System.Net.Sockets.Socket.Accept()
+   at System.Net.Sockets.TcpListener.AcceptTcpClient()
+   at AppedoLT.Record.DoWork(Object sender, DoWorkEventArgs e) in e:\AppedoLT\AppedoLT\Class\Record.cs:line 217
+---------------------------------------

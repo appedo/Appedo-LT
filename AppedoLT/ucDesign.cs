@@ -1025,11 +1025,12 @@ namespace AppedoLT
         {
             try
             {
-                searchToolStripMenuItem.Visible = insertAfterToolStripMenuItem.Visible = insertBeforeToolStripMenuItem.Visible = insertAsChildToolStripMenuItemChild.Visible = recordNewScripToolStripMenuItem.Visible = deleteToolStripMenuItem.Visible = false;
+              replaceServerToolStripMenuItem.Visible=  searchToolStripMenuItem.Visible = insertAfterToolStripMenuItem.Visible = insertBeforeToolStripMenuItem.Visible = insertAsChildToolStripMenuItemChild.Visible = recordNewScripToolStripMenuItem.Visible = deleteToolStripMenuItem.Visible = false;
 
                 if (tvRequest.SelectedNode.Level == 0)
                 {
                     searchToolStripMenuItem.Visible = true;
+                    replaceServerToolStripMenuItem.Visible = true;
                 }
                 if (tvRequest.SelectedNode != null)
                 {
@@ -1156,6 +1157,34 @@ namespace AppedoLT
         }
 
         #endregion
+
+        private void replaceServerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmReplaceServer frm = new frmReplaceServer((VuscriptXml)tvRequest.SelectedNode.Tag);
+            if (frm.ShowDialog() == DialogResult.OK)
+            {
+                bool Changed = false;
+                foreach (ReplaceHost host in frm.HostList)
+                {
+                    XmlNode vuscrip = ((VuscriptXml)tvRequest.SelectedNode.Tag).doc.SelectSingleNode("//vuscript");
+
+                    if (host.CurrentHost != host.NewHost || host.CurrentPort != host.NewPort)
+                    {
+                       if(Changed==false) Changed = true;
+                        vuscrip.InnerXml =
+                             vuscrip.InnerXml.Replace(host.CurrentHost + ":" + host.CurrentPort, host.NewHost + ":" + host.NewPort)
+                            .Replace(host.CurrentHost, host.NewHost)
+                            .Replace("Port=\"" + host.CurrentPort + "\"", "Port=\"" + host.NewPort + "\"");
+                    }
+                }
+                if (Changed == true)
+                {
+                    ((VuscriptXml)tvRequest.SelectedNode.Tag).Save();
+                    LoadTreeItem();
+                }
+            }
+            
+        }
 
     }
 }
