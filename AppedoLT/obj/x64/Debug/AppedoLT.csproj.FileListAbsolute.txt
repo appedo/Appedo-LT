@@ -242,3 +242,4 @@ E:\AppedoLT\AppedoLT\obj\x64\Debug\AppedoLT.UCServer.resources
 E:\AppedoLT\AppedoLT\obj\x64\Debug\AppedoLT.csproj.GenerateResource.Cache
 E:\AppedoLT\AppedoLT\obj\x64\Debug\APPEDO_LT.exe
 E:\AppedoLT\AppedoLT\obj\x64\Debug\APPEDO_LT.pdb
+E:\AppedoLT\AppedoLT\obj\x64\Debug\AppedoLT.csprojResolveAssemblyReference.cache
