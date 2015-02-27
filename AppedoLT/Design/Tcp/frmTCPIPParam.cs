@@ -73,7 +73,7 @@ namespace AppedoLT
 
         private void btnVariable_Click(object sender, EventArgs e)
         {
-            RequestParameter frm = new RequestParameter("Value",txtParamName.Text);
+            RequestParameter frm = new RequestParameter("Value", txtParamName.Text, parms);
             frm.ShowDialog();
             txtValue.Text = frm._resultValue;
         }

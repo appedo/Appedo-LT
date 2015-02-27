@@ -645,7 +645,7 @@ namespace AppedoLT
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pnlScriptSettings.AutoScroll = true;
             this.pnlScriptSettings.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(219)))), ((int)(((byte)(255)))));
-            this.pnlScriptSettings.Controls.Add(this.objUCLoadGen);
+//            this.pnlScriptSettings.Controls.Add(this.objUCLoadGen);
             this.pnlScriptSettings.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.pnlScriptSettings.Location = new System.Drawing.Point(1, 104);
             this.pnlScriptSettings.Name = "pnlScriptSettings";
@@ -961,7 +961,7 @@ namespace AppedoLT
             // 
             this.tabItem1.ContentPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(239)))), ((int)(((byte)(249)))));
             this.tabItem1.ContentPanel.CausesValidation = true;
-            this.tabItem1.ContentPanel.Controls.Add(this.userControlReports1);
+//            this.tabItem1.ContentPanel.Controls.Add(this.userControlReports1);
             this.tabItem1.ContentPanel.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabItem1.ContentPanel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(66)))), ((int)(((byte)(139)))));
             this.tabItem1.ContentPanel.Location = new System.Drawing.Point(1, 36);

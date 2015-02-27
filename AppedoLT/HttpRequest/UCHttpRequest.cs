@@ -21,8 +21,8 @@ namespace AppedoLT
         private static UCHttpRequest _instance;
         private Constants _constant = Constants.GetInstance();
         string _scriptId = string.Empty;
-       
-        Regex imageTest = new Regex(@"\.(jpg|JPG|gif|GIF|jpeg|JPEG|png|PNG)$");       
+
+        Regex imageTest = new Regex(@"\.(jpg|JPG|gif|GIF|jpeg|JPEG|png|PNG)$");
         public static UCHttpRequest GetInstance()
         {
             if (_instance == null)
@@ -38,7 +38,7 @@ namespace AppedoLT
             ddlPostContentType.DataSource = _constant.HttpPostContentType;
         }
 
-        public UCHttpRequest GetControl( XmlNode xmlNode, RadTreeNode treeNode)
+        public UCHttpRequest GetControl(XmlNode xmlNode, RadTreeNode treeNode)
         {
             _scriptId = xmlNode.OwnerDocument.SelectSingleNode("//vuscript").Attributes["id"].Value;
             _treeNode = treeNode;
@@ -401,7 +401,7 @@ namespace AppedoLT
         {
             if (_request.SelectSingleNode("assertions") == null)
             {
-                XmlNode assertions =((XmlNode)this.Tag).OwnerDocument.CreateElement("assertions");
+                XmlNode assertions = ((XmlNode)this.Tag).OwnerDocument.CreateElement("assertions");
                 frmAssertion parm = new frmAssertion(assertions, null);
                 if (parm.ShowDialog() == DialogResult.OK)
                 {

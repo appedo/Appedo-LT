@@ -29,11 +29,13 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.sptcRequest = new Telerik.WinControls.UI.RadSplitContainer();
             this.splitPanel1 = new Telerik.WinControls.UI.SplitPanel();
             this.radGroupBox1 = new Telerik.WinControls.UI.RadGroupBox();
+            this.radLabel5 = new Telerik.WinControls.UI.RadLabel();
+            this.txtSchema = new Telerik.WinControls.UI.RadTextBox();
             this.lblContentType = new Telerik.WinControls.UI.RadLabel();
             this.ddlPostContentType = new Telerik.WinControls.UI.RadComboBox();
             this.chkEnable = new Telerik.WinControls.UI.RadCheckBox();
@@ -88,17 +90,17 @@
             this.txtResponse = new System.Windows.Forms.RichTextBox();
             this.tabiResponseImage = new Telerik.WinControls.UI.TabItem();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.tabWebBrowser = new Telerik.WinControls.UI.TabItem();
             this.webBrowserResponse = new System.Windows.Forms.WebBrowser();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.radLabel5 = new Telerik.WinControls.UI.RadLabel();
-            this.txtSchema = new Telerik.WinControls.UI.RadTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.sptcRequest)).BeginInit();
             this.sptcRequest.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitPanel1)).BeginInit();
             this.splitPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox1)).BeginInit();
             this.radGroupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtSchema)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblContentType)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlPostContentType)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkEnable)).BeginInit();
@@ -134,10 +136,8 @@
             this.tabiResponse.ContentPanel.SuspendLayout();
             this.tabiResponseImage.ContentPanel.SuspendLayout();
             this.panel1.SuspendLayout();
-            this.tabWebBrowser.ContentPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel5)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtSchema)).BeginInit();
+            this.tabWebBrowser.ContentPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // sptcRequest
@@ -169,9 +169,9 @@
             // 
             // 
             this.splitPanel1.RootElement.MinSize = new System.Drawing.Size(25, 25);
-            this.splitPanel1.Size = new System.Drawing.Size(1185, 104);
-            this.splitPanel1.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(0F, -0.3518519F);
-            this.splitPanel1.SizeInfo.SplitterCorrection = new System.Drawing.Size(0, -214);
+            this.splitPanel1.Size = new System.Drawing.Size(1185, 116);
+            this.splitPanel1.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(0F, -0.3347578F);
+            this.splitPanel1.SizeInfo.SplitterCorrection = new System.Drawing.Size(0, -202);
             this.splitPanel1.TabIndex = 0;
             this.splitPanel1.TabStop = false;
             this.splitPanel1.Text = "splitPanel1";
@@ -210,10 +210,29 @@
             // 
             // 
             this.radGroupBox1.RootElement.Padding = new System.Windows.Forms.Padding(10, 20, 10, 10);
-            this.radGroupBox1.Size = new System.Drawing.Size(1185, 104);
+            this.radGroupBox1.Size = new System.Drawing.Size(1185, 116);
             this.radGroupBox1.TabIndex = 25;
             this.radGroupBox1.Text = "HTTP Request";
             this.radGroupBox1.ThemeName = "Telerik";
+            // 
+            // radLabel5
+            // 
+            this.radLabel5.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radLabel5.Location = new System.Drawing.Point(4, 62);
+            this.radLabel5.Name = "radLabel5";
+            this.radLabel5.Size = new System.Drawing.Size(70, 18);
+            this.radLabel5.TabIndex = 27;
+            this.radLabel5.Text = "Schema :";
+            // 
+            // txtSchema
+            // 
+            this.txtSchema.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSchema.Location = new System.Drawing.Point(72, 61);
+            this.txtSchema.Name = "txtSchema";
+            this.txtSchema.Size = new System.Drawing.Size(95, 19);
+            this.txtSchema.TabIndex = 28;
+            this.txtSchema.TabStop = false;
+            this.txtSchema.Validated += new System.EventHandler(this.txt_Validated);
             // 
             // lblContentType
             // 
@@ -279,7 +298,7 @@
             // radLabel2
             // 
             this.radLabel2.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radLabel2.Location = new System.Drawing.Point(13, 117);
+            this.radLabel2.Location = new System.Drawing.Point(4, 89);
             this.radLabel2.Name = "radLabel2";
             this.radLabel2.Size = new System.Drawing.Size(36, 18);
             this.radLabel2.TabIndex = 13;
@@ -341,10 +360,10 @@
             // txtUrl
             // 
             this.txtUrl.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtUrl.Location = new System.Drawing.Point(81, 117);
+            this.txtUrl.Location = new System.Drawing.Point(72, 89);
             this.txtUrl.Name = "txtUrl";
             this.txtUrl.ReadOnly = true;
-            this.txtUrl.Size = new System.Drawing.Size(670, 19);
+            this.txtUrl.Size = new System.Drawing.Size(804, 19);
             this.txtUrl.TabIndex = 17;
             this.txtUrl.TabStop = false;
             this.txtUrl.Visible = false;
@@ -353,15 +372,15 @@
             // 
             this.splitPanel2.BackColor = System.Drawing.SystemColors.ControlLight;
             this.splitPanel2.Controls.Add(this.radTabStrip2);
-            this.splitPanel2.Location = new System.Drawing.Point(0, 107);
+            this.splitPanel2.Location = new System.Drawing.Point(0, 119);
             this.splitPanel2.Name = "splitPanel2";
             // 
             // 
             // 
             this.splitPanel2.RootElement.MinSize = new System.Drawing.Size(25, 25);
-            this.splitPanel2.Size = new System.Drawing.Size(1185, 598);
-            this.splitPanel2.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(0F, 0.3518519F);
-            this.splitPanel2.SizeInfo.SplitterCorrection = new System.Drawing.Size(0, 214);
+            this.splitPanel2.Size = new System.Drawing.Size(1185, 586);
+            this.splitPanel2.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(0F, 0.3347578F);
+            this.splitPanel2.SizeInfo.SplitterCorrection = new System.Drawing.Size(0, 202);
             this.splitPanel2.TabIndex = 1;
             this.splitPanel2.TabStop = false;
             this.splitPanel2.Text = "splitPanel2";
@@ -389,7 +408,7 @@
             this.radTabStrip2.Location = new System.Drawing.Point(0, 0);
             this.radTabStrip2.Name = "radTabStrip2";
             this.radTabStrip2.ScrollOffsetStep = 5;
-            this.radTabStrip2.Size = new System.Drawing.Size(1182, 598);
+            this.radTabStrip2.Size = new System.Drawing.Size(1182, 586);
             this.radTabStrip2.TabIndex = 1;
             this.radTabStrip2.TabScrollButtonsPosition = Telerik.WinControls.UI.TabScrollButtonsPosition.RightBottom;
             this.radTabStrip2.Text = "radTabStrip2";
@@ -407,7 +426,7 @@
             this.tabiHeader.ContentPanel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabiHeader.ContentPanel.ForeColor = System.Drawing.SystemColors.ControlText;
             this.tabiHeader.ContentPanel.Location = new System.Drawing.Point(1, 26);
-            this.tabiHeader.ContentPanel.Size = new System.Drawing.Size(1180, 571);
+            this.tabiHeader.ContentPanel.Size = new System.Drawing.Size(1180, 559);
             this.tabiHeader.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold);
             this.tabiHeader.Margin = new System.Windows.Forms.Padding(0);
             this.tabiHeader.Name = "tabiHeader";
@@ -430,21 +449,21 @@
             this.headerValue,
             this.headernade});
             this.dgvHeader.ContextMenuStrip = this.menuHeaderParameter;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvHeader.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvHeader.DefaultCellStyle = dataGridViewCellStyle1;
             this.dgvHeader.GridColor = System.Drawing.Color.Black;
             this.dgvHeader.Location = new System.Drawing.Point(0, 0);
             this.dgvHeader.MultiSelect = false;
             this.dgvHeader.Name = "dgvHeader";
             this.dgvHeader.ReadOnly = true;
             this.dgvHeader.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvHeader.Size = new System.Drawing.Size(1180, 571);
+            this.dgvHeader.Size = new System.Drawing.Size(1180, 559);
             this.dgvHeader.TabIndex = 22;
             this.dgvHeader.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.dgvHeader_MouseDoubleClick);
             // 
@@ -506,7 +525,7 @@
             this.tabiRequestParameters.ContentPanel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabiRequestParameters.ContentPanel.ForeColor = System.Drawing.SystemColors.ControlText;
             this.tabiRequestParameters.ContentPanel.Location = new System.Drawing.Point(1, 26);
-            this.tabiRequestParameters.ContentPanel.Size = new System.Drawing.Size(1180, 571);
+            this.tabiRequestParameters.ContentPanel.Size = new System.Drawing.Size(1180, 559);
             this.tabiRequestParameters.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold);
             this.tabiRequestParameters.IsSelected = true;
             this.tabiRequestParameters.Margin = new System.Windows.Forms.Padding(0);
@@ -527,14 +546,14 @@
             this.value,
             this.node});
             this.btnEdit.ContextMenuStrip = this.menuRequestParameter;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.btnEdit.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.btnEdit.DefaultCellStyle = dataGridViewCellStyle2;
             this.btnEdit.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnEdit.GridColor = System.Drawing.Color.Black;
             this.btnEdit.Location = new System.Drawing.Point(0, 0);
@@ -542,7 +561,7 @@
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.ReadOnly = true;
             this.btnEdit.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.btnEdit.Size = new System.Drawing.Size(1180, 571);
+            this.btnEdit.Size = new System.Drawing.Size(1180, 559);
             this.btnEdit.TabIndex = 21;
             this.btnEdit.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.gvRequestParameters_MouseDoubleClick);
             // 
@@ -607,7 +626,7 @@
             this.tabItem3.ContentPanel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabItem3.ContentPanel.ForeColor = System.Drawing.SystemColors.ControlText;
             this.tabItem3.ContentPanel.Location = new System.Drawing.Point(1, 26);
-            this.tabItem3.ContentPanel.Size = new System.Drawing.Size(1180, 571);
+            this.tabItem3.ContentPanel.Size = new System.Drawing.Size(1180, 559);
             this.tabItem3.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold);
             this.tabItem3.Margin = new System.Windows.Forms.Padding(0);
             this.tabItem3.Name = "tabItem3";
@@ -620,7 +639,7 @@
             // 
             this.btnUpdate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnUpdate.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnUpdate.Location = new System.Drawing.Point(428, 535);
+            this.btnUpdate.Location = new System.Drawing.Point(428, 523);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(43, 24);
             this.btnUpdate.TabIndex = 7;
@@ -632,7 +651,7 @@
             // 
             this.btnDelete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnDelete.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDelete.Location = new System.Drawing.Point(473, 535);
+            this.btnDelete.Location = new System.Drawing.Point(473, 523);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(43, 24);
             this.btnDelete.TabIndex = 6;
@@ -644,7 +663,7 @@
             // 
             this.btnAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnAdd.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAdd.Location = new System.Drawing.Point(383, 535);
+            this.btnAdd.Location = new System.Drawing.Point(383, 523);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(43, 24);
             this.btnAdd.TabIndex = 5;
@@ -670,7 +689,7 @@
             this.dgvExtractor.Name = "dgvExtractor";
             this.dgvExtractor.ReadOnly = true;
             this.dgvExtractor.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvExtractor.Size = new System.Drawing.Size(1178, 528);
+            this.dgvExtractor.Size = new System.Drawing.Size(1178, 516);
             this.dgvExtractor.TabIndex = 4;
             // 
             // exName
@@ -710,7 +729,7 @@
             this.tabiAssertions.ContentPanel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabiAssertions.ContentPanel.ForeColor = System.Drawing.SystemColors.ControlText;
             this.tabiAssertions.ContentPanel.Location = new System.Drawing.Point(1, 26);
-            this.tabiAssertions.ContentPanel.Size = new System.Drawing.Size(1180, 571);
+            this.tabiAssertions.ContentPanel.Size = new System.Drawing.Size(1180, 559);
             this.tabiAssertions.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold);
             this.tabiAssertions.Margin = new System.Windows.Forms.Padding(0);
             this.tabiAssertions.Name = "tabiAssertions";
@@ -723,7 +742,7 @@
             // 
             this.btnAssertionEdit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnAssertionEdit.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAssertionEdit.Location = new System.Drawing.Point(431, 544);
+            this.btnAssertionEdit.Location = new System.Drawing.Point(431, 532);
             this.btnAssertionEdit.Name = "btnAssertionEdit";
             this.btnAssertionEdit.Size = new System.Drawing.Size(43, 24);
             this.btnAssertionEdit.TabIndex = 27;
@@ -735,7 +754,7 @@
             // 
             this.btnAssertionDelete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnAssertionDelete.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAssertionDelete.Location = new System.Drawing.Point(476, 544);
+            this.btnAssertionDelete.Location = new System.Drawing.Point(476, 532);
             this.btnAssertionDelete.Name = "btnAssertionDelete";
             this.btnAssertionDelete.Size = new System.Drawing.Size(43, 24);
             this.btnAssertionDelete.TabIndex = 26;
@@ -747,7 +766,7 @@
             // 
             this.btnAssertionAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnAssertionAdd.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAssertionAdd.Location = new System.Drawing.Point(386, 544);
+            this.btnAssertionAdd.Location = new System.Drawing.Point(386, 532);
             this.btnAssertionAdd.Name = "btnAssertionAdd";
             this.btnAssertionAdd.Size = new System.Drawing.Size(43, 24);
             this.btnAssertionAdd.TabIndex = 25;
@@ -776,7 +795,7 @@
             this.lsvAssertion.Location = new System.Drawing.Point(1, 2);
             this.lsvAssertion.MultiSelect = false;
             this.lsvAssertion.Name = "lsvAssertion";
-            this.lsvAssertion.Size = new System.Drawing.Size(1180, 536);
+            this.lsvAssertion.Size = new System.Drawing.Size(1180, 524);
             this.lsvAssertion.TabIndex = 24;
             this.lsvAssertion.UseCompatibleStateImageBehavior = false;
             this.lsvAssertion.View = System.Windows.Forms.View.Details;
@@ -813,7 +832,7 @@
             this.tabiRequest.ContentPanel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabiRequest.ContentPanel.ForeColor = System.Drawing.SystemColors.ControlText;
             this.tabiRequest.ContentPanel.Location = new System.Drawing.Point(1, 26);
-            this.tabiRequest.ContentPanel.Size = new System.Drawing.Size(1180, 571);
+            this.tabiRequest.ContentPanel.Size = new System.Drawing.Size(1180, 559);
             this.tabiRequest.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold);
             this.tabiRequest.Margin = new System.Windows.Forms.Padding(0);
             this.tabiRequest.Name = "tabiRequest";
@@ -832,7 +851,7 @@
             this.txtRequest.Location = new System.Drawing.Point(3, 0);
             this.txtRequest.Name = "txtRequest";
             this.txtRequest.ReadOnly = true;
-            this.txtRequest.Size = new System.Drawing.Size(1174, 568);
+            this.txtRequest.Size = new System.Drawing.Size(1174, 556);
             this.txtRequest.TabIndex = 2;
             this.txtRequest.Text = "";
             // 
@@ -848,7 +867,7 @@
             this.tabiResponse.ContentPanel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabiResponse.ContentPanel.ForeColor = System.Drawing.SystemColors.ControlText;
             this.tabiResponse.ContentPanel.Location = new System.Drawing.Point(1, 26);
-            this.tabiResponse.ContentPanel.Size = new System.Drawing.Size(1180, 571);
+            this.tabiResponse.ContentPanel.Size = new System.Drawing.Size(1180, 559);
             this.tabiResponse.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold);
             this.tabiResponse.Margin = new System.Windows.Forms.Padding(0);
             this.tabiResponse.Name = "tabiResponse";
@@ -866,7 +885,7 @@
             this.txtResponse.Name = "txtResponse";
             this.txtResponse.ReadOnly = true;
             this.txtResponse.ShowSelectionMargin = true;
-            this.txtResponse.Size = new System.Drawing.Size(1180, 571);
+            this.txtResponse.Size = new System.Drawing.Size(1180, 559);
             this.txtResponse.TabIndex = 0;
             this.txtResponse.Text = "";
             this.txtResponse.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtResponse_KeyDown);
@@ -883,7 +902,7 @@
             this.tabiResponseImage.ContentPanel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabiResponseImage.ContentPanel.ForeColor = System.Drawing.SystemColors.ControlText;
             this.tabiResponseImage.ContentPanel.Location = new System.Drawing.Point(1, 26);
-            this.tabiResponseImage.ContentPanel.Size = new System.Drawing.Size(1180, 571);
+            this.tabiResponseImage.ContentPanel.Size = new System.Drawing.Size(1180, 559);
             this.tabiResponseImage.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold);
             this.tabiResponseImage.Margin = new System.Windows.Forms.Padding(0);
             this.tabiResponseImage.Name = "tabiResponseImage";
@@ -899,8 +918,19 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1180, 571);
+            this.panel1.Size = new System.Drawing.Size(1180, 559);
             this.panel1.TabIndex = 1;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBox1.ErrorImage = null;
+            this.pictureBox1.Location = new System.Drawing.Point(3, 3);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(385, 73);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
             // 
             // tabWebBrowser
             // 
@@ -914,7 +944,7 @@
             this.tabWebBrowser.ContentPanel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabWebBrowser.ContentPanel.ForeColor = System.Drawing.SystemColors.ControlText;
             this.tabWebBrowser.ContentPanel.Location = new System.Drawing.Point(1, 26);
-            this.tabWebBrowser.ContentPanel.Size = new System.Drawing.Size(1180, 571);
+            this.tabWebBrowser.ContentPanel.Size = new System.Drawing.Size(1180, 559);
             this.tabWebBrowser.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold);
             this.tabWebBrowser.Margin = new System.Windows.Forms.Padding(0);
             this.tabWebBrowser.Name = "tabWebBrowser";
@@ -930,38 +960,8 @@
             this.webBrowserResponse.MinimumSize = new System.Drawing.Size(20, 20);
             this.webBrowserResponse.Name = "webBrowserResponse";
             this.webBrowserResponse.ScriptErrorsSuppressed = true;
-            this.webBrowserResponse.Size = new System.Drawing.Size(1180, 571);
+            this.webBrowserResponse.Size = new System.Drawing.Size(1180, 559);
             this.webBrowserResponse.TabIndex = 1;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox1.ErrorImage = null;
-            this.pictureBox1.Location = new System.Drawing.Point(3, 3);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(385, 73);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
-            // 
-            // radLabel5
-            // 
-            this.radLabel5.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radLabel5.Location = new System.Drawing.Point(4, 62);
-            this.radLabel5.Name = "radLabel5";
-            this.radLabel5.Size = new System.Drawing.Size(70, 18);
-            this.radLabel5.TabIndex = 27;
-            this.radLabel5.Text = "Schema :";
-            // 
-            // txtSchema
-            // 
-            this.txtSchema.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSchema.Location = new System.Drawing.Point(72, 61);
-            this.txtSchema.Name = "txtSchema";
-            this.txtSchema.Size = new System.Drawing.Size(95, 19);
-            this.txtSchema.TabIndex = 28;
-            this.txtSchema.TabStop = false;
-            this.txtSchema.Validated += new System.EventHandler(this.txt_Validated);
             // 
             // UCHttpRequest
             // 
@@ -980,6 +980,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox1)).EndInit();
             this.radGroupBox1.ResumeLayout(false);
             this.radGroupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtSchema)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblContentType)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlPostContentType)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkEnable)).EndInit();
@@ -1016,10 +1018,8 @@
             this.tabiResponseImage.ContentPanel.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            this.tabWebBrowser.ContentPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtSchema)).EndInit();
+            this.tabWebBrowser.ContentPanel.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

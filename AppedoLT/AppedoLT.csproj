@@ -60,7 +60,7 @@
     <OutputPath>bin\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <DebugType>full</DebugType>
-    <PlatformTarget>x64</PlatformTarget>
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <ErrorReport>prompt</ErrorReport>
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
@@ -211,12 +211,6 @@
     </Compile>
     <Compile Include="frmDownloadProgress.Designer.cs">
       <DependentUpon>frmDownloadProgress.cs</DependentUpon>
-    </Compile>
-    <Compile Include="frmFindAndReplace.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmFindAndReplace.Designer.cs">
-      <DependentUpon>frmFindAndReplace.cs</DependentUpon>
     </Compile>
     <Compile Include="frmLicenseActivation.cs">
       <SubType>Form</SubType>
@@ -447,9 +441,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmDownloadProgress.resx">
       <DependentUpon>frmDownloadProgress.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmFindAndReplace.resx">
-      <DependentUpon>frmFindAndReplace.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmLicenseActivation.resx">
       <DependentUpon>frmLicenseActivation.cs</DependentUpon>

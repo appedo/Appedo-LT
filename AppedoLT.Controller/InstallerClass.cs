@@ -35,7 +35,7 @@ namespace AppedoLTController
         {
             try
             {
-              //  Process.Start(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + "\\APPEDO_LT_CONTROLLER.exe");
+                Process.Start(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + "\\APPEDO_LT_CONTROLLER.exe");
             }
             catch
             {

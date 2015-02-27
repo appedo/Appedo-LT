@@ -114,7 +114,7 @@ namespace AppedoLT.BusinessLogic
         Dictionary<string, string> receivedCookies = new Dictionary<string, string>();
         public VUserStatus VUserStatus;
 
-        public VUser(int maxUser, string reportName, string type, int userid, int iteration, XmlNode vuScript, bool browserCache, IPAddress ipaddress,Queue<Log> scriptWiseLog)
+        public VUser(int maxUser, string reportName, string type, int userid, int iteration, XmlNode vuScript, bool browserCache, IPAddress ipaddress, Queue<Log> scriptWiseLog)
         {
             _doc = vuScript.OwnerDocument;
             _scriptWiseLog = scriptWiseLog;
@@ -995,6 +995,7 @@ namespace AppedoLT.BusinessLogic
                     catch
                     {
                         parm.Value = string.Empty;
+                        LockException(expression.Attributes["id"].Value, "Unable to evaluate " + parm.Key, "700");
                     }
                     finally
                     {
@@ -1097,6 +1098,7 @@ namespace AppedoLT.BusinessLogic
             return Varialbles;
             #endregion
         }
+
         #endregion
 
         #region TCP Function
@@ -1144,7 +1146,7 @@ namespace AppedoLT.BusinessLogic
                         {
                             param.Attributes["value"].Value = EvalutionResult.value;
                         }
-                        else
+
                         {
                             LockException(tcpRequest.Attributes["id"].Value, EvalutionResult.value, "600");
                         }
@@ -1500,8 +1502,10 @@ namespace AppedoLT.BusinessLogic
                     }
                 }
             }
+
             evalutionResult.isSuccess = true;
             evalutionResult.value = expression;
+
             return evalutionResult;
 
             #endregion
@@ -1623,22 +1627,23 @@ namespace AppedoLT.BusinessLogic
             {
                 Log logObj = new Log();
                 logObj.logid = log.Attributes["id"].Value;
-                if (log.Attributes["message"].Value.Contains("$$"))
-                {
-                    EvalutionResult Result = EvaluteExp(log.Attributes["message"].Value);
-                    if (Result.isSuccess == true)
-                    {
-                        logObj.message = Result.value;
-                    }
-                    else
-                    {
-                        logObj.message = log.Attributes["message"].Value;
-                    }
-                }
-                else
-                {
-                    logObj.message = log.Attributes["message"].Value;
-                }
+                EvaluteExp(log);
+                //if (log.Attributes["message"].Value.Contains("$$"))
+                //{
+                //    EvalutionResult Result = EvaluteExp(log.Attributes["message"].Value);
+                //    if (Result.isSuccess == true)
+                //    {
+                //        logObj.message = Result.value;
+                //    }
+                //    else
+                //    {
+                //        logObj.message = log.Attributes["message"].Value;
+                //    }
+                //}
+                //else
+                //{
+                //    logObj.message = log.Attributes["message"].Value;
+                //}
                 logObj.logname = log.Attributes["name"].Value;
                 logObj.reportname = _reportName;
                 logObj.scenarioname = Status.ScenarioName;
@@ -1703,6 +1708,7 @@ namespace AppedoLT.BusinessLogic
     {
         public bool isSuccess = true;
         public string value = string.Empty;
+        public string errorMsg = string.Empty;
     }
     public class VUserStatus
     {

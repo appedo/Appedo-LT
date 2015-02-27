@@ -30,15 +30,14 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            Telerik.WinControls.UI.RadTreeNode radTreeNode1 = new Telerik.WinControls.UI.RadTreeNode();
-            Telerik.WinControls.UI.RadTreeNode radTreeNode2 = new Telerik.WinControls.UI.RadTreeNode();
-            Telerik.WinControls.UI.RadTreeNode radTreeNode3 = new Telerik.WinControls.UI.RadTreeNode();
-            Telerik.WinControls.UI.RadTreeNode radTreeNode4 = new Telerik.WinControls.UI.RadTreeNode();
-            Telerik.WinControls.UI.RadTreeNode radTreeNode5 = new Telerik.WinControls.UI.RadTreeNode();
+            Telerik.WinControls.UI.RadTreeNode radTreeNode6 = new Telerik.WinControls.UI.RadTreeNode();
+            Telerik.WinControls.UI.RadTreeNode radTreeNode7 = new Telerik.WinControls.UI.RadTreeNode();
+            Telerik.WinControls.UI.RadTreeNode radTreeNode8 = new Telerik.WinControls.UI.RadTreeNode();
+            Telerik.WinControls.UI.RadTreeNode radTreeNode9 = new Telerik.WinControls.UI.RadTreeNode();
+            Telerik.WinControls.UI.RadTreeNode radTreeNode10 = new Telerik.WinControls.UI.RadTreeNode();
             this.radPanel1 = new Telerik.WinControls.UI.RadPanel();
             this.btnSummarReport = new Telerik.WinControls.UI.RadButton();
             this.btnRefresh = new Telerik.WinControls.UI.RadButton();
-            this.btnExport = new Telerik.WinControls.UI.RadButton();
             this.radSplitContainer1 = new Telerik.WinControls.UI.RadSplitContainer();
             this.splitPanel1 = new Telerik.WinControls.UI.SplitPanel();
             this.trvReportType = new Telerik.WinControls.UI.RadTreeView();
@@ -157,11 +156,12 @@
             this.radLabel79 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel80 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel81 = new Telerik.WinControls.UI.RadLabel();
+            this.btnLogReport = new Telerik.WinControls.UI.RadButton();
+            this.btnErrorReport = new Telerik.WinControls.UI.RadButton();
             ((System.ComponentModel.ISupportInitialize)(this.radPanel1)).BeginInit();
             this.radPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnSummarReport)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnRefresh)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnExport)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radSplitContainer1)).BeginInit();
             this.radSplitContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitPanel1)).BeginInit();
@@ -290,6 +290,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.radLabel79)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel80)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel81)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnLogReport)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnErrorReport)).BeginInit();
             this.SuspendLayout();
             // 
             // radPanel1
@@ -298,9 +300,10 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.radPanel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(219)))), ((int)(((byte)(255)))));
+            this.radPanel1.Controls.Add(this.btnErrorReport);
+            this.radPanel1.Controls.Add(this.btnLogReport);
             this.radPanel1.Controls.Add(this.btnSummarReport);
             this.radPanel1.Controls.Add(this.btnRefresh);
-            this.radPanel1.Controls.Add(this.btnExport);
             this.radPanel1.Controls.Add(this.radSplitContainer1);
             this.radPanel1.Controls.Add(this.btnShowReportReport);
             this.radPanel1.Controls.Add(this.ddlReportNameReport);
@@ -315,9 +318,9 @@
             this.btnSummarReport.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSummarReport.Location = new System.Drawing.Point(442, 5);
             this.btnSummarReport.Name = "btnSummarReport";
-            this.btnSummarReport.Size = new System.Drawing.Size(181, 23);
+            this.btnSummarReport.Size = new System.Drawing.Size(127, 23);
             this.btnSummarReport.TabIndex = 42;
-            this.btnSummarReport.Text = "Export Summary Report";
+            this.btnSummarReport.Text = "Summary Report";
             this.btnSummarReport.ThemeName = "Telerik";
             this.btnSummarReport.Click += new System.EventHandler(this.btnSummarReport_Click);
             // 
@@ -331,18 +334,6 @@
             this.btnRefresh.Text = "&Refresh";
             this.btnRefresh.ThemeName = "Telerik";
             this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
-            // 
-            // btnExport
-            // 
-            this.btnExport.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnExport.Location = new System.Drawing.Point(625, 5);
-            this.btnExport.Name = "btnExport";
-            this.btnExport.Size = new System.Drawing.Size(89, 23);
-            this.btnExport.TabIndex = 40;
-            this.btnExport.Text = "Export Excel";
-            this.btnExport.ThemeName = "Telerik";
-            this.btnExport.Visible = false;
-            this.btnExport.Click += new System.EventHandler(this.btnExport_Click_1);
             // 
             // radSplitContainer1
             // 
@@ -393,16 +384,16 @@
             this.trvReportType.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(66)))), ((int)(((byte)(139)))));
             this.trvReportType.Location = new System.Drawing.Point(4, 3);
             this.trvReportType.Name = "trvReportType";
-            radTreeNode1.Text = "1.Summary Report";
-            radTreeNode2.Text = "2.Request ResponseTime Summary Report";
-            radTreeNode3.Text = "3.Page ResponseTime Summary Report";
-            radTreeNode4.Text = "4.Container ResponseTime Summary Report";
-            radTreeNode5.Text = "5.Transaction Summary Report";
-            this.trvReportType.Nodes.Add(radTreeNode1);
-            this.trvReportType.Nodes.Add(radTreeNode2);
-            this.trvReportType.Nodes.Add(radTreeNode3);
-            this.trvReportType.Nodes.Add(radTreeNode4);
-            this.trvReportType.Nodes.Add(radTreeNode5);
+            radTreeNode6.Text = "1.Summary Report";
+            radTreeNode7.Text = "2.Request ResponseTime Summary Report";
+            radTreeNode8.Text = "3.Page ResponseTime Summary Report";
+            radTreeNode9.Text = "4.Container ResponseTime Summary Report";
+            radTreeNode10.Text = "5.Transaction Summary Report";
+            this.trvReportType.Nodes.Add(radTreeNode6);
+            this.trvReportType.Nodes.Add(radTreeNode7);
+            this.trvReportType.Nodes.Add(radTreeNode8);
+            this.trvReportType.Nodes.Add(radTreeNode9);
+            this.trvReportType.Nodes.Add(radTreeNode10);
             this.trvReportType.RightToLeft = System.Windows.Forms.RightToLeft.No;
             // 
             // 
@@ -1545,6 +1536,28 @@
             this.radLabel81.TabIndex = 0;
             this.radLabel81.Text = "SUMMARY REPORT";
             // 
+            // btnLogReport
+            // 
+            this.btnLogReport.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLogReport.Location = new System.Drawing.Point(571, 5);
+            this.btnLogReport.Name = "btnLogReport";
+            this.btnLogReport.Size = new System.Drawing.Size(89, 23);
+            this.btnLogReport.TabIndex = 43;
+            this.btnLogReport.Text = "Log Report";
+            this.btnLogReport.ThemeName = "Telerik";
+            this.btnLogReport.Click += new System.EventHandler(this.btnLogReport_Click);
+            // 
+            // btnErrorReport
+            // 
+            this.btnErrorReport.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnErrorReport.Location = new System.Drawing.Point(662, 5);
+            this.btnErrorReport.Name = "btnErrorReport";
+            this.btnErrorReport.Size = new System.Drawing.Size(94, 23);
+            this.btnErrorReport.TabIndex = 44;
+            this.btnErrorReport.Text = "Error Report";
+            this.btnErrorReport.ThemeName = "Telerik";
+            this.btnErrorReport.Click += new System.EventHandler(this.btnErrorReport_Click);
+            // 
             // userControlReports
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1557,7 +1570,6 @@
             this.radPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnSummarReport)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnRefresh)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnExport)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radSplitContainer1)).EndInit();
             this.radSplitContainer1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitPanel1)).EndInit();
@@ -1694,6 +1706,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.radLabel79)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel80)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel81)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnLogReport)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnErrorReport)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1819,8 +1833,9 @@
         private Telerik.WinControls.UI.RadGridView grdTransactionSummaryReport;
         private Telerik.WinControls.UI.RadLabel radLabel84;
         private Telerik.WinControls.UI.RadTreeView trvReportType;
-        private Telerik.WinControls.UI.RadButton btnExport;
         private Telerik.WinControls.UI.RadButton btnRefresh;
         private Telerik.WinControls.UI.RadButton btnSummarReport;
+        private Telerik.WinControls.UI.RadButton btnErrorReport;
+        private Telerik.WinControls.UI.RadButton btnLogReport;
     }
 }
