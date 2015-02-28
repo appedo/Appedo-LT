@@ -1,0 +1,28 @@
+.separator ,
+.import result.csv jmeterdata
+
+alter table jmeterdata add column scriptname;
+
+alter table jmeterdata add column userid INTEGER;
+
+alter table jmeterdata add column scriptid;
+
+alter table jmeterdata add column starttime DATETIME;
+
+alter table jmeterdata add column endtime DATETIME;
+
+UPDATE jmeterdata set scriptname=substr(threadgroupname,0,length(threadgroupname)-1), userid=substr(threadgroupname,length(threadgroupname),length(threadgroupname));
+
+UPDATE jmeterdata SET starttime = datetime(epochtimestamp/1000, 'unixepoch');
+
+UPDATE jmeterdata SET endtime = datetime((epochtimestamp+diff)/1000, 'unixepoch');
+
+create table scriptlist(id INTEGER primary key AUTOINCREMENT,scriptname);
+
+insert into scriptlist(scriptname) select distinct(scriptname) from jmeterdata;
+
+update jmeterdata  set scriptid = (select id from scriptlist t where jmeterdata.scriptname = t.scriptname);
+
+create table containerresponse as select loadgen,scriptid,scriptname,userid,starttime,endtime,
+address as containername, diff from jmeterdata where 
+address not like '/%';

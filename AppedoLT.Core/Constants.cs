@@ -14,6 +14,7 @@ using System.Text.RegularExpressions;
 using System.Xml;
 using System.Net.Sockets;
 using System.Collections;
+using Ionic.Zip;
 
 namespace AppedoLT.Core
 {
@@ -44,7 +45,7 @@ namespace AppedoLT.Core
         public string ReportPageSummayReportFileName = "report_pagesummaryreport.csv";
         public string ReportContainerSummayReportFileName = "report_containersummaryreport.csv";
         public string ReportTransactionSummayReportFileName = "report_transactionsummaryreport.csv";
-      
+        public  string UserId = string.Empty;
        
         public List<string> HttpPostContentType = null;
         public List<string> HttpMethods = null;
@@ -917,6 +918,18 @@ namespace AppedoLT.Core
                                                                           reportdata;");
             }
             return result.ToString();
+        }
+        public void Zip(string sourcePath,string destinationPath)
+        {
+            ZipFile zip = new ZipFile();
+            zip.AddDirectory(sourcePath);
+            zip.Save(destinationPath);
+        }
+        public void UnZip(string zipFilePath, string destinationPath)
+        {
+            ZipFile zip = new ZipFile(zipFilePath);
+            
+            zip.ExtractAll(destinationPath);
         }
     }
 

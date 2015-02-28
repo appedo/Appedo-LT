@@ -1,4 +1,3 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <variables>
-  <variable from="variablemanager" modified="635545098297470112" policy="eachiteration" name="qam" type="file" location="C:\Documents and Settings\rajasree\Desktop\Des.csv" vituallocation="\Variables\635545098297470112_Des.csv" start="1" delimiter="," columns="dsgn" />
 </variables>

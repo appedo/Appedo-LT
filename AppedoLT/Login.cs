@@ -13,6 +13,7 @@ namespace AppedoLT
     public partial class frmLogin : Form
     {
         public string Userid { get; set; }
+
         public frmLogin()
         {
             InitializeComponent();
@@ -33,6 +34,7 @@ namespace AppedoLT
                     if (respose.Operation.ToLower() == "ok" && respose.Header["success"] == "1")
                     {
                         Userid = respose.Header["userid"];
+                        Design.mnuiLogin.Text = "&Logout";
                     }
                     else
                     {
@@ -58,6 +60,7 @@ namespace AppedoLT
         {
 
         }
+
         private bool ValidateData()
         {
             if(txtEmailid.Text.Trim()==string.Empty)

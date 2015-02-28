@@ -5,6 +5,7 @@ using System.Windows.Forms;
 using System.Xml;
 using AppedoLT.Core;
 using Telerik.WinControls.UI;
+using System.IO;
 
 namespace AppedoLT
 {
@@ -167,7 +168,7 @@ namespace AppedoLT
                 SetDefaultcolor(tvRequest.SelectedNode);
                 if (vuscript.Attributes["type"].Value == "http")
                 {
-                    SetFlagRequestHttp(tvRequest.SelectedNode, fRequest.FlagRequestObj);
+                    SetFlagRequestHttp(tvRequest.SelectedNode, fRequest.FlagRequestObj, scriptId);
                 }
             }
             catch (Exception ex)
@@ -176,7 +177,7 @@ namespace AppedoLT
             }
         }
 
-        private void SetFlagRequestHttp(RadTreeNode request, XmlNode flagRequest)
+        private void SetFlagRequestHttp(RadTreeNode request, XmlNode flagRequest, string scriptId)
         {
 
             if (request.Nodes.Count > 0)
@@ -185,7 +186,7 @@ namespace AppedoLT
                 {
                     try
                     {
-                        SetFlagRequestHttp(requestChild, flagRequest);
+                        SetFlagRequestHttp(requestChild, flagRequest, scriptId);
                     }
                     catch
                     { 
@@ -284,7 +285,7 @@ namespace AppedoLT
                         case "responsebody":
                             {
                                 StringBuilder respose = new StringBuilder();
-                                respose.Append(Utility.GetFileContent(Constants.GetInstance().ExecutingAssemblyLocation + "\\Response\\" + requestNode.Attributes["resFilename"].Value));
+                                respose.Append(Utility.GetFileContent(Constants.GetInstance().ExecutingAssemblyLocation + "\\ScriptResource\\" + scriptId+"\\" + requestNode.Attributes["resFilename"].Value));
                                 if (flagRequest.Attributes["condition"].Value == "contain")
                                 {
                                     if (respose.ToString().Contains(flagRequest.Attributes["text"].Value))
@@ -395,7 +396,7 @@ namespace AppedoLT
                         containerName = Constants.GetInstance().GetUniqueContainerName(containerName, vuscipt, 1);
                     }
 
-                    XmlNode xmlNode = _repositoryXml.CreateContainer(containerName);
+                    XmlNode xmlNode = _repositoryXml.CreateContainer(((XmlNode)GetRootParent(tvRequest.SelectedNode).Tag).Attributes["id"].Value, containerName);
                     RadTreeNode treeNode = new RadTreeNode();
                     treeNode.Text = xmlNode.Attributes["name"].Value;
                     treeNode.Tag = xmlNode;
@@ -472,7 +473,7 @@ namespace AppedoLT
                         loopName = Constants.GetInstance().GetUniqueLoopName(loopName, vuscipt, 1);
                     }
 
-                    XmlNode xmlNode = _repositoryXml.CreateLoop(loopName);
+                    XmlNode xmlNode = _repositoryXml.CreateLoop(((XmlNode)GetRootParent(tvRequest.SelectedNode).Tag).Attributes["id"].Value,loopName);
                     RadTreeNode treeNode = new RadTreeNode();
                     treeNode.Text = loopName;
                     treeNode.Tag = xmlNode;
@@ -508,7 +509,7 @@ namespace AppedoLT
                 if (tvRequest.SelectedNode != null)
                 {
                     ToolStripMenuItem destination = (ToolStripMenuItem)sender;
-                    XmlNode xmlNode = _repositoryXml.CreateWhileLoop();
+                    XmlNode xmlNode = _repositoryXml.CreateWhileLoop(((XmlNode)GetRootParent(tvRequest.SelectedNode).Tag).Attributes["id"].Value);
                     RadTreeNode treeNode = new RadTreeNode();
                     treeNode.Text = "WhileLoop";
                     treeNode.Tag = xmlNode;
@@ -701,7 +702,7 @@ namespace AppedoLT
                 if (tvRequest.SelectedNode != null)
                 {
                     ToolStripMenuItem destination = (ToolStripMenuItem)sender;
-                    XmlNode xmlNode = _repositoryXml.CreateLog();
+                    XmlNode xmlNode = _repositoryXml.CreateLog(((XmlNode)GetRootParent(tvRequest.SelectedNode).Tag).Attributes["id"].Value);
                     RadTreeNode treeNode = new RadTreeNode();
                     treeNode.Text = "Log";
                     treeNode.Tag = xmlNode;
@@ -749,7 +750,8 @@ namespace AppedoLT
                             if (node.Attributes["Address"] != null)
                             {
                                 #region HTTPRequest
-                                this.pnlMaster.Controls.Add(UCHttpRequest.GetInstance().GetControl(node, tvRequest.SelectedNode));
+                            
+                                this.pnlMaster.Controls.Add(UCHttpRequest.GetInstance().GetControl(((XmlNode) GetRootParent(tvRequest.SelectedNode).Tag).Attributes["id"].Value,node, tvRequest.SelectedNode));
                                 #endregion
                             }
                             else
@@ -797,6 +799,12 @@ namespace AppedoLT
             {
                 ExceptionHandler.WritetoEventLog(ex.StackTrace + Environment.NewLine + ex.Message);
             }
+        }
+
+        private RadTreeNode GetRootParent(RadTreeNode node)
+        {
+            if (node.Parent == null) return node;
+            else return GetRootParent(node.Parent);
         }
         private void tvRequest_DragEnding(object sender, RadTreeViewDragCancelEventArgs e)
         {
@@ -1046,6 +1054,22 @@ namespace AppedoLT
         }
 
         #endregion
+
+        private void txtDownload_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string tempPath = Path.GetTempPath();
+                
+                Constants.GetInstance().UnZip(tempPath + "qam.rar", tempPath + "qam");
+
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+        }
 
         #endregion
 

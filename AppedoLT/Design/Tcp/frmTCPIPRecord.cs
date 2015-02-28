@@ -132,14 +132,14 @@ namespace AppedoLT
         {
             XmlNode container = _repositoryXml.doc.CreateElement("container");
             container.Attributes.Append(_repositoryXml.GetAttribute("name", containername));
-            container.Attributes.Append(_repositoryXml.GetAttribute("id", _repositoryXml.ContainerId));
+            container.Attributes.Append(_repositoryXml.GetAttribute("id", _repositoryXml.GetId(_scriptNode.Attributes["id"].Value)));
             return container;
         }
 
         private XmlNode CreateNewRequst(string name, string serverip, string port, string requestcontent, string responsecontent, string requestsize, string responsesize, string responsetime, bool requestsizeconstant,bool responsesizeconstant)
         {
             XmlNode req = _repositoryXml.doc.CreateElement("request");
-            req.Attributes.Append(_repositoryXml.GetAttribute("id", _repositoryXml.RequestId));
+            req.Attributes.Append(_repositoryXml.GetAttribute("id", _repositoryXml.GetId(_scriptNode.Attributes["id"].Value)));
             req.Attributes.Append(_repositoryXml.GetAttribute("name", name));
             req.Attributes.Append(_repositoryXml.GetAttribute("serverip", serverip));
             req.Attributes.Append(_repositoryXml.GetAttribute("port", port));

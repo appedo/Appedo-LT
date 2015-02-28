@@ -76,6 +76,7 @@
             this.brnVariableManager = new Telerik.WinControls.UI.RadButton();
             this.splitPanel2 = new Telerik.WinControls.UI.SplitPanel();
             this.pnlMaster = new Telerik.WinControls.UI.RadPanel();
+            this.txtDownload = new Telerik.WinControls.UI.RadButton();
             ((System.ComponentModel.ISupportInitialize)(this.radSplitContainer1)).BeginInit();
             this.radSplitContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitPanel1)).BeginInit();
@@ -89,6 +90,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.splitPanel2)).BeginInit();
             this.splitPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pnlMaster)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtDownload)).BeginInit();
             this.SuspendLayout();
             // 
             // radSplitContainer1
@@ -109,6 +111,7 @@
             // 
             // splitPanel1
             // 
+            this.splitPanel1.Controls.Add(this.txtDownload);
             this.splitPanel1.Controls.Add(this.tvRequest);
             this.splitPanel1.Controls.Add(this.btnTCPIPRecord);
             this.splitPanel1.Controls.Add(this.btnRecord);
@@ -120,9 +123,9 @@
             // 
             // 
             this.splitPanel1.RootElement.MinSize = new System.Drawing.Size(25, 25);
-            this.splitPanel1.Size = new System.Drawing.Size(319, 451);
-            this.splitPanel1.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(-0.244186F, 0F);
-            this.splitPanel1.SizeInfo.SplitterCorrection = new System.Drawing.Size(-185, 0);
+            this.splitPanel1.Size = new System.Drawing.Size(368, 451);
+            this.splitPanel1.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(-0.2048917F, 0F);
+            this.splitPanel1.SizeInfo.SplitterCorrection = new System.Drawing.Size(-136, 0);
             this.splitPanel1.TabIndex = 0;
             this.splitPanel1.TabStop = false;
             this.splitPanel1.Text = "splitPanel1";
@@ -131,9 +134,9 @@
             // 
             this.tvRequest.AllowDragDrop = true;
             this.tvRequest.AllowMultiselect = true;
-            this.tvRequest.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.tvRequest.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.tvRequest.BackColor = System.Drawing.SystemColors.Window;
             this.tvRequest.ContextMenuStrip = this.cntmUVScript;
             this.tvRequest.Cursor = System.Windows.Forms.Cursors.Default;
@@ -151,7 +154,7 @@
             // 
             this.tvRequest.RootElement.ForeColor = System.Drawing.Color.Black;
             this.tvRequest.ShowLines = true;
-            this.tvRequest.Size = new System.Drawing.Size(313, 416);
+            this.tvRequest.Size = new System.Drawing.Size(362, 416);
             this.tvRequest.TabIndex = 38;
             this.tvRequest.Text = "radTreeView1";
             this.tvRequest.ThemeName = "Telerik";
@@ -526,30 +529,42 @@
             // splitPanel2
             // 
             this.splitPanel2.Controls.Add(this.pnlMaster);
-            this.splitPanel2.Location = new System.Drawing.Point(322, 0);
+            this.splitPanel2.Location = new System.Drawing.Point(371, 0);
             this.splitPanel2.Name = "splitPanel2";
             // 
             // 
             // 
             this.splitPanel2.RootElement.MinSize = new System.Drawing.Size(25, 25);
-            this.splitPanel2.Size = new System.Drawing.Size(928, 451);
-            this.splitPanel2.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(0.244186F, 0F);
-            this.splitPanel2.SizeInfo.SplitterCorrection = new System.Drawing.Size(185, 0);
+            this.splitPanel2.Size = new System.Drawing.Size(879, 451);
+            this.splitPanel2.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(0.2048917F, 0F);
+            this.splitPanel2.SizeInfo.SplitterCorrection = new System.Drawing.Size(136, 0);
             this.splitPanel2.TabIndex = 1;
             this.splitPanel2.TabStop = false;
             this.splitPanel2.Text = "splitPanel2";
             // 
             // pnlMaster
             // 
-            this.pnlMaster.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.pnlMaster.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.pnlMaster.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(219)))), ((int)(((byte)(255)))));
             this.pnlMaster.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.pnlMaster.Location = new System.Drawing.Point(3, 3);
             this.pnlMaster.Name = "pnlMaster";
-            this.pnlMaster.Size = new System.Drawing.Size(922, 445);
+            this.pnlMaster.Size = new System.Drawing.Size(873, 445);
             this.pnlMaster.TabIndex = 19;
+            // 
+            // txtDownload
+            // 
+            this.txtDownload.BackColor = System.Drawing.SystemColors.Control;
+            this.txtDownload.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold);
+            this.txtDownload.Location = new System.Drawing.Point(283, 4);
+            this.txtDownload.Name = "txtDownload";
+            this.txtDownload.Size = new System.Drawing.Size(80, 24);
+            this.txtDownload.TabIndex = 43;
+            this.txtDownload.Text = "Download";
+            this.txtDownload.ThemeName = "Telerik";
+            this.txtDownload.Click += new System.EventHandler(this.txtDownload_Click);
             // 
             // ucDesign
             // 
@@ -571,6 +586,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.splitPanel2)).EndInit();
             this.splitPanel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pnlMaster)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtDownload)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -623,6 +639,7 @@
         private System.Windows.Forms.ToolStripMenuItem endTransactionToolStripMenuItemChild;
         private System.Windows.Forms.ToolStripMenuItem tsiLogChild;
         private Telerik.WinControls.UI.RadPanel pnlMaster;
+        private Telerik.WinControls.UI.RadButton txtDownload;
 
     }
 }

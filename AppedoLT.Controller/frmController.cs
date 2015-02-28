@@ -1,5 +1,8 @@
 ﻿
+<<<<<<< HEAD
 using Amazon.EC2.Model;
+=======
+>>>>>>> dev_master
 using AppedoLT.Core;
 using AppedoLT.DataAccessLayer;
 using System;
@@ -130,7 +133,8 @@ namespace AppedoLTController
 
                                  case "resultfilejmeter":
                                      {
-                                         GenerateReportFolderJmeter(data.Header["reportid"]);
+                                         string reportid = data.Header["reportid"];
+                                         GenerateReportFolderJmeter(reportid);
                                          File.Delete(constants.ExecutingAssemblyLocation + "\\result.csv");
                                          using (FileStream file = new FileStream(constants.ExecutingAssemblyLocation + "\\result.csv", FileMode.OpenOrCreate, FileAccess.Write, FileShare.None))
                                          {
@@ -151,12 +155,26 @@ namespace AppedoLTController
                                              data = new TrasportData("SUMMARYREPORT", null, reportSummaryFile);
                                              UIclient.Send(data);
                                              response = UIclient.Receive();
+
+                                             string folderPath = Constants.GetInstance().ExecutingAssemblyLocation + "\\Data\\" + reportid;
+                                             try
+                                             {
+                                                 if (Directory.Exists(folderPath))
+                                                 {
+                                                     Directory.Delete(folderPath, true);
+                                                 }
+                                             }
+                                             catch (Exception ex)
+                                             {
+                                                 ExceptionHandler.WritetoEventLog(ex.StackTrace + ex.Message);
+                                             }
                                          }
                                          else
                                          {
                                              data = new TrasportData("ERROR", "Unable to get report", null);
                                              UIclient.Send(data);
                                          }
+
                                          break;
 
                                      }
@@ -700,8 +718,9 @@ namespace AppedoLTController
                 DataTable scriptlist = mas.GetJMeterScriptList();
                 string query = GetQueryJMeter(reportName, scriptlist);
                 mas.Executequery(reportName, query);
-                Result.GetInstance().GetSummaryReportByScript(reportName, scriptlist);
+                Result.GetInstance().GetSummaryReportJmeterByScript(reportName, scriptlist);
                 mas.GenerateReports();
+                
             }
             catch (Exception ex)
             {
@@ -841,75 +860,76 @@ namespace AppedoLTController
             //}
         }
 
-        private void CreateInstance(string imageId, string region, string InstanceType,string keyPairName, string accessKey, string secretAccessKey , string secGroupName)
-        {
-            var ec2Client = new Amazon.EC2.AmazonEC2Client(accessKey, secretAccessKey, Amazon.RegionEndpoint.GetBySystemName(region));
+        //private void CreateInstance(string imageId, string region, string InstanceType,string keyPairName, string accessKey, string secretAccessKey , string secGroupName)
+        //{
+        //    var ec2Client = new Amazon.EC2.AmazonEC2Client(accessKey, secretAccessKey, Amazon.RegionEndpoint.GetBySystemName(region));
          
-            List<string> groups = new List<string>();
-            foreach(string group in secGroupName.Split(','))
-            {
-                groups.Add(group);
-            }
-            var launchRequest = new RunInstancesRequest()
-            {
-                ImageId = imageId,
-                InstanceType = InstanceType,
-                MinCount = 1,
-                MaxCount = 1,
-                KeyName = keyPairName,
-                SecurityGroupIds = groups
-            };
-            var launchResponse = ec2Client.RunInstances(launchRequest);
-            List<Instance> instances = launchResponse.Reservation.Instances;
-            string ipAddress = string.Empty;
-            foreach (Instance item in instances)
-            {
-                while (true)
-                {
-                    if (item.PublicIpAddress != string.Empty)
-                    {
-                        ipAddress = item.PublicIpAddress;
-                        break;
-                    }
-                    else
-                    {
-                        Thread.Sleep(1000);
-                    }
-                }
-            }
-        }
-        private void GetAvailableInstanceOn(string imageId, string region, string InstanceType, string keyPairName, string accessKey, string secretAccessKey, string secGroupName)
-        {
-            var ec2Client = new Amazon.EC2.AmazonEC2Client(accessKey, secretAccessKey, Amazon.RegionEndpoint.GetBySystemName(region));
+        //    List<string> groups = new List<string>();
+        //    foreach(string group in secGroupName.Split(','))
+        //    {
+        //        groups.Add(group);
+        //    }
+        //    var launchRequest = new RunInstancesRequest()
+        //    {
+        //        ImageId = imageId,
+        //        InstanceType = InstanceType,
+        //        MinCount = 1,
+        //        MaxCount = 1,
+        //        KeyName = keyPairName,
+        //        SecurityGroupIds = groups
+        //    };
+        //    var launchResponse = ec2Client.RunInstances(launchRequest);
+        //    List<Instance> instances = launchResponse.Reservation.Instances;
+        //    string ipAddress = string.Empty;
+        //    foreach (Instance item in instances)
+        //    {
+        //        while (true)
+        //        {
+        //            if (item.PublicIpAddress != string.Empty)
+        //            {
+        //                ipAddress = item.PublicIpAddress;
+        //                break;
+        //            }
+        //            else
+        //            {
+        //                Thread.Sleep(1000);
+        //            }
+        //        }
+        //    }
+        //}
+       
+        //private void GetAvailableInstanceOn(string imageId, string region, string InstanceType, string keyPairName, string accessKey, string secretAccessKey, string secGroupName)
+        //{
+        //    var ec2Client = new Amazon.EC2.AmazonEC2Client(accessKey, secretAccessKey, Amazon.RegionEndpoint.GetBySystemName(region));
 
-            List<string> groups = new List<string>();
-            foreach (string group in secGroupName.Split(','))
-            {
-                groups.Add(group);
-            }
-            var launchRequest = new RunInstancesRequest()
-            {
-                ImageId = imageId,
-                InstanceType = InstanceType,
-                MinCount = 1,
-                MaxCount = 1,
-                KeyName = keyPairName,
-                SecurityGroupIds = groups
-            };
-            var launchResponse = ec2Client.RunInstances(launchRequest);
-            List<Instance> instances = launchResponse.Reservation.Instances;
-            string ipAddress = string.Empty;
-            foreach (Instance item in instances)
-            {
-                while (true)
-                {
-                    if (item.PublicIpAddress != string.Empty)
-                    {
-                        ipAddress = item.PublicIpAddress;
-                    }
-                }
-            }
-        }
+        //    List<string> groups = new List<string>();
+        //    foreach (string group in secGroupName.Split(','))
+        //    {
+        //        groups.Add(group);
+        //    }
+        //    var launchRequest = new RunInstancesRequest()
+        //    {
+        //        ImageId = imageId,
+        //        InstanceType = InstanceType,
+        //        MinCount = 1,
+        //        MaxCount = 1,
+        //        KeyName = keyPairName,
+        //        SecurityGroupIds = groups
+        //    };
+        //    var launchResponse = ec2Client.RunInstances(launchRequest);
+        //    List<Instance> instances = launchResponse.Reservation.Instances;
+        //    string ipAddress = string.Empty;
+        //    foreach (Instance item in instances)
+        //    {
+        //        while (true)
+        //        {
+        //            if (item.PublicIpAddress != string.Empty)
+        //            {
+        //                ipAddress = item.PublicIpAddress;
+        //            }
+        //        }
+        //    }
+        //}
     }
 
     /// <summary>

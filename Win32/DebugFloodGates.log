@@ -1,7 +1,0 @@
-Log Entry : 
-15:17:00 24 October 2014 
---Log entry goes here--
-   at System.Net.HttpWebRequest.GetRequestStream(TransportContext& context)
-   at System.Net.HttpWebRequest.GetRequestStream()
-   at Profiler.Settings.GetPageContent(String Url, String data) in d:\Rasith\AppedoLT\Profiler\Settings.cs:line 70The remote name could not be resolved: 'www.dev.appedo.com'
----------------------------------------

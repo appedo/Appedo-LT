@@ -46,12 +46,22 @@ namespace AppedoLT
         Thread storeData = null;
         bool isStop = false;
         int processingRequestCount = 0;
+<<<<<<< HEAD
 
+=======
+        Thread StoreData = null;
+        string _scriptResourcePath = string.Empty;
+        string _scriptid = string.Empty;
+>>>>>>> dev_master
         public Record(Label lblResult, RadTextBox txtContainer, RadComboBox ddlParentContainer, XmlNode vuScriptXml)
         {
             try
             {
                 _uvScript = vuScriptXml;
+                _scriptid = vuScriptXml.Attributes["id"].Value;
+                _scriptResourcePath = Constants.GetInstance().ExecutingAssemblyLocation + "\\ScriptResource\\" + vuScriptXml.Attributes["id"].Value;
+                if (Directory.Exists(_scriptResourcePath) == true) Directory.Delete(_scriptResourcePath, true);
+                Directory.CreateDirectory(_scriptResourcePath);
                 isStop = false;
                 _txtContainer = txtContainer;
                 _lblResult = lblResult;
@@ -87,23 +97,105 @@ namespace AppedoLT
             }
         }
 
+<<<<<<< HEAD
+=======
+        public void AutoRecovery()
+        {
+            //int priviousCount = 0;
+            //new Thread(() =>
+            //    {
+            //        while (true)
+            //        {
+            //            priviousCount = RecordData.Count;
+            //            Thread.Sleep(60000);
+            //            {
+            //                lock (StoreData)
+            //                {
+            //                    if (isStop = true) break;
+            //                    if (RecordData.Count != 0 && priviousCount == RecordData.Count)
+            //                    {
+            //                        try
+            //                        {
+            //                            StoreData.Abort();
+            //                        }
+            //                        catch
+            //                        {
+
+            //                        }
+            //                        StoreData = new Thread(new ThreadStart(StoreResult));
+            //                        StoreData.Start();
+            //                    }
+            //                    priviousCount = RecordData.Count;
+            //                }
+            //            }
+
+            //        }
+
+            //    }).Start();
+
+        }
+
+>>>>>>> dev_master
         public void Stop()
         {
             try
             {
                 isStop = true;
                 connectionManager.CloseAllConnetions();
+<<<<<<< HEAD
+=======
+                int priviousCount = 0;
+                int count = 0;
+
+                while (true)
+                {
+                    count++;
+                    if (RecordData.Count > 0) Thread.Sleep(1000);
+                    else break;
+
+                    if (count > 20)
+                    {
+                        break;
+                    }
+                }
+
+>>>>>>> dev_master
                 while (true)
                 {
                     if (RecordData.Count > 0)
                     {
                         Thread.Sleep(1000);
+<<<<<<< HEAD
+=======
+                        count++;
+                        if (count > 30 && RecordData.Count != 0 && priviousCount == RecordData.Count)
+                        {
+                            lock (StoreData)
+                            {
+                                try
+                                {
+                                    StoreData.Abort();
+                                    StoreData = new Thread(new ThreadStart(StoreResult));
+                                    StoreData.Start();
+                                    count = 0;
+                                }
+                                catch
+                                {
+
+                                }
+                                priviousCount = RecordData.Count;
+                            }
+                        }
+                        if (count > 30) priviousCount = RecordData.Count;
+
+>>>>>>> dev_master
                     }
                     else
                     {
                         break;
                     }
                 }
+
                 _pageDelay.Stop();
                 _repositoryXml.Save();
                 _listener.Stop();
@@ -148,11 +240,16 @@ namespace AppedoLT
             {
                 processingRequestCount++;
                 TcpClient client = (TcpClient)clientObj;
-                RequestProcessor pro = new RequestProcessor(client, this.connectionManager, RepositoryXml.GetInstance().RequestId, _txtContainer.Text, _lblResult);
+                RequestProcessor pro = new RequestProcessor(client, this.connectionManager, RepositoryXml.GetInstance().GetId(_scriptid), _txtContainer.Text, _lblResult);
                 pro.Process();
                 if (((IRequestProcessor)pro) != null)
                 {
+<<<<<<< HEAD
                     lock (RecordData)
+=======
+                    IRequestProcessor response = (IRequestProcessor)pro;
+                    if (response.url != null && response.url.AbsoluteUri != string.Empty)
+>>>>>>> dev_master
                     {
                         RecordData.Enqueue((IRequestProcessor)pro);
                     }
@@ -186,10 +283,13 @@ namespace AppedoLT
                         Thread.Sleep(100);
                         string requestContentType = string.Empty;
                         string responseContentType = string.Empty;
-                        string reqFilename = "req_" + data.Requestid + ".bin";
-                        string resFilename = "res_" + data.Requestid;
+                        string reqFilename = data.Requestid + "_req.bin";
+                        string resFilename = data.Requestid+"_res";
                         string contentEncoding = string.Empty;
+<<<<<<< HEAD
 
+=======
+>>>>>>> dev_master
                         Regex expressForhead = new Regex("([A-Z]*) (.*) ([A-Z]*)/(.*)");
                         Regex expressForHeaders = new Regex("(.*?): (.*?)\r\n");
                         if (data.RequestHeader != null)
@@ -223,6 +323,7 @@ namespace AppedoLT
                                 #endregion
 
                                 matchs = expressForHeaders.Matches(data.RequestHeader);
+                                bool isWebServiceRequest = false;
 
                                 #region Headers
                                 if (matchs.Count > 0)
@@ -236,6 +337,10 @@ namespace AppedoLT
                                         if (match.Groups[1].Value == "Content-Type")
                                         {
                                             requestContentType = match.Groups[2].Value;
+                                        }
+                                        if (match.Groups[1].Value == "X-Requested-With")
+                                        {
+                                            isWebServiceRequest = true;
                                         }
                                         headers.AppendChild(header);
                                     }
@@ -399,7 +504,11 @@ namespace AppedoLT
                                             }
                                             #endregion
                                         }
+<<<<<<< HEAD
                                         else if (requestContentType.ToLower().StartsWith("text/") || requestContentType.ToLower().StartsWith("application/json") || requestContentType==string.Empty)
+=======
+                                        else if (isWebServiceRequest == true || requestContentType.ToLower().StartsWith("text/") || requestContentType.ToLower().StartsWith("application/json") || requestContentType == string.Empty)
+>>>>>>> dev_master
                                         {
                                             parameters.Attributes.Append(_repositoryXml.GetAttribute("type", "text"));
 
@@ -463,7 +572,7 @@ namespace AppedoLT
 
                                 #region Write response to file
 
-                                using (FileStream stream = new FileStream(Constants.GetInstance().ExecutingAssemblyLocation + "//Response//" + resFilename, FileMode.OpenOrCreate, FileAccess.Write))
+                                using (FileStream stream = new FileStream(_scriptResourcePath +"\\"+ resFilename, FileMode.OpenOrCreate, FileAccess.Write))
                                 {
                                     if (data.ResponseBody.Length > 0)
                                     {
@@ -479,23 +588,30 @@ namespace AppedoLT
                                             {
                                                 while (true)
                                                 {
-                                                    string length = ReceiveGZipHeader(data.ResponseBody);
-                                                    int contentLength = int.Parse(length.Trim(), System.Globalization.NumberStyles.HexNumber);
-                                                    if (contentLength == 0)
+                                                    try
                                                     {
+                                                        string length = ReceiveGZipHeader(data.ResponseBody);
+
+                                                        int contentLength = length.Trim() == string.Empty ? 0 : int.Parse(length.Trim(), System.Globalization.NumberStyles.HexNumber);
+                                                        if (contentLength == 0)
+                                                        {
+                                                            readConut = data.ResponseBody.Read(buffer, 0, 2);
+                                                            break;
+                                                        }
+                                                        buffer = new byte[contentLength];
+                                                        while (contentLength > 0)
+                                                        {
+                                                            readConut = data.ResponseBody.Read(buffer, 0, contentLength);
+                                                            tem.Write(buffer, 0, readConut);
+                                                            contentLength -= readConut;
+                                                        }
+
                                                         readConut = data.ResponseBody.Read(buffer, 0, 2);
+                                                    }
+                                                    catch
+                                                    {
                                                         break;
                                                     }
-                                                    buffer = new byte[contentLength];
-                                                    while (contentLength > 0)
-                                                    {
-                                                        readConut = data.ResponseBody.Read(buffer, 0, contentLength);
-                                                        tem.Write(buffer, 0, readConut);
-                                                        contentLength -= readConut;
-                                                    }
-
-                                                    readConut = data.ResponseBody.Read(buffer, 0, 2);
-
                                                 }
                                                 data.ResponseBody = tem;
                                                 data.ResponseBody.Position = 0;
@@ -550,7 +666,7 @@ namespace AppedoLT
                                 #region NewContainer
                                 if (_selectedFirstLevelContainer.ChildNodes.Count == 0 || _selectedFirstLevelContainer.LastChild.Attributes["name"].Value != data.ContainerName)
                                 {
-                                    XmlNode container = _repositoryXml.CreateContainer(data.ContainerName);
+                                    XmlNode container = _repositoryXml.CreateContainer(_scriptid,data.ContainerName);
                                     _selectedFirstLevelContainer.AppendChild(container);
                                     _lastInsertedContainer = container;
                                 }
@@ -589,7 +705,7 @@ namespace AppedoLT
                                                 _pageDelay.Reset();
                                                 _pageDelay.Start();
                                             }
-                                            page.Attributes.Append(_repositoryXml.GetAttribute("id", _repositoryXml.PageId));
+                                            page.Attributes.Append(_repositoryXml.GetAttribute("id", _repositoryXml.GetId(_scriptid)));
                                             page.Attributes.Append(_repositoryXml.GetAttribute("name", data.url.LocalPath));
                                             page.Attributes.Append(_repositoryXml.GetAttribute("starttime", DateTime.Now.Ticks.ToString()));
                                             _lastInsertedContainer.AppendChild(page);
@@ -605,7 +721,7 @@ namespace AppedoLT
                                 #endregion
 
                                 #region Write request to file
-                                using (FileStream stream = new FileStream(Constants.GetInstance().ExecutingAssemblyLocation + "//Request//" + reqFilename, FileMode.OpenOrCreate, FileAccess.Write))
+                                using (FileStream stream = new FileStream(_scriptResourcePath +"\\"+ reqFilename, FileMode.OpenOrCreate, FileAccess.Write))
                                 {
                                     stream.Write(Encoding.Default.GetBytes(data.RequestHeader), 0, data.RequestHeader.Length);
 
@@ -648,16 +764,16 @@ namespace AppedoLT
         {
             try
             {
-                XmlNode container = _repositoryXml.CreateContainer("Initialize");
+                XmlNode container = _repositoryXml.CreateContainer(_scriptid,"Initialize");
                 _uvScript.AppendChild(container);
                 _ddlParentContainer.Items[0].Tag = container;
 
-                container = _repositoryXml.CreateContainer("Actions");
+                container = _repositoryXml.CreateContainer(_scriptid,"Actions");
                 _uvScript.AppendChild(container);
                 _ddlParentContainer.Items[1].Tag = container;
                 _selectedFirstLevelContainer = container;
 
-                container = _repositoryXml.CreateContainer("End");
+                container = _repositoryXml.CreateContainer(_scriptid,"End");
                 _uvScript.AppendChild(container);
                 _ddlParentContainer.Items[2].Tag = container;
             }
@@ -665,7 +781,6 @@ namespace AppedoLT
             {
                 ExceptionHandler.WritetoEventLog(ex.Message + Environment.NewLine + ex.StackTrace);
             }
-
         }
 
         private void ddlParentContainer_SelectedIndexChanged(object sender, EventArgs e)

@@ -1,0 +1,12 @@
+E:\AppedoLT\AppedoLT.BusinessLogic\bin\Release\AppedoLT.BusinessLogic.dll.config
+E:\AppedoLT\AppedoLT.BusinessLogic\bin\Release\AppedoLT.BusinessLogic.dll
+E:\AppedoLT\AppedoLT.BusinessLogic\bin\Release\AppedoLT.BusinessLogic.pdb
+E:\AppedoLT\AppedoLT.BusinessLogic\bin\Release\AppedoLT.Core.dll
+E:\AppedoLT\AppedoLT.BusinessLogic\bin\Release\AppedoLT.DataAccessLayer.dll
+E:\AppedoLT\AppedoLT.BusinessLogic\bin\Release\System.Data.SQLite.dll
+E:\AppedoLT\AppedoLT.BusinessLogic\bin\Release\AppedoLT.Core.pdb
+E:\AppedoLT\AppedoLT.BusinessLogic\bin\Release\AppedoLT.DataAccessLayer.pdb
+E:\AppedoLT\AppedoLT.BusinessLogic\bin\Release\System.Data.SQLite.xml
+E:\AppedoLT\AppedoLT.BusinessLogic\obj\Release\AppedoLT.BusinessLogic.csprojResolveAssemblyReference.cache
+E:\AppedoLT\AppedoLT.BusinessLogic\obj\Release\AppedoLT.BusinessLogic.dll
+E:\AppedoLT\AppedoLT.BusinessLogic\obj\Release\AppedoLT.BusinessLogic.pdb

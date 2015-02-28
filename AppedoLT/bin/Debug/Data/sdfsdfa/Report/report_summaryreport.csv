@@ -1,2 +1,0 @@
-reportname,start_time,end_time,duration_sec,user_count,total_hits,avg_response,avg_hits,total_throughput,avg_throughput,total_errors,total_page,avg_page_response,reponse_200,reponse_300,reponse_400,reponse_500
-sdfsdfa,2014-12-02 16:42:16,2014-12-02 16:42:21,4,1,6,388.789,1.5,26540,26540,2,2,1166.3675,3,1,2,0

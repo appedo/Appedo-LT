@@ -1285,5 +1285,37 @@ namespace AppedoLT
             btnRun_Click(null, null);
         }
 
+<<<<<<< HEAD
+=======
+        private void mnuiLogin_Click(object sender, EventArgs e)
+        {
+            if (mnuiLogin.Text == "&Login")
+            {
+                if (_constants.UserId == string.Empty)
+                {
+                    frmLogin login = new frmLogin();
+                    if (login.ShowDialog() == DialogResult.OK && login.Userid != string.Empty)
+                    {
+                        _constants.UserId = login.Userid;
+                        mnuiLogin.Text = "&Logout";
+                    }
+                    else
+                    {
+                        return;
+                    }
+                }
+            }
+            else
+            {
+                _constants.UserId = string.Empty;
+                mnuiLogin.Text = "&Login";
+            }
+        }
+
+        private void mnuiLogin_TextChanged(object sender, EventArgs e)
+        {
+           
+        }
+>>>>>>> dev_master
     }
 }

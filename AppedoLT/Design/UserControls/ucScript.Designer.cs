@@ -82,7 +82,7 @@
             this.txtScriptname.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtScriptname.Location = new System.Drawing.Point(253, 45);
             this.txtScriptname.Name = "txtScriptname";
-            this.txtScriptname.Size = new System.Drawing.Size(252, 21);
+            this.txtScriptname.Size = new System.Drawing.Size(252, 19);
             this.txtScriptname.TabIndex = 27;
             this.txtScriptname.TabStop = false;
             this.txtScriptname.ThemeName = "Office2010";
@@ -93,7 +93,7 @@
             this.txtExclutionFileTypes.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtExclutionFileTypes.Location = new System.Drawing.Point(253, 72);
             this.txtExclutionFileTypes.Name = "txtExclutionFileTypes";
-            this.txtExclutionFileTypes.Size = new System.Drawing.Size(252, 20);
+            this.txtExclutionFileTypes.Size = new System.Drawing.Size(252, 18);
             this.txtExclutionFileTypes.TabIndex = 29;
             this.txtExclutionFileTypes.TabStop = false;
             this.txtExclutionFileTypes.ThemeName = "Office2010";

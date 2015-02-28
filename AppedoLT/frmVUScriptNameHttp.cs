@@ -33,7 +33,7 @@ namespace AppedoLT
                     node = repositoryXml.doc.CreateElement("vuscript");
                     node.Attributes.Append(repositoryXml.GetAttribute("name", txtName.Text));
                     node.Attributes.Append(repositoryXml.GetAttribute("id", repositoryXml.ScriptId));
-
+                    node.Attributes.Append(repositoryXml.GetAttribute("autoid", "0"));
                     node.Attributes.Append(repositoryXml.GetAttribute("type", _type));
                     node.Attributes.Append(repositoryXml.GetAttribute("exclutionfiletypes", string.Empty));
                     node.Attributes.Append(repositoryXml.GetAttribute("dynamicreqenable", false.ToString()));

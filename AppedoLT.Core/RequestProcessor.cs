@@ -89,8 +89,8 @@ namespace AppedoLT.Core
 
                 _browserStream = browserTcpClient.GetStream();
                 RequestHeader = ReceiveRequestHeader();
-                SetUrl();
 
+                SetUrl();
 
                 _contentLength = GetContentLength(RequestHeader);
                 if (_contentLength > 0)
@@ -116,8 +116,7 @@ namespace AppedoLT.Core
                             _serverConnection = connection;
                             ServerProcess();
                             connection.IsHold = false;
-                            EndTime = DateTime.Now;
-                            //  SendResponse();
+                            EndTime = DateTime.Now;                         
                         }
                     }
                     catch (SocketException ex)
@@ -160,7 +159,6 @@ namespace AppedoLT.Core
 
         public void ServerProcess()
         {
-
             lock (_serverConnection)
             {
                 SendRequest(_serverConnection.NetworkStream);
@@ -278,7 +276,7 @@ namespace AppedoLT.Core
             ResponseBody.Seek(0, SeekOrigin.Begin);
             while ((_bytesRead = ResponseBody.Read(_buffer, 0, _buffer.Length)) > 0)
             {
-                _browserStream.Write(_buffer, 0, _bytesRead);
+               WriteToBrowser(_buffer, 0, _bytesRead);
             }
             ResponseBody.Seek(0, SeekOrigin.Begin);
         }
@@ -290,7 +288,7 @@ namespace AppedoLT.Core
             Match firstLine = new Regex("(.*?) (.*?) (.*?)\r\n").Match(RequestHeader);
             if (firstLine.Success == true)
             {
-                 string header = RequestHeader.Remove(0, firstLine.Value.Length);
+                string header = RequestHeader.Remove(0, firstLine.Value.Length);
                 _server.Write(Encoding.Default.GetBytes(firstLine.Value), 0, firstLine.Value.Length);
                 _server.Write(Encoding.Default.GetBytes(header), 0, header.Length);
             }
@@ -305,6 +303,7 @@ namespace AppedoLT.Core
 
                 while ((_bytesRead = RequestBody.Read(_buffer, 0, _buffer.Length)) > 0)
                 {
+                    
                     _server.Write(_buffer, 0, _bytesRead);
                 }
                 RequestBody.Seek(0, SeekOrigin.Begin);
@@ -320,12 +319,12 @@ namespace AppedoLT.Core
             if (firstLine.Success == true)
             {
                 string header = ResponseHeader.Remove(0, firstLine.Value.Length);
-                _browserStream.Write(Encoding.Default.GetBytes(firstLine.Value), 0, firstLine.Value.Length);
-                _browserStream.Write(Encoding.Default.GetBytes(header), 0, header.Length);
+                WriteToBrowser(Encoding.Default.GetBytes(firstLine.Value), 0, firstLine.Value.Length);
+                WriteToBrowser(Encoding.Default.GetBytes(header), 0, header.Length);
             }
             else
             {
-                _browserStream.Write(Encoding.Default.GetBytes(ResponseHeader), 0, ResponseHeader.Length);
+                WriteToBrowser(Encoding.Default.GetBytes(ResponseHeader), 0, ResponseHeader.Length);
             }
 
             if (contentLength > 0)
@@ -340,7 +339,7 @@ namespace AppedoLT.Core
                     {
                         _bytesRead = _server.Read(_buffer, 0, _buffer.Length);
                         responseBody.Write(_buffer, 0, _bytesRead);
-                        _browserStream.Write(_buffer, 0, _bytesRead);
+                        WriteToBrowser(_buffer, 0, _bytesRead);
                         contentLength -= _bytesRead;
                     }
                 }
@@ -350,27 +349,31 @@ namespace AppedoLT.Core
                     while (true)
                     {
                         string length = ReceiveGZipHeader(_server);
+
+
                         responseBody.Write(Encoding.Default.GetBytes(length), 0, length.Length);
-                        _browserStream.Write(Encoding.Default.GetBytes(length), 0, length.Length);
+
+                        WriteToBrowser(Encoding.Default.GetBytes(length), 0, length.Length);
+
                         contentLength = int.Parse(length.Trim(), System.Globalization.NumberStyles.HexNumber);
 
                         if (contentLength == 0)
                         {
                             _bytesRead = _server.Read(_buffer, 0, 2);
                             responseBody.Write(_buffer, 0, _bytesRead);
-                            _browserStream.Write(_buffer, 0, _bytesRead);
+                            WriteToBrowser(_buffer, 0, _bytesRead);
                             break;
                         }
                         while (contentLength > 0)
                         {
                             _bytesRead = _server.Read(_buffer, 0, contentLength);
                             responseBody.Write(_buffer, 0, _bytesRead);
-                            _browserStream.Write(_buffer, 0, _bytesRead);
+                            WriteToBrowser(_buffer, 0, _bytesRead);
                             contentLength -= _bytesRead;
                         }
                         _bytesRead = _server.Read(_buffer, 0, 2);
                         responseBody.Write(_buffer, 0, _bytesRead);
-                        _browserStream.Write(_buffer, 0, _bytesRead);
+                        WriteToBrowser(_buffer, 0, _bytesRead);
                     }
                 }
                 else if (_ServerTcpClient.Available > 0)
@@ -379,7 +382,7 @@ namespace AppedoLT.Core
                     while (_ServerTcpClient.Available > 0 && (_bytesRead = _server.Read(_buffer, 0, _buffer.Length)) > 0)
                     {
                         responseBody.Write(_buffer, 0, _bytesRead);
-                        _browserStream.Write(_buffer, 0, _bytesRead);
+                        WriteToBrowser(_buffer, 0, _bytesRead);
                         if (_ServerTcpClient.Available == 0) WaitUntilByteReceive(_ServerTcpClient, 1000);
                     }
                 }
@@ -394,6 +397,17 @@ namespace AppedoLT.Core
                 _server.Flush();
             }
 
+        }
+       private void WriteToBrowser(byte[] buffer,int offset,int count)
+        {
+            try
+            {
+                _browserStream.Write(buffer, offset, count);
+            }
+           catch
+            {
+
+            }
         }
         #endregion
 

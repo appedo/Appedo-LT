@@ -9,7 +9,7 @@
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>AppedoLT</RootNamespace>
-    <AssemblyName>AppedoLT</AssemblyName>
+    <AssemblyName>APPEDO_LT</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <IsWebBootstrapper>true</IsWebBootstrapper>
@@ -101,6 +101,7 @@
     <Reference Include="AppedoLT, Version=3.0.0.22, Culture=neutral, PublicKeyToken=null" />
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
+    <Reference Include="System.Configuration.Install" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
@@ -241,6 +242,9 @@
       <DependentUpon>UCQueryStringData.cs</DependentUpon>
     </Compile>
     <Compile Include="Class\MonitorXml.cs" />
+    <Compile Include="InstallerClass.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Login.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -370,6 +374,11 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Content Include="sqlite3.exe">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Sqlite\32bit\System.Data.SQLite.dll" />
+    <Content Include="Sqlite\64bit\System.Data.SQLite.dll" />
     <EmbeddedResource Include="About FloodGates.resx">
       <DependentUpon>About FloodGates.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -624,6 +633,15 @@
     <None Include="App.config">
       <SubType>Designer</SubType>
     </None>
+    <Content Include="Appedo.pfx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="database.db">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="execute.bat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -781,37 +799,50 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="bin\Debug\commands_loadgen.txt" />
-    <Content Include="bin\Debug\Project\recorded-requests\req_09bd15d5-d998-453e-b013-842f96cea4bf.txt" />
-    <Content Include="bin\Debug\Project\recorded-requests\req_0df6d922-f1f6-4f03-8e63-4f9cfc31f418.txt" />
-    <Content Include="bin\Debug\Project\recorded-requests\req_4433db8a-6dfb-441b-89db-e5c3034eaf7a.txt" />
-    <Content Include="bin\Debug\Project\recorded-requests\req_b4d7f499-7ad7-4b1f-84c4-c29cca4a4313.txt" />
-    <Content Include="bin\Debug\Project\recorded-requests\req_c926871e-a0e3-491a-9551-b953211e282e.txt" />
-    <Content Include="bin\Debug\Project\repository.xml" />
-    <Content Include="bin\Debug\Project\scenario.xml" />
-    <Content Include="bin\Debug\Project\settings.xml" />
-    <Content Include="bin\Debug\sqlite3.exe" />
-    <Content Include="bin\Debug\VUScripts.xml">
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="obj\Debug\Telerik.WinControls.GridView.dll" />
-    <Content Include="obj\Debug\Telerik.WinControls.UI.Design.dll" />
-    <Content Include="obj\Debug\Telerik.WinControls.UI.dll" />
-    <Content Include="obj\Debug\TelerikCommon.dll" />
-    <Content Include="obj\Release\Telerik.WinControls.GridView.dll" />
-    <Content Include="obj\Release\Telerik.WinControls.UI.Design.dll" />
-    <Content Include="obj\Release\Telerik.WinControls.UI.dll" />
-    <Content Include="obj\Release\TelerikCommon.dll" />
-    <None Include="bin\Debug\execute.bat" />
-    <None Include="bin\Debug\Softsmith.pfx" />
-    <None Include="Cert\Softsmith Certificate Authority.cer" />
-    <None Include="Cert\Softsmith Private Key.pvk" />
-    <None Include="Cert\Softsmith.cer" />
-    <None Include="Cert\Softsmith.pfx" />
+    <None Include="Class\Cert\Softsmith Certificate Authority.cer" />
+    <None Include="Class\Cert\Softsmith Private Key.pvk" />
+    <None Include="Class\Cert\Softsmith.cer" />
+    <None Include="Class\Cert\Softsmith.pfx" />
     <None Include="Resources\floppy_disk_16.gif" />
+    <None Include="ErrorCode.txt" />
+    <Content Include="Appedo.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Appedo.pdb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Appedo.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="commands.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="commands_monitor.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="error.xslt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="green.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="log.xslt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="logic.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="red.JPG">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="report.xslt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="reportjmeter.xslt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\form-background.jpg" />
-    <Content Include="TextFile1.txt" />
-    <Content Include="ErrorCode.txt" />
+    <None Include="TextFile1.txt" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
@@ -845,9 +876,7 @@
       <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="bin\Debug\NewFolder1\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\AppedoLT.BusinessLogic\AppedoLT.BusinessLogic.csproj">
       <Project>{a482e44a-82e8-4cbf-9624-a8293bc2b437}</Project>
@@ -863,6 +892,17 @@
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>if not exist "$(TargetDir)Data" mkdir "$(TargetDir)Data"
+if not exist "$(TargetDir)DataMonitor" mkdir "$(TargetDir)DataMonitor"
+if not exist "$(TargetDir)Exported Charts" mkdir "$(TargetDir)Exported Charts"
+if not exist "$(TargetDir)Exported Reports" mkdir "$(TargetDir)Exported Reports"
+if not exist "$(TargetDir)MonitorData" mkdir "$(TargetDir)MonitorData"
+if not exist "$(TargetDir)Request" mkdir "$(TargetDir)Request"
+if not exist "$(TargetDir)Response" mkdir "$(TargetDir)Response"
+if not exist "$(TargetDir)Upload" mkdir "$(TargetDir)Upload"
+if not exist "$(TargetDir)Variables" mkdir "$(TargetDir)Variables"</PreBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
