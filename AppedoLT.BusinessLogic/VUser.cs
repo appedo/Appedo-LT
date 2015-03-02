@@ -573,14 +573,6 @@ namespace AppedoLT.BusinessLogic
                         {
                             LockResponseTime(req);
                         }
-
-                        //GetResponse(_containerId.Peek()[0], _containerId.Peek()[1], "1", request, _userid, _iterationid, ref responseResult);
-                        //response = responseResult.TcpIPResponse;
-                        //if (IsValidation == true)
-                        //{
-                        //    responseResult.WebRequestResponseId = (ValidationResult.Count + 1);
-                        //    ValidationResult.AddToList(responseResult);
-                        //}
                     }
                     #endregion
                 }
@@ -635,7 +627,6 @@ namespace AppedoLT.BusinessLogic
                                 {
                                     LockResponseTime(req);
                                 }
-
 
                                 #region SecondaryReqEnable
                                 if (Convert.ToBoolean(_vuScriptXml.Attributes["dynamicreqenable"].Value) == true && !(_browserCache == true && _index > 1))

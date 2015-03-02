@@ -42,11 +42,6 @@ namespace AppedoLT
                 rightList.Rows.Add(key,VUScripts[key]);
             }
 
-            //foreach (XmlNode script in VUScripts.ChildNodes)
-            //{
-            //    if (leftList.Select("id='" + script.Attributes["id"].Value + "'").Length <= 0)
-            //        rightList.Rows.Add(script.Attributes["id"].Value, script.Attributes["name"].Value);
-            //}
             listBoxMove1.SetItems(leftList, rightList);
         }
         public frmScenario(Dictionary<string, string> VUScripts, XmlNode scenario)
@@ -89,7 +84,6 @@ namespace AppedoLT
         {
             if (Validate()==true )
             {
-               
                 //New
                 if (_scenario == null)
                 {

@@ -19,11 +19,20 @@ namespace AppedoLT
         public frmReplaceServer(VuscriptXml vuscript)
         {
             InitializeComponent();
-            HostList = GetCurrent(vuscript);
-            SetTree(HostList);
+            if (vuscript.doc.SelectSingleNode("//vuscript").Attributes["type"].Value == "http")
+            {
+                HostList = GetCurrentHttp(vuscript);
+                SetTreeHttp(HostList);
+            }
+            else
+            {
+                lblSchema.Visible = txtSchema.Visible = false;
+                HostList =GetCurrentTcp(vuscript);
+                SetTreeTcp(HostList);
+            }
         }
 
-        private List<ReplaceHost> GetCurrent(VuscriptXml vuscript)
+        private List<ReplaceHost> GetCurrentHttp(VuscriptXml vuscript)
         {
             List<ReplaceHost> hostlist = new List<ReplaceHost>();
             foreach (XmlNode node in vuscript.doc.SelectNodes("//request"))
@@ -39,8 +48,23 @@ namespace AppedoLT
             }
             return hostlist;
         }
-
-        void SetTree(List<ReplaceHost> hostlist)
+        private List<ReplaceHost> GetCurrentTcp(VuscriptXml vuscript)
+        {
+            List<ReplaceHost> hostlist = new List<ReplaceHost>();
+            foreach (XmlNode node in vuscript.doc.SelectNodes("//request"))
+            {
+                if (!hostlist.Exists(f => f.NewHost == node.Attributes["Host"].Value))
+                {
+                    ReplaceHost host = new ReplaceHost();
+                    host.NewHost = host.CurrentHost = node.Attributes["serverip"].Value;
+                    host.NewPort = host.CurrentPort = node.Attributes["port"].Value;
+                  
+                    hostlist.Add(host);
+                }
+            }
+            return hostlist;
+        }
+        void SetTreeHttp(List<ReplaceHost> hostlist)
         {
             foreach (ReplaceHost host in hostlist)
             {
@@ -51,7 +75,17 @@ namespace AppedoLT
             }
             if (tvHostList.Nodes.Count > 0) tvHostList.Nodes[0].Selected = true;
         }
-
+        void SetTreeTcp(List<ReplaceHost> hostlist)
+        {
+            foreach (ReplaceHost host in hostlist)
+            {
+                RadTreeNode node = new RadTreeNode();
+                node.Tag = host;
+                node.Text = host.CurrentHost + ":" + host.CurrentPort;
+                tvHostList.Nodes.Add(node);
+            }
+            if (tvHostList.Nodes.Count > 0) tvHostList.Nodes[0].Selected = true;
+        }
         private void tvHostList_SelectedNodeChanged(object sender, RadTreeViewEventArgs e)
         {
             ReplaceHost host = (ReplaceHost)tvHostList.SelectedNode.Tag;

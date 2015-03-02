@@ -9,9 +9,8 @@ namespace AppedoLT
     public partial class frmVUScriptName : Telerik.WinControls.UI.RadForm
     {
         public string name = string.Empty;
-        public XmlNode node;
         string _type;
-        RepositoryXml repositoryXml = RepositoryXml.GetInstance();
+        public VuscriptXml vuscriptXml = null;
 
         public frmVUScriptName(string type)
         {
@@ -23,22 +22,24 @@ namespace AppedoLT
         {
             if (Validate() == true)
             {
-                if (repositoryXml.doc.SelectNodes("root/vuscripts/vuscript[@name='" + txtName.Text + "']").Count > 0)
+                if (VuscriptXml.GetScriptName().Contains(txtName.Text))
                 {
                     MessageBox.Show("Script name already exist");
+                    return;
                 }
-                else
-                {
-                    XmlNode vuscripts = repositoryXml.doc.SelectNodes("root/vuscripts")[0];
-                    node = repositoryXml.doc.CreateElement("vuscript");
-                    node.Attributes.Append(repositoryXml.GetAttribute("name", txtName.Text));
-                    node.Attributes.Append(repositoryXml.GetAttribute("id", Constants.GetInstance().UniqueID));
-                    node.Attributes.Append(repositoryXml.GetAttribute("type", _type));
-                    node.Attributes.Append(repositoryXml.GetAttribute("exclutionfiletypes", string.Empty));
-                    node.Attributes.Append(repositoryXml.GetAttribute("dynamicreqenable", false.ToString()));
-                    vuscripts.AppendChild(node);
-                    this.Close();
-                }
+               
+                string uniqueid = Constants.GetInstance().UniqueID;
+                vuscriptXml = new VuscriptXml(uniqueid);
+
+                XmlNode node = vuscriptXml.doc.SelectSingleNode("vuscript");
+                node.Attributes.Append(vuscriptXml.GetAttribute("name", txtName.Text));
+                node.Attributes.Append(vuscriptXml.GetAttribute("id", uniqueid));
+                node.Attributes.Append(vuscriptXml.GetAttribute("type", _type));
+                node.Attributes.Append(vuscriptXml.GetAttribute("exclutionfiletypes", string.Empty));
+                node.Attributes.Append(vuscriptXml.GetAttribute("dynamicreqenable", false.ToString()));
+               
+                this.Close();
+
             }
         }
 
@@ -60,6 +61,6 @@ namespace AppedoLT
             if (erpRequired.GetError(txtName) == string.Empty) return true;
             else return false;
         }
-      
+
     }
 }

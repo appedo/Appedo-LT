@@ -36,7 +36,7 @@
             this.txtHost = new Telerik.WinControls.UI.RadTextBox();
             this.btnReplace = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
-            this.radLabel3 = new Telerik.WinControls.UI.RadLabel();
+            this.lblSchema = new Telerik.WinControls.UI.RadLabel();
             this.txtSchema = new Telerik.WinControls.UI.RadTextBox();
             this.radLabel4 = new Telerik.WinControls.UI.RadLabel();
             ((System.ComponentModel.ISupportInitialize)(this.tvHostList)).BeginInit();
@@ -44,7 +44,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtPort)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtHost)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblSchema)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSchema)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).BeginInit();
             this.SuspendLayout();
@@ -156,19 +156,19 @@
             this.button2.Text = "&Cancel";
             this.button2.UseVisualStyleBackColor = true;
             // 
-            // radLabel3
+            // lblSchema
             // 
-            this.radLabel3.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radLabel3.ForeColor = System.Drawing.Color.Black;
-            this.radLabel3.Location = new System.Drawing.Point(3, 12);
-            this.radLabel3.Name = "radLabel3";
+            this.lblSchema.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSchema.ForeColor = System.Drawing.Color.Black;
+            this.lblSchema.Location = new System.Drawing.Point(3, 12);
+            this.lblSchema.Name = "lblSchema";
             // 
             // 
             // 
-            this.radLabel3.RootElement.ForeColor = System.Drawing.Color.Black;
-            this.radLabel3.Size = new System.Drawing.Size(85, 17);
-            this.radLabel3.TabIndex = 47;
-            this.radLabel3.Text = "New Schema:";
+            this.lblSchema.RootElement.ForeColor = System.Drawing.Color.Black;
+            this.lblSchema.Size = new System.Drawing.Size(85, 17);
+            this.lblSchema.TabIndex = 47;
+            this.lblSchema.Text = "New Schema:";
             // 
             // txtSchema
             // 
@@ -205,7 +205,7 @@
             this.ClientSize = new System.Drawing.Size(371, 444);
             this.ControlBox = false;
             this.Controls.Add(this.radLabel4);
-            this.Controls.Add(this.radLabel3);
+            this.Controls.Add(this.lblSchema);
             this.Controls.Add(this.txtSchema);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.btnReplace);
@@ -222,7 +222,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtPort)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtHost)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblSchema)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSchema)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).EndInit();
             this.ResumeLayout(false);
@@ -239,7 +239,7 @@
         private Telerik.WinControls.UI.RadTextBox txtHost;
         private System.Windows.Forms.Button btnReplace;
         private System.Windows.Forms.Button button2;
-        private Telerik.WinControls.UI.RadLabel radLabel3;
+        private Telerik.WinControls.UI.RadLabel lblSchema;
         private Telerik.WinControls.UI.RadTextBox txtSchema;
         private Telerik.WinControls.UI.RadLabel radLabel4;
     }

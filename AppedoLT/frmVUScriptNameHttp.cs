@@ -14,7 +14,6 @@ namespace AppedoLT
         public string name = string.Empty;
         public VuscriptXml vuscriptXml=null;
         string _type;
-        RepositoryXml repositoryXml = RepositoryXml.GetInstance();
 
         public frmVUScriptNameHttp()
         {

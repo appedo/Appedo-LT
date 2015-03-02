@@ -130,7 +130,7 @@ namespace AppedoLT
             this.txtText.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtText.Location = new System.Drawing.Point(87, 95);
             this.txtText.Name = "txtText";
-            this.txtText.Size = new System.Drawing.Size(326, 21);
+            this.txtText.Size = new System.Drawing.Size(326, 19);
             this.txtText.TabIndex = 32;
             this.txtText.TabStop = false;
             this.txtText.ThemeName = "Office2010";
@@ -138,7 +138,7 @@ namespace AppedoLT
             // btnSave
             // 
             this.btnSave.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnSave.Location = new System.Drawing.Point(125, 156);
+            this.btnSave.Location = new System.Drawing.Point(124, 146);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(83, 24);
             this.btnSave.TabIndex = 33;
@@ -151,7 +151,7 @@ namespace AppedoLT
             this.txtName.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtName.Location = new System.Drawing.Point(87, 12);
             this.txtName.Name = "txtName";
-            this.txtName.Size = new System.Drawing.Size(326, 21);
+            this.txtName.Size = new System.Drawing.Size(326, 19);
             this.txtName.TabIndex = 35;
             this.txtName.TabStop = false;
             this.txtName.ThemeName = "Office2010";
@@ -168,7 +168,7 @@ namespace AppedoLT
             // btnCancel
             // 
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(216, 156);
+            this.btnCancel.Location = new System.Drawing.Point(215, 146);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(83, 24);
             this.btnCancel.TabIndex = 34;
@@ -196,13 +196,14 @@ namespace AppedoLT
             this.chkFailedResponse.Size = new System.Drawing.Size(167, 18);
             this.chkFailedResponse.TabIndex = 37;
             this.chkFailedResponse.Text = "Store assertion failed respose";
+            this.chkFailedResponse.Visible = false;
             // 
             // frmAssertion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.ClientSize = new System.Drawing.Size(432, 192);
+            this.ClientSize = new System.Drawing.Size(432, 179);
             this.Controls.Add(this.chkFailedResponse);
             this.Controls.Add(this.radLabel4);
             this.Controls.Add(this.btnCancel);

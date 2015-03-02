@@ -44,7 +44,6 @@ namespace AppedoLT
             }
             txtText.Text = assertion.Attributes["text"].Value;
         }
-
         private void btnSave_Click(object sender, EventArgs e)
         {
 
@@ -116,7 +115,6 @@ namespace AppedoLT
             if (errAssertion.GetError(txtName) != string.Empty || errAssertion.GetError(txtText) != string.Empty) return false;
             else return true;
         }
-
         private void btnCancel_Click(object sender, EventArgs e)
         {
             this.Close();

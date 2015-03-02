@@ -841,13 +841,7 @@
     <None Include="Class\Cert\Softsmith.pfx" />
     <None Include="Resources\floppy_disk_16.gif" />
     <None Include="ErrorCode.txt" />
-    <Content Include="Appedo.ico">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="Appedo.pdb">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Appedo.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="commands.txt">
