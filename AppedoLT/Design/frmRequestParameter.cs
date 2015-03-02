@@ -58,6 +58,7 @@ namespace AppedoLT
             TabItem item = GetTabItem(att);
             tabsRequestParameter.Items.Add(item);
             tabsRequestParameter.SelectItem(item);
+            _parentNode = att;
             LoadVariables();
         }
         private void LoadVariables()
