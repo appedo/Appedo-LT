@@ -75,6 +75,7 @@ namespace AppedoLT
             this.txtMin = new Telerik.WinControls.UI.RadTextBox();
             this.lblMin = new Telerik.WinControls.UI.RadLabel();
             this.radPanelBar2 = new Telerik.WinControls.UI.RadPanelBar();
+            this.btnDownload = new Telerik.WinControls.UI.RadButton();
             this.btnUploadVariables = new Telerik.WinControls.UI.RadButton();
             this.ucFileTypeVariable = new AppedoLT.UCFileTypeVariable();
             ((System.ComponentModel.ISupportInitialize)(this.lblVariableName)).BeginInit();
@@ -108,6 +109,7 @@ namespace AppedoLT
             ((System.ComponentModel.ISupportInitialize)(this.lblMin)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radPanelBar2)).BeginInit();
             this.radPanelBar2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.btnDownload)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnUploadVariables)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
@@ -166,7 +168,7 @@ namespace AppedoLT
             // 
             this.ddlVariableType.RootElement.AutoSizeMode = Telerik.WinControls.RadAutoSizeMode.WrapAroundChildren;
             this.ddlVariableType.RootElement.ForeColor = System.Drawing.Color.Black;
-            this.ddlVariableType.Size = new System.Drawing.Size(288, 21);
+            this.ddlVariableType.Size = new System.Drawing.Size(288, 19);
             this.ddlVariableType.TabIndex = 4;
             this.ddlVariableType.TabStop = false;
             this.ddlVariableType.ThemeName = "Telerik";
@@ -232,13 +234,13 @@ namespace AppedoLT
             // 
             this.btnDelete.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDelete.ForeColor = System.Drawing.Color.Black;
-            this.btnDelete.Location = new System.Drawing.Point(286, 3);
+            this.btnDelete.Location = new System.Drawing.Point(186, 4);
             this.btnDelete.Name = "btnDelete";
             // 
             // 
             // 
             this.btnDelete.RootElement.ForeColor = System.Drawing.Color.Black;
-            this.btnDelete.Size = new System.Drawing.Size(87, 24);
+            this.btnDelete.Size = new System.Drawing.Size(58, 24);
             this.btnDelete.TabIndex = 6;
             this.btnDelete.Text = "&Delete";
             this.btnDelete.ThemeName = "Telerik";
@@ -370,13 +372,13 @@ namespace AppedoLT
             // 
             this.btnView.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnView.ForeColor = System.Drawing.Color.Black;
-            this.btnView.Location = new System.Drawing.Point(98, 3);
+            this.btnView.Location = new System.Drawing.Point(64, 4);
             this.btnView.Name = "btnView";
             // 
             // 
             // 
             this.btnView.RootElement.ForeColor = System.Drawing.Color.Black;
-            this.btnView.Size = new System.Drawing.Size(87, 24);
+            this.btnView.Size = new System.Drawing.Size(58, 24);
             this.btnView.TabIndex = 12;
             this.btnView.Text = "&View";
             this.btnView.ThemeName = "Telerik";
@@ -386,13 +388,13 @@ namespace AppedoLT
             // 
             this.btnModify.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnModify.ForeColor = System.Drawing.Color.Black;
-            this.btnModify.Location = new System.Drawing.Point(193, 3);
+            this.btnModify.Location = new System.Drawing.Point(125, 4);
             this.btnModify.Name = "btnModify";
             // 
             // 
             // 
             this.btnModify.RootElement.ForeColor = System.Drawing.Color.Black;
-            this.btnModify.Size = new System.Drawing.Size(87, 24);
+            this.btnModify.Size = new System.Drawing.Size(58, 24);
             this.btnModify.TabIndex = 7;
             this.btnModify.Text = "&Modify";
             this.btnModify.ThemeName = "Telerik";
@@ -408,7 +410,7 @@ namespace AppedoLT
             // 
             // 
             this.btnSave.RootElement.ForeColor = System.Drawing.Color.Black;
-            this.btnSave.Size = new System.Drawing.Size(87, 24);
+            this.btnSave.Size = new System.Drawing.Size(58, 24);
             this.btnSave.TabIndex = 7;
             this.btnSave.Text = "&Add";
             this.btnSave.ThemeName = "Telerik";
@@ -517,7 +519,7 @@ namespace AppedoLT
             // 
             this.ddlDateFormat.RootElement.AutoSizeMode = Telerik.WinControls.RadAutoSizeMode.WrapAroundChildren;
             this.ddlDateFormat.RootElement.ForeColor = System.Drawing.Color.Black;
-            this.ddlDateFormat.Size = new System.Drawing.Size(135, 21);
+            this.ddlDateFormat.Size = new System.Drawing.Size(135, 19);
             this.ddlDateFormat.TabIndex = 8;
             this.ddlDateFormat.TabStop = false;
             this.ddlDateFormat.ThemeName = "Telerik";
@@ -682,6 +684,7 @@ namespace AppedoLT
             // 
             this.radPanelBar2.Caption = "Default Caption";
             this.radPanelBar2.CaptionTextFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
+            this.radPanelBar2.Controls.Add(this.btnDownload);
             this.radPanelBar2.Controls.Add(this.btnUploadVariables);
             this.radPanelBar2.Controls.Add(this.btnSave);
             this.radPanelBar2.Controls.Add(this.btnDelete);
@@ -699,19 +702,35 @@ namespace AppedoLT
             this.radPanelBar2.TabIndex = 13;
             this.radPanelBar2.Text = "radPanelBar2";
             // 
+            // btnDownload
+            // 
+            this.btnDownload.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDownload.ForeColor = System.Drawing.Color.Black;
+            this.btnDownload.Location = new System.Drawing.Point(334, 4);
+            this.btnDownload.Name = "btnDownload";
+            // 
+            // 
+            // 
+            this.btnDownload.RootElement.ForeColor = System.Drawing.Color.Black;
+            this.btnDownload.Size = new System.Drawing.Size(86, 24);
+            this.btnDownload.TabIndex = 14;
+            this.btnDownload.Text = "D&ownload All";
+            this.btnDownload.ThemeName = "Telerik";
+            this.btnDownload.Click += new System.EventHandler(this.btnDownload_Click);
+            // 
             // btnUploadVariables
             // 
             this.btnUploadVariables.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnUploadVariables.ForeColor = System.Drawing.Color.Black;
-            this.btnUploadVariables.Location = new System.Drawing.Point(379, 3);
+            this.btnUploadVariables.Location = new System.Drawing.Point(246, 4);
             this.btnUploadVariables.Name = "btnUploadVariables";
             // 
             // 
             // 
             this.btnUploadVariables.RootElement.ForeColor = System.Drawing.Color.Black;
-            this.btnUploadVariables.Size = new System.Drawing.Size(124, 24);
+            this.btnUploadVariables.Size = new System.Drawing.Size(86, 24);
             this.btnUploadVariables.TabIndex = 13;
-            this.btnUploadVariables.Text = "&Upload Variables";
+            this.btnUploadVariables.Text = "&Upload All";
             this.btnUploadVariables.ThemeName = "Telerik";
             this.btnUploadVariables.Click += new System.EventHandler(this.btnUploadVariables_Click);
             // 
@@ -779,6 +798,7 @@ namespace AppedoLT
             ((System.ComponentModel.ISupportInitialize)(this.radPanelBar2)).EndInit();
             this.radPanelBar2.ResumeLayout(false);
             this.radPanelBar2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.btnDownload)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnUploadVariables)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
@@ -834,6 +854,7 @@ namespace AppedoLT
         private Telerik.WinControls.UI.RadTextBox txtNumber;
         private Telerik.WinControls.UI.RadLabel radLabel6;
         private Telerik.WinControls.UI.RadButton btnUploadVariables;
+        private Telerik.WinControls.UI.RadButton btnDownload;
     }
 }
 

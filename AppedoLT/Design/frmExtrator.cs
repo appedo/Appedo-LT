@@ -2,6 +2,7 @@ using System;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using System.Xml;
+
 namespace AppedoLT
 {
     public partial class frmExtrator : Telerik.WinControls.UI.RadForm
@@ -9,7 +10,7 @@ namespace AppedoLT
         string _response = string.Empty;
         XmlNode _editVariable=null;
         XmlNode _request = null;
-        RepositoryXml repositoryXml = RepositoryXml.GetInstance();
+        Common _common = Common.GetInstance();
 
         public frmExtrator(string response,XmlNode request, XmlNode extractVariable)
         {
@@ -67,38 +68,38 @@ namespace AppedoLT
         {
             if (ExtractVar == null)
             {
-                ExtractVar = repositoryXml.doc.CreateElement("extractor");
+                ExtractVar =_request.OwnerDocument.CreateElement("extractor");
             }
             else
             {
                 ExtractVar.Attributes.RemoveAll();
             }
-            ExtractVar.Attributes.Append(repositoryXml.GetAttribute("name",txtName.Text));
-            ExtractVar.Attributes.Append(repositoryXml.GetAttribute("start",txtStartwith.Text));
-            ExtractVar.Attributes.Append(repositoryXml.GetAttribute("end", txtEndwith.Text));
-            if (rbtnSimple.Checked == true) ExtractVar.Attributes.Append(repositoryXml.GetAttribute("mode", "1"));
+            ExtractVar.Attributes.Append(_common.GetAttribute(_request.OwnerDocument,"name",txtName.Text));
+            ExtractVar.Attributes.Append(_common.GetAttribute(_request.OwnerDocument,"start",txtStartwith.Text));
+            ExtractVar.Attributes.Append(_common.GetAttribute(_request.OwnerDocument,"end", txtEndwith.Text));
+            if (rbtnSimple.Checked == true) ExtractVar.Attributes.Append(_common.GetAttribute(_request.OwnerDocument,"mode", "1"));
             else
             {
-                ExtractVar.Attributes.Append(repositoryXml.GetAttribute("mode", "2"));
+                ExtractVar.Attributes.Append(_common.GetAttribute(_request.OwnerDocument,"mode", "2"));
             }
             if (rbtnAllOccurrence.Checked == true)
             {
-                ExtractVar.Attributes.Append(repositoryXml.GetAttribute("selctiontype", "all"));
+                ExtractVar.Attributes.Append(_common.GetAttribute(_request.OwnerDocument,"selctiontype", "all"));
             }
             else if (rbtnRandomOccurrence.Checked == true)
             {
-                ExtractVar.Attributes.Append(repositoryXml.GetAttribute("selctiontype", "random"));
+                ExtractVar.Attributes.Append(_common.GetAttribute(_request.OwnerDocument,"selctiontype", "random"));
             }
             else
             {
-                ExtractVar.Attributes.Append(repositoryXml.GetAttribute("selctiontype", "single"));
+                ExtractVar.Attributes.Append(_common.GetAttribute(_request.OwnerDocument,"selctiontype", "single"));
             }
-            ExtractVar.Attributes.Append(repositoryXml.GetAttribute("regex", txtRegEx.Text));
-            ExtractVar.Attributes.Append(repositoryXml.GetAttribute("groupindex", txtGroupIndex.Text));
-            if (txtOrdinal.Text == string.Empty) ExtractVar.Attributes.Append(repositoryXml.GetAttribute("ordinal","1"));
+            ExtractVar.Attributes.Append(_common.GetAttribute(_request.OwnerDocument,"regex", txtRegEx.Text));
+            ExtractVar.Attributes.Append(_common.GetAttribute(_request.OwnerDocument,"groupindex", txtGroupIndex.Text));
+            if (txtOrdinal.Text == string.Empty) ExtractVar.Attributes.Append(_common.GetAttribute(_request.OwnerDocument,"ordinal","1"));
             else
             {
-                ExtractVar.Attributes.Append(repositoryXml.GetAttribute("ordinal", txtOrdinal.Text));
+                ExtractVar.Attributes.Append(_common.GetAttribute(_request.OwnerDocument,"ordinal", txtOrdinal.Text));
             }
             return ExtractVar;
         }

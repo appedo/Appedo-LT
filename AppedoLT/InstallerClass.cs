@@ -32,18 +32,7 @@ namespace AppedoLT
         {
             try
             {
-                Directory.SetCurrentDirectory(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location));
-                if (!Directory.Exists(".\\Data")) Directory.CreateDirectory(".\\Data");
-                if (!Directory.Exists(".\\DataMonitor")) Directory.CreateDirectory(".\\DataMonitor");
-                if (!Directory.Exists(".\\Exported Charts")) Directory.CreateDirectory(".\\Exported Charts");
-                if (!Directory.Exists(".\\Exported Reports")) Directory.CreateDirectory(".\\Exported Reports");
-                if (!Directory.Exists(".\\MonitorData")) Directory.CreateDirectory(".\\MonitorData");
-                if (!Directory.Exists(".\\Request")) Directory.CreateDirectory(".\\Request");
-                if (!Directory.Exists(".\\Response")) Directory.CreateDirectory(".\\Response");
-                if (!Directory.Exists(".\\Upload")) Directory.CreateDirectory(".\\Upload");
-                if (!Directory.Exists(".\\Variables")) Directory.CreateDirectory(".\\Variables");
-                Process.Start(Path.GetDirectoryName(
-                  Assembly.GetExecutingAssembly().Location) + "\\APPEDO_LT.exe");
+                Process.Start(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + "\\APPEDO_LT.exe");
             }
             catch
             {

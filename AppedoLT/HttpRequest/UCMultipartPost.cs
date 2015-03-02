@@ -108,7 +108,7 @@ namespace AppedoLT
                     node.Value = txtContentType.Text;
                 }
             }
-            else if(txtContentType.Text.Trim()!=string.Empty)
+            else if (txtContentType.Text.Trim() != string.Empty)
             {
 
             }
@@ -130,5 +130,5 @@ namespace AppedoLT
             }
         }
 
-   }
+    }
 }

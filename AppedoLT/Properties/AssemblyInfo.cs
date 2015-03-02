@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("FloodGates")]
+[assembly: AssemblyTitle("APPEDO_LT")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Appedo")]
-[assembly: AssemblyProduct("FloodGates")]
+[assembly: AssemblyProduct("APPEDO_LT")]
 [assembly: AssemblyCopyright("Copyright © Appedo 2013")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -33,9 +33,14 @@ using System.Runtime.InteropServices;
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
 <<<<<<< HEAD
+<<<<<<< HEAD
 [assembly: AssemblyVersion("3.0.0.23")]
 [assembly: AssemblyFileVersion("3.0.0.23")]
 =======
 [assembly: AssemblyVersion("3.0.27.0")]
 [assembly: AssemblyFileVersion("3.0.27.0")]
+>>>>>>> dev_master
+=======
+[assembly: AssemblyVersion("3.0.28.0")]
+[assembly: AssemblyFileVersion("3.0.28.0")]
 >>>>>>> dev_master

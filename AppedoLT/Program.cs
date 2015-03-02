@@ -37,27 +37,8 @@ namespace AppedoLT
                         Application.EnableVisualStyles();
                         Constants constants = AppedoLT.Core.Constants.GetInstance();
                         constants.ApplicationStartTime = DateTime.Now;
-                        new Thread(() =>
-                        {
-                            try
-                            {
-                                if (constants.IsTimeChaged() == true)
-                                {
-                                    constants.IsSystemDateTimeChanged = true;
-                                }
-                                else
-                                {
-                                    constants.ApplicationStartTime = DateTime.Now;
-                                }
-                            }
-                            catch (Exception ex)
-                            {
-                                ExceptionHandler.WritetoEventLog(ex.StackTrace + Environment.NewLine + ex.Message);
-                                constants.ApplicationStartTime = DateTime.Now;
-                            }
-                        }).Start();
                         Application.Run(new Design());
-                      //  Application.Run(new frmUserCount());
+                      
                     }
                     else
                     {

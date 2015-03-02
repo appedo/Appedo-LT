@@ -1,18 +1,21 @@
-﻿using System;
+﻿using AppedoLT.Core;
+using System;
+using System.Collections.Generic;
 using System.Drawing;
+using System.IO;
 using System.Text;
 using System.Windows.Forms;
 using System.Xml;
-using AppedoLT.Core;
 using Telerik.WinControls.UI;
-using System.IO;
 
 namespace AppedoLT
 {
     public partial class ucDesign : UserControl
     {
+        private bool isDeleteHapped = false;
 
         private RepositoryXml _repositoryXml = RepositoryXml.GetInstance();
+        private Common _common = Common.GetInstance();
         private Color _treeNodeDefaultColor;
         private static ucDesign _instance;
         public static ucDesign GetInstance()
@@ -25,9 +28,11 @@ namespace AppedoLT
         private ucDesign()
         {
             InitializeComponent();
+           
             this.Dock = DockStyle.Fill;
             _treeNodeDefaultColor = tvRequest.BackColor;
             LoadTreeItem();
+            
         }
 
         #region Design
@@ -38,22 +43,31 @@ namespace AppedoLT
             {
                 tvRequest.Nodes.Clear();
 
-                foreach (XmlNode vuscript in _repositoryXml.doc.SelectNodes("root/vuscripts/vuscript"))
+                foreach (string info in Directory.GetDirectories(".\\Scripts"))
                 {
-                    RadTreeNode vuScriptNode = new RadTreeNode();
-                    vuScriptNode.Text = vuscript.Attributes["name"].Value;
-                    vuScriptNode.Tag = vuscript;
-                    vuScriptNode.ImageKey = "scripts.gif";
-                    foreach (XmlNode container in vuscript.ChildNodes)
+                    DirectoryInfo dicinfo = new DirectoryInfo(info);
+                    
+                    if (File.Exists(info + "\\vuscript.xml"))
                     {
-                        RadTreeNode containerNode = new RadTreeNode();
-                        containerNode.Text = container.Attributes["name"].Value;
-                        containerNode.Tag = container;
-                        GetTreeNode(container, containerNode);
-                        vuScriptNode.Nodes.Add(containerNode);
+                        VuscriptXml vuscriptXml = new VuscriptXml(dicinfo.Name);
+                        XmlNode vuscript = vuscriptXml.doc.SelectSingleNode("//vuscript");
+                        RadTreeNode vuScriptNode = new RadTreeNode();
+
+                        vuScriptNode.Text = vuscript.Attributes["name"].Value;
+                        vuScriptNode.Tag = vuscriptXml;
+                        vuScriptNode.ImageKey = "scripts.gif";
+                        foreach (XmlNode container in vuscript.ChildNodes)
+                        {
+                            RadTreeNode containerNode = new RadTreeNode();
+                            containerNode.Text = container.Attributes["name"].Value;
+                            containerNode.Tag = container;
+                            GetTreeNode(container, containerNode);
+                            vuScriptNode.Nodes.Add(containerNode);
+                        }
+                        tvRequest.Nodes.Add(vuScriptNode);
                     }
-                    tvRequest.Nodes.Add(vuScriptNode);
                 }
+            
             }
             catch (Exception ex)
             {
@@ -145,7 +159,7 @@ namespace AppedoLT
         {
             try
             {
-                XmlNode vuscript = (XmlNode)tvRequest.SelectedNode.Tag;
+                XmlNode vuscript = ((VuscriptXml)tvRequest.SelectedNode.Tag).doc.SelectSingleNode("//vuscript") ;
                 string scriptId = vuscript.Attributes["id"].Value;
                 FlagRequest fRequest;
                 if (_repositoryXml.doc.SelectSingleNode("//flag/flagrequest[@scriptid='" + scriptId + "']") == null)
@@ -285,7 +299,7 @@ namespace AppedoLT
                         case "responsebody":
                             {
                                 StringBuilder respose = new StringBuilder();
-                                respose.Append(Utility.GetFileContent(Constants.GetInstance().ExecutingAssemblyLocation + "\\ScriptResource\\" + scriptId+"\\" + requestNode.Attributes["resFilename"].Value));
+                                respose.Append(Utility.GetFileContent(Constants.GetInstance().ExecutingAssemblyLocation + "\\Scripts\\" + scriptId+"\\" + requestNode.Attributes["resFilename"].Value));
                                 if (flagRequest.Attributes["condition"].Value == "contain")
                                 {
                                     if (respose.ToString().Contains(flagRequest.Attributes["text"].Value))
@@ -396,7 +410,7 @@ namespace AppedoLT
                         containerName = Constants.GetInstance().GetUniqueContainerName(containerName, vuscipt, 1);
                     }
 
-                    XmlNode xmlNode = _repositoryXml.CreateContainer(((XmlNode)GetRootParent(tvRequest.SelectedNode).Tag).Attributes["id"].Value, containerName);
+                    XmlNode xmlNode = _common.CreateContainer(((XmlNode)tvRequest.SelectedNode.Tag).OwnerDocument, containerName);
                     RadTreeNode treeNode = new RadTreeNode();
                     treeNode.Text = xmlNode.Attributes["name"].Value;
                     treeNode.Tag = xmlNode;
@@ -431,7 +445,7 @@ namespace AppedoLT
                 if (tvRequest.SelectedNode != null)
                 {
                     ToolStripMenuItem destination = (ToolStripMenuItem)sender;
-                    XmlNode xmlNode = _repositoryXml.CreateDelay();
+                    XmlNode xmlNode = _common.CreateDelay(((XmlNode)tvRequest.SelectedNode.Tag).OwnerDocument);
                     RadTreeNode treeNode = new RadTreeNode();
                     treeNode.Text = "Delay";
                     treeNode.Tag = xmlNode;
@@ -473,7 +487,7 @@ namespace AppedoLT
                         loopName = Constants.GetInstance().GetUniqueLoopName(loopName, vuscipt, 1);
                     }
 
-                    XmlNode xmlNode = _repositoryXml.CreateLoop(((XmlNode)GetRootParent(tvRequest.SelectedNode).Tag).Attributes["id"].Value,loopName);
+                    XmlNode xmlNode = _common.CreateLoop(((XmlNode)tvRequest.SelectedNode.Tag).OwnerDocument, loopName); 
                     RadTreeNode treeNode = new RadTreeNode();
                     treeNode.Text = loopName;
                     treeNode.Tag = xmlNode;
@@ -509,7 +523,7 @@ namespace AppedoLT
                 if (tvRequest.SelectedNode != null)
                 {
                     ToolStripMenuItem destination = (ToolStripMenuItem)sender;
-                    XmlNode xmlNode = _repositoryXml.CreateWhileLoop(((XmlNode)GetRootParent(tvRequest.SelectedNode).Tag).Attributes["id"].Value);
+                    XmlNode xmlNode = _common.CreateWhileLoop(((XmlNode)tvRequest.SelectedNode.Tag).OwnerDocument);
                     RadTreeNode treeNode = new RadTreeNode();
                     treeNode.Text = "WhileLoop";
                     treeNode.Tag = xmlNode;
@@ -545,7 +559,7 @@ namespace AppedoLT
                 if (tvRequest.SelectedNode != null)
                 {
                     ToolStripMenuItem destination = (ToolStripMenuItem)sender;
-                    XmlNode xmlNode = _repositoryXml.CreateJavaScript();
+                    XmlNode xmlNode = _common.CreateJavaScript(((XmlNode)tvRequest.SelectedNode.Tag).OwnerDocument); 
                     RadTreeNode treeNode = new RadTreeNode();
                     treeNode.Text = "JavaScript";
                     treeNode.Tag = xmlNode;
@@ -581,7 +595,7 @@ namespace AppedoLT
                 if (tvRequest.SelectedNode != null)
                 {
                     ToolStripMenuItem destination = (ToolStripMenuItem)sender;
-                    XmlNode xmlNode = _repositoryXml.CreateIfThenElse();
+                    XmlNode xmlNode = _common.CreateIfThenElse(((XmlNode)tvRequest.SelectedNode.Tag).OwnerDocument); 
 
                     RadTreeNode IfContainerNode = new RadTreeNode();
                     IfContainerNode.Text = "If(Condition)";
@@ -630,7 +644,7 @@ namespace AppedoLT
                 if (tvRequest.SelectedNode != null)
                 {
                     ToolStripMenuItem destination = (ToolStripMenuItem)sender;
-                    XmlNode xmlNode = _repositoryXml.CreateStartTransaction();
+                    XmlNode xmlNode = _common.CreateStartTransaction(((XmlNode)tvRequest.SelectedNode.Tag).OwnerDocument);
                     RadTreeNode treeNode = new RadTreeNode();
                     treeNode.Text = "StartTransaction";
                     treeNode.Tag = xmlNode;
@@ -666,7 +680,7 @@ namespace AppedoLT
                 if (tvRequest.SelectedNode != null)
                 {
                     ToolStripMenuItem destination = (ToolStripMenuItem)sender;
-                    XmlNode xmlNode = _repositoryXml.CreateEndTransaction();
+                    XmlNode xmlNode = _common.CreateEndTransaction(((XmlNode)tvRequest.SelectedNode.Tag).OwnerDocument);
                     RadTreeNode treeNode = new RadTreeNode();
                     treeNode.Text = "EndTransaction";
                     treeNode.Tag = xmlNode;
@@ -702,7 +716,7 @@ namespace AppedoLT
                 if (tvRequest.SelectedNode != null)
                 {
                     ToolStripMenuItem destination = (ToolStripMenuItem)sender;
-                    XmlNode xmlNode = _repositoryXml.CreateLog(((XmlNode)GetRootParent(tvRequest.SelectedNode).Tag).Attributes["id"].Value);
+                    XmlNode xmlNode = _common.CreateLog(((XmlNode)tvRequest.SelectedNode.Tag).OwnerDocument); 
                     RadTreeNode treeNode = new RadTreeNode();
                     treeNode.Text = "Log";
                     treeNode.Tag = xmlNode;
@@ -743,15 +757,16 @@ namespace AppedoLT
                 {
                     Color col = tvRequest.SelectedNode.BackColor;
                     tvRequest.SelectedNode.BackColor = col;
-                    XmlNode node = (XmlNode)tvRequest.SelectedNode.Tag;
+                    XmlNode node = tvRequest.SelectedNode.Level == 0 ? ((VuscriptXml)tvRequest.SelectedNode.Tag).doc.SelectSingleNode("//vuscript") : (XmlNode)tvRequest.SelectedNode.Tag;
                     switch (node.Name)
                     {
                         case "request":
                             if (node.Attributes["Address"] != null)
                             {
                                 #region HTTPRequest
-                            
-                                this.pnlMaster.Controls.Add(UCHttpRequest.GetInstance().GetControl(((XmlNode) GetRootParent(tvRequest.SelectedNode).Tag).Attributes["id"].Value,node, tvRequest.SelectedNode));
+                                this.pnlMaster.Controls.Add(UCHttpRequest.GetInstance().GetControl(
+                                    node, 
+                                    tvRequest.SelectedNode));
                                 #endregion
                             }
                             else
@@ -858,15 +873,33 @@ namespace AppedoLT
             {
                 if (tvRequest.SelectedNodes.Count == 1)
                 {
-                    RadTreeNode parentNode = new RadTreeNode();
-                    if (tvRequest.SelectedNode != null)
+                    if (tvRequest.SelectedNode.Level == 0)
                     {
-                        if (tvRequest.SelectedNode.Parent != null) parentNode = tvRequest.SelectedNode.Parent;
-                        if (MessageBox.Show("Are you sure you want to delete selected " + ((XmlNode)tvRequest.SelectedNode.Tag).Name + "?", "Delete", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                        RadTreeNode parentNode = new RadTreeNode();
+                        if (tvRequest.SelectedNode != null)
                         {
-                            ((XmlNode)tvRequest.SelectedNode.Tag).ParentNode.RemoveChild((XmlNode)tvRequest.SelectedNode.Tag);
-                            tvRequest.SelectedNode.Remove();
-                            this.pnlMaster.Controls.Clear();
+                          
+                            if (MessageBox.Show("Are you sure you want to delete selected vuscipt?", "Delete", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                            {
+                                DeleteScript((VuscriptXml)tvRequest.SelectedNode.Tag);
+                                tvRequest.SelectedNode.Remove();
+                                this.pnlMaster.Controls.Clear();
+                            }
+                        }
+                    }
+                    else
+                    {
+                        RadTreeNode parentNode = new RadTreeNode();
+                        if (tvRequest.SelectedNode != null)
+                        {
+                            if (tvRequest.SelectedNode.Parent != null) parentNode = tvRequest.SelectedNode.Parent;
+                            if (MessageBox.Show("Are you sure you want to delete selected " + ((XmlNode)tvRequest.SelectedNode.Tag).Name + "?", "Delete", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                            {
+                                ((XmlNode)tvRequest.SelectedNode.Tag).ParentNode.RemoveChild((XmlNode)tvRequest.SelectedNode.Tag);
+                                tvRequest.SelectedNode.Remove();
+                                isDeleteHapped = true;
+                                this.pnlMaster.Controls.Clear();
+                            }
                         }
                     }
                 }
@@ -878,7 +911,7 @@ namespace AppedoLT
                         if (tvRequest.SelectedNode.Parent != null) parentNode = tvRequest.SelectedNode.Parent;
                         ((XmlNode)tvRequest.SelectedNode.Tag).ParentNode.RemoveChild((XmlNode)tvRequest.SelectedNode.Tag);
                         tvRequest.SelectedNode.Remove();
-                       
+                        isDeleteHapped = true;
                     }
                     this.pnlMaster.Controls.Clear();
                 }
@@ -889,11 +922,23 @@ namespace AppedoLT
                 ExceptionHandler.WritetoEventLog(ex.StackTrace + Environment.NewLine + ex.Message);
             }
         }
-        private void btnScriptSave_Click(object sender, EventArgs e)
+        private void DeleteScript(VuscriptXml vuscriptXml)
+        {
+            string scriptid = vuscriptXml.doc.SelectSingleNode("//vuscript").Attributes["id"].Value;
+            if(Directory.Exists(".\\Scripts\\"+scriptid))
+            {
+                vuscriptXml = null;
+                Directory.Delete(".\\Scripts\\" + scriptid,true);
+            }
+        }
+        public void btnScriptSave_Click(object sender, EventArgs e)
         {
             try
             {
-                RepositoryXml.GetInstance().Save();
+                foreach(RadTreeNode script in tvRequest.Nodes)
+                {
+                    ((VuscriptXml)script.Tag).Save();
+                }
                 MessageBox.Show("Saved");
             }
             catch (Exception ex)
@@ -912,17 +957,18 @@ namespace AppedoLT
             {
                 frmVUScriptNameHttp frm = new frmVUScriptNameHttp();
                 frm.ShowDialog();
-                if (frm.node != null)
+                if (frm.vuscriptXml != null)
                 {
-                    frmRecord rd = new frmRecord((Design)this.Parent.Parent.Parent, frm.name, frm.node);
+                    XmlNode vuscriptNode = frm.vuscriptXml.doc.SelectSingleNode("//vuscript");
+                    frmRecord rd = new frmRecord((Design)this.Parent.Parent.Parent, frm.name, vuscriptNode);
                     this.Parent.Parent.Parent.Visible = false;
                     rd.ShowDialog();
-
+                    frm.vuscriptXml.Save();
                     RadTreeNode vuScriptNode = new RadTreeNode();
-                    vuScriptNode.Text = frm.node.Attributes["name"].Value;
-                    vuScriptNode.Tag = frm.node;
+                    vuScriptNode.Text = vuscriptNode.Attributes["name"].Value;
+                    vuScriptNode.Tag = frm.vuscriptXml;
                     vuScriptNode.ImageKey = "scripts.gif";
-                    foreach (XmlNode container in frm.node.ChildNodes)
+                    foreach (XmlNode container in vuscriptNode.ChildNodes)
                     {
                         RadTreeNode containerNode = new RadTreeNode();
                         containerNode.Text = container.Attributes["name"].Value;
@@ -987,7 +1033,12 @@ namespace AppedoLT
                 }
                 if (tvRequest.SelectedNode != null)
                 {
-
+                    if (tvRequest.SelectedNode.Level==0)
+                    {
+                        recordNewScripToolStripMenuItem.Visible = true;
+                        deleteToolStripMenuItem.Visible = true;
+                        return;
+                    }
                     switch (((XmlNode)tvRequest.SelectedNode.Tag).Name)
                     {
                         case "vuscript":
@@ -1059,9 +1110,32 @@ namespace AppedoLT
         {
             try
             {
-                string tempPath = Path.GetTempPath();
-                
-                Constants.GetInstance().UnZip(tempPath + "qam.rar", tempPath + "qam");
+                if (Constants.GetInstance().UserId == string.Empty)
+                {
+                    frmLogin login = new frmLogin();
+                    if (login.ShowDialog() == DialogResult.OK && login.Userid != string.Empty)
+                    {
+                        Constants.GetInstance().UserId = login.Userid;
+                    }
+                    else
+                    {
+                        return;
+                    }
+                }
+                if (Constants.GetInstance().UserId != string.Empty)
+                {
+                    TrasportData respose = null;
+                    Dictionary<string, string> header = new Dictionary<string, string>();
+                    string scripts = string.Empty;
+                    header.Add("userid", Constants.GetInstance().UserId);
+                    Trasport server = new Trasport(Constants.GetInstance().UploadIPAddress, Constants.GetInstance().UploadPort);
+                    server.Send(new TrasportData("AVAILABLESCRIPTS", string.Empty, header));
+                    respose = server.Receive();
+                    scripts = respose.Header["scripts"];
+                    server.Close();
+                    frmScriptNameList frm = new frmScriptNameList(GetAvailableScript(),scripts,this);
+                    frm.ShowDialog();
+                }
 
             }
             catch(Exception ex)
@@ -1069,6 +1143,16 @@ namespace AppedoLT
                 MessageBox.Show(ex.Message);
             }
 
+        }
+       
+        List<string> GetAvailableScript()
+        {
+            List<string> list = new List<string>();
+            foreach(RadTreeNode node in tvRequest.Nodes)
+            {
+                list.Add(node.Text);
+            }
+            return list;
         }
 
         #endregion

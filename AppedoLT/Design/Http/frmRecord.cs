@@ -2,6 +2,7 @@ using System;
 using System.Windows.Forms;
 using System.Xml;
 using System.Threading;
+using AppedoLT.Core;
 namespace AppedoLT
 {
     public partial class frmRecord : Telerik.WinControls.UI.RadForm
@@ -11,15 +12,22 @@ namespace AppedoLT
         XmlNode _vuscript;
         public frmRecord(Design _frm, string vuName, XmlNode _vuScript)
         {
-            InitializeComponent();
-            ThreadPool.SetMaxThreads(2, 2);
-            ddlParentContainer.SelectedIndex = 1;
-            this.Location = new System.Drawing.Point((Screen.PrimaryScreen.Bounds.Width / 2)-(this.Size.Width/2), 2);
-            lblRequest.Text = string.Empty;
-            Label.CheckForIllegalCrossThreadCalls = false;
-            rd = new Record(lblRequest, txtContainer,ddlParentContainer, _vuScript);
-            frm = _frm;
-            rd.Start();
+            try
+            {
+                InitializeComponent();
+                ThreadPool.SetMaxThreads(2, 2);
+                ddlParentContainer.SelectedIndex = 1;
+                this.Location = new System.Drawing.Point((Screen.PrimaryScreen.Bounds.Width / 2) - (this.Size.Width / 2), 2);
+                lblRequest.Text = string.Empty;
+                Label.CheckForIllegalCrossThreadCalls = false;
+                rd = new Record(lblRequest, txtContainer, ddlParentContainer, _vuScript.OwnerDocument.SelectSingleNode("//vuscript"));
+                frm = _frm;
+                rd.Start();
+            }
+            catch (Exception ex)
+            {
+                ExceptionHandler.WritetoEventLog(ex.Message + Environment.NewLine + ex.StackTrace);
+            }
 
         }
         public frmRecord(Design _frm,XmlNode vuscript)

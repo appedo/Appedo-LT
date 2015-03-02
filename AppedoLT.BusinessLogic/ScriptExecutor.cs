@@ -29,6 +29,8 @@ namespace AppedoLT.BusinessLogic
         private Constants _constant = Constants.GetInstance();
         public BackgroundWorker Worker = new BackgroundWorker();
         public VUScriptStatus StatusSummary = new VUScriptStatus();
+        public Queue<Log> ScriptWiseLog = new Queue<Log>();
+
         public bool IsRunCompleted = false;
         public string Scriptid { get; set; }
         public string Scriptname { get; set; }
@@ -445,7 +447,7 @@ namespace AppedoLT.BusinessLogic
 
         private VUser GetVUser(int userid)
         {
-            return new VUser(int.Parse(_setting.MaxUser), _reportName, _setting.Type, userid, int.Parse(_setting.Iterations), _vuScript, _setting.BrowserCache, Request.GetIPAddress(_createdUserCount));
+            return new VUser(int.Parse(_setting.MaxUser), _reportName, _setting.Type, userid, int.Parse(_setting.Iterations), _vuScript, _setting.BrowserCache, Request.GetIPAddress(_createdUserCount), ScriptWiseLog);
         }
         private void UpdateStatus()
         {

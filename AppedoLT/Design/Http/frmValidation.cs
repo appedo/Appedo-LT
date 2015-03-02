@@ -25,6 +25,7 @@ namespace AppedoLT
         int intCountRequest;
         Thread backgroundThread1;
         bool firstRun;
+        Queue<Log> scriptWiseLog = new Queue<Log>();
 
         public frmValidation(XmlNode vuScript, RadTreeNode script, int _intCountRequest)
         {
@@ -46,7 +47,7 @@ namespace AppedoLT
 
                 tvRequest.Nodes.Clear();
                 tvRequest.Nodes.Add(script);
-                _vUSer = new VUser(1, DateTime.Now.ToString("dd_MMM_yyyy_hh_mm_ss"), "1", 1, 1, vuScript, false, Request.GetIPAddress(1));
+                _vUSer = new VUser(1, DateTime.Now.ToString("dd_MMM_yyyy_hh_mm_ss"), "1", 1, 1, vuScript, false, Request.GetIPAddress(1), scriptWiseLog);
                 _vUSer.IsValidation = true;
                 _vUSer.ValidationResult = ValidationResult.GetInstance(this.lsvResult);
                 _vUSer.ValidationResult.Clear();           

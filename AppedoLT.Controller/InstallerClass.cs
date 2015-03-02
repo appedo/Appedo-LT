@@ -35,12 +35,7 @@ namespace AppedoLTController
         {
             try
             {
-                Directory.SetCurrentDirectory(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location));
-                if (!Directory.Exists(".\\Data")) Directory.CreateDirectory(".\\Data");
-                if (!Directory.Exists(".\\Upload")) Directory.CreateDirectory(".\\Upload");
-                if (!Directory.Exists(".\\Variables")) Directory.CreateDirectory(".\\Variables");
-                Process.Start(Path.GetDirectoryName(
-                  Assembly.GetExecutingAssembly().Location) + "\\APPEDO_LT_CONTROLLER.exe");
+              //  Process.Start(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + "\\APPEDO_LT_CONTROLLER.exe");
             }
             catch
             {

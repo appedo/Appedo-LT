@@ -4,6 +4,7 @@ using System.Windows.Forms;
 using System.Xml;
 using Telerik.WinControls.Enumerations;
 using System.Diagnostics;
+using AppedoLT.Core;
 
 namespace AppedoLT
 {
@@ -11,9 +12,10 @@ namespace AppedoLT
     {
       
         public string name = string.Empty;
-        public XmlNode node;
+        public VuscriptXml vuscriptXml=null;
         string _type;
         RepositoryXml repositoryXml = RepositoryXml.GetInstance();
+
         public frmVUScriptNameHttp()
         {
             InitializeComponent();
@@ -23,30 +25,30 @@ namespace AppedoLT
         {
             if (Validate() == true)
             {
-                if (repositoryXml.doc.SelectNodes("root/vuscripts/vuscript[@name='" + txtName.Text + "']").Count > 0)
+                if(VuscriptXml.GetScriptName().Contains(txtName.Text))
                 {
                     MessageBox.Show("Script name already exist");
+                    return;
                 }
-                else
+
+                string uniqueid = Constants.GetInstance().UniqueID;
+                vuscriptXml = new VuscriptXml(uniqueid);
+             
+                XmlNode node = vuscriptXml.doc.SelectSingleNode("vuscript");
+                node.Attributes.Append(vuscriptXml.GetAttribute("name", txtName.Text));
+                node.Attributes.Append(vuscriptXml.GetAttribute("id", uniqueid));
+                node.Attributes.Append(vuscriptXml.GetAttribute("type", _type));
+                node.Attributes.Append(vuscriptXml.GetAttribute("exclutionfiletypes", string.Empty));
+                node.Attributes.Append(vuscriptXml.GetAttribute("dynamicreqenable", false.ToString()));
+
+                if (rbtnFirefox.ToggleState == ToggleState.On)
                 {
-                    XmlNode vuscripts = repositoryXml.doc.SelectNodes("root/vuscripts")[0];
-                    node = repositoryXml.doc.CreateElement("vuscript");
-                    node.Attributes.Append(repositoryXml.GetAttribute("name", txtName.Text));
-                    node.Attributes.Append(repositoryXml.GetAttribute("id", repositoryXml.ScriptId));
-                    node.Attributes.Append(repositoryXml.GetAttribute("autoid", "0"));
-                    node.Attributes.Append(repositoryXml.GetAttribute("type", _type));
-                    node.Attributes.Append(repositoryXml.GetAttribute("exclutionfiletypes", string.Empty));
-                    node.Attributes.Append(repositoryXml.GetAttribute("dynamicreqenable", false.ToString()));
-
-                    vuscripts.AppendChild(node);
-                    if (rbtnFirefox.ToggleState == ToggleState.On)
-                    {
-                        AppedoLT.Core.Constants.GetInstance().SetFirefoxProxy();
-                        Process.Start("firefox.exe", txtOpenurl.Text);
-                    }
-
-                    this.Close();
+                    AppedoLT.Core.Constants.GetInstance().SetFirefoxProxy();
+                    Process.Start("firefox.exe", txtOpenurl.Text);
                 }
+
+                this.Close();
+
             }
             //if (loadScenario.VUScripts.Exists(f => f.Name == txtName.Text) == true)
             //{

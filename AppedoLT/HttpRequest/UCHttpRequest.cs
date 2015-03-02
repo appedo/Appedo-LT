@@ -5,6 +5,8 @@ using System.Windows.Forms;
 using System.Xml;
 using AppedoLT.Core;
 using Telerik.WinControls.UI;
+using System.IO;
+using System.Text.RegularExpressions;
 
 namespace AppedoLT
 {
@@ -14,13 +16,13 @@ namespace AppedoLT
         private FindDig _fDig = null;
         private DataTable _paramTable = new DataTable();
         private DataTable _headerTable = new DataTable();
-        private RepositoryXml _repositoryXml = RepositoryXml.GetInstance();
         private XmlNode _request;
         private RadTreeNode _treeNode = null;
         private static UCHttpRequest _instance;
         private Constants _constant = Constants.GetInstance();
         string _scriptId = string.Empty;
-
+       
+        Regex imageTest = new Regex(@"\.(jpg|JPG|gif|GIF|jpeg|JPEG|png|PNG)$");       
         public static UCHttpRequest GetInstance()
         {
             if (_instance == null)
@@ -36,9 +38,9 @@ namespace AppedoLT
             ddlPostContentType.DataSource = _constant.HttpPostContentType;
         }
 
-        public UCHttpRequest GetControl(string scriptid,XmlNode xmlNode, RadTreeNode treeNode)
+        public UCHttpRequest GetControl( XmlNode xmlNode, RadTreeNode treeNode)
         {
-            _scriptId = scriptid;
+            _scriptId = xmlNode.OwnerDocument.SelectSingleNode("//vuscript").Attributes["id"].Value;
             _treeNode = treeNode;
             this.SetRequest(xmlNode);
             this.Tag = xmlNode;
@@ -79,19 +81,32 @@ namespace AppedoLT
                 txtPath.Tag = _request.Attributes["Path"];
                 try
                 {
-                    txtRequest.Text = Utility.GetFileContent(Constants.GetInstance().ExecutingAssemblyLocation + "\\ScriptResource\\" + _scriptId +"\\"+ _request.Attributes["reqFilename"].Value);
-                    txtResponse.Text = _request.Attributes["ResponseHeader"].Value + Utility.GetFileContent(Constants.GetInstance().ExecutingAssemblyLocation + "\\ScriptResource\\" + _scriptId + "\\" + _request.Attributes["resFilename"].Value);
+                    txtRequest.Text = Utility.GetFileContent(Constants.GetInstance().ExecutingAssemblyLocation + "\\Scripts\\" + _scriptId + "\\" + _request.Attributes["reqFilename"].Value);
+                    txtResponse.Text = _request.Attributes["ResponseHeader"].Value + Utility.GetFileContent(Constants.GetInstance().ExecutingAssemblyLocation + "\\Scripts\\" + _scriptId + "\\" + _request.Attributes["resFilename"].Value);
                     webBrowserResponse.DocumentText = txtResponse.Text;
-                    pictureBox1.Image = Image.FromFile(Constants.GetInstance().ExecutingAssemblyLocation + "\\ScriptResource\\" + _scriptId + "\\" + _request.Attributes["resFilename"].Value);
-                    tabiResponseImage.Visibility =Telerik.WinControls.ElementVisibility.Visible;
-                    tabWebBrowser.Visibility = Telerik.WinControls.ElementVisibility.Collapsed;
-                    if (radTabStrip2.SelectedTab == tabWebBrowser || radTabStrip2.SelectedTab == tabiResponseImage)
+                    if (imageTest.IsMatch(_request.Attributes["resFilename"].Value))
                     {
-                        selectedTab = tabWebBrowser;
+                        MemoryStream ms = GetStreamFromFile((Constants.GetInstance().ExecutingAssemblyLocation + "\\Scripts\\" + _scriptId + "\\" + _request.Attributes["resFilename"].Value));
+                        pictureBox1.Image = Image.FromStream(ms);
+                        tabiResponseImage.Visibility = Telerik.WinControls.ElementVisibility.Visible;
+                        tabWebBrowser.Visibility = Telerik.WinControls.ElementVisibility.Collapsed;
+                        if (radTabStrip2.SelectedTab == tabWebBrowser || radTabStrip2.SelectedTab == tabiResponseImage)
+                        {
+                            selectedTab = tabWebBrowser;
+                        }
+                    }
+                    else
+                    {
+                        tabiResponseImage.Visibility = Telerik.WinControls.ElementVisibility.Collapsed;
+                        tabWebBrowser.Visibility = Telerik.WinControls.ElementVisibility.Visible;
+                        if (radTabStrip2.SelectedTab == tabWebBrowser || radTabStrip2.SelectedTab == tabiResponseImage)
+                        {
+                            selectedTab = tabWebBrowser;
+                        }
                     }
 
                 }
-                catch (OutOfMemoryException ex)
+                catch
                 {
                     tabiResponseImage.Visibility = Telerik.WinControls.ElementVisibility.Collapsed;
                     tabWebBrowser.Visibility = Telerik.WinControls.ElementVisibility.Visible;
@@ -99,11 +114,6 @@ namespace AppedoLT
                     {
                         selectedTab = tabWebBrowser;
                     }
-
-                }
-                catch
-                {
-
                 }
                 chkEnable.Checked = Convert.ToBoolean(_request.Attributes["IsEnable"].Value);
                 chkEnable.Tag = _request.Attributes["IsEnable"];
@@ -119,6 +129,17 @@ namespace AppedoLT
             }
         }
 
+        private MemoryStream GetStreamFromFile(string fileName)
+        {
+            MemoryStream ms = new MemoryStream();
+            using (FileStream file = new FileStream(fileName, FileMode.Open, FileAccess.Read))
+            {
+                byte[] buffer = new byte[file.Length];
+                file.Read(buffer, 0, (int)file.Length);
+                ms.Write(buffer, 0, (int)file.Length);
+            }
+            return ms;
+        }
         private void LoadExtParameters()
         {
             try
@@ -378,7 +399,7 @@ namespace AppedoLT
         {
             if (_request.SelectSingleNode("assertions") == null)
             {
-                XmlNode assertions = _repositoryXml.doc.CreateElement("assertions");
+                XmlNode assertions =((XmlNode)this.Tag).OwnerDocument.CreateElement("assertions");
                 frmAssertion parm = new frmAssertion(assertions, null);
                 if (parm.ShowDialog() == DialogResult.OK)
                 {

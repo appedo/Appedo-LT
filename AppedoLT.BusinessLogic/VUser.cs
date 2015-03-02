@@ -64,6 +64,7 @@ namespace AppedoLT.BusinessLogic
         private XmlDocument _doc = null;
         private Thread _userThread;
         private ExecutionReport Status = ExecutionReport.GetInstance();
+        private Queue<Log> _scriptWiseLog = new Queue<Log>();
 
         private Dictionary<string, object> _exVariablesValues = new Dictionary<string, object>();
         private Dictionary<string, TransactionRunTimeDetail> _transactions = new Dictionary<string, TransactionRunTimeDetail>();
@@ -113,9 +114,10 @@ namespace AppedoLT.BusinessLogic
         Dictionary<string, string> receivedCookies = new Dictionary<string, string>();
         public VUserStatus VUserStatus;
 
-        public VUser(int maxUser, string reportName, string type, int userid, int iteration, XmlNode vuScript, bool browserCache, IPAddress ipaddress)
+        public VUser(int maxUser, string reportName, string type, int userid, int iteration, XmlNode vuScript, bool browserCache, IPAddress ipaddress,Queue<Log> scriptWiseLog)
         {
             _doc = vuScript.OwnerDocument;
+            _scriptWiseLog = scriptWiseLog;
             _maxUser = maxUser;
             _browserCache = browserCache;
             _type = type;
@@ -147,55 +149,55 @@ namespace AppedoLT.BusinessLogic
         public void Stop()
         {
             new Thread(() =>
+            {
+                Break = true;
+                try
                 {
+                    if (_userThread != null)
+                    {
+                        try
+                        {
+                            if (req != null) req.Abort();
+                            _userThread.Abort();
+
+                        }
+                        catch (Exception ex)
+                        {
+                            ExceptionHandler.WritetoEventLog(ex.StackTrace + ex.Message);
+                        }
+                        _userThread = null;
+                    }
+                    Result = "";
+                    _resposeUrl = string.Empty;
+                    _receivedCookies = string.Empty;
+
+                    foreach (XmlNode container in _vuScriptXml.ChildNodes)
+                    {
+                        if (container.Attributes["name"].Value == "End")
+                        {
+                            Break = false;
+                            _containerId.Push(new string[2] { container.Attributes["id"].Value, container.Attributes["name"].Value });
+                            ExecuteContainer(container);
+                            _containerId.Pop();
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    ExceptionHandler.WritetoEventLog(ex.StackTrace + ex.Message);
+                }
+                finally
+                {
+                    lock (Status.LockObjForCompletedUser)
+                    {
+                        Status.CompletedUser++;
+                    }
+                    WorkCompleted = true;
+                    conncetionManager.CloseAllConnetions();
                     Break = true;
-                    try
-                    {
-                        if (_userThread != null)
-                        {
-                            try
-                            {
-                                if (req != null) req.Abort();
-                                _userThread.Abort();
-
-                            }
-                            catch (Exception ex)
-                            {
-                                ExceptionHandler.WritetoEventLog(ex.StackTrace + ex.Message);
-                            }
-                            _userThread = null;
-                        }
-                        Result = "";
-                        _resposeUrl = string.Empty;
-                        _receivedCookies = string.Empty;
-
-                        foreach (XmlNode container in _vuScriptXml.ChildNodes)
-                        {
-                            if (container.Attributes["name"].Value == "End")
-                            {
-                                Break = false;
-                                _containerId.Push(new string[2] { container.Attributes["id"].Value, container.Attributes["name"].Value });
-                                ExecuteContainer(container);
-                                _containerId.Pop();
-                            }
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        ExceptionHandler.WritetoEventLog(ex.StackTrace + ex.Message);
-                    }
-                    finally
-                    {
-                        lock (Status.LockObjForCompletedUser)
-                        {
-                            Status.CompletedUser++;
-                        }
-                        WorkCompleted = true;
-                        conncetionManager.CloseAllConnetions();
-                        Break = true;
-                        this.Dispose();
-                    }
-                }).Start();
+                    this.Dispose();
+                }
+            }).Start();
         }
 
         private void StartExecution()
@@ -317,7 +319,7 @@ namespace AppedoLT.BusinessLogic
                         #region Operations
                         case "container":
 
-                            #region Container 
+                            #region Container
                             _containerId.Push(new string[2] { child.Attributes["id"].Value, child.Attributes["name"].Value });
                             ExecuteContainer(child);
                             _containerId.Pop();
@@ -326,7 +328,7 @@ namespace AppedoLT.BusinessLogic
 
                         case "page":
 
-                            #region Page 
+                            #region Page
                             _pageId.Push(child.Attributes["id"].Value);
                             try
                             {
@@ -375,7 +377,7 @@ namespace AppedoLT.BusinessLogic
 
                         case "loop":
 
-                            #region Loop 
+                            #region Loop
                             for (int index = 1; index <= Convert.ToInt32(child.Attributes["loopcount"].Value); index++)
                             {
                                 if (Break == true) break;
@@ -386,7 +388,7 @@ namespace AppedoLT.BusinessLogic
 
                         case "whileloop":
 
-                            #region WhileLoop 
+                            #region WhileLoop
                             while (true)
                             {
                                 if (Break == true) break;
@@ -426,7 +428,7 @@ namespace AppedoLT.BusinessLogic
 
                         case "if":
 
-                            #region If 
+                            #region If
                             string expression = child.Attributes["condition"].Value;
 
                             #region Parm has variable
@@ -460,35 +462,35 @@ namespace AppedoLT.BusinessLogic
 
                         case "request":
 
-                            #region Request 
+                            #region Request
                             ProcessRequest(child.Clone());
                             break;
                             #endregion
 
                         case "delay":
 
-                            #region Delay 
+                            #region Delay
                             System.Threading.Thread.Sleep(Convert.ToInt32(child.Attributes["delaytime"].Value));
                             break;
                             #endregion
 
                         case "log":
 
-                            #region Log 
+                            #region Log
                             LockLog(child);
                             break;
                             #endregion
 
                         case "javascript":
 
-                            #region Javascript 
+                            #region Javascript
                             ProcessJavascrit(child);
                             break;
                             #endregion
 
                         case "starttransaction":
 
-                            #region Starttransaction 
+                            #region Starttransaction
                             {
                                 TransactionRunTimeDetail tranDetail = new TransactionRunTimeDetail();
                                 tranDetail.ScriptId = _vuScriptXml.Attributes["id"].Value;
@@ -505,7 +507,7 @@ namespace AppedoLT.BusinessLogic
 
                         case "endtransaction":
 
-                            #region  Endtransaction 
+                            #region  Endtransaction
                             if (_transactions.ContainsKey(child.Attributes["transactionname"].Value))
                             {
                                 TransactionRunTimeDetail tranDetailTemp = _transactions[child.Attributes["transactionname"].Value];
@@ -725,7 +727,7 @@ namespace AppedoLT.BusinessLogic
                     string selectionType = exVar.Attributes["selctiontype"].Value;
                     int groupindex = Convert.ToInt32(exVar.Attributes["groupindex"].Value);
 
-                    MatchCollection match = Regex.Matches(req.ResponseStr, exVar.Attributes["regex"].Value);
+                    MatchCollection match = Regex.Matches(req.ResponseStr, exVar.Attributes["regex"].Value, RegexOptions.Singleline | RegexOptions.Multiline);
                     string[] strs = new string[_exVariablesValues.Keys.Count];
                     _exVariablesValues.Keys.CopyTo(strs, 0);
 
@@ -1650,6 +1652,7 @@ namespace AppedoLT.BusinessLogic
                     lock (DataServer.GetInstance().logs)
                     {
                         DataServer.GetInstance().logs.Enqueue(logObj);
+                        _scriptWiseLog.Enqueue(logObj);
                     }
                 }
             }

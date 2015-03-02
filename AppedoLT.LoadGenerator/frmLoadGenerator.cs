@@ -7,6 +7,7 @@ using System.ComponentModel;
 using System.IO;
 using System.Net;
 using System.Net.Sockets;
+using System.Reflection;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Windows.Forms;
@@ -33,6 +34,10 @@ namespace AppedoLTLoadGenerator
             worker.DoWork += new DoWorkEventHandler(worker_DoWork);
             try
             {
+                Directory.SetCurrentDirectory(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location));
+                if (!Directory.Exists(".\\Data")) Directory.CreateDirectory(".\\Data");
+                if (!Directory.Exists(".\\Upload")) Directory.CreateDirectory(".\\Upload");
+                if (!Directory.Exists(".\\Variables")) Directory.CreateDirectory(".\\Variables");
                 serverSocket.Start();
                 _loadTestAgent = LoadTestAgentXml.GetInstance();
                 ni.Icon = new Form().Icon;

@@ -345,7 +345,7 @@ namespace AppedoLT.BusinessLogic
         {
             #region Assertion
 
-            if (RequestNode.SelectSingleNode("assertions") != null && RequestNode.SelectSingleNode("assertions").ChildNodes.Count>0)
+            if (RequestNode.SelectSingleNode("assertions") != null && RequestNode.SelectSingleNode("assertions").ChildNodes.Count > 0)
             {
                 foreach (XmlNode assertion in RequestNode.SelectNodes("assertions/assertion"))
                 {
@@ -692,7 +692,7 @@ namespace AppedoLT.BusinessLogic
             att.Value = value;
             return att;
         }
-       
+
     }
     public class PostData
     {

@@ -1,9 +1,11 @@
+using AppedoLT.Core;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Text;
+using System.Threading;
 using System.Windows.Forms;
 using System.Xml;
-using AppedoLT.Core;
 using Telerik.WinControls.UI;
 
 namespace AppedoLT
@@ -19,6 +21,13 @@ namespace AppedoLT
         public frmVariableManager()
         {
             InitializeComponent();
+            LoadTree();
+
+        }
+
+        private void LoadTree()
+        {
+            tvVariables.Nodes.Clear();
             _variables = _variableXml.doc.SelectSingleNode("//variables");
             pnlVariableValue.Location = ucFileTypeVariable.Location = pnlMinMax.Location = pnlNumber.Location = pnlCurrentDate.Location;
 
@@ -50,7 +59,7 @@ namespace AppedoLT
                             }
                         }
                     }
-                    catch(Exception ex)
+                    catch (Exception ex)
                     {
                         ExceptionHandler.WritetoEventLog(ex.StackTrace + Environment.NewLine + ex.Message);
                     }
@@ -67,13 +76,13 @@ namespace AppedoLT
             XmlNode variable;
             if (var == null)
             {
-                 variable = _variableXml.doc.CreateElement("variable");
+                variable = _variableXml.doc.CreateElement("variable");
             }
             else
             {
-                if (var.Attributes["type"].Value=="file")
+                if (var.Attributes["type"].Value == "file")
                 {
-                    if(var.Attributes["vituallocation"]!=null&&File.Exists(Constants.GetInstance().ExecutingAssemblyLocation+var.Attributes["vituallocation"].Value))
+                    if (var.Attributes["vituallocation"] != null && File.Exists(Constants.GetInstance().ExecutingAssemblyLocation + var.Attributes["vituallocation"].Value))
                     {
                         File.Delete(Constants.GetInstance().ExecutingAssemblyLocation + var.Attributes["vituallocation"].Value);
                     }
@@ -83,15 +92,15 @@ namespace AppedoLT
             }
             variable.Attributes.Append(_variableXml.GetAttribute("from", "variablemanager"));
             variable.Attributes.Append(_variableXml.GetAttribute("modified", DateTime.Now.Ticks.ToString()));
-            if (rbtnGlobal.Checked == true)  variable.Attributes.Append(_variableXml.GetAttribute("policy","global"));
-            else if (rbtnEachUser.Checked == true)  variable.Attributes.Append(_variableXml.GetAttribute("policy","eachuser"));
-            else if (rbtnEachIteration.Checked == true)  variable.Attributes.Append(_variableXml.GetAttribute("policy","eachiteration"));
+            if (rbtnGlobal.Checked == true) variable.Attributes.Append(_variableXml.GetAttribute("policy", "global"));
+            else if (rbtnEachUser.Checked == true) variable.Attributes.Append(_variableXml.GetAttribute("policy", "eachuser"));
+            else if (rbtnEachIteration.Checked == true) variable.Attributes.Append(_variableXml.GetAttribute("policy", "eachiteration"));
 
             switch (ddlVariableType.Text)
             {
                 case "File":
                     string vituallocation = CopyFileToVariableFolder(ucFileTypeVariable.txtFileName.Text, variable.Attributes["modified"].Value);
-                    variable.Attributes.Append(_variableXml.GetAttribute("name",txtVariableName.Text));
+                    variable.Attributes.Append(_variableXml.GetAttribute("name", txtVariableName.Text));
                     variable.Attributes.Append(_variableXml.GetAttribute("type", "file"));
                     variable.Attributes.Append(_variableXml.GetAttribute("location", ucFileTypeVariable.txtFileName.Text));
                     variable.Attributes.Append(_variableXml.GetAttribute("vituallocation", vituallocation));
@@ -106,19 +115,19 @@ namespace AppedoLT
                         }
                         columns = columns.Remove(columns.Length - 1);
                     }
-                    variable.Attributes.Append(_variableXml.GetAttribute("columns",columns));
+                    variable.Attributes.Append(_variableXml.GetAttribute("columns", columns));
                     break;
 
                 case "String":
                     variable.Attributes.Append(_variableXml.GetAttribute("name", txtVariableName.Text));
-                    variable.Attributes.Append(_variableXml.GetAttribute("type","string"));
+                    variable.Attributes.Append(_variableXml.GetAttribute("type", "string"));
                     variable.Attributes.Append(_variableXml.GetAttribute("value", txtVariableValue.Text));
                     break;
 
                 case "Number":
                     variable.Attributes.Append(_variableXml.GetAttribute("name", txtVariableName.Text));
                     variable.Attributes.Append(_variableXml.GetAttribute("type", "number"));
-                    variable.Attributes.Append(_variableXml.GetAttribute("value",txtNumber.Text));
+                    variable.Attributes.Append(_variableXml.GetAttribute("value", txtNumber.Text));
                     break;
 
                 case "Current Date":
@@ -126,7 +135,7 @@ namespace AppedoLT
                     variable.Attributes.Append(_variableXml.GetAttribute("type", "currentdate"));
                     variable.Attributes.Append(_variableXml.GetAttribute("index", ddlDateFormat.SelectedIndex.ToString()));
                     variable.Attributes.Append(_variableXml.GetAttribute("value", txtNumber.Text));
-                    variable.Attributes.Append(_variableXml.GetAttribute("dateformat",ddlDateFormat.Text.ToString()));
+                    variable.Attributes.Append(_variableXml.GetAttribute("dateformat", ddlDateFormat.Text.ToString()));
                     break;
 
                 case "Random String":
@@ -146,7 +155,7 @@ namespace AppedoLT
             return variable;
         }
 
-        public string CopyFileToVariableFolder(string source,string modified)
+        public string CopyFileToVariableFolder(string source, string modified)
         {
             string destination = string.Empty;
             fileCopyException = string.Empty;
@@ -155,7 +164,7 @@ namespace AppedoLT
                 if (File.Exists(source))
                 {
                     FileInfo fileinfo = new FileInfo(source);
-                    destination = Constants.GetInstance().ExecutingAssemblyLocation + "\\Variables\\" +modified+"_"+fileinfo.Name;
+                    destination = Constants.GetInstance().ExecutingAssemblyLocation + "\\Variables\\" + modified + "_" + fileinfo.Name;
                     File.Copy(source, destination, true);
                     destination = "\\Variables\\" + modified + "_" + fileinfo.Name;
                 }
@@ -166,6 +175,7 @@ namespace AppedoLT
             }
             return destination;
         }
+
         private void txtVariableName_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!(char.IsControl(e.KeyChar) == true || char.IsLetterOrDigit(e.KeyChar) == true || e.KeyChar == '_'))
@@ -447,7 +457,7 @@ namespace AppedoLT
                 ReleaseReadOnly();
                 txtVariableName.Focus();
             }
-            
+
         }
 
         private void ddlDateFormat_SelectedIndexChanged(object sender, EventArgs e)
@@ -503,36 +513,38 @@ namespace AppedoLT
         {
             try
             {
-                // if (ucScript.UserId == string.Empty)
-                //{
-                //    frmLogin login = new frmLogin();
-                //    if (login.ShowDialog() == DialogResult.OK && login.Userid!=string.Empty)
-                //    {
-                //        ucScript.UserId = login.Userid;
-                //    }
-                //    else
-                //    {
-                //        return;
-                //    }
-                //}
-                // if (ucScript.UserId != string.Empty)
-                // {
-                //     ValidateVariableVersion();
 
-                //     TrasportData respose = null;
-                //     Dictionary<string, string> header = new Dictionary<string, string>();
+                if (Constants.GetInstance().UserId == string.Empty)
+                {
+                    frmLogin login = new frmLogin();
+                    if (login.ShowDialog() == DialogResult.OK && login.Userid != string.Empty)
+                    {
+                        Constants.GetInstance().UserId = login.Userid;
+                    }
+                    else
+                    {
+                        return;
+                    }
+                }
+                if (Constants.GetInstance().UserId != string.Empty)
+                {
+                    ValidateVariableVersion();
 
-                //     header.Add("userid", ucScript.UserId);
-                //     Trasport server = new Trasport(Constants.GetInstance().UploadIPAddress, Constants.GetInstance().UploadPort);
-                //     server.Send(new TrasportData("VARIABLES", GetVariableXmlWithContent(), header));
-                //     respose = server.Receive();
-                //     server.Close();
-                //     header.Clear();
+                    TrasportData respose = null;
+                    Dictionary<string, string> header = new Dictionary<string, string>();
 
-                //     MessageBox.Show("Uploaded succesfully.");
-                // }
+                    header.Add("userid", Constants.GetInstance().UserId);
+                    Trasport server = new Trasport(Constants.GetInstance().UploadIPAddress, Constants.GetInstance().UploadPort);
+                    UploadFile(server, new TrasportData("VARIABLES", GetVariableXmlWithContent(), header));
+                   
+                    respose = server.Receive();
+                    server.Close();
+                    header.Clear();
+
+                    MessageBox.Show("Uploaded succesfully.");
+                }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show("Unable to upload");
                 ExceptionHandler.WritetoEventLog(ex.StackTrace + Environment.NewLine + ex.Message);
@@ -595,6 +607,243 @@ namespace AppedoLT
                 }
             }
             return doc.OuterXml;
+        }
+
+        private List<string> VarList(XmlDocument doc)
+        {
+            List<string> available = new List<string>();
+            foreach (XmlNode var in doc.SelectNodes("//variable"))
+            {
+                available.Add(var.Attributes["name"].Value);
+            }
+            return available;
+        }
+
+        private List<string> VarList(string receivedvar)
+        {
+            List<string> available = new List<string>();
+            foreach (string var in receivedvar.Split(','))
+            {
+                available.Add(var);
+            }
+            return available;
+        }
+
+        private void btnDownload_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+                if (Constants.GetInstance().UserId == string.Empty)
+                {
+                    frmLogin login = new frmLogin();
+                    if (login.ShowDialog() == DialogResult.OK && login.Userid != string.Empty)
+                    {
+                        Constants.GetInstance().UserId = login.Userid;
+                    }
+                    else
+                    {
+                        return;
+                    }
+                }
+                if (Constants.GetInstance().UserId != string.Empty)
+                {
+                    FolderBrowserDialog folderBrowserDialog = new FolderBrowserDialog();
+                    folderBrowserDialog.Description = "Please select folder to store data file(s)";
+                    if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
+                    {
+                        string tempFilePath = System.IO.Path.GetTempPath() + DateTime.Now.Ticks.ToString() + ".xml";
+
+                        TrasportData respose = null;
+                        Dictionary<string, string> header = new Dictionary<string, string>();
+
+                        header.Add("userid", Constants.GetInstance().UserId);
+                        Trasport server = new Trasport(Constants.GetInstance().UploadIPAddress, Constants.GetInstance().UploadPort);
+                        server.Send(new TrasportData("AVAILABLEVARIABLES", string.Empty, header));
+                        respose = server.Receive();
+                        server.Close();
+                        List<string> availbleScript = VarList(_variableXml.doc);
+                        List<string> receivedScript = VarList(respose.Header["variables"]);
+                        List<string> conflictName = GetConflictName(availbleScript, receivedScript);
+                        if (conflictName.Count > 0)
+                        {
+                            StringBuilder msg = new StringBuilder();
+                            msg.AppendLine("Following varialble(s) are available on your local machine.");
+                            foreach (string name in conflictName)
+                            {
+                                msg.AppendLine(name);
+                            }
+                            msg.AppendLine().AppendLine("Are you sure you want to replace?");
+                            if (MessageBox.Show(msg.ToString(), "Warning", MessageBoxButtons.YesNoCancel) != DialogResult.Yes)
+                            {
+                                return;
+                            }
+                        }
+
+                        server = new Trasport(Constants.GetInstance().UploadIPAddress, Constants.GetInstance().UploadPort);
+                        server.Send(new TrasportData("GETVARIABLES", string.Empty, header));
+                        respose= DownloadFile(server, tempFilePath);
+                        server.Close();
+                        header.Clear();
+                        XmlDocument doc = new XmlDocument();
+                        doc.Load(tempFilePath);
+                        Marge(_variableXml.doc, doc, folderBrowserDialog.SelectedPath);
+                        _variableXml.Save();
+                        LoadTree();
+                        MessageBox.Show("Downloaded succesfully.");
+                        if (File.Exists(tempFilePath))
+                        {
+                            try
+                            {
+                                File.Delete(tempFilePath);
+                            }
+                            catch (Exception ex)
+                            {
+                                ExceptionHandler.WritetoEventLog(ex.StackTrace + Environment.NewLine + ex.Message);
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Unable to Download.Please try again");
+                ExceptionHandler.WritetoEventLog(ex.StackTrace + Environment.NewLine + ex.Message);
+            }
+        }
+
+        private TrasportData DownloadFile(Trasport server, string filePath)
+        {
+            TrasportData respose = null;
+            long totalByte = 0;
+            long recivedByte = 0;
+            bool Success = true;
+
+            new Thread(() =>
+            {
+                try
+                {
+                    respose = server.Receive(filePath, ref totalByte, ref recivedByte, ref Success);
+                }
+                catch (Exception ex)
+                {
+                    ExceptionHandler.WritetoEventLog(ex.StackTrace + Environment.NewLine + ex.Message);
+                    Success = false;
+                }
+            }).Start();
+
+            while (((totalByte == 0 && recivedByte == 0) || recivedByte < totalByte))
+            {
+                if (totalByte > 0)
+                {
+
+                    frmDownloadProgress frm = new frmDownloadProgress(true);
+                    new Thread(() =>
+                    {
+                        frm.UpdateStatus(ref totalByte, ref recivedByte, ref Success);
+                    }).Start();
+                    frm.ShowDialog();
+                }
+                if (Success == false) break;
+                Thread.Sleep(1000);
+            }
+            if(Success==false)
+            {
+                throw new Exception("Download Faild");
+            }
+            return respose;
+        }
+
+        private void UploadFile(Trasport server, TrasportData data)
+        {
+
+            long totalByte = 0;
+            long recivedByte = 0;
+            bool Success = true;
+
+            new Thread(() =>
+            {
+                try
+                {
+                    server.Send(data, ref totalByte, ref recivedByte, ref Success);
+                }
+                catch (Exception ex)
+                {
+                    ExceptionHandler.WritetoEventLog(ex.StackTrace + Environment.NewLine + ex.Message);
+                    Success = false;
+                }
+            }).Start();
+
+            while (((totalByte == 0 && recivedByte == 0) || recivedByte < totalByte))
+            {
+                if (totalByte > 0)
+                {
+
+                    frmDownloadProgress frm = new frmDownloadProgress(false);
+                    frm.Text = "Uploading...";
+                    new Thread(() =>
+                    {
+                        frm.UpdateStatus(ref totalByte, ref recivedByte, ref Success);
+                    }).Start();
+                    frm.ShowDialog();
+                }
+                if (Success == false) break;
+                Thread.Sleep(1000);
+            }
+            if (Success == false)
+            {
+                throw new Exception("Upload Faild");
+            }
+        }
+
+        private void Marge(XmlDocument available, XmlDocument received, string fileLocationPath)
+        {
+            foreach (XmlNode receivedVar in received.SelectNodes("//variable"))
+            {
+                XmlNode existingVar = available.SelectSingleNode("//variable[@name='" + receivedVar.Attributes["name"].Value + "']");
+                if (existingVar != null)
+                {
+                    available.SelectSingleNode("//variables").RemoveChild(existingVar);
+                }
+                XmlNode newNode = available.ImportNode(receivedVar, true);
+                if (newNode.SelectSingleNode(".//content") != null)
+                {
+                    StroreVarialeFile(newNode, fileLocationPath);
+                }
+                available.SelectSingleNode("//variables").AppendChild(newNode);
+            }
+        }
+
+        private List<string> GetConflictName(List<string> available, List<string> received)
+        {
+            List<string> result = new List<string>();
+            foreach (string receivedName in received)
+            {
+                if (available.Contains(receivedName)) result.Add(receivedName);
+            }
+            return result;
+        }
+
+        private void StroreVarialeFile(XmlNode var, string selectedPath)
+        {
+            string[] filename = var.Attributes["location"].Value.Split('\\');
+            string location = selectedPath + "\\" + filename[filename.Length - 1];
+            string virtualLoacationFilePath = Constants.GetInstance().ExecutingAssemblyLocation + var.Attributes["vituallocation"].Value;
+
+            if (File.Exists(virtualLoacationFilePath)) File.Delete(virtualLoacationFilePath);
+            if (File.Exists(location)) File.Delete(location);
+
+            using (StreamWriter steam = new StreamWriter(new FileStream(location, FileMode.OpenOrCreate, FileAccess.ReadWrite)))
+            {
+                steam.Write(var.InnerText);
+            }
+            using (StreamWriter steam = new StreamWriter(new FileStream(virtualLoacationFilePath, FileMode.OpenOrCreate, FileAccess.ReadWrite)))
+            {
+                steam.Write(var.InnerText);
+            }
+            var.Attributes["modified"].Value = DateTime.Now.Ticks.ToString();
+            var.Attributes["location"].Value = location;
+
         }
     }
 }

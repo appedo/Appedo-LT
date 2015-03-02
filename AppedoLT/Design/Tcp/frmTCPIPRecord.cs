@@ -1,3 +1,4 @@
+using AppedoLT.Core;
 using System;
 using System.Diagnostics;
 using System.Drawing;
@@ -20,7 +21,7 @@ namespace AppedoLT
         private string _lastCreatedContainer;
         private Design _frm;
         private RepositoryXml _repositoryXml = RepositoryXml.GetInstance();
-
+        
         public frmTCPIPRecord(Design frm,  XmlNode scriptNode)
         {
             InitializeComponent();
@@ -132,14 +133,14 @@ namespace AppedoLT
         {
             XmlNode container = _repositoryXml.doc.CreateElement("container");
             container.Attributes.Append(_repositoryXml.GetAttribute("name", containername));
-            container.Attributes.Append(_repositoryXml.GetAttribute("id", _repositoryXml.GetId(_scriptNode.Attributes["id"].Value)));
+            container.Attributes.Append(_repositoryXml.GetAttribute("id", Constants.GetInstance().UniqueID));
             return container;
         }
 
         private XmlNode CreateNewRequst(string name, string serverip, string port, string requestcontent, string responsecontent, string requestsize, string responsesize, string responsetime, bool requestsizeconstant,bool responsesizeconstant)
         {
             XmlNode req = _repositoryXml.doc.CreateElement("request");
-            req.Attributes.Append(_repositoryXml.GetAttribute("id", _repositoryXml.GetId(_scriptNode.Attributes["id"].Value)));
+            req.Attributes.Append(_repositoryXml.GetAttribute("id", Constants.GetInstance().UniqueID));
             req.Attributes.Append(_repositoryXml.GetAttribute("name", name));
             req.Attributes.Append(_repositoryXml.GetAttribute("serverip", serverip));
             req.Attributes.Append(_repositoryXml.GetAttribute("port", port));

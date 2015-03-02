@@ -134,7 +134,7 @@
     <Reference Include="Telerik.WinControls.Themes.Telerik, Version=2010.1.10.504, Culture=neutral, PublicKeyToken=5bb2a467cbec794e" />
     <Reference Include="Telerik.WinControls.Themes.Vista, Version=2010.1.10.504, Culture=neutral, PublicKeyToken=5bb2a467cbec794e" />
     <Reference Include="Telerik.WinControls.Themes.Windows7, Version=2010.1.10.504, Culture=neutral, PublicKeyToken=5bb2a467cbec794e" />
-    <Reference Include="Telerik.WinControls.UI, Version=2010.1.10.504, Culture=neutral, PublicKeyToken=5bb2a467cbec794e" />
+    <Reference Include="Telerik.WinControls.UI, Version=2010.1.10.504, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL" />
     <Reference Include="TelerikCommon, Version=2010.1.10.504, Culture=neutral, PublicKeyToken=5bb2a467cbec794e" />
   </ItemGroup>
   <ItemGroup>
@@ -150,6 +150,7 @@
     <Compile Include="AboutBox1.Designer.cs">
       <DependentUpon>AboutBox1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Class\Common.cs" />
     <Compile Include="Counters.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -205,6 +206,12 @@
     <Compile Include="frmAssertion.Designer.cs">
       <DependentUpon>frmAssertion.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmDownloadProgress.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmDownloadProgress.Designer.cs">
+      <DependentUpon>frmDownloadProgress.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmLicenseActivation.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -222,6 +229,18 @@
     </Compile>
     <Compile Include="frmMessageBox.Designer.cs">
       <DependentUpon>frmMessageBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmScriptNameList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmScriptNameList.Designer.cs">
+      <DependentUpon>frmScriptNameList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmScriptUpgrade.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmScriptUpgrade.Designer.cs">
+      <DependentUpon>frmScriptUpgrade.cs</DependentUpon>
     </Compile>
     <Compile Include="frmUserCount.cs">
       <SubType>Form</SubType>
@@ -374,11 +393,10 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Class\VuscriptXml.cs" />
     <Content Include="sqlite3.exe">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Sqlite\32bit\System.Data.SQLite.dll" />
-    <Content Include="Sqlite\64bit\System.Data.SQLite.dll" />
     <EmbeddedResource Include="About FloodGates.resx">
       <DependentUpon>About FloodGates.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -415,6 +433,9 @@
       <DependentUpon>frmAssertion.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmDownloadProgress.resx">
+      <DependentUpon>frmDownloadProgress.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmLicenseActivation.resx">
       <DependentUpon>frmLicenseActivation.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -426,6 +447,12 @@
     <EmbeddedResource Include="frmMessageBox.resx">
       <DependentUpon>frmMessageBox.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmScriptNameList.resx">
+      <DependentUpon>frmScriptNameList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmScriptUpgrade.resx">
+      <DependentUpon>frmScriptUpgrade.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmUserCount.resx">
       <DependentUpon>frmUserCount.cs</DependentUpon>
@@ -893,15 +920,8 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PreBuildEvent>if not exist "$(TargetDir)Data" mkdir "$(TargetDir)Data"
-if not exist "$(TargetDir)DataMonitor" mkdir "$(TargetDir)DataMonitor"
-if not exist "$(TargetDir)Exported Charts" mkdir "$(TargetDir)Exported Charts"
-if not exist "$(TargetDir)Exported Reports" mkdir "$(TargetDir)Exported Reports"
-if not exist "$(TargetDir)MonitorData" mkdir "$(TargetDir)MonitorData"
-if not exist "$(TargetDir)Request" mkdir "$(TargetDir)Request"
-if not exist "$(TargetDir)Response" mkdir "$(TargetDir)Response"
-if not exist "$(TargetDir)Upload" mkdir "$(TargetDir)Upload"
-if not exist "$(TargetDir)Variables" mkdir "$(TargetDir)Variables"</PreBuildEvent>
+    <PreBuildEvent>
+    </PreBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

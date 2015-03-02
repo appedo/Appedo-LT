@@ -51,6 +51,18 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_3881EC521A79109430D880EFB6739ACA"
+        "OwnerKey" = "8:_321B15093DA527FCAC0B76619F2ED4F0"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_3881EC521A79109430D880EFB6739ACA"
+        "OwnerKey" = "8:_ADED4203457140B492DADD574BE2445F"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_6AADA7496848BDC5D6DDE7655A6F4F2B"
         "OwnerKey" = "8:_ADED4203457140B492DADD574BE2445F"
         "MsmSig" = "8:_UNDEFINED"
@@ -286,6 +298,12 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_3881EC521A79109430D880EFB6739ACA"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_B980A37843AA55E5308629F4AF718C3F"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -427,62 +445,6 @@
     {
         "CustomAction"
         {
-            "{4AA51A2D-7D85-4A59-BA75-B0809FC8B380}:_12C743FC2DFD4E51A22323364F94604A"
-            {
-            "Name" = "8:Primary output from AppedoLT (Active)"
-            "Condition" = "8:"
-            "Object" = "8:_ADED4203457140B492DADD574BE2445F"
-            "FileType" = "3:2"
-            "InstallAction" = "3:1"
-            "Arguments" = "8:"
-            "EntryPoint" = "8:"
-            "Sequence" = "3:1"
-            "Identifier" = "8:_0D76AAD9_E473_4CAE_8EC6_BCD714951E9A"
-            "InstallerClass" = "11:TRUE"
-            "CustomActionData" = "8:"
-            }
-            "{4AA51A2D-7D85-4A59-BA75-B0809FC8B380}:_610AAFD55DDC45429AAD7E356D84D8E1"
-            {
-            "Name" = "8:Primary output from AppedoLT (Active)"
-            "Condition" = "8:"
-            "Object" = "8:_ADED4203457140B492DADD574BE2445F"
-            "FileType" = "3:2"
-            "InstallAction" = "3:4"
-            "Arguments" = "8:"
-            "EntryPoint" = "8:"
-            "Sequence" = "3:1"
-            "Identifier" = "8:_AE0827E2_CD13_442D_86A4_C256EA29CBC3"
-            "InstallerClass" = "11:TRUE"
-            "CustomActionData" = "8:"
-            }
-            "{4AA51A2D-7D85-4A59-BA75-B0809FC8B380}:_6CD6DD77F91044E59C9ED7F0443CE263"
-            {
-            "Name" = "8:Primary output from AppedoLT (Active)"
-            "Condition" = "8:"
-            "Object" = "8:_ADED4203457140B492DADD574BE2445F"
-            "FileType" = "3:2"
-            "InstallAction" = "3:2"
-            "Arguments" = "8:"
-            "EntryPoint" = "8:"
-            "Sequence" = "3:1"
-            "Identifier" = "8:_F13D9FF1_EC88_4DB4_9A36_529B5582A490"
-            "InstallerClass" = "11:TRUE"
-            "CustomActionData" = "8:"
-            }
-            "{4AA51A2D-7D85-4A59-BA75-B0809FC8B380}:_780FD07548934BED99D27BCA5FE0FF49"
-            {
-            "Name" = "8:Primary output from AppedoLT (Active)"
-            "Condition" = "8:"
-            "Object" = "8:_ADED4203457140B492DADD574BE2445F"
-            "FileType" = "3:2"
-            "InstallAction" = "3:3"
-            "Arguments" = "8:"
-            "EntryPoint" = "8:"
-            "Sequence" = "3:1"
-            "Identifier" = "8:_26FD9CF7_C1DF_4846_B1A6_AF64B17D0289"
-            "InstallerClass" = "11:TRUE"
-            "CustomActionData" = "8:"
-            }
         }
         "DefaultFeature"
         {
@@ -582,6 +544,37 @@
                     }
                 }
             "SourcePath" = "8:AppedoLT.Core.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_2CDDFE479C084CBDBBC397E4CB0B4192"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_3881EC521A79109430D880EFB6739ACA"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:Ionic.Zip, Version=1.9.1.8, Culture=neutral, PublicKeyToken=edbe51ad942a3f5c, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_3881EC521A79109430D880EFB6739ACA"
+                    {
+                    "Name" = "8:Ionic.Zip.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:Ionic.Zip.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_2CDDFE479C084CBDBBC397E4CB0B4192"
@@ -1030,7 +1023,7 @@
         {
             "{3C67513D-01DD-4637-8A68-80971EB9504F}:_8D2D6D933AF24FB6A60FF909368FC16F"
             {
-            "DefaultLocation" = "8:[ProgramFiles64Folder][Manufacturer]\\"
+            "DefaultLocation" = "8:[ProgramFilesFolder][Manufacturer]\\"
             "Name" = "8:#1925"
             "AlwaysCreate" = "11:FALSE"
             "Condition" = "8:"
@@ -1040,7 +1033,7 @@
                 {
                     "{9EF0B969-E518-4E46-987F-47570745A589}:_2CDDFE479C084CBDBBC397E4CB0B4192"
                     {
-                    "Name" = "8:APPEDO_LT"
+                    "Name" = "8:AppedoLT"
                     "AlwaysCreate" = "11:FALSE"
                     "Condition" = "8:"
                     "Transitive" = "11:FALSE"
@@ -1111,15 +1104,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:APPEDO_LT"
-        "ProductCode" = "8:{4F2F9FAF-3115-4958-9281-5E8EDE480C25}"
-        "PackageCode" = "8:{FF9447D5-DB0F-4D8B-8B2F-18BA4069695B}"
+        "ProductCode" = "8:{68D2405D-19E3-43E3-9E91-8054565FA32F}"
+        "PackageCode" = "8:{AEE4AEEB-007F-4311-8FD2-517D1510C6F1}"
         "UpgradeCode" = "8:{CB15E76E-67E8-47B2-9DAF-D40EDBB52CA2}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:TRUE"
-        "ProductVersion" = "8:3.0.26"
+        "ProductVersion" = "8:3.0.28"
         "Manufacturer" = "8:Appedo"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
@@ -1689,7 +1682,7 @@
             }
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_ADED4203457140B492DADD574BE2445F"
             {
-            "SourcePath" = "8:..\\AppedoLT\\obj\\Debug\\APPEDO_LT.exe"
+            "SourcePath" = "8:..\\AppedoLT\\obj\\x64\\Debug\\APPEDO_LT.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_2CDDFE479C084CBDBBC397E4CB0B4192"

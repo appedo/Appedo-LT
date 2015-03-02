@@ -10,7 +10,8 @@ namespace AppedoLT
     {
         XmlNode _assertions = null;
         XmlNode _assertion = null;
-        RepositoryXml _repositoryXml = RepositoryXml.GetInstance();
+        Common _common = Common.GetInstance();
+
         public frmAssertion(XmlNode assertions, XmlNode assertion)
         {
             InitializeComponent();
@@ -52,24 +53,24 @@ namespace AppedoLT
 
                 if (_assertion == null)
                 {
-                    _assertion = _repositoryXml.doc.CreateElement("assertion");
+                    _assertion =_assertions.OwnerDocument.CreateElement("assertion");
                     _assertions.AppendChild(_assertion);
                 }
                 else
                 {
                     _assertion.Attributes.RemoveAll();
                 }
-                _assertion.Attributes.Append(_repositoryXml.GetAttribute("name", txtName.Text));
-                _assertion.Attributes.Append(_repositoryXml.GetAttribute("condition", ddlCondition.Text));
+                _assertion.Attributes.Append(_common.GetAttribute(_assertions.OwnerDocument,"name", txtName.Text));
+                _assertion.Attributes.Append(_common.GetAttribute(_assertions.OwnerDocument, "condition", ddlCondition.Text));
                 if (rbtnText.ToggleState == ToggleState.On)
                 {
-                    _assertion.Attributes.Append(_repositoryXml.GetAttribute("type", "text"));
+                    _assertion.Attributes.Append(_common.GetAttribute(_assertions.OwnerDocument,"type", "text"));
                 }
                 else
                 {
-                    _assertion.Attributes.Append(_repositoryXml.GetAttribute("type", "regex"));
+                    _assertion.Attributes.Append(_common.GetAttribute(_assertions.OwnerDocument, "type", "regex"));
                 }
-                _assertion.Attributes.Append(_repositoryXml.GetAttribute("text", txtText.Text));
+                _assertion.Attributes.Append(_common.GetAttribute(_assertions.OwnerDocument, "text", txtText.Text));
                 this.Close();
             }
             else

@@ -8,13 +8,13 @@ using System.Net;
 using System.Text;
 using System.IO;
 using System.Collections.Generic;
+using System.Threading;
 
 namespace AppedoLT
 {
     public partial class ucScript : UserControl
     {
        
-
         RadTreeNode _treeNode = null;
         private static ucScript _instance;
 
@@ -162,19 +162,22 @@ namespace AppedoLT
 
                     header.Add("userid", Constants.GetInstance().UserId);
                     Trasport server = new Trasport(Constants.GetInstance().UploadIPAddress, Constants.GetInstance().UploadPort);
-                    server.Send(new TrasportData("VARIABLES", GetVariableXmlWithContent(), header));
+                    UploadFile(server, new TrasportData("VARIABLES", GetVariableXmlWithContent(), header), "Variables");
                     respose = server.Receive();
                     server.Close();
                     header.Clear();
 
                     server = new Trasport(Constants.GetInstance().UploadIPAddress, Constants.GetInstance().UploadPort);
-                    string id = ((XmlNode)_treeNode.Tag).Attributes["id"].Value;
-                    string name = ((XmlNode)_treeNode.Tag).Attributes["name"].Value;
+                    XmlNode scriptNode = ((VuscriptXml)_treeNode.Tag).doc.SelectSingleNode("//vuscript");
+                    string id = scriptNode.Attributes["id"].Value;
+                    string name = scriptNode.Attributes["name"].Value;
+                    string zipFilePath=MakeScriptZip(id, name);
                     header.Add("userid", Constants.GetInstance().UserId);
                     header.Add("scriptname", name);
-                    server.Send(new TrasportData("VUSCRIPT", header, MakeScriptZip(id, name)));
+                    UploadFile(server, new TrasportData("VUSCRIPT", header, zipFilePath), name);
                     server.Receive();
                     server.Close();
+                    File.Delete(zipFilePath);
                     MessageBox.Show("Uploaded successfully.");
                 }
             }
@@ -184,20 +187,56 @@ namespace AppedoLT
             }
         }
 
+        private void UploadFile(Trasport server, TrasportData data, string name)
+        {
+
+            long totalByte = 0;
+            long recivedByte = 0;
+            bool Success = true;
+
+            new Thread(() =>
+            {
+                try
+                {
+                    server.Send(data, ref totalByte, ref recivedByte, ref Success);
+                }
+                catch (Exception ex)
+                {
+                    ExceptionHandler.WritetoEventLog(ex.StackTrace + Environment.NewLine + ex.Message);
+                    Success = false;
+                }
+            }).Start();
+
+            while (((totalByte == 0 && recivedByte == 0) || recivedByte < totalByte))
+            {
+                if (totalByte > 0)
+                {
+
+                    frmDownloadProgress frm = new frmDownloadProgress(false);
+                    frm.Text = "Uploading[" + name + "]...";
+                    new Thread(() =>
+                    {
+                        frm.UpdateStatus(ref totalByte, ref recivedByte, ref Success);
+                    }).Start();
+                    frm.ShowDialog();
+                }
+                if (Success == false) break;
+                Thread.Sleep(1000);
+            }
+            if (Success == false)
+            {
+                throw new Exception("Upload Faild");
+            }
+        }
+
         private string MakeScriptZip(string scriptid,string scriptName)
         {
-            string _scriptResourcePath = Constants.GetInstance().ExecutingAssemblyLocation + "\\ScriptResource\\" + scriptid;
-            string filePath = _scriptResourcePath + "\\" + "VUScript.xml";
-            string zipPath=Constants.GetInstance().ExecutingAssemblyLocation + "\\ScriptResource\\" + scriptName + ".rar";
-            if (File.Exists(filePath)) File.Delete(filePath);
-            string vuscriptXML = ((XmlNode)_treeNode.Tag).OuterXml;
-            using (FileStream stream = new FileStream(filePath, FileMode.OpenOrCreate, FileAccess.Write))
-            {
-                stream.Write(ASCIIEncoding.ASCII.GetBytes(vuscriptXML), 0, vuscriptXML.Length);
-            }
+            string _scriptResourcePath = Constants.GetInstance().ExecutingAssemblyLocation + "\\Scripts\\" + scriptid;
+            string zipPath=Constants.GetInstance().ExecutingAssemblyLocation + "\\Scripts\\" + scriptName + ".rar";
             Constants.GetInstance().Zip(_scriptResourcePath, zipPath);
             return zipPath;
         }
+
         private string GetVariableXmlWithContent()
         {
             XmlDocument doc = new XmlDocument();
@@ -248,6 +287,47 @@ namespace AppedoLT
                 {
                     ExceptionHandler.WritetoEventLog(ex.StackTrace + Environment.NewLine + ex.Message);
                 }
+            }
+        }
+
+        private void btnUpload_Click_1(object sender, EventArgs e)
+        {
+            try
+            {
+                if (Constants.GetInstance().UserId == string.Empty)
+                {
+                    frmLogin login = new frmLogin();
+                    if (login.ShowDialog() == DialogResult.OK && login.Userid != string.Empty)
+                    {
+                        Constants.GetInstance().UserId = login.Userid;
+                    }
+                    else
+                    {
+                        return;
+                    }
+                }
+                if (Constants.GetInstance().UserId != string.Empty)
+                {
+                 
+                    TrasportData respose = null;
+                    Dictionary<string, string> header = new Dictionary<string, string>();
+                    Trasport  server = new Trasport(Constants.GetInstance().UploadIPAddress, Constants.GetInstance().UploadPort);
+                    XmlNode scriptNode = ((VuscriptXml)_treeNode.Tag).doc.SelectSingleNode("//vuscript");
+                    string id = scriptNode.Attributes["id"].Value;
+                    string name = scriptNode.Attributes["name"].Value;
+                    header.Add("userid", Constants.GetInstance().UserId);
+                    header.Add("scriptname", name);
+                    string zipFilePath = MakeScriptZip(id, name);
+                    UploadFile(server, new TrasportData("VUSCRIPT", header, zipFilePath), name);
+                    server.Receive();
+                    server.Close();
+                    File.Delete(zipFilePath);
+                    MessageBox.Show("Uploaded successfully.");
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionHandler.WritetoEventLog(ex.StackTrace + Environment.NewLine + ex.Message);
             }
         }
     }

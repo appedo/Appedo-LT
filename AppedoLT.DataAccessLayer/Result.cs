@@ -320,9 +320,8 @@ namespace AppedoLT.DataAccessLayer
 
                         XmlNode logNode = doc.CreateElement("log");
                         reader = GetReader("select * from log", _con);
-                        //DataTable dt = new DataTable();
-                        //dt.Load(reader);
-                        //dt.WriteXml("test.csv");
+                        reader.Read();
+
                         while (reader.HasRows == true)
                         {
                             if (count > 1000) break;
@@ -333,7 +332,7 @@ namespace AppedoLT.DataAccessLayer
                                 val.Attributes.Append(GetAttribute(summaryNode.OwnerDocument, reader.GetName(index), reader[reader.GetName(index)].ToString()));
                             }
                             logNode.AppendChild(val);
-                            reader.Read();
+                            
                         }
                         report.AppendChild(logNode);
 
