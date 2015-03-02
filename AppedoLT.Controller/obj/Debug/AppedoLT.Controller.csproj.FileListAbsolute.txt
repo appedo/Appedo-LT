@@ -24,3 +24,4 @@ E:\AppedoLT\AppedoLT.Controller\obj\Debug\AppedoLTController.ReportGenerate.reso
 E:\AppedoLT\AppedoLT.Controller\obj\Debug\AppedoLT.Controller.csproj.GenerateResource.Cache
 E:\AppedoLT\AppedoLT.Controller\obj\Debug\APPEDO_LT_CONTROLLER.exe
 E:\AppedoLT\AppedoLT.Controller\obj\Debug\APPEDO_LT_CONTROLLER.pdb
+E:\AppedoLT\AppedoLT.Controller\bin\Debug\System.Data.SQLite.dll

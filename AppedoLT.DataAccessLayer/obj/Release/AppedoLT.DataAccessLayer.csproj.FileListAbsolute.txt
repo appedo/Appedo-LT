@@ -6,3 +6,4 @@ E:\AppedoLT\AppedoLT.DataAccessLayer\bin\Release\AppedoLT.Core.pdb
 E:\AppedoLT\AppedoLT.DataAccessLayer\obj\Release\AppedoLT.DataAccessLayer.csprojResolveAssemblyReference.cache
 E:\AppedoLT\AppedoLT.DataAccessLayer\obj\Release\AppedoLT.DataAccessLayer.dll
 E:\AppedoLT\AppedoLT.DataAccessLayer\obj\Release\AppedoLT.DataAccessLayer.pdb
+E:\AppedoLT\AppedoLT.DataAccessLayer\bin\Release\Ionic.Zip.dll

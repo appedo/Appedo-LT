@@ -5,3 +5,5 @@ E:\AppedoLT\AppedoLT.Core\obj\Release\AppedoLT.Core.UCTime.resources
 E:\AppedoLT\AppedoLT.Core\obj\Release\AppedoLT.Core.csproj.GenerateResource.Cache
 E:\AppedoLT\AppedoLT.Core\obj\Release\AppedoLT.Core.dll
 E:\AppedoLT\AppedoLT.Core\obj\Release\AppedoLT.Core.pdb
+E:\AppedoLT\AppedoLT.Core\bin\Release\Ionic.Zip.dll
+E:\AppedoLT\AppedoLT.Core\obj\Release\AppedoLT.Core.csprojResolveAssemblyReference.cache
