@@ -923,10 +923,9 @@ namespace AppedoLT.BusinessLogic
         private string GetVariableValue(string variablename)
         {
             string result = string.Empty;
-
             if (_exVariablesValues.ContainsKey(variablename) == true)
             {
-                result = System.Web.HttpUtility.HtmlEncode(_exVariablesValues[variablename].ToString());
+                result =_exVariablesValues[variablename].ToString();
             }
             else
             {
@@ -936,7 +935,7 @@ namespace AppedoLT.BusinessLogic
                     result = VariableManager.dataCenter.GetVariableValue(_userid, _iterationid, variablename, _maxUser).ToString();
                 }
             }
-            return result;
+            return System.Web.HttpUtility.HtmlEncode(result);
         }
 
         private object GetValue(object variableName)
@@ -991,7 +990,7 @@ namespace AppedoLT.BusinessLogic
                     finally
                     {
                         attribute.Value = attribute.Value.Remove(match.Index, match.Length);
-                        attribute.Value = attribute.Value.Insert(match.Index, HttpUtility.HtmlEncode(parm.Value));
+                        attribute.Value = attribute.Value.Insert(match.Index, parm.Value);
                         Varialbles.Add(parm);
                     }
                     match = regex.Match(attribute.Value);
@@ -1643,6 +1642,7 @@ namespace AppedoLT.BusinessLogic
                 logObj.iterationid = this._iterationid.ToString();
                 logObj.userid = this._userid.ToString();
                 logObj.time = DateTime.Now;
+                logObj.message =HttpUtility.HtmlDecode(log.Attributes["message"].Value);
                 if (IsValidation == false)
                 {
                     lock (DataServer.GetInstance().logs)

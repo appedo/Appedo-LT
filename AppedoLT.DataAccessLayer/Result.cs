@@ -332,7 +332,7 @@ namespace AppedoLT.DataAccessLayer
                                 val.Attributes.Append(GetAttribute(summaryNode.OwnerDocument, reader.GetName(index), reader[reader.GetName(index)].ToString()));
                             }
                             logNode.AppendChild(val);
-                            
+                            reader.Read();
                         }
                         report.AppendChild(logNode);
 
