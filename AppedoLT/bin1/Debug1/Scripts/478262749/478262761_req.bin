@@ -1,0 +1,10 @@
+GET /qamsoftsmith/css/Styles_50271.css HTTP/1.1
+Host: qam.softsmith.com
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:35.0) Gecko/20100101 Firefox/35.0
+Accept: text/css,*/*;q=0.1
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: https://qam.softsmith.com/qamsoftsmith/
+Cookie: JSESSIONID=841B1C6947E8B3ED2C60D07D141654CC
+Connection: keep-alive
+

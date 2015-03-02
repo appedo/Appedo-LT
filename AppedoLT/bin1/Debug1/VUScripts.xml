@@ -1,0 +1,256 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <uniquenumbers>
+    <script lastcreatedid="12" />
+    <container lastcreatedid="55" />
+    <request lastcreatedid="268" />
+    <delay lastcreatedid="0" />
+    <loop lastcreatedid="0" />
+    <page lastcreatedid="47" />
+    <scenario lastcreatedid="9" />
+    <log lastcreatedid="1" />
+  </uniquenumbers>
+  <scenarios>
+    <scenario id="1" name="Test" enableipspoofing="False">
+      <script id="5" name="RuleExecution">
+        <setting type="1" durationtime="0;0;0" incrementtime="0;0;0" iterations="5" maxuser="5" startuser="5" incrementuser="1" browsercache="false" startuserid="0" />
+      </script>
+    </scenario>
+    <scenario id="2" name="CoolingPeriod" enableipspoofing="False">
+      <script id="6" name="OverrideCoolingPeriod">
+        <setting type="1" durationtime="0;0;0" incrementtime="0;0;0" iterations="1" maxuser="5" startuser="5" incrementuser="1" browsercache="false" startuserid="0" />
+      </script>
+    </scenario>
+    <scenario id="3" name="Default" enableipspoofing="False">
+      <script id="5" name="DefaulAndRuleExecution">
+        <setting type="1" durationtime="0;0;0" incrementtime="0;0;0" iterations="1" maxuser="5" startuser="5" incrementuser="1" browsercache="false" startuserid="0" />
+      </script>
+    </scenario>
+    <scenario id="4" name="OverrideRule" enableipspoofing="False">
+      <script id="7" name="OverrideRule">
+        <setting type="1" durationtime="0;0;0" incrementtime="0;0;0" iterations="1" maxuser="5" startuser="5" incrementuser="1" browsercache="false" startuserid="0" />
+      </script>
+    </scenario>
+    <scenario id="5" name="aaa" enableipspoofing="False">
+      <script id="5" name="Default">
+        <setting type="2" durationtime="0;0;10" incrementtime="0;0;1" iterations="1" maxuser="20" startuser="1" incrementuser="10" browsercache="false" startuserid="0" />
+      </script>
+      <script id="6" name="OverrideCoolingPeriodAndRuleExecution">
+        <setting type="2" durationtime="0;0;10" incrementtime="0;0;1" iterations="1" maxuser="20" startuser="1" incrementuser="10" browsercache="false" startuserid="0" />
+      </script>
+      <script id="7" name="OverrideRule">
+        <setting type="2" durationtime="0;0;10" incrementtime="0;0;1" iterations="1" maxuser="20" startuser="1" incrementuser="10" browsercache="false" startuserid="0" />
+      </script>
+    </scenario>
+    <scenario id="6" name="adsf" enableipspoofing="False">
+      <script id="8" name="test1">
+        <setting type="1" durationtime="0;0;0" incrementtime="0;0;1" iterations="1" maxuser="1" startuser="1" incrementuser="1" browsercache="false" startuserid="0" />
+      </script>
+    </scenario>
+    <scenario id="7" name="dfsafas" enableipspoofing="False">
+      <script id="9" name="sparks">
+        <setting type="1" durationtime="0;0;0" incrementtime="0;0;0" iterations="1" maxuser="1" startuser="1" incrementuser="1" browsercache="false" startuserid="0" />
+      </script>
+    </scenario>
+    <scenario id="8" name="fsfsd" enableipspoofing="False">
+      <script id="12" name="script2">
+        <setting type="1" durationtime="0;0;0" incrementtime="0;0;0" iterations="1" maxuser="1" startuser="1" incrementuser="1" browsercache="false" startuserid="0" />
+      </script>
+    </scenario>
+    <scenario id="9" name="aazX" enableipspoofing="False">
+      <script id="11" name="script1">
+        <setting type="1" durationtime="0;0;0" incrementtime="0;0;0" iterations="1" maxuser="1" startuser="1" incrementuser="1" browsercache="false" startuserid="0" />
+      </script>
+    </scenario>
+    <scenario id="478182657" name="zxcv" enableipspoofing="False">
+      <script id="478182613" name="test">
+        <setting type="1" durationtime="0;0;0" incrementtime="0;0;0" iterations="1" maxuser="1" startuser="1" incrementuser="1" browsercache="false" startuserid="0" />
+      </script>
+    </scenario>
+    <scenario id="478182987" name="bbb" enableipspoofing="False">
+      <script id="478182976" name="aaaa">
+        <setting type="1" durationtime="0;0;0" incrementtime="0;0;0" iterations="1" maxuser="1" startuser="1" incrementuser="1" browsercache="false" startuserid="0" />
+      </script>
+    </scenario>
+  </scenarios>
+  <flag />
+  <loadgens />
+  <runs>
+    <run reportname="Test01" starttime="27-Sep-14 6:05:11 PM" loadgenused="False">
+      <scripts>
+        <script id="5" name="RuleExecution" />
+      </scripts>
+    </run>
+    <run reportname="Test02" starttime="27-Sep-14 6:19:34 PM" loadgenused="False">
+      <scripts>
+        <script id="6" name="OverrideCoolingPeriod" />
+      </scripts>
+    </run>
+    <run reportname="Test03" starttime="27-Sep-14 6:37:22 PM" loadgenused="False">
+      <scripts>
+        <script id="6" name="OverrideCoolingPeriod" />
+      </scripts>
+    </run>
+    <run reportname="CoolingPeriod_01" starttime="27-Sep-14 8:58:10 PM" loadgenused="False">
+      <scripts>
+        <script id="6" name="OverrideCoolingPeriod" />
+      </scripts>
+    </run>
+    <run reportname="Default_01" starttime="27-Sep-14 9:01:20 PM" loadgenused="False">
+      <scripts>
+        <script id="5" name="DefaulAndRuleExecution" />
+      </scripts>
+    </run>
+    <run reportname="OverrideRule_01" starttime="27-Sep-14 9:03:58 PM" loadgenused="False">
+      <scripts>
+        <script id="7" name="OverrideRule" />
+      </scripts>
+    </run>
+    <run reportname="Default_02_5Users" starttime="27-Sep-14 9:07:10 PM" loadgenused="False">
+      <scripts>
+        <script id="5" name="DefaulAndRuleExecution" />
+      </scripts>
+    </run>
+    <run reportname="CoolingPeriod_02_5Users" starttime="27-Sep-14 9:10:46 PM" loadgenused="False">
+      <scripts>
+        <script id="6" name="OverrideCoolingPeriod" />
+      </scripts>
+    </run>
+    <run reportname="OverrideRule_02_5Users" starttime="27-Sep-14 9:13:30 PM" loadgenused="False">
+      <scripts>
+        <script id="7" name="OverrideRule" />
+      </scripts>
+    </run>
+    <run reportname="faszfc" starttime="08-10-2014 19:07:51" loadgenused="False">
+      <scripts>
+        <script id="5" name="Default" />
+        <script id="6" name="OverrideCoolingPeriodAndRuleExecution" />
+        <script id="7" name="OverrideRule" />
+      </scripts>
+    </run>
+    <run reportname="zxcvxv" starttime="08-10-2014 19:08:25" loadgenused="False">
+      <scripts>
+        <script id="5" name="Default" />
+        <script id="6" name="OverrideCoolingPeriodAndRuleExecution" />
+        <script id="7" name="OverrideRule" />
+      </scripts>
+    </run>
+    <run reportname="XZCczxc" starttime="08-10-2014 19:09:52" loadgenused="False">
+      <scripts>
+        <script id="7" name="OverrideRule" />
+      </scripts>
+    </run>
+    <run reportname="fasdfasd" starttime="08-10-2014 19:14:29" loadgenused="False">
+      <scripts>
+        <script id="5" name="Default" />
+        <script id="6" name="OverrideCoolingPeriodAndRuleExecution" />
+        <script id="7" name="OverrideRule" />
+      </scripts>
+    </run>
+    <run reportname="sfdfasd" starttime="10-10-2014 16:50:16" loadgenused="False">
+      <scripts>
+        <script id="8" name="test1" />
+      </scripts>
+    </run>
+    <run reportname="sadfafad" starttime="10-10-2014 16:50:50" loadgenused="False">
+      <scripts>
+        <script id="8" name="test1" />
+      </scripts>
+    </run>
+    <run reportname="dsfafd" starttime="10-10-2014 16:52:03" loadgenused="False">
+      <scripts>
+        <script id="8" name="test1" />
+      </scripts>
+    </run>
+    <run reportname="adsffas" starttime="10-10-2014 16:53:16" loadgenused="False">
+      <scripts>
+        <script id="8" name="test1" />
+      </scripts>
+    </run>
+    <run reportname="dfasfa" starttime="10-10-2014 16:55:11" loadgenused="False">
+      <scripts>
+        <script id="8" name="test1" />
+      </scripts>
+    </run>
+    <run reportname="fsdafsd" starttime="16-10-2014 21:04:19" loadgenused="False">
+      <scripts>
+        <script id="9" name="sparks" />
+      </scripts>
+    </run>
+    <run reportname="fasdfasdasdf" starttime="16-10-2014 21:30:57" loadgenused="False">
+      <scripts>
+        <script id="9" name="sparks" />
+      </scripts>
+    </run>
+    <run reportname="dfasfsadf" starttime="16-10-2014 21:32:12" loadgenused="False">
+      <scripts>
+        <script id="9" name="sparks" />
+      </scripts>
+    </run>
+    <run reportname="fszd" starttime="18-10-2014 12:28:19" loadgenused="False">
+      <scripts>
+        <script id="9" name="sparks" />
+      </scripts>
+    </run>
+    <run reportname="ffft" starttime="04-11-2014 18:07:35" loadgenused="False">
+      <scripts>
+        <script id="9" name="sparks" />
+      </scripts>
+    </run>
+    <run reportname="fvv" starttime="04-11-2014 18:09:14" loadgenused="False">
+      <scripts>
+        <script id="9" name="sparks" />
+      </scripts>
+    </run>
+    <run reportname="gvfvcbb" starttime="04-11-2014 18:10:13" loadgenused="False">
+      <scripts>
+        <script id="9" name="sparks" />
+      </scripts>
+    </run>
+    <run reportname="fasdfs" starttime="02-12-2014 12:46:11" loadgenused="False">
+      <scripts>
+        <script id="12" name="script2" />
+      </scripts>
+    </run>
+    <run reportname="dfgdfg" starttime="02-12-2014 12:47:38" loadgenused="False">
+      <scripts>
+        <script id="12" name="script2" />
+      </scripts>
+    </run>
+    <run reportname="czxC" starttime="02-12-2014 16:18:27" loadgenused="False">
+      <scripts>
+        <script id="11" name="script1" />
+      </scripts>
+    </run>
+    <run reportname="sdfsdfa" starttime="02-12-2014 16:42:16" loadgenused="False">
+      <scripts>
+        <script id="11" name="script1" />
+      </scripts>
+    </run>
+    <run reportname="sdfsdf" starttime="25-02-2015 18:02:13" loadgenused="False">
+      <scripts>
+        <script id="478182613" name="test" />
+      </scripts>
+    </run>
+    <run reportname="fsdfsd" starttime="25-02-2015 18:03:44" loadgenused="False">
+      <scripts>
+        <script id="478182613" name="test" />
+      </scripts>
+    </run>
+    <run reportname="fsadfsdafa" starttime="25-02-2015 18:08:49" loadgenused="False">
+      <scripts>
+        <script id="478182976" name="aaaa" />
+      </scripts>
+    </run>
+    <run reportname="gdsfgdf" starttime="25-02-2015 18:29:42" loadgenused="False">
+      <scripts>
+        <script id="478182976" name="aaaa" />
+      </scripts>
+    </run>
+    <run reportname="sdafddsaf" starttime="25-02-2015 18:34:53" loadgenused="False">
+      <scripts>
+        <script id="478182976" name="aaaa" />
+      </scripts>
+    </run>
+  </runs>
+</root>

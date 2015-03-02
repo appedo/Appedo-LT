@@ -1,0 +1,5 @@
+.separator ,
+.import out.txt reportdata
+.import error.txt error
+.import transaction.txt transactions
+.import log.txt log

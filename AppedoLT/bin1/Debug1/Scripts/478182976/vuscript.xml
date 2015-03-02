@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<vuscript name="aaaa" id="478182976" type="http" exclutionfiletypes="" dynamicreqenable="False">
+  <container name="Initialize" id="478182977" />
+  <container name="Actions" id="478182978">
+    <container name="Container1" id="478182981">
+      <page pagename="/" host="sparksnetworkww.com" delay="0" id="478182982" name="/" starttime="635604843907308543">
+        <request id="478182980" Method="GET" Path="/" Protocal="HTTP" Version="1.1&#xD;" name="/" Schema="http" Host="sparksnetworkww.com" Port="80" QueryString="" Address="http://sparksnetworkww.com/" Url="http://sparksnetworkww.com/" HasErrorResponse="False" ResponseHeader="HTTP/1.1 200 OK&#xD;&#xA;Cache-Control: private&#xD;&#xA;Content-Length: 17712&#xD;&#xA;Content-Type: text/html; charset=utf-8&#xD;&#xA;Server: Microsoft-IIS/7.0&#xD;&#xA;X-AspNet-Version: 2.0.50727&#xD;&#xA;X-Powered-By: ASP.NET&#xD;&#xA;Date: Wed, 25 Feb 2015 12:36:37 GMT&#xD;&#xA;&#xD;&#xA;" resFilename="478182980_res.html" reqFilename="478182980_req.bin" IsEnable="True">
+          <headers>
+            <header name="Host" value="sparksnetworkww.com" />
+            <header name="User-Agent" value="Mozilla/5.0 (Windows NT 6.1; WOW64; rv:35.0) Gecko/20100101 Firefox/35.0" />
+            <header name="Accept" value="text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8" />
+            <header name="Accept-Language" value="en-US,en;q=0.5" />
+            <header name="Accept-Encoding" value="gzip, deflate" />
+            <header name="Cookie" value="__unam=7639673-14bc0b82fc5-d300c39-1" />
+            <header name="Connection" value="keep-alive" />
+          </headers>
+          <extractor name="test" start="&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;" end="&lt;/html&gt;" mode="1" selctiontype="single" regex="&lt;html\ xmlns=&quot;http://www\.w3\.org/1999/xhtml&quot;&gt;(.*?)&lt;/html&gt;" groupindex="1" ordinal="1" />
+        </request>
+        <request id="478182983" Method="GET" Path="/slider.js" Protocal="HTTP" Version="1.1&#xD;" name="/slider.js" Schema="http" Host="sparksnetworkww.com" Port="80" QueryString="" Address="http://sparksnetworkww.com/slider.js" Url="http://sparksnetworkww.com/slider.js" HasErrorResponse="True" ResponseHeader="HTTP/1.1 404 Not Found&#xD;&#xA;Content-Type: text/html&#xD;&#xA;Server: Microsoft-IIS/7.0&#xD;&#xA;X-Powered-By: ASP.NET&#xD;&#xA;Date: Wed, 25 Feb 2015 12:36:40 GMT&#xD;&#xA;Content-Length: 1245&#xD;&#xA;&#xD;&#xA;" resFilename="478182983_res.html" reqFilename="478182983_req.bin" IsEnable="False">
+          <headers>
+            <header name="Host" value="sparksnetworkww.com" />
+            <header name="User-Agent" value="Mozilla/5.0 (Windows NT 6.1; WOW64; rv:35.0) Gecko/20100101 Firefox/35.0" />
+            <header name="Accept" value="*/*" />
+            <header name="Accept-Language" value="en-US,en;q=0.5" />
+            <header name="Accept-Encoding" value="gzip, deflate" />
+            <header name="Referer" value="http://sparksnetworkww.com/" />
+            <header name="Cookie" value="__unam=7639673-14bc0b82fc5-d300c39-1" />
+            <header name="Connection" value="keep-alive" />
+          </headers>
+        </request>
+        <request id="478182984" Method="GET" Path="/button/getAllAppDefault.esi" Protocal="HTTP" Version="1.1&#xD;" name="/button/getAllAppDefault.esi" Schema="http" Host="wd-edge.sharethisww.com" Port="80" QueryString="?cb=stLight.allDefault&amp;app=all&amp;publisher=db807405-13ff-4438-9c63-9cdf82316b9b&amp;domain=sparksnetworkww.com" Address="http://wd-edge.sharethisww.com/button/getAllAppDefault.esi" Url="http://wd-edge.sharethisww.com/button/getAllAppDefault.esi?cb=stLight.allDefault&amp;app=all&amp;publisher=db807405-13ff-4438-9c63-9cdf82316b9b&amp;domain=sparksnetworkww.com" HasErrorResponse="False" ResponseHeader="HTTP/1.1 200 OK&#xD;&#xA;Server: nginx/1.4.7&#xD;&#xA;Content-Length: 197&#xD;&#xA;Content-Type: text/javascript&#xD;&#xA;ETag: &quot;54d1dcc0-401&quot;&#xD;&#xA;Expires: Wed, 25 Feb 2015 12:36:38 GMT&#xD;&#xA;Cache-Control: max-age=0, no-cache, no-store&#xD;&#xA;Pragma: no-cache&#xD;&#xA;Date: Wed, 25 Feb 2015 12:36:38 GMT&#xD;&#xA;Connection: keep-alive&#xD;&#xA;&#xD;&#xA;" resFilename="478182984_res.javascript" reqFilename="478182984_req.bin" IsEnable="False">
+          <headers>
+            <header name="Host" value="wd-edge.sharethisww.com" />
+            <header name="User-Agent" value="Mozilla/5.0 (Windows NT 6.1; WOW64; rv:35.0) Gecko/20100101 Firefox/35.0" />
+            <header name="Accept" value="*/*" />
+            <header name="Accept-Language" value="en-US,en;q=0.5" />
+            <header name="Accept-Encoding" value="gzip, deflate" />
+            <header name="Referer" value="http://sparksnetworkww.com/" />
+            <header name="Cookie" value="__stid=rBQoDVTtwJk0Rg5mG95iAg==; __uset=yes" />
+            <header name="Connection" value="keep-alive" />
+          </headers>
+          <querystringparams>
+            <querystringparam name="cb" value="stLight.allDefault" rawname="cb" rawvalue="stLight.allDefault" />
+            <querystringparam name="app" value="all" rawname="app" rawvalue="all" />
+            <querystringparam name="publisher" value="db807405-13ff-4438-9c63-9cdf82316b9b" rawname="publisher" rawvalue="db807405-13ff-4438-9c63-9cdf82316b9b" />
+            <querystringparam name="domain" value="sparksnetworkww.com" rawname="domain" rawvalue="sparksnetworkww.com" />
+          </querystringparams>
+        </request>
+        <request id="478182985" Method="GET" Path="/button/checkOAuth.esi" Protocal="HTTP" Version="1.1&#xD;" name="/button/checkOAuth.esi" Schema="http" Host="wd-edge.sharethisww.com" Port="80" QueryString="" Address="http://wd-edge.sharethisww.com/button/checkOAuth.esi" Url="http://wd-edge.sharethisww.com/button/checkOAuth.esi" HasErrorResponse="False" ResponseHeader="HTTP/1.1 200 OK&#xD;&#xA;Server: nginx/1.4.7&#xD;&#xA;Content-Length: 22&#xD;&#xA;Content-Type: text/javascript&#xD;&#xA;Vary: Accept-Encoding&#xD;&#xA;Expires: Wed, 25 Feb 2015 12:36:40 GMT&#xD;&#xA;Cache-Control: max-age=0, no-cache, no-store&#xD;&#xA;Pragma: no-cache&#xD;&#xA;Date: Wed, 25 Feb 2015 12:36:40 GMT&#xD;&#xA;Connection: keep-alive&#xD;&#xA;&#xD;&#xA;" resFilename="478182985_res.javascript" reqFilename="478182985_req.bin" IsEnable="False">
+          <headers>
+            <header name="Host" value="wd-edge.sharethisww.com" />
+            <header name="User-Agent" value="Mozilla/5.0 (Windows NT 6.1; WOW64; rv:35.0) Gecko/20100101 Firefox/35.0" />
+            <header name="Accept" value="*/*" />
+            <header name="Accept-Language" value="en-US,en;q=0.5" />
+            <header name="Accept-Encoding" value="gzip, deflate" />
+            <header name="Referer" value="http://sparksnetworkww.com/" />
+            <header name="Cookie" value="__stid=rBQoDVTtwJk0Rg5mG95iAg==; __uset=yes" />
+            <header name="Connection" value="keep-alive" />
+          </headers>
+        </request>
+      </page>
+      <log id="478182986" name="logTest" message="$$test$$" />
+    </container>
+  </container>
+  <container name="End" id="478182979" />
+</vuscript>

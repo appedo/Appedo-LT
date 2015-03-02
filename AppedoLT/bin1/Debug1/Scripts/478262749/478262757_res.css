@@ -1,0 +1,75 @@
+.ctBtnSubmit {
+	border: 0;
+	padding: 0px!important;
+}
+
+.btnLoginSubmit {
+	background-image: url("../images/btnSubmit.jpg") ! important;
+	width: 67px !important;
+	height: 26px !important;
+	border: 0px !important;
+	padding: 0px !important;
+	background-color: transparent;
+}
+
+.btnLoginCancel {
+	background-image: url("../images/btnCancel.jpg") ! important;
+	width: 67px !important;
+	height: 26px !important;
+	border: 0px !important;
+	padding: 0px !important;
+	background-color: transparent;
+}
+
+.btnLoginClear {
+	background-image: url("../images/btnClear.jpg") ! important;
+	width: 67px !important;
+	height: 26px !important;
+	border: 0px !important;
+	padding: 0px !important;
+	background-color: transparent;
+}
+
+.btnSubmit {
+	background-image: url("../images/btnSubmit.jpg") ! important;
+	width: 60px !important;
+	height: 20px !important;
+	border: 0px !important;
+	padding: 0px !important;
+	background-color: transparent;
+}
+
+.btnCancel {
+	background-image: url("../images/btnCancel.jpg") ! important;
+    width: 60px !important;
+	height: 20px !important;
+	border: 0px !important;
+	padding: 0px !important;
+	background-color: transparent;
+}
+
+.textbox {
+	border: 1px solid #3C8CAA;
+	font-size: 11px;
+	color: #000033;
+	margin: 0px 0px 5px 5px;
+}
+
+.combobox {
+	border: 1px solid #3C8CAA;
+	font-size: 11px;
+	margin: 0px 0px 5px 5px;
+}
+
+.textBoxLabel {
+	font-family:bold,Helvetica,sans-serif;
+	font-size:12px;
+}
+
+.loginTextbox{
+	width: 200px;
+	border: 1px solid #3C8CAA;
+	font-size: 12px;
+	color: #000033;
+	margin: 0px 0px 5px 5px;
+}

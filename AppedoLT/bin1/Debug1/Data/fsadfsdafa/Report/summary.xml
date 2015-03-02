@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<report>
+  <summaryreport>
+    <val starttime="25-02-2015 18:08:49" endtime="25-02-2015 18:08:50" durationsec="0" usercount="1" totalhits="1" avgresponse="0.8150142" avghits="0" totalthroughput="0.017" avgthroughput="0" totalerrors="0" totalpage="1" avgpageresponse="0.8150142" reponse200="1" reponse300="0" reponse400="0" reponse500="0" />
+  </summaryreport>
+  <log>
+    <val loadgen="192.168.1.70" reportname="fsadfsdafa" scenarioname="bbb" scriptid="478182976" scriptname="aaaa" logid="478182986" logname="logTest" userid="1" iterationid="1" message="v1" time="25-02-2015 18:08:50" />
+    <val loadgen="192.168.1.70" reportname="fsadfsdafa" scenarioname="bbb" scriptid="478182976" scriptname="aaaa" logid="478182986" logname="logTest" userid="1" iterationid="1" message="v1" time="25-02-2015 18:08:50" />
+  </log>
+  <error />
+  <script name="aaaa" id="478182976">
+    <requests>
+      <val containerid="478182981" containername="Container1" requestid="478182980" address="/" />
+    </requests>
+    <requestresponse>
+      <val containerid="478182981" containername="Container1" requestid="478182980" address="/" min="815.0142" max="815.0142" avg="815.0142" throughput="17712" hitcount="1" />
+    </requestresponse>
+    <containerresponse>
+      <val containerid="478182981" containername="Container1" min="815.0142" max="815.0142" avg="815.0142" />
+    </containerresponse>
+    <errorcount />
+    <errorcode />
+    <transactions />
+  </script>
+</report>
