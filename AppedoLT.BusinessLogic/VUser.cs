@@ -821,7 +821,7 @@ namespace AppedoLT.BusinessLogic
             }
             catch (Exception ex)
             {
-                LockException("0", ex.Message, "700");
+                LockException("0", ex.Message, "700",string.Empty);
             }
         }
 
@@ -985,7 +985,7 @@ namespace AppedoLT.BusinessLogic
                     catch
                     {
                         parm.Value = string.Empty;
-                        LockException(expression.Attributes["id"].Value, "Unable to evaluate " + parm.Key, "700");
+                        LockException("0", "Unable to evaluate " + parm.Key, "700",string.Empty);
                     }
                     finally
                     {
@@ -1011,7 +1011,7 @@ namespace AppedoLT.BusinessLogic
                 catch
                 {
                     parm.Value = string.Empty;
-                    LockException(expression.Attributes["id"].Value, "Unable to evaluate " + parm.Key, "700");
+                    LockException("0", "Unable to evaluate " + parm.Key, "700", string.Empty);
                 }
                 finally
                 {
@@ -1073,7 +1073,7 @@ namespace AppedoLT.BusinessLogic
                 catch
                 {
                     parm.Value = string.Empty;
-                    LockException(expression.Attributes["id"].Value, "Unable to evaluate " + parm.Key, "700");
+                    LockException("0", "Unable to evaluate " + parm.Key, "700",string.Empty);
                 }
                 finally
                 {
@@ -1122,7 +1122,7 @@ namespace AppedoLT.BusinessLogic
                 }
                 else
                 {
-                    LockException(tcpRequest.Attributes["id"].Value, EvalutionResult.value, "600");
+                    LockException(tcpRequest.Attributes["id"].Value, EvalutionResult.value, "600", tcpRequest.Attributes["name"].Value);
                 }
 
                 foreach (XmlNode reqParam in tcpRequest.SelectNodes("params/param"))
@@ -1138,7 +1138,7 @@ namespace AppedoLT.BusinessLogic
                         }
 
                         {
-                            LockException(tcpRequest.Attributes["id"].Value, EvalutionResult.value, "600");
+                            LockException(tcpRequest.Attributes["id"].Value, EvalutionResult.value, "600", tcpRequest.Attributes["name"].Value);
                         }
                     }
 
@@ -1185,7 +1185,7 @@ namespace AppedoLT.BusinessLogic
                 exception.scenarioname = Status.ScenarioName;
                 exception.scriptname = _vuScriptXml.Attributes["name"].Value;
                 exception.requestid = tcpRequest.Attributes["id"].Value;
-                exception.request = requestStr;
+                exception.request = tcpRequest.Attributes["name"].Value;
                 exception.iterationid = this._iterationid.ToString();
                 exception.userid = this._userid.ToString();
                 exception.requestexceptionid = Guid.NewGuid().ToString();
@@ -1406,7 +1406,7 @@ namespace AppedoLT.BusinessLogic
                     requestResponse.TcpIPRequest = requestStr;
                     responseCode = "800";
                     requestResponse.IsSucess = false;
-                    LockException(tcpRequest.Attributes["id"].Value, assertionFaildMsg.ToString(), responseCode);
+                    LockException(tcpRequest.Attributes["id"].Value, assertionFaildMsg.ToString(), responseCode, tcpRequest.Attributes["name"].Value);
                 }
                 else
                 {
@@ -1424,7 +1424,7 @@ namespace AppedoLT.BusinessLogic
                     requestResponse.TcpIPResponse = ex.Message;
                     requestResponse.TcpIPRequest = requestStr;
                     requestResponse.IsSucess = false;
-                    LockException(tcpRequest.Attributes["id"].Value, ex.Message, "700");
+                    LockException(tcpRequest.Attributes["id"].Value, ex.Message, "700", tcpRequest.Attributes["name"].Value);
                     end = DateTime.Now;
                     elapsedTimer.Stop();
                 }
@@ -1568,7 +1568,7 @@ namespace AppedoLT.BusinessLogic
             exception.scenarioname = Status.ScenarioName;
             exception.scriptname = _vuScriptXml.Attributes["name"].Value;
             exception.requestid = "0";
-            exception.request = null;
+          
             exception.iterationid = this._iterationid.ToString();
             exception.userid = this._userid.ToString();
             exception.requestexceptionid = Guid.NewGuid().ToString();
@@ -1591,7 +1591,7 @@ namespace AppedoLT.BusinessLogic
         /// 700- System exception.
         /// 800- Assertion Faild.
         /// </param>
-        private void LockException(string requestid, string message, string errorCode)
+        private void LockException(string requestid, string message, string errorCode,string url)
         {
             RequestException exception = new RequestException();
             exception.reportname = _reportName;
@@ -1605,6 +1605,7 @@ namespace AppedoLT.BusinessLogic
             exception.from = "web";
             exception.message = message;
             exception.errorcode = errorCode;
+            exception.request = url;
             lock (errors)
             {
                 errors.AddExeception(exception);
@@ -1666,7 +1667,7 @@ namespace AppedoLT.BusinessLogic
                     DataServer.GetInstance().LogResult(Constants.GetInstance().LoadGen, _IPAddress.ToString(), _reportName, Status.ScenarioName, _vuScriptXml.Attributes["id"].Value, _containerId.Peek()[0], _containerId.Peek()[1], _pageId.Count < 1 ? "1" : _pageId.Peek(), req.RequestNode.Attributes["id"].Value, req.RequestNode.Attributes["Path"] == null ? req.RequestName : req.RequestNode.Attributes["Path"].Value, _userid, _iterationid, req.StartTime, req.EndTime, req.ResponseTime, req.ResponseSize, req.ResponseCode.ToString());
                     if (req.HasError == true)
                     {
-                        LockException(req.RequestId.ToString(), req.ErrorMessage, req.ErrorCode);
+                        LockException(req.RequestId.ToString(), req.ErrorMessage, req.ErrorCode,req.RequestName);
                     }
                     if (req.ResponseCode >= 200 && req.ResponseCode <= 299)
                     {

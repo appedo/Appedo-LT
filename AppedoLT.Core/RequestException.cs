@@ -14,17 +14,18 @@ namespace AppedoLT.Core
         public string requestid = string.Empty;
         public string userid = string.Empty;
         public string iterationid = string.Empty;
-        public string request = string.Empty;
         public string errorcode = string.Empty;
         public string message = string.Empty;
         public DateTime time = new DateTime();
         public string from = string.Empty;
         public string loadGen = Constants.GetInstance().LoadGen;
+        public string request = string.Empty;
+
         public override string ToString()
         {
 
-            return string.Format("{0},{1},{2},{3},{4},{5},{6},{7},\"{8}\",{9}", this.loadGen, this.reportname, this.scenarioname, this.scriptname, this.requestid,
-                                                                            this.userid, this.iterationid, this.errorcode, this.message.Replace("\"", "\"\""), this.time.ToString("yyyy-MM-dd HH:mm:ss"));
+            return string.Format("{0},{1},{2},{3},{4},{5},{6},{7},\"{8}\",{9},\"{10}\"", this.loadGen, this.reportname, this.scenarioname, this.scriptname, this.requestid,
+                                                                            this.userid, this.iterationid, this.errorcode, this.message.Replace("\"", "\"\""), this.time.ToString("yyyy-MM-dd HH:mm:ss"), this.request.Replace("\"", "\"\""));
         }
     }
 }
