@@ -67,7 +67,7 @@ namespace AppedoLTController
         }
         private void DoWork()
         {
-            Regex log = new Regex("createduser: ([0-9]*)\r\ncompleteduser: ([0-9]*)\r\niscompleted: ([0-9]*)");
+            Regex log = new Regex("createduser: ([0-9]*)\r\ncompleteduser: ([0-9]*)\r\niscompleted: ([0-9]*)\r\nlog:{(*.?)}\r\n",RegexOptions.Singleline | RegexOptions.Multiline);
             int totalCreated = 0;
             int totalCompleted = 0;
             int runcompleted = 0;
@@ -91,10 +91,15 @@ namespace AppedoLTController
                             loadGenConnection.Send(new TrasportData("status", string.Empty, null));
                             TrasportData data = loadGenConnection.Receive();
                             string dataStr = data.DataStr;
-                            totalCreated += Convert.ToInt32(log.Match(dataStr).Groups[1].Value);
-                            totalCompleted += Convert.ToInt32(log.Match(dataStr).Groups[2].Value);
+                            Match match = log.Match(data.DataStr);
+
+                            totalCreated += Convert.ToInt32(match.Groups[1].Value);
+                            totalCompleted += Convert.ToInt32(match.Groups[2].Value);
                             loadGenConnection.Close();
-                            runcompleted += Convert.ToInt32(log.Match(dataStr).Groups[3].Value);
+                            runcompleted += Convert.ToInt32(match.Groups[3].Value);
+                           
+                            loadGenConnection = new Trasport(loadGen.Attributes["ipaddress"].Value, "8889", 10000);
+                            loadGenConnection.Send(new TrasportData("ok", string.Empty, null));
 
                             loadGenConnection = new Trasport(loadGen.Attributes["ipaddress"].Value, "8889");
                             loadGenConnection.Send(new TrasportData("scriptwisestatus", string.Empty, null));

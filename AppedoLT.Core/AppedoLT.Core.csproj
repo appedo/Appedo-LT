@@ -54,6 +54,7 @@
     </Reference>
     <Reference Include="System.Drawing" />
     <Reference Include="System.Management" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Web" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq">
@@ -79,6 +80,7 @@
     <Compile Include="Expression\FunctionEval.cs" />
     <Compile Include="Expression\IExpression.cs" />
     <Compile Include="Expression\RegexObjects.cs" />
+    <Compile Include="HtmlParser.cs" />
     <Compile Include="InstallerClass.cs">
       <SubType>Component</SubType>
     </Compile>

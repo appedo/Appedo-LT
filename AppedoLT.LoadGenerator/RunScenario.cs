@@ -200,5 +200,26 @@ namespace AppedoLTLoadGenerator
             }
             return status.ToString();
         }
+        public string GetLog()
+        {
+            List<Log> logList = new List<Log>();
+            try
+            {
+                foreach (ScriptExecutor scripts in _scriptExecutorList)
+                {
+                    int count=scripts.ScriptWiseLog.Count;
+                    for(;count>0;count--)
+                    {
+                        logList.Add(scripts.ScriptWiseLog.Dequeue());
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionHandler.WritetoEventLog(ex.StackTrace + ex.Message);
+            }
+
+            return Convert.ToString(Constants.GetInstance().Serialise(logList)) ;
+        }
     }
 }

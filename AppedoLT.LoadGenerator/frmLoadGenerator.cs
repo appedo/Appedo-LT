@@ -8,6 +8,7 @@ using System.IO;
 using System.Net;
 using System.Net.Sockets;
 using System.Reflection;
+using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Windows.Forms;
@@ -18,19 +19,20 @@ namespace AppedoLTLoadGenerator
     public partial class LoadGenerator : Form
     {
         NotifyIcon ni = new NotifyIcon();
-        DataServer resultLog = DataServer.GetInstance();       
-        TcpListener serverSocket = new TcpListener(8889);      
+        DataServer resultLog = DataServer.GetInstance();
+        TcpListener serverSocket = new TcpListener(8889);
         RunScenario run;
         BackgroundWorker worker = new BackgroundWorker();
         Constants constants = Constants.GetInstance();
         ExecutionReport executionReport = ExecutionReport.GetInstance();
         LoadTestAgentXml _loadTestAgent;
         Dictionary<string, string> runScripts = new Dictionary<string, string>();
+        StringBuilder logMsg = new StringBuilder();
 
         public LoadGenerator()
         {
             InitializeComponent();
-            
+
             worker.DoWork += new DoWorkEventHandler(worker_DoWork);
             try
             {
@@ -74,11 +76,11 @@ namespace AppedoLTLoadGenerator
                                         {
                                             try
                                             {
-                                                string reportFolder = data.Header["runid"] + "_" + (data.Header["loadgenname"] == null ? string.Empty : data.Header["loadgenname"]).Replace('.','_');
+                                                string reportFolder = data.Header["runid"] + "_" + (data.Header["loadgenname"] == null ? string.Empty : data.Header["loadgenname"]).Replace('.', '_');
                                                 GenerateReportFolder(reportFolder);
-                                                if (runScripts.ContainsKey(data.Header["runid"])==true)
+                                                if (runScripts.ContainsKey(data.Header["runid"]) == true)
                                                 {
-                                                    runScripts[data.Header["runid"]]= data.DataStr;
+                                                    runScripts[data.Header["runid"]] = data.DataStr;
                                                 }
                                                 else
                                                 {
@@ -113,6 +115,7 @@ namespace AppedoLTLoadGenerator
                                             if (executionReport.ExecutionStatus == Status.Completed)
                                             {
                                                 executionReport.ExecutionStatus = Status.Running;
+                                                logMsg = new StringBuilder();
                                                 DataServer.GetInstance().logs.Clear();
                                                 XmlNode runNode = _loadTestAgent.doc.SelectSingleNode("//runs/run[@runid='" + data.Header["runid"] + "']");
                                                 executionReport.ReportName = runNode.Attributes["reportfoldername"].Value;
@@ -136,10 +139,28 @@ namespace AppedoLTLoadGenerator
 
                                     case "status":
                                         {
-                                            controller.Send(new TrasportData("status", string.Format("createduser: {0}" + System.Environment.NewLine + "completeduser: {1}" + System.Environment.NewLine + "iscompleted: {2}", run.TotalUserCreated.ToString(), run.TotalUserComplted.ToString(), run.IsRunCompleted), null));
+                                            string log = run.GetLog();
+                                            if (log != string.Empty)
+                                            {
+                                                logMsg.Append(log);
+                                            }
+                                            controller.Send(new TrasportData("status",
+                                                                                      string.Format("createduser: {0}" + System.Environment.NewLine
+                                                                                                  + "completeduser: {1}" + System.Environment.NewLine
+                                                                                                  + "iscompleted: {2}" + System.Environment.NewLine
+                                                                                                  + "log:{{{3}}}" + System.Environment.NewLine,
+                                                                                                    run.TotalUserCreated.ToString(), 
+                                                                                                    run.TotalUserComplted.ToString(), 
+                                                                                                    run.IsRunCompleted, 
+                                                                                                    logMsg.ToString()), null));
+
+                                            TrasportData ack = controller.Receive();
+                                            if (ack.Operation == "ok")
+                                            {
+                                                logMsg = new StringBuilder();
+                                            }
                                         }
                                         break;
-
                                     case "scriptwisestatus":
                                         {
                                             controller.Send(new TrasportData("scriptwisestatus", run.GetStatus(), null));
@@ -160,7 +181,7 @@ namespace AppedoLTLoadGenerator
                                             {
                                                 if (new Regex(reportName + "_[0-9]*_[0-9]*_[0-9]*_[0-9]*").Match(info.Name).Success)
                                                 {
-                                                    directoryPath=info.Name;
+                                                    directoryPath = info.Name;
                                                     foreach (FileInfo fileInfo in info.GetFiles("database.db"))
                                                     {
                                                         filePath = fileInfo.FullName;
@@ -172,15 +193,15 @@ namespace AppedoLTLoadGenerator
                                             TrasportData agn = controller.Receive();
                                             if (agn.Operation == "ok")
                                             {
-                                              if(agn.Header["receivedsize"] == (new FileInfo(filePath)).Length.ToString())
-                                              {
-                                                if( LoadTestAgentXml.GetInstance().doc.SelectSingleNode("//runs/run[@runid='"+reportName+"']")!=null)
+                                                if (agn.Header["receivedsize"] == (new FileInfo(filePath)).Length.ToString())
                                                 {
-                                                  LoadTestAgentXml.GetInstance().doc.SelectSingleNode("//runs").RemoveChild( LoadTestAgentXml.GetInstance().doc.SelectSingleNode("//runs/run[@runid='" + reportName + "']"));
-                                                  LoadTestAgentXml.GetInstance().Save();
-                                                 // Directory.Delete(directoryPath,true);
+                                                    if (LoadTestAgentXml.GetInstance().doc.SelectSingleNode("//runs/run[@runid='" + reportName + "']") != null)
+                                                    {
+                                                        LoadTestAgentXml.GetInstance().doc.SelectSingleNode("//runs").RemoveChild(LoadTestAgentXml.GetInstance().doc.SelectSingleNode("//runs/run[@runid='" + reportName + "']"));
+                                                        LoadTestAgentXml.GetInstance().Save();
+                                                        // Directory.Delete(directoryPath,true);
+                                                    }
                                                 }
-                                              }
                                             }
                                         }
                                         break;

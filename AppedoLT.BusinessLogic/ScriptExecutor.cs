@@ -1,13 +1,13 @@
-﻿using System;
+﻿using AppedoLT.Core;
+using AppedoLT.DataAccessLayer;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Threading;
-using System.Xml;
-using AppedoLT.Core;
-using AppedoLT.DataAccessLayer;
 using System.Diagnostics;
-using System.Timers;
 using System.Linq;
+using System.Threading;
+using System.Timers;
+using System.Xml;
 
 namespace AppedoLT.BusinessLogic
 {
@@ -30,7 +30,6 @@ namespace AppedoLT.BusinessLogic
         public BackgroundWorker Worker = new BackgroundWorker();
         public VUScriptStatus StatusSummary = new VUScriptStatus();
         public Queue<Log> ScriptWiseLog = new Queue<Log>();
-
         public bool IsRunCompleted = false;
         public string Scriptid { get; set; }
         public string Scriptname { get; set; }
@@ -136,6 +135,7 @@ namespace AppedoLT.BusinessLogic
                 ExceptionHandler.WritetoEventLog(ex.StackTrace + Environment.NewLine + ex.Message);
             }
         }
+
         public ScriptExecutor(XmlNode settingNode, XmlNode vuScript, string reportName, string distribution)
         {
             try
@@ -232,6 +232,7 @@ namespace AppedoLT.BusinessLogic
                 ExceptionHandler.WritetoEventLog(ex.StackTrace + Environment.NewLine + ex.Message);
             }
         }
+
         public void Run()
         {
             try
@@ -449,6 +450,7 @@ namespace AppedoLT.BusinessLogic
         {
             return new VUser(int.Parse(_setting.MaxUser), _reportName, _setting.Type, userid, int.Parse(_setting.Iterations), _vuScript, _setting.BrowserCache, Request.GetIPAddress(_createdUserCount), ScriptWiseLog);
         }
+
         private void UpdateStatus()
         {
             lock (StatusSummary)
@@ -460,8 +462,9 @@ namespace AppedoLT.BusinessLogic
                 StatusSummary.TotalFiveHundredStatusCodeCount = _usersList.Sum((s) => s.VUserStatus.FiveHundredStatusCodeCount);
             }
         }
-
+       
     }
+
     public class VUScriptStatus
     {
         public int TotalTwoHundredStatusCodeCount { get; set; }
