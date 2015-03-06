@@ -32,7 +32,6 @@ namespace AppedoLTLoadGenerator
         public LoadGenerator()
         {
             InitializeComponent();
-
             worker.DoWork += new DoWorkEventHandler(worker_DoWork);
             try
             {
@@ -64,7 +63,6 @@ namespace AppedoLTLoadGenerator
                 while ((true))
                 {
                     Trasport controller = new Trasport(serverSocket.AcceptTcpClient());
-
                     new Thread(() =>
                         {
                             try
@@ -144,8 +142,7 @@ namespace AppedoLTLoadGenerator
                                             {
                                                 logMsg.Append(log);
                                             }
-                                            controller.Send(new TrasportData("status",
-                                                                                      string.Format("createduser: {0}" + System.Environment.NewLine
+                                            controller.Send(new TrasportData("status",string.Format("createduser: {0}" + System.Environment.NewLine
                                                                                                   + "completeduser: {1}" + System.Environment.NewLine
                                                                                                   + "iscompleted: {2}" + System.Environment.NewLine
                                                                                                   + "log:{{{3}}}" + System.Environment.NewLine,
@@ -161,6 +158,7 @@ namespace AppedoLTLoadGenerator
                                             }
                                         }
                                         break;
+
                                     case "scriptwisestatus":
                                         {
                                             controller.Send(new TrasportData("scriptwisestatus", run.GetStatus(), null));
