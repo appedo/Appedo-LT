@@ -6,21 +6,21 @@ using System.IO;
 using System.Threading;
 using System.Collections.Generic;
 
-
 namespace AppedoLT
 {
    public class VuscriptXml
     {
-
         public string ID = string.Empty;
         public XmlDocument doc = new XmlDocument();
         string _filePath = string.Empty;
+
         public XmlAttribute GetAttribute(string name, string value)
         {
             XmlAttribute att = doc.CreateAttribute(name);
             att.Value = value;
             return att;
         }
+
         public VuscriptXml(string id)
         {
             try
@@ -48,6 +48,7 @@ namespace AppedoLT
                 ExceptionHandler.WritetoEventLog(ex.Message + Environment.NewLine + ex.StackTrace);
             }
         }
+
         public VuscriptXml(string id,string content)
         {
             try
@@ -75,6 +76,7 @@ namespace AppedoLT
                 ExceptionHandler.WritetoEventLog(ex.Message + Environment.NewLine + ex.StackTrace);
             }
         }
+
         public void Save(bool deleteUnwantedResource=true)
         {
             if (deleteUnwantedResource == true)
@@ -125,6 +127,7 @@ namespace AppedoLT
             return scritpNames;
 
         }
+
         public static Dictionary<string,string> GetScriptidAndName()
         {
             Dictionary<string, string> scritpNames = new  Dictionary<string,string>();
@@ -147,6 +150,7 @@ namespace AppedoLT
             }
             return scritpNames;
         }
+
         public static Dictionary<string, string> GetScriptNameAndId()
         {
             Dictionary<string, string> scritpNames = new Dictionary<string, string>();
@@ -169,7 +173,5 @@ namespace AppedoLT
             }
             return scritpNames;
         }
-      
-      
     }
 }

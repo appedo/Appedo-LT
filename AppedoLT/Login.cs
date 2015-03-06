@@ -54,9 +54,7 @@ namespace AppedoLT
             {
                 MessageBox.Show(ex.Message);
                 this.DialogResult = DialogResult.None;
-
             }
-           
         }
 
         private void btnCancel_Click(object sender, EventArgs e)

@@ -12,30 +12,33 @@ namespace AppedoLT
         
         public string _resultName = string.Empty;
         public string _resultValue = string.Empty;
-        RepositoryXml repositoryXml = RepositoryXml.GetInstance();
+        XmlNode _parentNode = null;
         bool isFromSigleValue = false;
 
-        public RequestParameter(string name, string value)
+        public RequestParameter(string name, string value,XmlNode parent)
         {
             InitializeComponent();
             tabiValue.Name = name;
             tabiValue.Text = name;
             txtValue.Text = value;
             isFromSigleValue = true;
+            _parentNode=parent;
             LoadVariables();
         }
-        public RequestParameter(string value)
+        public RequestParameter(string value, XmlNode parent)
         {
             InitializeComponent();
             tabiValue.Name = "Value";
             tabiValue.Text = "Value";
             txtValue.Text = value;
             isFromSigleValue = true;
+            _parentNode=parent;
             LoadVariables();
         }
         public RequestParameter(XmlNode node)
         {
             InitializeComponent();
+            _parentNode=node;
             tabsRequestParameter.Items.Clear();
             foreach (XmlAttribute attribute in node.Attributes)
             {
@@ -55,6 +58,7 @@ namespace AppedoLT
             TabItem item = GetTabItem(att);
             tabsRequestParameter.Items.Add(item);
             tabsRequestParameter.SelectItem(item);
+            _parentNode = att;
             LoadVariables();
         }
         private void LoadVariables()
@@ -81,7 +85,7 @@ namespace AppedoLT
                     tvVariables.Nodes.Add(item);
                 }
             }
-            foreach (XmlNode var in repositoryXml.doc.SelectNodes("//extractor"))
+            foreach (XmlNode var in _parentNode.OwnerDocument.SelectNodes("//extractor"))
             {
                 if (var.Attributes["selctiontype"].Value == "all")
                 {

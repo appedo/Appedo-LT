@@ -34,6 +34,8 @@
             this.sptcRequest = new Telerik.WinControls.UI.RadSplitContainer();
             this.splitPanel1 = new Telerik.WinControls.UI.SplitPanel();
             this.radGroupBox1 = new Telerik.WinControls.UI.RadGroupBox();
+            this.radLabel5 = new Telerik.WinControls.UI.RadLabel();
+            this.txtSchema = new Telerik.WinControls.UI.RadTextBox();
             this.lblContentType = new Telerik.WinControls.UI.RadLabel();
             this.ddlPostContentType = new Telerik.WinControls.UI.RadComboBox();
             this.chkEnable = new Telerik.WinControls.UI.RadCheckBox();
@@ -97,6 +99,8 @@
             this.splitPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox1)).BeginInit();
             this.radGroupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtSchema)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblContentType)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlPostContentType)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkEnable)).BeginInit();
@@ -165,9 +169,9 @@
             // 
             // 
             this.splitPanel1.RootElement.MinSize = new System.Drawing.Size(25, 25);
-            this.splitPanel1.Size = new System.Drawing.Size(1185, 138);
-            this.splitPanel1.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(0F, -0.303681F);
-            this.splitPanel1.SizeInfo.SplitterCorrection = new System.Drawing.Size(0, -180);
+            this.splitPanel1.Size = new System.Drawing.Size(1185, 142);
+            this.splitPanel1.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(0F, -0.2977208F);
+            this.splitPanel1.SizeInfo.SplitterCorrection = new System.Drawing.Size(0, -176);
             this.splitPanel1.TabIndex = 0;
             this.splitPanel1.TabStop = false;
             this.splitPanel1.Text = "splitPanel1";
@@ -176,6 +180,8 @@
             // radGroupBox1
             // 
             this.radGroupBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(219)))), ((int)(((byte)(255)))));
+            this.radGroupBox1.Controls.Add(this.radLabel5);
+            this.radGroupBox1.Controls.Add(this.txtSchema);
             this.radGroupBox1.Controls.Add(this.lblContentType);
             this.radGroupBox1.Controls.Add(this.ddlPostContentType);
             this.radGroupBox1.Controls.Add(this.chkEnable);
@@ -204,15 +210,34 @@
             // 
             // 
             this.radGroupBox1.RootElement.Padding = new System.Windows.Forms.Padding(10, 20, 10, 10);
-            this.radGroupBox1.Size = new System.Drawing.Size(1185, 138);
+            this.radGroupBox1.Size = new System.Drawing.Size(1185, 142);
             this.radGroupBox1.TabIndex = 25;
             this.radGroupBox1.Text = "HTTP Request";
             this.radGroupBox1.ThemeName = "Telerik";
             // 
+            // radLabel5
+            // 
+            this.radLabel5.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radLabel5.Location = new System.Drawing.Point(4, 62);
+            this.radLabel5.Name = "radLabel5";
+            this.radLabel5.Size = new System.Drawing.Size(70, 18);
+            this.radLabel5.TabIndex = 27;
+            this.radLabel5.Text = "Schema :";
+            // 
+            // txtSchema
+            // 
+            this.txtSchema.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSchema.Location = new System.Drawing.Point(72, 61);
+            this.txtSchema.Name = "txtSchema";
+            this.txtSchema.Size = new System.Drawing.Size(95, 19);
+            this.txtSchema.TabIndex = 28;
+            this.txtSchema.TabStop = false;
+            this.txtSchema.Validated += new System.EventHandler(this.txt_Validated);
+            // 
             // lblContentType
             // 
             this.lblContentType.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblContentType.Location = new System.Drawing.Point(283, 36);
+            this.lblContentType.Location = new System.Drawing.Point(363, 33);
             this.lblContentType.Name = "lblContentType";
             this.lblContentType.Size = new System.Drawing.Size(105, 18);
             this.lblContentType.TabIndex = 25;
@@ -222,7 +247,7 @@
             // 
             this.ddlPostContentType.DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
             this.ddlPostContentType.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ddlPostContentType.Location = new System.Drawing.Point(398, 36);
+            this.ddlPostContentType.Location = new System.Drawing.Point(473, 32);
             this.ddlPostContentType.Name = "ddlPostContentType";
             // 
             // 
@@ -253,7 +278,7 @@
             // btnPath
             // 
             this.btnPath.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnPath.Location = new System.Drawing.Point(707, 93);
+            this.btnPath.Location = new System.Drawing.Point(882, 63);
             this.btnPath.Name = "btnPath";
             this.btnPath.Size = new System.Drawing.Size(26, 21);
             this.btnPath.TabIndex = 22;
@@ -264,7 +289,7 @@
             // radLabel1
             // 
             this.radLabel1.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radLabel1.Location = new System.Drawing.Point(93, 35);
+            this.radLabel1.Location = new System.Drawing.Point(167, 32);
             this.radLabel1.Name = "radLabel1";
             this.radLabel1.Size = new System.Drawing.Size(67, 18);
             this.radLabel1.TabIndex = 12;
@@ -273,7 +298,7 @@
             // radLabel2
             // 
             this.radLabel2.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radLabel2.Location = new System.Drawing.Point(4, 65);
+            this.radLabel2.Location = new System.Drawing.Point(4, 89);
             this.radLabel2.Name = "radLabel2";
             this.radLabel2.Size = new System.Drawing.Size(36, 18);
             this.radLabel2.TabIndex = 13;
@@ -282,9 +307,9 @@
             // txtPath
             // 
             this.txtPath.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPath.Location = new System.Drawing.Point(370, 93);
+            this.txtPath.Location = new System.Drawing.Point(473, 63);
             this.txtPath.Name = "txtPath";
-            this.txtPath.Size = new System.Drawing.Size(331, 19);
+            this.txtPath.Size = new System.Drawing.Size(403, 19);
             this.txtPath.TabIndex = 20;
             this.txtPath.TabStop = false;
             this.txtPath.Validated += new System.EventHandler(this.txt_Validated);
@@ -292,7 +317,7 @@
             // radLabel3
             // 
             this.radLabel3.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radLabel3.Location = new System.Drawing.Point(4, 93);
+            this.radLabel3.Location = new System.Drawing.Point(173, 63);
             this.radLabel3.Name = "radLabel3";
             this.radLabel3.Size = new System.Drawing.Size(61, 18);
             this.radLabel3.TabIndex = 14;
@@ -301,7 +326,7 @@
             // radLabel4
             // 
             this.radLabel4.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radLabel4.Location = new System.Drawing.Point(320, 93);
+            this.radLabel4.Location = new System.Drawing.Point(423, 63);
             this.radLabel4.Name = "radLabel4";
             this.radLabel4.Size = new System.Drawing.Size(47, 18);
             this.radLabel4.TabIndex = 15;
@@ -310,9 +335,9 @@
             // txtServer
             // 
             this.txtServer.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtServer.Location = new System.Drawing.Point(72, 93);
+            this.txtServer.Location = new System.Drawing.Point(241, 62);
             this.txtServer.Name = "txtServer";
-            this.txtServer.Size = new System.Drawing.Size(242, 19);
+            this.txtServer.Size = new System.Drawing.Size(153, 19);
             this.txtServer.TabIndex = 18;
             this.txtServer.TabStop = false;
             this.txtServer.Validated += new System.EventHandler(this.txt_Validated);
@@ -321,23 +346,23 @@
             // 
             this.ddlMethod.DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
             this.ddlMethod.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ddlMethod.Location = new System.Drawing.Point(161, 35);
+            this.ddlMethod.Location = new System.Drawing.Point(241, 31);
             this.ddlMethod.Name = "ddlMethod";
             // 
             // 
             // 
             this.ddlMethod.RootElement.AutoSizeMode = Telerik.WinControls.RadAutoSizeMode.WrapAroundChildren;
-            this.ddlMethod.Size = new System.Drawing.Size(106, 19);
+            this.ddlMethod.Size = new System.Drawing.Size(94, 19);
             this.ddlMethod.TabIndex = 16;
             this.ddlMethod.TabStop = false;
             // 
             // txtUrl
             // 
             this.txtUrl.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtUrl.Location = new System.Drawing.Point(72, 65);
+            this.txtUrl.Location = new System.Drawing.Point(72, 89);
             this.txtUrl.Name = "txtUrl";
             this.txtUrl.ReadOnly = true;
-            this.txtUrl.Size = new System.Drawing.Size(629, 19);
+            this.txtUrl.Size = new System.Drawing.Size(804, 19);
             this.txtUrl.TabIndex = 17;
             this.txtUrl.TabStop = false;
             // 
@@ -345,15 +370,15 @@
             // 
             this.splitPanel2.BackColor = System.Drawing.SystemColors.ControlLight;
             this.splitPanel2.Controls.Add(this.radTabStrip2);
-            this.splitPanel2.Location = new System.Drawing.Point(0, 141);
+            this.splitPanel2.Location = new System.Drawing.Point(0, 145);
             this.splitPanel2.Name = "splitPanel2";
             // 
             // 
             // 
             this.splitPanel2.RootElement.MinSize = new System.Drawing.Size(25, 25);
-            this.splitPanel2.Size = new System.Drawing.Size(1185, 564);
-            this.splitPanel2.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(0F, 0.303681F);
-            this.splitPanel2.SizeInfo.SplitterCorrection = new System.Drawing.Size(0, 180);
+            this.splitPanel2.Size = new System.Drawing.Size(1185, 560);
+            this.splitPanel2.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(0F, 0.2977208F);
+            this.splitPanel2.SizeInfo.SplitterCorrection = new System.Drawing.Size(0, 176);
             this.splitPanel2.TabIndex = 1;
             this.splitPanel2.TabStop = false;
             this.splitPanel2.Text = "splitPanel2";
@@ -381,7 +406,7 @@
             this.radTabStrip2.Location = new System.Drawing.Point(0, 0);
             this.radTabStrip2.Name = "radTabStrip2";
             this.radTabStrip2.ScrollOffsetStep = 5;
-            this.radTabStrip2.Size = new System.Drawing.Size(1182, 564);
+            this.radTabStrip2.Size = new System.Drawing.Size(1182, 560);
             this.radTabStrip2.TabIndex = 1;
             this.radTabStrip2.TabScrollButtonsPosition = Telerik.WinControls.UI.TabScrollButtonsPosition.RightBottom;
             this.radTabStrip2.Text = "radTabStrip2";
@@ -393,16 +418,15 @@
             // 
             // tabiHeader.ContentPanel
             // 
-            this.tabiHeader.ContentPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
+            this.tabiHeader.ContentPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(239)))), ((int)(((byte)(249)))));
             this.tabiHeader.ContentPanel.CausesValidation = true;
             this.tabiHeader.ContentPanel.Controls.Add(this.dgvHeader);
             this.tabiHeader.ContentPanel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tabiHeader.ContentPanel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(45)))), ((int)(((byte)(52)))));
-            this.tabiHeader.ContentPanel.Location = new System.Drawing.Point(1, 26);
+            this.tabiHeader.ContentPanel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(66)))), ((int)(((byte)(139)))));
+            this.tabiHeader.ContentPanel.Location = new System.Drawing.Point(1, 22);
             this.tabiHeader.ContentPanel.Size = new System.Drawing.Size(1180, 537);
             this.tabiHeader.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold);
-            this.tabiHeader.IsSelected = true;
-            this.tabiHeader.Margin = new System.Windows.Forms.Padding(0);
+            this.tabiHeader.Margin = new System.Windows.Forms.Padding(2, 0, 0, 0);
             this.tabiHeader.Name = "tabiHeader";
             this.tabiHeader.ScaleTransform = new System.Drawing.SizeF(1F, 1F);
             this.tabiHeader.StretchHorizontally = false;
@@ -426,7 +450,7 @@
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(45)))), ((int)(((byte)(52)))));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(66)))), ((int)(((byte)(139)))));
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.ControlText;
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
@@ -493,14 +517,16 @@
             // 
             // tabiRequestParameters.ContentPanel
             // 
-            this.tabiRequestParameters.ContentPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
+            this.tabiRequestParameters.ContentPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(239)))), ((int)(((byte)(249)))));
             this.tabiRequestParameters.ContentPanel.CausesValidation = true;
             this.tabiRequestParameters.ContentPanel.Controls.Add(this.btnEdit);
             this.tabiRequestParameters.ContentPanel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tabiRequestParameters.ContentPanel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(45)))), ((int)(((byte)(52)))));
-            this.tabiRequestParameters.ContentPanel.Location = new System.Drawing.Point(1, 26);
+            this.tabiRequestParameters.ContentPanel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(66)))), ((int)(((byte)(139)))));
+            this.tabiRequestParameters.ContentPanel.Location = new System.Drawing.Point(1, 22);
             this.tabiRequestParameters.ContentPanel.Size = new System.Drawing.Size(1180, 537);
             this.tabiRequestParameters.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold);
+            this.tabiRequestParameters.IsSelected = true;
+            this.tabiRequestParameters.Margin = new System.Windows.Forms.Padding(2, 0, 0, 0);
             this.tabiRequestParameters.Name = "tabiRequestParameters";
             this.tabiRequestParameters.ScaleTransform = new System.Drawing.SizeF(1F, 1F);
             this.tabiRequestParameters.StretchHorizontally = false;
@@ -521,7 +547,7 @@
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(45)))), ((int)(((byte)(52)))));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(66)))), ((int)(((byte)(139)))));
             dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.ControlText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
@@ -589,18 +615,18 @@
             // 
             // tabItem3.ContentPanel
             // 
-            this.tabItem3.ContentPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
+            this.tabItem3.ContentPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(239)))), ((int)(((byte)(249)))));
             this.tabItem3.ContentPanel.CausesValidation = true;
             this.tabItem3.ContentPanel.Controls.Add(this.btnUpdate);
             this.tabItem3.ContentPanel.Controls.Add(this.btnDelete);
             this.tabItem3.ContentPanel.Controls.Add(this.btnAdd);
             this.tabItem3.ContentPanel.Controls.Add(this.dgvExtractor);
             this.tabItem3.ContentPanel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tabItem3.ContentPanel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(45)))), ((int)(((byte)(52)))));
-            this.tabItem3.ContentPanel.Location = new System.Drawing.Point(1, 26);
+            this.tabItem3.ContentPanel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(66)))), ((int)(((byte)(139)))));
+            this.tabItem3.ContentPanel.Location = new System.Drawing.Point(1, 22);
             this.tabItem3.ContentPanel.Size = new System.Drawing.Size(1180, 537);
             this.tabItem3.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold);
-            this.tabItem3.Margin = new System.Windows.Forms.Padding(0);
+            this.tabItem3.Margin = new System.Windows.Forms.Padding(2, 0, 0, 0);
             this.tabItem3.Name = "tabItem3";
             this.tabItem3.ScaleTransform = new System.Drawing.SizeF(1F, 1F);
             this.tabItem3.StretchHorizontally = false;
@@ -692,18 +718,18 @@
             // 
             // tabiAssertions.ContentPanel
             // 
-            this.tabiAssertions.ContentPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
+            this.tabiAssertions.ContentPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(239)))), ((int)(((byte)(249)))));
             this.tabiAssertions.ContentPanel.CausesValidation = true;
             this.tabiAssertions.ContentPanel.Controls.Add(this.btnAssertionEdit);
             this.tabiAssertions.ContentPanel.Controls.Add(this.btnAssertionDelete);
             this.tabiAssertions.ContentPanel.Controls.Add(this.btnAssertionAdd);
             this.tabiAssertions.ContentPanel.Controls.Add(this.lsvAssertion);
             this.tabiAssertions.ContentPanel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tabiAssertions.ContentPanel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(45)))), ((int)(((byte)(52)))));
-            this.tabiAssertions.ContentPanel.Location = new System.Drawing.Point(1, 26);
+            this.tabiAssertions.ContentPanel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(66)))), ((int)(((byte)(139)))));
+            this.tabiAssertions.ContentPanel.Location = new System.Drawing.Point(1, 22);
             this.tabiAssertions.ContentPanel.Size = new System.Drawing.Size(1180, 537);
             this.tabiAssertions.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold);
-            this.tabiAssertions.Margin = new System.Windows.Forms.Padding(0);
+            this.tabiAssertions.Margin = new System.Windows.Forms.Padding(2, 0, 0, 0);
             this.tabiAssertions.Name = "tabiAssertions";
             this.tabiAssertions.ScaleTransform = new System.Drawing.SizeF(1F, 1F);
             this.tabiAssertions.StretchHorizontally = false;
@@ -798,15 +824,15 @@
             // 
             // tabiRequest.ContentPanel
             // 
-            this.tabiRequest.ContentPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
+            this.tabiRequest.ContentPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(239)))), ((int)(((byte)(249)))));
             this.tabiRequest.ContentPanel.CausesValidation = true;
             this.tabiRequest.ContentPanel.Controls.Add(this.txtRequest);
             this.tabiRequest.ContentPanel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tabiRequest.ContentPanel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(45)))), ((int)(((byte)(52)))));
-            this.tabiRequest.ContentPanel.Location = new System.Drawing.Point(1, 26);
+            this.tabiRequest.ContentPanel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(66)))), ((int)(((byte)(139)))));
+            this.tabiRequest.ContentPanel.Location = new System.Drawing.Point(1, 22);
             this.tabiRequest.ContentPanel.Size = new System.Drawing.Size(1180, 537);
             this.tabiRequest.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold);
-            this.tabiRequest.Margin = new System.Windows.Forms.Padding(0);
+            this.tabiRequest.Margin = new System.Windows.Forms.Padding(2, 0, 0, 0);
             this.tabiRequest.Name = "tabiRequest";
             this.tabiRequest.ScaleTransform = new System.Drawing.SizeF(1F, 1F);
             this.tabiRequest.StretchHorizontally = false;
@@ -833,15 +859,15 @@
             // 
             // tabiResponse.ContentPanel
             // 
-            this.tabiResponse.ContentPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
+            this.tabiResponse.ContentPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(239)))), ((int)(((byte)(249)))));
             this.tabiResponse.ContentPanel.CausesValidation = true;
             this.tabiResponse.ContentPanel.Controls.Add(this.txtResponse);
             this.tabiResponse.ContentPanel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tabiResponse.ContentPanel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(45)))), ((int)(((byte)(52)))));
-            this.tabiResponse.ContentPanel.Location = new System.Drawing.Point(1, 26);
+            this.tabiResponse.ContentPanel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(66)))), ((int)(((byte)(139)))));
+            this.tabiResponse.ContentPanel.Location = new System.Drawing.Point(1, 22);
             this.tabiResponse.ContentPanel.Size = new System.Drawing.Size(1180, 537);
             this.tabiResponse.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold);
-            this.tabiResponse.Margin = new System.Windows.Forms.Padding(0);
+            this.tabiResponse.Margin = new System.Windows.Forms.Padding(2, 0, 0, 0);
             this.tabiResponse.Name = "tabiResponse";
             this.tabiResponse.ScaleTransform = new System.Drawing.SizeF(1F, 1F);
             this.tabiResponse.StretchHorizontally = false;
@@ -868,15 +894,15 @@
             // 
             // tabiResponseImage.ContentPanel
             // 
-            this.tabiResponseImage.ContentPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
+            this.tabiResponseImage.ContentPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(239)))), ((int)(((byte)(249)))));
             this.tabiResponseImage.ContentPanel.CausesValidation = true;
             this.tabiResponseImage.ContentPanel.Controls.Add(this.panel1);
             this.tabiResponseImage.ContentPanel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tabiResponseImage.ContentPanel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(45)))), ((int)(((byte)(52)))));
-            this.tabiResponseImage.ContentPanel.Location = new System.Drawing.Point(1, 26);
+            this.tabiResponseImage.ContentPanel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(66)))), ((int)(((byte)(139)))));
+            this.tabiResponseImage.ContentPanel.Location = new System.Drawing.Point(1, 22);
             this.tabiResponseImage.ContentPanel.Size = new System.Drawing.Size(1180, 537);
             this.tabiResponseImage.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold);
-            this.tabiResponseImage.Margin = new System.Windows.Forms.Padding(0);
+            this.tabiResponseImage.Margin = new System.Windows.Forms.Padding(2, 0, 0, 0);
             this.tabiResponseImage.Name = "tabiResponseImage";
             this.tabiResponseImage.ScaleTransform = new System.Drawing.SizeF(1F, 1F);
             this.tabiResponseImage.StretchHorizontally = false;
@@ -910,15 +936,15 @@
             // 
             // tabWebBrowser.ContentPanel
             // 
-            this.tabWebBrowser.ContentPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
+            this.tabWebBrowser.ContentPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(239)))), ((int)(((byte)(249)))));
             this.tabWebBrowser.ContentPanel.CausesValidation = true;
             this.tabWebBrowser.ContentPanel.Controls.Add(this.webBrowserResponse);
             this.tabWebBrowser.ContentPanel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tabWebBrowser.ContentPanel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(45)))), ((int)(((byte)(52)))));
-            this.tabWebBrowser.ContentPanel.Location = new System.Drawing.Point(1, 26);
+            this.tabWebBrowser.ContentPanel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(66)))), ((int)(((byte)(139)))));
+            this.tabWebBrowser.ContentPanel.Location = new System.Drawing.Point(1, 22);
             this.tabWebBrowser.ContentPanel.Size = new System.Drawing.Size(1180, 537);
             this.tabWebBrowser.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold);
-            this.tabWebBrowser.Margin = new System.Windows.Forms.Padding(0);
+            this.tabWebBrowser.Margin = new System.Windows.Forms.Padding(2, 0, 0, 0);
             this.tabWebBrowser.Name = "tabWebBrowser";
             this.tabWebBrowser.ScaleTransform = new System.Drawing.SizeF(1F, 1F);
             this.tabWebBrowser.StretchHorizontally = false;
@@ -952,6 +978,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox1)).EndInit();
             this.radGroupBox1.ResumeLayout(false);
             this.radGroupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtSchema)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblContentType)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlPostContentType)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkEnable)).EndInit();
@@ -1056,5 +1084,7 @@
         private Telerik.WinControls.UI.TabItem tabiRequestParameters;
         private Telerik.WinControls.UI.RadLabel lblContentType;
         private Telerik.WinControls.UI.RadComboBox ddlPostContentType;
+        private Telerik.WinControls.UI.RadLabel radLabel5;
+        private Telerik.WinControls.UI.RadTextBox txtSchema;
     }
 }

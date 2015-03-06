@@ -20,13 +20,13 @@ namespace AppedoLT
         private XmlNode _containerNode;
         private string _lastCreatedContainer;
         private Design _frm;
-        private RepositoryXml _repositoryXml = RepositoryXml.GetInstance();
+        Common _common = Common.GetInstance();
         
         public frmTCPIPRecord(Design frm,  XmlNode scriptNode)
         {
             InitializeComponent();
-            _frm = frm;
             
+            _frm = frm;
             _scriptNode = scriptNode;
             _lastCreatedContainer = txtContainerName.Text;
             _containerNode = CreateNewContainer(_lastCreatedContainer);
@@ -131,28 +131,28 @@ namespace AppedoLT
 
         private XmlNode CreateNewContainer(string containername)
         {
-            XmlNode container = _repositoryXml.doc.CreateElement("container");
-            container.Attributes.Append(_repositoryXml.GetAttribute("name", containername));
-            container.Attributes.Append(_repositoryXml.GetAttribute("id", Constants.GetInstance().UniqueID));
+            XmlNode container = _scriptNode.OwnerDocument.CreateElement("container");
+            container.Attributes.Append(_common.GetAttribute(_scriptNode.OwnerDocument, "name", containername));
+            container.Attributes.Append(_common.GetAttribute(_scriptNode.OwnerDocument, "id", Constants.GetInstance().UniqueID));
             return container;
         }
 
         private XmlNode CreateNewRequst(string name, string serverip, string port, string requestcontent, string responsecontent, string requestsize, string responsesize, string responsetime, bool requestsizeconstant,bool responsesizeconstant)
         {
-            XmlNode req = _repositoryXml.doc.CreateElement("request");
-            req.Attributes.Append(_repositoryXml.GetAttribute("id", Constants.GetInstance().UniqueID));
-            req.Attributes.Append(_repositoryXml.GetAttribute("name", name));
-            req.Attributes.Append(_repositoryXml.GetAttribute("serverip", serverip));
-            req.Attributes.Append(_repositoryXml.GetAttribute("port", port));
-            req.Attributes.Append(_repositoryXml.GetAttribute("enable", true.ToString()));
-            req.Attributes.Append(_repositoryXml.GetAttribute("requestcontent", requestcontent));
-            req.Attributes.Append(_repositoryXml.GetAttribute("responsecontent", responsecontent));
-            req.Attributes.Append(_repositoryXml.GetAttribute("requestsize", requestsize));
-            req.Attributes.Append(_repositoryXml.GetAttribute("responsesize", responsesize));
-            req.Attributes.Append(_repositoryXml.GetAttribute("responsetime", responsetime));
-            req.Attributes.Append(_repositoryXml.GetAttribute("requestsizeconstant", requestsizeconstant.ToString()));
-            req.Attributes.Append(_repositoryXml.GetAttribute("responsesizeconstant", responsesizeconstant.ToString()));
-            XmlNode param =_repositoryXml.doc.CreateElement("params");
+            XmlNode req = _scriptNode.OwnerDocument.CreateElement("request");
+            req.Attributes.Append(_common.GetAttribute(_scriptNode.OwnerDocument, "id", Constants.GetInstance().UniqueID));
+            req.Attributes.Append(_common.GetAttribute(_scriptNode.OwnerDocument, "name", name));
+            req.Attributes.Append(_common.GetAttribute(_scriptNode.OwnerDocument, "serverip", serverip));
+            req.Attributes.Append(_common.GetAttribute(_scriptNode.OwnerDocument, "port", port));
+            req.Attributes.Append(_common.GetAttribute(_scriptNode.OwnerDocument, "enable", true.ToString()));
+            req.Attributes.Append(_common.GetAttribute(_scriptNode.OwnerDocument, "requestcontent", requestcontent));
+            req.Attributes.Append(_common.GetAttribute(_scriptNode.OwnerDocument, "responsecontent", responsecontent));
+            req.Attributes.Append(_common.GetAttribute(_scriptNode.OwnerDocument, "requestsize", requestsize));
+            req.Attributes.Append(_common.GetAttribute(_scriptNode.OwnerDocument, "responsesize", responsesize));
+            req.Attributes.Append(_common.GetAttribute(_scriptNode.OwnerDocument, "responsetime", responsetime));
+            req.Attributes.Append(_common.GetAttribute(_scriptNode.OwnerDocument, "requestsizeconstant", requestsizeconstant.ToString()));
+            req.Attributes.Append(_common.GetAttribute(_scriptNode.OwnerDocument, "responsesizeconstant", responsesizeconstant.ToString()));
+            XmlNode param = _scriptNode.OwnerDocument.CreateElement("params");
             req.AppendChild(param);
 
             return req;

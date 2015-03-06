@@ -1,5 +1,0 @@
-D:\Rasith\Floodgates\Core\bin\Release\Core.dll
-D:\Rasith\Floodgates\Core\bin\Release\Core.pdb
-D:\Rasith\Floodgates\Core\obj\Release\ResolveAssemblyReference.cache
-D:\Rasith\Floodgates\Core\obj\Release\Core.dll
-D:\Rasith\Floodgates\Core\obj\Release\Core.pdb

@@ -1,1 +1,0 @@
-sqlite3 "E:\AppedoLT\AppedoLT\bin\Debug\Data\fdsaf\database.db" < "E:\AppedoLT\AppedoLT\bin\Debug\commands.txt"

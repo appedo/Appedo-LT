@@ -65,7 +65,7 @@
             // 
             this.chkDynamicReqEnable.Location = new System.Drawing.Point(253, 105);
             this.chkDynamicReqEnable.Name = "chkDynamicReqEnable";
-            this.chkDynamicReqEnable.Size = new System.Drawing.Size(15, 15);
+            this.chkDynamicReqEnable.Size = new System.Drawing.Size(17, 17);
             this.chkDynamicReqEnable.TabIndex = 31;
             this.chkDynamicReqEnable.ThemeName = "Telerik";
             this.chkDynamicReqEnable.Validated += new System.EventHandler(this.chkDynamicReqEnable_Leave);
@@ -82,7 +82,7 @@
             // txtScriptname
             // 
             this.txtScriptname.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtScriptname.Location = new System.Drawing.Point(253, 45);
+            this.txtScriptname.Location = new System.Drawing.Point(157, 43);
             this.txtScriptname.Name = "txtScriptname";
             this.txtScriptname.Size = new System.Drawing.Size(252, 19);
             this.txtScriptname.TabIndex = 27;
@@ -93,7 +93,7 @@
             // txtExclutionFileTypes
             // 
             this.txtExclutionFileTypes.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtExclutionFileTypes.Location = new System.Drawing.Point(253, 72);
+            this.txtExclutionFileTypes.Location = new System.Drawing.Point(157, 70);
             this.txtExclutionFileTypes.Name = "txtExclutionFileTypes";
             this.txtExclutionFileTypes.Size = new System.Drawing.Size(252, 18);
             this.txtExclutionFileTypes.TabIndex = 29;

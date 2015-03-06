@@ -32,6 +32,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ucDesign));
             this.radSplitContainer1 = new Telerik.WinControls.UI.RadSplitContainer();
             this.splitPanel1 = new Telerik.WinControls.UI.SplitPanel();
+            this.txtDownload = new Telerik.WinControls.UI.RadButton();
             this.tvRequest = new Telerik.WinControls.UI.RadTreeView();
             this.cntmUVScript = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -72,25 +73,25 @@
             this.imglDesign = new System.Windows.Forms.ImageList(this.components);
             this.btnTCPIPRecord = new Telerik.WinControls.UI.RadButton();
             this.btnRecord = new Telerik.WinControls.UI.RadButton();
-            this.btnScriptSave = new Telerik.WinControls.UI.RadButton();
-            this.brnVariableManager = new Telerik.WinControls.UI.RadButton();
             this.splitPanel2 = new Telerik.WinControls.UI.SplitPanel();
             this.pnlMaster = new Telerik.WinControls.UI.RadPanel();
-            this.txtDownload = new Telerik.WinControls.UI.RadButton();
+            this.replaceServerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnScriptSave = new Telerik.WinControls.UI.RadButton();
+            this.brnVariableManager = new Telerik.WinControls.UI.RadButton();
             ((System.ComponentModel.ISupportInitialize)(this.radSplitContainer1)).BeginInit();
             this.radSplitContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitPanel1)).BeginInit();
             this.splitPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtDownload)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tvRequest)).BeginInit();
             this.cntmUVScript.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnTCPIPRecord)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnRecord)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnScriptSave)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.brnVariableManager)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitPanel2)).BeginInit();
             this.splitPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pnlMaster)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtDownload)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnScriptSave)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.brnVariableManager)).BeginInit();
             this.SuspendLayout();
             // 
             // radSplitContainer1
@@ -129,6 +130,18 @@
             this.splitPanel1.TabIndex = 0;
             this.splitPanel1.TabStop = false;
             this.splitPanel1.Text = "splitPanel1";
+            // 
+            // txtDownload
+            // 
+            this.txtDownload.BackColor = System.Drawing.SystemColors.Control;
+            this.txtDownload.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold);
+            this.txtDownload.Location = new System.Drawing.Point(283, 4);
+            this.txtDownload.Name = "txtDownload";
+            this.txtDownload.Size = new System.Drawing.Size(80, 24);
+            this.txtDownload.TabIndex = 43;
+            this.txtDownload.Text = "Download";
+            this.txtDownload.ThemeName = "Telerik";
+            this.txtDownload.Click += new System.EventHandler(this.txtDownload_Click);
             // 
             // tvRequest
             // 
@@ -172,16 +185,17 @@
             this.recordNewScripToolStripMenuItem,
             this.insertBeforeToolStripMenuItem,
             this.insertAfterToolStripMenuItem,
-            this.insertAsChildToolStripMenuItemChild});
+            this.insertAsChildToolStripMenuItemChild,
+            this.replaceServerToolStripMenuItem});
             this.cntmUVScript.Name = "cntmUVScript";
-            this.cntmUVScript.Size = new System.Drawing.Size(164, 136);
+            this.cntmUVScript.Size = new System.Drawing.Size(169, 158);
             this.cntmUVScript.Opening += new System.ComponentModel.CancelEventHandler(this.cntmUVScript_Opening);
             // 
             // deleteToolStripMenuItem
             // 
             this.deleteToolStripMenuItem.AutoToolTip = true;
             this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
-            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
             this.deleteToolStripMenuItem.Text = "&Delete";
             this.deleteToolStripMenuItem.Visible = false;
             this.deleteToolStripMenuItem.Click += new System.EventHandler(this.btnDelete_Click);
@@ -189,7 +203,7 @@
             // searchToolStripMenuItem
             // 
             this.searchToolStripMenuItem.Name = "searchToolStripMenuItem";
-            this.searchToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
+            this.searchToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
             this.searchToolStripMenuItem.Text = "&Flag Request";
             this.searchToolStripMenuItem.Click += new System.EventHandler(this.searchToolStripMenuItem_Click);
             // 
@@ -199,7 +213,7 @@
             this.httpToolStripMenuItem,
             this.tcpIpToolStripMenuItem});
             this.recordNewScripToolStripMenuItem.Name = "recordNewScripToolStripMenuItem";
-            this.recordNewScripToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
+            this.recordNewScripToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
             this.recordNewScripToolStripMenuItem.Text = "&New Script";
             // 
             // httpToolStripMenuItem
@@ -229,7 +243,7 @@
             this.endTransactionToolStripMenuItemBefore,
             this.tsiLogBefore});
             this.insertBeforeToolStripMenuItem.Name = "insertBeforeToolStripMenuItem";
-            this.insertBeforeToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
+            this.insertBeforeToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
             this.insertBeforeToolStripMenuItem.Text = "Insert &before";
             // 
             // containerToolStripMenuItemBefore
@@ -308,7 +322,7 @@
             this.endToolStripMenuItemAfter,
             this.tsiLogAfter});
             this.insertAfterToolStripMenuItem.Name = "insertAfterToolStripMenuItem";
-            this.insertAfterToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
+            this.insertAfterToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
             this.insertAfterToolStripMenuItem.Text = "Inser &after";
             // 
             // containerToolStripMenuItemAfter
@@ -387,7 +401,7 @@
             this.endTransactionToolStripMenuItemChild,
             this.tsiLogChild});
             this.insertAsChildToolStripMenuItemChild.Name = "insertAsChildToolStripMenuItemChild";
-            this.insertAsChildToolStripMenuItemChild.Size = new System.Drawing.Size(163, 22);
+            this.insertAsChildToolStripMenuItemChild.Size = new System.Drawing.Size(168, 22);
             this.insertAsChildToolStripMenuItemChild.Text = "Insert as &child";
             // 
             // containerToolStripMenuItemChild
@@ -499,33 +513,6 @@
             this.btnRecord.ThemeName = "Telerik";
             this.btnRecord.Click += new System.EventHandler(this.btnRecord_Click_1);
             // 
-            // btnScriptSave
-            // 
-            this.btnScriptSave.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            this.btnScriptSave.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold);
-            this.btnScriptSave.Image = ((System.Drawing.Image)(resources.GetObject("btnScriptSave.Image")));
-            this.btnScriptSave.Location = new System.Drawing.Point(34, 4);
-            this.btnScriptSave.Name = "btnScriptSave";
-            this.btnScriptSave.Size = new System.Drawing.Size(68, 24);
-            this.btnScriptSave.TabIndex = 42;
-            this.btnScriptSave.Text = "&Save";
-            this.btnScriptSave.ThemeName = "Telerik";
-            this.btnScriptSave.Click += new System.EventHandler(this.btnScriptSave_Click);
-            // 
-            // brnVariableManager
-            // 
-            this.brnVariableManager.BackColor = System.Drawing.Color.Transparent;
-            this.brnVariableManager.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.brnVariableManager.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            this.brnVariableManager.ImageIndex = 14;
-            this.brnVariableManager.ImageList = this.imglDesign;
-            this.brnVariableManager.Location = new System.Drawing.Point(5, 4);
-            this.brnVariableManager.Name = "brnVariableManager";
-            this.brnVariableManager.Size = new System.Drawing.Size(28, 24);
-            this.brnVariableManager.TabIndex = 41;
-            this.brnVariableManager.ThemeName = "Telerik";
-            this.brnVariableManager.Click += new System.EventHandler(this.brnVariableManager_Click);
-            // 
             // splitPanel2
             // 
             this.splitPanel2.Controls.Add(this.pnlMaster);
@@ -554,17 +541,39 @@
             this.pnlMaster.Size = new System.Drawing.Size(873, 445);
             this.pnlMaster.TabIndex = 19;
             // 
-            // txtDownload
+            // replaceServerToolStripMenuItem
             // 
-            this.txtDownload.BackColor = System.Drawing.SystemColors.Control;
-            this.txtDownload.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold);
-            this.txtDownload.Location = new System.Drawing.Point(283, 4);
-            this.txtDownload.Name = "txtDownload";
-            this.txtDownload.Size = new System.Drawing.Size(80, 24);
-            this.txtDownload.TabIndex = 43;
-            this.txtDownload.Text = "Download";
-            this.txtDownload.ThemeName = "Telerik";
-            this.txtDownload.Click += new System.EventHandler(this.txtDownload_Click);
+            this.replaceServerToolStripMenuItem.Name = "replaceServerToolStripMenuItem";
+            this.replaceServerToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
+            this.replaceServerToolStripMenuItem.Text = "Replace Server";
+            this.replaceServerToolStripMenuItem.Click += new System.EventHandler(this.replaceServerToolStripMenuItem_Click);
+            // 
+            // btnScriptSave
+            // 
+            this.btnScriptSave.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.btnScriptSave.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold);
+            this.btnScriptSave.Image = ((System.Drawing.Image)(resources.GetObject("btnScriptSave.Image")));
+            this.btnScriptSave.Location = new System.Drawing.Point(34, 4);
+            this.btnScriptSave.Name = "btnScriptSave";
+            this.btnScriptSave.Size = new System.Drawing.Size(68, 24);
+            this.btnScriptSave.TabIndex = 42;
+            this.btnScriptSave.Text = "&Save";
+            this.btnScriptSave.ThemeName = "Telerik";
+            this.btnScriptSave.Click += new System.EventHandler(this.btnScriptSave_Click);
+            // 
+            // brnVariableManager
+            // 
+            this.brnVariableManager.BackColor = System.Drawing.Color.Transparent;
+            this.brnVariableManager.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.brnVariableManager.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            this.brnVariableManager.ImageIndex = 14;
+            this.brnVariableManager.ImageList = this.imglDesign;
+            this.brnVariableManager.Location = new System.Drawing.Point(5, 4);
+            this.brnVariableManager.Name = "brnVariableManager";
+            this.brnVariableManager.Size = new System.Drawing.Size(28, 24);
+            this.brnVariableManager.TabIndex = 41;
+            this.brnVariableManager.ThemeName = "Telerik";
+            this.brnVariableManager.Click += new System.EventHandler(this.brnVariableManager_Click);
             // 
             // ucDesign
             // 
@@ -577,16 +586,16 @@
             this.radSplitContainer1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitPanel1)).EndInit();
             this.splitPanel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.txtDownload)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tvRequest)).EndInit();
             this.cntmUVScript.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.btnTCPIPRecord)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnRecord)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnScriptSave)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.brnVariableManager)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitPanel2)).EndInit();
             this.splitPanel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pnlMaster)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtDownload)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnScriptSave)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.brnVariableManager)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -640,6 +649,7 @@
         private System.Windows.Forms.ToolStripMenuItem tsiLogChild;
         private Telerik.WinControls.UI.RadPanel pnlMaster;
         private Telerik.WinControls.UI.RadButton txtDownload;
+        private System.Windows.Forms.ToolStripMenuItem replaceServerToolStripMenuItem;
 
     }
 }

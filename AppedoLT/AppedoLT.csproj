@@ -60,7 +60,7 @@
     <OutputPath>bin\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <DebugType>full</DebugType>
-    <PlatformTarget>x64</PlatformTarget>
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <ErrorReport>prompt</ErrorReport>
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
@@ -229,6 +229,12 @@
     </Compile>
     <Compile Include="frmMessageBox.Designer.cs">
       <DependentUpon>frmMessageBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmReplaceServer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmReplaceServer.Designer.cs">
+      <DependentUpon>frmReplaceServer.cs</DependentUpon>
     </Compile>
     <Compile Include="frmScriptNameList.cs">
       <SubType>Form</SubType>
@@ -447,6 +453,9 @@
     <EmbeddedResource Include="frmMessageBox.resx">
       <DependentUpon>frmMessageBox.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmReplaceServer.resx">
+      <DependentUpon>frmReplaceServer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmScriptNameList.resx">
       <DependentUpon>frmScriptNameList.cs</DependentUpon>
@@ -832,13 +841,7 @@
     <None Include="Class\Cert\Softsmith.pfx" />
     <None Include="Resources\floppy_disk_16.gif" />
     <None Include="ErrorCode.txt" />
-    <Content Include="Appedo.ico">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="Appedo.pdb">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Appedo.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="commands.txt">

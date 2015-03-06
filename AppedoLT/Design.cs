@@ -20,6 +20,7 @@ namespace AppedoLT
 {
     public partial class Design : Telerik.WinControls.UI.RadForm
     {
+        public static Telerik.WinControls.UI.RadMenuItem mnuiLogin;
         private List<string> _loadGeneratorips = new List<string>();
         private Dictionary<string, string> loadGenUserDetail = new Dictionary<string, string>();
         private Stopwatch runTime = new Stopwatch();
@@ -36,6 +37,12 @@ namespace AppedoLT
             try
             {
                 InitializeComponent();
+                mnuiLogin = new Telerik.WinControls.UI.RadMenuItem();
+                radMenu1.Items.Add(mnuiLogin);
+                mnuiLogin.Name = "mnuiLogin";
+                mnuiLogin.Text = "&Login";
+                mnuiLogin.TextChanged += new System.EventHandler(this.mnuiLogin_TextChanged);
+                mnuiLogin.Click += new System.EventHandler(this.mnuiLogin_Click);
 
                 XmlNode vuscripts = RepositoryXml.GetInstance().doc.SelectSingleNode("//vuscripts");
                 if (vuscripts != null && vuscripts.ChildNodes.Count > 0)
@@ -272,7 +279,7 @@ namespace AppedoLT
                     frm.vuscriptXml.Save();
                     RadTreeNode vuScriptNode = new RadTreeNode();
                     vuScriptNode.Text = vuscriptNode.Attributes["name"].Value;
-                    vuScriptNode.Tag = vuscriptNode;
+                    vuScriptNode.Tag = frm.vuscriptXml;
                     vuScriptNode.ImageKey = "scripts.gif";
                     foreach (XmlNode container in vuscriptNode.ChildNodes)
                     {
@@ -297,17 +304,18 @@ namespace AppedoLT
             {
                 frmVUScriptName frm = new frmVUScriptName("tcp");
                 frm.ShowDialog();
-                if (frm.node != null)
+                if (frm.vuscriptXml != null)
                 {
-                    frmTCPIPRecord frmTcpRecord = new frmTCPIPRecord((Design)this.Parent.Parent.Parent, frm.node);
+                    XmlNode vuscriptNode = frm.vuscriptXml.doc.SelectSingleNode("//vuscript");
+                    frmTCPIPRecord frmTcpRecord = new frmTCPIPRecord((Design)this.Parent.Parent.Parent, vuscriptNode);
                     this.Parent.Parent.Parent.Visible = false;
                     frmTcpRecord.ShowDialog();
 
                     RadTreeNode vuScriptNode = new RadTreeNode();
-                    vuScriptNode.Text = frm.node.Attributes["name"].Value;
-                    vuScriptNode.Tag = frm.node;
+                    vuScriptNode.Text = vuscriptNode.Attributes["name"].Value;
+                    vuScriptNode.Tag = frm.vuscriptXml;
                     vuScriptNode.ImageKey = "scripts.gif";
-                    foreach (XmlNode container in frm.node.ChildNodes)
+                    foreach (XmlNode container in vuscriptNode.ChildNodes)
                     {
                         RadTreeNode containerNode = new RadTreeNode();
                         containerNode.Text = container.Attributes["name"].Value;

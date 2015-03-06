@@ -114,7 +114,7 @@ namespace AppedoLT.BusinessLogic
         Dictionary<string, string> receivedCookies = new Dictionary<string, string>();
         public VUserStatus VUserStatus;
 
-        public VUser(int maxUser, string reportName, string type, int userid, int iteration, XmlNode vuScript, bool browserCache, IPAddress ipaddress,Queue<Log> scriptWiseLog)
+        public VUser(int maxUser, string reportName, string type, int userid, int iteration, XmlNode vuScript, bool browserCache, IPAddress ipaddress, Queue<Log> scriptWiseLog)
         {
             _doc = vuScript.OwnerDocument;
             _scriptWiseLog = scriptWiseLog;
@@ -573,14 +573,6 @@ namespace AppedoLT.BusinessLogic
                         {
                             LockResponseTime(req);
                         }
-
-                        //GetResponse(_containerId.Peek()[0], _containerId.Peek()[1], "1", request, _userid, _iterationid, ref responseResult);
-                        //response = responseResult.TcpIPResponse;
-                        //if (IsValidation == true)
-                        //{
-                        //    responseResult.WebRequestResponseId = (ValidationResult.Count + 1);
-                        //    ValidationResult.AddToList(responseResult);
-                        //}
                     }
                     #endregion
                 }
@@ -635,7 +627,6 @@ namespace AppedoLT.BusinessLogic
                                 {
                                     LockResponseTime(req);
                                 }
-
 
                                 #region SecondaryReqEnable
                                 if (Convert.ToBoolean(_vuScriptXml.Attributes["dynamicreqenable"].Value) == true && !(_browserCache == true && _index > 1))
@@ -932,10 +923,9 @@ namespace AppedoLT.BusinessLogic
         private string GetVariableValue(string variablename)
         {
             string result = string.Empty;
-
             if (_exVariablesValues.ContainsKey(variablename) == true)
             {
-                result = System.Web.HttpUtility.HtmlEncode(_exVariablesValues[variablename].ToString());
+                result =_exVariablesValues[variablename].ToString();
             }
             else
             {
@@ -945,7 +935,7 @@ namespace AppedoLT.BusinessLogic
                     result = VariableManager.dataCenter.GetVariableValue(_userid, _iterationid, variablename, _maxUser).ToString();
                 }
             }
-            return result;
+            return System.Web.HttpUtility.HtmlEncode(result);
         }
 
         private object GetValue(object variableName)
@@ -995,11 +985,12 @@ namespace AppedoLT.BusinessLogic
                     catch
                     {
                         parm.Value = string.Empty;
+                        LockException(expression.Attributes["id"].Value, "Unable to evaluate " + parm.Key, "700");
                     }
                     finally
                     {
                         attribute.Value = attribute.Value.Remove(match.Index, match.Length);
-                        attribute.Value = attribute.Value.Insert(match.Index, HttpUtility.HtmlEncode(parm.Value));
+                        attribute.Value = attribute.Value.Insert(match.Index, parm.Value);
                         Varialbles.Add(parm);
                     }
                     match = regex.Match(attribute.Value);
@@ -1097,6 +1088,7 @@ namespace AppedoLT.BusinessLogic
             return Varialbles;
             #endregion
         }
+
         #endregion
 
         #region TCP Function
@@ -1144,7 +1136,7 @@ namespace AppedoLT.BusinessLogic
                         {
                             param.Attributes["value"].Value = EvalutionResult.value;
                         }
-                        else
+
                         {
                             LockException(tcpRequest.Attributes["id"].Value, EvalutionResult.value, "600");
                         }
@@ -1500,8 +1492,10 @@ namespace AppedoLT.BusinessLogic
                     }
                 }
             }
+
             evalutionResult.isSuccess = true;
             evalutionResult.value = expression;
+
             return evalutionResult;
 
             #endregion
@@ -1623,22 +1617,23 @@ namespace AppedoLT.BusinessLogic
             {
                 Log logObj = new Log();
                 logObj.logid = log.Attributes["id"].Value;
-                if (log.Attributes["message"].Value.Contains("$$"))
-                {
-                    EvalutionResult Result = EvaluteExp(log.Attributes["message"].Value);
-                    if (Result.isSuccess == true)
-                    {
-                        logObj.message = Result.value;
-                    }
-                    else
-                    {
-                        logObj.message = log.Attributes["message"].Value;
-                    }
-                }
-                else
-                {
-                    logObj.message = log.Attributes["message"].Value;
-                }
+                EvaluteExp(log);
+                //if (log.Attributes["message"].Value.Contains("$$"))
+                //{
+                //    EvalutionResult Result = EvaluteExp(log.Attributes["message"].Value);
+                //    if (Result.isSuccess == true)
+                //    {
+                //        logObj.message = Result.value;
+                //    }
+                //    else
+                //    {
+                //        logObj.message = log.Attributes["message"].Value;
+                //    }
+                //}
+                //else
+                //{
+                //    logObj.message = log.Attributes["message"].Value;
+                //}
                 logObj.logname = log.Attributes["name"].Value;
                 logObj.reportname = _reportName;
                 logObj.scenarioname = Status.ScenarioName;
@@ -1647,6 +1642,7 @@ namespace AppedoLT.BusinessLogic
                 logObj.iterationid = this._iterationid.ToString();
                 logObj.userid = this._userid.ToString();
                 logObj.time = DateTime.Now;
+                logObj.message =HttpUtility.HtmlDecode(log.Attributes["message"].Value);
                 if (IsValidation == false)
                 {
                     lock (DataServer.GetInstance().logs)
@@ -1703,6 +1699,7 @@ namespace AppedoLT.BusinessLogic
     {
         public bool isSuccess = true;
         public string value = string.Empty;
+        public string errorMsg = string.Empty;
     }
     public class VUserStatus
     {

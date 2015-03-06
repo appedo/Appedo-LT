@@ -242,7 +242,7 @@ namespace AppedoLT
         }
         private void btnReqParam_Click(object sender, EventArgs e)
         {
-            RequestParameter frm = new RequestParameter("Request", txtRequest.Text );
+            RequestParameter frm = new RequestParameter("Request", txtRequest.Text,(XmlNode)this.Tag );
             if (frm.ShowDialog() == DialogResult.OK)
             {
                 txtRequest.Text = frm._resultValue;

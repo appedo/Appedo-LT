@@ -23,6 +23,7 @@ namespace AppedoLT
         int intCountRequest;
         Thread backgroundThread1;
         Queue<Log> scriptWiseLog = new Queue<Log>();
+        bool firstRun;
 
         public frmTCPIPValidation(XmlNode vuScript, RadTreeNode script, int _intCountRequest)
         {
@@ -50,6 +51,7 @@ namespace AppedoLT
                 _vUSer.ValidationResult = ValidationResult.GetInstance(this.lsvResult);
                 _vUSer.ValidationResult.Clear();
                 intCountRequest = _intCountRequest;
+                firstRun = true;
             }
             catch (Exception ex)
             {
@@ -60,21 +62,25 @@ namespace AppedoLT
         {
             try
             {
-                if (_vUSer.WorkCompleted != true)
+                if (firstRun == true || _vUSer.WorkCompleted == true)
                 {
+                    if (firstRun == true) firstRun = false;
                     VariableManager.dataCenter = new VariableManager();
                     _vUSer.ValidationResult.Clear();
                     lblVResult.Text = string.Empty;
                     Clear();
                     lblVResult.Visible = true;
                     _vUSer.Start();
+                    timer.Start();
                     stopWatch.Reset();
                     stopWatch.Start();
                     lblAvgResponse.Text = string.Empty;
                     lblStatus.Text = "Started";
-                    timer.Start();
+                    _vUSer.WorkCompleted = false;
+                    btnValidate.Enabled = false;
+
                 }
-                else if (_vUSer.WorkCompleted == true)
+                else if (_vUSer.WorkCompleted == false)
                 {
                     /*thread.Resume();
                     stopWatch.Start();
@@ -135,7 +141,7 @@ namespace AppedoLT
         {
             try
             {
-                if (_vUSer.WorkCompleted == true)
+                if (_vUSer.WorkCompleted == false)
                 {
                     int inGridVal = Int32.Parse(lsvResult.Items.Count.ToString(), System.Globalization.NumberStyles.AllowHexSpecifier);
                     int inintCountRequest = Int32.Parse(intCountRequest.ToString(), System.Globalization.NumberStyles.AllowHexSpecifier);
@@ -167,7 +173,7 @@ namespace AppedoLT
                     Thread.Sleep(100);
                     timer.Stop();
                     lblStatus.Text = "Completed";
-
+                    btnValidate.Enabled = true;
                     bool isError = false;
                     errorRequestid.Clear();
                     foreach (ListViewItem item in lsvResult.Items)
@@ -373,7 +379,7 @@ namespace AppedoLT
                     }
                     else
                     {
-                        lblAddress.Text = requestRespose.RequestResult.RequestNode.Attributes["requestcontent"].Value;
+                        lblAddress.Text = requestRespose.RequestResult.RequestName;
                         txtRequest.Text = requestRespose.RequestResult.RequestNode.Attributes["requestcontent"].Value;
                         lblStartTime.Text = requestRespose.RequestResult.StartTime.ToString("dd/MMM/yyyy hh:mm:ss");
                         lblEndTime.Text = requestRespose.RequestResult.EndTime.ToString("dd/MMM/yyyy hh:mm:ss");

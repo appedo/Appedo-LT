@@ -226,10 +226,9 @@ namespace AppedoLT
         {
             try
             {
-                btnExport.Visible = true;
+               
                 if (trvReportType.SelectedNode.Text == "1.Summary Report")
                 {
-                    btnExport.Visible = false;
                     pnlPageSummaryReport.Visible = false;
                     pnlContainerSummaryReport.Visible = false;
                     pnlRequestSummaryReport.Visible = false;
@@ -438,6 +437,46 @@ namespace AppedoLT
                 if (ddlReportNameReport.Text != "-Select-")
                 {
                     Process.Start(Constants.GetInstance().ExecutingAssemblyLocation + "\\Data\\" + ddlReportNameReport.Text + "\\Report\\summary.xls");
+                }
+                else
+                {
+                    ClearData();
+                    MessageBox.Show("Please Select Report Name");
+                }
+            }
+            catch
+            {
+
+            }
+        }
+
+        private void btnLogReport_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (ddlReportNameReport.Text != "-Select-")
+                {
+                    Process.Start(Constants.GetInstance().ExecutingAssemblyLocation + "\\Data\\" + ddlReportNameReport.Text + "\\Report\\log.html");
+                }
+                else
+                {
+                    ClearData();
+                    MessageBox.Show("Please Select Report Name");
+                }
+            }
+            catch
+            {
+
+            }
+        }
+
+        private void btnErrorReport_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (ddlReportNameReport.Text != "-Select-")
+                {
+                    Process.Start(Constants.GetInstance().ExecutingAssemblyLocation + "\\Data\\" + ddlReportNameReport.Text + "\\Report\\error.html");
                 }
                 else
                 {
