@@ -1,17 +1,34 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Runtime.Serialization;
+using System.Text;
 
 namespace AppedoLT.Core
 {
     [DataContract]
+    public class LoadGenRunningStatusData
+    {
+
+        private List<Log> _log = new List<Log>();
+        [DataMember(Name = "createduser")]
+        public int CreatedUser { get; set; }
+        [DataMember(Name = "completeduser")]
+        public int CompletedUser { get; set; }
+        [DataMember(Name = "iscompleted")]
+        public int IsCompleted { get; set; }
+        [DataMember(Name = "log")]
+        public List<Log> Log { get { return _log; } set { _log = value; } }
+
+    }
+
+    [DataContract]
     public class Log
     {
-        [DataMember(Name = "_message")]
-        private string _message = string.Empty;
+        public string reportname = string.Empty;
+
         [DataMember(Name = "loadGen")]
         public string loadGen = Constants.GetInstance().LoadGen;
-        [DataMember(Name = "reportname")]
-        public string reportname = string.Empty;
         [DataMember(Name = "scenarioname")]
         public string scenarioname = string.Empty;
         [DataMember(Name = "scriptid")]
@@ -28,10 +45,9 @@ namespace AppedoLT.Core
         public string iterationid = string.Empty;
         [DataMember(Name = "message")]
         public string message = string.Empty;
-        // public string message { set { _message = "\"" ++ "\""; } get { return  _message} }
         [DataMember(Name = "time")]
         public DateTime time = new DateTime();
-      
+
         public override string ToString()
         {
             return string.Format("{0},{1},{2},{3},{4},{5},{6},{7},{8},\"{9}\",{10}", this.loadGen, this.reportname, this.scenarioname, this.scriptid, this.scriptname,

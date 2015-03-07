@@ -121,11 +121,22 @@ namespace AppedoLTController
                                      runid = data.Header["runid"];
                                      if (Controllers.ContainsKey(runid) == true)
                                      {
-                                         UIclient.Send(new TrasportData("status", string.Format("createduser: {0}" + System.Environment.NewLine + "completeduser: {1}" + System.Environment.NewLine + "iscompleted: {2}" + System.Environment.NewLine, Controllers[runid].CreatedUser.ToString(), Controllers[runid].CompletedUser.ToString(), Controllers[runid].Status == ControllerStatus.ReportGenerateCompleted ? 1 : 0), null));
+                                         UIclient.Send(new TrasportData("status", Convert.ToString(constants.Serialise(Controllers[runid].RunningStatusData)), null));
+                                         TrasportData ack = UIclient.Receive();
+                                         if (ack.Operation == "ok")
+                                         {
+                                             Controllers[runid].RunningStatusData.Log.Clear();
+                                         }
+
+                                        // UIclient.Send(new TrasportData("status", string.Format("createduser: {0}" + System.Environment.NewLine + "completeduser: {1}" + System.Environment.NewLine + "iscompleted: {2}" + System.Environment.NewLine, Controllers[runid].CreatedUser.ToString(), Controllers[runid].CompletedUser.ToString(), Controllers[runid].Status == ControllerStatus.ReportGenerateCompleted ? 1 : 0), null));
                                      }
                                      else
                                      {
-                                         UIclient.Send(new TrasportData("status", string.Format("createduser: {0}" + System.Environment.NewLine + "completeduser: {1}" + System.Environment.NewLine + "iscompleted: {2}" + System.Environment.NewLine, 0.ToString(), 0.ToString(), 0.ToString()), null));
+                                         UIclient.Send(new TrasportData("status", Convert.ToString(constants.Serialise(new LoadGenRunningStatusData())), null));
+                                         TrasportData ack = UIclient.Receive();
+                                        
+
+                                        // UIclient.Send(new TrasportData("status", string.Format("createduser: {0}" + System.Environment.NewLine + "completeduser: {1}" + System.Environment.NewLine + "iscompleted: {2}" + System.Environment.NewLine, 0.ToString(), 0.ToString(), 0.ToString()), null));
                                      }
                                      break;
 
@@ -636,7 +647,7 @@ namespace AppedoLTController
                 foreach (string users in Controllers.Keys)
                 {
                     ctrl = Controllers[users];
-                    statusList.Add(string.Format("{0},{1},{2},{3}", ctrl.RunId, ctrl.CreatedUser, ctrl.CompletedUser, ctrl.Status == ControllerStatus.ReportGenerateCompleted ? 1 : 0));
+                    statusList.Add(string.Format("{0},{1},{2},{3}", ctrl.RunId, ctrl.RunningStatusData.CreatedUser, ctrl.RunningStatusData.CompletedUser, ctrl.RunningStatusData.IsCompleted));
                 }
             }
             catch (Exception ex)

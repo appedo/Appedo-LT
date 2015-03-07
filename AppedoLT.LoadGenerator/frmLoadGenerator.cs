@@ -137,25 +137,28 @@ namespace AppedoLTLoadGenerator
 
                                     case "status":
                                         {
-                                            string log = run.GetLog();
-                                            if (log != string.Empty)
-                                            {
-                                                logMsg.Append(log);
-                                            }
-                                            controller.Send(new TrasportData("status",string.Format("createduser: {0}" + System.Environment.NewLine
-                                                                                                  + "completeduser: {1}" + System.Environment.NewLine
-                                                                                                  + "iscompleted: {2}" + System.Environment.NewLine
-                                                                                                  + "log:{{{3}}}" + System.Environment.NewLine,
-                                                                                                    run.TotalUserCreated.ToString(), 
-                                                                                                    run.TotalUserComplted.ToString(), 
-                                                                                                    run.IsRunCompleted, 
-                                                                                                    logMsg.ToString()), null));
+                                            //string log = run.GetLog();
+                                            //if (log != string.Empty)
+                                            //{
+                                            //    logMsg.Append(log);
+                                            //}
+                                            //controller.Send(new TrasportData("status",string.Format("createduser: {0}" + System.Environment.NewLine
+                                            //                                                      + "completeduser: {1}" + System.Environment.NewLine
+                                            //                                                      + "iscompleted: {2}" + System.Environment.NewLine
+                                            //                                                      + "log:{{{3}}}" + System.Environment.NewLine,
+                                            //                                                        run.RunningStatusData.CreatedUser.ToString(), 
+                                            //                                                        run.RunningStatusData.CompletedUser.ToString(),
+                                            //                                                        run.RunningStatusData.IsCompleted, 
+                                            //                                                        logMsg.ToString()), null));
+
+                                            controller.Send(new TrasportData("status",ASCIIEncoding.Default.GetString(constants.Serialise(run.RunningStatusData)), null));
 
                                             TrasportData ack = controller.Receive();
                                             if (ack.Operation == "ok")
                                             {
-                                                logMsg = new StringBuilder();
+                                                run.RunningStatusData.Log.Clear();
                                             }
+
                                         }
                                         break;
 
@@ -317,20 +320,18 @@ namespace AppedoLTLoadGenerator
                     timer.Start();
                     while (true)
                     {
-
                         Thread.Sleep(1000);
                         if (run != null)
                         {
-                            if (run.TotalUserCreated != 0 && run.TotalUserCreated == run.TotalUserComplted)
+                            if (run.DisplayStatusData.CreatedUser != 0 && run.DisplayStatusData.CreatedUser == run.DisplayStatusData.CompletedUser && run.DisplayStatusData.IsCompleted == 1)
                             {
 
-                                ni.Text = "Run completed" + System.Environment.NewLine + "Created: " + run.TotalUserCreated.ToString() + Environment.NewLine + "Completed: " + run.TotalUserComplted.ToString() + Environment.NewLine + timer.Elapsed.ToString(@"dd\.hh\:mm\:ss");
+                                ni.Text = "Run completed" + System.Environment.NewLine + "Created: " + run.DisplayStatusData.CreatedUser.ToString() + Environment.NewLine + "Completed: " + run.DisplayStatusData.CompletedUser.ToString() + Environment.NewLine + timer.Elapsed.ToString(@"dd\.hh\:mm\:ss");
                                 break;
                             }
                             else
                             {
-                                ni.Text = "Running.." + System.Environment.NewLine + "Created: " + run.TotalUserCreated.ToString() + Environment.NewLine + "Completed: " + run.TotalUserComplted.ToString() + Environment.NewLine + timer.Elapsed.ToString(@"dd\.hh\:mm\:ss");
-
+                                ni.Text = "Running.." + System.Environment.NewLine + "Created: " + run.DisplayStatusData.CreatedUser.ToString() + Environment.NewLine + "Completed: " + run.DisplayStatusData.CompletedUser.ToString() + Environment.NewLine + timer.Elapsed.ToString(@"dd\.hh\:mm\:ss");
                             }
                         }
                     }

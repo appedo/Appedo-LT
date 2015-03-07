@@ -14,10 +14,52 @@ namespace AppedoLTLoadGenerator
 {
     public class RunScenario
     {
+       
+
         List<ScriptExecutor> _scriptExecutorList = new List<ScriptExecutor>();
         string _scenarioXml;
-        public int TotalUserCreated { get; set; }
-        public int TotalUserComplted { get; set; }
+
+        public LoadGenRunningStatusData _runningStatusData = new LoadGenRunningStatusData();
+        public LoadGenRunningStatusData RunningStatusData
+        {
+            get
+            {
+                if ((_scriptExecutorList.Count == 0
+                        || _scriptExecutorList.FindAll(f => f.IsRunCompleted).Count == _scriptExecutorList.Count)
+                      && executionReport.ExecutionStatus == Status.Completed)
+                {
+                      _runningStatusData.IsCompleted=1;
+                }
+                else
+                {
+                      _runningStatusData.IsCompleted=0;
+                }
+                GetLog(_runningStatusData.Log );
+                return _runningStatusData;
+            }
+        }
+        public LoadGenRunningStatusData DisplayStatusData
+        {
+            get
+            {
+                if ((_scriptExecutorList.Count == 0
+                        || _scriptExecutorList.FindAll(f => f.IsRunCompleted).Count == _scriptExecutorList.Count)
+                      && executionReport.ExecutionStatus == Status.Completed)
+                {
+                    _runningStatusData.IsCompleted = 1;
+                }
+                else
+                {
+                    _runningStatusData.IsCompleted = 0;
+                }
+                return _runningStatusData;
+            }
+        }
+
+       
+       //public Ru
+        //public int TotalUserCreated { get; set; }
+        //public int TotalUserComplted { get; set; }
 
         private System.Timers.Timer _statusUpdateTimer;
         private Constants _constants = Constants.GetInstance();
@@ -27,22 +69,6 @@ namespace AppedoLTLoadGenerator
         private DataServer _dataServer = DataServer.GetInstance();
         private string _distribution = string.Empty;
 
-        public int IsRunCompleted
-        {
-            get
-            {
-                if ((_scriptExecutorList.Count == 0 
-                      || _scriptExecutorList.FindAll(f => f.IsRunCompleted).Count == _scriptExecutorList.Count) 
-                    && executionReport.ExecutionStatus == Status.Completed)
-                {
-                    return 1;
-                }
-                else
-                {
-                    return 0;
-                }
-            }
-        }
 
         public RunScenario(string scenarioXml, string distribution)
         {
@@ -65,9 +91,8 @@ namespace AppedoLTLoadGenerator
                     _tempCreatedUser += scripts.StatusSummary.TotalVUserCreated;
                     _tempCompletedUser += scripts.StatusSummary.TotalVUserCompleted;
                 }
-
-                TotalUserCreated = _tempCreatedUser;
-                TotalUserComplted = _tempCompletedUser;
+                _runningStatusData.CreatedUser = _tempCreatedUser;
+                _runningStatusData.CompletedUser = _tempCompletedUser;
 
                 if (_scriptExecutorList.FindAll(f => f.IsRunCompleted).Count == _scriptExecutorList.Count && _tempCreatedUser != 0 && _tempCreatedUser == _tempCompletedUser)
                 {
@@ -144,7 +169,7 @@ namespace AppedoLTLoadGenerator
                 string scriptid = script.Attributes["id"].Value;
                 XmlNode setting = script.SelectNodes("//script[@id='" + scriptid + "']//setting")[0];
                 XmlNode vuscript = script.SelectNodes("//script[@id='" + scriptid + "']//vuscript")[0];
-                ScriptExecutor scriptRunnerSce = new ScriptExecutor(setting, vuscript, executionReport.ReportName,_distribution);
+                ScriptExecutor scriptRunnerSce = new ScriptExecutor(setting, vuscript, executionReport.ReportName, _distribution);
                 if (scriptRunnerSce.StartUserId > 0)
                 {
                     _scriptExecutorList.Add(scriptRunnerSce);
@@ -191,7 +216,7 @@ namespace AppedoLTLoadGenerator
             {
                 foreach (ScriptExecutor scripts in _scriptExecutorList)
                 {
-                    status.AppendLine(string.Format("{0},{1},{2},{3},{4},{5},{6},{7},{8},{9}", scripts.Scriptid, scripts.StatusSummary.TotalVUserCreated, scripts.StatusSummary.TotalVUserCompleted, scripts.StatusSummary.TotalTwoHundredStatusCodeCount, scripts.StatusSummary.TotalThreeHundredStatusCodeCount, scripts.StatusSummary.TotalFourHundredStatusCodeCount, scripts.StatusSummary.TotalFiveHundredStatusCodeCount, Convert.ToInt16(scripts.IsRunCompleted), scripts.StatusSummary.TotalErrorCount, scripts.Scriptname));
+                    status.AppendLine(string.Format("{0},{1},{2},{3},{4},{5},{6},{7},{8},{9}", scripts.StatusSummary.ScriptId, scripts.StatusSummary.TotalVUserCreated, scripts.StatusSummary.TotalVUserCompleted, scripts.StatusSummary.TotalTwoHundredStatusCodeCount, scripts.StatusSummary.TotalThreeHundredStatusCodeCount, scripts.StatusSummary.TotalFourHundredStatusCodeCount, scripts.StatusSummary.TotalFiveHundredStatusCodeCount, Convert.ToInt16(scripts.IsRunCompleted), scripts.StatusSummary.TotalErrorCount, scripts.StatusSummary.ScriptName));
                 }
             }
             catch (Exception ex)
@@ -200,15 +225,14 @@ namespace AppedoLTLoadGenerator
             }
             return status.ToString();
         }
-        public string GetLog()
+        private void GetLog(List<Log> logList)
         {
-            List<Log> logList = new List<Log>();
             try
             {
                 foreach (ScriptExecutor scripts in _scriptExecutorList)
                 {
-                    int count=scripts.ScriptWiseLog.Count;
-                    for(;count>0;count--)
+                    int count = scripts.ScriptWiseLog.Count;
+                    for (; count > 0; count--)
                     {
                         logList.Add(scripts.ScriptWiseLog.Dequeue());
                     }
@@ -218,8 +242,6 @@ namespace AppedoLTLoadGenerator
             {
                 ExceptionHandler.WritetoEventLog(ex.StackTrace + ex.Message);
             }
-
-            return Convert.ToString(Constants.GetInstance().Serialise(logList)) ;
         }
     }
 }

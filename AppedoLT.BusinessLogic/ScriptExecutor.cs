@@ -31,8 +31,8 @@ namespace AppedoLT.BusinessLogic
         public VUScriptStatus StatusSummary = new VUScriptStatus();
         public Queue<Log> ScriptWiseLog = new Queue<Log>();
         public bool IsRunCompleted = false;
-        public string Scriptid { get; set; }
-        public string Scriptname { get; set; }
+        private string Scriptid { get; set; }
+        private string Scriptname { get; set; }
         public System.Diagnostics.Stopwatch elapsedTime = new System.Diagnostics.Stopwatch();
         public int StartUserId { get { return _startUserid; } private set { } }
         public List<VUser> UserList
@@ -50,8 +50,8 @@ namespace AppedoLT.BusinessLogic
         {
             try
             {
-                Scriptid = vuScript.Attributes["id"].Value;
-                Scriptname = vuScript.Attributes["name"].Value;
+                StatusSummary .ScriptId=Scriptid = vuScript.Attributes["id"].Value;
+                StatusSummary.ScriptName=Scriptname = vuScript.Attributes["name"].Value;
                 VUScriptSetting setting = new VUScriptSetting();
                 setting.Type = settingNode.Attributes["type"].Value;
                 setting.BrowserCache = Convert.ToBoolean(settingNode.Attributes["browsercache"].Value);
@@ -464,15 +464,5 @@ namespace AppedoLT.BusinessLogic
         }
        
     }
-
-    public class VUScriptStatus
-    {
-        public int TotalTwoHundredStatusCodeCount { get; set; }
-        public int TotalThreeHundredStatusCodeCount { get; set; }
-        public int TotalFourHundredStatusCodeCount { get; set; }
-        public int TotalFiveHundredStatusCodeCount { get; set; }
-        public int TotalErrorCount { get; set; }
-        public int TotalVUserCreated { get; set; }
-        public int TotalVUserCompleted { get; set; }
-    }
+   
 }
