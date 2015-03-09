@@ -970,6 +970,11 @@ namespace AppedoLT.Core
             stream1.Seek(0, SeekOrigin.Begin);
             return stream1.ToArray();
         }
+        public  DateTime ConvertFromUnixTimestamp(double timestamp)
+        {
+            DateTime origin = new DateTime(1970, 1, 1, 0, 0, 0, 0);
+            return origin.AddMilliseconds(timestamp);
+        }
     }
 
     public class Tuple<T1, T2>

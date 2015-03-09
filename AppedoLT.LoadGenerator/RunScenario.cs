@@ -15,11 +15,11 @@ namespace AppedoLTLoadGenerator
     public class RunScenario
     {
        
-
         List<ScriptExecutor> _scriptExecutorList = new List<ScriptExecutor>();
         string _scenarioXml;
 
         public LoadGenRunningStatusData _runningStatusData = new LoadGenRunningStatusData();
+
         public LoadGenRunningStatusData RunningStatusData
         {
             get
@@ -35,6 +35,7 @@ namespace AppedoLTLoadGenerator
                       _runningStatusData.IsCompleted=0;
                 }
                 GetLog(_runningStatusData.Log );
+                GetError(_runningStatusData.Error);
                 return _runningStatusData;
             }
         }
@@ -235,6 +236,24 @@ namespace AppedoLTLoadGenerator
                     for (; count > 0; count--)
                     {
                         logList.Add(scripts.ScriptWiseLog.Dequeue());
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionHandler.WritetoEventLog(ex.StackTrace + ex.Message);
+            }
+        }
+        private void GetError(List<RequestException> errorList)
+        {
+            try
+            {
+                foreach (ScriptExecutor scripts in _scriptExecutorList)
+                {
+                    int count = scripts.ScriptWiseError.Count;
+                    for (; count > 0; count--)
+                    {
+                        errorList.Add(scripts.ScriptWiseError.Dequeue());
                     }
                 }
             }

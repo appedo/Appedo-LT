@@ -65,6 +65,7 @@ namespace AppedoLT.BusinessLogic
         private Thread _userThread;
         private ExecutionReport Status = ExecutionReport.GetInstance();
         private Queue<Log> _scriptWiseLog = new Queue<Log>();
+        private Queue<RequestException> _scriptWiseError = new Queue<RequestException>();
 
         private Dictionary<string, object> _exVariablesValues = new Dictionary<string, object>();
         private Dictionary<string, TransactionRunTimeDetail> _transactions = new Dictionary<string, TransactionRunTimeDetail>();
@@ -114,10 +115,11 @@ namespace AppedoLT.BusinessLogic
         Dictionary<string, string> receivedCookies = new Dictionary<string, string>();
         public VUserStatus VUserStatus;
 
-        public VUser(int maxUser, string reportName, string type, int userid, int iteration, XmlNode vuScript, bool browserCache, IPAddress ipaddress, Queue<Log> scriptWiseLog)
+        public VUser(int maxUser, string reportName, string type, int userid, int iteration, XmlNode vuScript, bool browserCache, IPAddress ipaddress, Queue<Log> scriptWiseLog, Queue<RequestException> scriptWiseError)
         {
             _doc = vuScript.OwnerDocument;
             _scriptWiseLog = scriptWiseLog;
+            _scriptWiseError = scriptWiseError;
             _maxUser = maxUser;
             _browserCache = browserCache;
             _type = type;
@@ -974,6 +976,7 @@ namespace AppedoLT.BusinessLogic
             foreach (XmlAttribute attribute in expression.Attributes)
             {
                 match = regex.Match(attribute.Value);
+
                 while (match.Success == true)
                 {
                     AppedoLT.Core.Tuple<string, string> parm = new AppedoLT.Core.Tuple<string, string>();
@@ -1606,6 +1609,7 @@ namespace AppedoLT.BusinessLogic
             exception.message = message;
             exception.errorcode = errorCode;
             exception.request = url;
+            _scriptWiseError.Enqueue(exception);
             lock (errors)
             {
                 errors.AddExeception(exception);
@@ -1644,12 +1648,12 @@ namespace AppedoLT.BusinessLogic
                 logObj.userid = this._userid.ToString();
                 logObj.time = DateTime.Now;
                 logObj.message =HttpUtility.HtmlDecode(log.Attributes["message"].Value);
+                _scriptWiseLog.Enqueue(logObj);
                 if (IsValidation == false)
                 {
                     lock (DataServer.GetInstance().logs)
                     {
                         DataServer.GetInstance().logs.Enqueue(logObj);
-                        _scriptWiseLog.Enqueue(logObj);
                     }
                 }
             }

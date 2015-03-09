@@ -106,7 +106,7 @@ namespace AppedoLTController
                             totalCompleted += status.CompletedUser;
                             runcompleted += status.IsCompleted;
                             _runningStatusData.Log.AddRange(status.Log);
-                            
+                            _runningStatusData.Error.AddRange(status.Error);
                             loadGenConnection = new Trasport(loadGen.Attributes["ipaddress"].Value, "8889");
                             loadGenConnection.Send(new TrasportData("scriptwisestatus", string.Empty, null));
                             scriptwisestatus.Append(loadGenConnection.Receive().DataStr);

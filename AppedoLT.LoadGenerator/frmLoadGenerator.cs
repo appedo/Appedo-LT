@@ -132,7 +132,7 @@ namespace AppedoLTLoadGenerator
                                                     UpdateStatus();
                                                 }
                                             }
-                                        }
+                                        }   
                                         break;
 
                                     case "status":
@@ -157,6 +157,7 @@ namespace AppedoLTLoadGenerator
                                             if (ack.Operation == "ok")
                                             {
                                                 run.RunningStatusData.Log.Clear();
+                                                run.RunningStatusData.Error.Clear();
                                             }
 
                                         }
