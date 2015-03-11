@@ -217,27 +217,11 @@ namespace AppedoLT.DataAccessLayer
                 } while (true);
             }).Start();
         }
-        public void LogResult(string loadGen, string sourceip, string reportName, string sceanrioName, string scriptid, string containerid, string containername, string pageid, string requestid, string address, int userid, int iteration, DateTime start, DateTime end, double diff, long responseSize, string reponseCode)
+        public void LogResult(ReportData rd)
         {
             try
             {
-                ReportData rd = new ReportData();
-                rd.loadgen = loadGen;
-                rd.sourceip = sourceip;
-                rd.scenarioname = sceanrioName;
-                rd.scriptid = scriptid;
-                rd.containerid = containerid;
-                rd.containername = containername;
-                rd.pageid = pageid;
-                rd.requestid = requestid;
-                rd.address = address;
-                rd.userid = userid;
-                rd.iterationid = iteration;
-                rd.starttime = start;
-                rd.endtime = end;
-                rd.diff = diff;
-                rd.responsesize = responseSize;
-                rd.reponseCode = reponseCode;
+               
                 lock (reportDT)
                 {
                     reportDT.Enqueue(rd);

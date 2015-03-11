@@ -64,9 +64,10 @@ namespace AppedoLT.BusinessLogic
         private XmlDocument _doc = null;
         private Thread _userThread;
         private ExecutionReport Status = ExecutionReport.GetInstance();
-        private Queue<Log> _scriptWiseLog = new Queue<Log>();
-        private Queue<RequestException> _scriptWiseError = new Queue<RequestException>();
-
+        private Queue<Log> _LogBuffer = new Queue<Log>();
+        private Queue<RequestException> _ErrorBuffer = new Queue<RequestException>();
+        private Queue<ReportData> _ReportDataBuffer = new Queue<ReportData>();
+        
         private Dictionary<string, object> _exVariablesValues = new Dictionary<string, object>();
         private Dictionary<string, TransactionRunTimeDetail> _transactions = new Dictionary<string, TransactionRunTimeDetail>();
         private Dictionary<string, string> _ReceivedCookies = new Dictionary<string, string>();
@@ -115,11 +116,12 @@ namespace AppedoLT.BusinessLogic
         Dictionary<string, string> receivedCookies = new Dictionary<string, string>();
         public VUserStatus VUserStatus;
 
-        public VUser(int maxUser, string reportName, string type, int userid, int iteration, XmlNode vuScript, bool browserCache, IPAddress ipaddress, Queue<Log> scriptWiseLog, Queue<RequestException> scriptWiseError)
+        public VUser(int maxUser, string reportName, string type, int userid, int iteration, XmlNode vuScript, bool browserCache, IPAddress ipaddress, Queue<Log> logBuffer, Queue<RequestException> errorBuffer, Queue<ReportData> reportDataBuffer)
         {
             _doc = vuScript.OwnerDocument;
-            _scriptWiseLog = scriptWiseLog;
-            _scriptWiseError = scriptWiseError;
+            _LogBuffer = logBuffer;
+            _ErrorBuffer = errorBuffer;
+            _ReportDataBuffer = reportDataBuffer;
             _maxUser = maxUser;
             _browserCache = browserCache;
             _type = type;
@@ -573,7 +575,7 @@ namespace AppedoLT.BusinessLogic
                         }
                         else
                         {
-                            LockResponseTime(req);
+                            LockResponseTime(req.RequestNode.Attributes["id"].Value, req.RequestNode.Attributes["Path"] == null ? req.RequestName : req.RequestNode.Attributes["Path"].Value, req.StartTime, req.EndTime, req.ResponseTime, req.ResponseSize, req.ResponseCode.ToString());
                         }
                     }
                     #endregion
@@ -593,16 +595,37 @@ namespace AppedoLT.BusinessLogic
                             }
                             request.Attributes["Address"].Value = new StringBuilder().Append(request.Attributes["Schema"].Value).Append("://").Append(request.Attributes["Host"].Value).Append(":").Append(request.Attributes["Port"].Value).Append(request.Attributes["Path"].Value).ToString();
                             Uri temp = new Uri(request.Attributes["Address"].Value);
-                            if (_browserCache == true && _index > 1 && request.Attributes["Accept"] != null && request.Attributes["Accept"].Value.Contains("/"))
+                            if (_browserCache == true && _index > 1)
                             {
-                                string acceptType = request.Attributes["Accept"].Value.Split('/')[1];
-                                acceptType = acceptType.ToLower();
-                                if (acceptType.Contains("image") || acceptType.Contains("css") || acceptType.Contains("js"))
+                                try
                                 {
-                                    cacheEnabled = true;
+                                    XmlNode requestHeadeNode = request.SelectSingleNode("./headers/header[@name='Accept']");
+                                    Match mat = new Regex("Content-Type: (.*?)\r\n", RegexOptions.Singleline | RegexOptions.Multiline).Match(request.Attributes["ResponseHeader"].Value);
+
+                                    if (requestHeadeNode != null && requestHeadeNode.Attributes["value"].Value.Contains("/"))
+                                    {
+                                        string acceptType = requestHeadeNode.Attributes["value"].Value.Split('/')[1];
+                                        acceptType = acceptType.ToLower();
+                                        if (acceptType.Contains("image") || acceptType.Contains("css") || acceptType.Contains("js") || acceptType.Contains("javascript"))
+                                        {
+                                            cacheEnabled = true;
+                                        }
+                                    }
+                                    if (mat.Success == true && mat.Groups[1] != null && mat.Groups[1].Value.Contains("/"))
+                                    {
+                                        string acceptType = mat.Groups[1].Value.Split('/')[1];
+                                        acceptType = acceptType.ToLower();
+                                        if (acceptType.Contains("image") || acceptType.Contains("css") || acceptType.Contains("js") || acceptType.Contains("javascript"))
+                                        {
+                                            cacheEnabled = true;
+                                        }
+                                    }
+                                }
+                                catch (Exception ex)
+                                {
+                                    ExceptionHandler.WritetoEventLog(ex.StackTrace + Environment.NewLine + ex.Message);
                                 }
                             }
-
                             string fileNameExt = Path.GetExtension(temp.LocalPath);
                             if (cacheEnabled == false && !(fileNameExt != string.Empty && _vuScriptXml.Attributes["exclutionfiletypes"].Value.Contains(fileNameExt.Replace(".", string.Empty).Trim().ToLower()) == true))
                             {
@@ -627,7 +650,7 @@ namespace AppedoLT.BusinessLogic
                                 }
                                 else
                                 {
-                                    LockResponseTime(req);
+                                    LockResponseTime(req.RequestNode.Attributes["id"].Value, req.RequestNode.Attributes["Path"] == null ? req.RequestName : req.RequestNode.Attributes["Path"].Value, req.StartTime, req.EndTime, req.ResponseTime, req.ResponseSize, req.ResponseCode.ToString());
                                 }
 
                                 #region SecondaryReqEnable
@@ -668,7 +691,7 @@ namespace AppedoLT.BusinessLogic
                                                             }
                                                             else
                                                             {
-                                                                LockResponseTime(secReq);
+                                                                LockResponseTime(req.RequestNode.Attributes["id"].Value, req.RequestNode.Attributes["Path"] == null ? req.RequestName : req.RequestNode.Attributes["Path"].Value, req.StartTime, req.EndTime, req.ResponseTime, req.ResponseSize, req.ResponseCode.ToString());
                                                             }
                                                         }
                                                         catch (Exception ex)
@@ -1438,10 +1461,13 @@ namespace AppedoLT.BusinessLogic
             requestResponse.RequestId = tcpRequest.Attributes["id"].Value; ;
             if (IsValidation != true)
             {
-                DataServer.GetInstance().LogResult(Constants.GetInstance().LoadGen, _IPAddress.ToString(), _reportName, Status.ScenarioName, _vuScriptXml.Attributes["id"].Value, containerid, containername, pageid, tcpRequest.Attributes["id"].Value, tcpRequest.Attributes["name"].Value, _userid, _iterationid, start, end, elapsedTimer.Elapsed.TotalMilliseconds, response.Length, responseCode);
+              
+                LockResponseTime(tcpRequest.Attributes["id"].Value, tcpRequest.Attributes["name"].Value, start, end, elapsedTimer.Elapsed.TotalMilliseconds, response.Length, responseCode);
             }
             return requestResponse;
         }
+
+        
 
         private void SetValue(object variableName, object value)
         {
@@ -1609,7 +1635,7 @@ namespace AppedoLT.BusinessLogic
             exception.message = message;
             exception.errorcode = errorCode;
             exception.request = url;
-            _scriptWiseError.Enqueue(exception);
+            _ErrorBuffer.Enqueue(exception);
             lock (errors)
             {
                 errors.AddExeception(exception);
@@ -1648,7 +1674,7 @@ namespace AppedoLT.BusinessLogic
                 logObj.userid = this._userid.ToString();
                 logObj.time = DateTime.Now;
                 logObj.message =HttpUtility.HtmlDecode(log.Attributes["message"].Value);
-                _scriptWiseLog.Enqueue(logObj);
+                _LogBuffer.Enqueue(logObj);
                 if (IsValidation == false)
                 {
                     lock (DataServer.GetInstance().logs)
@@ -1662,13 +1688,32 @@ namespace AppedoLT.BusinessLogic
                 ExceptionHandler.WritetoEventLog(ex.StackTrace + Environment.NewLine + ex.Message);
             }
         }
-        private void LockResponseTime(Request req)
+        private void LockResponseTime(string requestid,string address,DateTime starttime,DateTime endtime,double diff,long responsesize,string reponseCode)
         {
             try
             {
                 if (Break == false)
                 {
-                    DataServer.GetInstance().LogResult(Constants.GetInstance().LoadGen, _IPAddress.ToString(), _reportName, Status.ScenarioName, _vuScriptXml.Attributes["id"].Value, _containerId.Peek()[0], _containerId.Peek()[1], _pageId.Count < 1 ? "1" : _pageId.Peek(), req.RequestNode.Attributes["id"].Value, req.RequestNode.Attributes["Path"] == null ? req.RequestName : req.RequestNode.Attributes["Path"].Value, _userid, _iterationid, req.StartTime, req.EndTime, req.ResponseTime, req.ResponseSize, req.ResponseCode.ToString());
+                    ReportData rd = new ReportData();
+                    rd.loadgen = Constants.GetInstance().LoadGen;
+                    rd.sourceip = _IPAddress.ToString();
+                    rd.loadgenanme =  ExecutionReport.GetInstance().LoadGenName;
+                    rd.scenarioname = Status.ScenarioName;
+                    rd.scriptid = _vuScriptXml.Attributes["id"].Value;
+                    rd.containerid = _containerId.Peek()[0];
+                    rd.containername = _containerId.Peek()[1];
+                    rd.pageid = _pageId.Count < 1 ? "1" : _pageId.Peek();
+                    rd.userid = _userid;
+                    rd.iterationid = _iterationid;
+                    rd.requestid = requestid;
+                    rd.address =address;
+                    rd.starttime =starttime;
+                    rd.endtime =endtime;
+                    rd.diff = diff;
+                    rd.responsesize = responsesize;
+                    rd.reponseCode = reponseCode;
+                    _ReportDataBuffer.Enqueue(rd);
+                    DataServer.GetInstance().LogResult(rd);
                     if (req.HasError == true)
                     {
                         LockException(req.RequestId.ToString(), req.ErrorMessage, req.ErrorCode,req.RequestName);

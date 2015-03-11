@@ -870,8 +870,8 @@ namespace AppedoLTController
                                            insert into containerresponse90_{0} select containername,min(diff) AS min,max(diff) AS max,avg(diff) AS avg from containerresponse where scriptid={0} and starttime>'{2}' group by containername;
                                            insert into throughput_{0} select address,sum(responsesize) from jmeterdata where scriptid={0} group by address;
                                            insert into hitcount_{0} select address,count(responsesize) from jmeterdata where scriptid={0} group by address;
-                                           insert into errorcount_{0} select address,count(*) from jmeterdata where scriptid={0} and success='FALSE' group by address;
-                                           insert into errorcode_{0} select httpresponsemessage,count(*) from jmeterdata where scriptid={0} and success='FALSE' group by httpresponsemessage;", script["id"], script["scriptname"], rampuptime).AppendLine();
+                                           insert into errorcount_{0} select address,count(*) from jmeterdata where scriptid={0} and success='FALSE' or success='false' group by address;
+                                           insert into errorcode_{0} select httpresponsemessage,count(*) from jmeterdata where scriptid={0} and success='FALSE' or success='false' group by httpresponsemessage;", script["id"], script["scriptname"], rampuptime).AppendLine();
                     #endregion
                 }
                 result.Append(@" insert into summaryreport SELECT 
@@ -886,7 +886,7 @@ namespace AppedoLTController
                                                                           IFNULL(ROUND((SUM(responsesize)*1.0/1024)/1024,3),0) AS total_throughput,
                                                                           CASE WHEN (strftime('%s',max(starttime)) - strftime('%s',min(starttime))) = 0 THEN 0
                                                                                ELSE ((SUM(responsesize)*8.0)/(strftime('%s',max(starttime)) - strftime('%s',min(starttime))))/1024/1024 END AS avg_throughput,
-                                                                          (select count(*)from jmeterdata where success='FALSE' ) AS total_errors,
+                                                                          (select count(*)from jmeterdata where success='FALSE' or success='false' ) AS total_errors,
                                                                           (select count(*) from (SELECT containername from containerresponse group by containername))as total_page,
                                                                           (select IFNULL(AVG(diff)*1.0/1000,0) from (select sum(diff)as pageresponse from containerresponse  group by containername))AS avg_page_response,
                                                                           (select count(*)from jmeterdata where responsecode like '2%') AS reponse_200,

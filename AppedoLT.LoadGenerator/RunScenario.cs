@@ -36,6 +36,7 @@ namespace AppedoLTLoadGenerator
                 }
                 GetLog(_runningStatusData.Log );
                 GetError(_runningStatusData.Error);
+                GetReportData(_runningStatusData.ReportData);
                 return _runningStatusData;
             }
         }
@@ -232,10 +233,10 @@ namespace AppedoLTLoadGenerator
             {
                 foreach (ScriptExecutor scripts in _scriptExecutorList)
                 {
-                    int count = scripts.ScriptWiseLog.Count;
+                    int count = scripts.LogBuffer.Count;
                     for (; count > 0; count--)
                     {
-                        logList.Add(scripts.ScriptWiseLog.Dequeue());
+                        logList.Add(scripts.LogBuffer.Dequeue());
                     }
                 }
             }
@@ -250,10 +251,28 @@ namespace AppedoLTLoadGenerator
             {
                 foreach (ScriptExecutor scripts in _scriptExecutorList)
                 {
-                    int count = scripts.ScriptWiseError.Count;
+                    int count = scripts.ErrorBuffer.Count;
                     for (; count > 0; count--)
                     {
-                        errorList.Add(scripts.ScriptWiseError.Dequeue());
+                        errorList.Add(scripts.ErrorBuffer.Dequeue());
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionHandler.WritetoEventLog(ex.StackTrace + ex.Message);
+            }
+        }
+        private void GetReportData(List<ReportData> reportDataList)
+        {
+            try
+            {
+                foreach (ScriptExecutor scripts in _scriptExecutorList)
+                {
+                    int count = scripts.reportDataBuffer.Count;
+                    for (; count > 0; count--)
+                    {
+                        reportDataList.Add(scripts.reportDataBuffer.Dequeue());
                     }
                 }
             }

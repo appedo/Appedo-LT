@@ -12,6 +12,7 @@ namespace AppedoLT.Core
 
         private List<Log> _log = new List<Log>();
         private List<RequestException> _error = new List<RequestException>();
+        private List<ReportData> _reportData = new List<ReportData>();
 
         [DataMember(Name = "createduser")]
         public int CreatedUser { get; set; }
@@ -23,6 +24,8 @@ namespace AppedoLT.Core
         public List<Log> Log { get { return _log; } set { _log = value; } }
         [DataMember(Name = "error")]
         public List<RequestException> Error { get { return _error; } set { _error = value; } }
+        [DataMember(Name = "reporddata")]
+        public List<ReportData> ReportData { get { return _reportData; } set { _reportData = value; } }
 
     }
 
@@ -51,9 +54,9 @@ namespace AppedoLT.Core
         public string iterationid = string.Empty;
         [DataMember(Name = "message")]
         public string message = string.Empty;
-       
+
         public DateTime time { get { return _time; } set { _time = value; } }
-        
+
         [DataMember(Name = "time")]
         public string timeStr
         {
@@ -63,8 +66,9 @@ namespace AppedoLT.Core
                 TimeSpan diff = _time.ToUniversalTime() - origin;
                 return Math.Floor(diff.TotalMilliseconds).ToString();
             }
-            set { 
-                _time =Constants.GetInstance(). ConvertFromUnixTimestamp(Convert.ToDouble(value)); 
+            set
+            {
+                _time = Constants.GetInstance().ConvertFromUnixTimestamp(Convert.ToDouble(value));
             }
         }
 
@@ -137,6 +141,117 @@ namespace AppedoLT.Core
 
             return string.Format("{0},{1},{2},{3},{4},{5},{6},{7},\"{8}\",{9},\"{10}\"", this.loadGen, this.reportname, this.scenarioname, this.scriptname, this.requestid,
                                                                             this.userid, this.iterationid, this.errorcode, this.message.Replace("\"", "\"\""), this.time.ToString("yyyy-MM-dd HH:mm:ss"), this.request.Replace("\"", "\"\""));
+        }
+    }
+
+    [DataContract]
+    public class ReportData
+    {
+        public DateTime _starttime = new DateTime();
+        public DateTime _endtime = new DateTime();
+
+       
+        public DateTime starttime { get { return _starttime; } set { _starttime = value; } }
+        public DateTime endtime { get { return _endtime; } set { _endtime = value; } }
+
+
+        [DataMember(Name = "loadgen")]
+        public string loadgen { get; set; }
+
+        [DataMember(Name = "sourceip")]
+        public string sourceip { get; set; }
+
+        [DataMember(Name = "loadgenname")]
+        public string loadgenanme { get; set; }
+
+        [DataMember(Name = "scenarioname")]
+        public string scenarioname { get; set; }
+
+        [DataMember(Name = "scriptid")]
+        public string scriptid { get; set; }
+
+        [DataMember(Name = "containerid")]
+        public string containerid { get; set; }
+
+        [DataMember(Name = "containername")]
+        public string containername { get; set; }
+
+        [DataMember(Name = "pageid")]
+        public string pageid { get; set; }
+
+        [DataMember(Name = "requestid")]
+        public string requestid { get; set; }
+
+        [DataMember(Name = "address")]
+        public string address { get; set; }
+
+        [DataMember(Name = "userid")]
+        public int userid { get; set; }
+
+        [DataMember(Name = "iterationid")]
+        public int iterationid { get; set; }
+
+        [DataMember(Name = "starttime")]
+        public string starttimestr
+        {
+            get
+            {
+                DateTime origin = new DateTime(1970, 1, 1, 0, 0, 0, 0);
+                TimeSpan diff = _starttime.ToUniversalTime() - origin;
+                return Math.Floor(diff.TotalMilliseconds).ToString();
+            }
+            set
+            {
+                _starttime = Constants.GetInstance().ConvertFromUnixTimestamp(Convert.ToDouble(value));
+            }
+        }
+
+        [DataMember(Name = "endtime")]
+        public string endtimestr
+        {
+            get
+            {
+                DateTime origin = new DateTime(1970, 1, 1, 0, 0, 0, 0);
+                TimeSpan diff = _endtime.ToUniversalTime() - origin;
+                return Math.Floor(diff.TotalMilliseconds).ToString();
+            }
+            set
+            {
+                _endtime = Constants.GetInstance().ConvertFromUnixTimestamp(Convert.ToDouble(value));
+            }
+        }
+
+        [DataMember(Name = "diff")]
+        public double diff { get; set; }
+
+        [DataMember(Name = "reponsecode")]
+        public long responsesize { get; set; }
+
+        [DataMember(Name = "responsesize")]
+        public string reponseCode { get; set; }
+        public ReportData()
+        {
+        }
+
+        public override string ToString()
+        {
+            return string.Format("{0},{1},{2},{3},{4},{5},{6},{7},{8},{9},{10},{11},{12},{13},{14},{15},{16}", 
+                                                                                 this.loadgen, 
+                                                                                 this.sourceip, 
+                                                                                 
+                                                                                 this.scenarioname,
+                                                                                 this.scriptid, 
+                                                                                 this.containerid,
+                                                                                 this.containername, 
+                                                                                 this.pageid,
+                                                                                 this.requestid, 
+                                                                                 this.address, 
+                                                                                 this.userid, 
+                                                                                 this.iterationid,
+                                                                                 this.starttime.ToString("yyyy-MM-dd HH:mm:ss"),
+                                                                                 this.endtime.ToString("yyyy-MM-dd HH:mm:ss"),
+                                                                                 this.diff.ToString(), this.reponseCode,
+                                                                                 this.responsesize);
         }
     }
 }

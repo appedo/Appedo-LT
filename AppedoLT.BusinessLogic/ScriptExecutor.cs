@@ -29,8 +29,11 @@ namespace AppedoLT.BusinessLogic
         private Constants _constant = Constants.GetInstance();
         public BackgroundWorker Worker = new BackgroundWorker();
         public VUScriptStatus StatusSummary = new VUScriptStatus();
-        public Queue<Log> ScriptWiseLog = new Queue<Log>();
-        public Queue<RequestException> ScriptWiseError = new Queue<RequestException>();
+
+        public Queue<Log> LogBuffer = new Queue<Log>();
+        public Queue<RequestException> ErrorBuffer = new Queue<RequestException>();
+        public Queue<ReportData> reportDataBuffer = new Queue<ReportData>();
+
         public bool IsRunCompleted = false;
         private string Scriptid { get; set; }
         private string Scriptname { get; set; }
@@ -449,7 +452,7 @@ namespace AppedoLT.BusinessLogic
 
         private VUser GetVUser(int userid)
         {
-            return new VUser(int.Parse(_setting.MaxUser), _reportName, _setting.Type, userid, int.Parse(_setting.Iterations), _vuScript, _setting.BrowserCache, Request.GetIPAddress(_createdUserCount), ScriptWiseLog, ScriptWiseError);
+            return new VUser(int.Parse(_setting.MaxUser), _reportName, _setting.Type, userid, int.Parse(_setting.Iterations), _vuScript, _setting.BrowserCache, Request.GetIPAddress(_createdUserCount), LogBuffer, ErrorBuffer, reportDataBuffer);
         }
 
         private void UpdateStatus()

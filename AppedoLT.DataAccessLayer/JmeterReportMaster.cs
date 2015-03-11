@@ -218,7 +218,7 @@ namespace AppedoLT.DataAccessLayer
                                                                                 (select count(*) 
                                                                                   from jmeterdata
                                                                                   where 
-                                                                                    success='FALSE' and (endtime BETWEEN '" + from.ToString("yyyy-MM-dd HH:mm:ss") + @"' AND '" + tempTo.ToString("yyyy-MM-dd HH:mm:ss") + @"')) as errorcount,
+                                                                                    success='FALSE' or success='false' and (endtime BETWEEN '" + from.ToString("yyyy-MM-dd HH:mm:ss") + @"' AND '" + tempTo.ToString("yyyy-MM-dd HH:mm:ss") + @"')) as errorcount,
                                                                                (select SUM(diff)/count(distinct containername) from containerresponse where  (endtime BETWEEN '" + from.ToString("yyyy-MM-dd HH:mm:ss") + @"' AND '" + tempTo.ToString("yyyy-MM-dd HH:mm:ss") + @"') ) AS avgpageresponse
                                                                               FROM 
                                                                                 jmeterdata
@@ -281,8 +281,8 @@ namespace AppedoLT.DataAccessLayer
 
         #region Reports
 
-        
-       
+
+
         #endregion
 
         public DataTable GetJMeterScriptList()

@@ -21,8 +21,7 @@ namespace AppedoLTController
         private XmlNode _RunNode = null;
         private string _SourceIp = null;
         ControllerStatus _staus = ControllerStatus.Idle;
-        StringBuilder _log = null;
-       
+             
         public string ScriptWiseStatus { get; set; }
         public string RunId = string.Empty;
         public ControllerStatus Status { get { return _staus; } }
@@ -107,6 +106,7 @@ namespace AppedoLTController
                             runcompleted += status.IsCompleted;
                             _runningStatusData.Log.AddRange(status.Log);
                             _runningStatusData.Error.AddRange(status.Error);
+                            _runningStatusData.ReportData.AddRange(status.ReportData);
                             loadGenConnection = new Trasport(loadGen.Attributes["ipaddress"].Value, "8889");
                             loadGenConnection.Send(new TrasportData("scriptwisestatus", string.Empty, null));
                             scriptwisestatus.Append(loadGenConnection.Receive().DataStr);
