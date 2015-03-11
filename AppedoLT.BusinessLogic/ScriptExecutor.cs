@@ -141,8 +141,8 @@ namespace AppedoLT.BusinessLogic
         {
             try
             {
-                Scriptid = vuScript.Attributes["id"].Value;
-                Scriptname = vuScript.Attributes["name"].Value;
+                StatusSummary.ScriptId = Scriptid = vuScript.Attributes["id"].Value;
+                StatusSummary.ScriptName = Scriptname = vuScript.Attributes["name"].Value;
                 VUScriptSetting setting = new VUScriptSetting();
                 setting.Type = settingNode.Attributes["type"].Value;
                 setting.BrowserCache = Convert.ToBoolean(settingNode.Attributes["browsercache"].Value);
