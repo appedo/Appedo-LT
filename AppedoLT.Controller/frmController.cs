@@ -859,7 +859,7 @@ namespace AppedoLTController
                                            insert into containerresponse90_{0} select containername,min(diff) AS min,max(diff) AS max,avg(diff) AS avg from containerresponse where scriptid={0} and starttime>'{2}' group by containername;
                                            insert into throughput_{0} select address,sum(responsesize) from jmeterdata where scriptid={0} group by address;
                                            insert into hitcount_{0} select address,count(responsesize) from jmeterdata where scriptid={0} group by address;
-                                           insert into errorcount_{0} select address,count(*) from jmeterdata where scriptid={0} and success='FALSE' group by address;
+                                           insert into errorcount_{0} select address,count(*) from jmeterdata where scriptid={0} and success='FALSE' or success='false' group by address;
                                            insert into errorcode_{0} select httpresponsemessage,count(*) from jmeterdata where scriptid={0} and success='FALSE' group by httpresponsemessage;", script["id"], script["scriptname"], rampuptime).AppendLine();
                     #endregion
                 }

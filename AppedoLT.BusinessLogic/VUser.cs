@@ -591,13 +591,35 @@ namespace AppedoLT.BusinessLogic
                             }
                             request.Attributes["Address"].Value = new StringBuilder().Append(request.Attributes["Schema"].Value).Append("://").Append(request.Attributes["Host"].Value).Append(":").Append(request.Attributes["Port"].Value).Append(request.Attributes["Path"].Value).ToString();
                             Uri temp = new Uri(request.Attributes["Address"].Value);
-                            if (_browserCache == true && _index > 1 && request.Attributes["Accept"] != null && request.Attributes["Accept"].Value.Contains("/"))
+                            if (_browserCache == true && _index > 1)
                             {
-                                string acceptType = request.Attributes["Accept"].Value.Split('/')[1];
-                                acceptType = acceptType.ToLower();
-                                if (acceptType.Contains("image") || acceptType.Contains("css") || acceptType.Contains("js"))
+                                try
                                 {
-                                    cacheEnabled = true;
+                                    XmlNode requestHeadeNode = request.SelectSingleNode("./headers/header[@name='Accept']");
+                                    Match mat = new Regex("Content-Type: (.*?)\r\n", RegexOptions.Singleline | RegexOptions.Multiline).Match(request.Attributes["ResponseHeader"].Value);
+
+                                    if (requestHeadeNode != null && requestHeadeNode.Attributes["value"].Value.Contains("/"))
+                                    {
+                                        string acceptType = requestHeadeNode.Attributes["value"].Value.Split('/')[1];
+                                        acceptType = acceptType.ToLower();
+                                        if (acceptType.Contains("image") || acceptType.Contains("css") || acceptType.Contains("js") || acceptType.Contains("javascript"))
+                                        {
+                                            cacheEnabled = true;
+                                        }
+                                    }
+                                    if (mat.Success == true && mat.Groups[1] != null && mat.Groups[1].Value.Contains("/"))
+                                    {
+                                        string acceptType = mat.Groups[1].Value.Split('/')[1];
+                                        acceptType = acceptType.ToLower();
+                                        if (acceptType.Contains("image") || acceptType.Contains("css") || acceptType.Contains("js") || acceptType.Contains("javascript"))
+                                        {
+                                            cacheEnabled = true;
+                                        }
+                                    }
+                                }
+                                catch (Exception ex)
+                                {
+                                    ExceptionHandler.WritetoEventLog(ex.StackTrace + Environment.NewLine + ex.Message);
                                 }
                             }
 

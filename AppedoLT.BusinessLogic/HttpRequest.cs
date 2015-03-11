@@ -10,6 +10,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Xml;
 using AppedoLT.Core;
+using System.Net.Security;
 
 namespace AppedoLT.BusinessLogic
 {
@@ -121,7 +122,8 @@ namespace AppedoLT.BusinessLogic
                 request.CachePolicy = new RequestCachePolicy(RequestCacheLevel.BypassCache);
                 request.ProtocolVersion = HttpVersion.Version11;
                 request.Method = RequestNode.Attributes["Method"].Value;
-
+                request.UnsafeAuthenticatedConnectionSharing = true;
+            
                 #endregion
 
                 #region Header
@@ -193,6 +195,7 @@ namespace AppedoLT.BusinessLogic
                     }
                     using (var dataStream = request.GetRequestStream())
                     {
+                       
                         foreach (PostData pData in _posDataContainer.FindAll(f => f.size > 0))
                         {
                             if (pData.type == 1)

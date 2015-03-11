@@ -545,11 +545,15 @@ namespace AppedoLT.Core
             System.Windows.Forms.TextBox.CheckForIllegalCrossThreadCalls = false;
             HttpPostContentType = new List<string>();
             HttpMethods = new List<string>();
-            HttpMethods.AddRange(new string[] { "GET","POST" });
-            HttpPostContentType.AddRange(new string[] {"Form","Multipart/form-data","Text" });
+            HttpMethods.AddRange(new string[] { "GET", "POST" });
+            HttpPostContentType.AddRange(new string[] { "Form", "Multipart/form-data", "Text" });
             ServicePointManager.MaxServicePointIdleTime = 100;
             ServicePointManager.DefaultConnectionLimit = int.MaxValue;
-            ServicePointManager.ServerCertificateValidationCallback = ((sender, certificate, chain, sslPolicyErrors) => true);
+            ServicePointManager.ServerCertificateValidationCallback = (
+                (sender, certificate, chain, sslPolicyErrors) =>
+                {
+                    return true;
+                });
             HeaderExcludeList.AddRange(new string[] { "Cookie", "Connection", "Accept", "Host", "User-Agent", "Referer", "Accept-Encoding", "Content-Type", "Content-Length", "Expect", "If-Modified-Since" });
         }
         private string GetXMLAsString(XmlDocument myxml)
@@ -952,8 +956,6 @@ namespace AppedoLT.Core
                 }
             }
         }
-
-
     }
 
     public class Tuple<T1, T2>

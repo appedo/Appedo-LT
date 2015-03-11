@@ -565,7 +565,7 @@ namespace AppedoLT.DataAccessLayer
                         //report.AppendChild(logNode);
 
                         XmlNode errorNode = doc.CreateElement("error");
-                        reader = GetReader("select loadgen,epochtimestamp,address,responsecode,httpresponsemessage,threadgroupname,responsesize from jmeterdata where success='false'", _con);
+                        reader = GetReader("select loadgen,epochtimestamp,address,responsecode,httpresponsemessage,threadgroupname,responsesize from jmeterdata where success='false' or success='FALSE'", _con);
                         reader.Read();
                         while (reader.HasRows == true)
                         {
