@@ -107,6 +107,7 @@ namespace AppedoLTController
                             _runningStatusData.Log.AddRange(status.Log);
                             _runningStatusData.Error.AddRange(status.Error);
                             _runningStatusData.ReportData.AddRange(status.ReportData);
+                            _runningStatusData.Transactions.AddRange(status.Transactions);
                             loadGenConnection = new Trasport(loadGen.Attributes["ipaddress"].Value, "8889");
                             loadGenConnection.Send(new TrasportData("scriptwisestatus", string.Empty, null));
                             scriptwisestatus.Append(loadGenConnection.Receive().DataStr);
@@ -264,6 +265,9 @@ namespace AppedoLTController
                 server.Send(data);
                 data = server.Receive();
                 _runningStatusData.Log.Clear();
+                _runningStatusData.Error.Clear();
+                _runningStatusData.ReportData.Clear();
+                _runningStatusData.Transactions.Clear();
             }
             catch (Exception ex)
             {

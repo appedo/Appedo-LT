@@ -67,6 +67,7 @@ namespace AppedoLT.BusinessLogic
         private Queue<Log> _LogBuffer = new Queue<Log>();
         private Queue<RequestException> _ErrorBuffer = new Queue<RequestException>();
         private Queue<ReportData> _ReportDataBuffer = new Queue<ReportData>();
+        private Queue<TransactionRunTimeDetail> _TransactionBuffer = new Queue<TransactionRunTimeDetail>();
         
         private Dictionary<string, object> _exVariablesValues = new Dictionary<string, object>();
         private Dictionary<string, TransactionRunTimeDetail> _transactions = new Dictionary<string, TransactionRunTimeDetail>();
@@ -116,12 +117,13 @@ namespace AppedoLT.BusinessLogic
         Dictionary<string, string> receivedCookies = new Dictionary<string, string>();
         public VUserStatus VUserStatus;
 
-        public VUser(int maxUser, string reportName, string type, int userid, int iteration, XmlNode vuScript, bool browserCache, IPAddress ipaddress, Queue<Log> logBuffer, Queue<RequestException> errorBuffer, Queue<ReportData> reportDataBuffer)
+        public VUser(int maxUser, string reportName, string type, int userid, int iteration, XmlNode vuScript, bool browserCache, IPAddress ipaddress, Queue<Log> logBuffer, Queue<RequestException> errorBuffer, Queue<ReportData> reportDataBuffer, Queue<TransactionRunTimeDetail> transactionBuffer)
         {
             _doc = vuScript.OwnerDocument;
             _LogBuffer = logBuffer;
             _ErrorBuffer = errorBuffer;
             _ReportDataBuffer = reportDataBuffer;
+            _TransactionBuffer = transactionBuffer;
             _maxUser = maxUser;
             _browserCache = browserCache;
             _type = type;
@@ -518,7 +520,7 @@ namespace AppedoLT.BusinessLogic
                                 Thread.Sleep(100);
                                 tranDetailTemp.EndTime = DateTime.Now;
                                 tranDetailTemp.IsEnd = true;
-                                DataServer.GetInstance().transcations.Enqueue(tranDetailTemp);
+                                LockTransactions(tranDetailTemp);
                             }
                             break;
                             #endregion
@@ -1620,7 +1622,7 @@ namespace AppedoLT.BusinessLogic
         /// 700- System exception.
         /// 800- Assertion Faild.
         /// </param>
-        private void LockException(string requestid, string message, string errorCode,string url)
+        private void LockException(string requestid, string message, string errorCode, string url)
         {
             RequestException exception = new RequestException();
             exception.reportname = _reportName;
@@ -1649,22 +1651,6 @@ namespace AppedoLT.BusinessLogic
                 Log logObj = new Log();
                 logObj.logid = log.Attributes["id"].Value;
                 EvaluteExp(log);
-                //if (log.Attributes["message"].Value.Contains("$$"))
-                //{
-                //    EvalutionResult Result = EvaluteExp(log.Attributes["message"].Value);
-                //    if (Result.isSuccess == true)
-                //    {
-                //        logObj.message = Result.value;
-                //    }
-                //    else
-                //    {
-                //        logObj.message = log.Attributes["message"].Value;
-                //    }
-                //}
-                //else
-                //{
-                //    logObj.message = log.Attributes["message"].Value;
-                //}
                 logObj.logname = log.Attributes["name"].Value;
                 logObj.reportname = _reportName;
                 logObj.scenarioname = Status.ScenarioName;
@@ -1741,7 +1727,11 @@ namespace AppedoLT.BusinessLogic
                 ExceptionHandler.WritetoEventLog(ex.StackTrace + Environment.NewLine + ex.Message);
             }
         }
-
+        private void LockTransactions(TransactionRunTimeDetail tranDetailTemp)
+        {
+            _TransactionBuffer.Enqueue(tranDetailTemp);
+            DataServer.GetInstance().transcations.Enqueue(tranDetailTemp);
+        }
         #endregion
     }
 

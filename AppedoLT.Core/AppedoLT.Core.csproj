@@ -102,7 +102,6 @@
     <Compile Include="RunningStatus.cs" />
     <Compile Include="LoadGenRunningStatusData.cs" />
     <Compile Include="ScriptUserDetail.cs" />
-    <Compile Include="TransactionRunTimeDetail.cs" />
     <Compile Include="TrasportLayer.cs" />
     <Compile Include="UCTime.cs">
       <SubType>UserControl</SubType>

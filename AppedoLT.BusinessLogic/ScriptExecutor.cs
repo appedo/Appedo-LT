@@ -33,6 +33,7 @@ namespace AppedoLT.BusinessLogic
         public Queue<Log> LogBuffer = new Queue<Log>();
         public Queue<RequestException> ErrorBuffer = new Queue<RequestException>();
         public Queue<ReportData> reportDataBuffer = new Queue<ReportData>();
+        public Queue<TransactionRunTimeDetail> TransactionDataBuffer = new Queue<TransactionRunTimeDetail>();
 
         public bool IsRunCompleted = false;
         private string Scriptid { get; set; }
@@ -452,7 +453,7 @@ namespace AppedoLT.BusinessLogic
 
         private VUser GetVUser(int userid)
         {
-            return new VUser(int.Parse(_setting.MaxUser), _reportName, _setting.Type, userid, int.Parse(_setting.Iterations), _vuScript, _setting.BrowserCache, Request.GetIPAddress(_createdUserCount), LogBuffer, ErrorBuffer, reportDataBuffer);
+            return new VUser(int.Parse(_setting.MaxUser), _reportName, _setting.Type, userid, int.Parse(_setting.Iterations), _vuScript, _setting.BrowserCache, Request.GetIPAddress(_createdUserCount), LogBuffer, ErrorBuffer, reportDataBuffer, TransactionDataBuffer);
         }
 
         private void UpdateStatus()

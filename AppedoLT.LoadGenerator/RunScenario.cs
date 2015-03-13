@@ -37,6 +37,7 @@ namespace AppedoLTLoadGenerator
                 GetLog(_runningStatusData.Log );
                 GetError(_runningStatusData.Error);
                 GetReportData(_runningStatusData.ReportData);
+                GetTransactions(_runningStatusData.Transactions);
                 return _runningStatusData;
             }
         }
@@ -263,6 +264,7 @@ namespace AppedoLTLoadGenerator
                 ExceptionHandler.WritetoEventLog(ex.StackTrace + ex.Message);
             }
         }
+
         private void GetReportData(List<ReportData> reportDataList)
         {
             try
@@ -273,6 +275,25 @@ namespace AppedoLTLoadGenerator
                     for (; count > 0; count--)
                     {
                         reportDataList.Add(scripts.reportDataBuffer.Dequeue());
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionHandler.WritetoEventLog(ex.StackTrace + ex.Message);
+            }
+        }
+
+        private void GetTransactions(List<TransactionRunTimeDetail> transactionsList)
+        {
+            try
+            {
+                foreach (ScriptExecutor scripts in _scriptExecutorList)
+                {
+                    int count = scripts.TransactionDataBuffer.Count;
+                    for (; count > 0; count--)
+                    {
+                        transactionsList.Add(scripts.TransactionDataBuffer.Dequeue());
                     }
                 }
             }
