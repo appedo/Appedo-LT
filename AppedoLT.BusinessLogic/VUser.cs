@@ -68,7 +68,7 @@ namespace AppedoLT.BusinessLogic
         private Queue<RequestException> _ErrorBuffer = new Queue<RequestException>();
         private Queue<ReportData> _ReportDataBuffer = new Queue<ReportData>();
         private Queue<TransactionRunTimeDetail> _TransactionBuffer = new Queue<TransactionRunTimeDetail>();
-        
+
         private Dictionary<string, object> _exVariablesValues = new Dictionary<string, object>();
         private Dictionary<string, TransactionRunTimeDetail> _transactions = new Dictionary<string, TransactionRunTimeDetail>();
         private Dictionary<string, string> _ReceivedCookies = new Dictionary<string, string>();
@@ -848,7 +848,7 @@ namespace AppedoLT.BusinessLogic
             }
             catch (Exception ex)
             {
-                LockException("0", ex.Message, "700",string.Empty);
+                LockException("0", ex.Message, "700", string.Empty);
             }
         }
 
@@ -952,7 +952,7 @@ namespace AppedoLT.BusinessLogic
             string result = string.Empty;
             if (_exVariablesValues.ContainsKey(variablename) == true)
             {
-                result =_exVariablesValues[variablename].ToString();
+                result = _exVariablesValues[variablename].ToString();
             }
             else
             {
@@ -1013,7 +1013,7 @@ namespace AppedoLT.BusinessLogic
                     catch
                     {
                         parm.Value = string.Empty;
-                        LockException("0", "Unable to evaluate " + parm.Key, "700",string.Empty);
+                        LockException("0", "Unable to evaluate " + parm.Key, "700", string.Empty);
                     }
                     finally
                     {
@@ -1101,7 +1101,7 @@ namespace AppedoLT.BusinessLogic
                 catch
                 {
                     parm.Value = string.Empty;
-                    LockException("0", "Unable to evaluate " + parm.Key, "700",string.Empty);
+                    LockException("0", "Unable to evaluate " + parm.Key, "700", string.Empty);
                 }
                 finally
                 {
@@ -1463,13 +1463,13 @@ namespace AppedoLT.BusinessLogic
             requestResponse.RequestId = tcpRequest.Attributes["id"].Value; ;
             if (IsValidation != true)
             {
-              
+
                 LockResponseTime(tcpRequest.Attributes["id"].Value, tcpRequest.Attributes["name"].Value, start, end, elapsedTimer.Elapsed.TotalMilliseconds, response.Length, responseCode);
             }
             return requestResponse;
         }
 
-        
+
 
         private void SetValue(object variableName, object value)
         {
@@ -1599,7 +1599,7 @@ namespace AppedoLT.BusinessLogic
             exception.scenarioname = Status.ScenarioName;
             exception.scriptname = _vuScriptXml.Attributes["name"].Value;
             exception.requestid = "0";
-          
+
             exception.iterationid = this._iterationid.ToString();
             exception.userid = this._userid.ToString();
             exception.requestexceptionid = Guid.NewGuid().ToString();
@@ -1659,7 +1659,7 @@ namespace AppedoLT.BusinessLogic
                 logObj.iterationid = this._iterationid.ToString();
                 logObj.userid = this._userid.ToString();
                 logObj.time = DateTime.Now;
-                logObj.message =HttpUtility.HtmlDecode(log.Attributes["message"].Value);
+                logObj.message = HttpUtility.HtmlDecode(log.Attributes["message"].Value);
                 _LogBuffer.Enqueue(logObj);
                 if (IsValidation == false)
                 {
@@ -1674,7 +1674,7 @@ namespace AppedoLT.BusinessLogic
                 ExceptionHandler.WritetoEventLog(ex.StackTrace + Environment.NewLine + ex.Message);
             }
         }
-        private void LockResponseTime(string requestid,string address,DateTime starttime,DateTime endtime,double diff,long responsesize,string reponseCode)
+        private void LockResponseTime(string requestid, string address, DateTime starttime, DateTime endtime, double diff, long responsesize, string reponseCode)
         {
             try
             {
@@ -1683,7 +1683,7 @@ namespace AppedoLT.BusinessLogic
                     ReportData rd = new ReportData();
                     rd.loadgen = Constants.GetInstance().LoadGen;
                     rd.sourceip = _IPAddress.Address.ToString();
-                    rd.loadgenanme =  ExecutionReport.GetInstance().LoadGenName;
+                    rd.loadgenanme = ExecutionReport.GetInstance().LoadGenName;
                     rd.scenarioname = Status.ScenarioName;
                     rd.scriptid = _vuScriptXml.Attributes["id"].Value;
                     rd.containerid = _containerId.Peek()[0];
@@ -1692,9 +1692,9 @@ namespace AppedoLT.BusinessLogic
                     rd.userid = _userid;
                     rd.iterationid = _iterationid;
                     rd.requestid = requestid;
-                    rd.address =address;
-                    rd.starttime =starttime;
-                    rd.endtime =endtime;
+                    rd.address = address;
+                    rd.starttime = starttime;
+                    rd.endtime = endtime;
                     rd.diff = diff;
                     rd.responsesize = responsesize;
                     rd.reponseCode = reponseCode;
@@ -1702,7 +1702,7 @@ namespace AppedoLT.BusinessLogic
                     DataServer.GetInstance().LogResult(rd);
                     if (req.HasError == true)
                     {
-                        LockException(req.RequestId.ToString(), req.ErrorMessage, req.ErrorCode,req.RequestName);
+                        LockException(req.RequestId.ToString(), req.ErrorMessage, req.ErrorCode, req.RequestName);
                     }
                     if (req.ResponseCode >= 200 && req.ResponseCode <= 299)
                     {

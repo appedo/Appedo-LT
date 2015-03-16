@@ -10,8 +10,6 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Xml;
 using AppedoLT.Core;
-using System.Security.Cryptography.X509Certificates;
-using System.Net.Security;
 
 namespace AppedoLT.BusinessLogic
 {
