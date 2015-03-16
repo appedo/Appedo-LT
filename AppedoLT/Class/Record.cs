@@ -215,8 +215,9 @@ namespace AppedoLT
                     {
 
                         TcpClient client = _listener.AcceptTcpClient();
-                        Thread th = new Thread(new ParameterizedThreadStart(ProceessClient));
-                        th.Start(client);
+                        ProceessClient(client);
+                       // Thread th = new Thread(new ParameterizedThreadStart(ProceessClient));
+                        //th.Start(client);
 
                     }
                 }

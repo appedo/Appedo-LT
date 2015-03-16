@@ -10,6 +10,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Xml;
 using AppedoLT.Core;
+using System.Security.Cryptography.X509Certificates;
 using System.Net.Security;
 
 namespace AppedoLT.BusinessLogic
@@ -95,8 +96,10 @@ namespace AppedoLT.BusinessLogic
                 request = (HttpWebRequest)WebRequest.Create(RequestNode.Attributes["Address"].Value);
                 request.Timeout = RequestTimeOut;
                 request.ConnectionGroupName = _connectionGroup;
+                
                 request.ServicePoint.BindIPEndPointDelegate += new BindIPEndPoint((ServicePoint servicePoint, IPEndPoint remoteEndPoint, int retryCount) =>
                 {
+                   
                     if (IPAddress.IsLoopback(remoteEndPoint.Address))
                     {
                         if (remoteEndPoint.Address.AddressFamily == AddressFamily.InterNetworkV6)
@@ -123,7 +126,7 @@ namespace AppedoLT.BusinessLogic
                 request.ProtocolVersion = HttpVersion.Version11;
                 request.Method = RequestNode.Attributes["Method"].Value;
                 request.UnsafeAuthenticatedConnectionSharing = true;
-            
+
                 #endregion
 
                 #region Header
@@ -193,9 +196,10 @@ namespace AppedoLT.BusinessLogic
                             request.ContentLength += pData.size;
                         }
                     }
+                  
                     using (var dataStream = request.GetRequestStream())
                     {
-                       
+                        
                         foreach (PostData pData in _posDataContainer.FindAll(f => f.size > 0))
                         {
                             if (pData.type == 1)
