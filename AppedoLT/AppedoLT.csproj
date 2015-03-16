@@ -672,9 +672,6 @@
     <Content Include="Appedo.pfx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="database.db">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="execute.bat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

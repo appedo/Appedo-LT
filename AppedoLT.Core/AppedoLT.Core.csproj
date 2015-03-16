@@ -54,6 +54,7 @@
     </Reference>
     <Reference Include="System.Drawing" />
     <Reference Include="System.Management" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Web" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq">
@@ -72,6 +73,7 @@
     <Compile Include="Connection.cs" />
     <Compile Include="ConnectionManager.cs" />
     <Compile Include="Constants.cs" />
+    <Compile Include="RunningScriptWiseStatusData.cs" />
     <Compile Include="EvaluteException.cs" />
     <Compile Include="ExceptionHandler.cs" />
     <Compile Include="Expression\EventClasses.cs" />
@@ -79,6 +81,7 @@
     <Compile Include="Expression\FunctionEval.cs" />
     <Compile Include="Expression\IExpression.cs" />
     <Compile Include="Expression\RegexObjects.cs" />
+    <Compile Include="HtmlParser.cs" />
     <Compile Include="InstallerClass.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -90,18 +93,15 @@
     </Compile>
     <Compile Include="Licence.cs" />
     <Compile Include="LicenseInfo.cs" />
-    <Compile Include="Log.cs" />
     <Compile Include="MemoryTributary.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReplaceHost.cs" />
-    <Compile Include="ReportData.cs" />
     <Compile Include="ReportRuningStatus.cs" />
     <Compile Include="Request.cs" />
-    <Compile Include="RequestException.cs" />
     <Compile Include="RequestProcessor.cs" />
     <Compile Include="RunningStatus.cs" />
+    <Compile Include="LoadGenRunningStatusData.cs" />
     <Compile Include="ScriptUserDetail.cs" />
-    <Compile Include="TransactionRunTimeDetail.cs" />
     <Compile Include="TrasportLayer.cs" />
     <Compile Include="UCTime.cs">
       <SubType>UserControl</SubType>
@@ -112,6 +112,7 @@
     <Compile Include="Utility.cs" />
     <Compile Include="ValidationResult.cs" />
     <Compile Include="VariableXml.cs" />
+    <Compile Include="VUScriptStatus.cs" />
     <Compile Include="XmlFileProccessor.cs" />
   </ItemGroup>
   <ItemGroup>

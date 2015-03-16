@@ -1,13 +1,13 @@
-﻿using System;
+﻿using AppedoLT.Core;
+using AppedoLT.DataAccessLayer;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Threading;
-using System.Xml;
-using AppedoLT.Core;
-using AppedoLT.DataAccessLayer;
 using System.Diagnostics;
-using System.Timers;
 using System.Linq;
+using System.Threading;
+using System.Timers;
+using System.Xml;
 
 namespace AppedoLT.BusinessLogic
 {
@@ -29,11 +29,15 @@ namespace AppedoLT.BusinessLogic
         private Constants _constant = Constants.GetInstance();
         public BackgroundWorker Worker = new BackgroundWorker();
         public VUScriptStatus StatusSummary = new VUScriptStatus();
-        public Queue<Log> ScriptWiseLog = new Queue<Log>();
+
+        public Queue<Log> LogBuffer = new Queue<Log>();
+        public Queue<RequestException> ErrorBuffer = new Queue<RequestException>();
+        public Queue<ReportData> reportDataBuffer = new Queue<ReportData>();
+        public Queue<TransactionRunTimeDetail> TransactionDataBuffer = new Queue<TransactionRunTimeDetail>();
 
         public bool IsRunCompleted = false;
-        public string Scriptid { get; set; }
-        public string Scriptname { get; set; }
+        private string Scriptid { get; set; }
+        private string Scriptname { get; set; }
         public System.Diagnostics.Stopwatch elapsedTime = new System.Diagnostics.Stopwatch();
         public int StartUserId { get { return _startUserid; } private set { } }
         public List<VUser> UserList
@@ -51,8 +55,8 @@ namespace AppedoLT.BusinessLogic
         {
             try
             {
-                Scriptid = vuScript.Attributes["id"].Value;
-                Scriptname = vuScript.Attributes["name"].Value;
+                StatusSummary .ScriptId=Scriptid = vuScript.Attributes["id"].Value;
+                StatusSummary.ScriptName=Scriptname = vuScript.Attributes["name"].Value;
                 VUScriptSetting setting = new VUScriptSetting();
                 setting.Type = settingNode.Attributes["type"].Value;
                 setting.BrowserCache = Convert.ToBoolean(settingNode.Attributes["browsercache"].Value);
@@ -136,12 +140,13 @@ namespace AppedoLT.BusinessLogic
                 ExceptionHandler.WritetoEventLog(ex.StackTrace + Environment.NewLine + ex.Message);
             }
         }
+
         public ScriptExecutor(XmlNode settingNode, XmlNode vuScript, string reportName, string distribution)
         {
             try
             {
-                Scriptid = vuScript.Attributes["id"].Value;
-                Scriptname = vuScript.Attributes["name"].Value;
+                StatusSummary.ScriptId = Scriptid = vuScript.Attributes["id"].Value;
+                StatusSummary.ScriptName = Scriptname = vuScript.Attributes["name"].Value;
                 VUScriptSetting setting = new VUScriptSetting();
                 setting.Type = settingNode.Attributes["type"].Value;
                 setting.BrowserCache = Convert.ToBoolean(settingNode.Attributes["browsercache"].Value);
@@ -232,6 +237,7 @@ namespace AppedoLT.BusinessLogic
                 ExceptionHandler.WritetoEventLog(ex.StackTrace + Environment.NewLine + ex.Message);
             }
         }
+
         public void Run()
         {
             try
@@ -447,8 +453,9 @@ namespace AppedoLT.BusinessLogic
 
         private VUser GetVUser(int userid)
         {
-            return new VUser(int.Parse(_setting.MaxUser), _reportName, _setting.Type, userid, int.Parse(_setting.Iterations), _vuScript, _setting.BrowserCache, Request.GetIPAddress(_createdUserCount), ScriptWiseLog);
+            return new VUser(int.Parse(_setting.MaxUser), _reportName, _setting.Type, userid, int.Parse(_setting.Iterations), _vuScript, _setting.BrowserCache, Request.GetIPAddress(_createdUserCount), LogBuffer, ErrorBuffer, reportDataBuffer, TransactionDataBuffer);
         }
+
         private void UpdateStatus()
         {
             lock (StatusSummary)
@@ -460,16 +467,7 @@ namespace AppedoLT.BusinessLogic
                 StatusSummary.TotalFiveHundredStatusCodeCount = _usersList.Sum((s) => s.VUserStatus.FiveHundredStatusCodeCount);
             }
         }
-
+       
     }
-    public class VUScriptStatus
-    {
-        public int TotalTwoHundredStatusCodeCount { get; set; }
-        public int TotalThreeHundredStatusCodeCount { get; set; }
-        public int TotalFourHundredStatusCodeCount { get; set; }
-        public int TotalFiveHundredStatusCodeCount { get; set; }
-        public int TotalErrorCount { get; set; }
-        public int TotalVUserCreated { get; set; }
-        public int TotalVUserCompleted { get; set; }
-    }
+   
 }

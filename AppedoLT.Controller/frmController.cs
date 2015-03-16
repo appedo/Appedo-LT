@@ -26,7 +26,7 @@ namespace AppedoLTController
         BackgroundWorker worker = new BackgroundWorker();
         Constants constants = Constants.GetInstance();
         ControllerXml _ControllerXml = ControllerXml.GetInstance();
-       
+
         Thread DoWorkThread = null;
         Dictionary<string, Controller> Controllers = Controller.Controllers;
 
@@ -74,7 +74,7 @@ namespace AppedoLTController
                 MessageBox.Show(ex.Message);
             }
         }
-      
+
         void DoWork()
         {
             try
@@ -83,118 +83,85 @@ namespace AppedoLTController
                 StartClient();
                 while ((true))
                 {
-                    if (serverSocket == null) serverSocket = new TcpListener(8888);
-                    Trasport UIclient = new Trasport(serverSocket.AcceptTcpClient());
-                  
-                    new Thread(() =>
-                     {
-                         string runid = string.Empty;
-                         try
+                    try
+                    {
+                        if (serverSocket == null) serverSocket = new TcpListener(8888);
+                        Trasport UIclient = new Trasport(serverSocket.AcceptTcpClient());
+
+                        new Thread(() =>
                          {
-                             TrasportData data = UIclient.Receive();
-
-                             switch (data.Operation.ToLower())
+                             string runid = string.Empty;
+                             try
                              {
+                                 TrasportData data = UIclient.Receive();
 
-                                 case "run":
+                                 switch (data.Operation.ToLower())
+                                 {
 
-                                     RunOperation(UIclient, data);
-                                     if (isClientRunning == false)
-                                     {
-                                         StartClient();
-                                     }
+                                     case "run":
 
-                                     break;
-
-                                 case "test":
-                                     UIclient.Send(new TrasportData("ok", string.Empty, null));
-                                     break;
-
-
-                                 case "stop":
-                                     runid = data.Header["runid"];
-                                     if (Controllers.ContainsKey(runid) == true) Controllers[runid].Stop();
-                                     UIclient.Send(new TrasportData("response", "ok", null));
-                                     break;
-
-                                 case "status":
-                                     runid = data.Header["runid"];
-                                     if (Controllers.ContainsKey(runid) == true)
-                                     {
-                                         UIclient.Send(new TrasportData("status", string.Format("createduser: {0}" + System.Environment.NewLine + "completeduser: {1}" + System.Environment.NewLine + "iscompleted: {2}" + System.Environment.NewLine, Controllers[runid].CreatedUser.ToString(), Controllers[runid].CompletedUser.ToString(), Controllers[runid].Status == ControllerStatus.ReportGenerateCompleted ? 1 : 0), null));
-                                     }
-                                     else
-                                     {
-                                         UIclient.Send(new TrasportData("status", string.Format("createduser: {0}" + System.Environment.NewLine + "completeduser: {1}" + System.Environment.NewLine + "iscompleted: {2}" + System.Environment.NewLine, 0.ToString(), 0.ToString(), 0.ToString()), null));
-                                     }
-                                     break;
-
-                                 case "runstatus":
-                                     UIclient.Send(new TrasportData("runstatus", ExceptionHandler.GetLog(), null));
-                                     break;
-
-                                 case "resultfilejmeter":
-                                     {
-                                         string reportid = data.Header["reportid"];
-                                         GenerateReportFolderJmeter(reportid);
-                                         File.Delete(constants.ExecutingAssemblyLocation + "\\result.csv");
-                                         using (FileStream file = new FileStream(constants.ExecutingAssemblyLocation + "\\result.csv", FileMode.OpenOrCreate, FileAccess.Write, FileShare.None))
+                                         RunOperation(UIclient, data);
+                                         if (isClientRunning == false)
                                          {
-                                             file.Write(data.DataStream.ToArray(), 0, Convert.ToInt32(data.DataStream.Length));
-                                         }
-                                         Constants.GetInstance().ExecuteBat(Constants.GetInstance().ExecutingAssemblyLocation + "\\execute.bat");
-                                         CreateSummaryReport(data.Header["reportid"]);
-
-                                         string chartSummaryFile = constants.ExecutingAssemblyLocation + "\\Data\\" + data.Header["reportid"] + "\\Report\\chart_ summary.csv";
-                                         string reportSummaryFile = constants.ExecutingAssemblyLocation + "\\Data\\" + data.Header["reportid"] + "\\Report\\summary.xml";
-                                         TrasportData response = null;
-                                         if (File.Exists(chartSummaryFile) == true && File.Exists(reportSummaryFile) == true)
-                                         {
-                                             data = new TrasportData("RESULT", null, chartSummaryFile);
-                                             UIclient.Send(data);
-                                             response = UIclient.Receive();
-
-                                             data = new TrasportData("SUMMARYREPORT", null, reportSummaryFile);
-                                             UIclient.Send(data);
-                                             response = UIclient.Receive();
-
-                                             string folderPath = Constants.GetInstance().ExecutingAssemblyLocation + "\\Data\\" + reportid;
-                                             try
-                                             {
-                                                 if (Directory.Exists(folderPath))
-                                                 {
-                                                     Directory.Delete(folderPath, true);
-                                                 }
-                                             }
-                                             catch (Exception ex)
-                                             {
-                                                 ExceptionHandler.WritetoEventLog(ex.StackTrace + ex.Message);
-                                             }
-                                         }
-                                         else
-                                         {
-                                             data = new TrasportData("ERROR", "Unable to get report", null);
-                                             UIclient.Send(data);
+                                             StartClient();
                                          }
 
                                          break;
 
-                                     }
-                                 case "resultfile":
-                                     {
-                                         lock (test)
-                                         {
-                                             runid = data.Header["runid"];
-                                             string chartSummaryFile = constants.ExecutingAssemblyLocation + "\\Data\\" + runid + "\\Report\\chart_ summary.csv";
-                                             string reportSummaryFile = constants.ExecutingAssemblyLocation + "\\Data\\" + runid + "\\Report\\summary.xml";
-                                             TrasportData response = null;
+                                     case "test":
+                                         UIclient.Send(new TrasportData("ok", string.Empty, null));
+                                         break;
 
-                                             if (Controllers.ContainsKey(runid) == true && Controllers[runid].Status < ControllerStatus.ReportGenerateCompleted)
+
+                                     case "stop":
+                                         runid = data.Header["runid"];
+                                         if (Controllers.ContainsKey(runid) == true) Controllers[runid].Stop();
+                                         UIclient.Send(new TrasportData("response", "ok", null));
+                                         break;
+
+                                     case "status":
+                                         runid = data.Header["runid"];
+                                         if (Controllers.ContainsKey(runid) == true)
+                                         {
+                                             UIclient.Send(new TrasportData("status", Convert.ToString(constants.Serialise(Controllers[runid].RunningStatusData)), null));
+                                             TrasportData ack = UIclient.Receive();
+                                             if (ack.Operation == "ok")
                                              {
-                                                 UIclient.Send(new TrasportData("REPORTGENERATIONG", string.Empty, null));
-                                                 response = UIclient.Receive();
+                                                 Controllers[runid].RunningStatusData.Log.Clear();
                                              }
-                                             else if (File.Exists(chartSummaryFile) == true && File.Exists(reportSummaryFile) == true)
+
+                                             // UIclient.Send(new TrasportData("status", string.Format("createduser: {0}" + System.Environment.NewLine + "completeduser: {1}" + System.Environment.NewLine + "iscompleted: {2}" + System.Environment.NewLine, Controllers[runid].CreatedUser.ToString(), Controllers[runid].CompletedUser.ToString(), Controllers[runid].Status == ControllerStatus.ReportGenerateCompleted ? 1 : 0), null));
+                                         }
+                                         else
+                                         {
+                                             UIclient.Send(new TrasportData("status", Convert.ToString(constants.Serialise(new LoadGenRunningStatusData())), null));
+                                             TrasportData ack = UIclient.Receive();
+
+
+                                             // UIclient.Send(new TrasportData("status", string.Format("createduser: {0}" + System.Environment.NewLine + "completeduser: {1}" + System.Environment.NewLine + "iscompleted: {2}" + System.Environment.NewLine, 0.ToString(), 0.ToString(), 0.ToString()), null));
+                                         }
+                                         break;
+
+                                     case "runstatus":
+                                         UIclient.Send(new TrasportData("runstatus", ExceptionHandler.GetLog(), null));
+                                         break;
+
+                                     case "resultfilejmeter":
+                                         {
+                                             string reportid = data.Header["reportid"];
+                                             GenerateReportFolderJmeter(reportid);
+                                             File.Delete(constants.ExecutingAssemblyLocation + "\\result.csv");
+                                             using (FileStream file = new FileStream(constants.ExecutingAssemblyLocation + "\\result.csv", FileMode.OpenOrCreate, FileAccess.Write, FileShare.None))
+                                             {
+                                                 file.Write(data.DataStream.ToArray(), 0, Convert.ToInt32(data.DataStream.Length));
+                                             }
+                                             Constants.GetInstance().ExecuteBat(Constants.GetInstance().ExecutingAssemblyLocation + "\\execute.bat");
+                                             CreateSummaryReport(data.Header["reportid"]);
+
+                                             string chartSummaryFile = constants.ExecutingAssemblyLocation + "\\Data\\" + data.Header["reportid"] + "\\Report\\chart_ summary.csv";
+                                             string reportSummaryFile = constants.ExecutingAssemblyLocation + "\\Data\\" + data.Header["reportid"] + "\\Report\\summary.xml";
+                                             TrasportData response = null;
+                                             if (File.Exists(chartSummaryFile) == true && File.Exists(reportSummaryFile) == true)
                                              {
                                                  data = new TrasportData("RESULT", null, chartSummaryFile);
                                                  UIclient.Send(data);
@@ -203,25 +170,78 @@ namespace AppedoLTController
                                                  data = new TrasportData("SUMMARYREPORT", null, reportSummaryFile);
                                                  UIclient.Send(data);
                                                  response = UIclient.Receive();
+
+                                                 string folderPath = Constants.GetInstance().ExecutingAssemblyLocation + "\\Data\\" + reportid;
+                                                 try
+                                                 {
+                                                     if (Directory.Exists(folderPath))
+                                                     {
+                                                         Directory.Delete(folderPath, true);
+                                                     }
+                                                 }
+                                                 catch (Exception ex)
+                                                 {
+                                                     ExceptionHandler.WritetoEventLog(ex.StackTrace + ex.Message);
+                                                 }
                                              }
                                              else
                                              {
                                                  data = new TrasportData("ERROR", "Unable to get report", null);
                                                  UIclient.Send(data);
                                              }
+
+                                             break;
+
                                          }
-                                     }
-                                     break;
+                                     case "resultfile":
+                                         {
+                                             lock (test)
+                                             {
+                                                 runid = data.Header["runid"];
+                                                 string chartSummaryFile = constants.ExecutingAssemblyLocation + "\\Data\\" + runid + "\\Report\\chart_ summary.csv";
+                                                 string reportSummaryFile = constants.ExecutingAssemblyLocation + "\\Data\\" + runid + "\\Report\\summary.xml";
+                                                 TrasportData response = null;
+
+                                                 if (Controllers.ContainsKey(runid) == true && Controllers[runid].Status < ControllerStatus.ReportGenerateCompleted)
+                                                 {
+                                                     UIclient.Send(new TrasportData("REPORTGENERATIONG", string.Empty, null));
+                                                     response = UIclient.Receive();
+                                                 }
+                                                 else if (File.Exists(chartSummaryFile) == true && File.Exists(reportSummaryFile) == true)
+                                                 {
+                                                     data = new TrasportData("RESULT", null, chartSummaryFile);
+                                                     UIclient.Send(data);
+                                                     response = UIclient.Receive();
+
+                                                     data = new TrasportData("SUMMARYREPORT", null, reportSummaryFile);
+                                                     UIclient.Send(data);
+                                                     response = UIclient.Receive();
+                                                 }
+                                                 else
+                                                 {
+                                                     data = new TrasportData("ERROR", "Unable to get report", null);
+                                                     UIclient.Send(data);
+                                                 }
+                                             }
+                                         }
+                                         break;
+                                 }
+                                 UIclient.Close();
                              }
-                             UIclient.Close();
-                         }
-                         catch (Exception ex)
-                         {
-                             ExceptionHandler.WritetoEventLog(ex.StackTrace + ex.Message);
-                             Thread.Sleep(10000);
-                         }
-                     }).Start();
+                             catch (Exception ex)
+                             {
+                                 ExceptionHandler.WritetoEventLog(ex.StackTrace + ex.Message);
+                                 Thread.Sleep(10000);
+                             }
+                         }).Start();
+                    }
+                    catch (Exception ex)
+                    {
+                        ExceptionHandler.WritetoEventLog(ex.StackTrace + ex.Message);
+                        Thread.Sleep(10000);
+                    }
                 }
+
             }
             catch (Exception ex)
             {
@@ -636,7 +656,7 @@ namespace AppedoLTController
                 foreach (string users in Controllers.Keys)
                 {
                     ctrl = Controllers[users];
-                    statusList.Add(string.Format("{0},{1},{2},{3}", ctrl.RunId, ctrl.CreatedUser, ctrl.CompletedUser, ctrl.Status == ControllerStatus.ReportGenerateCompleted ? 1 : 0));
+                    statusList.Add(string.Format("{0},{1},{2},{3}", ctrl.RunId, ctrl.RunningStatusData.CreatedUser, ctrl.RunningStatusData.CompletedUser, ctrl.RunningStatusData.IsCompleted));
                 }
             }
             catch (Exception ex)
@@ -773,7 +793,7 @@ namespace AppedoLTController
                 mas.Executequery(reportName, query);
                 Result.GetInstance().GetSummaryReportJmeterByScript(reportName, scriptlist);
                 mas.GenerateReports();
-                
+
             }
             catch (Exception ex)
             {
@@ -859,8 +879,8 @@ namespace AppedoLTController
                                            insert into containerresponse90_{0} select containername,min(diff) AS min,max(diff) AS max,avg(diff) AS avg from containerresponse where scriptid={0} and starttime>'{2}' group by containername;
                                            insert into throughput_{0} select address,sum(responsesize) from jmeterdata where scriptid={0} group by address;
                                            insert into hitcount_{0} select address,count(responsesize) from jmeterdata where scriptid={0} group by address;
-                                           insert into errorcount_{0} select address,count(*) from jmeterdata where scriptid={0} and success='FALSE' group by address;
-                                           insert into errorcode_{0} select httpresponsemessage,count(*) from jmeterdata where scriptid={0} and success='FALSE' group by httpresponsemessage;", script["id"], script["scriptname"], rampuptime).AppendLine();
+                                           insert into errorcount_{0} select address,count(*) from jmeterdata where scriptid={0} and success='FALSE' or success='false' group by address;
+                                           insert into errorcode_{0} select httpresponsemessage,count(*) from jmeterdata where scriptid={0} and success='FALSE' or success='false' group by httpresponsemessage;", script["id"], script["scriptname"], rampuptime).AppendLine();
                     #endregion
                 }
                 result.Append(@" insert into summaryreport SELECT 
@@ -875,7 +895,7 @@ namespace AppedoLTController
                                                                           IFNULL(ROUND((SUM(responsesize)*1.0/1024)/1024,3),0) AS total_throughput,
                                                                           CASE WHEN (strftime('%s',max(starttime)) - strftime('%s',min(starttime))) = 0 THEN 0
                                                                                ELSE ((SUM(responsesize)*8.0)/(strftime('%s',max(starttime)) - strftime('%s',min(starttime))))/1024/1024 END AS avg_throughput,
-                                                                          (select count(*)from jmeterdata where success='FALSE' ) AS total_errors,
+                                                                          (select count(*)from jmeterdata where success='FALSE' or success='false' ) AS total_errors,
                                                                           (select count(*) from (SELECT containername from containerresponse group by containername))as total_page,
                                                                           (select IFNULL(AVG(diff)*1.0/1000,0) from (select sum(diff)as pageresponse from containerresponse  group by containername))AS avg_page_response,
                                                                           (select count(*)from jmeterdata where responsecode like '2%') AS reponse_200,
@@ -916,7 +936,7 @@ namespace AppedoLTController
         //private void CreateInstance(string imageId, string region, string InstanceType,string keyPairName, string accessKey, string secretAccessKey , string secGroupName)
         //{
         //    var ec2Client = new Amazon.EC2.AmazonEC2Client(accessKey, secretAccessKey, Amazon.RegionEndpoint.GetBySystemName(region));
-         
+
         //    List<string> groups = new List<string>();
         //    foreach(string group in secGroupName.Split(','))
         //    {
@@ -950,7 +970,7 @@ namespace AppedoLTController
         //        }
         //    }
         //}
-       
+
         //private void GetAvailableInstanceOn(string imageId, string region, string InstanceType, string keyPairName, string accessKey, string secretAccessKey, string secGroupName)
         //{
         //    var ec2Client = new Amazon.EC2.AmazonEC2Client(accessKey, secretAccessKey, Amazon.RegionEndpoint.GetBySystemName(region));
