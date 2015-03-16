@@ -68,6 +68,7 @@ namespace AppedoLTController
                     catch (Exception ex)
                     {
                         ExceptionHandler.WritetoEventLog(ex.StackTrace + ex.Message);
+                        Thread.Sleep(2000);
                     }
                 }
             }

@@ -242,7 +242,7 @@ namespace AppedoLT.Core
             return string.Format("{0},{1},{2},{3},{4},{5},{6},{7},{8},{9},{10},{11},{12},{13},{14},{15},{16}",
                                                                                  this.loadgen,
                                                                                  this.sourceip,
-
+                                                                                 this.loadgenanme,
                                                                                  this.scenarioname,
                                                                                  this.scriptid,
                                                                                  this.containerid,
@@ -254,7 +254,8 @@ namespace AppedoLT.Core
                                                                                  this.iterationid,
                                                                                  this.starttime.ToString("yyyy-MM-dd HH:mm:ss"),
                                                                                  this.endtime.ToString("yyyy-MM-dd HH:mm:ss"),
-                                                                                 this.diff.ToString(), this.reponseCode,
+                                                                                 this.diff.ToString(), 
+                                                                                 this.reponseCode,
                                                                                  this.responsesize);
         }
     }

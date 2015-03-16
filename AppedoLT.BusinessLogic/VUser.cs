@@ -1682,7 +1682,7 @@ namespace AppedoLT.BusinessLogic
                 {
                     ReportData rd = new ReportData();
                     rd.loadgen = Constants.GetInstance().LoadGen;
-                    rd.sourceip = _IPAddress.ToString();
+                    rd.sourceip = _IPAddress.Address.ToString();
                     rd.loadgenanme =  ExecutionReport.GetInstance().LoadGenName;
                     rd.scenarioname = Status.ScenarioName;
                     rd.scriptid = _vuScriptXml.Attributes["id"].Value;

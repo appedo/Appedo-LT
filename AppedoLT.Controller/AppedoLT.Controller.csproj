@@ -183,6 +183,7 @@
     <Content Include="log.xslt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="logic.ico" />
     <Content Include="report.xslt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
