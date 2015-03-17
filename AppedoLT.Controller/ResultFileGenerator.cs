@@ -28,10 +28,11 @@ namespace AppedoLTController
         }
         public void Genarate()
         {
+
             ReceiveAllLoadGenDatafiles();
             if (ControllerXml.GetInstance().doc.SelectSingleNode("//runs/run[@reportname='" + _runid + "']").SelectNodes("loadgen[@resultfilereceived='False' and @runstarted='True']").Count == 0)
             {
-                File.Copy(Constants.GetInstance().ExecutingAssemblyLocation + "\\database.db",Constants.GetInstance().ExecutingAssemblyLocation +"\\data\\"+ _runid + "\\database.db", true);
+                File.Copy(Constants.GetInstance().ExecutingAssemblyLocation + "\\database.db", Constants.GetInstance().ExecutingAssemblyLocation + "\\data\\" + _runid + "\\database.db", true);
                 CreateSummaryReport(_runid);
                 ReportMaster reportMaster = new ReportMaster(_runid);
                 reportMaster.SetUserRunTime();
@@ -39,6 +40,7 @@ namespace AppedoLTController
                 ReceiveAllChartData(_runid);
                 SendResultFile(_runid);
             }
+
         }
         private void ReceiveAllLoadGenDatafiles()
         {

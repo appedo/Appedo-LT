@@ -337,7 +337,7 @@ namespace AppedoLT.DataAccessLayer
                         report.AppendChild(logNode);
 
                         XmlNode errorNode = doc.CreateElement("error");
-                        reader = GetReader("select loadgen,reportname,scenarioname,scriptname,er.requestid as requestid, report.address as url ,userid,iterationid,errorcode,message,time  from error as er left join (select requestid,address from reportdata group by requestid,address) as report on er.requestid=report.requestid", _con);
+                        reader = GetReader("select loadgen,reportname,scenarioname,scriptname, requestid,request,userid,iterationid,errorcode,message,time  from error order by time ", _con);
                         reader.Read();
 
                         while (reader.HasRows == true)
@@ -565,7 +565,7 @@ namespace AppedoLT.DataAccessLayer
                         //report.AppendChild(logNode);
 
                         XmlNode errorNode = doc.CreateElement("error");
-                        reader = GetReader("select loadgen,epochtimestamp,address,responsecode,httpresponsemessage,threadgroupname,responsesize from jmeterdata where success='false'", _con);
+                        reader = GetReader("select loadgen,epochtimestamp,address,responsecode,httpresponsemessage,threadgroupname,responsesize from jmeterdata where success='false' or success='FALSE'", _con);
                         reader.Read();
                         while (reader.HasRows == true)
                         {
