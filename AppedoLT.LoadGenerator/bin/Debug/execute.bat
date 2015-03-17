@@ -1,1 +1,0 @@
-sqlite3 "E:\AppedoLT\AppedoLT.LoadGenerator\bin\Debug\Data\191_122_183_176_61\database.db" < "E:\AppedoLT\AppedoLT.LoadGenerator\bin\Debug\commands.txt"
