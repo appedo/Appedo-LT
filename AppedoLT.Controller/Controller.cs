@@ -31,7 +31,7 @@ namespace AppedoLTController
         {
             get
             {
-                _runningStatusData.IsCompleted = (_staus== ControllerStatus.ReportGenerateCompleted) ? 1 : 0;
+                _runningStatusData.IsCompleted = (_staus == ControllerStatus.ReportGenerateCompleted) ? 1 : 0;
                 return _runningStatusData;
             }
         }
@@ -136,11 +136,12 @@ namespace AppedoLTController
                             }
                         }
                     }
+                    _runningStatusData.Time = DateTime.Now;
+                    _runningStatusData.CreatedUser = totalCreated;
+                    _runningStatusData.CompletedUser = totalCompleted;
                     ScriptWiseStatus = GetStatusconcatenate(scriptwisestatus.ToString());
                     SendScriptWiseStatus(ScriptWiseStatus);
                     SendStatus();
-                    _runningStatusData.CreatedUser=totalCreated;
-                    _runningStatusData.CompletedUser=totalCompleted;
                     if (runcompleted == loadGens.Count)
                     {
                         ExceptionHandler.LogRunDetail(RunId, "Run completed");
@@ -151,6 +152,7 @@ namespace AppedoLTController
                         new ResultFileGenerator(RunId).Genarate();
                         _staus = ControllerStatus.ReportGenerateCompleted;
                         Controllers.Remove(RunId);
+                        SendStatus();
                         break;
 
                     }

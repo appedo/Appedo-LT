@@ -319,6 +319,7 @@ namespace AppedoLT.BusinessLogic
                 if (Break == true) return;
                 foreach (XmlNode child in container.ChildNodes)
                 {
+
                     if (Break == true) break;
                     switch (child.Name)
                     {
@@ -342,7 +343,7 @@ namespace AppedoLT.BusinessLogic
                                 {
                                     if (child.Attributes["delay"].Value.Contains("$$"))
                                     {
-                                        EvaluteExp(child);
+                                        EvaluteExp(child.Clone());
                                     }
                                     System.Threading.Thread.Sleep(child.Attributes["delay"].Value == "" ? 0 : Convert.ToInt32(child.Attributes["delay"].Value));
                                 }
@@ -483,7 +484,7 @@ namespace AppedoLT.BusinessLogic
                         case "log":
 
                             #region Log
-                            LockLog(child);
+                            LockLog(child.Clone());
                             break;
                             #endregion
 
@@ -949,20 +950,24 @@ namespace AppedoLT.BusinessLogic
 
         private string GetVariableValue(string variablename)
         {
-            string result = string.Empty;
-            if (_exVariablesValues.ContainsKey(variablename) == true)
+            //lock (_exVariablesValues)
             {
-                result = _exVariablesValues[variablename].ToString();
-            }
-            else
-            {
-                string type = VariableManager.dataCenter.GetVariableType(variablename.Split('.')[0]);
-                if (type == "file" || type == "string" || type == "number" || type == "randomnumber" || type == "randomstring" || type == "currentdate")
+                string result = string.Empty;
+                if (_exVariablesValues.ContainsKey(variablename) == true)
                 {
-                    result = VariableManager.dataCenter.GetVariableValue(_userid, _iterationid, variablename, _maxUser).ToString();
+                    result = _exVariablesValues[variablename].ToString();
                 }
+                else
+                {
+                    string type = VariableManager.dataCenter.GetVariableType(variablename.Split('.')[0]);
+                    if (type == "file" || type == "string" || type == "number" || type == "randomnumber" || type == "randomstring" || type == "currentdate")
+                    {
+                        result = VariableManager.dataCenter.GetVariableValue(_userid, _iterationid, variablename, _maxUser).ToString();
+                    }
+                }
+                return System.Web.HttpUtility.HtmlEncode(result);
             }
-            return System.Web.HttpUtility.HtmlEncode(result);
+            
         }
 
         private object GetValue(object variableName)

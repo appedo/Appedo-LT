@@ -191,7 +191,7 @@ namespace AppedoLT
         {
             if (rbtnSimple.Checked == true)
             {
-                txtRegEx.Text=Regex.Escape(txtStartwith.Text) + "(.*?)" + Regex.Escape(txtEndwith.Text);
+                txtRegEx.Text = Regex.Escape(txtStartwith.Text) + "(.*?)" + Regex.Escape(txtEndwith.Text);
             }
         }
         private void txtLeave(object sender, EventArgs e)
