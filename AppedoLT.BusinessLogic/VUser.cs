@@ -483,7 +483,7 @@ namespace AppedoLT.BusinessLogic
                         case "log":
 
                             #region Log
-                            LockLog(child);
+                            LockLog(child.Clone());
                             break;
                             #endregion
 
