@@ -12,6 +12,9 @@ using System.Windows.Forms;
 using System.Xml;
 using AppedoLT.Core;
 using AppedoLT.DataAccessLayer;
+using System.Runtime.Serialization.Json;
+using System.Messaging;
+
 
 namespace AppedoLT.BusinessLogic
 {
@@ -57,6 +60,8 @@ namespace AppedoLT.BusinessLogic
             disposed = true;
         }
         #endregion
+
+        
 
         public static string Result = string.Empty;
         private XmlNode _vuScriptXml;
@@ -1642,7 +1647,10 @@ namespace AppedoLT.BusinessLogic
             exception.message = message;
             exception.errorcode = errorCode;
             exception.request = url;
-            _ErrorBuffer.Enqueue(exception);
+            lock (_ErrorBuffer)
+            {
+                if (exception != null) _ErrorBuffer.Enqueue(exception);
+            }
             lock (errors)
             {
                 errors.AddExeception(exception);
@@ -1665,7 +1673,10 @@ namespace AppedoLT.BusinessLogic
                 logObj.userid = this._userid.ToString();
                 logObj.time = DateTime.Now;
                 logObj.message = HttpUtility.HtmlDecode(log.Attributes["message"].Value);
-                _LogBuffer.Enqueue(logObj);
+                lock (_LogBuffer)
+                {
+                    if (logObj != null) _LogBuffer.Enqueue(logObj);
+                }
                 if (IsValidation == false)
                 {
                     lock (DataServer.GetInstance().logs)
@@ -1703,8 +1714,28 @@ namespace AppedoLT.BusinessLogic
                     rd.diff = diff;
                     rd.responsesize = responsesize;
                     rd.reponseCode = reponseCode;
-                    _ReportDataBuffer.Enqueue(rd);
-                    DataServer.GetInstance().LogResult(rd);
+                   
+
+                    //System.Messaging.Message msg1 = new System.Messaging.Message();
+                    //msg1.Body = rd;
+                    //msg1.Formatter = new BinaryMessageFormatter();
+                   
+                     
+                   // Constants.GetInstance().LTDataQueue.Send(msg1);
+                  // System.Messaging.Message[] msg2 = Constants.GetInstance().LTDataQueue.GetAllMessages();
+                 //  long test=  Constants.GetInstance().LTDataQueue.MaximumQueueSize;
+                 //  System.Messaging.Message msg= Constants.GetInstance().LTDataQueue.Receive();
+                   //  Constants.GetInstance().LTDataQueue.re
+                   //msg.Formatter = new BinaryMessageFormatter();
+                   //ReportData rd1 = (ReportData)msg.Body;
+                    lock (_ReportDataBuffer)
+                    {
+                        if(rd!=null) _ReportDataBuffer.Enqueue(rd);
+                    }
+                    lock (rd)
+                    {
+                        DataServer.GetInstance().LogResult(rd);
+                    }
                     if (req.HasError == true)
                     {
                         LockException(req.RequestId.ToString(), req.ErrorMessage, req.ErrorCode, req.RequestName);
@@ -1734,8 +1765,15 @@ namespace AppedoLT.BusinessLogic
         }
         private void LockTransactions(TransactionRunTimeDetail tranDetailTemp)
         {
-            _TransactionBuffer.Enqueue(tranDetailTemp);
-            DataServer.GetInstance().transcations.Enqueue(tranDetailTemp);
+
+            lock (_TransactionBuffer)
+            {
+                if (tranDetailTemp != null) _TransactionBuffer.Enqueue(tranDetailTemp);
+            }
+            lock (tranDetailTemp)
+            {               
+                DataServer.GetInstance().transcations.Enqueue(tranDetailTemp);
+            }
         }
         #endregion
     }

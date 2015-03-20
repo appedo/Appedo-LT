@@ -47,6 +47,8 @@ namespace AppedoLT.Core
         public int CompletedUser { get; set; }
         [DataMember(Name = "iscompleted")]
         public int IsCompleted { get; set; }
+        [DataMember(Name = "loadgens")]
+        public string LoadGens { get; set; }
         [DataMember(Name = "log")]
         public List<Log> Log { get { return _log; } set { _log = value; } }
         [DataMember(Name = "error")]
@@ -174,6 +176,7 @@ namespace AppedoLT.Core
     }
 
     [DataContract]
+    [Serializable]
     public class ReportData
     {
         public DateTime _starttime = new DateTime();

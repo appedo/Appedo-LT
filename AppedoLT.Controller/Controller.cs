@@ -21,7 +21,6 @@ namespace AppedoLTController
         private XmlNode _RunNode = null;
         private string _SourceIp = null;
         ControllerStatus _staus = ControllerStatus.Idle;
-             
         public string ScriptWiseStatus { get; set; }
         public string RunId = string.Empty;
         public ControllerStatus Status { get { return _staus; } }
@@ -36,11 +35,12 @@ namespace AppedoLTController
             }
         }
 
-        public Controller(string soureIP, string runid, XmlNode runNode)
+        public Controller(string soureIP, string runid, XmlNode runNode,string loadgens)
         {
             RunId = runid;
             _SourceIp = soureIP;
             _RunNode = runNode;
+            _runningStatusData.LoadGens = loadgens;
         }
 
         public void Start()
