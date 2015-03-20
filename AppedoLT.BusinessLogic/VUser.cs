@@ -64,7 +64,10 @@ namespace AppedoLT.BusinessLogic
         private XmlDocument _doc = null;
         private Thread _userThread;
         private ExecutionReport Status = ExecutionReport.GetInstance();
-        private Queue<Log> _scriptWiseLog = new Queue<Log>();
+        private Queue<Log> _LogBuffer = new Queue<Log>();
+        private Queue<RequestException> _ErrorBuffer = new Queue<RequestException>();
+        private Queue<ReportData> _ReportDataBuffer = new Queue<ReportData>();
+        private Queue<TransactionRunTimeDetail> _TransactionBuffer = new Queue<TransactionRunTimeDetail>();
 
         private Dictionary<string, object> _exVariablesValues = new Dictionary<string, object>();
         private Dictionary<string, TransactionRunTimeDetail> _transactions = new Dictionary<string, TransactionRunTimeDetail>();
@@ -114,10 +117,13 @@ namespace AppedoLT.BusinessLogic
         Dictionary<string, string> receivedCookies = new Dictionary<string, string>();
         public VUserStatus VUserStatus;
 
-        public VUser(int maxUser, string reportName, string type, int userid, int iteration, XmlNode vuScript, bool browserCache, IPAddress ipaddress, Queue<Log> scriptWiseLog)
+        public VUser(int maxUser, string reportName, string type, int userid, int iteration, XmlNode vuScript, bool browserCache, IPAddress ipaddress, Queue<Log> logBuffer, Queue<RequestException> errorBuffer, Queue<ReportData> reportDataBuffer, Queue<TransactionRunTimeDetail> transactionBuffer)
         {
             _doc = vuScript.OwnerDocument;
-            _scriptWiseLog = scriptWiseLog;
+            _LogBuffer = logBuffer;
+            _ErrorBuffer = errorBuffer;
+            _ReportDataBuffer = reportDataBuffer;
+            _TransactionBuffer = transactionBuffer;
             _maxUser = maxUser;
             _browserCache = browserCache;
             _type = type;
@@ -477,7 +483,7 @@ namespace AppedoLT.BusinessLogic
                         case "log":
 
                             #region Log
-                            LockLog(child);
+                            LockLog(child.Clone());
                             break;
                             #endregion
 
@@ -514,7 +520,7 @@ namespace AppedoLT.BusinessLogic
                                 Thread.Sleep(100);
                                 tranDetailTemp.EndTime = DateTime.Now;
                                 tranDetailTemp.IsEnd = true;
-                                DataServer.GetInstance().transcations.Enqueue(tranDetailTemp);
+                                LockTransactions(tranDetailTemp);
                             }
                             break;
                             #endregion
@@ -571,7 +577,7 @@ namespace AppedoLT.BusinessLogic
                         }
                         else
                         {
-                            LockResponseTime(req);
+                            LockResponseTime(req.RequestNode.Attributes["id"].Value, req.RequestNode.Attributes["Path"] == null ? req.RequestName : req.RequestNode.Attributes["Path"].Value, req.StartTime, req.EndTime, req.ResponseTime, req.ResponseSize, req.ResponseCode.ToString());
                         }
                     }
                     #endregion
@@ -591,16 +597,37 @@ namespace AppedoLT.BusinessLogic
                             }
                             request.Attributes["Address"].Value = new StringBuilder().Append(request.Attributes["Schema"].Value).Append("://").Append(request.Attributes["Host"].Value).Append(":").Append(request.Attributes["Port"].Value).Append(request.Attributes["Path"].Value).ToString();
                             Uri temp = new Uri(request.Attributes["Address"].Value);
-                            if (_browserCache == true && _index > 1 && request.Attributes["Accept"] != null && request.Attributes["Accept"].Value.Contains("/"))
+                            if (_browserCache == true && _index > 1)
                             {
-                                string acceptType = request.Attributes["Accept"].Value.Split('/')[1];
-                                acceptType = acceptType.ToLower();
-                                if (acceptType.Contains("image") || acceptType.Contains("css") || acceptType.Contains("js"))
+                                try
                                 {
-                                    cacheEnabled = true;
+                                    XmlNode requestHeadeNode = request.SelectSingleNode("./headers/header[@name='Accept']");
+                                    Match mat = new Regex("Content-Type: (.*?)\r\n", RegexOptions.Singleline | RegexOptions.Multiline).Match(request.Attributes["ResponseHeader"].Value);
+
+                                    if (requestHeadeNode != null && requestHeadeNode.Attributes["value"].Value.Contains("/"))
+                                    {
+                                        string acceptType = requestHeadeNode.Attributes["value"].Value.Split('/')[1];
+                                        acceptType = acceptType.ToLower();
+                                        if (acceptType.Contains("image") || acceptType.Contains("css") || acceptType.Contains("js") || acceptType.Contains("javascript"))
+                                        {
+                                            cacheEnabled = true;
+                                        }
+                                    }
+                                    if (mat.Success == true && mat.Groups[1] != null && mat.Groups[1].Value.Contains("/"))
+                                    {
+                                        string acceptType = mat.Groups[1].Value.Split('/')[1];
+                                        acceptType = acceptType.ToLower();
+                                        if (acceptType.Contains("image") || acceptType.Contains("css") || acceptType.Contains("js") || acceptType.Contains("javascript"))
+                                        {
+                                            cacheEnabled = true;
+                                        }
+                                    }
+                                }
+                                catch (Exception ex)
+                                {
+                                    ExceptionHandler.WritetoEventLog(ex.StackTrace + Environment.NewLine + ex.Message);
                                 }
                             }
-
                             string fileNameExt = Path.GetExtension(temp.LocalPath);
                             if (cacheEnabled == false && !(fileNameExt != string.Empty && _vuScriptXml.Attributes["exclutionfiletypes"].Value.Contains(fileNameExt.Replace(".", string.Empty).Trim().ToLower()) == true))
                             {
@@ -625,7 +652,7 @@ namespace AppedoLT.BusinessLogic
                                 }
                                 else
                                 {
-                                    LockResponseTime(req);
+                                    LockResponseTime(req.RequestNode.Attributes["id"].Value, req.RequestNode.Attributes["Path"] == null ? req.RequestName : req.RequestNode.Attributes["Path"].Value, req.StartTime, req.EndTime, req.ResponseTime, req.ResponseSize, req.ResponseCode.ToString());
                                 }
 
                                 #region SecondaryReqEnable
@@ -666,7 +693,7 @@ namespace AppedoLT.BusinessLogic
                                                             }
                                                             else
                                                             {
-                                                                LockResponseTime(secReq);
+                                                                LockResponseTime(req.RequestNode.Attributes["id"].Value, req.RequestNode.Attributes["Path"] == null ? req.RequestName : req.RequestNode.Attributes["Path"].Value, req.StartTime, req.EndTime, req.ResponseTime, req.ResponseSize, req.ResponseCode.ToString());
                                                             }
                                                         }
                                                         catch (Exception ex)
@@ -821,7 +848,7 @@ namespace AppedoLT.BusinessLogic
             }
             catch (Exception ex)
             {
-                LockException("0", ex.Message, "700");
+                LockException("0", ex.Message, "700", string.Empty);
             }
         }
 
@@ -925,7 +952,7 @@ namespace AppedoLT.BusinessLogic
             string result = string.Empty;
             if (_exVariablesValues.ContainsKey(variablename) == true)
             {
-                result =_exVariablesValues[variablename].ToString();
+                result = _exVariablesValues[variablename].ToString();
             }
             else
             {
@@ -974,6 +1001,7 @@ namespace AppedoLT.BusinessLogic
             foreach (XmlAttribute attribute in expression.Attributes)
             {
                 match = regex.Match(attribute.Value);
+
                 while (match.Success == true)
                 {
                     AppedoLT.Core.Tuple<string, string> parm = new AppedoLT.Core.Tuple<string, string>();
@@ -985,7 +1013,7 @@ namespace AppedoLT.BusinessLogic
                     catch
                     {
                         parm.Value = string.Empty;
-                        LockException(expression.Attributes["id"].Value, "Unable to evaluate " + parm.Key, "700");
+                        LockException("0", "Unable to evaluate " + parm.Key, "700", string.Empty);
                     }
                     finally
                     {
@@ -1011,7 +1039,7 @@ namespace AppedoLT.BusinessLogic
                 catch
                 {
                     parm.Value = string.Empty;
-                    LockException(expression.Attributes["id"].Value, "Unable to evaluate " + parm.Key, "700");
+                    LockException("0", "Unable to evaluate " + parm.Key, "700", string.Empty);
                 }
                 finally
                 {
@@ -1073,7 +1101,7 @@ namespace AppedoLT.BusinessLogic
                 catch
                 {
                     parm.Value = string.Empty;
-                    LockException(expression.Attributes["id"].Value, "Unable to evaluate " + parm.Key, "700");
+                    LockException("0", "Unable to evaluate " + parm.Key, "700", string.Empty);
                 }
                 finally
                 {
@@ -1122,7 +1150,7 @@ namespace AppedoLT.BusinessLogic
                 }
                 else
                 {
-                    LockException(tcpRequest.Attributes["id"].Value, EvalutionResult.value, "600");
+                    LockException(tcpRequest.Attributes["id"].Value, EvalutionResult.value, "600", tcpRequest.Attributes["name"].Value);
                 }
 
                 foreach (XmlNode reqParam in tcpRequest.SelectNodes("params/param"))
@@ -1138,7 +1166,7 @@ namespace AppedoLT.BusinessLogic
                         }
 
                         {
-                            LockException(tcpRequest.Attributes["id"].Value, EvalutionResult.value, "600");
+                            LockException(tcpRequest.Attributes["id"].Value, EvalutionResult.value, "600", tcpRequest.Attributes["name"].Value);
                         }
                     }
 
@@ -1185,7 +1213,7 @@ namespace AppedoLT.BusinessLogic
                 exception.scenarioname = Status.ScenarioName;
                 exception.scriptname = _vuScriptXml.Attributes["name"].Value;
                 exception.requestid = tcpRequest.Attributes["id"].Value;
-                exception.request = requestStr;
+                exception.request = tcpRequest.Attributes["name"].Value;
                 exception.iterationid = this._iterationid.ToString();
                 exception.userid = this._userid.ToString();
                 exception.requestexceptionid = Guid.NewGuid().ToString();
@@ -1406,7 +1434,7 @@ namespace AppedoLT.BusinessLogic
                     requestResponse.TcpIPRequest = requestStr;
                     responseCode = "800";
                     requestResponse.IsSucess = false;
-                    LockException(tcpRequest.Attributes["id"].Value, assertionFaildMsg.ToString(), responseCode);
+                    LockException(tcpRequest.Attributes["id"].Value, assertionFaildMsg.ToString(), responseCode, tcpRequest.Attributes["name"].Value);
                 }
                 else
                 {
@@ -1424,7 +1452,7 @@ namespace AppedoLT.BusinessLogic
                     requestResponse.TcpIPResponse = ex.Message;
                     requestResponse.TcpIPRequest = requestStr;
                     requestResponse.IsSucess = false;
-                    LockException(tcpRequest.Attributes["id"].Value, ex.Message, "700");
+                    LockException(tcpRequest.Attributes["id"].Value, ex.Message, "700", tcpRequest.Attributes["name"].Value);
                     end = DateTime.Now;
                     elapsedTimer.Stop();
                 }
@@ -1435,10 +1463,13 @@ namespace AppedoLT.BusinessLogic
             requestResponse.RequestId = tcpRequest.Attributes["id"].Value; ;
             if (IsValidation != true)
             {
-                DataServer.GetInstance().LogResult(Constants.GetInstance().LoadGen, _IPAddress.ToString(), _reportName, Status.ScenarioName, _vuScriptXml.Attributes["id"].Value, containerid, containername, pageid, tcpRequest.Attributes["id"].Value, tcpRequest.Attributes["name"].Value, _userid, _iterationid, start, end, elapsedTimer.Elapsed.TotalMilliseconds, response.Length, responseCode);
+
+                LockResponseTime(tcpRequest.Attributes["id"].Value, tcpRequest.Attributes["name"].Value, start, end, elapsedTimer.Elapsed.TotalMilliseconds, response.Length, responseCode);
             }
             return requestResponse;
         }
+
+
 
         private void SetValue(object variableName, object value)
         {
@@ -1568,7 +1599,7 @@ namespace AppedoLT.BusinessLogic
             exception.scenarioname = Status.ScenarioName;
             exception.scriptname = _vuScriptXml.Attributes["name"].Value;
             exception.requestid = "0";
-            exception.request = null;
+
             exception.iterationid = this._iterationid.ToString();
             exception.userid = this._userid.ToString();
             exception.requestexceptionid = Guid.NewGuid().ToString();
@@ -1591,7 +1622,7 @@ namespace AppedoLT.BusinessLogic
         /// 700- System exception.
         /// 800- Assertion Faild.
         /// </param>
-        private void LockException(string requestid, string message, string errorCode)
+        private void LockException(string requestid, string message, string errorCode, string url)
         {
             RequestException exception = new RequestException();
             exception.reportname = _reportName;
@@ -1605,6 +1636,8 @@ namespace AppedoLT.BusinessLogic
             exception.from = "web";
             exception.message = message;
             exception.errorcode = errorCode;
+            exception.request = url;
+            _ErrorBuffer.Enqueue(exception);
             lock (errors)
             {
                 errors.AddExeception(exception);
@@ -1618,22 +1651,6 @@ namespace AppedoLT.BusinessLogic
                 Log logObj = new Log();
                 logObj.logid = log.Attributes["id"].Value;
                 EvaluteExp(log);
-                //if (log.Attributes["message"].Value.Contains("$$"))
-                //{
-                //    EvalutionResult Result = EvaluteExp(log.Attributes["message"].Value);
-                //    if (Result.isSuccess == true)
-                //    {
-                //        logObj.message = Result.value;
-                //    }
-                //    else
-                //    {
-                //        logObj.message = log.Attributes["message"].Value;
-                //    }
-                //}
-                //else
-                //{
-                //    logObj.message = log.Attributes["message"].Value;
-                //}
                 logObj.logname = log.Attributes["name"].Value;
                 logObj.reportname = _reportName;
                 logObj.scenarioname = Status.ScenarioName;
@@ -1642,13 +1659,13 @@ namespace AppedoLT.BusinessLogic
                 logObj.iterationid = this._iterationid.ToString();
                 logObj.userid = this._userid.ToString();
                 logObj.time = DateTime.Now;
-                logObj.message =HttpUtility.HtmlDecode(log.Attributes["message"].Value);
+                logObj.message = HttpUtility.HtmlDecode(log.Attributes["message"].Value);
+                _LogBuffer.Enqueue(logObj);
                 if (IsValidation == false)
                 {
                     lock (DataServer.GetInstance().logs)
                     {
                         DataServer.GetInstance().logs.Enqueue(logObj);
-                        _scriptWiseLog.Enqueue(logObj);
                     }
                 }
             }
@@ -1657,16 +1674,35 @@ namespace AppedoLT.BusinessLogic
                 ExceptionHandler.WritetoEventLog(ex.StackTrace + Environment.NewLine + ex.Message);
             }
         }
-        private void LockResponseTime(Request req)
+        private void LockResponseTime(string requestid, string address, DateTime starttime, DateTime endtime, double diff, long responsesize, string reponseCode)
         {
             try
             {
                 if (Break == false)
                 {
-                    DataServer.GetInstance().LogResult(Constants.GetInstance().LoadGen, _IPAddress.ToString(), _reportName, Status.ScenarioName, _vuScriptXml.Attributes["id"].Value, _containerId.Peek()[0], _containerId.Peek()[1], _pageId.Count < 1 ? "1" : _pageId.Peek(), req.RequestNode.Attributes["id"].Value, req.RequestNode.Attributes["Path"] == null ? req.RequestName : req.RequestNode.Attributes["Path"].Value, _userid, _iterationid, req.StartTime, req.EndTime, req.ResponseTime, req.ResponseSize, req.ResponseCode.ToString());
+                    ReportData rd = new ReportData();
+                    rd.loadgen = Constants.GetInstance().LoadGen;
+                    rd.sourceip = _IPAddress.Address.ToString();
+                    rd.loadgenanme = ExecutionReport.GetInstance().LoadGenName;
+                    rd.scenarioname = Status.ScenarioName;
+                    rd.scriptid = _vuScriptXml.Attributes["id"].Value;
+                    rd.containerid = _containerId.Peek()[0];
+                    rd.containername = _containerId.Peek()[1];
+                    rd.pageid = _pageId.Count < 1 ? "1" : _pageId.Peek();
+                    rd.userid = _userid;
+                    rd.iterationid = _iterationid;
+                    rd.requestid = requestid;
+                    rd.address = address;
+                    rd.starttime = starttime;
+                    rd.endtime = endtime;
+                    rd.diff = diff;
+                    rd.responsesize = responsesize;
+                    rd.reponseCode = reponseCode;
+                    _ReportDataBuffer.Enqueue(rd);
+                    DataServer.GetInstance().LogResult(rd);
                     if (req.HasError == true)
                     {
-                        LockException(req.RequestId.ToString(), req.ErrorMessage, req.ErrorCode);
+                        LockException(req.RequestId.ToString(), req.ErrorMessage, req.ErrorCode, req.RequestName);
                     }
                     if (req.ResponseCode >= 200 && req.ResponseCode <= 299)
                     {
@@ -1691,7 +1727,11 @@ namespace AppedoLT.BusinessLogic
                 ExceptionHandler.WritetoEventLog(ex.StackTrace + Environment.NewLine + ex.Message);
             }
         }
-
+        private void LockTransactions(TransactionRunTimeDetail tranDetailTemp)
+        {
+            _TransactionBuffer.Enqueue(tranDetailTemp);
+            DataServer.GetInstance().transcations.Enqueue(tranDetailTemp);
+        }
         #endregion
     }
 

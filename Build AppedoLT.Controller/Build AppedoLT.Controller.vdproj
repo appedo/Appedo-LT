@@ -58,13 +58,13 @@
         "Entry"
         {
         "MsmKey" = "8:_3BD822EDB8DA3EEB438F8D50F3E520BA"
-        "OwnerKey" = "8:_0F53CD5243934A6EB75C4970492AA2AD"
+        "OwnerKey" = "8:_FDA79DD4FAC5F2F91D26D87AAAFF02CB"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_3BD822EDB8DA3EEB438F8D50F3E520BA"
-        "OwnerKey" = "8:_FDA79DD4FAC5F2F91D26D87AAAFF02CB"
+        "OwnerKey" = "8:_0F53CD5243934A6EB75C4970492AA2AD"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -118,31 +118,7 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_68161ACB4657F72F9A3361CE327AD5B0"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_4648AA827FF7C738E44A730A6C17184B"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_38FA63CF01A48F3123D04A0A2F1431BC"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_EB23CC519EBE8EDF66CC94465436B16F"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_FDA79DD4FAC5F2F91D26D87AAAFF02CB"
+        "OwnerKey" = "8:_3BD822EDB8DA3EEB438F8D50F3E520BA"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -154,7 +130,31 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_3BD822EDB8DA3EEB438F8D50F3E520BA"
+        "OwnerKey" = "8:_FDA79DD4FAC5F2F91D26D87AAAFF02CB"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_EB23CC519EBE8EDF66CC94465436B16F"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_38FA63CF01A48F3123D04A0A2F1431BC"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_4648AA827FF7C738E44A730A6C17184B"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_68161ACB4657F72F9A3361CE327AD5B0"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -335,11 +335,6 @@
             "AssemblyAsmDisplayName" = "8:Telerik.WinControls, Version=2010.1.10.504, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_057AC77E2375B513DC05A84DB6EA17F9"
-                    {
-                    "Name" = "8:Telerik.WinControls.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:Telerik.WinControls.dll"
             "TargetName" = "8:"
@@ -366,11 +361,6 @@
             "AssemblyAsmDisplayName" = "8:AppedoLT.Core, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_38FA63CF01A48F3123D04A0A2F1431BC"
-                    {
-                    "Name" = "8:AppedoLT.Core.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:AppedoLT.Core.dll"
             "TargetName" = "8:"
@@ -397,11 +387,6 @@
             "AssemblyAsmDisplayName" = "8:TelerikCommon, Version=2010.1.10.504, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_3BD822EDB8DA3EEB438F8D50F3E520BA"
-                    {
-                    "Name" = "8:TelerikCommon.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:TelerikCommon.dll"
             "TargetName" = "8:"
@@ -428,11 +413,6 @@
             "AssemblyAsmDisplayName" = "8:System.Data.SQLite, Version=1.0.66.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=AMD64"
                 "ScatterAssemblies"
                 {
-                    "_4648AA827FF7C738E44A730A6C17184B"
-                    {
-                    "Name" = "8:System.Data.SQLite.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:System.Data.SQLite.dll"
             "TargetName" = "8:"
@@ -459,11 +439,6 @@
             "AssemblyAsmDisplayName" = "8:AppedoLT.DataAccessLayer, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_68161ACB4657F72F9A3361CE327AD5B0"
-                    {
-                    "Name" = "8:AppedoLT.DataAccessLayer.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:AppedoLT.DataAccessLayer.dll"
             "TargetName" = "8:"
@@ -490,11 +465,6 @@
             "AssemblyAsmDisplayName" = "8:Ionic.Zip, Version=1.9.1.8, Culture=neutral, PublicKeyToken=edbe51ad942a3f5c, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_EB23CC519EBE8EDF66CC94465436B16F"
-                    {
-                    "Name" = "8:Ionic.Zip.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:Ionic.Zip.dll"
             "TargetName" = "8:"
@@ -521,11 +491,6 @@
             "AssemblyAsmDisplayName" = "8:Telerik.WinControls.UI, Version=2010.1.10.504, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_FDA79DD4FAC5F2F91D26D87AAAFF02CB"
-                    {
-                    "Name" = "8:Telerik.WinControls.UI.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:Telerik.WinControls.UI.dll"
             "TargetName" = "8:"
@@ -634,15 +599,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:APPEDO_LT_CONTROLLER"
-        "ProductCode" = "8:{C0601275-25A9-49B6-BEE6-75D71D201A3B}"
-        "PackageCode" = "8:{1903441A-35AE-4510-BA51-B8519A72579E}"
+        "ProductCode" = "8:{DB156E68-2116-4DB4-A85B-37AA75D0C18D}"
+        "PackageCode" = "8:{0AF8A2FD-22F8-469A-BD45-C633AAA9B6B8}"
         "UpgradeCode" = "8:{1008C74E-8BB9-4DB0-A96C-D29AE98F2BAA}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:FALSE"
-        "ProductVersion" = "8:1.0.16"
+        "ProductVersion" = "8:1.0.17"
         "Manufacturer" = "8:Appedo"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
@@ -1219,6 +1184,34 @@
             "OutputConfiguration" = "8:"
             "OutputGroupCanonicalName" = "8:Built"
             "OutputProjectGuid" = "8:{FD491976-C9CA-4A1B-ACF5-9C6420B00EF7}"
+            "ShowKeyOutput" = "11:TRUE"
+                "ExcludeFilters"
+                {
+                }
+            }
+            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_1FBCA39E36974B8FB22170FC1986A684"
+            {
+            "SourcePath" = "8:"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_D09DF042F12D457A9C650669806E209F"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            "ProjectOutputGroupRegister" = "3:1"
+            "OutputConfiguration" = "8:"
+            "OutputGroupCanonicalName" = "8:ContentFiles"
+            "OutputProjectGuid" = "8:{32074F4C-9AA8-42C8-A711-97BFF96E4C82}"
             "ShowKeyOutput" = "11:TRUE"
                 "ExcludeFilters"
                 {

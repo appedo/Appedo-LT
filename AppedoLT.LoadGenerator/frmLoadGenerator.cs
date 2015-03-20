@@ -8,6 +8,7 @@ using System.IO;
 using System.Net;
 using System.Net.Sockets;
 using System.Reflection;
+using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Windows.Forms;
@@ -18,19 +19,19 @@ namespace AppedoLTLoadGenerator
     public partial class LoadGenerator : Form
     {
         NotifyIcon ni = new NotifyIcon();
-        DataServer resultLog = DataServer.GetInstance();       
-        TcpListener serverSocket = new TcpListener(8889);      
+        DataServer resultLog = DataServer.GetInstance();
+        TcpListener serverSocket = new TcpListener(8889);
         RunScenario run;
         BackgroundWorker worker = new BackgroundWorker();
         Constants constants = Constants.GetInstance();
         ExecutionReport executionReport = ExecutionReport.GetInstance();
         LoadTestAgentXml _loadTestAgent;
         Dictionary<string, string> runScripts = new Dictionary<string, string>();
+        StringBuilder logMsg = new StringBuilder();
 
         public LoadGenerator()
         {
             InitializeComponent();
-            
             worker.DoWork += new DoWorkEventHandler(worker_DoWork);
             try
             {
@@ -62,7 +63,6 @@ namespace AppedoLTLoadGenerator
                 while ((true))
                 {
                     Trasport controller = new Trasport(serverSocket.AcceptTcpClient());
-
                     new Thread(() =>
                         {
                             try
@@ -74,11 +74,11 @@ namespace AppedoLTLoadGenerator
                                         {
                                             try
                                             {
-                                                string reportFolder = data.Header["runid"] + "_" + (data.Header["loadgenname"] == null ? string.Empty : data.Header["loadgenname"]).Replace('.','_');
+                                                string reportFolder = data.Header["runid"] + "_" + (data.Header["loadgenname"] == null ? string.Empty : data.Header["loadgenname"]).Replace('.', '_');
                                                 GenerateReportFolder(reportFolder);
-                                                if (runScripts.ContainsKey(data.Header["runid"])==true)
+                                                if (runScripts.ContainsKey(data.Header["runid"]) == true)
                                                 {
-                                                    runScripts[data.Header["runid"]]= data.DataStr;
+                                                    runScripts[data.Header["runid"]] = data.DataStr;
                                                 }
                                                 else
                                                 {
@@ -113,6 +113,7 @@ namespace AppedoLTLoadGenerator
                                             if (executionReport.ExecutionStatus == Status.Completed)
                                             {
                                                 executionReport.ExecutionStatus = Status.Running;
+                                                logMsg = new StringBuilder();
                                                 DataServer.GetInstance().logs.Clear();
                                                 XmlNode runNode = _loadTestAgent.doc.SelectSingleNode("//runs/run[@runid='" + data.Header["runid"] + "']");
                                                 executionReport.ReportName = runNode.Attributes["reportfoldername"].Value;
@@ -131,12 +132,36 @@ namespace AppedoLTLoadGenerator
                                                     UpdateStatus();
                                                 }
                                             }
-                                        }
+                                        }   
                                         break;
 
                                     case "status":
                                         {
-                                            controller.Send(new TrasportData("status", string.Format("createduser: {0}" + System.Environment.NewLine + "completeduser: {1}" + System.Environment.NewLine + "iscompleted: {2}", run.TotalUserCreated.ToString(), run.TotalUserComplted.ToString(), run.IsRunCompleted), null));
+                                            //string log = run.GetLog();
+                                            //if (log != string.Empty)
+                                            //{
+                                            //    logMsg.Append(log);
+                                            //}
+                                            //controller.Send(new TrasportData("status",string.Format("createduser: {0}" + System.Environment.NewLine
+                                            //                                                      + "completeduser: {1}" + System.Environment.NewLine
+                                            //                                                      + "iscompleted: {2}" + System.Environment.NewLine
+                                            //                                                      + "log:{{{3}}}" + System.Environment.NewLine,
+                                            //                                                        run.RunningStatusData.CreatedUser.ToString(), 
+                                            //                                                        run.RunningStatusData.CompletedUser.ToString(),
+                                            //                                                        run.RunningStatusData.IsCompleted, 
+                                            //                                                        logMsg.ToString()), null));
+
+                                            controller.Send(new TrasportData("status",ASCIIEncoding.Default.GetString(constants.Serialise(run.RunningStatusData)), null));
+
+                                            TrasportData ack = controller.Receive();
+                                            if (ack.Operation == "ok")
+                                            {
+                                                run.RunningStatusData.Log.Clear();
+                                                run.RunningStatusData.Error.Clear();
+                                                run.RunningStatusData.Transactions.Clear();
+                                                run.RunningStatusData.ReportData.Clear();
+                                            }
+
                                         }
                                         break;
 
@@ -159,6 +184,10 @@ namespace AppedoLTLoadGenerator
                                             {
                                                 if (new Regex(reportName + "_[0-9]*_[0-9]*_[0-9]*_[0-9]*").Match(info.Name).Success)
                                                 {
+<<<<<<< HEAD
+=======
+                                                    directoryPath = info.Name;
+>>>>>>> dev_master
                                                     foreach (FileInfo fileInfo in info.GetFiles("database.db"))
                                                     {
                                                         filePath = fileInfo.FullName;
@@ -170,14 +199,20 @@ namespace AppedoLTLoadGenerator
                                             TrasportData agn = controller.Receive();
                                             if (agn.Operation == "ok")
                                             {
-                                              if(agn.Header["receivedsize"] == (new FileInfo(filePath)).Length.ToString())
-                                              {
-                                                if( LoadTestAgentXml.GetInstance().doc.SelectSingleNode("//runs/run[@runid='"+reportName+"']")!=null)
+                                                if (agn.Header["receivedsize"] == (new FileInfo(filePath)).Length.ToString())
                                                 {
+<<<<<<< HEAD
                                                   LoadTestAgentXml.GetInstance().doc.SelectSingleNode("//runs").RemoveChild( LoadTestAgentXml.GetInstance().doc.SelectSingleNode("//runs/run[@runid='" + reportName + "']"));
                                                   LoadTestAgentXml.GetInstance().Save();
+=======
+                                                    if (LoadTestAgentXml.GetInstance().doc.SelectSingleNode("//runs/run[@runid='" + reportName + "']") != null)
+                                                    {
+                                                        LoadTestAgentXml.GetInstance().doc.SelectSingleNode("//runs").RemoveChild(LoadTestAgentXml.GetInstance().doc.SelectSingleNode("//runs/run[@runid='" + reportName + "']"));
+                                                        LoadTestAgentXml.GetInstance().Save();
+                                                        // Directory.Delete(directoryPath,true);
+                                                    }
+>>>>>>> dev_master
                                                 }
-                                              }
                                             }
                                         }
                                         break;
@@ -295,20 +330,18 @@ namespace AppedoLTLoadGenerator
                     timer.Start();
                     while (true)
                     {
-
                         Thread.Sleep(1000);
                         if (run != null)
                         {
-                            if (run.TotalUserCreated != 0 && run.TotalUserCreated == run.TotalUserComplted)
+                            if (run.DisplayStatusData.CreatedUser != 0 && run.DisplayStatusData.CreatedUser == run.DisplayStatusData.CompletedUser && run.DisplayStatusData.IsCompleted == 1)
                             {
 
-                                ni.Text = "Run completed" + System.Environment.NewLine + "Created: " + run.TotalUserCreated.ToString() + Environment.NewLine + "Completed: " + run.TotalUserComplted.ToString() + Environment.NewLine + timer.Elapsed.ToString(@"dd\.hh\:mm\:ss");
+                                ni.Text = "Run completed" + System.Environment.NewLine + "Created: " + run.DisplayStatusData.CreatedUser.ToString() + Environment.NewLine + "Completed: " + run.DisplayStatusData.CompletedUser.ToString() + Environment.NewLine + timer.Elapsed.ToString(@"dd\.hh\:mm\:ss");
                                 break;
                             }
                             else
                             {
-                                ni.Text = "Running.." + System.Environment.NewLine + "Created: " + run.TotalUserCreated.ToString() + Environment.NewLine + "Completed: " + run.TotalUserComplted.ToString() + Environment.NewLine + timer.Elapsed.ToString(@"dd\.hh\:mm\:ss");
-
+                                ni.Text = "Running.." + System.Environment.NewLine + "Created: " + run.DisplayStatusData.CreatedUser.ToString() + Environment.NewLine + "Completed: " + run.DisplayStatusData.CompletedUser.ToString() + Environment.NewLine + timer.Elapsed.ToString(@"dd\.hh\:mm\:ss");
                             }
                         }
                     }

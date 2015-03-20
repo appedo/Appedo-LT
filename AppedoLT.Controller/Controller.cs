@@ -20,6 +20,7 @@ namespace AppedoLTController
         private XmlNode _RunNode = null;
         private string _SourceIp = null;
         ControllerStatus _staus = ControllerStatus.Idle;
+<<<<<<< HEAD
 
         public int CreatedUser = 0;
         public int CompletedUser = 0;
@@ -27,6 +28,22 @@ namespace AppedoLTController
         public string RunId = string.Empty;
         public ControllerStatus Status { get { return _staus; } }
         public static Dictionary<string, Controller> Controllers = new Dictionary<string, Controller>();
+=======
+             
+        public string ScriptWiseStatus { get; set; }
+        public string RunId = string.Empty;
+        public ControllerStatus Status { get { return _staus; } }
+        public string LastSentStatus = string.Empty;
+        public LoadGenRunningStatusData _runningStatusData = new LoadGenRunningStatusData();
+        public LoadGenRunningStatusData RunningStatusData
+        {
+            get
+            {
+                _runningStatusData.IsCompleted = (_staus== ControllerStatus.ReportGenerateCompleted) ? 1 : 0;
+                return _runningStatusData;
+            }
+        }
+>>>>>>> dev_master
 
         public Controller(string soureIP, string runid, XmlNode runNode)
         {
@@ -48,6 +65,7 @@ namespace AppedoLTController
             {
                 try
                 {
+<<<<<<< HEAD
                     #region Retrive Created & Completed UserCount
                     Trasport loadGenConnection = new Trasport(loadGen.Attributes["ipaddress"].Value, "8889");
                     loadGenConnection.Send(new TrasportData("stop", string.Empty, null));
@@ -58,40 +76,66 @@ namespace AppedoLTController
                 catch (Exception ex)
                 {
                     ExceptionHandler.WritetoEventLog(ex.StackTrace + ex.Message);
+=======
+                    try
+                    {
+                        Trasport loadGenConnection = new Trasport(loadGen.Attributes["ipaddress"].Value, "8889");
+                        loadGenConnection.Send(new TrasportData("stop", string.Empty, null));
+                        TrasportData data = loadGenConnection.Receive();
+                        loadGenConnection.Close();
+                        ExceptionHandler.LogRunDetail(RunId, "Stop request sent to loadgen " + loadGen.Attributes["ipaddress"].Value);
+                        break;
+                    }
+                    catch (Exception ex)
+                    {
+                        ExceptionHandler.WritetoEventLog(ex.StackTrace + ex.Message);
+                        Thread.Sleep(2000);
+                    }
+>>>>>>> dev_master
                 }
             }
         }
 
         private void DoWork()
         {
-            Regex log = new Regex("createduser: ([0-9]*)\r\ncompleteduser: ([0-9]*)\r\niscompleted: ([0-9]*)");
+            
             int totalCreated = 0;
             int totalCompleted = 0;
             int runcompleted = 0;
             XmlNodeList loadGens;
             StringBuilder scriptwisestatus = null;
+<<<<<<< HEAD
 
+=======
+            Dictionary<string, int> failedCount = new Dictionary<string, int>();
+           
+>>>>>>> dev_master
             while (true)
             {
                 try
                 {
                     loadGens = _RunNode.SelectNodes("loadgen");
                     Thread.Sleep(5000);
+                   
                     scriptwisestatus = new StringBuilder();
                     foreach (XmlNode loadGen in loadGens)
                     {
                         try
                         {
                             #region Retrive Created & Completed UserCount
-                            Trasport loadGenConnection = new Trasport(loadGen.Attributes["ipaddress"].Value, "8889", 10000);
+                            Trasport loadGenConnection = new Trasport(loadGen.Attributes["ipaddress"].Value, "8889", 60000);
                             loadGenConnection.Send(new TrasportData("status", string.Empty, null));
                             TrasportData data = loadGenConnection.Receive();
-                            string dataStr = data.DataStr;
-                            totalCreated += Convert.ToInt32(log.Match(dataStr).Groups[1].Value);
-                            totalCompleted += Convert.ToInt32(log.Match(dataStr).Groups[2].Value);
+                            loadGenConnection.Send(new TrasportData("ok", string.Empty, null));
                             loadGenConnection.Close();
-                            runcompleted += Convert.ToInt32(log.Match(dataStr).Groups[3].Value);
-
+                            LoadGenRunningStatusData status= Constants.GetInstance().Deserialise<LoadGenRunningStatusData>(data.DataStr);
+                            totalCreated += status.CreatedUser;
+                            totalCompleted += status.CompletedUser;
+                            runcompleted += status.IsCompleted;
+                            _runningStatusData.Log.AddRange(status.Log);
+                            _runningStatusData.Error.AddRange(status.Error);
+                            _runningStatusData.ReportData.AddRange(status.ReportData);
+                            _runningStatusData.Transactions.AddRange(status.Transactions);
                             loadGenConnection = new Trasport(loadGen.Attributes["ipaddress"].Value, "8889");
                             loadGenConnection.Send(new TrasportData("scriptwisestatus", string.Empty, null));
                             scriptwisestatus.Append(loadGenConnection.Receive().DataStr);
@@ -106,12 +150,18 @@ namespace AppedoLTController
                     }
                     ScriptWiseStatus = GetStatusconcatenate(scriptwisestatus.ToString());
                     SendScriptWiseStatus(ScriptWiseStatus);
-                    CreatedUser = totalCreated;
-                    CompletedUser = totalCompleted;
+                    SendStatus();
+                    _runningStatusData.CreatedUser=totalCreated;
+                    _runningStatusData.CompletedUser=totalCompleted;
                     if (runcompleted == loadGens.Count)
                     {
                         Thread.Sleep(10000);
                         _staus = ControllerStatus.RunCompleted;
+<<<<<<< HEAD
+=======
+                        _runningStatusData.IsCompleted = 1;
+                        ExceptionHandler.LogRunDetail(RunId, "Report is generating");
+>>>>>>> dev_master
                         new ResultFileGenerator(RunId).Genarate();
                         _staus = ControllerStatus.ReportGenerateCompleted;
                         Controllers.Remove(RunId);
@@ -217,7 +267,35 @@ namespace AppedoLTController
                 data = null;
             }
         }
-
+        private void SendStatus()
+        {
+            Dictionary<string, string> header = new Dictionary<string, string>();
+            Trasport server = null;
+            TrasportData data = null;
+            try
+            {
+                header["runid"] = RunId;
+                server = new Trasport(_SourceIp, Constants.GetInstance().AppedoPort);
+                data = new TrasportData("status",ASCIIEncoding.Default.GetString(Constants.GetInstance().Serialise( _runningStatusData)), header);
+                server.Send(data);
+                data = server.Receive();
+                _runningStatusData.Log.Clear();
+                _runningStatusData.Error.Clear();
+                _runningStatusData.ReportData.Clear();
+                _runningStatusData.Transactions.Clear();
+            }
+            catch (Exception ex)
+            {
+                ExceptionHandler.WritetoEventLog(ex.StackTrace + Environment.NewLine + ex.Message);
+            }
+            finally
+            {
+                server = null;
+                header = null;
+                data = null;
+            }
+        }
+       
     }
     public enum ControllerStatus { Idle = 0, Running, RunCompleted, ReportGenerating, ReportGenerateCompleted }
 
