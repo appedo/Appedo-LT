@@ -58,13 +58,13 @@
         "Entry"
         {
         "MsmKey" = "8:_3BD822EDB8DA3EEB438F8D50F3E520BA"
-        "OwnerKey" = "8:_FDA79DD4FAC5F2F91D26D87AAAFF02CB"
+        "OwnerKey" = "8:_0F53CD5243934A6EB75C4970492AA2AD"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_3BD822EDB8DA3EEB438F8D50F3E520BA"
-        "OwnerKey" = "8:_0F53CD5243934A6EB75C4970492AA2AD"
+        "OwnerKey" = "8:_FDA79DD4FAC5F2F91D26D87AAAFF02CB"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -118,31 +118,7 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_3BD822EDB8DA3EEB438F8D50F3E520BA"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_057AC77E2375B513DC05A84DB6EA17F9"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_FDA79DD4FAC5F2F91D26D87AAAFF02CB"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_EB23CC519EBE8EDF66CC94465436B16F"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_38FA63CF01A48F3123D04A0A2F1431BC"
+        "OwnerKey" = "8:_68161ACB4657F72F9A3361CE327AD5B0"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -154,7 +130,31 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_68161ACB4657F72F9A3361CE327AD5B0"
+        "OwnerKey" = "8:_38FA63CF01A48F3123D04A0A2F1431BC"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_EB23CC519EBE8EDF66CC94465436B16F"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_FDA79DD4FAC5F2F91D26D87AAAFF02CB"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_057AC77E2375B513DC05A84DB6EA17F9"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_3BD822EDB8DA3EEB438F8D50F3E520BA"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -599,15 +599,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:APPEDO_LT_CONTROLLER"
-        "ProductCode" = "8:{DB156E68-2116-4DB4-A85B-37AA75D0C18D}"
-        "PackageCode" = "8:{0AF8A2FD-22F8-469A-BD45-C633AAA9B6B8}"
+        "ProductCode" = "8:{D1186E36-1A8C-4704-93F9-B1F3377CBB61}"
+        "PackageCode" = "8:{5B89DEC5-88C9-4E9B-880F-18998B3F9EAC}"
         "UpgradeCode" = "8:{1008C74E-8BB9-4DB0-A96C-D29AE98F2BAA}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:FALSE"
-        "ProductVersion" = "8:1.0.17"
+        "ProductVersion" = "8:1.0.18"
         "Manufacturer" = "8:Appedo"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"

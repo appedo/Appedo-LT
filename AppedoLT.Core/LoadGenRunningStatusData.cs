@@ -40,6 +40,7 @@ namespace AppedoLT.Core
         private List<RequestException> _error = new List<RequestException>();
         private List<ReportData> _reportData = new List<ReportData>();
         private List<TransactionRunTimeDetail> _transactionsData = new List<TransactionRunTimeDetail>();
+        private List<UserDetail> _userDetailData = new List<UserDetail>();
 
         [DataMember(Name = "createduser")]
         public int CreatedUser { get; set; }
@@ -55,9 +56,10 @@ namespace AppedoLT.Core
         public List<RequestException> Error { get { return _error; } set { _error = value; } }
         [DataMember(Name = "reporddata")]
         public List<ReportData> ReportData { get { return _reportData; } set { _reportData = value; } }
-
         [DataMember(Name = "transactions")]
         public List<TransactionRunTimeDetail> Transactions { get { return _transactionsData; } set { _transactionsData = value; } }
+        [DataMember(Name = "userdetail")]
+        public List<UserDetail> UserDetailData { get { return _userDetailData; } set { _userDetailData = value; } }
 
     }
 
@@ -256,10 +258,10 @@ namespace AppedoLT.Core
         [DataMember(Name = "diff")]
         public double diff { get; set; }
 
-        [DataMember(Name = "reponsecode")]
+        [DataMember(Name = "responsesize")]
         public long responsesize { get; set; }
 
-        [DataMember(Name = "responsesize")]
+        [DataMember(Name = "reponsecode")]
         public string reponseCode { get; set; }
         public ReportData()
         {
@@ -391,6 +393,40 @@ namespace AppedoLT.Core
             query.Append(Convert.ToInt16(IsEnd)).Append(",");
             query.Append(Difference.ToString());
             return query.ToString();
+        }
+    }
+
+    [DataContract]
+    public class UserDetail
+    {
+        [DataMember(Name = "loadgenname")]
+        public string loadgenanme { get; set; }
+
+        [DataMember(Name = "type")]
+        public int Type { get; set; }
+
+        [DataMember(Name = "scriptid")]
+        public string scriptid { get; set; }
+
+        [DataMember(Name = "userid")]
+        public int userid { get; set; }
+
+        public DateTime _time = new DateTime();
+        public DateTime Time { get { return _time; } set { _time = value; } }
+
+        [DataMember(Name = "time")]
+        public string timeStr
+        {
+            get
+            {
+                DateTime origin = new DateTime(1970, 1, 1, 0, 0, 0, 0);
+                TimeSpan diff = _time.ToUniversalTime() - origin;
+                return Math.Floor(diff.TotalMilliseconds).ToString();
+            }
+            set
+            {
+                _time = Constants.GetInstance().ConvertFromUnixTimestamp(Convert.ToDouble(value));
+            }
         }
     }
 }

@@ -130,12 +130,6 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_82A2BDC60F13DFBAB3A4C4FDA54EF44D"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_75CA0F3DAC374998BB5F833832106E21"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -179,6 +173,12 @@
         {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_0B631FA7DFCF8DE277A2CBE63769E7BD"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_82A2BDC60F13DFBAB3A4C4FDA54EF44D"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -678,15 +678,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:APPEDO_LT_LOAD_GENERATOR"
-        "ProductCode" = "8:{C43ACAED-73C7-44ED-AD3B-744396C252C0}"
-        "PackageCode" = "8:{9E9ED540-E0E9-4464-B69D-EB1ADD77E6A6}"
+        "ProductCode" = "8:{8C40BCDF-AE81-4867-B532-D86DC019FF2A}"
+        "PackageCode" = "8:{73452C7F-3FE7-479A-917B-C89C29ACE675}"
         "UpgradeCode" = "8:{FDF822FA-D49E-4533-BE33-97FB08C152F3}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:TRUE"
-        "ProductVersion" = "8:1.0.9"
+        "ProductVersion" = "8:1.0.10"
         "Manufacturer" = "8:Appedo"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"

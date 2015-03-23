@@ -61,7 +61,7 @@ namespace AppedoLT.BusinessLogic
         }
         #endregion
 
-        
+
 
         public static string Result = string.Empty;
         private XmlNode _vuScriptXml;
@@ -73,6 +73,8 @@ namespace AppedoLT.BusinessLogic
         private Queue<RequestException> _ErrorBuffer = new Queue<RequestException>();
         private Queue<ReportData> _ReportDataBuffer = new Queue<ReportData>();
         private Queue<TransactionRunTimeDetail> _TransactionBuffer = new Queue<TransactionRunTimeDetail>();
+        private Queue<UserDetail> _userDetailBuffer = new Queue<UserDetail>();
+
 
         private Dictionary<string, object> _exVariablesValues = new Dictionary<string, object>();
         private Dictionary<string, TransactionRunTimeDetail> _transactions = new Dictionary<string, TransactionRunTimeDetail>();
@@ -122,13 +124,14 @@ namespace AppedoLT.BusinessLogic
         Dictionary<string, string> receivedCookies = new Dictionary<string, string>();
         public VUserStatus VUserStatus;
 
-        public VUser(int maxUser, string reportName, string type, int userid, int iteration, XmlNode vuScript, bool browserCache, IPAddress ipaddress, Queue<Log> logBuffer, Queue<RequestException> errorBuffer, Queue<ReportData> reportDataBuffer, Queue<TransactionRunTimeDetail> transactionBuffer)
+        public VUser(int maxUser, string reportName, string type, int userid, int iteration, XmlNode vuScript, bool browserCache, IPAddress ipaddress, Queue<Log> logBuffer, Queue<RequestException> errorBuffer, Queue<ReportData> reportDataBuffer, Queue<TransactionRunTimeDetail> transactionBuffer, Queue<UserDetail> userDetailBuffer)
         {
             _doc = vuScript.OwnerDocument;
             _LogBuffer = logBuffer;
             _ErrorBuffer = errorBuffer;
             _ReportDataBuffer = reportDataBuffer;
             _TransactionBuffer = transactionBuffer;
+            _userDetailBuffer = userDetailBuffer;
             _maxUser = maxUser;
             _browserCache = browserCache;
             _type = type;
@@ -142,6 +145,7 @@ namespace AppedoLT.BusinessLogic
             lock (Status.LockObjForCreatedUser)
             {
                 Status.CreatedUser++;
+                LockUserDetail(1);
             }
         }
 
@@ -202,6 +206,7 @@ namespace AppedoLT.BusinessLogic
                     lock (Status.LockObjForCompletedUser)
                     {
                         Status.CompletedUser++;
+                        LockUserDetail(2);
                     }
                     WorkCompleted = true;
                     conncetionManager.CloseAllConnetions();
@@ -265,6 +270,7 @@ namespace AppedoLT.BusinessLogic
                     lock (Status.LockObjForCompletedUser)
                     {
                         Status.CompletedUser++;
+                        LockUserDetail(2);
                     }
                     if (IsValidation == false) this.Dispose();
                     #endregion
@@ -972,7 +978,7 @@ namespace AppedoLT.BusinessLogic
                 }
                 return System.Web.HttpUtility.HtmlEncode(result);
             }
-            
+
         }
 
         private object GetValue(object variableName)
@@ -1714,23 +1720,23 @@ namespace AppedoLT.BusinessLogic
                     rd.diff = diff;
                     rd.responsesize = responsesize;
                     rd.reponseCode = reponseCode;
-                   
+
 
                     //System.Messaging.Message msg1 = new System.Messaging.Message();
                     //msg1.Body = rd;
                     //msg1.Formatter = new BinaryMessageFormatter();
-                   
-                     
-                   // Constants.GetInstance().LTDataQueue.Send(msg1);
-                  // System.Messaging.Message[] msg2 = Constants.GetInstance().LTDataQueue.GetAllMessages();
-                 //  long test=  Constants.GetInstance().LTDataQueue.MaximumQueueSize;
-                 //  System.Messaging.Message msg= Constants.GetInstance().LTDataQueue.Receive();
-                   //  Constants.GetInstance().LTDataQueue.re
-                   //msg.Formatter = new BinaryMessageFormatter();
-                   //ReportData rd1 = (ReportData)msg.Body;
+
+
+                    // Constants.GetInstance().LTDataQueue.Send(msg1);
+                    // System.Messaging.Message[] msg2 = Constants.GetInstance().LTDataQueue.GetAllMessages();
+                    //  long test=  Constants.GetInstance().LTDataQueue.MaximumQueueSize;
+                    //  System.Messaging.Message msg= Constants.GetInstance().LTDataQueue.Receive();
+                    //  Constants.GetInstance().LTDataQueue.re
+                    //msg.Formatter = new BinaryMessageFormatter();
+                    //ReportData rd1 = (ReportData)msg.Body;
                     lock (_ReportDataBuffer)
                     {
-                        if(rd!=null) _ReportDataBuffer.Enqueue(rd);
+                        if (rd != null) _ReportDataBuffer.Enqueue(rd);
                     }
                     lock (rd)
                     {
@@ -1771,8 +1777,21 @@ namespace AppedoLT.BusinessLogic
                 if (tranDetailTemp != null) _TransactionBuffer.Enqueue(tranDetailTemp);
             }
             lock (tranDetailTemp)
-            {               
+            {
                 DataServer.GetInstance().transcations.Enqueue(tranDetailTemp);
+            }
+        }
+        private void LockUserDetail(int type)
+        {
+            UserDetail userDetail = new UserDetail();
+            userDetail.Time = DateTime.Now;
+            userDetail.scriptid = _vuScriptXml.Attributes["id"].Value;
+            userDetail.userid = _userid;
+            userDetail.Type = type;
+            userDetail.loadgenanme = ExecutionReport.GetInstance().LoadGenName;
+            lock (_userDetailBuffer)
+            {
+                _userDetailBuffer.Enqueue(userDetail);
             }
         }
         #endregion
