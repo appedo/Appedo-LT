@@ -33,7 +33,7 @@ namespace AppedoLT.BusinessLogic
                         try
                         {
                             DataTable dt = new DataTable();
-                            dt = Utility.GetDataTableFromCSVFile(Constants.GetInstance().ExecutingAssemblyLocation  + variable.Attributes["vituallocation"].Value, variable.Attributes["delimiter"].Value);
+                            dt = Utility.GetDataTableFromCSVFile(Constants.GetInstance().ExecutingAssemblyLocation + variable.Attributes["vituallocation"].Value, variable.Attributes["delimiter"].Value);
                             dt.TableName = variable.Attributes["name"].Value;
                             datas.Tables.Add(dt);
                         }
@@ -102,6 +102,7 @@ namespace AppedoLT.BusinessLogic
         public object GetVariableValue(int userid, int iterationid, string variableName, int totalUser)
         {
             object result = new object();
+
             DataTable data = new DataTable();
             if (variableName.Contains('.') == true)
             {
@@ -156,6 +157,7 @@ namespace AppedoLT.BusinessLogic
                 }
             }
             return result;
+
         }
         public void SetVariableValue(int userid, int iterationid, string variableName, object value, int totalUser)
         {

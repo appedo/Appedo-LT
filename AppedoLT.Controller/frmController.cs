@@ -385,6 +385,7 @@ namespace AppedoLTController
                     List<string> unAvailableLoadGens = new List<string>();
                     #region SendData
                     XmlNode runDetail = null;
+                    string loadGensStr=data.Header["loadgens"];
                     try
                     {
                         data.Operation = "savescenario";
@@ -395,7 +396,7 @@ namespace AppedoLTController
                         runDetail = _ControllerXml.CreateRun(runid, runXml.SelectSingleNode("root"), ((IPEndPoint)server.tcpClient.Client.RemoteEndPoint).Address.ToString());
 
                         List<TcpClient> loadGens = new List<TcpClient>();
-                        string[] loadGenIps = data.Header["loadgens"].Split(',');
+                        string[] loadGenIps = loadGensStr.Split(',');
                         int loadGenId = 1;
                         foreach (string ip in loadGenIps)
                         {
@@ -539,7 +540,7 @@ namespace AppedoLTController
                             if (runDetail != null)
                             {
                                 ExceptionHandler.LogRunDetail(runid, "Run started ");
-                                Controller controller = new Controller(server.IPAddressStr, runid, runDetail);
+                                Controller controller = new Controller(server.IPAddressStr, runid, runDetail, loadGensStr);
                                 Controllers.Add(runid, controller);
                                 _ControllerXml.doc.SelectSingleNode("root/runs").AppendChild(runDetail);
                                 _ControllerXml.Save();

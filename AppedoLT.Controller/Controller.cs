@@ -21,7 +21,6 @@ namespace AppedoLTController
         private XmlNode _RunNode = null;
         private string _SourceIp = null;
         ControllerStatus _staus = ControllerStatus.Idle;
-             
         public string ScriptWiseStatus { get; set; }
         public string RunId = string.Empty;
         public ControllerStatus Status { get { return _staus; } }
@@ -31,16 +30,17 @@ namespace AppedoLTController
         {
             get
             {
-                _runningStatusData.IsCompleted = (_staus== ControllerStatus.ReportGenerateCompleted) ? 1 : 0;
+                _runningStatusData.IsCompleted = (_staus == ControllerStatus.ReportGenerateCompleted) ? 1 : 0;
                 return _runningStatusData;
             }
         }
 
-        public Controller(string soureIP, string runid, XmlNode runNode)
+        public Controller(string soureIP, string runid, XmlNode runNode, string loadgens)
         {
             RunId = runid;
             _SourceIp = soureIP;
             _RunNode = runNode;
+            _runningStatusData.LoadGens = loadgens;
         }
 
         public void Start()
@@ -73,35 +73,55 @@ namespace AppedoLTController
                 }
             }
         }
+
+        private string DeleteReportFolder(string reportname)
+        {
+            string folderPath = Constants.GetInstance().ExecutingAssemblyLocation + "\\Data\\" + reportname;
+            try
+            {
+                if (Directory.Exists(folderPath))
+                {
+                    Directory.Delete(folderPath, true);
+                    ExceptionHandler.LogRunDetail(reportname, "Directory deleted successfully.");
+                }
+
+            }
+            catch (Exception ex)
+            {
+                ExceptionHandler.WritetoEventLog(ex.StackTrace + ex.Message);
+            }
+            return folderPath;
+        }
+
         private void DoWork()
         {
-            
+
             int totalCreated = 0;
             int totalCompleted = 0;
             int runcompleted = 0;
             XmlNodeList loadGens;
             StringBuilder scriptwisestatus = null;
             Dictionary<string, int> failedCount = new Dictionary<string, int>();
-           
+            bool isEnd = false;
+
             while (true)
             {
                 try
                 {
                     loadGens = _RunNode.SelectNodes("loadgen");
-                    Thread.Sleep(5000);
-                   
+                    if (isEnd == false) Thread.Sleep(5000);
                     scriptwisestatus = new StringBuilder();
                     foreach (XmlNode loadGen in loadGens)
                     {
                         try
                         {
                             #region Retrive Created & Completed UserCount
-                            Trasport loadGenConnection = new Trasport(loadGen.Attributes["ipaddress"].Value, "8889", 60000);
+                            Trasport loadGenConnection = new Trasport(loadGen.Attributes["ipaddress"].Value, "8889", 20000);
                             loadGenConnection.Send(new TrasportData("status", string.Empty, null));
                             TrasportData data = loadGenConnection.Receive();
                             loadGenConnection.Send(new TrasportData("ok", string.Empty, null));
                             loadGenConnection.Close();
-                            LoadGenRunningStatusData status= Constants.GetInstance().Deserialise<LoadGenRunningStatusData>(data.DataStr);
+                            LoadGenRunningStatusData status = Constants.GetInstance().Deserialise<LoadGenRunningStatusData>(data.DataStr);
                             totalCreated += status.CreatedUser;
                             totalCompleted += status.CompletedUser;
                             runcompleted += status.IsCompleted;
@@ -109,6 +129,7 @@ namespace AppedoLTController
                             _runningStatusData.Error.AddRange(status.Error);
                             _runningStatusData.ReportData.AddRange(status.ReportData);
                             _runningStatusData.Transactions.AddRange(status.Transactions);
+                            _runningStatusData.UserDetailData.AddRange(status.UserDetailData);
                             loadGenConnection = new Trasport(loadGen.Attributes["ipaddress"].Value, "8889");
                             loadGenConnection.Send(new TrasportData("scriptwisestatus", string.Empty, null));
                             scriptwisestatus.Append(loadGenConnection.Receive().DataStr);
@@ -136,23 +157,36 @@ namespace AppedoLTController
                             }
                         }
                     }
+                    _runningStatusData.Time = DateTime.Now;
+                    _runningStatusData.CreatedUser = totalCreated;
+                    _runningStatusData.CompletedUser = totalCompleted;
                     ScriptWiseStatus = GetStatusconcatenate(scriptwisestatus.ToString());
                     SendScriptWiseStatus(ScriptWiseStatus);
                     SendStatus();
-                    _runningStatusData.CreatedUser=totalCreated;
-                    _runningStatusData.CompletedUser=totalCompleted;
+
+                    if (isEnd == true)
+                    {
+                        try
+                        {
+                            if (ControllerXml.GetInstance().doc.SelectSingleNode("//runs/run[@reportname='" + RunId + "']") != null)
+                            {
+                                ControllerXml.GetInstance().doc.SelectSingleNode("//runs").RemoveChild(ControllerXml.GetInstance().doc.SelectSingleNode("//runs/run[@reportname='" + RunId + "']"));
+                                ControllerXml.GetInstance().Save();
+                                ExceptionHandler.LogRunDetail(RunId, "node deleted successfully.");
+                            }
+                            DeleteReportFolder(RunId);
+                        }
+                        catch (Exception ex)
+                        {
+                            ExceptionHandler.WritetoEventLog(ex.StackTrace + ex.Message);
+                        }
+                        break;
+                    }
                     if (runcompleted == loadGens.Count)
                     {
-                        ExceptionHandler.LogRunDetail(RunId, "Run completed");
-                        Thread.Sleep(10000);
-                        _staus = ControllerStatus.RunCompleted;
-                        _runningStatusData.IsCompleted = 1;
-                        ExceptionHandler.LogRunDetail(RunId, "Report is generating");
-                        new ResultFileGenerator(RunId).Genarate();
+                        // Thread.Sleep(2000);
+                        isEnd = true;
                         _staus = ControllerStatus.ReportGenerateCompleted;
-                        Controllers.Remove(RunId);
-                        break;
-
                     }
 
                 }
@@ -161,16 +195,17 @@ namespace AppedoLTController
                     try
                     {
                         Thread.Sleep(10000);
-                        ExceptionHandler.WritetoEventLog(ex.StackTrace + ex.Message + Environment.NewLine + ControllerXml.GetInstance().doc.InnerText);
-                        _staus = ControllerStatus.RunCompleted;
-                        new ResultFileGenerator(RunId).Genarate();
+                        // ExceptionHandler.WritetoEventLog(ex.StackTrace + ex.Message + Environment.NewLine + ControllerXml.GetInstance().doc.InnerText);
+                        // _staus = ControllerStatus.RunCompleted;
+                        // new ResultFileGenerator(RunId).Genarate();
                         _staus = ControllerStatus.ReportGenerateCompleted;
+                        SendStatus();
                         break;
                     }
                     catch (Exception ex1)
                     {
                         ExceptionHandler.WritetoEventLog(ex1.StackTrace + ex1.Message);
-                        break;
+                        //break;
                     }
 
                 }
@@ -262,13 +297,14 @@ namespace AppedoLTController
             {
                 header["runid"] = RunId;
                 server = new Trasport(_SourceIp, Constants.GetInstance().AppedoPort);
-                data = new TrasportData("status",ASCIIEncoding.Default.GetString(Constants.GetInstance().Serialise( _runningStatusData)), header);
+                data = new TrasportData("status", ASCIIEncoding.Default.GetString(Constants.GetInstance().Serialise(RunningStatusData)), header);
                 server.Send(data);
                 data = server.Receive();
                 _runningStatusData.Log.Clear();
                 _runningStatusData.Error.Clear();
                 _runningStatusData.ReportData.Clear();
                 _runningStatusData.Transactions.Clear();
+                _runningStatusData.UserDetailData.Clear();
             }
             catch (Exception ex)
             {
@@ -281,7 +317,7 @@ namespace AppedoLTController
                 data = null;
             }
         }
-       
+
     }
     public enum ControllerStatus { Idle = 0, Running, RunCompleted, ReportGenerating, ReportGenerateCompleted }
 

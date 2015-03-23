@@ -15,6 +15,7 @@ namespace AppedoLT.BusinessLogic
 {
     public class HttpRequest : Request
     {
+
         private Dictionary<string, string> _cookiesBuffer
         {
             get;

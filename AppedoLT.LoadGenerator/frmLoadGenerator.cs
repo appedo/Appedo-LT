@@ -160,6 +160,7 @@ namespace AppedoLTLoadGenerator
                                                 run.RunningStatusData.Error.Clear();
                                                 run.RunningStatusData.Transactions.Clear();
                                                 run.RunningStatusData.ReportData.Clear();
+                                                run.RunningStatusData.UserDetailData.Clear();
                                             }
 
                                         }
