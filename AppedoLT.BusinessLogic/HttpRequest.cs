@@ -521,7 +521,7 @@ namespace AppedoLT.BusinessLogic
                         }
                         else
                         {
-                            pData.value.Append(parm.Attributes["name"].Value).Append("").Append(System.Web.HttpUtility.UrlEncode(parm.Attributes["value"].Value));
+                            pData.value.Append(parm.Attributes["name"].Value).Append("=").Append(System.Web.HttpUtility.UrlEncode(parm.Attributes["value"].Value));
                         }
                     }
                     else
