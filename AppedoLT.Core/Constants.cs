@@ -550,7 +550,6 @@ namespace AppedoLT.Core
             HttpMethods = new List<string>();
             HttpMethods.AddRange(new string[] { "GET", "POST" });
             HttpPostContentType.AddRange(new string[] { "Form", "Multipart/form-data", "Text" });
-            //ServicePointManager.SecurityProtocol = SecurityProtocolType.Ssl3;
             ServicePointManager.MaxServicePointIdleTime = 100;
             ServicePointManager.DefaultConnectionLimit = int.MaxValue;
             ServicePointManager.ServerCertificateValidationCallback = ((sender, certificate, chain, sslPolicyErrors) =>

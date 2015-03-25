@@ -1,5 +1,4 @@
-﻿
-using AppedoLT.Core;
+﻿using AppedoLT.Core;
 using AppedoLT.DataAccessLayer;
 using System;
 using System.Collections.Generic;
@@ -105,13 +104,11 @@ namespace AppedoLTController
                                          {
                                              StartClient();
                                          }
-
                                          break;
 
                                      case "test":
                                          UIclient.Send(new TrasportData("ok", string.Empty, null));
                                          break;
-
 
                                      case "stop":
                                          runid = data.Header["runid"];
@@ -129,15 +126,12 @@ namespace AppedoLTController
                                              {
                                                  Controllers[runid].RunningStatusData.Log.Clear();
                                              }
-
                                              // UIclient.Send(new TrasportData("status", string.Format("createduser: {0}" + System.Environment.NewLine + "completeduser: {1}" + System.Environment.NewLine + "iscompleted: {2}" + System.Environment.NewLine, Controllers[runid].CreatedUser.ToString(), Controllers[runid].CompletedUser.ToString(), Controllers[runid].Status == ControllerStatus.ReportGenerateCompleted ? 1 : 0), null));
                                          }
                                          else
                                          {
                                              UIclient.Send(new TrasportData("status", Convert.ToString(constants.Serialise(new LoadGenRunningStatusData())), null));
                                              TrasportData ack = UIclient.Receive();
-
-
                                              // UIclient.Send(new TrasportData("status", string.Format("createduser: {0}" + System.Environment.NewLine + "completeduser: {1}" + System.Environment.NewLine + "iscompleted: {2}" + System.Environment.NewLine, 0.ToString(), 0.ToString(), 0.ToString()), null));
                                          }
                                          break;

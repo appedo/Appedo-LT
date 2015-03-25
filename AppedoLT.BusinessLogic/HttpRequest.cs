@@ -10,6 +10,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Xml;
 using AppedoLT.Core;
+using System.Security.Cryptography.X509Certificates;
 
 namespace AppedoLT.BusinessLogic
 {
@@ -95,10 +96,10 @@ namespace AppedoLT.BusinessLogic
                 request = (HttpWebRequest)WebRequest.Create(RequestNode.Attributes["Address"].Value);
                 request.Timeout = RequestTimeOut;
                 request.ConnectionGroupName = _connectionGroup;
-                
+
                 request.ServicePoint.BindIPEndPointDelegate += new BindIPEndPoint((ServicePoint servicePoint, IPEndPoint remoteEndPoint, int retryCount) =>
                 {
-                   
+
                     if (IPAddress.IsLoopback(remoteEndPoint.Address))
                     {
                         if (remoteEndPoint.Address.AddressFamily == AddressFamily.InterNetworkV6)
@@ -125,7 +126,7 @@ namespace AppedoLT.BusinessLogic
                 request.ProtocolVersion = HttpVersion.Version11;
                 request.Method = RequestNode.Attributes["Method"].Value;
                 request.UnsafeAuthenticatedConnectionSharing = true;
-
+               
                 #endregion
 
                 #region Header
@@ -195,15 +196,15 @@ namespace AppedoLT.BusinessLogic
                             request.ContentLength += pData.size;
                         }
                     }
-                  
+
                     using (var dataStream = request.GetRequestStream())
                     {
-                        
+
                         foreach (PostData pData in _posDataContainer.FindAll(f => f.size > 0))
                         {
                             if (pData.type == 1)
                             {
-                                dataStream.Write(Encoding.ASCII.GetBytes(pData.value.ToString().ToCharArray(), 0, pData.value.Length), 0, pData.value.Length);
+                                dataStream.Write(Encoding.Default.GetBytes(pData.value.ToString().ToCharArray(), 0, pData.value.Length), 0, pData.value.Length);
                             }
                             else if (pData.type == 2)
                             {
@@ -521,7 +522,7 @@ namespace AppedoLT.BusinessLogic
                         }
                         else
                         {
-                            pData.value.Append(parm.Attributes["name"].Value).Append("").Append(System.Web.HttpUtility.UrlEncode(parm.Attributes["value"].Value));
+                            pData.value.Append(parm.Attributes["name"].Value).Append("=").Append(System.Web.HttpUtility.UrlEncode(parm.Attributes["value"].Value));
                         }
                     }
                     else

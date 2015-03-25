@@ -34,9 +34,16 @@ makecert -n "CN=Softsmith.com" -ic "Softsmith Certificate Authority.cer" -iv "So
 pvk2pfx -pvk "Softsmith Private Key.pvk" -spc "Softsmith.cer" -pfx "Softsmith.pfx" -pi pass@12345
 
 
+makecert -n "CN=Appedo Certificate Authority" -cy authority -a sha256 -sv "Appedo Certificate Authority Private Key_sha2.pvk" -r "Appedo Certificate Authority_sha2.cer"
 
-makecert -n "CN=Appedo Certificate Authority" -cy authority -a sha1 -sv "Appedo Certificate Authority Private Key.pvk" -r "Appedo Certificate Authority.cer" -len 2048
+makecert -n "CN=Appedo.com" -ic "Appedo Certificate Authority_sha2.cer" -iv "Appedo Certificate Authority Private Key_sha2.pvk" -a sha256 -sky exchange -pe -sv "Appedo Private Key_sha2.pvk" "Appedo_sha2.cer"
 
-makecert -n "CN=Appedo.com" -ic "Appedo Certificate Authority.cer" -iv "Appedo Certificate Authority Private Key.pvk" -a sha1 -sky exchange -pe -sv "Appedo Private Key.pvk" "Appedo.cer" -len 2048
+pvk2pfx -pvk "Appedo Private Key_sha2.pvk" -spc "Appedo_sha2.cer" -pfx "Appedo_sha2.pfx" -pi pass@12345
 
-pvk2pfx -pvk "Appedo Private Key.pvk" -spc "Appedo.cer" -pfx "Appedo.pfx" -pi pass@12345 -len 2048
+
+
+makecert -n "CN=Appedo Certificate Authority" -cy authority -a sha1 -sv "Appedo Certificate Authority Private Key.pvk" -r "Appedo Certificate Authority.cer"
+
+makecert -n "CN=Appedo.com" -ic "Appedo Certificate Authority.cer" -iv "Appedo Certificate Authority Private Key.pvk" -a sha1 -sky exchange -pe -sv "Appedo Private Key.pvk" "Appedo.cer"
+
+pvk2pfx -pvk "Appedo Private Key.pvk" -spc "Appedo.cer" -pfx "Appedo.pfx" -pi pass@12345

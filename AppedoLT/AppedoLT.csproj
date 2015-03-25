@@ -267,6 +267,7 @@
       <DependentUpon>UCQueryStringData.cs</DependentUpon>
     </Compile>
     <Compile Include="Class\MonitorXml.cs" />
+    <Compile Include="HttpWebRequestClientCertificateTest.cs" />
     <Compile Include="InstallerClass.cs">
       <SubType>Component</SubType>
     </Compile>
