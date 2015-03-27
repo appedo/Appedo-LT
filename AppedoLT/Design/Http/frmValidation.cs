@@ -29,6 +29,7 @@ namespace AppedoLT
         Queue<RequestException> scriptWiseError = new Queue<RequestException>();
         Queue<ReportData> scriptReportData = new Queue<ReportData>();
         Queue<TransactionRunTimeDetail> scriptTransaction = new Queue<TransactionRunTimeDetail>();
+        Queue<UserDetail> scriptUserDetail = new Queue<UserDetail>();
 
         public frmValidation(XmlNode vuScript, RadTreeNode script, int _intCountRequest)
         {
@@ -50,7 +51,7 @@ namespace AppedoLT
 
                 tvRequest.Nodes.Clear();
                 tvRequest.Nodes.Add(script);
-                _vUSer = new VUser(1, DateTime.Now.ToString("dd_MMM_yyyy_hh_mm_ss"), "1", 1, 1, vuScript, false, Request.GetIPAddress(1), scriptWiseLog, scriptWiseError, scriptReportData, scriptTransaction);
+                _vUSer = new VUser(1, DateTime.Now.ToString("dd_MMM_yyyy_hh_mm_ss"), "1", 1, 1, vuScript, false, Request.GetIPAddress(1), scriptWiseLog, scriptWiseError, scriptReportData, scriptTransaction, scriptUserDetail);
                 _vUSer.IsValidation = true;
                 _vUSer.ValidationResult = ValidationResult.GetInstance(this.lsvResult);
                 _vUSer.ValidationResult.Clear();           

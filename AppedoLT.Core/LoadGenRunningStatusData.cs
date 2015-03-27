@@ -9,11 +9,38 @@ namespace AppedoLT.Core
     [DataContract]
     public class LoadGenRunningStatusData
     {
+        private DateTime _time = new DateTime();
+
+        [DataMember(Name = "time")]
+        public string timeStr
+        {
+            get
+            {
+                DateTime origin = new DateTime(1970, 1, 1, 0, 0, 0, 0);
+                TimeSpan diff = _time.ToUniversalTime() - origin;
+                return Math.Floor(diff.TotalMilliseconds).ToString();
+            }
+            set
+            {
+                _time = Constants.GetInstance().ConvertFromUnixTimestamp(Convert.ToDouble(value));
+            }
+        }
+        public DateTime Time
+        {
+            get { return _time; }
+            set
+            {
+                DateTime origin = new DateTime(1970, 1, 1, 0, 0, 0, 0);
+                TimeSpan diff = value.ToUniversalTime() - origin;
+                _time = Constants.GetInstance().ConvertFromUnixTimestamp(Math.Floor(diff.TotalMilliseconds));
+            }
+        }
 
         private List<Log> _log = new List<Log>();
         private List<RequestException> _error = new List<RequestException>();
         private List<ReportData> _reportData = new List<ReportData>();
         private List<TransactionRunTimeDetail> _transactionsData = new List<TransactionRunTimeDetail>();
+        private List<UserDetail> _userDetailData = new List<UserDetail>();
 
         [DataMember(Name = "createduser")]
         public int CreatedUser { get; set; }
@@ -21,15 +48,18 @@ namespace AppedoLT.Core
         public int CompletedUser { get; set; }
         [DataMember(Name = "iscompleted")]
         public int IsCompleted { get; set; }
+        [DataMember(Name = "loadgens")]
+        public string LoadGens { get; set; }
         [DataMember(Name = "log")]
         public List<Log> Log { get { return _log; } set { _log = value; } }
         [DataMember(Name = "error")]
         public List<RequestException> Error { get { return _error; } set { _error = value; } }
         [DataMember(Name = "reporddata")]
         public List<ReportData> ReportData { get { return _reportData; } set { _reportData = value; } }
-      
         [DataMember(Name = "transactions")]
         public List<TransactionRunTimeDetail> Transactions { get { return _transactionsData; } set { _transactionsData = value; } }
+        [DataMember(Name = "userdetail")]
+        public List<UserDetail> UserDetailData { get { return _userDetailData; } set { _userDetailData = value; } }
 
     }
 
@@ -37,7 +67,6 @@ namespace AppedoLT.Core
     public class Log
     {
         private DateTime _time = new DateTime();
-
         public string reportname = string.Empty;
 
         [DataMember(Name = "loadGen")]
@@ -149,6 +178,7 @@ namespace AppedoLT.Core
     }
 
     [DataContract]
+    [Serializable]
     public class ReportData
     {
         public DateTime _starttime = new DateTime();
@@ -228,10 +258,10 @@ namespace AppedoLT.Core
         [DataMember(Name = "diff")]
         public double diff { get; set; }
 
-        [DataMember(Name = "reponsecode")]
+        [DataMember(Name = "responsesize")]
         public long responsesize { get; set; }
 
-        [DataMember(Name = "responsesize")]
+        [DataMember(Name = "reponsecode")]
         public string reponseCode { get; set; }
         public ReportData()
         {
@@ -254,7 +284,7 @@ namespace AppedoLT.Core
                                                                                  this.iterationid,
                                                                                  this.starttime.ToString("yyyy-MM-dd HH:mm:ss"),
                                                                                  this.endtime.ToString("yyyy-MM-dd HH:mm:ss"),
-                                                                                 this.diff.ToString(), 
+                                                                                 this.diff.ToString(),
                                                                                  this.reponseCode,
                                                                                  this.responsesize);
         }
@@ -271,7 +301,7 @@ namespace AppedoLT.Core
             get { return _starttime; }
             set { _starttime = value; }
         }
-        public DateTime EndTime 
+        public DateTime EndTime
         {
             get { return _endtime; }
             set { _endtime = value; }
@@ -342,11 +372,11 @@ namespace AppedoLT.Core
             }
             set { }
         }
-       
+
         [DataMember(Name = "isend")]
         public string IsEndstr { get { return IsEnd.ToString(); } set { IsEnd = Convert.ToBoolean(value); } }
 
-        
+
         public bool IsEnd = false;
 
         public override string ToString()
@@ -363,6 +393,40 @@ namespace AppedoLT.Core
             query.Append(Convert.ToInt16(IsEnd)).Append(",");
             query.Append(Difference.ToString());
             return query.ToString();
+        }
+    }
+
+    [DataContract]
+    public class UserDetail
+    {
+        [DataMember(Name = "loadgenname")]
+        public string loadgenanme { get; set; }
+
+        [DataMember(Name = "type")]
+        public int Type { get; set; }
+
+        [DataMember(Name = "scriptid")]
+        public string scriptid { get; set; }
+
+        [DataMember(Name = "userid")]
+        public int userid { get; set; }
+
+        public DateTime _time = new DateTime();
+        public DateTime Time { get { return _time; } set { _time = value; } }
+
+        [DataMember(Name = "time")]
+        public string timeStr
+        {
+            get
+            {
+                DateTime origin = new DateTime(1970, 1, 1, 0, 0, 0, 0);
+                TimeSpan diff = _time.ToUniversalTime() - origin;
+                return Math.Floor(diff.TotalMilliseconds).ToString();
+            }
+            set
+            {
+                _time = Constants.GetInstance().ConvertFromUnixTimestamp(Convert.ToDouble(value));
+            }
         }
     }
 }

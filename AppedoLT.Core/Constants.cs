@@ -17,23 +17,24 @@ using System.Collections;
 using Ionic.Zip;
 using System.Threading;
 using System.Runtime.Serialization.Json;
+using System.Messaging;
 
 namespace AppedoLT.Core
 {
-    public enum VariableType { Extractor = 0, File, String, Constant, Counter, Sql,RandomNumber,RandomString,Number,CurrentDate }
+    public enum VariableType { Extractor = 0, File, String, Constant, Counter, Sql, RandomNumber, RandomString, Number, CurrentDate }
 
-    public class Constants 
+    public class Constants
     {
         private string _password = "ss1t_l1c@ns@_k@y_p@ssw0rd";
         private string _salt = "ss1t_S@1t";
         private string _iv = "ssit1234products";
         private string _MACAddress = string.Empty;
-        private string _executingAssplyFolder=string.Empty;
+        private string _executingAssplyFolder = string.Empty;
         private string _certificatePath = string.Empty;
         private string _dataFolderPath = string.Empty;
         private string _dataFolderPathMonitor = string.Empty;
-        private int _recordConncetion=-1;
-        private string _recodingIPAddress=string.Empty;
+        private int _recordConncetion = -1;
+        private string _recodingIPAddress = string.Empty;
         private string _recodingPort = string.Empty;
         private int _requestTimeOut = 0;
         private string _uploadIPAddress = string.Empty;
@@ -45,13 +46,13 @@ namespace AppedoLT.Core
 
         public string ChartsSummaryFileName = "chart_ summary.csv";
         public string ChartsAvgResponse = "chart_useravgresponse.csv";
-        public string ReportSummayReportFileName="report_summaryreport.csv";
+        public string ReportSummayReportFileName = "report_summaryreport.csv";
         public string ReportRequestSummayReportFileName = "report_requestsummaryreport.csv";
         public string ReportPageSummayReportFileName = "report_pagesummaryreport.csv";
         public string ReportContainerSummayReportFileName = "report_containersummaryreport.csv";
         public string ReportTransactionSummayReportFileName = "report_transactionsummaryreport.csv";
-        public  string UserId = string.Empty;
-       
+        public string UserId = string.Empty;
+
         public List<string> HttpPostContentType = null;
         public List<string> HttpMethods = null;
 
@@ -108,7 +109,7 @@ namespace AppedoLT.Core
             {
                 if (_dataFolderPath == string.Empty)
                 {
-                    _dataFolderPath = ExecutingAssemblyLocation+"\\Data";
+                    _dataFolderPath = ExecutingAssemblyLocation + "\\Data";
                 }
                 return _dataFolderPath;
             }
@@ -195,19 +196,19 @@ namespace AppedoLT.Core
                 {
                     try
                     {
-                         _MACAddress = String.Empty;
+                        _MACAddress = String.Empty;
                         System.Management.ManagementClass mc = new System.Management.ManagementClass("Win32_Processor");
                         System.Management.ManagementObjectCollection moc = mc.GetInstances();
 
                         foreach (System.Management.ManagementObject mo in moc)
                         {
-                                _MACAddress = mo.Properties["ProcessorId"].Value.ToString();
+                            _MACAddress = mo.Properties["ProcessorId"].Value.ToString();
                         }
                         mc = new System.Management.ManagementClass("Win32_BIOS");
                         moc = mc.GetInstances();
                         foreach (System.Management.ManagementObject mo in moc)
                         {
-                                _MACAddress =_MACAddress+"_"+mo.Properties["SerialNumber"].Value.ToString();
+                            _MACAddress = _MACAddress + "_" + mo.Properties["SerialNumber"].Value.ToString();
                         }
 
                     }
@@ -279,7 +280,7 @@ namespace AppedoLT.Core
                 return _maxUser;
             }
         }
-        public  string Encrypt(string raw)
+        public string Encrypt(string raw)
         {
             using (var csp = new AesCryptoServiceProvider())
             {
@@ -292,7 +293,7 @@ namespace AppedoLT.Core
                 return encrypted;
             }
         }
-        public  string Decrypt(string encrypted)
+        public string Decrypt(string encrypted)
         {
             using (var csp = new AesCryptoServiceProvider())
             {
@@ -484,7 +485,7 @@ namespace AppedoLT.Core
         {
             csp.Mode = CipherMode.CBC;
             csp.Padding = PaddingMode.PKCS7;
-            
+
             var spec = new Rfc2898DeriveBytes(Encoding.UTF8.GetBytes(_password), Encoding.UTF8.GetBytes(_salt), 65536);
             byte[] key = spec.GetBytes(16);
 
@@ -543,17 +544,18 @@ namespace AppedoLT.Core
 
         private Constants()
         {
-            
+
             System.Windows.Forms.TextBox.CheckForIllegalCrossThreadCalls = false;
             HttpPostContentType = new List<string>();
             HttpMethods = new List<string>();
-            HttpMethods.AddRange(new string[] { "GET","POST" });
-            HttpPostContentType.AddRange(new string[] {"Form","Multipart/form-data","Text" });
+            HttpMethods.AddRange(new string[] { "GET", "POST" });
+            HttpPostContentType.AddRange(new string[] { "Form", "Multipart/form-data", "Text" });
             //ServicePointManager.SecurityProtocol = SecurityProtocolType.Ssl3;
             ServicePointManager.MaxServicePointIdleTime = 100;
             ServicePointManager.DefaultConnectionLimit = int.MaxValue;
-            ServicePointManager.ServerCertificateValidationCallback = ((sender, certificate, chain, sslPolicyErrors) => { 
-                return true; 
+            ServicePointManager.ServerCertificateValidationCallback = ((sender, certificate, chain, sslPolicyErrors) =>
+            {
+                return true;
             });
             HeaderExcludeList.AddRange(new string[] { "Cookie", "Connection", "Accept", "Host", "User-Agent", "Referer", "Accept-Encoding", "Content-Type", "Content-Length", "Expect", "If-Modified-Since" });
         }
@@ -602,7 +604,7 @@ namespace AppedoLT.Core
 
             ExitCode = Process.ExitCode;
             Process.Close();
-           
+
         }
         public DataTable GetDataTableFromCSVFile(string FilePath, string Delim)
         {
@@ -724,7 +726,7 @@ namespace AppedoLT.Core
         {
             if (script.SelectSingleNode(".//container[@name='" + input + "_" + times.ToString() + "']") != null)
             {
-              return  GetUniqueContainerName(input, script, ++times);
+                return GetUniqueContainerName(input, script, ++times);
             }
             else
             {
@@ -760,7 +762,7 @@ namespace AppedoLT.Core
                 return node;
             }
         }
-        public  string GetPageContent(string Url)
+        public string GetPageContent(string Url)
         {
 
             HttpWebRequest WebRequestObject = (HttpWebRequest)HttpWebRequest.Create(Url);
@@ -773,10 +775,10 @@ namespace AppedoLT.Core
             Response.Close();
             return PageContent;
         }
-        public  string GetPageContent(string Url,string data)
+        public string GetPageContent(string Url, string data)
         {
             string PageContent = string.Empty;
-            HttpWebRequest WebRequestObject=null;
+            HttpWebRequest WebRequestObject = null;
             try
             {
                 WebRequestObject = (HttpWebRequest)HttpWebRequest.Create(Url);
@@ -794,17 +796,17 @@ namespace AppedoLT.Core
                 WebStream.Close();
                 Response.Close();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 ExceptionHandler.WritetoEventLog(ex.StackTrace + ex.Message);
             }
             finally
             {
-                WebRequestObject=null;
+                WebRequestObject = null;
             }
             return PageContent;
         }
-        public string GetQuery(string reportName,XmlDocument doc)
+        public string GetQuery(string reportName, XmlDocument doc)
         {
             StringBuilder result = new StringBuilder();
             XmlNode runNode = doc.SelectSingleNode("//run[@reportname='" + reportName + "']");
@@ -928,7 +930,7 @@ namespace AppedoLT.Core
             }
             return result.ToString();
         }
-        public void Zip(string sourcePath,string destinationPath)
+        public void Zip(string sourcePath, string destinationPath)
         {
             ZipFile zip = new ZipFile();
             zip.AddDirectory(sourcePath);
@@ -974,11 +976,31 @@ namespace AppedoLT.Core
             stream1.Seek(0, SeekOrigin.Begin);
             return stream1.ToArray();
         }
-        public  DateTime ConvertFromUnixTimestamp(double timestamp)
+        public DateTime ConvertFromUnixTimestamp(double timestamp)
         {
             DateTime origin = new DateTime(1970, 1, 1, 0, 0, 0, 0);
             return origin.AddMilliseconds(timestamp);
         }
+
+        //private MessageQueue _LTDataQueue = null;
+        //public MessageQueue LTDataQueue
+        //{
+        //    get
+        //    {
+
+        //        if (_LTDataQueue == null && MessageQueue.Exists(@".\Private$\ltdata") == false)
+        //        {
+        //            _LTDataQueue = MessageQueue.Create(@".\Private$\ltdata");
+        //        }
+        //        else
+        //        {
+        //            _LTDataQueue = new MessageQueue(@".\Private$\ltdata");
+        //        }
+
+        //        return _LTDataQueue;
+        //    }
+        //    set { _LTDataQueue = value; }
+        //}
     }
 
     public class Tuple<T1, T2>
@@ -1007,7 +1029,7 @@ namespace AppedoLT.Core
         public string Name { get; set; }
         public string Value
         {
-            get ;
+            get;
 
             set;
         }
@@ -1051,7 +1073,7 @@ namespace AppedoLT.Core
         public string ScenarioId { get; set; }
         public bool BrowserCache { get; set; }
         public int StartUserId { get; set; }
-     
+
         public static VUScriptSetting GetDefault(string scriptId)
         {
             VUScriptSetting vUScriptSetting = new VUScriptSetting();
@@ -1063,7 +1085,7 @@ namespace AppedoLT.Core
             vUScriptSetting.MaxUser = "1";
             vUScriptSetting.StartUser = "1";
             vUScriptSetting.IncrementUser = "1";
-          
+
             vUScriptSetting.ScenarioId = string.Empty;
             vUScriptSetting.BrowserCache = false;
             vUScriptSetting.StartUserId = 0;
@@ -1085,7 +1107,7 @@ namespace AppedoLT.Core
             vUScriptSetting.ScenarioId = scenarioId;
             vUScriptSetting.BrowserCache = false;
             vUScriptSetting.StartUserId = 0;
-            
+
             return vUScriptSetting;
 
         }
@@ -1106,7 +1128,7 @@ namespace AppedoLT.Core
         }
     }
 
-   
+
     public class HtmlTag
     {
         /// <summary>
