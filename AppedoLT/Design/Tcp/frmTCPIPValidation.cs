@@ -22,11 +22,7 @@ namespace AppedoLT
         String strRecordedResponse = String.Empty;
         int intCountRequest;
         Thread backgroundThread1;
-        Queue<Log> scriptWiseLog = new Queue<Log>();
-        Queue<RequestException> scriptWiseError = new Queue<RequestException>();
-        Queue<ReportData> scriptReportData = new Queue<ReportData>();
-        Queue<TransactionRunTimeDetail> scriptTransaction = new Queue<TransactionRunTimeDetail>();
-        Queue<UserDetail> scriptUserDetail = new Queue<UserDetail>();
+       
         bool firstRun;
 
         public frmTCPIPValidation(XmlNode vuScript, RadTreeNode script, int _intCountRequest)
@@ -50,14 +46,39 @@ namespace AppedoLT
 
                 tvRequest.Nodes.Clear();
                 tvRequest.Nodes.Add(script);
-                _vUSer = new VUser(1, DateTime.Now.ToString("dd_MMM_yyyy_hh_mm_ss"), "1", 1, 1, vuScript, false, Request.GetIPAddress(1), scriptWiseLog, scriptWiseError, scriptReportData, scriptTransaction, scriptUserDetail);
+                _vUSer = new VUser(1, DateTime.Now.ToString("dd_MMM_yyyy_hh_mm_ss"), "1", 1, 1, vuScript, false, Request.GetIPAddress(1));
                 _vUSer.IsValidation = true;
-                _vUSer.ValidationResult = ValidationResult.GetInstance(this.lsvResult);
-                _vUSer.ValidationResult.Clear();
+                _vUSer.OnLockRequestResponse += _vUSer_OnLockRequestResponse;
+                lsvResult.Items.Clear();
                 intCountRequest = _intCountRequest;
                 firstRun = true;
             }
             catch (Exception ex)
+            {
+                ExceptionHandler.WritetoEventLog(ex.StackTrace + Environment.NewLine + ex.Message);
+            }
+        }
+
+        void _vUSer_OnLockRequestResponse(RequestResponse requestResponse)
+        {
+            try
+            {
+                ListViewItem newItem = new ListViewItem(requestResponse.WebRequestResponseId.ToString());
+                newItem.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                if (requestResponse.RequestResult.HasError == true || requestResponse.RequestResult.Success == false)
+                {
+                    newItem.StateImageIndex = 1;
+                }
+                else
+                {
+                    newItem.StateImageIndex = 0;
+                }
+
+                newItem.Tag = requestResponse;
+                newItem.SubItems.AddRange(new string[] { requestResponse.RequestResult.RequestId.ToString(), requestResponse.RequestResult.RequestName, requestResponse.RequestResult.StartTime.ToString(), requestResponse.RequestResult.EndTime.ToString(), requestResponse.RequestResult.ResponseTime.ToString(), requestResponse.RequestResult.ResponseCode.ToString(), requestResponse.RequestResult.Success.ToString() });
+                lsvResult.Items.Add(newItem);
+            }
+            catch(Exception ex)
             {
                 ExceptionHandler.WritetoEventLog(ex.StackTrace + Environment.NewLine + ex.Message);
             }
@@ -70,7 +91,7 @@ namespace AppedoLT
                 {
                     if (firstRun == true) firstRun = false;
                     VariableManager.dataCenter = new VariableManager();
-                    _vUSer.ValidationResult.Clear();
+                    lsvResult.Items.Clear();
                     lblVResult.Text = string.Empty;
                     Clear();
                     lblVResult.Visible = true;
@@ -167,7 +188,7 @@ namespace AppedoLT
                     stopWatch.Stop();
                     try
                     {
-                        lblAvgResponse.Text = _vUSer.ValidationResult.Avg().ToString() + " ms";
+                        lblAvgResponse.Text = Avg().ToString() + " ms";
                     }
                     catch (Exception ex)
                     {
@@ -204,6 +225,21 @@ namespace AppedoLT
             }
         }
 
+        public double Avg()
+        {
+            double result = 0;
+            foreach (ListViewItem item in this.lsvResult.Items)
+            {
+                double temp = 0;
+                double.TryParse(item.SubItems[5].Text, out temp);
+                result += temp;
+            }
+            if (this.lsvResult.Items.Count > 0)
+            {
+                result = result / this.lsvResult.Items.Count;
+            }
+            return result;
+        }
         private void SetTreeNodeError(RadTreeNode node)
         {
             try

@@ -70,7 +70,6 @@ namespace AppedoLT
             this.radTabStrip1 = new Telerik.WinControls.UI.RadTabStrip();
             this.tabItem2 = new Telerik.WinControls.UI.TabItem();
             this.lsvErrors = new System.Windows.Forms.ListView();
-            this.lvcId = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.lvcLoadgen = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.lvcReportname = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.lvcScenarioname = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -78,9 +77,9 @@ namespace AppedoLT
             this.lvcRequestid = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.lvcUserid = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.lvcIterationid = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.ivcTime = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.ivcErrorCode = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.lcvMessage = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.lvcErrorcode = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.lvcTime = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.btnExport = new Telerik.WinControls.UI.RadButton();
             this.tabItem3 = new Telerik.WinControls.UI.TabItem();
             this.radButton1 = new Telerik.WinControls.UI.RadButton();
@@ -111,14 +110,14 @@ namespace AppedoLT
             this.radMenuItem4 = new Telerik.WinControls.UI.RadMenuItem();
             this.mnuiLicense = new Telerik.WinControls.UI.RadMenuItem();
             this.radMenuItem5 = new Telerik.WinControls.UI.RadMenuItem();
-           
             this.radMenuItem1 = new Telerik.WinControls.UI.RadMenuItem();
             this.imageListForHeading = new System.Windows.Forms.ImageList(this.components);
             this.userControlCharts1 = new AppedoLT.userControlCharts();
+            this.userControlReports2 = new AppedoLT.userControlReports();
             this.ucMonitor1 = new AppedoLT.UCMonitor();
             this.objUCLoadGen = new AppedoLT.ucLoadGen();
             this.userControlReports1 = new AppedoLT.userControlReports();
-            this.userControlReports2 = new AppedoLT.userControlReports();
+            this.lvcId = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             ((System.ComponentModel.ISupportInitialize)(this.tabsDesign)).BeginInit();
             this.tabsDesign.SuspendLayout();
             this.tabiRun.ContentPanel.SuspendLayout();
@@ -273,6 +272,7 @@ namespace AppedoLT
             this.tabiRun.ForeColor = System.Drawing.Color.Black;
             this.tabiRun.Image = ((System.Drawing.Image)(resources.GetObject("tabiRun.Image")));
             this.tabiRun.ImageKey = "arrow-right-3.png";
+            this.tabiRun.IsSelected = true;
             this.tabiRun.Margin = new System.Windows.Forms.Padding(2, 0, 0, 0);
             this.tabiRun.Name = "tabiRun";
             this.tabiRun.ScaleTransform = new System.Drawing.SizeF(1.2F, 1.2F);
@@ -734,6 +734,7 @@ namespace AppedoLT
             this.tabItem2.ContentPanel.Location = new System.Drawing.Point(0, 25);
             this.tabItem2.ContentPanel.Size = new System.Drawing.Size(646, 208);
             this.tabItem2.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tabItem2.IsSelected = true;
             this.tabItem2.Margin = new System.Windows.Forms.Padding(4, 0, 0, 0);
             this.tabItem2.Name = "tabItem2";
             this.tabItem2.ScaleTransform = new System.Drawing.SizeF(1F, 1F);
@@ -742,9 +743,6 @@ namespace AppedoLT
             // 
             // lsvErrors
             // 
-            this.lsvErrors.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.lsvErrors.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.lvcId,
             this.lvcLoadgen,
@@ -754,25 +752,21 @@ namespace AppedoLT
             this.lvcRequestid,
             this.lvcUserid,
             this.lvcIterationid,
-            this.ivcTime,
+            this.ivcErrorCode,
             this.lcvMessage,
-            this.lvcErrorcode});
-            this.lsvErrors.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lvcTime});
+            this.lsvErrors.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lsvErrors.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lsvErrors.FullRowSelect = true;
             this.lsvErrors.GridLines = true;
             this.lsvErrors.HideSelection = false;
-            this.lsvErrors.Location = new System.Drawing.Point(2, 26);
+            this.lsvErrors.Location = new System.Drawing.Point(0, 0);
             this.lsvErrors.MultiSelect = false;
             this.lsvErrors.Name = "lsvErrors";
-            this.lsvErrors.Size = new System.Drawing.Size(752, 214);
+            this.lsvErrors.Size = new System.Drawing.Size(646, 208);
             this.lsvErrors.TabIndex = 1;
             this.lsvErrors.UseCompatibleStateImageBehavior = false;
             this.lsvErrors.View = System.Windows.Forms.View.Details;
-            // 
-            // lvcId
-            // 
-            this.lvcId.Text = "Id";
-            this.lvcId.Width = 36;
             // 
             // lvcLoadgen
             // 
@@ -809,20 +803,20 @@ namespace AppedoLT
             this.lvcIterationid.Text = "Iterationid";
             this.lvcIterationid.Width = 81;
             // 
-            // ivcTime
+            // ivcErrorCode
             // 
-            this.ivcTime.Text = "Time";
-            this.ivcTime.Width = 105;
+            this.ivcErrorCode.Text = "ErrorCode";
+            this.ivcErrorCode.Width = 105;
             // 
             // lcvMessage
             // 
             this.lcvMessage.Text = "Message";
             this.lcvMessage.Width = 182;
             // 
-            // lvcErrorcode
+            // lvcTime
             // 
-            this.lvcErrorcode.Text = "Errorcode";
-            this.lvcErrorcode.Width = 275;
+            this.lvcTime.Text = "Time";
+            this.lvcTime.Width = 275;
             // 
             // btnExport
             // 
@@ -853,7 +847,6 @@ namespace AppedoLT
             this.tabItem3.ContentPanel.Location = new System.Drawing.Point(0, 25);
             this.tabItem3.ContentPanel.Size = new System.Drawing.Size(646, 208);
             this.tabItem3.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tabItem3.IsSelected = true;
             this.tabItem3.Margin = new System.Windows.Forms.Padding(4, 0, 0, 0);
             this.tabItem3.Name = "tabItem3";
             this.tabItem3.ScaleTransform = new System.Drawing.SizeF(1F, 1F);
@@ -968,7 +961,6 @@ namespace AppedoLT
             this.tabItem1.ForeColor = System.Drawing.Color.Black;
             this.tabItem1.Image = ((System.Drawing.Image)(resources.GetObject("tabItem1.Image")));
             this.tabItem1.ImageKey = "reports-16.ico";
-            this.tabItem1.IsSelected = true;
             this.tabItem1.Margin = new System.Windows.Forms.Padding(2, 0, 0, 0);
             this.tabItem1.Name = "tabItem1";
             this.tabItem1.ScaleTransform = new System.Drawing.SizeF(1.2F, 1.2F);
@@ -1146,10 +1138,6 @@ namespace AppedoLT
             this.radMenuItem5.Text = "About";
             this.radMenuItem5.Click += new System.EventHandler(this.radMenuItem5_Click);
             // 
-            // mnuiLogin
-            // 
-            
-            // 
             // radMenuItem1
             // 
             this.radMenuItem1.Class = "";
@@ -1188,6 +1176,15 @@ namespace AppedoLT
             this.userControlCharts1.Size = new System.Drawing.Size(941, 499);
             this.userControlCharts1.TabIndex = 0;
             // 
+            // userControlReports2
+            // 
+            this.userControlReports2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.userControlReports2.Location = new System.Drawing.Point(0, 0);
+            this.userControlReports2.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.userControlReports2.Name = "userControlReports2";
+            this.userControlReports2.Size = new System.Drawing.Size(941, 499);
+            this.userControlReports2.TabIndex = 0;
+            // 
             // ucMonitor1
             // 
             this.ucMonitor1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -1217,14 +1214,10 @@ namespace AppedoLT
             this.userControlReports1.Size = new System.Drawing.Size(941, 499);
             this.userControlReports1.TabIndex = 0;
             // 
-            // userControlReports2
+            // lvcId
             // 
-            this.userControlReports2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.userControlReports2.Location = new System.Drawing.Point(0, 0);
-            this.userControlReports2.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.userControlReports2.Name = "userControlReports2";
-            this.userControlReports2.Size = new System.Drawing.Size(941, 499);
-            this.userControlReports2.TabIndex = 0;
+            this.lvcId.Text = "Id";
+            this.lvcId.Width = 50;
             // 
             // Design
             // 
@@ -1355,7 +1348,6 @@ namespace AppedoLT
         private Telerik.WinControls.Themes.Windows7Theme windows7Theme1;
         private System.Windows.Forms.ImageList imcDesign;
         private System.Windows.Forms.ListView lsvErrors;
-        private System.Windows.Forms.ColumnHeader lvcId;
         private System.Windows.Forms.ColumnHeader lvcLoadgen;
         private System.Windows.Forms.ColumnHeader lvcReportname;
         private System.Windows.Forms.ColumnHeader lvcScenarioname;
@@ -1363,9 +1355,9 @@ namespace AppedoLT
         private System.Windows.Forms.ColumnHeader lvcRequestid;
         private System.Windows.Forms.ColumnHeader lvcUserid;
         private System.Windows.Forms.ColumnHeader lvcIterationid;
-        private System.Windows.Forms.ColumnHeader ivcTime;
+        private System.Windows.Forms.ColumnHeader ivcErrorCode;
         private System.Windows.Forms.ColumnHeader lcvMessage;
-        private System.Windows.Forms.ColumnHeader lvcErrorcode;
+        private System.Windows.Forms.ColumnHeader lvcTime;
         private Telerik.WinControls.UI.RadTabStrip radTabStrip1;
         private Telerik.WinControls.UI.TabItem tabItem2;
         private Telerik.WinControls.UI.TabItem tabItem3;
@@ -1396,6 +1388,7 @@ namespace AppedoLT
         private Telerik.WinControls.UI.TabItem tapiMonitor;
         private UCMonitor ucMonitor1;
         private userControlReports userControlReports2;
+        private System.Windows.Forms.ColumnHeader lvcId;
         
 
 

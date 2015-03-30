@@ -26,7 +26,6 @@ namespace AppedoLT
         private Stopwatch runTime = new Stopwatch();
         private List<ScriptExecutor> _scriptExecutorList = new List<ScriptExecutor>();
         private RepositoryXml _repositoryXml = RepositoryXml.GetInstance();
-        private RunTimeException _errors = RunTimeException.GetInstance();
         private Constants _constants = Constants.GetInstance();
         private Boolean _isUseLoadGen = false;
         private ucDesign _ucDesignObj = null;
@@ -730,10 +729,12 @@ namespace AppedoLT
                     {
                         _scriptExecutorList.Clear();
                         tmrExecution.Stop();
-                        lsvErrors.Items.Clear();
+                     
                         frmRun objFrmRun = new frmRun();
                         if (objFrmRun.ShowDialog() == DialogResult.OK)
                         {
+                            lsvErrors.Items.Clear();
+                            lblErrorCount.Text = "0";
                             _repositoryXml.Save();
                             executionReport.ReportName = objFrmRun.strReportName;
                             executionReport.ScenarioName= tvScenarios.SelectedNode.Text;
@@ -779,6 +780,11 @@ namespace AppedoLT
 
                                 foreach (ScriptExecutor scr in _scriptExecutorList)
                                 {
+                                    scr.OnLockReportData += scr_OnLockReportData;
+                                    scr.OnLockError += scr_OnLockError;
+                                    scr.OnLockLog += scr_OnLockLog;
+                                    scr.OnLockTransactions += scr_OnLockTransactions;
+                                    scr.OnLockUserDetail += scr_OnLockUserDetail;
                                     scr.Run();
                                 }
                                 runTime.Reset();
@@ -873,6 +879,44 @@ namespace AppedoLT
 
             }
         }
+        void scr_OnLockUserDetail(UserDetail data)
+        {
+            //throw new NotImplementedException();
+        }
+        void scr_OnLockTransactions(TransactionRunTimeDetail data)
+        {
+            lock (data)
+            {
+                DataServer.GetInstance().transcations.Enqueue(data);
+            }
+        }
+        void scr_OnLockLog(Log data)
+        {
+            lock (DataServer.GetInstance().logs)
+            {
+                DataServer.GetInstance().logs.Enqueue(data);
+            }
+        }
+        void scr_OnLockError(RequestException data)
+        {
+            lock (DataServer.GetInstance().errors)
+            {
+                data.message = data.message.Replace("\r\n", " ");
+                ListViewItem newItem = new ListViewItem(data.requestexceptionid.ToString());
+                newItem.SubItems.AddRange(new string[] {  data.loadGen, data.reportname, data.scenarioname, data.scriptname, data.requestid,
+                                                          data.userid, data.iterationid, data.errorcode, data.message.Replace("\"", "\"\""), data.time.ToString("yyyy-MM-dd HH:mm:ss"), data.request.Replace("\"", "\"\"") });
+                lsvErrors.Items.Add(newItem);
+                DataServer.GetInstance().errors.Enqueue(data);
+            }
+        }
+        void scr_OnLockReportData(ReportData data)
+        {
+            lock (data)
+            {
+                DataServer.GetInstance().LogResult(data);
+            }
+        }
+
         private void btnStop_Click(object sender, EventArgs e)
         {
             try
@@ -1138,6 +1182,7 @@ namespace AppedoLT
 
                 if (executionReport.CreatedUser > 0) lblUserCreated.Text = executionReport.CreatedUser.ToString();
                 lblUserCompleted.Text = executionReport.CompletedUser.ToString();
+                lblErrorCount.Text = lsvErrors.Items.Count.ToString();
 
                 if (runTime.IsRunning == true)
                 {
