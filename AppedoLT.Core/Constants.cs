@@ -23,6 +23,13 @@ namespace AppedoLT.Core
 {
     public enum VariableType { Extractor = 0, File, String, Constant, Counter, Sql, RandomNumber, RandomString, Number, CurrentDate }
 
+    public delegate void LockReportData(ReportData data);
+    public delegate void LockLog(Log data);
+    public delegate void LockError(RequestException data);
+    public delegate void LockTransactions(TransactionRunTimeDetail data);
+    public delegate void LockUserDetail(UserDetail data);
+    public delegate void LockRequestResponse(RequestResponse data);
+    
     public class Constants
     {
         private string _password = "ss1t_l1c@ns@_k@y_p@ssw0rd";
