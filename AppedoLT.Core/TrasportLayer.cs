@@ -6,6 +6,7 @@ using System.Net;
 using System.Net.Sockets;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Threading;
 
 namespace AppedoLT.Core
 {
@@ -202,6 +203,10 @@ namespace AppedoLT.Core
                     totalByte = file.Length;
                     while ((readCount = file.Read(buffer, 0, buffer.Length)) > 0)
                     {
+                        if (success == false)
+                        {
+                            break;
+                        }
                         totalByteUploaded += socket.Send(buffer, 0, readCount, SocketFlags.None);
                     }
                 }
