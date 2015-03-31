@@ -61,7 +61,12 @@ namespace AppedoLT.BusinessLogic
         }
         #endregion
 
-
+        public event LockReportData OnLockReportData;
+        public event LockLog OnLockLog;
+        public event LockError OnLockError;
+        public event LockTransactions OnLockTransactions;
+        public event LockUserDetail OnLockUserDetail;
+        public event LockRequestResponse OnLockRequestResponse;
 
         public static string Result = string.Empty;
         private XmlNode _vuScriptXml;
@@ -69,12 +74,6 @@ namespace AppedoLT.BusinessLogic
         private XmlDocument _doc = null;
         private Thread _userThread;
         private ExecutionReport Status = ExecutionReport.GetInstance();
-        private Queue<Log> _LogBuffer = new Queue<Log>();
-        private Queue<RequestException> _ErrorBuffer = new Queue<RequestException>();
-        private Queue<ReportData> _ReportDataBuffer = new Queue<ReportData>();
-        private Queue<TransactionRunTimeDetail> _TransactionBuffer = new Queue<TransactionRunTimeDetail>();
-        private Queue<UserDetail> _userDetailBuffer = new Queue<UserDetail>();
-
 
         private Dictionary<string, object> _exVariablesValues = new Dictionary<string, object>();
         private Dictionary<string, TransactionRunTimeDetail> _transactions = new Dictionary<string, TransactionRunTimeDetail>();
@@ -99,7 +98,6 @@ namespace AppedoLT.BusinessLogic
         private bool _secondaryRequestPlayed = false;
         private Constants _constants = Constants.GetInstance();
         Request req;
-
         public bool IsValidation = false;
         public string HeaderCookie
         {
@@ -117,21 +115,14 @@ namespace AppedoLT.BusinessLogic
         }
         public bool WorkCompleted = false;
         public bool Break { get; set; }
-        public ValidationResult ValidationResult;
-
         ConnectionManager conncetionManager = new ConnectionManager(1);
-        AppedoLT.DataAccessLayer.RunTimeException errors = RunTimeException.GetInstance();
         Dictionary<string, string> receivedCookies = new Dictionary<string, string>();
         public VUserStatus VUserStatus;
-
-        public VUser(int maxUser, string reportName, string type, int userid, int iteration, XmlNode vuScript, bool browserCache, IPAddress ipaddress, Queue<Log> logBuffer, Queue<RequestException> errorBuffer, Queue<ReportData> reportDataBuffer, Queue<TransactionRunTimeDetail> transactionBuffer, Queue<UserDetail> userDetailBuffer)
+        private DateTime _userCreatededTime = new DateTime();
+        public VUser(int maxUser, string reportName, string type, int userid, int iteration, XmlNode vuScript, bool browserCache, IPAddress ipaddress)
         {
+             _userCreatededTime = DateTime.Now;
             _doc = vuScript.OwnerDocument;
-            _LogBuffer = logBuffer;
-            _ErrorBuffer = errorBuffer;
-            _ReportDataBuffer = reportDataBuffer;
-            _TransactionBuffer = transactionBuffer;
-            _userDetailBuffer = userDetailBuffer;
             _maxUser = maxUser;
             _browserCache = browserCache;
             _type = type;
@@ -139,13 +130,11 @@ namespace AppedoLT.BusinessLogic
             _iteration = iteration;
             _vuScriptXml = vuScript;
             _reportName = reportName;
-            if (IsValidation == false) errors.storeErrors = true;
             _IPAddress = new IPEndPoint(ipaddress, 0);
             VUserStatus = new VUserStatus();
             lock (Status.LockObjForCreatedUser)
             {
                 Status.CreatedUser++;
-                LockUserDetail(1);
             }
         }
 
@@ -156,6 +145,7 @@ namespace AppedoLT.BusinessLogic
 
         public void Start()
         {
+             LockUserDetail(1);
             _userThread = new Thread(new ThreadStart(StartExecution));
             _userThread.ApartmentState = ApartmentState.STA;
             _userThread.Start();
@@ -579,12 +569,12 @@ namespace AppedoLT.BusinessLogic
                         req.Variables = variables;
                         req.GetResponse();
 
-                        if (IsValidation == true)
+                        if (OnLockRequestResponse!=null)
                         {
                             #region Validation
                             responseResult.RequestResult = req;
-                            responseResult.WebRequestResponseId = (ValidationResult.Count + 1);
-                            ValidationResult.AddToList(responseResult);
+                            responseResult.WebRequestResponseId =Convert.ToInt32(Constants.GetInstance().UniqueID);
+                            LockRequestResponse(responseResult);
                             #endregion
                         }
                         else
@@ -648,7 +638,7 @@ namespace AppedoLT.BusinessLogic
                                 req.GetResponse();
 
 
-                                if (IsValidation == true)
+                                if (OnLockRequestResponse!=null)
                                 {
                                     #region Validation
                                     StringBuilder pDataBuffer = new StringBuilder();
@@ -658,8 +648,9 @@ namespace AppedoLT.BusinessLogic
                                     }
                                     responseResult.PostData = pDataBuffer.ToString();
                                     responseResult.RequestResult = req;
-                                    responseResult.WebRequestResponseId = (ValidationResult.Count + 1);
-                                    ValidationResult.AddToList(responseResult);
+                                    responseResult.WebRequestResponseId = Convert.ToInt32(Constants.GetInstance().UniqueID);
+                                    LockRequestResponse(responseResult);
+
                                     #endregion
                                 }
                                 else
@@ -697,11 +688,11 @@ namespace AppedoLT.BusinessLogic
                                                         {
                                                             secReq.GetResponse();
 
-                                                            if (IsValidation == true)
+                                                            if (OnLockRequestResponse!=null)
                                                             {
                                                                 responseResultSec.RequestResult = secReq;
-                                                                responseResultSec.WebRequestResponseId = (ValidationResult.Count + 1);
-                                                                ValidationResult.AddToList(responseResultSec);
+                                                                responseResultSec.WebRequestResponseId = Convert.ToInt32(Constants.GetInstance().UniqueID);
+                                                                LockRequestResponse(responseResult);
                                                             }
                                                             else
                                                             {
@@ -1236,7 +1227,8 @@ namespace AppedoLT.BusinessLogic
                 exception.time = DateTime.Now;
                 exception.from = "Tool";
                 exception.message = ex.Message;
-                errors.AddExeception(exception);
+                LockException(exception);
+               
                 requestResponse.IsSucess = false;
                 responseCode = exception.errorcode = "400";
                 return requestResponse;
@@ -1485,8 +1477,6 @@ namespace AppedoLT.BusinessLogic
             return requestResponse;
         }
 
-
-
         private void SetValue(object variableName, object value)
         {
             VariableManager.dataCenter.SetVariableValue(_userid, _iterationid, variableName.ToString(), value, _maxUser);
@@ -1622,8 +1612,9 @@ namespace AppedoLT.BusinessLogic
             exception.time = DateTime.Now;
             exception.from = "Script";
             exception.message = arg.Description;
-            errors.AddExeception(exception);
+            LockException(exception);
         }
+
         #endregion
 
         #region Logs
@@ -1647,21 +1638,19 @@ namespace AppedoLT.BusinessLogic
             exception.requestid = requestid;
             exception.iterationid = this._iterationid.ToString();
             exception.userid = this._userid.ToString();
-            exception.requestexceptionid = Guid.NewGuid().ToString();
+            exception.requestexceptionid = Constants.GetInstance().UniqueID;
             exception.time = DateTime.Now;
             exception.from = "web";
             exception.message = message;
             exception.errorcode = errorCode;
             exception.request = url;
-            lock (_ErrorBuffer)
-            {
-                if (exception != null) _ErrorBuffer.Enqueue(exception);
-            }
-            lock (errors)
-            {
-                errors.AddExeception(exception);
-                VUserStatus.ErrorCount++;
-            }
+            if (OnLockError != null && exception!=null) OnLockError.Invoke(exception);
+            VUserStatus.ErrorCount++;
+        }
+        private void LockException(RequestException exception)
+        {
+            if (OnLockError != null && exception != null) OnLockError.Invoke(exception);
+            VUserStatus.ErrorCount++;
         }
         private void LockLog(XmlNode log)
         {
@@ -1679,17 +1668,7 @@ namespace AppedoLT.BusinessLogic
                 logObj.userid = this._userid.ToString();
                 logObj.time = DateTime.Now;
                 logObj.message = HttpUtility.HtmlDecode(log.Attributes["message"].Value);
-                lock (_LogBuffer)
-                {
-                    if (logObj != null) _LogBuffer.Enqueue(logObj);
-                }
-                if (IsValidation == false)
-                {
-                    lock (DataServer.GetInstance().logs)
-                    {
-                        DataServer.GetInstance().logs.Enqueue(logObj);
-                    }
-                }
+                if (OnLockLog != null && logObj != null) OnLockLog.Invoke(logObj);
             }
             catch (Exception ex)
             {
@@ -1721,27 +1700,8 @@ namespace AppedoLT.BusinessLogic
                     rd.responsesize = responsesize;
                     rd.reponseCode = reponseCode;
 
+                    if (OnLockReportData != null && rd != null) OnLockReportData.Invoke(rd);
 
-                    //System.Messaging.Message msg1 = new System.Messaging.Message();
-                    //msg1.Body = rd;
-                    //msg1.Formatter = new BinaryMessageFormatter();
-
-
-                    // Constants.GetInstance().LTDataQueue.Send(msg1);
-                    // System.Messaging.Message[] msg2 = Constants.GetInstance().LTDataQueue.GetAllMessages();
-                    //  long test=  Constants.GetInstance().LTDataQueue.MaximumQueueSize;
-                    //  System.Messaging.Message msg= Constants.GetInstance().LTDataQueue.Receive();
-                    //  Constants.GetInstance().LTDataQueue.re
-                    //msg.Formatter = new BinaryMessageFormatter();
-                    //ReportData rd1 = (ReportData)msg.Body;
-                    lock (_ReportDataBuffer)
-                    {
-                        if (rd != null) _ReportDataBuffer.Enqueue(rd);
-                    }
-                    lock (rd)
-                    {
-                        DataServer.GetInstance().LogResult(rd);
-                    }
                     if (req.HasError == true)
                     {
                         LockException(req.RequestId.ToString(), req.ErrorMessage, req.ErrorCode, req.RequestName);
@@ -1771,28 +1731,22 @@ namespace AppedoLT.BusinessLogic
         }
         private void LockTransactions(TransactionRunTimeDetail tranDetailTemp)
         {
-
-            lock (_TransactionBuffer)
-            {
-                if (tranDetailTemp != null) _TransactionBuffer.Enqueue(tranDetailTemp);
-            }
-            lock (tranDetailTemp)
-            {
-                DataServer.GetInstance().transcations.Enqueue(tranDetailTemp);
-            }
+            if (OnLockTransactions != null && tranDetailTemp != null) OnLockTransactions.Invoke(tranDetailTemp);
         }
         private void LockUserDetail(int type)
         {
             UserDetail userDetail = new UserDetail();
-            userDetail.Time = DateTime.Now;
+            if (type == 1) userDetail.Time=_userCreatededTime;
+            else userDetail.Time = DateTime.Now;
             userDetail.scriptid = _vuScriptXml.Attributes["id"].Value;
             userDetail.userid = _userid;
             userDetail.Type = type;
             userDetail.loadgenanme = ExecutionReport.GetInstance().LoadGenName;
-            lock (_userDetailBuffer)
-            {
-                _userDetailBuffer.Enqueue(userDetail);
-            }
+            if (OnLockUserDetail != null && userDetail!=null) OnLockUserDetail.Invoke(userDetail);
+        }
+        private void LockRequestResponse(RequestResponse data)
+        {
+          if(OnLockRequestResponse!=null) OnLockRequestResponse.Invoke(data);
         }
         #endregion
     }

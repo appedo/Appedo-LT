@@ -13,6 +13,12 @@ namespace AppedoLT.BusinessLogic
 {
     public class ScriptExecutor
     {
+        public event LockReportData OnLockReportData;
+        public event LockLog OnLockLog;
+        public event LockError OnLockError;
+        public event LockTransactions OnLockTransactions;
+        public event LockUserDetail OnLockUserDetail;
+
         private XmlNode _vuScript;
         private int _startUserid;
         private int _endUserid;
@@ -29,12 +35,6 @@ namespace AppedoLT.BusinessLogic
         private Constants _constant = Constants.GetInstance();
         public BackgroundWorker Worker = new BackgroundWorker();
         public VUScriptStatus StatusSummary = new VUScriptStatus();
-
-        public Queue<Log> LogBuffer = new Queue<Log>();
-        public Queue<RequestException> ErrorBuffer = new Queue<RequestException>();
-        public Queue<ReportData> reportDataBuffer = new Queue<ReportData>();
-        public Queue<TransactionRunTimeDetail> TransactionDataBuffer = new Queue<TransactionRunTimeDetail>();
-        public Queue<UserDetail> UserDetailBuffer = new Queue<UserDetail>();
 
         public bool IsRunCompleted = false;
         private string Scriptid { get; set; }
@@ -454,7 +454,14 @@ namespace AppedoLT.BusinessLogic
 
         private VUser GetVUser(int userid)
         {
-            return new VUser(int.Parse(_setting.MaxUser), _reportName, _setting.Type, userid, int.Parse(_setting.Iterations), _vuScript, _setting.BrowserCache, Request.GetIPAddress(_createdUserCount), LogBuffer, ErrorBuffer, reportDataBuffer, TransactionDataBuffer, UserDetailBuffer);
+          
+            VUser user=new VUser(int.Parse(_setting.MaxUser), _reportName, _setting.Type, userid, int.Parse(_setting.Iterations), _vuScript, _setting.BrowserCache, Request.GetIPAddress(_createdUserCount));
+            if(OnLockReportData!=null) user.OnLockReportData+=OnLockReportData;
+            if(OnLockError != null) user.OnLockError += OnLockError;
+            if(OnLockLog != null) user.OnLockLog += OnLockLog;
+            if(OnLockTransactions != null) user.OnLockTransactions += OnLockTransactions;
+            if(OnLockUserDetail != null) user.OnLockUserDetail += OnLockUserDetail;
+            return user;
         }
 
         private void UpdateStatus()

@@ -10,7 +10,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>AppedoLT.Core</RootNamespace>
     <AssemblyName>AppedoLT.Core</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
@@ -74,6 +74,7 @@
     <Compile Include="Connection.cs" />
     <Compile Include="ConnectionManager.cs" />
     <Compile Include="Constants.cs" />
+    <Compile Include="RequestResponse.cs" />
     <Compile Include="RunningScriptWiseStatusData.cs" />
     <Compile Include="EvaluteException.cs" />
     <Compile Include="ExceptionHandler.cs" />
@@ -111,7 +112,6 @@
       <DependentUpon>UCTime.cs</DependentUpon>
     </Compile>
     <Compile Include="Utility.cs" />
-    <Compile Include="ValidationResult.cs" />
     <Compile Include="VariableXml.cs" />
     <Compile Include="VUScriptStatus.cs" />
     <Compile Include="XmlFileProccessor.cs" />

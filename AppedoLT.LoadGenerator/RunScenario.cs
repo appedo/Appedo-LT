@@ -14,7 +14,6 @@ namespace AppedoLTLoadGenerator
 {
     public class RunScenario
     {
-       
         List<ScriptExecutor> _scriptExecutorList = new List<ScriptExecutor>();
         string _scenarioXml;
 
@@ -28,13 +27,13 @@ namespace AppedoLTLoadGenerator
                         || _scriptExecutorList.FindAll(f => f.IsRunCompleted).Count == _scriptExecutorList.Count)
                       && executionReport.ExecutionStatus == Status.Completed)
                 {
-                      _runningStatusData.IsCompleted=1;
+                    _runningStatusData.IsCompleted = 1;
                 }
                 else
                 {
-                      _runningStatusData.IsCompleted=0;
+                    _runningStatusData.IsCompleted = 0;
                 }
-                GetLog(_runningStatusData.Log );
+                GetLog(_runningStatusData.Log);
                 GetError(_runningStatusData.Error);
                 GetReportData(_runningStatusData.ReportData);
                 GetTransactions(_runningStatusData.Transactions);
@@ -42,6 +41,7 @@ namespace AppedoLTLoadGenerator
                 return _runningStatusData;
             }
         }
+
         public LoadGenRunningStatusData DisplayStatusData
         {
             get
@@ -60,11 +60,6 @@ namespace AppedoLTLoadGenerator
             }
         }
 
-       
-       //public Ru
-        //public int TotalUserCreated { get; set; }
-        //public int TotalUserComplted { get; set; }
-
         private System.Timers.Timer _statusUpdateTimer;
         private Constants _constants = Constants.GetInstance();
         private ExecutionReport executionReport = ExecutionReport.GetInstance();
@@ -73,6 +68,11 @@ namespace AppedoLTLoadGenerator
         private DataServer _dataServer = DataServer.GetInstance();
         private string _distribution = string.Empty;
 
+        private Queue<Log> _LogBuffer = new Queue<Log>();
+        private Queue<RequestException> _ErrorBuffer = new Queue<RequestException>();
+        private Queue<ReportData> _reportDataBuffer = new Queue<ReportData>();
+        private Queue<TransactionRunTimeDetail> _TransactionDataBuffer = new Queue<TransactionRunTimeDetail>();
+        private Queue<UserDetail> _UserDetailBuffer = new Queue<UserDetail>();
 
         public RunScenario(string scenarioXml, string distribution)
         {
@@ -183,6 +183,11 @@ namespace AppedoLTLoadGenerator
 
             foreach (ScriptExecutor scr in _scriptExecutorList)
             {
+                scr.OnLockReportData += scr_OnLockReportData;
+                scr.OnLockError += scr_OnLockError;
+                scr.OnLockLog += scr_OnLockLog;
+                scr.OnLockTransactions += scr_OnLockTransactions;
+                scr.OnLockUserDetail += scr_OnLockUserDetail;
                 scr.Run();
             }
             if (_scriptExecutorList.Count > 0)
@@ -194,6 +199,34 @@ namespace AppedoLTLoadGenerator
             {
                 executionReport.ExecutionStatus = Status.Completed;
                 return false;
+            }
+        }
+
+        void scr_OnLockUserDetail(UserDetail data)
+        {
+            lock (_UserDetailBuffer) { _UserDetailBuffer.Enqueue(data); }
+        }
+
+        void scr_OnLockTransactions(TransactionRunTimeDetail data)
+        {
+            lock (_TransactionDataBuffer) { _TransactionDataBuffer.Enqueue(data); }
+        }
+
+        void scr_OnLockLog(Log data)
+        {
+            lock (_LogBuffer) { _LogBuffer.Enqueue(data); }
+        }
+
+        void scr_OnLockError(RequestException data)
+        {
+            lock (_ErrorBuffer) { _ErrorBuffer.Enqueue(data); }
+        }
+
+        void scr_OnLockReportData(ReportData data)
+        {
+            lock (_reportDataBuffer)
+            {
+                _reportDataBuffer.Enqueue(data);
             }
         }
 
@@ -235,10 +268,10 @@ namespace AppedoLTLoadGenerator
             {
                 foreach (ScriptExecutor scripts in _scriptExecutorList)
                 {
-                    int count = scripts.LogBuffer.Count;
+                    int count = _LogBuffer.Count;
                     for (; count > 0; count--)
                     {
-                        logList.Add(scripts.LogBuffer.Dequeue());
+                        logList.Add(_LogBuffer.Dequeue());
                     }
                 }
             }
@@ -253,10 +286,10 @@ namespace AppedoLTLoadGenerator
             {
                 foreach (ScriptExecutor scripts in _scriptExecutorList)
                 {
-                    int count = scripts.ErrorBuffer.Count;
+                    int count = _ErrorBuffer.Count;
                     for (; count > 0; count--)
                     {
-                        errorList.Add(scripts.ErrorBuffer.Dequeue());
+                        errorList.Add(_ErrorBuffer.Dequeue());
                     }
                 }
             }
@@ -265,17 +298,16 @@ namespace AppedoLTLoadGenerator
                 ExceptionHandler.WritetoEventLog(ex.StackTrace + ex.Message);
             }
         }
-
         private void GetReportData(List<ReportData> reportDataList)
         {
             try
             {
                 foreach (ScriptExecutor scripts in _scriptExecutorList)
                 {
-                    int count = scripts.reportDataBuffer.Count;
+                    int count = _reportDataBuffer.Count;
                     for (; count > 0; count--)
                     {
-                        reportDataList.Add(scripts.reportDataBuffer.Dequeue());
+                        reportDataList.Add(_reportDataBuffer.Dequeue());
                     }
                 }
             }
@@ -284,17 +316,16 @@ namespace AppedoLTLoadGenerator
                 ExceptionHandler.WritetoEventLog(ex.StackTrace + ex.Message);
             }
         }
-
         private void GetTransactions(List<TransactionRunTimeDetail> transactionsList)
         {
             try
             {
                 foreach (ScriptExecutor scripts in _scriptExecutorList)
                 {
-                    int count = scripts.TransactionDataBuffer.Count;
+                    int count = _TransactionDataBuffer.Count;
                     for (; count > 0; count--)
                     {
-                        transactionsList.Add(scripts.TransactionDataBuffer.Dequeue());
+                        transactionsList.Add(_TransactionDataBuffer.Dequeue());
                     }
                 }
             }
@@ -303,17 +334,16 @@ namespace AppedoLTLoadGenerator
                 ExceptionHandler.WritetoEventLog(ex.StackTrace + ex.Message);
             }
         }
-
         private void GetUserDetail(List<UserDetail> userDetailsList)
         {
             try
             {
                 foreach (ScriptExecutor scripts in _scriptExecutorList)
                 {
-                    int count = scripts.UserDetailBuffer.Count;
+                    int count = _UserDetailBuffer.Count;
                     for (; count > 0; count--)
                     {
-                        userDetailsList.Add(scripts.UserDetailBuffer.Dequeue());
+                        userDetailsList.Add(_UserDetailBuffer.Dequeue());
                     }
                 }
             }
