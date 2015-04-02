@@ -1,13 +1,13 @@
-using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Threading;
-using System.Windows.Forms;
-using Telerik.WinControls.UI;
-using System.Diagnostics;
-using System.Xml;
 using AppedoLT.BusinessLogic;
 using AppedoLT.Core;
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Threading;
+using System.Windows.Forms;
+using System.Xml;
+using Telerik.WinControls.UI;
+
 namespace AppedoLT
 {
     public partial class frmTCPIPValidation : Telerik.WinControls.UI.RadForm
@@ -46,9 +46,7 @@ namespace AppedoLT
 
                 tvRequest.Nodes.Clear();
                 tvRequest.Nodes.Add(script);
-                _vUSer = new VUser(1, DateTime.Now.ToString("dd_MMM_yyyy_hh_mm_ss"), "1", 1, 1, vuScript, false, Request.GetIPAddress(1));
-                _vUSer.IsValidation = true;
-                _vUSer.OnLockRequestResponse += _vUSer_OnLockRequestResponse;
+               
                 lsvResult.Items.Clear();
                 intCountRequest = _intCountRequest;
                 firstRun = true;
@@ -57,6 +55,14 @@ namespace AppedoLT
             {
                 ExceptionHandler.WritetoEventLog(ex.StackTrace + Environment.NewLine + ex.Message);
             }
+        }
+
+        private VUser GetUser()
+        {
+            VUser _vUSer = new VUser(1, DateTime.Now.ToString("dd_MMM_yyyy_hh_mm_ss"), "1", 1, 1, _vuScript, false, Request.GetIPAddress(1));
+            _vUSer.IsValidation = true;
+            _vUSer.OnLockRequestResponse += _vUSer_OnLockRequestResponse;
+            return _vUSer;
         }
 
         void _vUSer_OnLockRequestResponse(RequestResponse requestResponse)
@@ -83,6 +89,7 @@ namespace AppedoLT
                 ExceptionHandler.WritetoEventLog(ex.StackTrace + Environment.NewLine + ex.Message);
             }
         }
+
         private void btnValidate_Click(object sender, EventArgs e)
         {
             try
@@ -95,6 +102,7 @@ namespace AppedoLT
                     lblVResult.Text = string.Empty;
                     Clear();
                     lblVResult.Visible = true;
+                    _vUSer = GetUser();
                     _vUSer.Start();
                     timer.Start();
                     stopWatch.Reset();
@@ -240,6 +248,7 @@ namespace AppedoLT
             }
             return result;
         }
+
         private void SetTreeNodeError(RadTreeNode node)
         {
             try
@@ -466,7 +475,6 @@ namespace AppedoLT
             }
         }
 
-
         private void frmTCPIPValidation_Load(object sender, EventArgs e)
         {
             Constants.GetInstance().IsValidationScreenOpen = true;
@@ -476,6 +484,5 @@ namespace AppedoLT
         {
             Constants.GetInstance().IsValidationScreenOpen = false;
         }
-
     }
 }

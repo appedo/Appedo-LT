@@ -51,10 +51,9 @@ namespace AppedoLT
 
                 tvRequest.Nodes.Clear();
                 tvRequest.Nodes.Add(script);
-                _vUSer = new VUser(1, DateTime.Now.ToString("dd_MMM_yyyy_hh_mm_ss"), "1", 1, 1, vuScript, false, Request.GetIPAddress(1));
-                _vUSer.IsValidation = true;
+               
                 lsvResult.Items.Clear();
-                _vUSer.OnLockRequestResponse += _vUSer_OnLockRequestResponse;
+               
                 intCountRequest = _intCountRequest;
                 firstRun = true;
                 
@@ -63,6 +62,14 @@ namespace AppedoLT
             {
                 ExceptionHandler.WritetoEventLog(ex.StackTrace + Environment.NewLine + ex.Message);
             }
+        }
+
+        private VUser GetUser()
+        {
+            VUser _vUSer = new VUser(1, DateTime.Now.ToString("dd_MMM_yyyy_hh_mm_ss"), "1", 1, 1, _vuScript, false, Request.GetIPAddress(1));
+            _vUSer.IsValidation = true;
+            _vUSer.OnLockRequestResponse += _vUSer_OnLockRequestResponse;
+            return _vUSer;
         }
 
         void _vUSer_OnLockRequestResponse(RequestResponse requestResponse)
@@ -102,6 +109,7 @@ namespace AppedoLT
                     lblVResult.Text = string.Empty;
                     Clear();
                     lblVResult.Visible = true;
+                    _vUSer = GetUser();
                     _vUSer.Start();
                     timer.Start();
                     stopWatch.Reset();
@@ -200,6 +208,7 @@ namespace AppedoLT
                 ExceptionHandler.WritetoEventLog(ex.StackTrace + Environment.NewLine + ex.Message);
             }
         }
+
         public double Avg()
         {
             double result = 0;
@@ -215,6 +224,7 @@ namespace AppedoLT
             }
             return result;
         }
+
         private void SetTreeNodeError(RadTreeNode node)
         {
             try
