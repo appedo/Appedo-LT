@@ -131,27 +131,12 @@ namespace AppedoLTLoadGenerator
                                                     UpdateStatus();
                                                 }
                                             }
-                                        }   
+                                        }
                                         break;
 
                                     case "status":
                                         {
-                                            //string log = run.GetLog();
-                                            //if (log != string.Empty)
-                                            //{
-                                            //    logMsg.Append(log);
-                                            //}
-                                            //controller.Send(new TrasportData("status",string.Format("createduser: {0}" + System.Environment.NewLine
-                                            //                                                      + "completeduser: {1}" + System.Environment.NewLine
-                                            //                                                      + "iscompleted: {2}" + System.Environment.NewLine
-                                            //                                                      + "log:{{{3}}}" + System.Environment.NewLine,
-                                            //                                                        run.RunningStatusData.CreatedUser.ToString(), 
-                                            //                                                        run.RunningStatusData.CompletedUser.ToString(),
-                                            //                                                        run.RunningStatusData.IsCompleted, 
-                                            //                                                        logMsg.ToString()), null));
-
-                                            controller.Send(new TrasportData("status",ASCIIEncoding.Default.GetString(constants.Serialise(run.RunningStatusData)), null));
-
+                                            controller.Send(new TrasportData("status", ASCIIEncoding.Default.GetString(constants.Serialise(run.RunningStatusData)), null));
                                             TrasportData ack = controller.Receive();
                                             if (ack.Operation == "ok")
                                             {
@@ -161,7 +146,6 @@ namespace AppedoLTLoadGenerator
                                                 run.RunningStatusData.ReportData.Clear();
                                                 run.RunningStatusData.UserDetailData.Clear();
                                             }
-
                                         }
                                         break;
 

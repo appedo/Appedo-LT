@@ -63,13 +63,13 @@ namespace AppedoLT
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.lblUserCompleted = new System.Windows.Forms.Label();
-            this.pnlScriptSettings = new System.Windows.Forms.Panel();
             this.splitPanel8 = new Telerik.WinControls.UI.SplitPanel();
             this.splcRunErrorReport = new Telerik.WinControls.UI.RadSplitContainer();
             this.splitPanel18 = new Telerik.WinControls.UI.SplitPanel();
             this.radTabStrip1 = new Telerik.WinControls.UI.RadTabStrip();
             this.tabItem2 = new Telerik.WinControls.UI.TabItem();
             this.lsvErrors = new System.Windows.Forms.ListView();
+            this.lvcId = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.lvcLoadgen = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.lvcReportname = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.lvcScenarioname = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -77,9 +77,10 @@ namespace AppedoLT
             this.lvcRequestid = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.lvcUserid = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.lvcIterationid = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.ivcErrorCode = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.lcvMessage = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.lvcTime = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.lcvMessage = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.ivcErrorCode = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.btnExport = new Telerik.WinControls.UI.RadButton();
             this.tabItem3 = new Telerik.WinControls.UI.TabItem();
             this.radButton1 = new Telerik.WinControls.UI.RadButton();
@@ -87,8 +88,11 @@ namespace AppedoLT
             this.btnShowReport = new Telerik.WinControls.UI.RadButton();
             this.ddlReportName = new Telerik.WinControls.UI.RadComboBox();
             this.tabiCharts = new Telerik.WinControls.UI.TabItem();
+            this.userControlCharts1 = new AppedoLT.userControlCharts();
             this.tabItem1 = new Telerik.WinControls.UI.TabItem();
+            this.userControlReports2 = new AppedoLT.userControlReports();
             this.tapiMonitor = new Telerik.WinControls.UI.TabItem();
+            this.ucMonitor1 = new AppedoLT.UCMonitor();
             this.imcDesign = new System.Windows.Forms.ImageList(this.components);
             this.tmrExecution = new System.Windows.Forms.Timer(this.components);
             this.splitPanel17 = new Telerik.WinControls.UI.SplitPanel();
@@ -112,12 +116,10 @@ namespace AppedoLT
             this.radMenuItem5 = new Telerik.WinControls.UI.RadMenuItem();
             this.radMenuItem1 = new Telerik.WinControls.UI.RadMenuItem();
             this.imageListForHeading = new System.Windows.Forms.ImageList(this.components);
-            this.userControlCharts1 = new AppedoLT.userControlCharts();
-            this.userControlReports2 = new AppedoLT.userControlReports();
-            this.ucMonitor1 = new AppedoLT.UCMonitor();
+            this.tabItem4 = new Telerik.WinControls.UI.TabItem();
             this.objUCLoadGen = new AppedoLT.ucLoadGen();
             this.userControlReports1 = new AppedoLT.userControlReports();
-            this.lvcId = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.pnlScriptSettings = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.tabsDesign)).BeginInit();
             this.tabsDesign.SuspendLayout();
             this.tabiRun.ContentPanel.SuspendLayout();
@@ -637,19 +639,6 @@ namespace AppedoLT
             this.lblUserCompleted.Text = "0";
             this.lblUserCompleted.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // pnlScriptSettings
-            // 
-            this.pnlScriptSettings.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.pnlScriptSettings.AutoScroll = true;
-            this.pnlScriptSettings.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(219)))), ((int)(((byte)(255)))));
-            this.pnlScriptSettings.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.pnlScriptSettings.Location = new System.Drawing.Point(1, 104);
-            this.pnlScriptSettings.Name = "pnlScriptSettings";
-            this.pnlScriptSettings.Size = new System.Drawing.Size(644, 156);
-            this.pnlScriptSettings.TabIndex = 28;
-            // 
             // splitPanel8
             // 
             this.splitPanel8.Controls.Add(this.splcRunErrorReport);
@@ -734,7 +723,6 @@ namespace AppedoLT
             this.tabItem2.ContentPanel.Location = new System.Drawing.Point(0, 25);
             this.tabItem2.ContentPanel.Size = new System.Drawing.Size(646, 208);
             this.tabItem2.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tabItem2.IsSelected = true;
             this.tabItem2.Margin = new System.Windows.Forms.Padding(4, 0, 0, 0);
             this.tabItem2.Name = "tabItem2";
             this.tabItem2.ScaleTransform = new System.Drawing.SizeF(1F, 1F);
@@ -752,9 +740,10 @@ namespace AppedoLT
             this.lvcRequestid,
             this.lvcUserid,
             this.lvcIterationid,
-            this.ivcErrorCode,
+            this.lvcTime,
             this.lcvMessage,
-            this.lvcTime});
+            this.columnHeader1,
+            this.ivcErrorCode});
             this.lsvErrors.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lsvErrors.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lsvErrors.FullRowSelect = true;
@@ -767,6 +756,11 @@ namespace AppedoLT
             this.lsvErrors.TabIndex = 1;
             this.lsvErrors.UseCompatibleStateImageBehavior = false;
             this.lsvErrors.View = System.Windows.Forms.View.Details;
+            // 
+            // lvcId
+            // 
+            this.lvcId.Text = "Id";
+            this.lvcId.Width = 50;
             // 
             // lvcLoadgen
             // 
@@ -803,20 +797,24 @@ namespace AppedoLT
             this.lvcIterationid.Text = "Iterationid";
             this.lvcIterationid.Width = 81;
             // 
-            // ivcErrorCode
+            // lvcTime
             // 
-            this.ivcErrorCode.Text = "ErrorCode";
-            this.ivcErrorCode.Width = 105;
+            this.lvcTime.Text = "Time";
+            this.lvcTime.Width = 105;
             // 
             // lcvMessage
             // 
             this.lcvMessage.Text = "Message";
             this.lcvMessage.Width = 182;
             // 
-            // lvcTime
+            // columnHeader1
             // 
-            this.lvcTime.Text = "Time";
-            this.lvcTime.Width = 275;
+            this.columnHeader1.Text = "Url";
+            // 
+            // ivcErrorCode
+            // 
+            this.ivcErrorCode.Text = "ErrorCode";
+            this.ivcErrorCode.Width = 275;
             // 
             // btnExport
             // 
@@ -847,6 +845,7 @@ namespace AppedoLT
             this.tabItem3.ContentPanel.Location = new System.Drawing.Point(0, 25);
             this.tabItem3.ContentPanel.Size = new System.Drawing.Size(646, 208);
             this.tabItem3.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tabItem3.IsSelected = true;
             this.tabItem3.Margin = new System.Windows.Forms.Padding(4, 0, 0, 0);
             this.tabItem3.Name = "tabItem3";
             this.tabItem3.ScaleTransform = new System.Drawing.SizeF(1F, 1F);
@@ -944,6 +943,16 @@ namespace AppedoLT
             this.tabiCharts.Text = "Charts";
             this.tabiCharts.Visibility = Telerik.WinControls.ElementVisibility.Collapsed;
             // 
+            // userControlCharts1
+            // 
+            this.userControlCharts1.AutoScroll = true;
+            this.userControlCharts1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(219)))), ((int)(((byte)(255)))));
+            this.userControlCharts1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.userControlCharts1.Location = new System.Drawing.Point(0, 0);
+            this.userControlCharts1.Name = "userControlCharts1";
+            this.userControlCharts1.Size = new System.Drawing.Size(941, 499);
+            this.userControlCharts1.TabIndex = 0;
+            // 
             // tabItem1
             // 
             this.tabItem1.Alignment = System.Drawing.ContentAlignment.BottomLeft;
@@ -967,6 +976,15 @@ namespace AppedoLT
             this.tabItem1.StretchHorizontally = false;
             this.tabItem1.StretchVertically = false;
             this.tabItem1.Text = "Reports";
+            // 
+            // userControlReports2
+            // 
+            this.userControlReports2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.userControlReports2.Location = new System.Drawing.Point(0, 0);
+            this.userControlReports2.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.userControlReports2.Name = "userControlReports2";
+            this.userControlReports2.Size = new System.Drawing.Size(941, 499);
+            this.userControlReports2.TabIndex = 0;
             // 
             // tapiMonitor
             // 
@@ -992,6 +1010,15 @@ namespace AppedoLT
             this.tapiMonitor.StretchVertically = false;
             this.tapiMonitor.Text = "Monitor";
             this.tapiMonitor.Visibility = Telerik.WinControls.ElementVisibility.Hidden;
+            // 
+            // ucMonitor1
+            // 
+            this.ucMonitor1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucMonitor1.Location = new System.Drawing.Point(0, 0);
+            this.ucMonitor1.Margin = new System.Windows.Forms.Padding(5, 3, 5, 3);
+            this.ucMonitor1.Name = "ucMonitor1";
+            this.ucMonitor1.Size = new System.Drawing.Size(941, 499);
+            this.ucMonitor1.TabIndex = 0;
             // 
             // imcDesign
             // 
@@ -1166,33 +1193,23 @@ namespace AppedoLT
             this.imageListForHeading.Images.SetKeyName(15, "arrow-right-3.png");
             this.imageListForHeading.Images.SetKeyName(16, "reports_bluebg.gif");
             // 
-            // userControlCharts1
+            // tabItem4
             // 
-            this.userControlCharts1.AutoScroll = true;
-            this.userControlCharts1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(219)))), ((int)(((byte)(255)))));
-            this.userControlCharts1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.userControlCharts1.Location = new System.Drawing.Point(0, 0);
-            this.userControlCharts1.Name = "userControlCharts1";
-            this.userControlCharts1.Size = new System.Drawing.Size(941, 499);
-            this.userControlCharts1.TabIndex = 0;
+            this.tabItem4.Alignment = System.Drawing.ContentAlignment.BottomLeft;
             // 
-            // userControlReports2
+            // tabItem4.ContentPanel
             // 
-            this.userControlReports2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.userControlReports2.Location = new System.Drawing.Point(0, 0);
-            this.userControlReports2.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.userControlReports2.Name = "userControlReports2";
-            this.userControlReports2.Size = new System.Drawing.Size(941, 499);
-            this.userControlReports2.TabIndex = 0;
-            // 
-            // ucMonitor1
-            // 
-            this.ucMonitor1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ucMonitor1.Location = new System.Drawing.Point(0, 0);
-            this.ucMonitor1.Margin = new System.Windows.Forms.Padding(5, 3, 5, 3);
-            this.ucMonitor1.Name = "ucMonitor1";
-            this.ucMonitor1.Size = new System.Drawing.Size(941, 499);
-            this.ucMonitor1.TabIndex = 0;
+            this.tabItem4.ContentPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(248)))));
+            this.tabItem4.ContentPanel.CausesValidation = true;
+            this.tabItem4.ContentPanel.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tabItem4.ContentPanel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(66)))), ((int)(((byte)(139)))));
+            this.tabItem4.ContentPanel.Location = new System.Drawing.Point(0, 25);
+            this.tabItem4.ContentPanel.Size = new System.Drawing.Size(646, 208);
+            this.tabItem4.IsSelected = true;
+            this.tabItem4.Margin = new System.Windows.Forms.Padding(4, 0, 0, 0);
+            this.tabItem4.Name = "tabItem4";
+            this.tabItem4.StretchHorizontally = false;
+            this.tabItem4.Text = "tabItem4";
             // 
             // objUCLoadGen
             // 
@@ -1214,10 +1231,19 @@ namespace AppedoLT
             this.userControlReports1.Size = new System.Drawing.Size(941, 499);
             this.userControlReports1.TabIndex = 0;
             // 
-            // lvcId
+            // pnlScriptSettings
             // 
-            this.lvcId.Text = "Id";
-            this.lvcId.Width = 50;
+            this.pnlScriptSettings.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.pnlScriptSettings.AutoScroll = true;
+            this.pnlScriptSettings.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(219)))), ((int)(((byte)(255)))));
+            this.pnlScriptSettings.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.pnlScriptSettings.Location = new System.Drawing.Point(1, 104);
+            this.pnlScriptSettings.Name = "pnlScriptSettings";
+            this.pnlScriptSettings.Size = new System.Drawing.Size(644, 156);
+            this.pnlScriptSettings.TabIndex = 28;
+            this.pnlScriptSettings.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlScriptSettings_Paint);
             // 
             // Design
             // 
@@ -1336,9 +1362,7 @@ namespace AppedoLT
         private Telerik.WinControls.UI.RadButton btnRun;
         private Telerik.WinControls.UI.RadButton btnStop;
         private Telerik.WinControls.UI.RadButton btnSave;
-        private System.Windows.Forms.Panel pnlScriptSettings;
         // private Microsoft.VisualBasic.PowerPacks.Printing.PrintForm printForm1;
-        private Telerik.WinControls.UI.RadButton btnExport;
         private Telerik.WinControls.UI.TabOffice12Shape tabOffice12Shape1;
         private Telerik.WinControls.UI.TrackBarRThumbShape trackBarRThumbShape1;
         private Telerik.WinControls.UI.TabVsShape tabVsShape1;
@@ -1347,17 +1371,6 @@ namespace AppedoLT
         private Telerik.WinControls.Themes.TelerikTheme telerikTheme1;
         private Telerik.WinControls.Themes.Windows7Theme windows7Theme1;
         private System.Windows.Forms.ImageList imcDesign;
-        private System.Windows.Forms.ListView lsvErrors;
-        private System.Windows.Forms.ColumnHeader lvcLoadgen;
-        private System.Windows.Forms.ColumnHeader lvcReportname;
-        private System.Windows.Forms.ColumnHeader lvcScenarioname;
-        private System.Windows.Forms.ColumnHeader lvcscriptname;
-        private System.Windows.Forms.ColumnHeader lvcRequestid;
-        private System.Windows.Forms.ColumnHeader lvcUserid;
-        private System.Windows.Forms.ColumnHeader lvcIterationid;
-        private System.Windows.Forms.ColumnHeader ivcErrorCode;
-        private System.Windows.Forms.ColumnHeader lcvMessage;
-        private System.Windows.Forms.ColumnHeader lvcTime;
         private Telerik.WinControls.UI.RadTabStrip radTabStrip1;
         private Telerik.WinControls.UI.TabItem tabItem2;
         private Telerik.WinControls.UI.TabItem tabItem3;
@@ -1388,7 +1401,22 @@ namespace AppedoLT
         private Telerik.WinControls.UI.TabItem tapiMonitor;
         private UCMonitor ucMonitor1;
         private userControlReports userControlReports2;
+        private Telerik.WinControls.UI.TabItem tabItem4;
+        private Telerik.WinControls.UI.RadButton btnExport;
+        private System.Windows.Forms.ListView lsvErrors;
         private System.Windows.Forms.ColumnHeader lvcId;
+        private System.Windows.Forms.ColumnHeader lvcLoadgen;
+        private System.Windows.Forms.ColumnHeader lvcReportname;
+        private System.Windows.Forms.ColumnHeader lvcScenarioname;
+        private System.Windows.Forms.ColumnHeader lvcscriptname;
+        private System.Windows.Forms.ColumnHeader lvcRequestid;
+        private System.Windows.Forms.ColumnHeader lvcUserid;
+        private System.Windows.Forms.ColumnHeader lvcIterationid;
+        private System.Windows.Forms.ColumnHeader lvcTime;
+        private System.Windows.Forms.ColumnHeader lcvMessage;
+        private System.Windows.Forms.ColumnHeader columnHeader1;
+        private System.Windows.Forms.ColumnHeader ivcErrorCode;
+        private System.Windows.Forms.Panel pnlScriptSettings;
         
 
 

@@ -1,14 +1,12 @@
-﻿using System;
+﻿using AppedoLT.Core;
+using AppedoLT.DataAccessLayer;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Threading;
 using System.Windows.Forms;
 using System.Xml;
 using Telerik.WinControls.UI;
-using AppedoLT.Core;
-using AppedoLT.DataAccessLayer;
-using System.Net;
-using System.Text;
-using System.IO;
-using System.Collections.Generic;
-using System.Threading;
 
 namespace AppedoLT
 {
@@ -220,7 +218,9 @@ namespace AppedoLT
                     }).Start();
                     frm.ShowDialog();
                 }
-                if (Success == false) break;
+                if (Success == false) 
+                    
+                    break;
                 Thread.Sleep(1000);
             }
             if (Success == false)
