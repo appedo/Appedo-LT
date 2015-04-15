@@ -95,10 +95,9 @@ namespace AppedoLT.BusinessLogic
                 request = (HttpWebRequest)WebRequest.Create(RequestNode.Attributes["Address"].Value);
                 request.Timeout = RequestTimeOut;
                 request.ConnectionGroupName = _connectionGroup;
-                
+
                 request.ServicePoint.BindIPEndPointDelegate += new BindIPEndPoint((ServicePoint servicePoint, IPEndPoint remoteEndPoint, int retryCount) =>
                 {
-                   
                     if (IPAddress.IsLoopback(remoteEndPoint.Address))
                     {
                         if (remoteEndPoint.Address.AddressFamily == AddressFamily.InterNetworkV6)
@@ -114,6 +113,30 @@ namespace AppedoLT.BusinessLogic
                     {
                         return _IPAdress;
                     }
+
+                    //if (Request.IPSpoofingEnabled == true)
+                    //{
+                    //    if (IPAddress.IsLoopback(remoteEndPoint.Address))
+                    //    {
+                    //        if (remoteEndPoint.Address.AddressFamily == AddressFamily.InterNetworkV6)
+                    //        {
+                    //            return new IPEndPoint(IPAddress.Parse("::1"), 0);
+                    //        }
+                    //        else
+                    //        {
+                    //            return new IPEndPoint(IPAddress.Loopback, 0);
+                    //        }
+                    //    }
+                    //    else
+                    //    {
+                    //        return _IPAdress;
+                    //    }
+                    //}
+                    //else
+                    //{
+                    //    return new IPEndPoint(IPAddress.Any, 0);
+                    //}
+
                 });
 
                 request.Proxy = null;
@@ -195,10 +218,10 @@ namespace AppedoLT.BusinessLogic
                             request.ContentLength += pData.size;
                         }
                     }
-                  
+
                     using (var dataStream = request.GetRequestStream())
                     {
-                        
+
                         foreach (PostData pData in _posDataContainer.FindAll(f => f.size > 0))
                         {
                             if (pData.type == 1)
@@ -270,7 +293,7 @@ namespace AppedoLT.BusinessLogic
                 }
                 catch (WebException webEx)
                 {
-                   
+
                     Success = false;
                     HasError = true;
                     if (webEx.Response != null)

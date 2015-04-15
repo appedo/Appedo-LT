@@ -637,7 +637,6 @@ namespace AppedoLT.BusinessLogic
                                 req.Variables = variables;
                                 req.GetResponse();
 
-
                                 if (OnLockRequestResponse!=null)
                                 {
                                     #region Validation
