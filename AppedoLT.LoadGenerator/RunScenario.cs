@@ -105,22 +105,7 @@ namespace AppedoLTLoadGenerator
                         _statusUpdateTimer.Stop();
                         for (int index = 0; index < 9; index++)
                         {
-                            if ((_dataServer.reportDataFile != null
-                                     && _dataServer.reportDataFile.BaseStream != null
-                                     && _dataServer.reportDataFile.BaseStream.Length > 0)
-
-                                || (_dataServer.transactionFile != null
-                                     && _dataServer.transactionFile.BaseStream != null
-                                     && _dataServer.transactionFile.BaseStream.Length > 0)
-
-                                || (_dataServer.errorFile != null
-                                    && _dataServer.errorFile.BaseStream != null
-                                    && _dataServer.errorFile.BaseStream.Length > 0)
-
-                                || (_dataServer.reportDT.Count > 0
-                                    || _dataServer.transcations.Count > 0
-                                    || _dataServer.errors.Count > 0
-                                    || _dataServer.logs.Count > 0))
+                            if (_reportDataBuffer.Count > 0 || _UserDetailBuffer.Count > 0 || _TransactionDataBuffer.Count > 0 || _LogBuffer.Count > 0 || _ErrorBuffer.Count > 0)
                             {
                                 Thread.Sleep(5000);
                             }
@@ -130,13 +115,7 @@ namespace AppedoLTLoadGenerator
                             }
                         }
                         Thread.Sleep(7000);
-                        lock (_dataServer.DataBaseLock)
-                        {
-                            ReportMaster rm = new ReportMaster(executionReport.ReportName, executionReport.StartTime, executionReport.LoadGenName);
-                            rm.SetUserRunTime();
-                            executionReport.ExecutionStatus = Status.Completed;
-                            rm.SetChartSummary();
-                        }
+                        executionReport.ExecutionStatus = Status.Completed;
                     }
                     catch (Exception ex)
                     {
@@ -166,7 +145,7 @@ namespace AppedoLTLoadGenerator
             scenario.LoadXml(_scenarioXml);
             Request.IPSpoofingEnabled = Convert.ToBoolean(scenario.SelectSingleNode("//root/scenario").Attributes["enableipspoofing"].Value);
             VariableManager.dataCenter = new VariableManager(scenario.SelectSingleNode("//root/variables"));
-            DataServer.GetInstance().ClearData();
+            ClearData();
 
             foreach (XmlNode script in scenario.SelectNodes("//script"))
             {
@@ -202,32 +181,45 @@ namespace AppedoLTLoadGenerator
             }
         }
 
+        private void ClearData()
+        {
+            try
+            {
+                _LogBuffer.Clear();
+                _ErrorBuffer.Clear();
+                _reportDataBuffer.Clear();
+                _TransactionDataBuffer.Clear();
+                _UserDetailBuffer.Clear();
+            }
+            catch (Exception ex)
+            {
+                ExceptionHandler.WritetoEventLog(ex.StackTrace + ex.Message);
+            }
+        }
+
         void scr_OnLockUserDetail(UserDetail data)
         {
-            lock (_UserDetailBuffer) { _UserDetailBuffer.Enqueue(data); }
+            lock (_UserDetailBuffer) _UserDetailBuffer.Enqueue(data);
         }
 
         void scr_OnLockTransactions(TransactionRunTimeDetail data)
         {
-            lock (_TransactionDataBuffer) { _TransactionDataBuffer.Enqueue(data); }
+            lock (_TransactionDataBuffer) _TransactionDataBuffer.Enqueue(data);
         }
 
         void scr_OnLockLog(Log data)
         {
-            lock (_LogBuffer) { _LogBuffer.Enqueue(data); }
+            lock (_LogBuffer) _LogBuffer.Enqueue(data);
         }
 
         void scr_OnLockError(RequestException data)
         {
-            lock (_ErrorBuffer) { _ErrorBuffer.Enqueue(data); }
+            lock (_ErrorBuffer) _ErrorBuffer.Enqueue(data);
         }
 
         void scr_OnLockReportData(ReportData data)
         {
-            lock (_reportDataBuffer)
-            {
-                _reportDataBuffer.Enqueue(data);
-            }
+            lock (_reportDataBuffer) _reportDataBuffer.Enqueue(data);
         }
 
         public void Stop()
@@ -262,6 +254,7 @@ namespace AppedoLTLoadGenerator
             }
             return status.ToString();
         }
+
         private void GetLog(List<Log> logList)
         {
             try

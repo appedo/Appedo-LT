@@ -1,10 +1,12 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.ComponentModel;
 using System.Configuration;
 using System.Configuration.Install;
 using System.Diagnostics;
 using System.IO;
 using System.Reflection;
+using System.Security.AccessControl;
 using System.Windows.Forms;
 
 namespace AppedoLT
@@ -32,6 +34,21 @@ namespace AppedoLT
         {
             try
             {
+                try
+                {
+                    System.IO.DirectoryInfo dirInfo = new System.IO.DirectoryInfo(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location));
+                    if (dirInfo != null)
+                    {
+                        DirectorySecurity security = dirInfo.GetAccessControl();
+                        security.AddAccessRule(new FileSystemAccessRule("Users", FileSystemRights.FullControl, InheritanceFlags.ContainerInherit, PropagationFlags.None, AccessControlType.Allow));
+                        security.AddAccessRule(new FileSystemAccessRule("Users", FileSystemRights.FullControl, InheritanceFlags.ObjectInherit, PropagationFlags.None, AccessControlType.Allow));
+                        dirInfo.SetAccessControl(security);
+                    }
+                }
+                catch(Exception ex)
+                {
+                  
+                }
                 Process.Start(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + "\\APPEDO_LT.exe");
             }
             catch
@@ -43,7 +60,7 @@ namespace AppedoLT
         // Override the 'Install' method.
         public override void Install(IDictionary savedState)
         {
-            base.Install(savedState);
+                 base.Install(savedState);
         }
 
         // Override the 'Commit' method.
