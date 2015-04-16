@@ -50,7 +50,7 @@ namespace AppedoLT
                     if (File.Exists(info + "\\vuscript.xml"))
                     {
                         VuscriptXml vuscriptXml = new VuscriptXml(dicinfo.Name);
-                        XmlNode vuscript = vuscriptXml.doc.SelectSingleNode("//vuscript");
+                        XmlNode vuscript = vuscriptXml.Doc.SelectSingleNode("//vuscript");
                         RadTreeNode vuScriptNode = new RadTreeNode();
 
                         vuScriptNode.Text = vuscript.Attributes["name"].Value;
@@ -159,21 +159,21 @@ namespace AppedoLT
         {
             try
             {
-                XmlNode vuscript = ((VuscriptXml)tvRequest.SelectedNode.Tag).doc.SelectSingleNode("//vuscript");
+                XmlNode vuscript = ((VuscriptXml)tvRequest.SelectedNode.Tag).Doc.SelectSingleNode("//vuscript");
                 string scriptId = vuscript.Attributes["id"].Value;
                 FlagRequest fRequest;
-                if (_repositoryXml.doc.SelectSingleNode("//flag/flagrequest[@scriptid='" + scriptId + "']") == null)
+                if (_repositoryXml.Doc.SelectSingleNode("//flag/flagrequest[@scriptid='" + scriptId + "']") == null)
                 {
                     fRequest = new FlagRequest(null);
                     if (fRequest.ShowDialog() == DialogResult.OK)
                     {
                         fRequest.FlagRequestObj.Attributes.Append(_repositoryXml.GetAttribute("scriptid", scriptId));
-                        _repositoryXml.doc.SelectSingleNode("root/flag").AppendChild(fRequest.FlagRequestObj);
+                        _repositoryXml.Doc.SelectSingleNode("root/flag").AppendChild(fRequest.FlagRequestObj);
                     }
                 }
                 else
                 {
-                    fRequest = new FlagRequest(_repositoryXml.doc.SelectSingleNode("//flag/flagrequest[@scriptid='" + scriptId + "']"));
+                    fRequest = new FlagRequest(_repositoryXml.Doc.SelectSingleNode("//flag/flagrequest[@scriptid='" + scriptId + "']"));
                     if (fRequest.ShowDialog() == DialogResult.OK)
                     {
                         fRequest.FlagRequestObj.Attributes.Append(_repositoryXml.GetAttribute("scriptid", scriptId));
@@ -757,7 +757,7 @@ namespace AppedoLT
                 {
                     Color col = tvRequest.SelectedNode.BackColor;
                     tvRequest.SelectedNode.BackColor = col;
-                    XmlNode node = tvRequest.SelectedNode.Level == 0 ? ((VuscriptXml)tvRequest.SelectedNode.Tag).doc.SelectSingleNode("//vuscript") : (XmlNode)tvRequest.SelectedNode.Tag;
+                    XmlNode node = tvRequest.SelectedNode.Level == 0 ? ((VuscriptXml)tvRequest.SelectedNode.Tag).Doc.SelectSingleNode("//vuscript") : (XmlNode)tvRequest.SelectedNode.Tag;
                     switch (node.Name)
                     {
                         case "request":
@@ -924,7 +924,7 @@ namespace AppedoLT
         }
         private void DeleteScript(VuscriptXml vuscriptXml)
         {
-            string scriptid = vuscriptXml.doc.SelectSingleNode("//vuscript").Attributes["id"].Value;
+            string scriptid = vuscriptXml.Doc.SelectSingleNode("//vuscript").Attributes["id"].Value;
             if (Directory.Exists(".\\Scripts\\" + scriptid))
             {
                 vuscriptXml = null;
@@ -959,7 +959,7 @@ namespace AppedoLT
                 frm.ShowDialog();
                 if (frm.vuscriptXml != null)
                 {
-                    XmlNode vuscriptNode = frm.vuscriptXml.doc.SelectSingleNode("//vuscript");
+                    XmlNode vuscriptNode = frm.vuscriptXml.Doc.SelectSingleNode("//vuscript");
                     frmRecord rd = new frmRecord((Design)this.Parent.Parent.Parent, frm.name, vuscriptNode);
                     this.Parent.Parent.Parent.Visible = false;
                     rd.ShowDialog();
@@ -992,7 +992,7 @@ namespace AppedoLT
                 frm.ShowDialog();
                 if (frm.vuscriptXml != null)
                 {
-                    XmlNode vuscriptNode = frm.vuscriptXml.doc.SelectSingleNode("//vuscript");
+                    XmlNode vuscriptNode = frm.vuscriptXml.Doc.SelectSingleNode("//vuscript");
                     frmTCPIPRecord frmTcpRecord = new frmTCPIPRecord((Design)this.Parent.Parent.Parent, vuscriptNode);
                     this.Parent.Parent.Parent.Visible = false;
                     frmTcpRecord.ShowDialog();
@@ -1166,7 +1166,7 @@ namespace AppedoLT
                 bool Changed = false;
                 foreach (ReplaceHost host in frm.HostList)
                 {
-                    XmlNode vuscrip = ((VuscriptXml)tvRequest.SelectedNode.Tag).doc.SelectSingleNode("//vuscript");
+                    XmlNode vuscrip = ((VuscriptXml)tvRequest.SelectedNode.Tag).Doc.SelectSingleNode("//vuscript");
                     if (vuscrip.Attributes["type"].Value == "http")
                     {
                         if (host.CurrentHost != host.NewHost || host.CurrentPort != host.NewPort || host.CurrentSchema != host.NewSchema)

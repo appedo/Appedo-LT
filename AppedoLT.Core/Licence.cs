@@ -1,15 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Web;
 using System.IO;
 using System.Net.NetworkInformation;
-using System.Web.UI.WebControls;
 
 namespace AppedoLT.Core
 {
-    public class Licence
+    public class Licence1
     {
         public string DecryptPassword(string encryptedPassword)
         {
@@ -20,8 +15,6 @@ namespace AppedoLT.Core
 
         public String ReadFile()
         {
-            //string strFileName = HttpContext.Current.Server.MapPath("");
-            //strFileName = strFileName.Substring(0, strFileName.LastIndexOf("CAPPP.PL"));
             string strFileName = System.Web.Hosting.HostingEnvironment.ApplicationPhysicalPath + "setting\\lic.txt";
             System.IO.StreamReader myFile = new System.IO.StreamReader(strFileName);
             string myString = myFile.ReadToEnd();
@@ -33,13 +26,8 @@ namespace AppedoLT.Core
         {
             try
             {
-                //string strFileName = "lic.txt";
                 StreamWriter sw;
-                //string strFilePath = HttpContext.Current.Server.MapPath("setting") + @"\" + strFileName; ;
-                //string strFileName = HttpContext.Current.Server.MapPath("");
                 string strFileName = System.Web.Hosting.HostingEnvironment.ApplicationPhysicalPath + "setting\\lic.txt"; ;
-                //strFileName = strFileName.Substring(0, strFileName.LastIndexOf("CAPPP.PL"));
-                //strFileName += "CAPPP.PL\\setting\\lic.txt";
                 if (!File.Exists(strFileName))
                 {
                     sw = new StreamWriter(strFileName, true);

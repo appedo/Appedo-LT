@@ -19,7 +19,7 @@ namespace AppedoLT
         public frmReplaceServer(VuscriptXml vuscript)
         {
             InitializeComponent();
-            if (vuscript.doc.SelectSingleNode("//vuscript").Attributes["type"].Value == "http")
+            if (vuscript.Doc.SelectSingleNode("//vuscript").Attributes["type"].Value == "http")
             {
                 HostList = GetCurrentHttp(vuscript);
                 SetTreeHttp(HostList);
@@ -35,7 +35,7 @@ namespace AppedoLT
         private List<ReplaceHost> GetCurrentHttp(VuscriptXml vuscript)
         {
             List<ReplaceHost> hostlist = new List<ReplaceHost>();
-            foreach (XmlNode node in vuscript.doc.SelectNodes("//request"))
+            foreach (XmlNode node in vuscript.Doc.SelectNodes("//request"))
             {
                 if (!hostlist.Exists(f => f.NewHost == node.Attributes["Host"].Value))
                 {
@@ -51,7 +51,7 @@ namespace AppedoLT
         private List<ReplaceHost> GetCurrentTcp(VuscriptXml vuscript)
         {
             List<ReplaceHost> hostlist = new List<ReplaceHost>();
-            foreach (XmlNode node in vuscript.doc.SelectNodes("//request"))
+            foreach (XmlNode node in vuscript.Doc.SelectNodes("//request"))
             {
                 if (!hostlist.Exists(f => f.NewHost == node.Attributes["Host"].Value))
                 {

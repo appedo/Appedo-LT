@@ -31,7 +31,7 @@ namespace AppedoLT
                     header.Add("pwd", txtPassword.Text);
                     header.Add("module", Application.ProductName);
                     header.Add("version", Application.ProductVersion.Remove(Application.ProductVersion.LastIndexOf('.')));
-                   
+
                     server.Send(new TrasportData("login", string.Empty, header));
                     TrasportData respose = server.Receive();
                     if (respose.Operation.ToLower() == "ok" && respose.Header["success"] == "1")
@@ -50,7 +50,7 @@ namespace AppedoLT
                     this.DialogResult = DialogResult.None;
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
                 this.DialogResult = DialogResult.None;
@@ -64,17 +64,17 @@ namespace AppedoLT
 
         private bool ValidateData()
         {
-            if(txtEmailid.Text.Trim()==string.Empty)
+            if (txtEmailid.Text.Trim() == string.Empty)
             {
-                errLogin.SetError(txtEmailid ,"Required");
+                errLogin.SetError(txtEmailid, "Required");
             }
             else
             {
-                 errLogin.SetError( txtEmailid,string.Empty);
+                errLogin.SetError(txtEmailid, string.Empty);
             }
-            if(txtEmailid.Text.Trim()==string.Empty)
+            if (txtEmailid.Text.Trim() == string.Empty)
             {
-                 errLogin.SetError(txtPassword,"Required");
+                errLogin.SetError(txtPassword, "Required");
             }
             else
             {

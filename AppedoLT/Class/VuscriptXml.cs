@@ -1,22 +1,37 @@
-﻿using System;
-using System.Xml;
-using System.Text;
-using AppedoLT.Core;
-using System.IO;
-using System.Threading;
+﻿using AppedoLT.Core;
+using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Text;
+using System.Xml;
 
 namespace AppedoLT
 {
-   public class VuscriptXml
+    public class VuscriptXml
     {
-        public string ID = string.Empty;
-        public XmlDocument doc = new XmlDocument();
-        string _filePath = string.Empty;
+        #region The private fields
+
+        private string _id = string.Empty;
+        private string _filePath = string.Empty;
+        private XmlDocument _doc = new XmlDocument();
+
+        #endregion
+
+        #region The public property
+
+        public XmlDocument Doc
+        {
+            get { return _doc; }
+            set { _doc = value; }
+        }
+
+        #endregion
+
+        #region The public methods
 
         public XmlAttribute GetAttribute(string name, string value)
         {
-            XmlAttribute att = doc.CreateAttribute(name);
+            XmlAttribute att = _doc.CreateAttribute(name);
             att.Value = value;
             return att;
         }
@@ -25,8 +40,8 @@ namespace AppedoLT
         {
             try
             {
-                ID = id;
-                string scriptDic=Constants.GetInstance().ExecutingAssemblyLocation + "\\Scripts\\" + id ;
+                _id = id;
+                string scriptDic = Constants.GetInstance().ExecutingAssemblyLocation + "\\Scripts\\" + id;
                 if (!Directory.Exists(scriptDic)) Directory.CreateDirectory(scriptDic);
                 _filePath = scriptDic + "\\vuscript.xml";
 
@@ -40,8 +55,8 @@ namespace AppedoLT
                         streamWriter.Write(xml.ToString());
                     }
                 }
-                doc.Load(_filePath);              
-              
+                _doc.Load(_filePath);
+
             }
             catch (Exception ex)
             {
@@ -49,11 +64,11 @@ namespace AppedoLT
             }
         }
 
-        public VuscriptXml(string id,string content)
+        public VuscriptXml(string id, string content)
         {
             try
             {
-                ID = id;
+                _id = id;
                 string scriptDic = Constants.GetInstance().ExecutingAssemblyLocation + "\\Scripts\\" + id;
                 if (!Directory.Exists(scriptDic)) Directory.CreateDirectory(scriptDic);
                 _filePath = scriptDic + "\\vuscript.xml";
@@ -68,7 +83,7 @@ namespace AppedoLT
                         streamWriter.Write(xml.ToString());
                     }
                 }
-                doc.Load(_filePath);
+                _doc.Load(_filePath);
 
             }
             catch (Exception ex)
@@ -77,14 +92,14 @@ namespace AppedoLT
             }
         }
 
-        public void Save(bool deleteUnwantedResource=true)
+        public void Save(bool deleteUnwantedResource = true)
         {
             if (deleteUnwantedResource == true)
             {
                 try
                 {
                     DirectoryInfo info;
-                    foreach (XmlNode script in doc.SelectNodes("//vuscript"))
+                    foreach (XmlNode script in _doc.SelectNodes("//vuscript"))
                     {
                         info = new DirectoryInfo(Constants.GetInstance().ExecutingAssemblyLocation + "\\Scripts\\" + script.Attributes["id"].Value);
                         foreach (FileInfo fileName in info.GetFiles())
@@ -101,7 +116,7 @@ namespace AppedoLT
                     ExceptionHandler.WritetoEventLog(ex.StackTrace + Environment.NewLine + ex.Message);
                 }
             }
-            doc.Save(_filePath);
+            _doc.Save(_filePath);
         }
 
         public static List<string> GetScriptName()
@@ -116,7 +131,7 @@ namespace AppedoLT
                     if (File.Exists(info + "\\vuscript.xml"))
                     {
                         VuscriptXml vuscriptXml = new VuscriptXml(dicinfo.Name);
-                        scritpNames.Add(vuscriptXml.doc.SelectSingleNode("//vuscript").Attributes["name"].Value);
+                        scritpNames.Add(vuscriptXml._doc.SelectSingleNode("//vuscript").Attributes["name"].Value);
                     }
                 }
                 catch (Exception ex)
@@ -128,9 +143,9 @@ namespace AppedoLT
 
         }
 
-        public static Dictionary<string,string> GetScriptidAndName()
+        public static Dictionary<string, string> GetScriptidAndName()
         {
-            Dictionary<string, string> scritpNames = new  Dictionary<string,string>();
+            Dictionary<string, string> scritpNames = new Dictionary<string, string>();
             foreach (string info in Directory.GetDirectories(".\\Scripts"))
             {
                 try
@@ -140,7 +155,7 @@ namespace AppedoLT
                     if (File.Exists(info + "\\vuscript.xml"))
                     {
                         VuscriptXml vuscriptXml = new VuscriptXml(dicinfo.Name);
-                        scritpNames.Add(vuscriptXml.doc.SelectSingleNode("//vuscript").Attributes["id"].Value,vuscriptXml.doc.SelectSingleNode("//vuscript").Attributes["name"].Value);
+                        scritpNames.Add(vuscriptXml._doc.SelectSingleNode("//vuscript").Attributes["id"].Value, vuscriptXml._doc.SelectSingleNode("//vuscript").Attributes["name"].Value);
                     }
                 }
                 catch (Exception ex)
@@ -163,7 +178,7 @@ namespace AppedoLT
                     if (File.Exists(info + "\\vuscript.xml"))
                     {
                         VuscriptXml vuscriptXml = new VuscriptXml(dicinfo.Name);
-                        scritpNames.Add( vuscriptXml.doc.SelectSingleNode("//vuscript").Attributes["name"].Value,vuscriptXml.doc.SelectSingleNode("//vuscript").Attributes["id"].Value);
+                        scritpNames.Add(vuscriptXml._doc.SelectSingleNode("//vuscript").Attributes["name"].Value, vuscriptXml._doc.SelectSingleNode("//vuscript").Attributes["id"].Value);
                     }
                 }
                 catch (Exception ex)
@@ -173,5 +188,7 @@ namespace AppedoLT
             }
             return scritpNames;
         }
+
+        #endregion
     }
 }

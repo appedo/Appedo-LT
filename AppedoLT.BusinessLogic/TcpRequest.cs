@@ -148,36 +148,36 @@ namespace AppedoLT.BusinessLogic
                         }
                         con.NetworkStream.ReadTimeout = 120000;
 
-                        con.client.ReceiveTimeout = 120000;
+                        con.Client.ReceiveTimeout = 120000;
 
                         int timeOut = 1000;
-                        while (con.client.Available < Convert.ToInt32(RequestNode.Attributes["responsesize"].Value))
+                        while (con.Client.Available < Convert.ToInt32(RequestNode.Attributes["responsesize"].Value))
                         {
                             Thread.Sleep(10);
                             timeOut = timeOut - 10;
                             if (timeOut <= 0) break;
                         }
                         timeOut = 119000;
-                        while (con.client.Available <= 0)
+                        while (con.Client.Available <= 0)
                         {
                             Thread.Sleep(10);
                             timeOut = timeOut - 10;
                             if (timeOut <= 0) break;
                         }
 
-                        while (con.client.Available != 0 && (responseSize = con.NetworkStream.Read(receiveBuffer, 0, receiveBuffer.Length)) != 0)
+                        while (con.Client.Available != 0 && (responseSize = con.NetworkStream.Read(receiveBuffer, 0, receiveBuffer.Length)) != 0)
                         {
                             ResponseStream.Write(receiveBuffer, 0, responseSize);
-                            if (con.client.Available == 0) break;
+                            if (con.Client.Available == 0) break;
                         }
 
                         if (Convert.ToInt32(RequestNode.Attributes["responsesize"].Value) > ResponseStream.Length)
                         {
                             Thread.Sleep(10);
-                            while (con.client.Available != 0 && (responseSize = con.NetworkStream.Read(receiveBuffer, 0, receiveBuffer.Length)) != 0)
+                            while (con.Client.Available != 0 && (responseSize = con.NetworkStream.Read(receiveBuffer, 0, receiveBuffer.Length)) != 0)
                             {
                                 ResponseStream.Write(receiveBuffer, 0, responseSize);
-                                if (con.client.Available == 0) break;
+                                if (con.Client.Available == 0) break;
                             }
                         }
                         con.NetworkStream.Flush();

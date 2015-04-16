@@ -44,7 +44,7 @@ namespace AppedoLT
                 mnuiLogin.TextChanged += new System.EventHandler(this.mnuiLogin_TextChanged);
                 mnuiLogin.Click += new System.EventHandler(this.mnuiLogin_Click);
 
-                XmlNode vuscripts = RepositoryXml.GetInstance().doc.SelectSingleNode("//vuscripts");
+                XmlNode vuscripts = RepositoryXml.GetInstance().Doc.SelectSingleNode("//vuscripts");
                 if (vuscripts != null && vuscripts.ChildNodes.Count > 0)
                 {
                     long totalByte = vuscripts.ChildNodes.Count;
@@ -187,7 +187,7 @@ namespace AppedoLT
             try
             {
                 tvScenarios.Nodes.Clear();
-                foreach (XmlNode scenario in _repositoryXml.doc.SelectNodes("//scenarios//scenario"))
+                foreach (XmlNode scenario in _repositoryXml.Doc.SelectNodes("//scenarios//scenario"))
                 {
                     RadTreeNode scenarioNode = new RadTreeNode();
                     scenarioNode.Text = scenario.Attributes["name"].Value;
@@ -272,7 +272,7 @@ namespace AppedoLT
                 frm.ShowDialog();
                 if (frm.vuscriptXml != null)
                 {
-                    XmlNode vuscriptNode = frm.vuscriptXml.doc.SelectSingleNode("//vuscript");
+                    XmlNode vuscriptNode = frm.vuscriptXml.Doc.SelectSingleNode("//vuscript");
                     frmRecord rd = new frmRecord(this, frm.name, vuscriptNode);
                     this.Visible = false;
                     rd.ShowDialog();
@@ -306,7 +306,7 @@ namespace AppedoLT
                 frm.ShowDialog();
                 if (frm.vuscriptXml != null)
                 {
-                    XmlNode vuscriptNode = frm.vuscriptXml.doc.SelectSingleNode("//vuscript");
+                    XmlNode vuscriptNode = frm.vuscriptXml.Doc.SelectSingleNode("//vuscript");
                     frmTCPIPRecord frmTcpRecord = new frmTCPIPRecord((Design)this.Parent.Parent.Parent, vuscriptNode);
                     this.Parent.Parent.Parent.Visible = false;
                     frmTcpRecord.ShowDialog();
@@ -346,10 +346,7 @@ namespace AppedoLT
             tabiRun.Select();
             btnStop_Click(null, null);
         }
-        private void mnuiLicense_Click(object sender, EventArgs e)
-        {
-            new frmLicenseManagement().ShowDialog();
-        }
+       
         private void radMenuItem5_Click(object sender, EventArgs e)
         {
             new About_FloodGates().ShowDialog();
@@ -380,76 +377,7 @@ namespace AppedoLT
             }
         }
 
-        private bool ValidateLicence1(XmlNode scenario)
-        {
-            int userCount = 0;
-            if (File.Exists(_constants.ExecutingAssemblyLocation + "\\Floodgates.bin") == true)
-            {
-                LicenseInfo info = null;
-                try
-                {
-                    info = new LicenseInfo(_constants.GetLicenseDoc());
-                }
-                catch (Exception ex)
-                {
-                    ExceptionHandler.WritetoEventLog(ex.StackTrace + Environment.NewLine + ex.Message);
-                    MessageBox.Show("Unable to run scenario. Invalid license.");
-                    return false;
-                }
-                if (_constants.IsSystemDateTimeChanged == true)
-                {
-                    MessageBox.Show("Unable to run scenaria due to system time changed. Please correct system date and time then restart FloodGates.");
-                    return false;
-                }
-                else if (info.IsExpired == true)
-                {
-                    MessageBox.Show("License is expired. Please activate license.");
-                    return false;
-                }
-                else if (_constants.ApplicationStartTime.Ticks > info.ExpiredData.Ticks)
-                {
-                    XmlDocument doc = _constants.GetLicenseDoc();
-                    doc.ChildNodes[1].Attributes["isExpired"].Value = "true";
-                    _constants.SaveLiceseDoc(doc);
-                    MessageBox.Show("License is expired. Please activate license.");
-                    return false;
-                }
-                else if (info.MacId != _constants.MACAddress)
-                {
-                    (new frmLicenseManagement()).ShowDialog();
-                    return false;
-                }
-                else
-                {
-                    foreach (XmlNode script in scenario.ChildNodes)
-                    {
-                        if (script.ChildNodes[0].Attributes["type"].Value == "1")
-                        {
-                            userCount += int.Parse(script.ChildNodes[0].Attributes["startuser"].Value);
-                        }
-                        else
-                        {
-                            userCount += int.Parse(script.ChildNodes[0].Attributes["maxuser"].Value);
-                        }
-                    }
-
-                    if (userCount > info.NoOfUsers)
-                    {
-                        MessageBox.Show("Current license only allow max " + info.NoOfUsers + " users.");
-                        return false;
-                    }
-                    else
-                    {
-                        return true;
-                    }
-                }
-            }
-            else
-            {
-                (new frmLicenseManagement()).ShowDialog();
-                return false;
-            }
-        }
+      
 
         public XmlDocument GetScenarioForRun(string scenarioid, string reportName, int totalLoadGen, int currentLoadGenid, bool enableipspoofing)
         {
@@ -461,16 +389,16 @@ namespace AppedoLT
 
                 XmlNode root = scenarioDoc.SelectSingleNode("//root/scenario");
                 XmlNode setting = scenarioDoc.SelectSingleNode("//root/setting");
-                XmlNode scenario = _repositoryXml.doc.SelectSingleNode("//scenario[@id='" + scenarioid + "']").Clone();
+                XmlNode scenario = _repositoryXml.Doc.SelectSingleNode("//scenario[@id='" + scenarioid + "']").Clone();
 
                 foreach (XmlNode script in scenario.ChildNodes)
                 {
                     VuscriptXml vuscript =new VuscriptXml(script.Attributes["id"].Value);
-                    XmlNode scriptNode=vuscript.doc.SelectSingleNode("//vuscript");
+                    XmlNode scriptNode=vuscript.Doc.SelectSingleNode("//vuscript");
                     if (scriptNode.HasChildNodes == true)
                     {
                         XmlNode tempScript=scriptNode.Clone();
-                        tempScript = _repositoryXml.doc.ImportNode(tempScript, true);
+                        tempScript = _repositoryXml.Doc.ImportNode(tempScript, true);
                         script.AppendChild(tempScript);
                         XmlNode importNode = scenarioDoc.ImportNode(script, true);
                         XmlAttribute attTotalMachine = scenarioDoc.CreateAttribute("totalloadgen");
@@ -749,7 +677,7 @@ namespace AppedoLT
                             userControlReports1.LoadReportName(executionReport.ReportName);
                             lblUserCompleted.Text = "0";
 
-                            XmlNode run = _repositoryXml.doc.CreateElement("run");
+                            XmlNode run = _repositoryXml.Doc.CreateElement("run");
                             run.Attributes.Append(_repositoryXml.GetAttribute("reportname", executionReport.ReportName));
 
                             if (objUCLoadGen.IsLoadGeneratorSelected() == false)
@@ -772,7 +700,7 @@ namespace AppedoLT
 
                                 run.Attributes.Append(_repositoryXml.GetAttribute("starttime", DateTime.Now.ToString()));
                                 run.Attributes.Append(_repositoryXml.GetAttribute("loadgenused", false.ToString()));
-                                XmlNode runs = _repositoryXml.doc.SelectSingleNode("//runs");
+                                XmlNode runs = _repositoryXml.Doc.SelectSingleNode("//runs");
                                 if (runs != null)
                                 {
                                     runs.AppendChild(run);
@@ -850,7 +778,7 @@ namespace AppedoLT
                                             run.AppendChild(loadGenDetail);
                                             run.Attributes.Append(_repositoryXml.GetAttribute("starttime", DateTime.Now.ToString()));
                                             run.Attributes.Append(_repositoryXml.GetAttribute("loadgenused", true.ToString()));
-                                            XmlNode runs = _repositoryXml.doc.SelectSingleNode("//runs");
+                                            XmlNode runs = _repositoryXml.Doc.SelectSingleNode("//runs");
                                             if (runs != null)
                                             {
                                                 runs.AppendChild(run);
@@ -1316,7 +1244,7 @@ namespace AppedoLT
                         string ipAddress = objClient;
                         string filePath;
                         int readCount = 0;
-                        foreach (XmlNode loadGen in _repositoryXml.doc.SelectSingleNode("//runs/run[@reportname='" + reportName + "' and @loadgenused='True']").SelectNodes("loadgen"))
+                        foreach (XmlNode loadGen in _repositoryXml.Doc.SelectSingleNode("//runs/run[@reportname='" + reportName + "' and @loadgenused='True']").SelectNodes("loadgen"))
                         {
                             if (loadGen.Attributes["resultfilereceived"].Value == "False")
                             {
@@ -1377,10 +1305,10 @@ namespace AppedoLT
         private XmlNode GetRuntimeScriptDetail(XmlNode scenario)
         {
            
-            XmlNode scripts = _repositoryXml.doc.CreateElement("scripts");
+            XmlNode scripts = _repositoryXml.Doc.CreateElement("scripts");
             foreach (XmlNode script in scenario.SelectNodes("//script"))
             {
-                XmlNode scrt = _repositoryXml.doc.CreateElement("script");
+                XmlNode scrt = _repositoryXml.Doc.CreateElement("script");
                 scrt.Attributes.Append(_repositoryXml.GetAttribute("id", script.Attributes["id"].Value));
                 scrt.Attributes.Append(_repositoryXml.GetAttribute("name", script.Attributes["name"].Value));
                 scripts.AppendChild(scrt);
@@ -1396,8 +1324,8 @@ namespace AppedoLT
             try
             {
                 ReportMaster mas = new ReportMaster(reportName);
-                mas.Executequery(reportName, _constants.GetQuery(reportName, _repositoryXml.doc));
-                XmlNode runNode = _repositoryXml.doc.SelectSingleNode("//run[@reportname='" + reportName + "']");
+                mas.Executequery(reportName, _constants.GetQuery(reportName, _repositoryXml.Doc));
+                XmlNode runNode = _repositoryXml.Doc.SelectSingleNode("//run[@reportname='" + reportName + "']");
                 Result.GetInstance().GetSummaryReportByScript(reportName, runNode);
             }
             catch (Exception ex)
@@ -1445,7 +1373,7 @@ namespace AppedoLT
 
         void Upgrade(ref long totalByte, ref long recivedByte, ref bool Success)
         {
-            XmlNode vuscripts =RepositoryXml.GetInstance().doc.SelectSingleNode("//vuscripts");
+            XmlNode vuscripts =RepositoryXml.GetInstance().Doc.SelectSingleNode("//vuscripts");
           //  File.Copy(RepositoryXml.GetInstance().doc.)
             string sorceRequestFolderPath = ".\\Request\\";
             string sorceResponseFolderPath = ".\\Response\\";
@@ -1462,7 +1390,7 @@ namespace AppedoLT
                         VuscriptXml vuscriptxml = new VuscriptXml(scriptid, script.OuterXml);
                         vuscriptxml.Save();
 
-                        foreach (XmlNode request in vuscriptxml.doc.SelectNodes("//request"))
+                        foreach (XmlNode request in vuscriptxml.Doc.SelectNodes("//request"))
                         {
                             if (File.Exists(sorceRequestFolderPath + request.Attributes["reqFilename"].Value)) File.Copy(sorceRequestFolderPath + request.Attributes["reqFilename"].Value, desFolderPath + request.Attributes["reqFilename"].Value);
                             if (File.Exists(sorceResponseFolderPath + request.Attributes["resFilename"].Value)) File.Copy(sorceResponseFolderPath + request.Attributes["resFilename"].Value, desFolderPath + request.Attributes["resFilename"].Value);
@@ -1475,7 +1403,7 @@ namespace AppedoLT
                     recivedByte += 1;
                 }
             }
-            RepositoryXml.GetInstance().doc.SelectSingleNode(".//root").RemoveChild(vuscripts);
+            RepositoryXml.GetInstance().Doc.SelectSingleNode(".//root").RemoveChild(vuscripts);
             RepositoryXml.GetInstance().Save();
         }
 

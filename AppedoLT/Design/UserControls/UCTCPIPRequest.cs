@@ -254,7 +254,7 @@ namespace AppedoLT
         {
             if (request.SelectSingleNode("assertions") == null)
             {
-                XmlNode assertions = _repositoryXml.doc.CreateElement("assertions");
+                XmlNode assertions = _repositoryXml.Doc.CreateElement("assertions");
                 frmTcpAssertion parm = new frmTcpAssertion(assertions, null);
                 if (parm.ShowDialog() == DialogResult.OK)
                 {

@@ -47,7 +47,7 @@ namespace AppedoLT
                             if (process.Id != current.Id)
                             {
                                 SetForegroundWindow(process.MainWindowHandle);
-                                MessageBox.Show("Already FloodGates is running");
+                                MessageBox.Show("Already AppedoLT is running");
                                 break;
                             }
                         }

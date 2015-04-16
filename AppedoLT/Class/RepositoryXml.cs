@@ -1,24 +1,17 @@
-﻿using System;
-using System.Xml;
-using System.Text;
-using AppedoLT.Core;
+﻿using AppedoLT.Core;
+using System;
 using System.IO;
-using System.Threading;
+using System.Text;
+using System.Xml;
 
 namespace AppedoLT
 {
     class RepositoryXml
     {
-
-        public XmlDocument doc = new XmlDocument();
-        public XmlAttribute GetAttribute(string name, string value)
-        {
-            XmlAttribute att = doc.CreateAttribute(name);
-            att.Value = value;
-            return att;
-        }
+        #region The static varialbles and methods
 
         private static RepositoryXml instance;
+
         public static RepositoryXml GetInstance()
         {
             if (instance == null)
@@ -27,6 +20,27 @@ namespace AppedoLT
             }
             return instance;
         }
+
+        #endregion
+
+        #region The private fields
+
+        private XmlDocument _doc = new XmlDocument();
+        
+        #endregion
+
+        #region The public property
+
+        public XmlDocument Doc
+        {
+            get { return _doc; }
+            set { _doc = value; }
+        }
+
+        #endregion
+
+        #region The constructor
+
         private RepositoryXml()
         {
             try
@@ -39,7 +53,7 @@ namespace AppedoLT
                     {
                         StringBuilder xml = new StringBuilder();
                         xml.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>");
-                        xml.Append("<root>");                     
+                        xml.Append("<root>");
                         xml.Append("<scenarios/>");
                         xml.Append("<flag/>");
                         xml.Append("<loadgens/>");
@@ -48,42 +62,57 @@ namespace AppedoLT
                         streamWriter.Write(xml.ToString());
                     }
                 }
-                doc.Load(file);
-              
+                _doc.Load(file);
+
             }
             catch (Exception ex)
             {
                 ExceptionHandler.WritetoEventLog(ex.Message + Environment.NewLine + ex.StackTrace);
             }
         }
+
+        #endregion
+
+        #region The public methods
+
         public void Save()
         {
-            doc.Save(Constants.GetInstance().ExecutingAssemblyLocation + "\\VUScripts.xml");
+            _doc.Save(Constants.GetInstance().ExecutingAssemblyLocation + "\\VUScripts.xml");
         }
+
+        public XmlAttribute GetAttribute(string name, string value)
+        {
+            XmlAttribute att = _doc.CreateAttribute(name);
+            att.Value = value;
+            return att;
+        }
+
         public XmlNode CreateScenario()
         {
-            XmlNode scenario = doc.CreateElement("scenario");
+            XmlNode scenario = _doc.CreateElement("scenario");
             scenario.Attributes.Append(GetAttribute("id", Constants.GetInstance().UniqueID));
             return scenario;
         }
+
         public void CreateLoadgen(string ipAddress, string hostname, bool isDefaultZone, bool isChecked)
         {
-            if (doc.SelectNodes("//loadgens").Count == 0)
+            if (_doc.SelectNodes("//loadgens").Count == 0)
             {
-                doc.SelectSingleNode("//root").AppendChild(doc.CreateElement("loadgens"));
+                _doc.SelectSingleNode("//root").AppendChild(_doc.CreateElement("loadgens"));
 
             }
-            XmlNode loadGen = doc.SelectSingleNode("//root//loadgens//loadgen[@ipaddress='" + ipAddress + "']");
+            XmlNode loadGen = _doc.SelectSingleNode("//root//loadgens//loadgen[@ipaddress='" + ipAddress + "']");
             if (loadGen == null)
             {
-                loadGen = doc.CreateElement("loadgen");
+                loadGen = _doc.CreateElement("loadgen");
                 loadGen.Attributes.Append(GetAttribute("ipaddress", ipAddress));
                 loadGen.Attributes.Append(GetAttribute("hostname", hostname));
                 loadGen.Attributes.Append(GetAttribute("isdefaultzone", isDefaultZone.ToString()));
                 loadGen.Attributes.Append(GetAttribute("ischecked", isChecked.ToString()));
-                doc.SelectSingleNode("//root//loadgens").AppendChild(loadGen);
+                _doc.SelectSingleNode("//root//loadgens").AppendChild(loadGen);
             }
         }
 
+        #endregion
     }
 }

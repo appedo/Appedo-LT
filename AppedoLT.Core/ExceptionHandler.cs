@@ -1,10 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
-using System.Collections;
-using System.Collections.Generic;
-using System.Threading;
 using System.Text;
+using System.Threading;
+
 namespace AppedoLT.Core
 {
     /// <summary>
@@ -12,10 +12,15 @@ namespace AppedoLT.Core
     /// </summary>
     public static class ExceptionHandler
     {
+
+        #region The static varialbles and methods
+
         private static bool isErrorLogRunning = false;
 
         public static Queue<string> errorLogs = new Queue<string>();
+
         public static Dictionary<string, StringBuilder> RunDetaillog = new Dictionary<string, StringBuilder>();
+
 
         public static void WritetoEventLog(string strMessage)
         {
@@ -33,6 +38,7 @@ namespace AppedoLT.Core
             }
             catch { }
         }
+
         private static void LogErrors()
         {
             try
@@ -76,6 +82,7 @@ namespace AppedoLT.Core
             {
             }
         }
+
         public static void LogRunDetail(string runid, string msg)
         {
             try
@@ -91,6 +98,7 @@ namespace AppedoLT.Core
             }
             catch { }
         }
+
         public static void WriteResponse(string filename, string strMessage)
         {
             try
@@ -111,6 +119,7 @@ namespace AppedoLT.Core
             }
             catch { }
         }
+
         public static void WriteResponseImage(string filename, System.Drawing.Image image)
         {
             try
@@ -125,6 +134,7 @@ namespace AppedoLT.Core
             }
             catch { }
         }
+
         public static void WriteRequest(string filename, string strMessage)
         {
             try
@@ -146,6 +156,7 @@ namespace AppedoLT.Core
             }
             catch { }
         }
+
         public static void WriteRepository(string strMessage)
         {
             try
@@ -168,6 +179,7 @@ namespace AppedoLT.Core
             }
             catch { }
         }
+
         public static void WriteRunTimeException(string strMessage)
         {
             try
@@ -190,6 +202,7 @@ namespace AppedoLT.Core
             }
             catch { }
         }
+
         public static string GetLog()
         {
             StringBuilder logDetail = new StringBuilder();
@@ -206,6 +219,7 @@ namespace AppedoLT.Core
             }
             return logDetail.ToString();
         }
+
         public static string GetLog(string runid)
         {
             StringBuilder logDetail = new StringBuilder();
@@ -219,5 +233,7 @@ namespace AppedoLT.Core
             }
             return logDetail.ToString();
         }
+
+        #endregion
     }
 }

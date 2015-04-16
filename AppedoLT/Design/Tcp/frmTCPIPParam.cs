@@ -29,7 +29,7 @@ namespace AppedoLT
         {
             if (param == null)
             {
-                param = _repositoryXml.doc.CreateElement("param");
+                param = _repositoryXml.Doc.CreateElement("param");
             }
             else
             {

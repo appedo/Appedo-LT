@@ -31,7 +31,7 @@ namespace AppedoLT
                 string uniqueid = Constants.GetInstance().UniqueID;
                 vuscriptXml = new VuscriptXml(uniqueid);
 
-                XmlNode node = vuscriptXml.doc.SelectSingleNode("vuscript");
+                XmlNode node = vuscriptXml.Doc.SelectSingleNode("vuscript");
                 node.Attributes.Append(vuscriptXml.GetAttribute("name", txtName.Text));
                 node.Attributes.Append(vuscriptXml.GetAttribute("id", uniqueid));
                 node.Attributes.Append(vuscriptXml.GetAttribute("type", _type));

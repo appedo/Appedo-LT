@@ -1,7 +1,5 @@
 ﻿using AppedoLT.Core;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using System.Xml;
 
@@ -9,7 +7,11 @@ namespace AppedoLT
 {
     class Common
     {
+
+        #region The static varialbles and methods
+
         private static Common instance;
+
         public static Common GetInstance()
         {
             if (instance == null)
@@ -18,12 +20,18 @@ namespace AppedoLT
             }
             return instance;
         }
+
+        #endregion
+
+        #region The public methods
+
         public XmlAttribute GetAttribute(XmlDocument doc, string name, string value)
         {
             XmlAttribute att = doc.CreateAttribute(name);
             att.Value = value;
             return att;
         }
+
         public XmlNode CreateContainer(XmlDocument doc, string name)
         {
             #region NewContainer
@@ -33,17 +41,19 @@ namespace AppedoLT
             return container;
             #endregion
         }
+
         public XmlNode CreateDelay(XmlDocument doc)
         {
-            #region NewContainer
+            #region NewDelay
             XmlNode delay = doc.CreateElement("delay");
             delay.Attributes.Append(GetAttribute(doc, "delaytime", "0"));
             return delay;
             #endregion
         }
+
         public XmlNode CreateLog(XmlDocument doc)
         {
-            #region NewContainer
+            #region NewLog
             XmlNode log = doc.CreateElement("log");
             log.Attributes.Append(GetAttribute(doc, "id", Constants.GetInstance().UniqueID));
             log.Attributes.Append(GetAttribute(doc, "name", string.Empty));
@@ -51,6 +61,7 @@ namespace AppedoLT
             return log;
             #endregion
         }
+
         public XmlNode CreateIfThenElse(XmlDocument doc)
         {
             XmlNode ifthenelse = doc.CreateElement("if");
@@ -68,6 +79,7 @@ namespace AppedoLT
 
             return ifthenelse;
         }
+
         public XmlNode CreateLoop(XmlDocument doc, string name)
         {
             XmlNode loop = doc.CreateElement("loop");
@@ -77,6 +89,7 @@ namespace AppedoLT
 
             return loop;
         }
+
         public XmlNode CreateWhileLoop(XmlDocument doc)
         {
             XmlNode whileLoop = doc.CreateElement("whileloop");
@@ -84,6 +97,7 @@ namespace AppedoLT
             whileLoop.Attributes.Append(GetAttribute(doc, "condition", string.Empty));
             return whileLoop;
         }
+
         public XmlNode CreateJavaScript(XmlDocument doc)
         {
             StringBuilder defaultCode = new StringBuilder();
@@ -102,12 +116,14 @@ namespace AppedoLT
 
             return javaScript;
         }
+
         public XmlNode CreateStartTransaction(XmlDocument doc)
         {
             XmlNode transaction = doc.CreateElement("starttransaction");
             transaction.Attributes.Append(GetAttribute(doc, "transactionname", string.Empty));
             return transaction;
         }
+
         public XmlNode CreateEndTransaction(XmlDocument doc)
         {
             XmlNode transaction = doc.CreateElement("endtransaction");
@@ -115,35 +131,8 @@ namespace AppedoLT
 
             return transaction;
         }
-        private Common()
-        {
-            //try
-            //{
-            //    string file = Constants.GetInstance().ExecutingAssemblyLocation + "\\VUScripts.xml";
 
-            //    if (File.Exists(file) == false)
-            //    {
-            //        using (StreamWriter streamWriter = new StreamWriter(new FileStream(file, FileMode.OpenOrCreate, FileAccess.ReadWrite)))
-            //        {
-            //            StringBuilder xml = new StringBuilder();
-            //            xml.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>");
-            //            xml.Append("<root>");                     
-            //            xml.Append("<vuscripts/>");
-            //            xml.Append("<scenarios/>");
-            //            xml.Append("<flag/>");
-            //            xml.Append("<loadgens/>");
-            //            xml.Append("<runs/>");
-            //            xml.Append("</root>");
-            //            streamWriter.Write(xml.ToString());
-            //        }
-            //    }
-            //    doc.Load(file);
+        #endregion
 
-            //}
-            //catch (Exception ex)
-            //{
-            //    ExceptionHandler.WritetoEventLog(ex.Message + Environment.NewLine + ex.StackTrace);
-            //}
-        }
     }
 }

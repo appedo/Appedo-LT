@@ -71,7 +71,7 @@ namespace AppedoLT.Core
         //For Recoding
         public RequestProcessor(TcpClient browserTcpClient1, ConnectionManager connectionManager1, string containerName, Label _label1)
         {
-           
+
             browserTcpClient = browserTcpClient1;
             connectionManager = connectionManager1;
             _label = _label1;
@@ -116,7 +116,7 @@ namespace AppedoLT.Core
                             _serverConnection = connection;
                             ServerProcess();
                             connection.IsHold = false;
-                            EndTime = DateTime.Now;                         
+                            EndTime = DateTime.Now;
                         }
                     }
                     catch (SocketException ex)
@@ -149,6 +149,7 @@ namespace AppedoLT.Core
             }
             catch
             {
+
             }
             finally
             {
@@ -195,7 +196,7 @@ namespace AppedoLT.Core
                 }
 
                 _contentLength = GetContentLength(ResponseHeader);
-                ReceiveResponseBody(_serverConnection.client, _serverConnection.NetworkStream, _contentLength, ResponseBody);
+                ReceiveResponseBody(_serverConnection.Client, _serverConnection.NetworkStream, _contentLength, ResponseBody);
                 if (ResponseHeader.Contains("Connection: Close"))
                 {
                     _serverConnection.Close();
@@ -276,7 +277,7 @@ namespace AppedoLT.Core
             ResponseBody.Seek(0, SeekOrigin.Begin);
             while ((_bytesRead = ResponseBody.Read(_buffer, 0, _buffer.Length)) > 0)
             {
-               WriteToBrowser(_buffer, 0, _bytesRead);
+                WriteToBrowser(_buffer, 0, _bytesRead);
             }
             ResponseBody.Seek(0, SeekOrigin.Begin);
         }
@@ -303,7 +304,7 @@ namespace AppedoLT.Core
 
                 while ((_bytesRead = RequestBody.Read(_buffer, 0, _buffer.Length)) > 0)
                 {
-                    
+
                     _server.Write(_buffer, 0, _bytesRead);
                 }
                 RequestBody.Seek(0, SeekOrigin.Begin);
@@ -349,7 +350,6 @@ namespace AppedoLT.Core
                     while (true)
                     {
                         string length = ReceiveGZipHeader(_server);
-
 
                         responseBody.Write(Encoding.Default.GetBytes(length), 0, length.Length);
 
@@ -398,13 +398,13 @@ namespace AppedoLT.Core
             }
 
         }
-        private void WriteToBrowser(byte[] buffer,int offset,int count)
+        private void WriteToBrowser(byte[] buffer, int offset, int count)
         {
             try
             {
                 _browserStream.Write(buffer, offset, count);
             }
-           catch
+            catch
             {
 
             }

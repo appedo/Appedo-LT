@@ -63,6 +63,7 @@ namespace AppedoLT
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.lblUserCompleted = new System.Windows.Forms.Label();
+            this.pnlScriptSettings = new System.Windows.Forms.Panel();
             this.splitPanel8 = new Telerik.WinControls.UI.SplitPanel();
             this.splcRunErrorReport = new Telerik.WinControls.UI.RadSplitContainer();
             this.splitPanel18 = new Telerik.WinControls.UI.SplitPanel();
@@ -101,7 +102,6 @@ namespace AppedoLT
             this.tabVsShape1 = new Telerik.WinControls.UI.TabVsShape();
             this.vistaTheme1 = new Telerik.WinControls.Themes.VistaTheme();
             this.telerikTheme1 = new Telerik.WinControls.Themes.TelerikTheme();
-            this.radMenu1 = new Telerik.WinControls.UI.RadMenu();
             this.mnuiVuscript = new Telerik.WinControls.UI.RadMenuItem();
             this.mnuiVariableManager = new Telerik.WinControls.UI.RadMenuItem();
             this.mnuiRecord = new Telerik.WinControls.UI.RadMenuItem();
@@ -112,14 +112,13 @@ namespace AppedoLT
             this.mnuiRun = new Telerik.WinControls.UI.RadMenuItem();
             this.mnuiStop = new Telerik.WinControls.UI.RadMenuItem();
             this.radMenuItem4 = new Telerik.WinControls.UI.RadMenuItem();
-            this.mnuiLicense = new Telerik.WinControls.UI.RadMenuItem();
             this.radMenuItem5 = new Telerik.WinControls.UI.RadMenuItem();
             this.radMenuItem1 = new Telerik.WinControls.UI.RadMenuItem();
             this.imageListForHeading = new System.Windows.Forms.ImageList(this.components);
             this.tabItem4 = new Telerik.WinControls.UI.TabItem();
             this.objUCLoadGen = new AppedoLT.ucLoadGen();
             this.userControlReports1 = new AppedoLT.userControlReports();
-            this.pnlScriptSettings = new System.Windows.Forms.Panel();
+            this.radMenu1 = new Telerik.WinControls.UI.RadMenu();
             ((System.ComponentModel.ISupportInitialize)(this.tabsDesign)).BeginInit();
             this.tabsDesign.SuspendLayout();
             this.tabiRun.ContentPanel.SuspendLayout();
@@ -168,8 +167,8 @@ namespace AppedoLT
             this.tapiMonitor.ContentPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitPanel17)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitPanel14)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radMenu1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radMenu1)).BeginInit();
             this.SuspendLayout();
             // 
             // imglDesign
@@ -639,6 +638,20 @@ namespace AppedoLT
             this.lblUserCompleted.Text = "0";
             this.lblUserCompleted.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // pnlScriptSettings
+            // 
+            this.pnlScriptSettings.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.pnlScriptSettings.AutoScroll = true;
+            this.pnlScriptSettings.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(219)))), ((int)(((byte)(255)))));
+            this.pnlScriptSettings.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.pnlScriptSettings.Location = new System.Drawing.Point(1, 104);
+            this.pnlScriptSettings.Name = "pnlScriptSettings";
+            this.pnlScriptSettings.Size = new System.Drawing.Size(644, 156);
+            this.pnlScriptSettings.TabIndex = 28;
+            this.pnlScriptSettings.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlScriptSettings_Paint);
+            // 
             // splitPanel8
             // 
             this.splitPanel8.Controls.Add(this.splcRunErrorReport);
@@ -1057,20 +1070,6 @@ namespace AppedoLT
             this.splitPanel14.TabStop = false;
             this.splitPanel14.ThemeName = "Office2010";
             // 
-            // radMenu1
-            // 
-            this.radMenu1.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radMenu1.Items.AddRange(new Telerik.WinControls.RadItem[] {
-            this.mnuiVuscript,
-            this.radMenuItem3,
-            this.radMenuItem4});
-            this.radMenu1.Location = new System.Drawing.Point(0, 0);
-            this.radMenu1.Name = "radMenu1";
-            this.radMenu1.Size = new System.Drawing.Size(942, 23);
-            this.radMenu1.TabIndex = 3;
-            this.radMenu1.Text = "radMenu1";
-            this.radMenu1.ThemeName = "Windows7";
-            // 
             // mnuiVuscript
             // 
             this.mnuiVuscript.Class = "";
@@ -1146,17 +1145,9 @@ namespace AppedoLT
             // 
             this.radMenuItem4.Class = "";
             this.radMenuItem4.Items.AddRange(new Telerik.WinControls.RadItem[] {
-            this.mnuiLicense,
             this.radMenuItem5});
             this.radMenuItem4.Name = "radMenuItem4";
             this.radMenuItem4.Text = "&Help";
-            // 
-            // mnuiLicense
-            // 
-            this.mnuiLicense.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.mnuiLicense.Name = "mnuiLicense";
-            this.mnuiLicense.Text = "Manage your License ";
-            this.mnuiLicense.Click += new System.EventHandler(this.mnuiLicense_Click);
             // 
             // radMenuItem5
             // 
@@ -1231,26 +1222,26 @@ namespace AppedoLT
             this.userControlReports1.Size = new System.Drawing.Size(941, 499);
             this.userControlReports1.TabIndex = 0;
             // 
-            // pnlScriptSettings
-            // 
-            this.pnlScriptSettings.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.pnlScriptSettings.AutoScroll = true;
-            this.pnlScriptSettings.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(219)))), ((int)(((byte)(255)))));
-            this.pnlScriptSettings.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.pnlScriptSettings.Location = new System.Drawing.Point(1, 104);
-            this.pnlScriptSettings.Name = "pnlScriptSettings";
-            this.pnlScriptSettings.Size = new System.Drawing.Size(644, 156);
-            this.pnlScriptSettings.TabIndex = 28;
-            this.pnlScriptSettings.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlScriptSettings_Paint);
-            // 
             // Design
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLight;
             this.ClientSize = new System.Drawing.Size(942, 560);
+            // 
+            // radMenu1
+            // 
+            this.radMenu1.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radMenu1.Items.AddRange(new Telerik.WinControls.RadItem[] {
+            this.mnuiVuscript,
+            this.radMenuItem3,
+            this.radMenuItem4});
+            this.radMenu1.Location = new System.Drawing.Point(0, 0);
+            this.radMenu1.Name = "radMenu1";
+            this.radMenu1.Size = new System.Drawing.Size(942, 23);
+            this.radMenu1.TabIndex = 3;
+            this.radMenu1.Text = "radMenu1";
+            this.radMenu1.ThemeName = "Windows7";
             this.Controls.Add(this.radMenu1);
             this.Controls.Add(this.tabsDesign);
             this.ImageList = this.imglDesign;
@@ -1378,7 +1369,6 @@ namespace AppedoLT
         private Telerik.WinControls.UI.RadGridView radGridView1;
         private Telerik.WinControls.UI.RadButton btnShowReport;
         private Telerik.WinControls.UI.RadComboBox ddlReportName;
-        private Telerik.WinControls.UI.RadMenu radMenu1;
         private Telerik.WinControls.UI.RadMenuItem mnuiVuscript;
         private Telerik.WinControls.UI.RadMenuItem radMenuItem3;
         private Telerik.WinControls.UI.RadMenuItem radMenuItem4;
@@ -1390,7 +1380,6 @@ namespace AppedoLT
         private Telerik.WinControls.UI.RadMenuItem mnuiNewScenario;
         private Telerik.WinControls.UI.RadMenuItem mnuiRun;
         private Telerik.WinControls.UI.RadMenuItem mnuiStop;
-        private Telerik.WinControls.UI.RadMenuItem mnuiLicense;
         private Telerik.WinControls.UI.RadMenuItem radMenuItem5;
         private System.Windows.Forms.ImageList imageListForHeading;
         private System.Windows.Forms.Label label5;
@@ -1417,6 +1406,7 @@ namespace AppedoLT
         private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.ColumnHeader ivcErrorCode;
         private System.Windows.Forms.Panel pnlScriptSettings;
+        private Telerik.WinControls.UI.RadMenu radMenu1;
         
 
 

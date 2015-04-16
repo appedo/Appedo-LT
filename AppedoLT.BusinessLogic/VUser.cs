@@ -1267,41 +1267,41 @@ namespace AppedoLT.BusinessLogic
                         }
                         con.NetworkStream.ReadTimeout = 120000;
 
-                        con.client.ReceiveTimeout = 120000;
+                        con.Client.ReceiveTimeout = 120000;
 
                         int timeOut = 1000;
-                        while (con.client.Available < Convert.ToInt32(tcpRequest.Attributes["responsesize"].Value))
+                        while (con.Client.Available < Convert.ToInt32(tcpRequest.Attributes["responsesize"].Value))
                         {
                             Thread.Sleep(10);
                             timeOut = timeOut - 10;
                             if (timeOut <= 0) break;
                         }
                         timeOut = 119000;
-                        while (con.client.Available <= 0)
+                        while (con.Client.Available <= 0)
                         {
                             Thread.Sleep(10);
                             timeOut = timeOut - 10;
                             if (timeOut <= 0) break;
                         }
 
-                        while (con.client.Available != 0 && (responseSize = con.NetworkStream.Read(receiveBuffer, 0, receiveBuffer.Length)) != 0)
+                        while (con.Client.Available != 0 && (responseSize = con.NetworkStream.Read(receiveBuffer, 0, receiveBuffer.Length)) != 0)
                         {
                             for (int index = 0; index < responseSize; index++)
                                 response.Append(Convert.ToChar(receiveBuffer[index]));
-                            if (con.client.Available == 0) break;
+                            if (con.Client.Available == 0) break;
                         }
                         requestResponse.EndTime = end = DateTime.Now;
 
                         if (Convert.ToInt32(tcpRequest.Attributes["responsesize"].Value) > response.Length)
                         {
                             Thread.Sleep(10);
-                            while (con.client.Available != 0 && (responseSize = con.NetworkStream.Read(receiveBuffer, 0, receiveBuffer.Length)) != 0)
+                            while (con.Client.Available != 0 && (responseSize = con.NetworkStream.Read(receiveBuffer, 0, receiveBuffer.Length)) != 0)
                             {
                                 for (int index = 0; index < responseSize; index++)
                                     response.Append(Convert.ToChar(receiveBuffer[index]));
                                 requestResponse.EndTime = end = DateTime.Now;
 
-                                if (con.client.Available == 0) break;
+                                if (con.Client.Available == 0) break;
                             }
 
                         }

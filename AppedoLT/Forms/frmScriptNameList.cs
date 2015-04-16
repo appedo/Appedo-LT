@@ -41,7 +41,7 @@ namespace AppedoLT
         {
             Dictionary<string, string> header = new Dictionary<string, string>();
 
-            XmlNode script = RepositoryXml.GetInstance().doc.SelectSingleNode("//vuscript[@name='" + scriptName + "']");
+            XmlNode script = RepositoryXml.GetInstance().Doc.SelectSingleNode("//vuscript[@name='" + scriptName + "']");
             string scriptid;
             string extractFolderPath=string.Empty;
             string extractFilePath;
@@ -161,14 +161,14 @@ namespace AppedoLT
 
             if (des == null)
             {
-                des = RepositoryXml.GetInstance().doc.CreateElement("vuscript");
+                des = RepositoryXml.GetInstance().Doc.CreateElement("vuscript");
                 des.Attributes.Append(RepositoryXml.GetInstance().GetAttribute("name", scriptName));
                 des.Attributes.Append(RepositoryXml.GetInstance().GetAttribute("id", scriptid));
                 des.Attributes.Append(RepositoryXml.GetInstance().GetAttribute("autoid", "0"));
                 des.Attributes.Append(RepositoryXml.GetInstance().GetAttribute("type", "http"));
                 des.Attributes.Append(RepositoryXml.GetInstance().GetAttribute("exclutionfiletypes", string.Empty));
                 des.Attributes.Append(RepositoryXml.GetInstance().GetAttribute("dynamicreqenable", false.ToString()));
-                RepositoryXml.GetInstance().doc.SelectNodes("root/vuscripts")[0].AppendChild(des);
+                RepositoryXml.GetInstance().Doc.SelectNodes("root/vuscripts")[0].AppendChild(des);
             }
             des.Attributes["name"].Value = scriptName;
             des.Attributes["autoid"].Value = scr.Attributes["autoid"].Value;

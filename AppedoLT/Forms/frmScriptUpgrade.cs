@@ -22,7 +22,7 @@ namespace AppedoLT
         }
         void Upgrade()
         {
-            XmlNode vuscripts=repositoryXml.doc.SelectSingleNode("//vuscripts");
+            XmlNode vuscripts=repositoryXml.Doc.SelectSingleNode("//vuscripts");
             progressBar1.Minimum = 0;
             
             if(vuscripts!=null &&  vuscripts.ChildNodes.Count>0)

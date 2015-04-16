@@ -6,7 +6,7 @@ using System.Xml;
 
 namespace AppedoLT.Core
 { 
-   public class LicenseInfo
+   public class LicenseInfo1
     {
         public string LicenseId { get; set; }
         public string FirstName { get; set; }
@@ -24,10 +24,10 @@ namespace AppedoLT.Core
         public DateTime ExpiredData = new DateTime();
         public int NoOfUsers { get; set; }
 
-        public LicenseInfo()
+        public LicenseInfo1()
         {
         }
-        public LicenseInfo(XmlDocument doc)
+        public LicenseInfo1(XmlDocument doc)
         {
             this.MacId = doc.ChildNodes[1].Attributes["mac_id"].Value;
             this.Mode = doc.ChildNodes[1].Attributes["mode"].Value;

@@ -75,20 +75,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ContextMenus.cs" />
-    <Compile Include="InstallerClass.cs">
+    <Compile Include="Class\ContextMenus.cs" />
+    <Compile Include="Class\InstallerClass.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="LoadTestAgentXml.cs" />
-    <Compile Include="frmLoadGenerator.cs">
+    <Compile Include="Class\LoadTestAgentXml.cs" />
+    <Compile Include="Forms\frmLoadGenerator.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmLoadGenerator.Designer.cs">
+    <Compile Include="Forms\frmLoadGenerator.Designer.cs">
       <DependentUpon>frmLoadGenerator.cs</DependentUpon>
     </Compile>
-    <Compile Include="Program.cs" />
+    <Compile Include="Class\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="frmLoadGenerator.resx">
+    <EmbeddedResource Include="Forms\frmLoadGenerator.resx">
       <DependentUpon>frmLoadGenerator.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -120,7 +120,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="RunScenario.cs" />
+    <Compile Include="Class\RunScenario.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AppedoLT.BusinessLogic\AppedoLT.BusinessLogic.csproj">
