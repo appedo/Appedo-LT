@@ -7,6 +7,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Security.AccessControl;
 using System.Text;
 using System.Windows.Forms;
 
@@ -35,6 +36,29 @@ namespace AppedoLTLoadGenerator
         {
             try
             {
+                try
+                {
+                    try
+                    {
+                        System.IO.DirectoryInfo dirInfo = new System.IO.DirectoryInfo(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location));
+                        if (dirInfo != null)
+                        {
+                            DirectorySecurity security = dirInfo.GetAccessControl();
+                            security.AddAccessRule(new FileSystemAccessRule("Users", FileSystemRights.FullControl, InheritanceFlags.ContainerInherit, PropagationFlags.None, AccessControlType.Allow));
+                            security.AddAccessRule(new FileSystemAccessRule("Users", FileSystemRights.FullControl, InheritanceFlags.ObjectInherit, PropagationFlags.None, AccessControlType.Allow));
+                            dirInfo.SetAccessControl(security);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+
+                    }
+                    Process.Start(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + "\\APPEDO_LT.exe");
+                }
+                catch
+                {
+                    // Do nothing... 
+                }
                 Process.Start(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + "\\APPEDO_LT_LOAD_GENERATOR.exe");
             }
             catch

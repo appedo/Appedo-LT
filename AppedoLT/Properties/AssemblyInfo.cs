@@ -39,6 +39,7 @@ using System.Runtime.InteropServices;
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 [assembly: AssemblyVersion("3.0.0.23")]
 [assembly: AssemblyFileVersion("3.0.0.23")]
 =======
@@ -68,4 +69,8 @@ using System.Runtime.InteropServices;
 =======
 [assembly: AssemblyVersion("3.0.33.0")]
 [assembly: AssemblyFileVersion("3.0.33.0")]
+>>>>>>> dev_master
+=======
+[assembly: AssemblyVersion("3.0.34.0")]
+[assembly: AssemblyFileVersion("3.0.34.0")]
 >>>>>>> dev_master

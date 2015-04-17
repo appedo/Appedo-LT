@@ -6,6 +6,7 @@ using System.IO;
 using System.Net;
 using System.Net.Sockets;
 using System.Reflection;
+using System.Security.AccessControl;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
@@ -716,6 +717,7 @@ namespace AppedoLT
                 ExceptionHandler.WritetoEventLog(ex.StackTrace + Environment.NewLine + ex.Message);
             }
         }
+
         private void btnRun_Click(object sender, EventArgs e)
         {
             if (tvScenarios.SelectedNode == null || tvScenarios.SelectedNode.Level != 0)
@@ -880,17 +882,20 @@ namespace AppedoLT
 
             }
         }
+
         void scr_OnLockUserDetail(UserDetail data)
         {
-            //throw new NotImplementedException();
+            
         }
+
         void scr_OnLockTransactions(TransactionRunTimeDetail data)
         {
-            lock (data)
+            lock (DataServer.GetInstance().transcations)
             {
                 DataServer.GetInstance().transcations.Enqueue(data);
             }
         }
+
         void scr_OnLockLog(Log data)
         {
             lock (DataServer.GetInstance().logs)
@@ -898,24 +903,33 @@ namespace AppedoLT
                 DataServer.GetInstance().logs.Enqueue(data);
             }
         }
+
         void scr_OnLockError(RequestException data)
         {
             lock (DataServer.GetInstance().errors)
             {
-                data.message = data.message.Replace("\r\n", " ");
-                ListViewItem newItem = new ListViewItem(data.requestexceptionid.ToString());
-                newItem.SubItems.AddRange(new string[] {  data.loadGen, data.reportname, data.scenarioname, data.scriptname, data.requestid,
-                                                          data.userid, data.iterationid, data.errorcode, data.message.Replace("\"", "\"\""), data.time.ToString("yyyy-MM-dd HH:mm:ss"), data.request.Replace("\"", "\"\"") });
-                lsvErrors.Items.Add(newItem);
-                DataServer.GetInstance().errors.Enqueue(data);
+                try
+                {
+                    data.message = data.message.Replace("\r\n", " ");
+                    ListViewItem newItem = new ListViewItem(data.requestexceptionid.ToString());
+                    newItem.SubItems.AddRange(new string[] {  data.loadGen, data.reportname, data.scenarioname, data.scriptname, data.requestid,
+                                                          data.userid, data.iterationid,data.time.ToString("yyyy-MM-dd HH:mm:ss"), 
+                                                          data.message.Replace("\"", "\"\""),
+                                                           data.request.Replace("\"", "\"\""),
+                                                           data.errorcode });
+                    lsvErrors.Items.Add(newItem);
+                    DataServer.GetInstance().errors.Enqueue(data);
+                }
+                catch (Exception ex)
+                {
+                    ExceptionHandler.WritetoEventLog(ex.StackTrace + Environment.NewLine + ex.Message);
+                }
             }
         }
+
         void scr_OnLockReportData(ReportData data)
         {
-            lock (data)
-            {
-                DataServer.GetInstance().LogResult(data);
-            }
+            DataServer.GetInstance().LogResult(data);
         }
 
         private void btnStop_Click(object sender, EventArgs e)
@@ -975,6 +989,7 @@ namespace AppedoLT
                 ExceptionHandler.WritetoEventLog(ex.StackTrace + Environment.NewLine + ex.Message);
             }
         }
+
         private void btnSave_Click(object sender, EventArgs e)
         {
             if (tvScenarios.SelectedNode != null && tvScenarios.SelectedNode.Level == 1)
@@ -982,6 +997,7 @@ namespace AppedoLT
                 ((UCScriptSetting)pnlScriptSettings.Controls["UCScriptSetting"]).Save();
             }
         }
+
         private void btnAddNewScenario_Click(object sender, EventArgs e)
         {
             try
@@ -997,6 +1013,7 @@ namespace AppedoLT
                 ExceptionHandler.WritetoEventLog(ex.StackTrace + Environment.NewLine + ex.Message);
             }
         }
+
         private void editToolStripMenuItem_Click(object sender, EventArgs e)
         {
             try
@@ -1015,6 +1032,7 @@ namespace AppedoLT
                 ExceptionHandler.WritetoEventLog(ex.StackTrace + Environment.NewLine + ex.Message);
             }
         }
+
         private void cmnuScenario_Opening(object sender, System.ComponentModel.CancelEventArgs e)
         {
             try
@@ -1034,6 +1052,7 @@ namespace AppedoLT
                 ExceptionHandler.WritetoEventLog(ex.StackTrace + Environment.NewLine + ex.Message);
             }
         }
+
         private void tvScenarios_SelectedNodeChanged(object sender, RadTreeViewEventArgs e)
         {
             try
@@ -1465,6 +1484,15 @@ namespace AppedoLT
             RepositoryXml.GetInstance().doc.SelectSingleNode(".//root").RemoveChild(vuscripts);
             RepositoryXml.GetInstance().Save();
         }
+
+<<<<<<< HEAD
+>>>>>>> dev_master
+=======
+        private void pnlScriptSettings_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
 
 >>>>>>> dev_master
     }
