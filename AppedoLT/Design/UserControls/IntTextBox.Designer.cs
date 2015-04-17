@@ -1,4 +1,4 @@
-﻿namespace AppedoLT.Core
+﻿namespace AppedoLT
 {
     partial class IntTextBox
     {

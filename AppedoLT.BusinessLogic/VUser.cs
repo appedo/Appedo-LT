@@ -61,29 +61,15 @@ namespace AppedoLT.BusinessLogic
         }
         #endregion
 
+        public static string Result = string.Empty;
+
         public event LockReportData OnLockReportData;
         public event LockLog OnLockLog;
         public event LockError OnLockError;
         public event LockTransactions OnLockTransactions;
         public event LockUserDetail OnLockUserDetail;
         public event LockRequestResponse OnLockRequestResponse;
-
-        public static string Result = string.Empty;
-        private XmlNode _vuScriptXml;
-        private Constants _Constants = Constants.GetInstance();
-        private XmlDocument _doc = null;
-        private Thread _userThread;
-        private ExecutionReport Status = ExecutionReport.GetInstance();
-
-        private Dictionary<string, object> _exVariablesValues = new Dictionary<string, object>();
-        private Dictionary<string, TransactionRunTimeDetail> _transactions = new Dictionary<string, TransactionRunTimeDetail>();
-        private Dictionary<string, string> _ReceivedCookies = new Dictionary<string, string>();
-        private Stack<string[]> _containerId = new Stack<string[]>();
-        private Stack<string> _pageId = new Stack<string>();
-        private List<string> cacheUrl = new List<string>();
-        private IPEndPoint _IPAddress = null;
-        private Random _random = new Random();
-
+       
         private string _reportName = string.Empty;
         private string _resposeUrl, _receivedCookies;
         private string _type = "1";
@@ -96,8 +82,23 @@ namespace AppedoLT.BusinessLogic
         private int _createdConnection = 1;
         private bool _browserCache = false;
         private bool _secondaryRequestPlayed = false;
+        private XmlNode _vuScriptXml;
+        private Constants _Constants = Constants.GetInstance();
+        private XmlDocument _doc = null;
+        private Thread _userThread;
+        private ExecutionReport Status = ExecutionReport.GetInstance();
+        private Dictionary<string, object> _exVariablesValues = new Dictionary<string, object>();
+        private Dictionary<string, TransactionRunTimeDetail> _transactions = new Dictionary<string, TransactionRunTimeDetail>();
+        private Dictionary<string, string> _ReceivedCookies = new Dictionary<string, string>();
+        private Stack<string[]> _containerId = new Stack<string[]>();
+        private Stack<string> _pageId = new Stack<string>();
+        private List<string> cacheUrl = new List<string>();
+        private IPEndPoint _IPAddress = null;
+        private Random _random = new Random();
+       
         private Constants _constants = Constants.GetInstance();
         Request req;
+
         public bool IsValidation = false;
         public string HeaderCookie
         {

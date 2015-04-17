@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace AppedoLT.Core
+namespace AppedoLT
 {
     public partial class UCTime : UserControl
     {

@@ -138,6 +138,7 @@
     <Reference Include="TelerikCommon, Version=2010.1.10.504, Culture=neutral, PublicKeyToken=5bb2a467cbec794e" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Class\RequestProcessor.cs" />
     <Compile Include="Forms\About FloodGates.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -271,6 +272,12 @@
     <Compile Include="Forms\RadForm1.Designer.cs">
       <DependentUpon>RadForm1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Design\UserControls\IntTextBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Design\UserControls\IntTextBox.Designer.cs">
+      <DependentUpon>IntTextBox.cs</DependentUpon>
+    </Compile>
     <Compile Include="Report\userControlCharts.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -388,6 +395,12 @@
     <Compile Include="Class\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Class\VuscriptXml.cs" />
+    <Compile Include="Design\UserControls\UCTime.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Design\UserControls\UCTime.Designer.cs">
+      <DependentUpon>UCTime.cs</DependentUpon>
+    </Compile>
     <Content Include="error.xslt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -473,6 +486,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\RadForm1.resx">
       <DependentUpon>RadForm1.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Design\UserControls\IntTextBox.resx">
+      <DependentUpon>IntTextBox.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Report\userControlCharts.resx">
@@ -656,6 +673,10 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="Design\UserControls\UCTime.resx">
+      <DependentUpon>UCTime.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <None Include="App.config">
       <SubType>Designer</SubType>
     </None>

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AppedoLT.Core;
+using System;
 using System.IO;
 using System.Net.Security;
 using System.Net.Sockets;
@@ -9,7 +10,7 @@ using System.Threading;
 using System.Windows.Forms;
 
 
-namespace AppedoLT.Core
+namespace AppedoLT
 {
     public interface IRequestProcessor
     {
@@ -27,6 +28,23 @@ namespace AppedoLT.Core
 
     public class RequestProcessor : IRequestProcessor
     {
+        #region The private property
+
+        private Connection _serverConnection = null;
+        private int _contentLength = 0;
+        private int _bufferSize = 2097152;
+        private byte[] _buffer;
+        private int _bytesRead = 0;
+        private string _host = string.Empty;
+        private int _port = -1;
+        private Stream _browserStream = null;
+        private TcpClient _browserTcpClient = null;
+        private ConnectionManager _connectionManager = null;
+        private Label _label = null;
+
+        #endregion
+
+        #region The public property
 
         #region IRequestProcessor Members
 
@@ -44,6 +62,7 @@ namespace AppedoLT.Core
 
         public Uri url
         { get; set; }
+
         public int ResponseCode
         { get; set; }
 
@@ -56,27 +75,20 @@ namespace AppedoLT.Core
         public DateTime EndTime { get; set; }
         #endregion
 
-        private Connection _serverConnection = null;
-        private int _contentLength = 0;
-        private int _bufferSize = 2097152;
-        private byte[] _buffer;
-        private int _bytesRead = 0;
-        private string _host = string.Empty;
-        private int _port = -1;
-        private Stream _browserStream = null;
-        private TcpClient browserTcpClient = null;
-        ConnectionManager connectionManager = null;
-        Label _label = null;
+        #endregion
 
-        //For Recoding
+        #region The constructor
+
         public RequestProcessor(TcpClient browserTcpClient1, ConnectionManager connectionManager1, string containerName, Label _label1)
         {
 
-            browserTcpClient = browserTcpClient1;
-            connectionManager = connectionManager1;
+            _browserTcpClient = browserTcpClient1;
+            _connectionManager = connectionManager1;
             _label = _label1;
             ContainerName = containerName;
         }
+
+        #endregion
 
         public void Process()
         {
@@ -87,7 +99,7 @@ namespace AppedoLT.Core
                 ResponseBody = new MemoryStream();
                 _buffer = new byte[_bufferSize];
 
-                _browserStream = browserTcpClient.GetStream();
+                _browserStream = _browserTcpClient.GetStream();
                 RequestHeader = ReceiveRequestHeader();
 
                 SetUrl();
@@ -95,7 +107,7 @@ namespace AppedoLT.Core
                 _contentLength = GetContentLength(RequestHeader);
                 if (_contentLength > 0)
                 {
-                    ReceiveRequestBody(browserTcpClient, _contentLength, RequestBody);
+                    ReceiveRequestBody(_browserTcpClient, _contentLength, RequestBody);
                 }
                 _label.Text = url.ToString();
 
@@ -107,9 +119,9 @@ namespace AppedoLT.Core
                     try
                     {
                         StartTime = DateTime.Now;
-                        lock (connectionManager)
+                        lock (_connectionManager)
                         {
-                            connection = connectionManager.GetConnection(url.Host, url.Port);
+                            connection = _connectionManager.GetConnection(url.Host, url.Port);
                         }
                         if (connection != null)
                         {
@@ -154,11 +166,11 @@ namespace AppedoLT.Core
             finally
             {
 
-                browserTcpClient.Close();
+                _browserTcpClient.Close();
             }
         }
 
-        public void ServerProcess()
+        private void ServerProcess()
         {
             lock (_serverConnection)
             {
@@ -235,7 +247,7 @@ namespace AppedoLT.Core
             }
             return requestHeader;
         }
-        void ReceiveRequestBody(TcpClient _browserTcpClient, int contentLength, Stream requestBody)
+       private  void ReceiveRequestBody(TcpClient _browserTcpClient, int contentLength, Stream requestBody)
         {
             if (contentLength > 0)
                 _buffer = new Byte[contentLength];

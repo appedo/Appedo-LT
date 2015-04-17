@@ -6,14 +6,22 @@ using System.Net;
 using System.Net.Sockets;
 using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading;
 
 namespace AppedoLT.Core
 {
+
     public class Trasport
     {
+
+        #region The private fields
+
         private int ReadBufferSize = 8192;
         private string _ipaddress = string.Empty;
+
+        #endregion
+
+        #region The public property
+
         public string IPAddressStr { get { return _ipaddress; } set { _ipaddress = value; } }
         public TcpClient tcpClient;
         public bool Connected
@@ -25,42 +33,41 @@ namespace AppedoLT.Core
             }
             private set { }
         }
+
+        #endregion
+
+        #region The constructor
+
         public Trasport(string ipaddress, string port)
         {
             _ipaddress = ipaddress;
             tcpClient = Connect(ipaddress, port);
             tcpClient.ReceiveTimeout = 600000;
         }
+
         public Trasport(string ipaddress, string port, int requesttimeout)
         {
             _ipaddress = ipaddress;
             tcpClient = Connect(ipaddress, port);
             tcpClient.ReceiveTimeout = requesttimeout;
         }
+
         public Trasport(TcpClient client)
         {
-            _ipaddress=((IPEndPoint)client.Client.RemoteEndPoint).Address.ToString();
+            _ipaddress = ((IPEndPoint)client.Client.RemoteEndPoint).Address.ToString();
             tcpClient = client;
         }
-        private  TcpClient Connect(string ipaddress, string port)
-        {
-            TcpClient client = new TcpClient();
-            var result = client.BeginConnect(IPAddress.Parse(ipaddress), int.Parse(port), null, null);
-            result.AsyncWaitHandle.WaitOne(TimeSpan.FromSeconds(5));
-           
-            if(client.Connected==false)
-            {
-                 throw new Exception("Failed to connect " + ipaddress );
-            }
-            client.ReceiveTimeout = 600000;
-            client.SendTimeout = 600000;
-            return client;
-        }
+
+        #endregion
+
+        #region The public methods
+
         public void Close()
         {
             if (tcpClient.Connected == true) tcpClient.Close();
         }
-        public  TrasportData Receive()
+
+        public TrasportData Receive()
         {
             Stream stream = tcpClient.GetStream();
             TrasportData objTrasportData = new TrasportData();
@@ -72,7 +79,7 @@ namespace AppedoLT.Core
 
             header.Append(ReadHeader(stream));
             objTrasportData.Operation = new Regex("(.*): ([0-9]*)").Match(header.ToString()).Groups[1].Value;
-           
+
             foreach (Match match in (new Regex("(.*)= (.*)\r\n").Matches(header.ToString())))
             {
                 objTrasportData.Header.Add(match.Groups[1].Value, match.Groups[2].Value);
@@ -83,12 +90,13 @@ namespace AppedoLT.Core
             while (readCount < contentLength)
             {
                 readCount += stream.Read(bytes, readCount, contentLength - readCount);
-               
+
             }
-             objTrasportData.DataStream.Write(bytes,0,contentLength);
-             if (objTrasportData.DataStream.Length > 0) objTrasportData.DataStream.Seek(0, SeekOrigin.Begin);
+            objTrasportData.DataStream.Write(bytes, 0, contentLength);
+            if (objTrasportData.DataStream.Length > 0) objTrasportData.DataStream.Seek(0, SeekOrigin.Begin);
             return objTrasportData;
         }
+
         public TrasportData Receive(string filePath)
         {
             Stream stream = tcpClient.GetStream();
@@ -112,7 +120,7 @@ namespace AppedoLT.Core
 
             using (FileStream file = new FileStream(filePath, FileMode.OpenOrCreate, FileAccess.ReadWrite))
             {
-                while (contentLength>0)
+                while (contentLength > 0)
                 {
                     readCount = 0;
                     if (contentLength >= ReadBufferSize)
@@ -129,9 +137,10 @@ namespace AppedoLT.Core
                     }
                 }
             }
-            objTrasportData.FilePath = filePath;         
+            objTrasportData.FilePath = filePath;
             return objTrasportData;
         }
+
         public TrasportData Receive(string filePath, ref long totalByte, ref long totalByteRecceived, ref bool success)
         {
             Stream stream = tcpClient.GetStream();
@@ -182,6 +191,7 @@ namespace AppedoLT.Core
             objTrasportData.FilePath = filePath;
             return objTrasportData;
         }
+
         public void Send(TrasportData objTrasportData, ref long totalByte, ref long totalByteUploaded, ref bool success)
         {
             Socket socket = tcpClient.Client;
@@ -212,7 +222,8 @@ namespace AppedoLT.Core
                 }
             }
         }
-        public  void Send( TrasportData objTrasportData)
+
+        public void Send(TrasportData objTrasportData)
         {
             Socket socket = tcpClient.Client;
             socket.Send(objTrasportData.GetHeaderBytes());
@@ -229,12 +240,13 @@ namespace AppedoLT.Core
                 {
                     while ((readCount = file.Read(buffer, 0, buffer.Length)) > 0)
                     {
-                        socket.Send(buffer, 0, readCount,SocketFlags.None);
+                        socket.Send(buffer, 0, readCount, SocketFlags.None);
                         sum += readCount;
                     }
                 }
             }
         }
+
         public void SendGZipFile(TrasportData objTrasportData)
         {
             Socket socket = tcpClient.Client;
@@ -248,7 +260,7 @@ namespace AppedoLT.Core
                 byte[] buffer = new byte[8192];
                 int readCount = 0;
                 int sum = 0;
-                using (Stream file =new GZipStream (new FileStream(objTrasportData.FilePath, FileMode.Open, FileAccess.Read),CompressionMode.Compress))
+                using (Stream file = new GZipStream(new FileStream(objTrasportData.FilePath, FileMode.Open, FileAccess.Read), CompressionMode.Compress))
                 {
                     while ((readCount = file.Read(buffer, 0, buffer.Length)) > 0)
                     {
@@ -258,6 +270,30 @@ namespace AppedoLT.Core
                 }
             }
         }
+
+        #endregion
+
+        #region The private methods
+
+        private TcpClient Connect(string ipaddress, string port)
+        {
+            TcpClient client = new TcpClient();
+            var result = client.BeginConnect(IPAddress.Parse(ipaddress), int.Parse(port), null, null);
+            result.AsyncWaitHandle.WaitOne(TimeSpan.FromSeconds(5));
+
+            if (client.Connected == false)
+            {
+                throw new Exception("Failed to connect " + ipaddress);
+            }
+            client.ReceiveTimeout = 600000;
+            client.SendTimeout = 600000;
+            return client;
+        }
+
+        #endregion
+
+        #region The static varialbles and methods
+
         private static string ReadHeader(Stream stream)
         {
             StringBuilder header = new StringBuilder();
@@ -268,22 +304,47 @@ namespace AppedoLT.Core
             {
                 header.Append(Encoding.Default.GetString(bytes, 0, 1));
                 response.Append(Encoding.Default.GetString(bytes, 0, 1));
-               
+
                 if (bytes[0] == '\n' && header.ToString().EndsWith("\r\n\r\n"))
                     break;
             }
             return header.ToString();
         }
+
+        #endregion
+
     }
+
     public class TrasportData
     {
-        public MemoryStream DataStream = new MemoryStream();
 
-        public string Operation { get; set; }
-        public Dictionary<string, string> Header = new Dictionary<string, string>();
+        #region The private fields
+
+        private string _filePath = string.Empty;
+        private string _operation = string.Empty;
+        private Dictionary<string, string> _header = new Dictionary<string, string>();
+        private MemoryStream _dataStream = new MemoryStream();
+
+        #endregion
+
+        #region The public property
+
+        public MemoryStream DataStream
+        {
+            get { return _dataStream; }
+            set { _dataStream = value; }
+        }
+
+        public Dictionary<string, string> Header
+        {
+            get { return _header; }
+            set { _header = value; }
+        }
+
         public string DataStr
         {
-            get {
+            get
+            {
                 if (DataStream.Length == 0) return string.Empty;
                 else return ASCIIEncoding.ASCII.GetString(DataStream.ToArray());
             }
@@ -296,38 +357,59 @@ namespace AppedoLT.Core
                 }
             }
         }
-        public string FilePath = string.Empty;
+
+        public string FilePath
+        {
+            get { return _filePath; }
+            set { _filePath = value; }
+        }
+
+        public string Operation
+        {
+            get { return _operation; }
+            set { _operation = value; }
+        }
+
+        #endregion
+
+        #region The constructor
 
         public TrasportData() { }
-        public TrasportData(string operation,  Dictionary<string, string> header,string filePath)
+
+        public TrasportData(string operation, Dictionary<string, string> header, string filePath)
         {
-            Operation = operation;
-            Header = header;
-            FilePath = filePath;
+            this._operation = operation;
+            this._header = header;
+            this._filePath = filePath;
         }
 
         public TrasportData(string operation, string data, Dictionary<string, string> header)
         {
-            Operation = operation;
-            DataStr = data;
-            Header = header;
+            this._operation = operation;
+            this.DataStr = data;
+            this._header = header;
         }
+
+        #endregion
+
+        #region The public property
 
         public byte[] GetHeaderBytes()
         {
             StringBuilder header = new StringBuilder();
-            header.AppendLine(string.Format("{0}: {1}", Operation, FilePath==string.Empty?DataStream.Length.ToString():new FileInfo(FilePath).Length.ToString()));
+            header.AppendLine(string.Format("{0}: {1}", _operation, _filePath == string.Empty ? _dataStream.Length.ToString() : new FileInfo(_filePath).Length.ToString()));
 
-            if (Header != null && Header.Count > 0)
+            if (_header != null && _header.Count > 0)
             {
                 foreach (string key in Header.Keys)
                 {
-                    header.AppendLine(string.Format("{0}= {1}", key, Header[key]));
+                    header.AppendLine(string.Format("{0}= {1}", key, _header[key]));
                 }
             }
             header.AppendLine();
             return ASCIIEncoding.ASCII.GetBytes(header.ToString());
         }
+
         public void Save(string filePath)
         {
             try
@@ -335,7 +417,7 @@ namespace AppedoLT.Core
                 if (File.Exists(filePath)) File.Delete(filePath);
                 using (var fileStream = new FileStream(filePath, FileMode.OpenOrCreate, FileAccess.ReadWrite))
                 {
-                    DataStream.CopyTo(fileStream);
+                    _dataStream.CopyTo(fileStream);
                 }
             }
             catch (Exception ex)
@@ -343,5 +425,9 @@ namespace AppedoLT.Core
                 ExceptionHandler.WritetoEventLog(ex.StackTrace + Environment.NewLine + ex.Message);
             }
         }
+
+        #endregion
+
     }
+
 }
