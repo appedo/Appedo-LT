@@ -69,7 +69,7 @@ namespace AppedoLT.BusinessLogic
         public event LockTransactions OnLockTransactions;
         public event LockUserDetail OnLockUserDetail;
         public event LockRequestResponse OnLockRequestResponse;
-       
+
         private string _reportName = string.Empty;
         private string _resposeUrl, _receivedCookies;
         private string _type = "1";
@@ -95,7 +95,7 @@ namespace AppedoLT.BusinessLogic
         private List<string> cacheUrl = new List<string>();
         private IPEndPoint _IPAddress = null;
         private Random _random = new Random();
-       
+
         private Constants _constants = Constants.GetInstance();
         Request req;
 
@@ -122,7 +122,7 @@ namespace AppedoLT.BusinessLogic
         private DateTime _userCreatededTime = new DateTime();
         public VUser(int maxUser, string reportName, string type, int userid, int iteration, XmlNode vuScript, bool browserCache, IPAddress ipaddress)
         {
-             _userCreatededTime = DateTime.Now;
+            _userCreatededTime = DateTime.Now;
             _doc = vuScript.OwnerDocument;
             _maxUser = maxUser;
             _browserCache = browserCache;
@@ -146,7 +146,7 @@ namespace AppedoLT.BusinessLogic
 
         public void Start()
         {
-             LockUserDetail(1);
+            LockUserDetail(1);
             _userThread = new Thread(new ThreadStart(StartExecution));
             _userThread.ApartmentState = ApartmentState.STA;
             _userThread.Start();
@@ -570,11 +570,11 @@ namespace AppedoLT.BusinessLogic
                         req.Variables = variables;
                         req.GetResponse();
 
-                        if (OnLockRequestResponse!=null)
+                        if (OnLockRequestResponse != null)
                         {
                             #region Validation
                             responseResult.RequestResult = req;
-                            responseResult.WebRequestResponseId =Convert.ToInt32(Constants.GetInstance().UniqueID);
+                            responseResult.WebRequestResponseId = Convert.ToInt32(Constants.GetInstance().UniqueID);
                             LockRequestResponse(responseResult);
                             #endregion
                         }
@@ -638,7 +638,7 @@ namespace AppedoLT.BusinessLogic
                                 req.Variables = variables;
                                 req.GetResponse();
 
-                                if (OnLockRequestResponse!=null)
+                                if (OnLockRequestResponse != null)
                                 {
                                     #region Validation
                                     StringBuilder pDataBuffer = new StringBuilder();
@@ -688,7 +688,7 @@ namespace AppedoLT.BusinessLogic
                                                         {
                                                             secReq.GetResponse();
 
-                                                            if (OnLockRequestResponse!=null)
+                                                            if (OnLockRequestResponse != null)
                                                             {
                                                                 responseResultSec.RequestResult = secReq;
                                                                 responseResultSec.WebRequestResponseId = Convert.ToInt32(Constants.GetInstance().UniqueID);
@@ -1228,7 +1228,7 @@ namespace AppedoLT.BusinessLogic
                 exception.from = "Tool";
                 exception.message = ex.Message;
                 LockException(exception);
-               
+
                 requestResponse.IsSucess = false;
                 responseCode = exception.errorcode = "400";
                 return requestResponse;
@@ -1644,7 +1644,7 @@ namespace AppedoLT.BusinessLogic
             exception.message = message;
             exception.errorcode = errorCode;
             exception.request = url;
-            if (OnLockError != null && exception!=null) OnLockError.Invoke(exception);
+            if (OnLockError != null && exception != null) OnLockError.Invoke(exception);
             VUserStatus.ErrorCount++;
         }
         private void LockException(RequestException exception)
@@ -1682,6 +1682,7 @@ namespace AppedoLT.BusinessLogic
                 if (Break == false)
                 {
                     ReportData rd = new ReportData();
+
                     rd.loadgen = Constants.GetInstance().LoadGen;
                     rd.sourceip = _IPAddress.Address.ToString();
                     rd.loadgenanme = ExecutionReport.GetInstance().LoadGenName;
@@ -1700,8 +1701,10 @@ namespace AppedoLT.BusinessLogic
                     rd.responsesize = responsesize;
                     rd.reponseCode = reponseCode;
 
-                    if (OnLockReportData != null && rd != null) OnLockReportData.Invoke(rd);
-
+                    if (OnLockReportData != null && rd != null)
+                    {
+                        OnLockReportData.Invoke(rd);
+                    }
                     if (req.HasError == true)
                     {
                         LockException(req.RequestId.ToString(), req.ErrorMessage, req.ErrorCode, req.RequestName);
@@ -1723,6 +1726,7 @@ namespace AppedoLT.BusinessLogic
                         VUserStatus.FiveHundredStatusCodeCount++;
                     }
                 }
+
             }
             catch (Exception ex)
             {
@@ -1736,17 +1740,17 @@ namespace AppedoLT.BusinessLogic
         private void LockUserDetail(int type)
         {
             UserDetail userDetail = new UserDetail();
-            if (type == 1) userDetail.Time=_userCreatededTime;
+            if (type == 1) userDetail.Time = _userCreatededTime;
             else userDetail.Time = DateTime.Now;
             userDetail.scriptid = _vuScriptXml.Attributes["id"].Value;
             userDetail.userid = _userid;
             userDetail.Type = type;
             userDetail.loadgenanme = ExecutionReport.GetInstance().LoadGenName;
-            if (OnLockUserDetail != null && userDetail!=null) OnLockUserDetail.Invoke(userDetail);
+            if (OnLockUserDetail != null && userDetail != null) OnLockUserDetail.Invoke(userDetail);
         }
         private void LockRequestResponse(RequestResponse data)
         {
-          if(OnLockRequestResponse!=null) OnLockRequestResponse.Invoke(data);
+            if (OnLockRequestResponse != null) OnLockRequestResponse.Invoke(data);
         }
         #endregion
     }

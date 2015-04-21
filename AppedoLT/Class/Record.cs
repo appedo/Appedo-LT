@@ -48,6 +48,8 @@ namespace AppedoLT
         private XmlNode _lastInsertedPage;
         private XmlNode _selectedFirstLevelContainer;
         private Label _lblResult;
+        private Regex _expressForhead = new Regex("([A-Z]*) (.*) ([A-Z]*)/(.*)");
+        private Regex _expressForHeaders = new Regex("(.*?): (.*?)\r\n");
         #endregion
 
         #region The event
@@ -62,7 +64,7 @@ namespace AppedoLT
                 _uvScript = vuScriptXml;
                 _scriptid = vuScriptXml.Attributes["id"].Value;
                 _scriptResourcePath = Constants.GetInstance().ExecutingAssemblyLocation + "\\Scripts\\" + vuScriptXml.Attributes["id"].Value;
-                if (Directory.Exists(_scriptResourcePath) == true) 
+                if (Directory.Exists(_scriptResourcePath) == true)
                     Directory.Delete(_scriptResourcePath, true);
                 Directory.CreateDirectory(_scriptResourcePath);
                 _isStop = false;
@@ -167,6 +169,7 @@ namespace AppedoLT
         #endregion
 
         #region The private methods
+
         private void DoWork(object sender, DoWorkEventArgs e)
         {
             _listener.Start();
@@ -199,7 +202,7 @@ namespace AppedoLT
             {
                 _processingRequestCount++;
                 TcpClient client = (TcpClient)clientObj;
-                RequestProcessor pro = new RequestProcessor(client, this._connectionManager,  _txtContainer.Text, _lblResult);
+                RequestProcessor pro = new RequestProcessor(client, this._connectionManager, _txtContainer.Text, _lblResult);
                 pro.Process();
                 if (((IRequestProcessor)pro) != null)
                 {
@@ -238,17 +241,16 @@ namespace AppedoLT
                     {
                         IRequestProcessor data;
                         data = _recordData.Dequeue();
+                        data.Requestid = Constants.GetInstance().UniqueID;
                         string requestContentType = string.Empty;
                         string responseContentType = string.Empty;
-                        data.Requestid = Constants.GetInstance().UniqueID;
                         string reqFilename = data.Requestid + "_req.bin";
                         string resFilename = data.Requestid + "_res";
                         string contentEncoding = string.Empty;
-                        Regex expressForhead = new Regex("([A-Z]*) (.*) ([A-Z]*)/(.*)");
-                        Regex expressForHeaders = new Regex("(.*?): (.*?)\r\n");
+
                         if (data.RequestHeader != null)
                         {
-                            MatchCollection matchs = expressForhead.Matches(data.RequestHeader);
+                            MatchCollection matchs = _expressForhead.Matches(data.RequestHeader);
                             if (matchs.Count > 0)
                             {
                                 XmlNode request = _uvScript.OwnerDocument.CreateElement("request");
@@ -276,7 +278,7 @@ namespace AppedoLT
                                 }
                                 #endregion
 
-                                matchs = expressForHeaders.Matches(data.RequestHeader);
+                                matchs = _expressForHeaders.Matches(data.RequestHeader);
                                 bool isWebServiceRequest = false;
 
                                 #region Headers
@@ -304,7 +306,7 @@ namespace AppedoLT
 
                                 #region Response Header
 
-                                matchs = expressForHeaders.Matches(data.ResponseHeader);
+                                matchs = _expressForHeaders.Matches(data.ResponseHeader);
                                 if (matchs.Count > 0)
                                 {
                                     request.Attributes.Append(_common.GetAttribute(_uvScript.OwnerDocument, "ResponseHeader", data.ResponseHeader));
@@ -461,7 +463,7 @@ namespace AppedoLT
                                         else if (isWebServiceRequest == true || requestContentType.ToLower().StartsWith("text/") || requestContentType.ToLower().StartsWith("application/json") || requestContentType == string.Empty)
                                         {
                                             parameters.Attributes.Append(_common.GetAttribute(_uvScript.OwnerDocument, "type", "text"));
-                                            
+
                                             #region Text
                                             XmlNode param = _uvScript.OwnerDocument.CreateElement("Param");
                                             param.Attributes.Append(_common.GetAttribute(_uvScript.OwnerDocument, "name", System.Web.HttpUtility.UrlDecode("Text")));
@@ -608,7 +610,7 @@ namespace AppedoLT
                                             }
                                         }
                                     }
-                                    request.Attributes.Append(_common.GetAttribute(_uvScript.OwnerDocument,"resFilename", resFilename));
+                                    request.Attributes.Append(_common.GetAttribute(_uvScript.OwnerDocument, "resFilename", resFilename));
 
                                 }
                                 #endregion
@@ -715,7 +717,7 @@ namespace AppedoLT
         {
             try
             {
-                XmlNode container = _common.CreateContainer(_uvScript.OwnerDocument,  "Initialize");
+                XmlNode container = _common.CreateContainer(_uvScript.OwnerDocument, "Initialize");
                 _uvScript.AppendChild(container);
                 _ddlParentContainer.Items[0].Tag = container;
 
@@ -758,6 +760,7 @@ namespace AppedoLT
             }
             return header.ToString();
         }
+
         #endregion
     }
 }

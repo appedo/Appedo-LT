@@ -31,7 +31,8 @@ namespace AppedoLT
         private Boolean _isUseLoadGen = false;
         private ucDesign _ucDesignObj = null;
         ExecutionReport executionReport = ExecutionReport.GetInstance();
-
+        private DataServer _dataServer=DataServer.GetInstance();
+      
         public Design()
         {
             try
@@ -819,7 +820,7 @@ namespace AppedoLT
         {
             lock (DataServer.GetInstance().transcations)
             {
-                DataServer.GetInstance().transcations.Enqueue(data);
+                _dataServer.transcations.Enqueue(data);
             }
         }
 
@@ -827,7 +828,7 @@ namespace AppedoLT
         {
             lock (DataServer.GetInstance().logs)
             {
-                DataServer.GetInstance().logs.Enqueue(data);
+                _dataServer.logs.Enqueue(data);
             }
         }
 
@@ -845,7 +846,7 @@ namespace AppedoLT
                                                            data.request.Replace("\"", "\"\""),
                                                            data.errorcode });
                     lsvErrors.Items.Add(newItem);
-                    DataServer.GetInstance().errors.Enqueue(data);
+                    _dataServer.errors.Enqueue(data);
                 }
                 catch (Exception ex)
                 {
@@ -856,7 +857,7 @@ namespace AppedoLT
 
         void scr_OnLockReportData(ReportData data)
         {
-            DataServer.GetInstance().LogResult(data);
+            _dataServer.LogResult(data);
         }
 
         private void btnStop_Click(object sender, EventArgs e)

@@ -19,29 +19,27 @@ namespace AppedoLTLoadGenerator
 
         public LoadGenRunningStatusData _runningStatusData = new LoadGenRunningStatusData();
 
-        public LoadGenRunningStatusData RunningStatusData
+      
+       public LoadGenRunningStatusData GetData()
         {
-            get
+            LoadGenRunningStatusData data = new LoadGenRunningStatusData();
+            if ((_scriptExecutorList.Count == 0
+                    || _scriptExecutorList.FindAll(f => f.IsRunCompleted).Count == _scriptExecutorList.Count)
+                  && executionReport.ExecutionStatus == Status.Completed)
             {
-                if ((_scriptExecutorList.Count == 0
-                        || _scriptExecutorList.FindAll(f => f.IsRunCompleted).Count == _scriptExecutorList.Count)
-                      && executionReport.ExecutionStatus == Status.Completed)
-                {
-                    _runningStatusData.IsCompleted = 1;
-                }
-                else
-                {
-                    _runningStatusData.IsCompleted = 0;
-                }
-                GetLog(_runningStatusData.Log);
-                GetError(_runningStatusData.Error);
-                GetReportData(_runningStatusData.ReportData);
-                GetTransactions(_runningStatusData.Transactions);
-                GetUserDetail(_runningStatusData.UserDetailData);
-                return _runningStatusData;
+                data.IsCompleted = 1;
             }
+            else
+            {
+                data.IsCompleted = 0;
+            }
+            GetLog(data.Log);
+            GetError(data.Error);
+            GetReportData(data.ReportData);
+            GetTransactions(data.Transactions);
+            GetUserDetail(data.UserDetailData);
+            return data;
         }
-
         public LoadGenRunningStatusData DisplayStatusData
         {
             get
@@ -68,11 +66,11 @@ namespace AppedoLTLoadGenerator
         private DataServer _dataServer = DataServer.GetInstance();
         private string _distribution = string.Empty;
 
-        private Queue<Log> _LogBuffer = new Queue<Log>();
-        private Queue<RequestException> _ErrorBuffer = new Queue<RequestException>();
-        private Queue<ReportData> _reportDataBuffer = new Queue<ReportData>();
-        private Queue<TransactionRunTimeDetail> _TransactionDataBuffer = new Queue<TransactionRunTimeDetail>();
-        private Queue<UserDetail> _UserDetailBuffer = new Queue<UserDetail>();
+        private  Queue<Log> _LogBuffer = new Queue<Log>();
+        private  Queue<RequestException> _ErrorBuffer = new Queue<RequestException>();
+        private  Queue<ReportData> _reportDataBuffer = new Queue<ReportData>();
+        private  Queue<TransactionRunTimeDetail> _TransactionDataBuffer = new Queue<TransactionRunTimeDetail>();
+        private  Queue<UserDetail> _UserDetailBuffer = new Queue<UserDetail>();
 
         public RunScenario(string scenarioXml, string distribution)
         {
@@ -219,7 +217,10 @@ namespace AppedoLTLoadGenerator
 
         void scr_OnLockReportData(ReportData data)
         {
-            lock (_reportDataBuffer) _reportDataBuffer.Enqueue(data);
+            lock (_reportDataBuffer)
+            {
+                _reportDataBuffer.Enqueue(data);
+            }
         }
 
         public void Stop()

@@ -79,7 +79,7 @@ namespace AppedoLTController
         {
             try
             {
-                CollectFailedTest();
+             //   CollectFailedTest();
                 StartClient();
                 while ((true))
                 {
@@ -287,7 +287,7 @@ namespace AppedoLTController
                            catch (Exception ex)
                            {
                                Thread.Sleep(10000);
-                               ExceptionHandler.WritetoEventLog(ex.StackTrace + ex.Message);
+                              // ExceptionHandler.WritetoEventLog(ex.StackTrace + ex.Message);
                            }
                        }
                    }

@@ -42,7 +42,7 @@ namespace AppedoLT.Core
         {
             _ipaddress = ipaddress;
             tcpClient = Connect(ipaddress, port);
-            tcpClient.ReceiveTimeout = 600000;
+            tcpClient.ReceiveTimeout = 120000;
         }
 
         public Trasport(string ipaddress, string port, int requesttimeout)

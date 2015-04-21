@@ -26,6 +26,14 @@ namespace AppedoLTController
         public ControllerStatus Status { get { return _staus; } }
         public string LastSentStatus = string.Empty;
         public LoadGenRunningStatusData _runningStatusData = new LoadGenRunningStatusData();
+        int _reportDataCount = 0;
+
+        public int ReportDataCount
+        {
+            get { return _reportDataCount; }
+            set { _reportDataCount = value; }
+        }
+
         public LoadGenRunningStatusData RunningStatusData
         {
             get
@@ -119,17 +127,18 @@ namespace AppedoLTController
                             Trasport loadGenConnection = new Trasport(loadGen.Attributes["ipaddress"].Value, "8889", 20000);
                             loadGenConnection.Send(new TrasportData("status", string.Empty, null));
                             TrasportData data = loadGenConnection.Receive();
-                            loadGenConnection.Send(new TrasportData("ok", string.Empty, null));
-                            loadGenConnection.Close();
                             LoadGenRunningStatusData status = Constants.GetInstance().Deserialise<LoadGenRunningStatusData>(data.DataStr);
                             totalCreated += status.CreatedUser;
                             totalCompleted += status.CompletedUser;
                             runcompleted += status.IsCompleted;
                             _runningStatusData.Log.AddRange(status.Log);
                             _runningStatusData.Error.AddRange(status.Error);
+                            _reportDataCount += status.ReportData.Count;
                             _runningStatusData.ReportData.AddRange(status.ReportData);
                             _runningStatusData.Transactions.AddRange(status.Transactions);
                             _runningStatusData.UserDetailData.AddRange(status.UserDetailData);
+                            loadGenConnection.Send(new TrasportData("ok", string.Empty, null));
+                            loadGenConnection.Close();
                             loadGenConnection = new Trasport(loadGen.Attributes["ipaddress"].Value, "8889");
                             loadGenConnection.Send(new TrasportData("scriptwisestatus", string.Empty, null));
                             scriptwisestatus.Append(loadGenConnection.Receive().DataStr);
@@ -142,6 +151,8 @@ namespace AppedoLTController
                         }
                         catch (Exception ex)
                         {
+                            ExceptionHandler.WritetoEventLog(ex.Message);
+                            Thread.Sleep(1000);
                             if (failedCount.ContainsKey(loadGen.Attributes["ipaddress"].Value) == false)
                             {
                                 failedCount.Add(loadGen.Attributes["ipaddress"].Value, 1);
@@ -175,6 +186,7 @@ namespace AppedoLTController
                                 ExceptionHandler.LogRunDetail(RunId, "node deleted successfully.");
                             }
                             DeleteReportFolder(RunId);
+
                         }
                         catch (Exception ex)
                         {
@@ -184,9 +196,8 @@ namespace AppedoLTController
                     }
                     if (runcompleted == loadGens.Count)
                     {
-                        // Thread.Sleep(2000);
-                        isEnd = true;
                         _staus = ControllerStatus.ReportGenerateCompleted;
+                        isEnd = true;
                     }
 
                 }
@@ -300,11 +311,15 @@ namespace AppedoLTController
                 data = new TrasportData("status", ASCIIEncoding.Default.GetString(Constants.GetInstance().Serialise(RunningStatusData)), header);
                 server.Send(data);
                 data = server.Receive();
-                _runningStatusData.Log.Clear();
-                _runningStatusData.Error.Clear();
-                _runningStatusData.ReportData.Clear();
-                _runningStatusData.Transactions.Clear();
-                _runningStatusData.UserDetailData.Clear();
+                if (data.Operation == "ok")
+                {
+                    
+                    _runningStatusData.Log.Clear();
+                    _runningStatusData.Error.Clear();
+                    _runningStatusData.ReportData.Clear();
+                    _runningStatusData.Transactions.Clear();
+                    _runningStatusData.UserDetailData.Clear();
+                }
             }
             catch (Exception ex)
             {

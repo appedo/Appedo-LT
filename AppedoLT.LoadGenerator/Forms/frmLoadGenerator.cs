@@ -27,7 +27,8 @@ namespace AppedoLTLoadGenerator
         LoadTestAgentXml _loadTestAgent;
         Dictionary<string, string> runScripts = new Dictionary<string, string>();
         StringBuilder logMsg = new StringBuilder();
-
+        LoadGenRunningStatusData _faildData = null;
+ 
         public LoadGenerator()
         {
             InitializeComponent();
@@ -74,7 +75,7 @@ namespace AppedoLTLoadGenerator
                                             try
                                             {
                                                 string reportFolder = data.Header["runid"] + "_" + (data.Header["loadgenname"] == null ? string.Empty : data.Header["loadgenname"]).Replace('.', '_');
-                                                GenerateReportFolder(reportFolder);
+                                              
                                                 if (runScripts.ContainsKey(data.Header["runid"]) == true)
                                                 {
                                                     runScripts[data.Header["runid"]] = data.DataStr;
@@ -108,6 +109,7 @@ namespace AppedoLTLoadGenerator
 
                                     case "run":
                                         {
+                                            _faildData = null;
                                             controller.Send(new TrasportData("ok", string.Empty, null));
                                             if (executionReport.ExecutionStatus == Status.Completed)
                                             {
@@ -120,7 +122,6 @@ namespace AppedoLTLoadGenerator
                                                 executionReport.TotalLoadGenUsed = Convert.ToInt16(runNode.Attributes["totalloadgenused"].Value);
                                                 executionReport.CurrentLoadGenid = Convert.ToInt16(runNode.Attributes["currentloadgenid"].Value);
                                                 executionReport.LoadGenName = runNode.Attributes["loadgenname"].Value;
-
                                                 run = new AppedoLTLoadGenerator.RunScenario(runScripts[data.Header["runid"]], runNode.Attributes["distribution"].Value);
                                                 if (run.Start() == true)
                                                 {
@@ -136,15 +137,21 @@ namespace AppedoLTLoadGenerator
 
                                     case "status":
                                         {
-                                            controller.Send(new TrasportData("status", ASCIIEncoding.Default.GetString(constants.Serialise(run.RunningStatusData)), null));
+                                            LoadGenRunningStatusData statusdata = run.GetData();
+                                            if(_faildData!=null)
+                                            {
+                                                statusdata.Log.AddRange(_faildData.Log);
+                                                statusdata.Error.AddRange(_faildData.Error);
+                                                statusdata.ReportData.AddRange(_faildData.ReportData);
+                                                statusdata.Transactions.AddRange(_faildData.Transactions);
+                                                statusdata.UserDetailData.AddRange(_faildData.UserDetailData);
+                                            }
+                                            _faildData = statusdata;
+                                            controller.Send(new TrasportData("status", ASCIIEncoding.Default.GetString(constants.Serialise(statusdata)), null));
                                             TrasportData ack = controller.Receive();
                                             if (ack.Operation == "ok")
                                             {
-                                                run.RunningStatusData.Log.Clear();
-                                                run.RunningStatusData.Error.Clear();
-                                                run.RunningStatusData.Transactions.Clear();
-                                                run.RunningStatusData.ReportData.Clear();
-                                                run.RunningStatusData.UserDetailData.Clear();
+                                                _faildData = null;
                                             }
                                         }
                                         break;
