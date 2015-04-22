@@ -91,6 +91,7 @@ namespace AppedoLTController
                 {
                     Directory.Delete(folderPath, true);
                     ExceptionHandler.LogRunDetail(reportname, "Directory deleted successfully.");
+                    
                 }
 
             }
@@ -186,7 +187,7 @@ namespace AppedoLTController
                                 ExceptionHandler.LogRunDetail(RunId, "node deleted successfully.");
                             }
                             DeleteReportFolder(RunId);
-
+                            ExceptionHandler.RunDetaillog.Remove(RunId);
                         }
                         catch (Exception ex)
                         {
@@ -206,9 +207,6 @@ namespace AppedoLTController
                     try
                     {
                         Thread.Sleep(10000);
-                        // ExceptionHandler.WritetoEventLog(ex.StackTrace + ex.Message + Environment.NewLine + ControllerXml.GetInstance().doc.InnerText);
-                        // _staus = ControllerStatus.RunCompleted;
-                        // new ResultFileGenerator(RunId).Genarate();
                         _staus = ControllerStatus.ReportGenerateCompleted;
                         SendStatus();
                         break;

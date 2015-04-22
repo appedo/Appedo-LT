@@ -79,7 +79,7 @@ namespace AppedoLTController
         {
             try
             {
-             //   CollectFailedTest();
+                CollectFailedTest(ControllerXml.GetInstance().doc.SelectSingleNode("//runs").CloneNode(true));
                 StartClient();
                 while ((true))
                 {
@@ -130,15 +130,12 @@ namespace AppedoLTController
                                                  Controllers[runid].RunningStatusData.Log.Clear();
                                              }
 
-                                             // UIclient.Send(new TrasportData("status", string.Format("createduser: {0}" + System.Environment.NewLine + "completeduser: {1}" + System.Environment.NewLine + "iscompleted: {2}" + System.Environment.NewLine, Controllers[runid].CreatedUser.ToString(), Controllers[runid].CompletedUser.ToString(), Controllers[runid].Status == ControllerStatus.ReportGenerateCompleted ? 1 : 0), null));
                                          }
                                          else
                                          {
                                              UIclient.Send(new TrasportData("status", Convert.ToString(constants.Serialise(new LoadGenRunningStatusData())), null));
                                              TrasportData ack = UIclient.Receive();
 
-
-                                             // UIclient.Send(new TrasportData("status", string.Format("createduser: {0}" + System.Environment.NewLine + "completeduser: {1}" + System.Environment.NewLine + "iscompleted: {2}" + System.Environment.NewLine, 0.ToString(), 0.ToString(), 0.ToString()), null));
                                          }
                                          break;
 
@@ -287,7 +284,7 @@ namespace AppedoLTController
                            catch (Exception ex)
                            {
                                Thread.Sleep(10000);
-                              // ExceptionHandler.WritetoEventLog(ex.StackTrace + ex.Message);
+                               // ExceptionHandler.WritetoEventLog(ex.StackTrace + ex.Message);
                            }
                        }
                    }
@@ -299,39 +296,48 @@ namespace AppedoLTController
                }).Start();
         }
 
-        void CollectFailedTest()
+        void CollectFailedTest(XmlNode faildRunNode)
         {
             new Thread(() =>
                 {
+                    Trasport server = null;
+                    List<string> removedRunids = new List<string>();
                     try
                     {
-                        while (true)
+                        foreach (XmlNode runnode in faildRunNode.SelectNodes("./run"))
                         {
-                            try
+                            if (runnode.Attributes["sourceip"] != null && Controllers.ContainsKey(runnode.Attributes["reportname"].Value) == false)
                             {
-                                foreach (XmlNode runnode in ControllerXml.GetInstance().doc.SelectNodes("//runs/run"))
+                                foreach (XmlNode lodgen in runnode.SelectNodes(".//loadgen"))
                                 {
-                                    if (runnode.Attributes["sourceip"] != null && Controllers.ContainsKey(runnode.Attributes["reportname"].Value) == false)
+                                    try
                                     {
-                                        Dictionary<string, string> runid = new Dictionary<string, string>();
-                                        runid.Add("runid", runnode.Attributes["reportname"].Value);
-                                        Trasport server = new Trasport(runnode.Attributes["sourceip"].Value, Constants.GetInstance().AppedoPort);
-                                        server.Send(new TrasportData("updaterunidstatus", string.Empty, runid));
-                                        new ResultFileGenerator(runnode.Attributes["reportname"].Value).Genarate();
+                                        server = new Trasport(lodgen.Attributes["ipaddress"].Value, "8889");
+                                        server.Send(new TrasportData("stop", string.Empty, null));
+                                    }
+                                    catch (Exception ex)
+                                    {
+                                        ExceptionHandler.WritetoEventLog(ex.StackTrace + ex.Message);
                                     }
                                 }
+                                Dictionary<string, string> runid = new Dictionary<string, string>();
+                                runid.Add("runid", runnode.Attributes["reportname"].Value);
+                                server = new Trasport(runnode.Attributes["sourceip"].Value, Constants.GetInstance().AppedoPort);
+                                server.Send(new TrasportData("updaterunidstatus", string.Empty, runid));
+                                if (ControllerXml.GetInstance().doc.SelectSingleNode("//runs/run[@reportname='" + runnode.Attributes["reportname"].Value + "']") != null)
+                                {
+                                    ControllerXml.GetInstance().doc.SelectSingleNode("//runs").RemoveChild(ControllerXml.GetInstance().doc.SelectSingleNode("//runs/run[@reportname='" + runnode.Attributes["reportname"].Value + "']"));
+                                }
                             }
-                            catch (Exception ex)
-                            {
-                                ExceptionHandler.WritetoEventLog(ex.StackTrace + ex.Message);
-                            }
-                            Thread.Sleep(10000);
+                        }
+                        lock (ControllerXml.GetInstance())
+                        {
+                            ControllerXml.GetInstance().Save();
                         }
                     }
                     catch (Exception ex)
                     {
                         ExceptionHandler.WritetoEventLog(ex.StackTrace + ex.Message);
-                        Thread.Sleep(10000);
                     }
                 }).Start();
         }
@@ -385,7 +391,7 @@ namespace AppedoLTController
                     List<string> unAvailableLoadGens = new List<string>();
                     #region SendData
                     XmlNode runDetail = null;
-                    string loadGensStr=data.Header["loadgens"];
+                    string loadGensStr = data.Header["loadgens"];
                     try
                     {
                         data.Operation = "savescenario";

@@ -116,6 +116,7 @@ namespace AppedoLT.Core
     public class RequestException
     {
         private DateTime _time = new DateTime();
+        private string _errorcode = string.Empty;
 
         [DataMember(Name = "requestexceptionid")]
         public string requestexceptionid { get; set; }
@@ -138,7 +139,15 @@ namespace AppedoLT.Core
         public string iterationid = string.Empty;
 
         [DataMember(Name = "errorcode")]
-        public string errorcode = string.Empty;
+        public string errorcode
+        {
+            get {return _errorcode; }
+            set {
+                if (value == null || value == string.Empty)
+                    _errorcode = "700";
+                else _errorcode = value;
+            }
+        }
 
         [DataMember(Name = "message")]
         public string message = string.Empty;

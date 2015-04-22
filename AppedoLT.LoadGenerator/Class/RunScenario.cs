@@ -1,6 +1,5 @@
 ﻿using AppedoLT.BusinessLogic;
 using AppedoLT.Core;
-using AppedoLT.DataAccessLayer;
 using System;
 using System.Collections.Generic;
 using System.Net.Sockets;
@@ -20,7 +19,7 @@ namespace AppedoLTLoadGenerator
         public LoadGenRunningStatusData _runningStatusData = new LoadGenRunningStatusData();
 
       
-       public LoadGenRunningStatusData GetData()
+        public LoadGenRunningStatusData GetData()
         {
             LoadGenRunningStatusData data = new LoadGenRunningStatusData();
             if ((_scriptExecutorList.Count == 0
@@ -63,7 +62,6 @@ namespace AppedoLTLoadGenerator
         private ExecutionReport executionReport = ExecutionReport.GetInstance();
         private int _tempCreatedUser = 0;
         private int _tempCompletedUser = 0;
-        private DataServer _dataServer = DataServer.GetInstance();
         private string _distribution = string.Empty;
 
         private  Queue<Log> _LogBuffer = new Queue<Log>();

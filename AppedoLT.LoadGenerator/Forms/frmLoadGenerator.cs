@@ -1,5 +1,4 @@
 ﻿using AppedoLT.Core;
-using AppedoLT.DataAccessLayer;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -18,17 +17,16 @@ namespace AppedoLTLoadGenerator
     public partial class LoadGenerator : Form
     {
         NotifyIcon ni = new NotifyIcon();
-        DataServer resultLog = DataServer.GetInstance();
+
         TcpListener serverSocket = new TcpListener(8889);
         RunScenario run;
         BackgroundWorker worker = new BackgroundWorker();
         Constants constants = Constants.GetInstance();
         ExecutionReport executionReport = ExecutionReport.GetInstance();
-        LoadTestAgentXml _loadTestAgent;
-        Dictionary<string, string> runScripts = new Dictionary<string, string>();
+        Dictionary<string, Dictionary<string, string>> runScripts = new Dictionary<string, Dictionary<string, string>>();
         StringBuilder logMsg = new StringBuilder();
         LoadGenRunningStatusData _faildData = null;
- 
+
         public LoadGenerator()
         {
             InitializeComponent();
@@ -40,7 +38,7 @@ namespace AppedoLTLoadGenerator
                 if (!Directory.Exists(".\\Upload")) Directory.CreateDirectory(".\\Upload");
                 if (!Directory.Exists(".\\Variables")) Directory.CreateDirectory(".\\Variables");
                 serverSocket.Start();
-                _loadTestAgent = LoadTestAgentXml.GetInstance();
+
                 ni.Icon = new Form().Icon;
                 ni.Text = "AppedoLT Loadgenerator.";
                 ni.Visible = true;
@@ -75,27 +73,23 @@ namespace AppedoLTLoadGenerator
                                             try
                                             {
                                                 string reportFolder = data.Header["runid"] + "_" + (data.Header["loadgenname"] == null ? string.Empty : data.Header["loadgenname"]).Replace('.', '_');
-                                              
+                                                Dictionary<string, string> runDetail = new Dictionary<string, string>();
+                                                runDetail.Add("data", data.DataStr);
+                                                runDetail.Add("reportfoldername", reportFolder);
+                                                runDetail.Add("scenarioname", data.Header["scenarioname"]);
+                                                runDetail.Add("totalloadgenused", data.Header["totalloadgen"] == null ? "1" : data.Header["totalloadgen"]);
+                                                runDetail.Add("currentloadgenid", data.Header["currentloadgenid"] == null ? "1" : data.Header["currentloadgenid"]);
+                                                runDetail.Add("souceip", ((IPEndPoint)controller.tcpClient.Client.RemoteEndPoint).Address.ToString());
+                                                runDetail.Add("loadgenname", data.Header["loadgenname"] == null ? string.Empty : data.Header["loadgenname"]);
+                                                runDetail.Add("distribution", data.Header["distribution"] == null ? string.Empty : data.Header["distribution"]);
                                                 if (runScripts.ContainsKey(data.Header["runid"]) == true)
                                                 {
-                                                    runScripts[data.Header["runid"]] = data.DataStr;
+                                                    runScripts[data.Header["runid"]] = runDetail;
                                                 }
                                                 else
                                                 {
-                                                    runScripts.Add(data.Header["runid"], data.DataStr);
+                                                    runScripts.Add(data.Header["runid"], runDetail);
                                                 }
-                                                _loadTestAgent.doc.SelectSingleNode("runs").AppendChild(
-                                                                    _loadTestAgent.CreadRun(data.Header["runid"],
-                                                                                            reportFolder,
-                                                                                            data.Header["scenarioname"],
-                                                                                            data.Header["totalloadgen"] == null ? "1" : data.Header["totalloadgen"],
-                                                                                            data.Header["currentloadgenid"] == null ? "1" : data.Header["currentloadgenid"],
-                                                                                            ((IPEndPoint)controller.tcpClient.Client.RemoteEndPoint).Address.ToString(),
-                                                                                            data.Header["loadgenname"] == null ? string.Empty : data.Header["loadgenname"],
-                                                                                             data.Header["distribution"] == null ? string.Empty : data.Header["distribution"]
-                                                                                           ));
-
-                                                _loadTestAgent.Save();
                                                 ni.BalloonTipText = "Saved " + data.Header["runid"];
                                                 ni.ShowBalloonTip(2000);
                                                 controller.Send(new TrasportData("ok", string.Empty, null));
@@ -115,21 +109,24 @@ namespace AppedoLTLoadGenerator
                                             {
                                                 executionReport.ExecutionStatus = Status.Running;
                                                 logMsg = new StringBuilder();
-                                                DataServer.GetInstance().logs.Clear();
-                                                XmlNode runNode = _loadTestAgent.doc.SelectSingleNode("//runs/run[@runid='" + data.Header["runid"] + "']");
-                                                executionReport.ReportName = runNode.Attributes["reportfoldername"].Value;
-                                                executionReport.ScenarioName = runNode.Attributes["scenarioname"].Value;
-                                                executionReport.TotalLoadGenUsed = Convert.ToInt16(runNode.Attributes["totalloadgenused"].Value);
-                                                executionReport.CurrentLoadGenid = Convert.ToInt16(runNode.Attributes["currentloadgenid"].Value);
-                                                executionReport.LoadGenName = runNode.Attributes["loadgenname"].Value;
-                                                run = new AppedoLTLoadGenerator.RunScenario(runScripts[data.Header["runid"]], runNode.Attributes["distribution"].Value);
-                                                if (run.Start() == true)
+                                                if (runScripts.ContainsKey(data.Header["runid"]) == true)
                                                 {
-                                                    ni.Text = "Running...";
-                                                    ni.BalloonTipText = "Running...";
-                                                    ni.ShowBalloonTip(2000);
-                                                    if (runScripts.ContainsKey(data.Header["runid"]) == true) runScripts.Remove(data.Header["runid"]);
-                                                    UpdateStatus();
+                                                    Dictionary<string, string> runDetail = runScripts[data.Header["runid"]];
+
+                                                    executionReport.ReportName = runDetail["reportfoldername"];
+                                                    executionReport.ScenarioName = runDetail["scenarioname"];
+                                                    executionReport.TotalLoadGenUsed = Convert.ToInt16(runDetail["totalloadgenused"]);
+                                                    executionReport.CurrentLoadGenid = Convert.ToInt16(runDetail["currentloadgenid"]);
+                                                    executionReport.LoadGenName = runDetail["loadgenname"];
+                                                    run = new AppedoLTLoadGenerator.RunScenario(runDetail["data"], runDetail["distribution"]);
+                                                    if (run.Start() == true)
+                                                    {
+                                                        ni.Text = "Running...";
+                                                        ni.BalloonTipText = "Running...";
+                                                        ni.ShowBalloonTip(2000);
+                                                        if (runScripts.ContainsKey(data.Header["runid"]) == true) runScripts.Remove(data.Header["runid"]);
+                                                        UpdateStatus();
+                                                    }
                                                 }
                                             }
                                         }
@@ -138,7 +135,7 @@ namespace AppedoLTLoadGenerator
                                     case "status":
                                         {
                                             LoadGenRunningStatusData statusdata = run.GetData();
-                                            if(_faildData!=null)
+                                            if (_faildData != null)
                                             {
                                                 statusdata.Log.AddRange(_faildData.Log);
                                                 statusdata.Error.AddRange(_faildData.Error);
@@ -188,15 +185,15 @@ namespace AppedoLTLoadGenerator
                                             TrasportData agn = controller.Receive();
                                             if (agn.Operation == "ok")
                                             {
-                                                if (agn.Header["receivedsize"] == (new FileInfo(filePath)).Length.ToString())
-                                                {
-                                                    if (LoadTestAgentXml.GetInstance().doc.SelectSingleNode("//runs/run[@runid='" + reportName + "']") != null)
-                                                    {
-                                                        LoadTestAgentXml.GetInstance().doc.SelectSingleNode("//runs").RemoveChild(LoadTestAgentXml.GetInstance().doc.SelectSingleNode("//runs/run[@runid='" + reportName + "']"));
-                                                        LoadTestAgentXml.GetInstance().Save();
-                                                        // Directory.Delete(directoryPath,true);
-                                                    }
-                                                }
+                                                //if (agn.Header["receivedsize"] == (new FileInfo(filePath)).Length.ToString())
+                                                //{
+                                                //    if (LoadTestAgentXml.GetInstance().doc.SelectSingleNode("//runs/run[@runid='" + reportName + "']") != null)
+                                                //    {
+                                                //        LoadTestAgentXml.GetInstance().doc.SelectSingleNode("//runs").RemoveChild(LoadTestAgentXml.GetInstance().doc.SelectSingleNode("//runs/run[@runid='" + reportName + "']"));
+                                                //        LoadTestAgentXml.GetInstance().Save();
+                                                //        // Directory.Delete(directoryPath,true);
+                                                //    }
+                                                //}
                                             }
                                         }
                                         break;
@@ -218,12 +215,12 @@ namespace AppedoLTLoadGenerator
                                                 controller.Send(new TrasportData("file", null, filePath));
                                             else
                                             {
-                                                XmlNode runNode = LoadTestAgentXml.GetInstance().doc.SelectSingleNode("//runs/run[@runid='" + reportName + "']");
-                                                ReportMaster rm = new ReportMaster(runNode.Attributes["reportfoldername"].Value, Convert.ToDateTime(runNode.Attributes["scenariostarttime"].Value), runNode.Attributes["loadgenname"].Value);
-                                                rm.SetUserRunTime();
-                                                rm.SetChartSummary();
-                                                if (File.Exists(filePath) == true)
-                                                    controller.Send(new TrasportData("file", null, filePath));
+                                                //XmlNode runNode = LoadTestAgentXml.GetInstance().doc.SelectSingleNode("//runs/run[@runid='" + reportName + "']");
+                                                //ReportMaster rm = new ReportMaster(runNode.Attributes["reportfoldername"].Value, Convert.ToDateTime(runNode.Attributes["scenariostarttime"].Value), runNode.Attributes["loadgenname"].Value);
+                                                //rm.SetUserRunTime();
+                                                //rm.SetChartSummary();
+                                                //if (File.Exists(filePath) == true)
+                                                //    controller.Send(new TrasportData("file", null, filePath));
                                             }
                                         }
                                         break;

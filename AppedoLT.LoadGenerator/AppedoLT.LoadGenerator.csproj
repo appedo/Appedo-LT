@@ -79,7 +79,6 @@
     <Compile Include="Class\InstallerClass.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Class\LoadTestAgentXml.cs" />
     <Compile Include="Forms\frmLoadGenerator.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -105,12 +104,6 @@
     <None Include="App.config">
       <SubType>Designer</SubType>
     </None>
-    <Content Include="commands.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="execute.bat">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -130,10 +123,6 @@
     <ProjectReference Include="..\AppedoLT.Core\AppedoLT.Core.csproj">
       <Project>{0FD4A43E-E7BC-45BD-8897-537A46A0D54D}</Project>
       <Name>AppedoLT.Core</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\AppedoLT.DataAccessLayer\AppedoLT.DataAccessLayer.csproj">
-      <Project>{32074F4C-9AA8-42C8-A711-97BFF96E4C82}</Project>
-      <Name>AppedoLT.DataAccessLayer</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
@@ -160,14 +149,6 @@
       <ProductName>Windows Installer 4.5</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="loadtestagent.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="sqlite3.exe">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

@@ -2,7 +2,6 @@
 using System.Windows.Forms;
 using System.Threading;
 using System.Text.RegularExpressions;
-using AppedoLT.DataAccessLayer;
 using System;
 using System.Text;
 using System.Xml;

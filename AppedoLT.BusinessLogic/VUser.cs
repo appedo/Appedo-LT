@@ -1227,10 +1227,11 @@ namespace AppedoLT.BusinessLogic
                 exception.time = DateTime.Now;
                 exception.from = "Tool";
                 exception.message = ex.Message;
+                exception.errorcode = "700";
                 LockException(exception);
 
                 requestResponse.IsSucess = false;
-                responseCode = exception.errorcode = "400";
+                responseCode = exception.errorcode;
                 return requestResponse;
             }
 
@@ -1612,6 +1613,7 @@ namespace AppedoLT.BusinessLogic
             exception.time = DateTime.Now;
             exception.from = "Script";
             exception.message = arg.Description;
+            exception.errorcode = "700";
             LockException(exception);
         }
 
