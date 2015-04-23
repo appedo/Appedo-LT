@@ -63,7 +63,6 @@ namespace AppedoLT
                     }
                 }
                 _doc.Load(file);
-
             }
             catch (Exception ex)
             {

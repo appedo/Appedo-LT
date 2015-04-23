@@ -1,18 +1,15 @@
 ﻿using AppedoLT.Core;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace AppedoLT
 {
     public partial class frmLogin : Form
     {
-        public string Userid { get; set; }
+        private string _userid = string.Empty;
+
+        public string Userid { get { return _userid; } set { _userid = value; } }
 
         public frmLogin()
         {
@@ -36,7 +33,7 @@ namespace AppedoLT
                     TrasportData respose = server.Receive();
                     if (respose.Operation.ToLower() == "ok" && respose.Header["success"] == "1")
                     {
-                        Userid = respose.Header["userid"];
+                        _userid = respose.Header["userid"];
                         Design.mnuiLogin.Text = "&Logout";
                     }
                     else
@@ -55,11 +52,6 @@ namespace AppedoLT
                 MessageBox.Show(ex.Message);
                 this.DialogResult = DialogResult.None;
             }
-        }
-
-        private void btnCancel_Click(object sender, EventArgs e)
-        {
-
         }
 
         private bool ValidateData()

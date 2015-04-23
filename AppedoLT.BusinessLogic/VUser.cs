@@ -649,10 +649,10 @@ namespace AppedoLT.BusinessLogic
 
                                     #endregion
                                 }
-                                else
-                                {
+                               // else
+                              //  {
                                     LockResponseTime(req.RequestNode.Attributes["id"].Value, req.RequestNode.Attributes["Path"] == null ? req.RequestName : req.RequestNode.Attributes["Path"].Value, req.StartTime, req.EndTime, req.ResponseTime, req.ResponseSize, req.ResponseCode.ToString());
-                                }
+                              //  }
 
                                 #region SecondaryReqEnable
                                 if (Convert.ToBoolean(_vuScriptXml.Attributes["dynamicreqenable"].Value) == true && !(_browserCache == true && _index > 1))

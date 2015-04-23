@@ -199,8 +199,8 @@ namespace AppedoLT
             // tabsDesign
             // 
             this.tabsDesign.AllTabsEqualHeight = false;
-            this.tabsDesign.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.tabsDesign.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tabsDesign.AutoScrollMargin = new System.Drawing.Size(0, 0);
             this.tabsDesign.AutoScrollMinSize = new System.Drawing.Size(0, 0);
@@ -352,8 +352,8 @@ namespace AppedoLT
             // 
             // tvScenarios
             // 
-            this.tvScenarios.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.tvScenarios.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tvScenarios.BackColor = System.Drawing.SystemColors.Window;
             this.tvScenarios.ContextMenuStrip = this.cmnuScenario;
@@ -478,7 +478,7 @@ namespace AppedoLT
             // 
             // pnlRun
             // 
-            this.pnlRun.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.pnlRun.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pnlRun.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(219)))), ((int)(((byte)(255)))));
             this.pnlRun.Controls.Add(this.label2);
@@ -640,8 +640,8 @@ namespace AppedoLT
             // 
             // pnlScriptSettings
             // 
-            this.pnlScriptSettings.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.pnlScriptSettings.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pnlScriptSettings.AutoScroll = true;
             this.pnlScriptSettings.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(219)))), ((int)(((byte)(255)))));
@@ -878,8 +878,8 @@ namespace AppedoLT
             // 
             // radGridView1
             // 
-            this.radGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.radGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.radGridView1.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.radGridView1.Location = new System.Drawing.Point(1, 33);
@@ -913,7 +913,7 @@ namespace AppedoLT
             // 
             // ddlReportName
             // 
-            this.ddlReportName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.ddlReportName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ddlReportName.DropDownAnimationEasing = Telerik.WinControls.RadEasingType.InQuad;
             this.ddlReportName.DropDownAnimationEnabled = true;
@@ -1406,9 +1406,8 @@ namespace AppedoLT
         private System.Windows.Forms.ColumnHeader ivcErrorCode;
         private System.Windows.Forms.Panel pnlScriptSettings;
         private Telerik.WinControls.UI.RadMenu radMenu1;
-        
+
 
 
     }
 }
-

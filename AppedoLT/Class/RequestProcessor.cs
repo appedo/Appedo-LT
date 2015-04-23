@@ -28,7 +28,7 @@ namespace AppedoLT
 
     public class RequestProcessor : IRequestProcessor
     {
-        #region The private property
+        #region The private fields
 
         private Connection _serverConnection = null;
         private int _contentLength = 0;

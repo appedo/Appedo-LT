@@ -78,7 +78,6 @@ namespace AppedoLT
                     using (StreamWriter streamWriter = new StreamWriter(new FileStream(_filePath, FileMode.OpenOrCreate, FileAccess.ReadWrite)))
                     {
                         StringBuilder xml = new StringBuilder();
-                        //xml.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>");
                         xml.Append(content);
                         streamWriter.Write(xml.ToString());
                     }
