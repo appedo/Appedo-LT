@@ -8,17 +8,25 @@ using System.Threading;
 using System.Timers;
 using System.Xml;
 
-
 namespace AppedoLTLoadGenerator
 {
     public class RunScenario
     {
-        List<ScriptExecutor> _scriptExecutorList = new List<ScriptExecutor>();
-        string _scenarioXml;
+        private  List<ScriptExecutor> _scriptExecutorList = new List<ScriptExecutor>();
+        private string _scenarioXml;
+        private int _tempCreatedUser = 0;
+        private int _tempCompletedUser = 0;
+        private string _distribution = string.Empty;
+        private System.Timers.Timer _statusUpdateTimer;
+        private LoadGenRunningStatusData _runningStatusData = new LoadGenRunningStatusData();
+        private ExecutionReport executionReport = ExecutionReport.GetInstance();
+        private Constants _constants = Constants.GetInstance();
+        private Queue<Log> _LogBuffer = new Queue<Log>();
+        private Queue<RequestException> _ErrorBuffer = new Queue<RequestException>();
+        private Queue<ReportData> _reportDataBuffer = new Queue<ReportData>();
+        private Queue<TransactionRunTimeDetail> _TransactionDataBuffer = new Queue<TransactionRunTimeDetail>();
+        private Queue<UserDetail> _UserDetailBuffer = new Queue<UserDetail>();
 
-        public LoadGenRunningStatusData _runningStatusData = new LoadGenRunningStatusData();
-
-      
         public LoadGenRunningStatusData GetData()
         {
             LoadGenRunningStatusData data = new LoadGenRunningStatusData();
@@ -39,6 +47,7 @@ namespace AppedoLTLoadGenerator
             GetUserDetail(data.UserDetailData);
             return data;
         }
+
         public LoadGenRunningStatusData DisplayStatusData
         {
             get
@@ -56,19 +65,6 @@ namespace AppedoLTLoadGenerator
                 return _runningStatusData;
             }
         }
-
-        private System.Timers.Timer _statusUpdateTimer;
-        private Constants _constants = Constants.GetInstance();
-        private ExecutionReport executionReport = ExecutionReport.GetInstance();
-        private int _tempCreatedUser = 0;
-        private int _tempCompletedUser = 0;
-        private string _distribution = string.Empty;
-
-        private  Queue<Log> _LogBuffer = new Queue<Log>();
-        private  Queue<RequestException> _ErrorBuffer = new Queue<RequestException>();
-        private  Queue<ReportData> _reportDataBuffer = new Queue<ReportData>();
-        private  Queue<TransactionRunTimeDetail> _TransactionDataBuffer = new Queue<TransactionRunTimeDetail>();
-        private  Queue<UserDetail> _UserDetailBuffer = new Queue<UserDetail>();
 
         public RunScenario(string scenarioXml, string distribution)
         {

@@ -1,5 +1,5 @@
 ﻿using AppedoLT.Core;
-using AppedoLT.DataAccessLayer;
+
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -32,7 +32,7 @@ namespace AppedoLT.BusinessLogic
         private System.Timers.Timer _tmrRun = new System.Timers.Timer();
         private System.Timers.Timer _tmrVUCreator = new System.Timers.Timer();
         private VUScriptSetting _setting = new VUScriptSetting();
-        private Result _resultLog = Result.GetInstance();
+       
         private Constants _constant = Constants.GetInstance();
 
         #endregion

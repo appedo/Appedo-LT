@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AppedoLT.Core;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
@@ -10,11 +11,6 @@ using System.Threading;
 using System.Web;
 using System.Windows.Forms;
 using System.Xml;
-using AppedoLT.Core;
-using AppedoLT.DataAccessLayer;
-using System.Runtime.Serialization.Json;
-using System.Messaging;
-
 
 namespace AppedoLT.BusinessLogic
 {

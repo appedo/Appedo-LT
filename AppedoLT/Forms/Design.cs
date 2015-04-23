@@ -9,7 +9,6 @@ using System.IO;
 using System.Net;
 using System.Net.Sockets;
 using System.Reflection;
-using System.Security.AccessControl;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
@@ -30,9 +29,9 @@ namespace AppedoLT
         private Constants _constants = Constants.GetInstance();
         private Boolean _isUseLoadGen = false;
         private ucDesign _ucDesignObj = null;
-        ExecutionReport executionReport = ExecutionReport.GetInstance();
-        private DataServer _dataServer=DataServer.GetInstance();
-      
+        private ExecutionReport executionReport = ExecutionReport.GetInstance();
+        private DataServer _dataServer = DataServer.GetInstance();
+
         public Design()
         {
             try
@@ -42,7 +41,6 @@ namespace AppedoLT
                 radMenu1.Items.Add(mnuiLogin);
                 mnuiLogin.Name = "mnuiLogin";
                 mnuiLogin.Text = "&Login";
-                mnuiLogin.TextChanged += new System.EventHandler(this.mnuiLogin_TextChanged);
                 mnuiLogin.Click += new System.EventHandler(this.mnuiLogin_Click);
 
                 XmlNode vuscripts = RepositoryXml.GetInstance().Doc.SelectSingleNode("//vuscripts");
@@ -240,22 +238,6 @@ namespace AppedoLT
                 ExceptionHandler.WritetoEventLog(ex.StackTrace + Environment.NewLine + ex.Message);
             }
         }
-        private void Design_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            try
-            {
-                if (MessageBox.Show("Do you want to save changes?", "Save", MessageBoxButtons.YesNo) == DialogResult.Yes)
-                {
-                    _ucDesignObj.btnScriptSave_Click(null, null);
-                }
-                Process.GetCurrentProcess().Kill();
-                AppedoLT.Core.Constants.GetInstance().ReSetFirefoxProxy();//(Core.Constants.GetInstance().ExecutingAssemblyLocation + "\\proxyresetff.bat");
-            }
-            catch (Exception ex)
-            {
-                ExceptionHandler.WritetoEventLog(ex.StackTrace + Environment.NewLine + ex.Message);
-            }
-        }
         private void tabsDesign_Resize(object sender, EventArgs e)
         {
             tabsDesign.ItemsOffset = (tabsDesign.Width / 3) + 5;
@@ -290,7 +272,7 @@ namespace AppedoLT
                         GetTreeNode(container, containerNode);
                         vuScriptNode.Nodes.Add(containerNode);
                     }
-                   _ucDesignObj.tvRequest.Nodes.Add(vuScriptNode);
+                    _ucDesignObj.tvRequest.Nodes.Add(vuScriptNode);
                 }
 
             }
@@ -347,7 +329,6 @@ namespace AppedoLT
             tabiRun.Select();
             btnStop_Click(null, null);
         }
-       
         private void radMenuItem5_Click(object sender, EventArgs e)
         {
             new About_FloodGates().ShowDialog();
@@ -378,7 +359,7 @@ namespace AppedoLT
             }
         }
 
-      
+
 
         public XmlDocument GetScenarioForRun(string scenarioid, string reportName, int totalLoadGen, int currentLoadGenid, bool enableipspoofing)
         {
@@ -394,11 +375,11 @@ namespace AppedoLT
 
                 foreach (XmlNode script in scenario.ChildNodes)
                 {
-                    VuscriptXml vuscript =new VuscriptXml(script.Attributes["id"].Value);
-                    XmlNode scriptNode=vuscript.Doc.SelectSingleNode("//vuscript");
+                    VuscriptXml vuscript = new VuscriptXml(script.Attributes["id"].Value);
+                    XmlNode scriptNode = vuscript.Doc.SelectSingleNode("//vuscript");
                     if (scriptNode.HasChildNodes == true)
                     {
-                        XmlNode tempScript=scriptNode.Clone();
+                        XmlNode tempScript = scriptNode.Clone();
                         tempScript = _repositoryXml.Doc.ImportNode(tempScript, true);
                         script.AppendChild(tempScript);
                         XmlNode importNode = scenarioDoc.ImportNode(script, true);
@@ -654,13 +635,13 @@ namespace AppedoLT
             }
             else
             {
-               if (ValidateLicence((XmlNode)tvScenarios.SelectedNode.Tag) == true)
+                if (ValidateLicence((XmlNode)tvScenarios.SelectedNode.Tag) == true)
                 {
                     try
                     {
                         _scriptExecutorList.Clear();
                         tmrExecution.Stop();
-                     
+
                         frmRun objFrmRun = new frmRun();
                         if (objFrmRun.ShowDialog() == DialogResult.OK)
                         {
@@ -668,9 +649,9 @@ namespace AppedoLT
                             lblErrorCount.Text = "0";
                             _repositoryXml.Save();
                             executionReport.ReportName = objFrmRun.strReportName;
-                            executionReport.ScenarioName= tvScenarios.SelectedNode.Text;
+                            executionReport.ScenarioName = tvScenarios.SelectedNode.Text;
                             executionReport.ExecutionStatus = Status.Running;
-                          
+
                             Request.IPSpoofingEnabled = Convert.ToBoolean(((XmlNode)tvScenarios.SelectedNode.Tag).Attributes["enableipspoofing"].Value);
                             lblStatus.Text = "Running";
                             LoadReportName(executionReport.ReportName);
@@ -686,7 +667,7 @@ namespace AppedoLT
                                 #region Without Loadgen
 
                                 XmlDocument scenario = GetScenarioForRun(((XmlNode)tvScenarios.SelectedNode.Tag).Attributes["id"].Value, executionReport.ReportName, 1, 1, Convert.ToBoolean(((XmlNode)tvScenarios.SelectedNode.Tag).Attributes["enableipspoofing"].Value));
-                                run.AppendChild( GetRuntimeScriptDetail(scenario));
+                                run.AppendChild(GetRuntimeScriptDetail(scenario));
                                 VariableManager.dataCenter = new VariableManager();
                                 foreach (XmlNode script in scenario.SelectNodes("//script"))
                                 {
@@ -696,7 +677,7 @@ namespace AppedoLT
                                     ScriptExecutor scriptRunnerSce = new ScriptExecutor(setting, vuscript, executionReport.ReportName);
                                     _scriptExecutorList.Add(scriptRunnerSce);
                                 }
-                               
+
                                 #region Run detail
 
                                 run.Attributes.Append(_repositoryXml.GetAttribute("starttime", DateTime.Now.ToString()));
@@ -722,12 +703,12 @@ namespace AppedoLT
                                 runTime.Start();
                                 tmrExecution.Start();
                                 #endregion
-                               _isUseLoadGen = false;
+                                _isUseLoadGen = false;
                             }
                             else
                             {
                                 _loadGeneratorips.Clear();
-                                 #region Loadgen
+                                #region Loadgen
                                 bool isAllLoadgenConnected = true;
                                 StringBuilder disconnectedHost = new StringBuilder();
                                 foreach (XmlNode loadgen in objUCLoadGen.GetLoadGenerators())
@@ -753,7 +734,7 @@ namespace AppedoLT
                                 }
                                 else
                                 {
-                                    
+
                                     int loadGenId = 0;
                                     List<XmlNode> loadGens = objUCLoadGen.GetLoadGenerators();
 
@@ -766,13 +747,13 @@ namespace AppedoLT
                                         try
                                         {
                                             Trasport controller = new Trasport(loadgen.Attributes["ipaddress"].Value, "8888");
-                                            Dictionary<string,string> header=new Dictionary<string,string>();
+                                            Dictionary<string, string> header = new Dictionary<string, string>();
                                             header.Add("reportname", executionReport.ReportName);
                                             header.Add("scenarioname", executionReport.ScenarioName);
                                             header.Add("loadgens", "192.168.1.70");
                                             controller.Send(new TrasportData("run", scenario.InnerXml, header));
                                             _loadGeneratorips.Add(loadgen.Attributes["ipaddress"].Value);
-                                            
+
                                             #region Run detail
                                             XmlNode loadGenDetail = loadgen.Clone();
                                             loadGenDetail.Attributes.Append(_repositoryXml.GetAttribute("resultfilereceived", false.ToString()));
@@ -813,7 +794,7 @@ namespace AppedoLT
 
         void scr_OnLockUserDetail(UserDetail data)
         {
-            
+
         }
 
         void scr_OnLockTransactions(TransactionRunTimeDetail data)
@@ -875,13 +856,13 @@ namespace AppedoLT
                             thread.Stop();
                         }
                     }
-                    executionReport.ExecutionStatus =Status.Completed;
+                    executionReport.ExecutionStatus = Status.Completed;
                     WaitUntillExecutionComplete();
                     CreateSummaryReport(executionReport.ReportName);
                     ReportMaster reportMaster = new ReportMaster(executionReport.ReportName);
                     reportMaster.GenerateReports();
                     UpdateReportStatus();
-                    
+
                 }
                 else
                 {
@@ -890,7 +871,7 @@ namespace AppedoLT
                         try
                         {
                             Trasport controller = new Trasport(objClient, "8888");
-                            controller.Send(new TrasportData("stop",string.Empty,null));
+                            controller.Send(new TrasportData("stop", string.Empty, null));
                             controller.Receive();
                         }
                         catch (Exception ex)
@@ -909,7 +890,7 @@ namespace AppedoLT
                         ReportMaster reportMaster = new ReportMaster(executionReport.ReportName);
                         reportMaster.GenerateReports();
                         UpdateReportStatus();
-                   }
+                    }
                 }
             }
             catch (Exception ex)
@@ -991,7 +972,7 @@ namespace AppedoLT
 
                 if (tvScenarios.SelectedNode.Level == 0)
                 {
-                  //  objUCLoadGen.Visible = true;
+                    //  objUCLoadGen.Visible = true;
                 }
                 else if (tvScenarios.SelectedNode.Level == 1)
                 {
@@ -1081,10 +1062,10 @@ namespace AppedoLT
                         {
                             #region Retrive Created & Completed UserCount
                             Trasport controller = new Trasport(objClient, "8888");
-                            controller.Send(new TrasportData("status",string.Empty,null));
-                            TrasportData data=controller.Receive();
-                           
-                            string dataStr=data.DataStr;
+                            controller.Send(new TrasportData("status", string.Empty, null));
+                            TrasportData data = controller.Receive();
+
+                            string dataStr = data.DataStr;
 
                             loadGenCreatedUser = Convert.ToInt32(log.Match(dataStr).Groups[1].Value);
                             loadGenCompetedUser = Convert.ToInt32(log.Match(dataStr).Groups[2].Value);
@@ -1122,8 +1103,8 @@ namespace AppedoLT
                         }
                         finally
                         {
-                             loadGenCreatedUser = 0;
-                             loadGenCompetedUser = 0;
+                            loadGenCreatedUser = 0;
+                            loadGenCompetedUser = 0;
                         }
                     }
                 }
@@ -1143,8 +1124,8 @@ namespace AppedoLT
 
                 if (_isUseLoadGen)
                 {
-                  #region loadgen 
-                    if (lblUserCreated.Text != "0" && lblUserCreated.Text == lblUserCompleted.Text && _loadGeneratorips.Count==isCompleted)
+                    #region loadgen
+                    if (lblUserCreated.Text != "0" && lblUserCreated.Text == lblUserCompleted.Text && _loadGeneratorips.Count == isCompleted)
                     {
                         lblElapsedTime.Text = string.Format("{0}:{1}:{2}", runTime.Elapsed.Hours.ToString("00"), runTime.Elapsed.Minutes.ToString("00"), runTime.Elapsed.Seconds.ToString("00"));
                         executionReport.ExecutionStatus = Status.Completed;
@@ -1160,13 +1141,13 @@ namespace AppedoLT
                             reportMaster.GenerateReports();
                             UpdateReportStatus();
                         }
-                   }
+                    }
                     #endregion
                 }
                 else
                 {
-                   // if (_scriptExecutorList.Count > 0 && _scriptExecutorList.FindAll(f => f.IsRunCompleted).Count == _scriptExecutorList.Count && executionReport.CreatedUser != 0 && executionReport.CreatedUser == executionReport.CompletedUser)
-                    int  tempCreatedUser = 0;
+                    // if (_scriptExecutorList.Count > 0 && _scriptExecutorList.FindAll(f => f.IsRunCompleted).Count == _scriptExecutorList.Count && executionReport.CreatedUser != 0 && executionReport.CreatedUser == executionReport.CompletedUser)
+                    int tempCreatedUser = 0;
                     int tempCompletedUser = 0;
                     foreach (ScriptExecutor scripts in _scriptExecutorList)
                     {
@@ -1208,7 +1189,7 @@ namespace AppedoLT
             DataServer resultLog = DataServer.GetInstance();
             int time = 4;
 
-            while (true && time-->0)
+            while (true && time-- > 0)
             {
                 if (resultLog.reportDT.Count > 0 || resultLog.transcations.Count > 0 || resultLog.errors.Count > 0)
                 {
@@ -1263,7 +1244,7 @@ namespace AppedoLT
                                     int streamLength = Convert.ToInt32(new Regex("(.*): ([0-9]*)").Match(header).Groups[2].Value);
 
                                     byte[] buffer = new byte[8192];
-                                    
+
 
                                     if (File.Exists(filePath)) File.Delete(filePath);
                                     using (FileStream file = new FileStream(filePath, FileMode.CreateNew, FileAccess.ReadWrite))
@@ -1297,7 +1278,7 @@ namespace AppedoLT
                     }
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 ExceptionHandler.WritetoEventLog(ex.StackTrace + Environment.NewLine + ex.Message);
             }
@@ -1305,7 +1286,7 @@ namespace AppedoLT
 
         private XmlNode GetRuntimeScriptDetail(XmlNode scenario)
         {
-           
+
             XmlNode scripts = _repositoryXml.Doc.CreateElement("scripts");
             foreach (XmlNode script in scenario.SelectNodes("//script"))
             {
@@ -1334,7 +1315,7 @@ namespace AppedoLT
 
             }
         }
-    
+
         #endregion
 
         private void runToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1367,15 +1348,10 @@ namespace AppedoLT
             }
         }
 
-        private void mnuiLogin_TextChanged(object sender, EventArgs e)
-        {
-           
-        }
-
         void Upgrade(ref long totalByte, ref long recivedByte, ref bool Success)
         {
-            XmlNode vuscripts =RepositoryXml.GetInstance().Doc.SelectSingleNode("//vuscripts");
-          //  File.Copy(RepositoryXml.GetInstance().doc.)
+            XmlNode vuscripts = RepositoryXml.GetInstance().Doc.SelectSingleNode("//vuscripts");
+            //  File.Copy(RepositoryXml.GetInstance().doc.)
             string sorceRequestFolderPath = ".\\Request\\";
             string sorceResponseFolderPath = ".\\Response\\";
             if (vuscripts != null && vuscripts.ChildNodes.Count > 0)
@@ -1408,11 +1384,29 @@ namespace AppedoLT
             RepositoryXml.GetInstance().Save();
         }
 
-        private void pnlScriptSettings_Paint(object sender, PaintEventArgs e)
+        private void Design_FormClosing(object sender, FormClosingEventArgs e)
         {
+            try
+            {
+                DialogResult result = MessageBox.Show("Do you want to save changes?", "Save", MessageBoxButtons.YesNoCancel);
 
+                if (result == DialogResult.Cancel)
+                {
+                    e.Cancel = true;
+                    return;
+                }
+                else if (result == DialogResult.Yes)
+                {
+                    _ucDesignObj.btnScriptSave_Click(null, null);
+                }
+                Process.GetCurrentProcess().Kill();
+                AppedoLT.Core.Constants.GetInstance().ReSetFirefoxProxy();//(Core.Constants.GetInstance().ExecutingAssemblyLocation + "\\proxyresetff.bat");
+            }
+            catch (Exception ex)
+            {
+                ExceptionHandler.WritetoEventLog(ex.StackTrace + Environment.NewLine + ex.Message);
+            }
         }
-
 
     }
 }

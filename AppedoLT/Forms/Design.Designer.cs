@@ -167,8 +167,8 @@ namespace AppedoLT
             this.tapiMonitor.ContentPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitPanel17)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitPanel14)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radMenu1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
             // imglDesign
@@ -650,7 +650,6 @@ namespace AppedoLT
             this.pnlScriptSettings.Name = "pnlScriptSettings";
             this.pnlScriptSettings.Size = new System.Drawing.Size(644, 156);
             this.pnlScriptSettings.TabIndex = 28;
-            this.pnlScriptSettings.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlScriptSettings_Paint);
             // 
             // splitPanel8
             // 
@@ -1222,13 +1221,6 @@ namespace AppedoLT
             this.userControlReports1.Size = new System.Drawing.Size(941, 499);
             this.userControlReports1.TabIndex = 0;
             // 
-            // Design
-            // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.ClientSize = new System.Drawing.Size(942, 560);
-            // 
             // radMenu1
             // 
             this.radMenu1.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -1242,6 +1234,13 @@ namespace AppedoLT
             this.radMenu1.TabIndex = 3;
             this.radMenu1.Text = "radMenu1";
             this.radMenu1.ThemeName = "Windows7";
+            // 
+            // Design
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.ClientSize = new System.Drawing.Size(942, 560);
             this.Controls.Add(this.radMenu1);
             this.Controls.Add(this.tabsDesign);
             this.ImageList = this.imglDesign;
@@ -1253,7 +1252,7 @@ namespace AppedoLT
             this.Text = "AppedoLT";
             this.ThemeName = "ControlDefault";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Design_FormClosed);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Design_FormClosing);
             this.Load += new System.EventHandler(this.Design_Load);
             ((System.ComponentModel.ISupportInitialize)(this.tabsDesign)).EndInit();
             this.tabsDesign.ResumeLayout(false);

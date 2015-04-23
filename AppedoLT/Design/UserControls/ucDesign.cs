@@ -49,25 +49,31 @@ namespace AppedoLT
 
                     if (File.Exists(info + "\\vuscript.xml"))
                     {
-                        VuscriptXml vuscriptXml = new VuscriptXml(dicinfo.Name);
-                        XmlNode vuscript = vuscriptXml.Doc.SelectSingleNode("//vuscript");
-                        RadTreeNode vuScriptNode = new RadTreeNode();
-
-                        vuScriptNode.Text = vuscript.Attributes["name"].Value;
-                        vuScriptNode.Tag = vuscriptXml;
-                        vuScriptNode.ImageKey = "scripts.gif";
-                        foreach (XmlNode container in vuscript.ChildNodes)
+                        try
                         {
-                            RadTreeNode containerNode = new RadTreeNode();
-                            containerNode.Text = container.Attributes["name"].Value;
-                            containerNode.Tag = container;
-                            GetTreeNode(container, containerNode);
-                            vuScriptNode.Nodes.Add(containerNode);
+                            VuscriptXml vuscriptXml = new VuscriptXml(dicinfo.Name);
+                            XmlNode vuscript = vuscriptXml.Doc.SelectSingleNode("//vuscript");
+                            RadTreeNode vuScriptNode = new RadTreeNode();
+
+                            vuScriptNode.Text = vuscript.Attributes["name"].Value;
+                            vuScriptNode.Tag = vuscriptXml;
+                            vuScriptNode.ImageKey = "scripts.gif";
+                            foreach (XmlNode container in vuscript.ChildNodes)
+                            {
+                                RadTreeNode containerNode = new RadTreeNode();
+                                containerNode.Text = container.Attributes["name"].Value;
+                                containerNode.Tag = container;
+                                GetTreeNode(container, containerNode);
+                                vuScriptNode.Nodes.Add(containerNode);
+                            }
+                            tvRequest.Nodes.Add(vuScriptNode);
                         }
-                        tvRequest.Nodes.Add(vuScriptNode);
+                        catch (Exception ex)
+                        {
+                            ExceptionHandler.WritetoEventLog(ex.StackTrace + Environment.NewLine + ex.Message);
+                        }
                     }
                 }
-
             }
             catch (Exception ex)
             {
@@ -239,8 +245,8 @@ namespace AppedoLT
                                     }
                                 }
                             }
-
                             break;
+
                         case "requestbody":
                             {
                                 StringBuilder paramText = new StringBuilder();
@@ -275,6 +281,7 @@ namespace AppedoLT
                                 }
                             }
                             break;
+
                         case "responseheader":
                             {
                                 StringBuilder headerText = new StringBuilder();
@@ -296,6 +303,7 @@ namespace AppedoLT
                                 }
                             }
                             break;
+
                         case "responsebody":
                             {
                                 StringBuilder respose = new StringBuilder();
@@ -316,6 +324,7 @@ namespace AppedoLT
                                 }
                             }
                             break;
+
                         case "hasvariable":
                             {
                                 StringBuilder paramText = new StringBuilder();
@@ -345,6 +354,7 @@ namespace AppedoLT
                                 }
                             }
                             break;
+
                         case "haserror":
                             {
                                 bool hasError = Convert.ToBoolean(requestNode.Attributes["HasErrorResponse"].Value);
@@ -354,6 +364,7 @@ namespace AppedoLT
                                 }
                             }
                             break;
+
                         case "disabled":
                             {
                                 bool hasError = Convert.ToBoolean(requestNode.Attributes["IsEnable"].Value);
@@ -363,11 +374,13 @@ namespace AppedoLT
                                 }
                             }
                             break;
+
                         case "none":
                             {
                                 //SetDefaultcolor(request);
                             }
                             break;
+
                     }
                 }
             }

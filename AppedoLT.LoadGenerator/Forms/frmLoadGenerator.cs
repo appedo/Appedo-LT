@@ -82,6 +82,7 @@ namespace AppedoLTLoadGenerator
                                                 runDetail.Add("souceip", ((IPEndPoint)controller.tcpClient.Client.RemoteEndPoint).Address.ToString());
                                                 runDetail.Add("loadgenname", data.Header["loadgenname"] == null ? string.Empty : data.Header["loadgenname"]);
                                                 runDetail.Add("distribution", data.Header["distribution"] == null ? string.Empty : data.Header["distribution"]);
+
                                                 if (runScripts.ContainsKey(data.Header["runid"]) == true)
                                                 {
                                                     runScripts[data.Header["runid"]] = runDetail;
@@ -112,13 +113,13 @@ namespace AppedoLTLoadGenerator
                                                 if (runScripts.ContainsKey(data.Header["runid"]) == true)
                                                 {
                                                     Dictionary<string, string> runDetail = runScripts[data.Header["runid"]];
-
                                                     executionReport.ReportName = runDetail["reportfoldername"];
                                                     executionReport.ScenarioName = runDetail["scenarioname"];
                                                     executionReport.TotalLoadGenUsed = Convert.ToInt16(runDetail["totalloadgenused"]);
                                                     executionReport.CurrentLoadGenid = Convert.ToInt16(runDetail["currentloadgenid"]);
                                                     executionReport.LoadGenName = runDetail["loadgenname"];
                                                     run = new AppedoLTLoadGenerator.RunScenario(runDetail["data"], runDetail["distribution"]);
+
                                                     if (run.Start() == true)
                                                     {
                                                         ni.Text = "Running...";
@@ -183,18 +184,6 @@ namespace AppedoLTLoadGenerator
                                             }
                                             controller.Send(new TrasportData("file", null, filePath));
                                             TrasportData agn = controller.Receive();
-                                            if (agn.Operation == "ok")
-                                            {
-                                                //if (agn.Header["receivedsize"] == (new FileInfo(filePath)).Length.ToString())
-                                                //{
-                                                //    if (LoadTestAgentXml.GetInstance().doc.SelectSingleNode("//runs/run[@runid='" + reportName + "']") != null)
-                                                //    {
-                                                //        LoadTestAgentXml.GetInstance().doc.SelectSingleNode("//runs").RemoveChild(LoadTestAgentXml.GetInstance().doc.SelectSingleNode("//runs/run[@runid='" + reportName + "']"));
-                                                //        LoadTestAgentXml.GetInstance().Save();
-                                                //        // Directory.Delete(directoryPath,true);
-                                                //    }
-                                                //}
-                                            }
                                         }
                                         break;
 
@@ -213,15 +202,6 @@ namespace AppedoLTLoadGenerator
                                             }
                                             if (File.Exists(filePath) == true)
                                                 controller.Send(new TrasportData("file", null, filePath));
-                                            else
-                                            {
-                                                //XmlNode runNode = LoadTestAgentXml.GetInstance().doc.SelectSingleNode("//runs/run[@runid='" + reportName + "']");
-                                                //ReportMaster rm = new ReportMaster(runNode.Attributes["reportfoldername"].Value, Convert.ToDateTime(runNode.Attributes["scenariostarttime"].Value), runNode.Attributes["loadgenname"].Value);
-                                                //rm.SetUserRunTime();
-                                                //rm.SetChartSummary();
-                                                //if (File.Exists(filePath) == true)
-                                                //    controller.Send(new TrasportData("file", null, filePath));
-                                            }
                                         }
                                         break;
 
