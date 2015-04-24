@@ -1202,7 +1202,6 @@ namespace AppedoLT
                                 .Replace(host.CurrentHost, host.NewHost)
                                 .Replace("port=\"" + host.CurrentPort + "\"", "port=\"" + host.NewPort + "\"")
                                 .Replace("serverip=\"" + host.CurrentPort + "\"", "serverip=\"" + host.NewPort + "\"");
-                                
                         }
                     }
                 }
@@ -1212,8 +1211,6 @@ namespace AppedoLT
                     LoadTreeItem();
                 }
             }
-
         }
-
     }
 }
