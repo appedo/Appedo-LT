@@ -113,19 +113,12 @@ namespace AppedoLT.Core
       
         [DisplayName("Logid")]
         public string LogID { get { return logid; } private set { } }
-        [DisplayName("Time")]
-        public string Time { get { return _time.ToString(); } private set { } }
-        [DisplayName("Script name")]
-        public string ScriptName { get { return scriptname; } private set { } }
-        [DisplayName("Userid")]
-        public string Userid { get { return userid; } private set { } }
-        [DisplayName("Iterationid")]
-        public string Iterationid { get { return iterationid; } private set { } }
         [DisplayName("Log name")]
         public string Logname { get { return logname; } private set { } }
         [DisplayName("Message")]
         public string Message { get { return message; } private set { } }
-
+        [DisplayName("Time")]
+        public string Time { get { return _time.ToString(); } private set { } }
         public override string ToString()
         {
             return string.Format("{0},{1},{2},{3},{4},{5},{6},{7},{8},\"{9}\",{10}", this.loadGen, this.reportname, this.scenarioname, this.scriptid, this.scriptname,
@@ -209,16 +202,10 @@ namespace AppedoLT.Core
         public string Errorcode { get { return _errorcode; } private set { } }
         [DisplayName("Message")]
         public string Message { get { return message; } private set { } }
-        [DisplayName("Script name")]
-        public string ScriptName { get { return scriptname; } private set { } }
-        [DisplayName("Userid")]
-        public string Userid { get { return userid; } private set { } }
-        [DisplayName("Iterationid")]
-        public string Iterationid { get { return iterationid; } private set { } }
+        
         [DisplayName("Requestid")]
         public string Requestid { get { return requestid; } private set { } }
-        [DisplayName("Time")]
-        public string Time { get { return _time.ToString(); } private set { } }
+        
         public override string ToString()
         {
 

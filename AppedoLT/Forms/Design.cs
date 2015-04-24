@@ -215,9 +215,7 @@ namespace AppedoLT
             {
                 System.Data.DataTable dt = new System.Data.DataTable();
                 dt = Result.GetInstance().GetReportNameList(repoerName);
-                ddlReportName.Sorted = Telerik.WinControls.Enumerations.SortStyle.None;
-                ddlReportName.DataSource = dt;
-                ddlReportName.DisplayMember = "reportname";
+               
             }
             catch (Exception ex)
             {
@@ -656,7 +654,7 @@ namespace AppedoLT
                             lblStatus.Text = "Running";
                             LoadReportName(executionReport.ReportName);
                             userControlCharts1.LoadReportName(executionReport.ReportName);
-                            userControlReports1.LoadReportName(executionReport.ReportName);
+                           
                             lblUserCompleted.Text = "0";
 
                             XmlNode run = _repositoryXml.Doc.CreateElement("run");
@@ -1000,44 +998,12 @@ namespace AppedoLT
                 ExceptionHandler.WritetoEventLog(ex.StackTrace + Environment.NewLine + ex.Message);
             }
         }
-        private void btnShowReport_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                if (ddlReportName.SelectedIndex == 0)
-                {
-                    MessageBox.Show("Please Select Report Name!");
-                }
-                else
-                {
-                    if (DataServer.GetInstance().reportDT.Count == 0)
-                    {
-                        radGridView1.DataSource = Result.GetInstance().GetReportData(ddlReportName.Text);
-                    }
-                    else
-                    {
-                        if (_isUseLoadGen)
-                        {
-                            radGridView1.DataSource = Result.GetInstance().GetReportData(ddlReportName.Text);
-                        }
-                        else
-                            MessageBox.Show(DataServer.GetInstance().reportDT.Count.ToString() + " Pending data store");
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                ExceptionHandler.WritetoEventLog(ex.StackTrace + Environment.NewLine + ex.Message);
-            }
-        }
+       
         private void btnExport_Click(object sender, EventArgs e)
         {
             Export_TO_Excel(lsvErrors, "Error_Data");
         }
-        private void radButton1_Click_2(object sender, EventArgs e)
-        {
-            Export_TO_Excel(radGridView1, "Report_Data");
-        }
+      
 
         #endregion
 
@@ -1171,6 +1137,7 @@ namespace AppedoLT
                             ReportMaster reportMaster = new ReportMaster(executionReport.ReportName);
                             reportMaster.GenerateReports();
                             UpdateReportStatus();
+                            userControlReports2.LoadReportName(executionReport.ReportName);
                         }
                     }
                 }

@@ -83,17 +83,9 @@ namespace AppedoLT
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.ivcErrorCode = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.btnExport = new Telerik.WinControls.UI.RadButton();
-            this.tabItem3 = new Telerik.WinControls.UI.TabItem();
-            this.radButton1 = new Telerik.WinControls.UI.RadButton();
-            this.radGridView1 = new Telerik.WinControls.UI.RadGridView();
-            this.btnShowReport = new Telerik.WinControls.UI.RadButton();
-            this.ddlReportName = new Telerik.WinControls.UI.RadComboBox();
             this.tabiCharts = new Telerik.WinControls.UI.TabItem();
-            this.userControlCharts1 = new AppedoLT.userControlCharts();
             this.tabItem1 = new Telerik.WinControls.UI.TabItem();
-            this.userControlReports2 = new AppedoLT.userControlReports();
             this.tapiMonitor = new Telerik.WinControls.UI.TabItem();
-            this.ucMonitor1 = new AppedoLT.UCMonitor();
             this.imcDesign = new System.Windows.Forms.ImageList(this.components);
             this.tmrExecution = new System.Windows.Forms.Timer(this.components);
             this.splitPanel17 = new Telerik.WinControls.UI.SplitPanel();
@@ -116,9 +108,11 @@ namespace AppedoLT
             this.radMenuItem1 = new Telerik.WinControls.UI.RadMenuItem();
             this.imageListForHeading = new System.Windows.Forms.ImageList(this.components);
             this.tabItem4 = new Telerik.WinControls.UI.TabItem();
-            this.objUCLoadGen = new AppedoLT.ucLoadGen();
-            this.userControlReports1 = new AppedoLT.userControlReports();
             this.radMenu1 = new Telerik.WinControls.UI.RadMenu();
+            this.userControlCharts1 = new AppedoLT.userControlCharts();
+            this.userControlReports2 = new AppedoLT.userControlReports();
+            this.ucMonitor1 = new AppedoLT.UCMonitor();
+            this.objUCLoadGen = new AppedoLT.ucLoadGen();
             ((System.ComponentModel.ISupportInitialize)(this.tabsDesign)).BeginInit();
             this.tabsDesign.SuspendLayout();
             this.tabiRun.ContentPanel.SuspendLayout();
@@ -156,12 +150,6 @@ namespace AppedoLT
             this.radTabStrip1.SuspendLayout();
             this.tabItem2.ContentPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnExport)).BeginInit();
-            this.tabItem3.ContentPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radButton1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radGridView1.MasterGridViewTemplate)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnShowReport)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ddlReportName)).BeginInit();
             this.tabiCharts.ContentPanel.SuspendLayout();
             this.tabItem1.ContentPanel.SuspendLayout();
             this.tapiMonitor.ContentPanel.SuspendLayout();
@@ -199,8 +187,8 @@ namespace AppedoLT
             // tabsDesign
             // 
             this.tabsDesign.AllTabsEqualHeight = false;
-            this.tabsDesign.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            this.tabsDesign.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tabsDesign.AutoScrollMargin = new System.Drawing.Size(0, 0);
             this.tabsDesign.AutoScrollMinSize = new System.Drawing.Size(0, 0);
@@ -352,8 +340,8 @@ namespace AppedoLT
             // 
             // tvScenarios
             // 
-            this.tvScenarios.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            this.tvScenarios.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tvScenarios.BackColor = System.Drawing.SystemColors.Window;
             this.tvScenarios.ContextMenuStrip = this.cmnuScenario;
@@ -478,7 +466,7 @@ namespace AppedoLT
             // 
             // pnlRun
             // 
-            this.pnlRun.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.pnlRun.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pnlRun.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(219)))), ((int)(((byte)(255)))));
             this.pnlRun.Controls.Add(this.label2);
@@ -640,8 +628,8 @@ namespace AppedoLT
             // 
             // pnlScriptSettings
             // 
-            this.pnlScriptSettings.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            this.pnlScriptSettings.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pnlScriptSettings.AutoScroll = true;
             this.pnlScriptSettings.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(219)))), ((int)(((byte)(255)))));
@@ -709,8 +697,7 @@ namespace AppedoLT
             this.radTabStrip1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
             this.radTabStrip1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.radTabStrip1.Items.AddRange(new Telerik.WinControls.RadItem[] {
-            this.tabItem2,
-            this.tabItem3});
+            this.tabItem2});
             this.radTabStrip1.Location = new System.Drawing.Point(0, 0);
             this.radTabStrip1.Name = "radTabStrip1";
             this.radTabStrip1.ScrollOffsetStep = 5;
@@ -735,6 +722,7 @@ namespace AppedoLT
             this.tabItem2.ContentPanel.Location = new System.Drawing.Point(0, 25);
             this.tabItem2.ContentPanel.Size = new System.Drawing.Size(646, 208);
             this.tabItem2.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tabItem2.IsSelected = true;
             this.tabItem2.Margin = new System.Windows.Forms.Padding(4, 0, 0, 0);
             this.tabItem2.Name = "tabItem2";
             this.tabItem2.ScaleTransform = new System.Drawing.SizeF(1F, 1F);
@@ -840,96 +828,6 @@ namespace AppedoLT
             this.btnExport.ThemeName = "Telerik";
             this.btnExport.Click += new System.EventHandler(this.btnExport_Click);
             // 
-            // tabItem3
-            // 
-            this.tabItem3.Alignment = System.Drawing.ContentAlignment.BottomLeft;
-            // 
-            // tabItem3.ContentPanel
-            // 
-            this.tabItem3.ContentPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(248)))));
-            this.tabItem3.ContentPanel.CausesValidation = true;
-            this.tabItem3.ContentPanel.Controls.Add(this.radButton1);
-            this.tabItem3.ContentPanel.Controls.Add(this.radGridView1);
-            this.tabItem3.ContentPanel.Controls.Add(this.btnShowReport);
-            this.tabItem3.ContentPanel.Controls.Add(this.ddlReportName);
-            this.tabItem3.ContentPanel.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tabItem3.ContentPanel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(66)))), ((int)(((byte)(139)))));
-            this.tabItem3.ContentPanel.Location = new System.Drawing.Point(0, 25);
-            this.tabItem3.ContentPanel.Size = new System.Drawing.Size(646, 208);
-            this.tabItem3.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tabItem3.IsSelected = true;
-            this.tabItem3.Margin = new System.Windows.Forms.Padding(4, 0, 0, 0);
-            this.tabItem3.Name = "tabItem3";
-            this.tabItem3.ScaleTransform = new System.Drawing.SizeF(1F, 1F);
-            this.tabItem3.StretchHorizontally = false;
-            this.tabItem3.Text = "Data";
-            // 
-            // radButton1
-            // 
-            this.radButton1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.radButton1.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radButton1.Location = new System.Drawing.Point(345, 7);
-            this.radButton1.Name = "radButton1";
-            this.radButton1.Size = new System.Drawing.Size(86, 20);
-            this.radButton1.TabIndex = 40;
-            this.radButton1.Text = "&Export";
-            this.radButton1.ThemeName = "Telerik";
-            this.radButton1.Click += new System.EventHandler(this.radButton1_Click_2);
-            // 
-            // radGridView1
-            // 
-            this.radGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.radGridView1.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radGridView1.Location = new System.Drawing.Point(1, 33);
-            // 
-            // 
-            // 
-            this.radGridView1.MasterGridViewTemplate.AllowAddNewRow = false;
-            this.radGridView1.MasterGridViewTemplate.AllowColumnReorder = false;
-            this.radGridView1.Name = "radGridView1";
-            this.radGridView1.Padding = new System.Windows.Forms.Padding(0, 0, 0, 1);
-            this.radGridView1.ReadOnly = true;
-            // 
-            // 
-            // 
-            this.radGridView1.RootElement.Padding = new System.Windows.Forms.Padding(0, 0, 0, 1);
-            this.radGridView1.Size = new System.Drawing.Size(641, 172);
-            this.radGridView1.TabIndex = 37;
-            this.radGridView1.ThemeName = "Telerik";
-            // 
-            // btnShowReport
-            // 
-            this.btnShowReport.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnShowReport.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnShowReport.Location = new System.Drawing.Point(251, 7);
-            this.btnShowReport.Name = "btnShowReport";
-            this.btnShowReport.Size = new System.Drawing.Size(86, 20);
-            this.btnShowReport.TabIndex = 39;
-            this.btnShowReport.Text = "&Show Data";
-            this.btnShowReport.ThemeName = "Telerik";
-            this.btnShowReport.Click += new System.EventHandler(this.btnShowReport_Click);
-            // 
-            // ddlReportName
-            // 
-            this.ddlReportName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.ddlReportName.DropDownAnimationEasing = Telerik.WinControls.RadEasingType.InQuad;
-            this.ddlReportName.DropDownAnimationEnabled = true;
-            this.ddlReportName.DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
-            this.ddlReportName.Location = new System.Drawing.Point(2, 6);
-            this.ddlReportName.MaxDropDownItems = 10;
-            this.ddlReportName.Name = "ddlReportName";
-            // 
-            // 
-            // 
-            this.ddlReportName.RootElement.AutoSizeMode = Telerik.WinControls.RadAutoSizeMode.WrapAroundChildren;
-            this.ddlReportName.Size = new System.Drawing.Size(243, 21);
-            this.ddlReportName.TabIndex = 38;
-            this.ddlReportName.TabStop = false;
-            this.ddlReportName.ThemeName = "Telerik";
-            // 
             // tabiCharts
             // 
             this.tabiCharts.Alignment = System.Drawing.ContentAlignment.BottomLeft;
@@ -955,16 +853,6 @@ namespace AppedoLT
             this.tabiCharts.Text = "Charts";
             this.tabiCharts.Visibility = Telerik.WinControls.ElementVisibility.Collapsed;
             // 
-            // userControlCharts1
-            // 
-            this.userControlCharts1.AutoScroll = true;
-            this.userControlCharts1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(219)))), ((int)(((byte)(255)))));
-            this.userControlCharts1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.userControlCharts1.Location = new System.Drawing.Point(0, 0);
-            this.userControlCharts1.Name = "userControlCharts1";
-            this.userControlCharts1.Size = new System.Drawing.Size(941, 499);
-            this.userControlCharts1.TabIndex = 0;
-            // 
             // tabItem1
             // 
             this.tabItem1.Alignment = System.Drawing.ContentAlignment.BottomLeft;
@@ -988,15 +876,6 @@ namespace AppedoLT
             this.tabItem1.StretchHorizontally = false;
             this.tabItem1.StretchVertically = false;
             this.tabItem1.Text = "Reports";
-            // 
-            // userControlReports2
-            // 
-            this.userControlReports2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.userControlReports2.Location = new System.Drawing.Point(0, 0);
-            this.userControlReports2.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.userControlReports2.Name = "userControlReports2";
-            this.userControlReports2.Size = new System.Drawing.Size(941, 499);
-            this.userControlReports2.TabIndex = 0;
             // 
             // tapiMonitor
             // 
@@ -1022,15 +901,6 @@ namespace AppedoLT
             this.tapiMonitor.StretchVertically = false;
             this.tapiMonitor.Text = "Monitor";
             this.tapiMonitor.Visibility = Telerik.WinControls.ElementVisibility.Hidden;
-            // 
-            // ucMonitor1
-            // 
-            this.ucMonitor1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ucMonitor1.Location = new System.Drawing.Point(0, 0);
-            this.ucMonitor1.Margin = new System.Windows.Forms.Padding(5, 3, 5, 3);
-            this.ucMonitor1.Name = "ucMonitor1";
-            this.ucMonitor1.Size = new System.Drawing.Size(941, 499);
-            this.ucMonitor1.TabIndex = 0;
             // 
             // imcDesign
             // 
@@ -1201,26 +1071,6 @@ namespace AppedoLT
             this.tabItem4.StretchHorizontally = false;
             this.tabItem4.Text = "tabItem4";
             // 
-            // objUCLoadGen
-            // 
-            this.objUCLoadGen.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.objUCLoadGen.Dock = System.Windows.Forms.DockStyle.Left;
-            this.objUCLoadGen.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.objUCLoadGen.Location = new System.Drawing.Point(0, 0);
-            this.objUCLoadGen.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.objUCLoadGen.Name = "objUCLoadGen";
-            this.objUCLoadGen.Size = new System.Drawing.Size(318, 156);
-            this.objUCLoadGen.TabIndex = 0;
-            this.objUCLoadGen.Visible = false;
-            // 
-            // userControlReports1
-            // 
-            this.userControlReports1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.userControlReports1.Location = new System.Drawing.Point(0, 0);
-            this.userControlReports1.Name = "userControlReports1";
-            this.userControlReports1.Size = new System.Drawing.Size(941, 499);
-            this.userControlReports1.TabIndex = 0;
-            // 
             // radMenu1
             // 
             this.radMenu1.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -1234,6 +1084,48 @@ namespace AppedoLT
             this.radMenu1.TabIndex = 3;
             this.radMenu1.Text = "radMenu1";
             this.radMenu1.ThemeName = "Windows7";
+            // 
+            // userControlCharts1
+            // 
+            this.userControlCharts1.AutoScroll = true;
+            this.userControlCharts1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(219)))), ((int)(((byte)(255)))));
+            this.userControlCharts1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.userControlCharts1.Location = new System.Drawing.Point(0, 0);
+            this.userControlCharts1.Name = "userControlCharts1";
+            this.userControlCharts1.Size = new System.Drawing.Size(941, 499);
+            this.userControlCharts1.TabIndex = 0;
+            // 
+            // userControlReports2
+            // 
+            this.userControlReports2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.userControlReports2.Location = new System.Drawing.Point(0, 0);
+            this.userControlReports2.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.userControlReports2.Name = "userControlReports2";
+            this.userControlReports2.Size = new System.Drawing.Size(938, 499);
+            this.userControlReports2.TabIndex = 0;
+            // 
+            // ucMonitor1
+            // 
+            this.ucMonitor1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucMonitor1.Location = new System.Drawing.Point(0, 0);
+            this.ucMonitor1.Margin = new System.Windows.Forms.Padding(5, 3, 5, 3);
+            this.ucMonitor1.Name = "ucMonitor1";
+            this.ucMonitor1.Size = new System.Drawing.Size(941, 499);
+            this.ucMonitor1.TabIndex = 0;
+            // 
+            // objUCLoadGen
+            // 
+            this.objUCLoadGen.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.objUCLoadGen.Dock = System.Windows.Forms.DockStyle.Left;
+            this.objUCLoadGen.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.objUCLoadGen.Location = new System.Drawing.Point(0, 0);
+            this.objUCLoadGen.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.objUCLoadGen.Name = "objUCLoadGen";
+            this.objUCLoadGen.Size = new System.Drawing.Size(318, 156);
+            this.objUCLoadGen.TabIndex = 0;
+            this.objUCLoadGen.Visible = false;
             // 
             // Design
             // 
@@ -1293,13 +1185,6 @@ namespace AppedoLT
             this.radTabStrip1.ResumeLayout(false);
             this.tabItem2.ContentPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.btnExport)).EndInit();
-            this.tabItem3.ContentPanel.ResumeLayout(false);
-            this.tabItem3.ContentPanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radButton1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radGridView1.MasterGridViewTemplate)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnShowReport)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ddlReportName)).EndInit();
             this.tabiCharts.ContentPanel.ResumeLayout(false);
             this.tabItem1.ContentPanel.ResumeLayout(false);
             this.tapiMonitor.ContentPanel.ResumeLayout(false);
@@ -1348,7 +1233,7 @@ namespace AppedoLT
         private System.Windows.Forms.ImageList imglDesign;
         private userControlCharts userControlCharts1;
         private Telerik.WinControls.UI.TabItem tabItem1;
-        private userControlReports userControlReports1;
+       
         private Telerik.WinControls.UI.RadButton btnRun;
         private Telerik.WinControls.UI.RadButton btnStop;
         private Telerik.WinControls.UI.RadButton btnSave;
@@ -1363,11 +1248,6 @@ namespace AppedoLT
         private System.Windows.Forms.ImageList imcDesign;
         private Telerik.WinControls.UI.RadTabStrip radTabStrip1;
         private Telerik.WinControls.UI.TabItem tabItem2;
-        private Telerik.WinControls.UI.TabItem tabItem3;
-        private Telerik.WinControls.UI.RadButton radButton1;
-        private Telerik.WinControls.UI.RadGridView radGridView1;
-        private Telerik.WinControls.UI.RadButton btnShowReport;
-        private Telerik.WinControls.UI.RadComboBox ddlReportName;
         private Telerik.WinControls.UI.RadMenuItem mnuiVuscript;
         private Telerik.WinControls.UI.RadMenuItem radMenuItem3;
         private Telerik.WinControls.UI.RadMenuItem radMenuItem4;

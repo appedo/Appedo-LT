@@ -35,6 +35,8 @@ namespace AppedoLT
             this.cmnuExpandAll = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.expandAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.collapseAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnViewError = new Telerik.WinControls.UI.RadButton();
+            this.btnViewLog = new Telerik.WinControls.UI.RadButton();
             this.btnStop = new Telerik.WinControls.UI.RadButton();
             this.radLabel8 = new Telerik.WinControls.UI.RadLabel();
             this.lblAvgResponse = new Telerik.WinControls.UI.RadLabel();
@@ -83,14 +85,14 @@ namespace AppedoLT
             this.webBrowser1 = new System.Windows.Forms.WebBrowser();
             this.vistaTheme1 = new Telerik.WinControls.Themes.VistaTheme();
             this.telerikTheme1 = new Telerik.WinControls.Themes.TelerikTheme();
-            this.btnViewError = new Telerik.WinControls.UI.RadButton();
-            this.btnViewLog = new Telerik.WinControls.UI.RadButton();
             ((System.ComponentModel.ISupportInitialize)(this.spltcValidation)).BeginInit();
             this.spltcValidation.Panel1.SuspendLayout();
             this.spltcValidation.Panel2.SuspendLayout();
             this.spltcValidation.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tvRequest)).BeginInit();
             this.cmnuExpandAll.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.btnViewError)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnViewLog)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnStop)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblAvgResponse)).BeginInit();
@@ -130,8 +132,6 @@ namespace AppedoLT
             ((System.ComponentModel.ISupportInitialize)(this.gvExtractedVariables)).BeginInit();
             this.tabiResponse.ContentPanel.SuspendLayout();
             this.tabItem1.ContentPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.btnViewError)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnViewLog)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
@@ -200,6 +200,28 @@ namespace AppedoLT
             this.collapseAllToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
             this.collapseAllToolStripMenuItem.Text = "&Collapse All";
             this.collapseAllToolStripMenuItem.Click += new System.EventHandler(this.collapseAllToolStripMenuItem_Click);
+            // 
+            // btnViewError
+            // 
+            this.btnViewError.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnViewError.Location = new System.Drawing.Point(264, 9);
+            this.btnViewError.Name = "btnViewError";
+            this.btnViewError.Size = new System.Drawing.Size(82, 34);
+            this.btnViewError.TabIndex = 3;
+            this.btnViewError.Text = "&Errors";
+            this.btnViewError.ThemeName = "Telerik";
+            this.btnViewError.Click += new System.EventHandler(this.btnViewError_Click);
+            // 
+            // btnViewLog
+            // 
+            this.btnViewLog.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnViewLog.Location = new System.Drawing.Point(180, 9);
+            this.btnViewLog.Name = "btnViewLog";
+            this.btnViewLog.Size = new System.Drawing.Size(82, 34);
+            this.btnViewLog.TabIndex = 2;
+            this.btnViewLog.Text = "&Logs";
+            this.btnViewLog.ThemeName = "Telerik";
+            this.btnViewLog.Click += new System.EventHandler(this.btnViewLog_Click);
             // 
             // btnStop
             // 
@@ -582,7 +604,6 @@ namespace AppedoLT
             this.tabiHeader.ContentPanel.ForeColor = System.Drawing.SystemColors.ControlText;
             this.tabiHeader.ContentPanel.Location = new System.Drawing.Point(0, 24);
             this.tabiHeader.ContentPanel.Size = new System.Drawing.Size(943, 248);
-            this.tabiHeader.IsSelected = true;
             this.tabiHeader.Margin = new System.Windows.Forms.Padding(4, 0, 0, 0);
             this.tabiHeader.Name = "tabiHeader";
             this.tabiHeader.StretchHorizontally = false;
@@ -740,6 +761,7 @@ namespace AppedoLT
             this.tabItem1.ContentPanel.ForeColor = System.Drawing.SystemColors.ControlText;
             this.tabItem1.ContentPanel.Location = new System.Drawing.Point(0, 24);
             this.tabItem1.ContentPanel.Size = new System.Drawing.Size(943, 248);
+            this.tabItem1.IsSelected = true;
             this.tabItem1.Margin = new System.Windows.Forms.Padding(4, 0, 0, 0);
             this.tabItem1.Name = "tabItem1";
             this.tabItem1.StretchHorizontally = false;
@@ -754,28 +776,6 @@ namespace AppedoLT
             this.webBrowser1.ScriptErrorsSuppressed = true;
             this.webBrowser1.Size = new System.Drawing.Size(943, 248);
             this.webBrowser1.TabIndex = 0;
-            // 
-            // btnViewError
-            // 
-            this.btnViewError.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnViewError.Location = new System.Drawing.Point(264, 9);
-            this.btnViewError.Name = "btnViewError";
-            this.btnViewError.Size = new System.Drawing.Size(82, 34);
-            this.btnViewError.TabIndex = 3;
-            this.btnViewError.Text = "&Errors";
-            this.btnViewError.ThemeName = "Telerik";
-            this.btnViewError.Click += new System.EventHandler(this.btnViewError_Click);
-            // 
-            // btnViewLog
-            // 
-            this.btnViewLog.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnViewLog.Location = new System.Drawing.Point(180, 9);
-            this.btnViewLog.Name = "btnViewLog";
-            this.btnViewLog.Size = new System.Drawing.Size(82, 34);
-            this.btnViewLog.TabIndex = 2;
-            this.btnViewLog.Text = "&Logs";
-            this.btnViewLog.ThemeName = "Telerik";
-            this.btnViewLog.Click += new System.EventHandler(this.btnViewLog_Click);
             // 
             // frmValidation
             // 
@@ -801,6 +801,8 @@ namespace AppedoLT
             this.spltcValidation.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.tvRequest)).EndInit();
             this.cmnuExpandAll.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.btnViewError)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnViewLog)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnStop)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel8)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblAvgResponse)).EndInit();
@@ -841,8 +843,6 @@ namespace AppedoLT
             ((System.ComponentModel.ISupportInitialize)(this.gvExtractedVariables)).EndInit();
             this.tabiResponse.ContentPanel.ResumeLayout(false);
             this.tabItem1.ContentPanel.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.btnViewError)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnViewLog)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
 

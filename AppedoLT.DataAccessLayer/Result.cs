@@ -43,10 +43,6 @@ namespace AppedoLT.DataAccessLayer
             {
                 dt.Rows.Add(info.Name);
             }
-
-            DataRow drSelect = dt.NewRow();
-            drSelect["reportname"] = "-Select-";
-            dt.Rows.InsertAt(drSelect, 0);
             return dt;
         }
 
@@ -296,7 +292,7 @@ namespace AppedoLT.DataAccessLayer
                         _con.Open();
                         int index = 0;
                         XmlDocument doc = new XmlDocument();
-                        doc.LoadXml("<?xml version=\"1.0\" encoding=\"utf-8\"?><report></report>");
+                        doc.LoadXml("<?xml version=\"1.0\" encoding=\"utf-8\"?><report reportname=\"" + reportName + "\"></report>");
                         XmlNode report = doc.SelectSingleNode("//report");
 
                         SQLiteDataReader reader = null;
@@ -419,7 +415,7 @@ namespace AppedoLT.DataAccessLayer
                         _con.Open();
                         int index = 0;
                         XmlDocument doc = new XmlDocument();
-                        doc.LoadXml("<?xml version=\"1.0\" encoding=\"utf-8\"?><report></report>");
+                        doc.LoadXml("<?xml version=\"1.0\" encoding=\"utf-8\"?><report reportname=\"" + reportName + "\"></report>");
                         XmlNode report = doc.SelectSingleNode("//report");
 
                         SQLiteDataReader reader = null;
