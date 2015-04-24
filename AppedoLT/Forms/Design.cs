@@ -15,7 +15,7 @@ using System.Threading;
 using System.Windows.Forms;
 using System.Xml;
 using Telerik.WinControls.UI;
-using  System.ComponentModel;
+using System.ComponentModel;
 
 namespace AppedoLT
 {
@@ -218,7 +218,7 @@ namespace AppedoLT
             {
                 System.Data.DataTable dt = new System.Data.DataTable();
                 dt = Result.GetInstance().GetReportNameList(repoerName);
-               
+
             }
             catch (Exception ex)
             {
@@ -649,6 +649,7 @@ namespace AppedoLT
                             lsvErrors.Items.Clear();
                             lblErrorCount.Text = "0";
                             lblHitCount.Text = "0";
+                          
                             _hitCount = 0;
                             _repositoryXml.Save();
                             executionReport.ReportName = objFrmRun.strReportName;
@@ -659,9 +660,9 @@ namespace AppedoLT
                             lblStatus.Text = "Running";
                             LoadReportName(executionReport.ReportName);
                             userControlCharts1.LoadReportName(executionReport.ReportName);
-                           
-                            lblUserCompleted.Text = "0";
 
+                            lblUserCompleted.Text = "0";
+                            listView1.Items.Clear();
                             XmlNode run = _repositoryXml.Doc.CreateElement("run");
                             run.Attributes.Append(_repositoryXml.GetAttribute("reportname", executionReport.ReportName));
 
@@ -700,7 +701,9 @@ namespace AppedoLT
                                     scr.OnLockLog += scr_OnLockLog;
                                     scr.OnLockTransactions += scr_OnLockTransactions;
                                     scr.OnLockUserDetail += scr_OnLockUserDetail;
-                                    scr.OnIterationCompleted += scr_OnIterationCompleted;
+                                    scr.OnIterationStarted += scr_OnIterationCompleted;
+                                    scr.OnVUserRunCompleted += scr_OnVUserRunCompleted;
+                                    scr.OnVUserCreated += scr_OnVUserCreated;
                                     scr.Run();
                                 }
                                 runTime.Reset();
@@ -796,16 +799,43 @@ namespace AppedoLT
             }
         }
 
+        void scr_OnVUserCreated(int userid)
+        {
+            lock (listView1)
+            {
+                ListViewItem newItem = new ListViewItem(userid.ToString());
+                newItem.SubItems.AddRange(new string[] { "0".ToString(), "Running" });
+                listView1.Items.Add(newItem);
+            }
+        }
+
+        void scr_OnVUserRunCompleted(int userid)
+        {
+            lock (listView1)
+            {
+                ListViewItem newItem = listView1.FindItemWithText(userid.ToString());
+                if (newItem != null)
+                {
+                    newItem.SubItems[2].Text = "Completed";
+                }
+            }
+        }
+
         void scr_OnIterationCompleted(int userid, int iterationid)
         {
-            
-           
-
+            lock (listView1)
+            {
+                ListViewItem newItem = listView1.FindItemWithText(userid.ToString());
+                if (newItem != null)
+                {
+                    newItem.SubItems[1].Text = iterationid.ToString();
+                }
+            }
         }
 
         void scr_OnLockUserDetail(UserDetail data)
         {
-            
+
         }
 
         void scr_OnLockTransactions(TransactionRunTimeDetail data)
@@ -1012,12 +1042,12 @@ namespace AppedoLT
                 ExceptionHandler.WritetoEventLog(ex.StackTrace + Environment.NewLine + ex.Message);
             }
         }
-       
+
         private void btnExport_Click(object sender, EventArgs e)
         {
             Export_TO_Excel(lsvErrors, "Error_Data");
         }
-      
+
 
         #endregion
 
@@ -1092,7 +1122,7 @@ namespace AppedoLT
                 if (executionReport.CreatedUser > 0) lblUserCreated.Text = executionReport.CreatedUser.ToString();
                 lblUserCompleted.Text = executionReport.CompletedUser.ToString();
                 lblErrorCount.Text = lsvErrors.Items.Count.ToString();
-                lblHitCount.Text= _hitCount.ToString();
+                lblHitCount.Text = _hitCount.ToString();
                 if (runTime.IsRunning == true)
                 {
                     lblElapsedTime.Text = string.Format("{0}:{1}:{2}", runTime.Elapsed.Hours.ToString("00"), runTime.Elapsed.Minutes.ToString("00"), runTime.Elapsed.Seconds.ToString("00"));

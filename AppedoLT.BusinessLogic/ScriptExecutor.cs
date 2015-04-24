@@ -62,7 +62,9 @@ namespace AppedoLT.BusinessLogic
         public event LockError OnLockError;
         public event LockTransactions OnLockTransactions;
         public event LockUserDetail OnLockUserDetail;
-        public event IterationCompleted OnIterationCompleted;
+        public event IterationCompleted OnIterationStarted;
+        public event VUserRunCompleted OnVUserRunCompleted;
+        public event VUserCreated OnVUserCreated;
 
         #endregion
 
@@ -484,7 +486,9 @@ namespace AppedoLT.BusinessLogic
             if(OnLockLog != null) user.OnLockLog += OnLockLog;
             if(OnLockTransactions != null) user.OnLockTransactions += OnLockTransactions;
             if(OnLockUserDetail != null) user.OnLockUserDetail += OnLockUserDetail;
-            if (OnIterationCompleted != null) user.OnIterationCompleted += OnIterationCompleted;
+            if (OnIterationStarted != null) user.OnIterationStart += OnIterationStarted;
+            if (OnVUserRunCompleted != null) user.OnVUserRunCompleted += OnVUserRunCompleted;
+            if (OnVUserCreated != null) user.OnVUserCreated += OnVUserCreated;
             return user;
         }
 

@@ -65,8 +65,10 @@ namespace AppedoLT.BusinessLogic
         public event LockTransactions OnLockTransactions;
         public event LockUserDetail OnLockUserDetail;
         public event LockRequestResponse OnLockRequestResponse;
-        public event IterationCompleted OnIterationCompleted;
-
+        public event IterationCompleted OnIterationStart;
+        public event VUserRunCompleted OnVUserRunCompleted;
+        public event VUserCreated OnVUserCreated;
+        
         private string _reportName = string.Empty;
         private string _resposeUrl, _receivedCookies;
         private string _type = "1";
@@ -194,6 +196,7 @@ namespace AppedoLT.BusinessLogic
                     lock (Status.LockObjForCompletedUser)
                     {
                         Status.CompletedUser++;
+                        if (OnVUserRunCompleted != null) OnVUserRunCompleted.Invoke(_userid);
                         LockUserDetail(2);
                     }
                     WorkCompleted = true;
@@ -208,7 +211,7 @@ namespace AppedoLT.BusinessLogic
         {
             WorkCompleted = false;
             _exVariablesValues.Clear();
-
+            if (OnVUserCreated != null) OnVUserCreated.Invoke(_userid);
             #region Iterations
             try
             {
@@ -219,6 +222,7 @@ namespace AppedoLT.BusinessLogic
                     for (_index = 1; _index <= _iteration; _index++)
                     {
                         if (Break == true) break;
+                       
                         Result = "";
                         _iterationid = _index;
                         _resposeUrl = string.Empty;
@@ -254,7 +258,7 @@ namespace AppedoLT.BusinessLogic
                             }
                         }
                         _transactions.Clear();
-                        if (OnIterationCompleted != null) OnIterationCompleted.Invoke(_userid, _iterationid);
+                        if (OnIterationStart != null) OnIterationStart.Invoke(_userid, _iterationid);
                     }
                     lock (Status.LockObjForCompletedUser)
                     {
@@ -271,6 +275,7 @@ namespace AppedoLT.BusinessLogic
                     for (_index = 1; true; _index++)
                     {
                         if (Break == true) break;
+                        
                         Result = "";
                         _iterationid = _index;
                         _resposeUrl = string.Empty;
@@ -295,7 +300,7 @@ namespace AppedoLT.BusinessLogic
                             }
                         }
                         _transactions.Clear();
-                        if (OnIterationCompleted != null) OnIterationCompleted.Invoke(_userid, _iterationid);
+                        if (OnIterationStart != null) OnIterationStart.Invoke(_userid, _iterationid);
                     }
                     #endregion
                 }
@@ -308,6 +313,7 @@ namespace AppedoLT.BusinessLogic
             {
                 conncetionManager.CloseAllConnetions();
                 WorkCompleted = true;
+                if (OnVUserRunCompleted != null) OnVUserRunCompleted.Invoke(_userid);
             }
 
             #endregion

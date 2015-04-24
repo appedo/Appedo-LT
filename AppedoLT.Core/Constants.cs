@@ -28,6 +28,8 @@ namespace AppedoLT.Core
     public delegate void LockUserDetail(UserDetail data);
     public delegate void LockRequestResponse(RequestResponse data);
     public delegate void IterationCompleted(int userid,int iterationid);
+    public delegate void VUserRunCompleted(int userid);
+    public delegate void VUserCreated(int userid);
 
     public class Constants
     {
