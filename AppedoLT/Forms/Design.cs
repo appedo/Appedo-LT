@@ -15,6 +15,7 @@ using System.Threading;
 using System.Windows.Forms;
 using System.Xml;
 using Telerik.WinControls.UI;
+using  System.ComponentModel;
 
 namespace AppedoLT
 {
@@ -31,6 +32,8 @@ namespace AppedoLT
         private ucDesign _ucDesignObj = null;
         private ExecutionReport executionReport = ExecutionReport.GetInstance();
         private DataServer _dataServer = DataServer.GetInstance();
+        private int _hitCount = 0;
+        private BindingList<VUScriptStatus> _vususerStatus = new BindingList<VUScriptStatus>();
 
         public Design()
         {
@@ -645,6 +648,8 @@ namespace AppedoLT
                         {
                             lsvErrors.Items.Clear();
                             lblErrorCount.Text = "0";
+                            lblHitCount.Text = "0";
+                            _hitCount = 0;
                             _repositoryXml.Save();
                             executionReport.ReportName = objFrmRun.strReportName;
                             executionReport.ScenarioName = tvScenarios.SelectedNode.Text;
@@ -695,6 +700,7 @@ namespace AppedoLT
                                     scr.OnLockLog += scr_OnLockLog;
                                     scr.OnLockTransactions += scr_OnLockTransactions;
                                     scr.OnLockUserDetail += scr_OnLockUserDetail;
+                                    scr.OnIterationCompleted += scr_OnIterationCompleted;
                                     scr.Run();
                                 }
                                 runTime.Reset();
@@ -790,9 +796,16 @@ namespace AppedoLT
             }
         }
 
+        void scr_OnIterationCompleted(int userid, int iterationid)
+        {
+            
+           
+
+        }
+
         void scr_OnLockUserDetail(UserDetail data)
         {
-
+            
         }
 
         void scr_OnLockTransactions(TransactionRunTimeDetail data)
@@ -836,6 +849,7 @@ namespace AppedoLT
 
         void scr_OnLockReportData(ReportData data)
         {
+            _hitCount++;
             _dataServer.LogResult(data);
         }
 
@@ -1078,7 +1092,7 @@ namespace AppedoLT
                 if (executionReport.CreatedUser > 0) lblUserCreated.Text = executionReport.CreatedUser.ToString();
                 lblUserCompleted.Text = executionReport.CompletedUser.ToString();
                 lblErrorCount.Text = lsvErrors.Items.Count.ToString();
-
+                lblHitCount.Text= _hitCount.ToString();
                 if (runTime.IsRunning == true)
                 {
                     lblElapsedTime.Text = string.Format("{0}:{1}:{2}", runTime.Elapsed.Hours.ToString("00"), runTime.Elapsed.Minutes.ToString("00"), runTime.Elapsed.Seconds.ToString("00"));
@@ -1129,6 +1143,7 @@ namespace AppedoLT
                         _scriptExecutorList.Clear();
                         lblUserCreated.Text = tempCreatedUser.ToString();
                         lblUserCompleted.Text = tempCompletedUser.ToString();
+                        lblHitCount.Text = _hitCount.ToString();
                         WaitUntillExecutionComplete();
                         Thread.Sleep(5000);
                         if (executionReport.ReportName != null)

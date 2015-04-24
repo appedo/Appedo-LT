@@ -27,7 +27,8 @@ namespace AppedoLT.Core
     public delegate void LockTransactions(TransactionRunTimeDetail data);
     public delegate void LockUserDetail(UserDetail data);
     public delegate void LockRequestResponse(RequestResponse data);
-    
+    public delegate void IterationCompleted(int userid,int iterationid);
+
     public class Constants
     {
         private string _password = "ss1t_l1c@ns@_k@y_p@ssw0rd";

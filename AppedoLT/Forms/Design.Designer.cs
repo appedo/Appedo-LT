@@ -113,6 +113,8 @@ namespace AppedoLT
             this.userControlReports2 = new AppedoLT.userControlReports();
             this.ucMonitor1 = new AppedoLT.UCMonitor();
             this.objUCLoadGen = new AppedoLT.ucLoadGen();
+            this.label6 = new System.Windows.Forms.Label();
+            this.lblHitCount = new Telerik.WinControls.UI.RadLabel();
             ((System.ComponentModel.ISupportInitialize)(this.tabsDesign)).BeginInit();
             this.tabsDesign.SuspendLayout();
             this.tabiRun.ContentPanel.SuspendLayout();
@@ -156,6 +158,7 @@ namespace AppedoLT
             ((System.ComponentModel.ISupportInitialize)(this.splitPanel17)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitPanel14)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radMenu1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblHitCount)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
@@ -469,6 +472,8 @@ namespace AppedoLT
             this.pnlRun.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pnlRun.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(219)))), ((int)(((byte)(255)))));
+            this.pnlRun.Controls.Add(this.label6);
+            this.pnlRun.Controls.Add(this.lblHitCount);
             this.pnlRun.Controls.Add(this.label2);
             this.pnlRun.Controls.Add(this.lblErrorCount);
             this.pnlRun.Controls.Add(this.label5);
@@ -493,7 +498,7 @@ namespace AppedoLT
             this.label2.AutoSize = true;
             this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(12, 78);
+            this.label2.Location = new System.Drawing.Point(183, 75);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(89, 14);
             this.label2.TabIndex = 40;
@@ -504,7 +509,7 @@ namespace AppedoLT
             this.lblErrorCount.AutoSize = false;
             this.lblErrorCount.BackColor = System.Drawing.Color.Transparent;
             this.lblErrorCount.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
-            this.lblErrorCount.Location = new System.Drawing.Point(136, 78);
+            this.lblErrorCount.Location = new System.Drawing.Point(294, 75);
             this.lblErrorCount.Name = "lblErrorCount";
             this.lblErrorCount.Size = new System.Drawing.Size(45, 13);
             this.lblErrorCount.TabIndex = 41;
@@ -515,7 +520,7 @@ namespace AppedoLT
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(185, 55);
+            this.label5.Location = new System.Drawing.Point(183, 55);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(57, 14);
             this.label5.TabIndex = 38;
@@ -1127,6 +1132,29 @@ namespace AppedoLT
             this.objUCLoadGen.TabIndex = 0;
             this.objUCLoadGen.Visible = false;
             // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.BackColor = System.Drawing.Color.Transparent;
+            this.label6.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(13, 77);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(75, 14);
+            this.label6.TabIndex = 42;
+            this.label6.Text = "Hit Count :";
+            // 
+            // lblHitCount
+            // 
+            this.lblHitCount.AutoSize = false;
+            this.lblHitCount.BackColor = System.Drawing.Color.Transparent;
+            this.lblHitCount.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
+            this.lblHitCount.Location = new System.Drawing.Point(136, 77);
+            this.lblHitCount.Name = "lblHitCount";
+            this.lblHitCount.Size = new System.Drawing.Size(45, 13);
+            this.lblHitCount.TabIndex = 43;
+            this.lblHitCount.Text = "0";
+            this.lblHitCount.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
             // Design
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1191,6 +1219,7 @@ namespace AppedoLT
             ((System.ComponentModel.ISupportInitialize)(this.splitPanel17)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitPanel14)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radMenu1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblHitCount)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -1286,6 +1315,8 @@ namespace AppedoLT
         private System.Windows.Forms.ColumnHeader ivcErrorCode;
         private System.Windows.Forms.Panel pnlScriptSettings;
         private Telerik.WinControls.UI.RadMenu radMenu1;
+        private System.Windows.Forms.Label label6;
+        private Telerik.WinControls.UI.RadLabel lblHitCount;
 
 
 

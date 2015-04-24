@@ -65,6 +65,7 @@ namespace AppedoLT.BusinessLogic
         public event LockTransactions OnLockTransactions;
         public event LockUserDetail OnLockUserDetail;
         public event LockRequestResponse OnLockRequestResponse;
+        public event IterationCompleted OnIterationCompleted;
 
         private string _reportName = string.Empty;
         private string _resposeUrl, _receivedCookies;
@@ -253,6 +254,7 @@ namespace AppedoLT.BusinessLogic
                             }
                         }
                         _transactions.Clear();
+                        if (OnIterationCompleted != null) OnIterationCompleted.Invoke(_userid, _iterationid);
                     }
                     lock (Status.LockObjForCompletedUser)
                     {
@@ -293,6 +295,7 @@ namespace AppedoLT.BusinessLogic
                             }
                         }
                         _transactions.Clear();
+                        if (OnIterationCompleted != null) OnIterationCompleted.Invoke(_userid, _iterationid);
                     }
                     #endregion
                 }
