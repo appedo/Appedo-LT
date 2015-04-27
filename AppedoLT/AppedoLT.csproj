@@ -413,7 +413,6 @@
     <Content Include="log.xslt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Note.txt" />
     <Content Include="report.xslt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

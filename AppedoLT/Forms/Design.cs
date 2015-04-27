@@ -1416,5 +1416,10 @@ namespace AppedoLT
             }
         }
 
+        private void tabsDesign_TabSelected(object sender, TabEventArgs args)
+        {
+
+        }
+
     }
 }

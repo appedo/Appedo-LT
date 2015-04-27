@@ -220,6 +220,7 @@ namespace AppedoLT
             this.tabsDesign.TabScrollButtonsPosition = Telerik.WinControls.UI.TabScrollButtonsPosition.RightBottom;
             this.tabsDesign.Text = "radTabStrip1";
             this.tabsDesign.ThemeName = "ControlDefault";
+            this.tabsDesign.TabSelected += new Telerik.WinControls.UI.TabEventHandler(this.tabsDesign_TabSelected);
             this.tabsDesign.Resize += new System.EventHandler(this.tabsDesign_Resize);
             // 
             // tabiVUscript

@@ -77,6 +77,8 @@
             this.radLabel80 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel81 = new Telerik.WinControls.UI.RadLabel();
             this.brwReportView = new System.Windows.Forms.WebBrowser();
+            this.cntmSave = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabsReport = new Telerik.WinControls.UI.RadTabStrip();
             this.tabiHeader = new Telerik.WinControls.UI.TabItem();
             this.tabiParameters = new Telerik.WinControls.UI.TabItem();
@@ -87,11 +89,9 @@
             this.splitPanel1 = new Telerik.WinControls.UI.SplitPanel();
             this.radPanel2 = new Telerik.WinControls.UI.RadPanel();
             this.radListBox1 = new Telerik.WinControls.UI.RadListBox();
+            this.radListBoxItem1 = new Telerik.WinControls.UI.RadListBoxItem();
             this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
             this.splitPanel2 = new Telerik.WinControls.UI.SplitPanel();
-            this.cntmSave = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.radListBoxItem1 = new Telerik.WinControls.UI.RadListBoxItem();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel32)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel35)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel38)).BeginInit();
@@ -140,6 +140,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.radLabel79)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel80)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel81)).BeginInit();
+            this.cntmSave.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tabsReport)).BeginInit();
             this.tabsReport.SuspendLayout();
             this.tabiHeader.ContentPanel.SuspendLayout();
@@ -155,7 +156,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitPanel2)).BeginInit();
             this.splitPanel2.SuspendLayout();
-            this.cntmSave.SuspendLayout();
             this.SuspendLayout();
             // 
             // radLabel32
@@ -525,8 +525,25 @@
             this.brwReportView.MinimumSize = new System.Drawing.Size(20, 20);
             this.brwReportView.Name = "brwReportView";
             this.brwReportView.ScriptErrorsSuppressed = true;
-            this.brwReportView.Size = new System.Drawing.Size(652, 679);
+            this.brwReportView.Size = new System.Drawing.Size(627, 679);
             this.brwReportView.TabIndex = 1;
+            // 
+            // cntmSave
+            // 
+            this.cntmSave.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.cntmSave.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cntmSave.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.deleteToolStripMenuItem});
+            this.cntmSave.Name = "cntmUVScript";
+            this.cntmSave.Size = new System.Drawing.Size(106, 26);
+            // 
+            // deleteToolStripMenuItem
+            // 
+            this.deleteToolStripMenuItem.AutoToolTip = true;
+            this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(105, 22);
+            this.deleteToolStripMenuItem.Text = "&Save";
+            this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
             // 
             // tabsReport
             // 
@@ -560,7 +577,7 @@
             this.tabiHeader.ContentPanel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabiHeader.ContentPanel.ForeColor = System.Drawing.SystemColors.ControlText;
             this.tabiHeader.ContentPanel.Location = new System.Drawing.Point(0, 25);
-            this.tabiHeader.ContentPanel.Size = new System.Drawing.Size(652, 679);
+            this.tabiHeader.ContentPanel.Size = new System.Drawing.Size(627, 679);
             this.tabiHeader.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabiHeader.IsSelected = true;
             this.tabiHeader.Margin = new System.Windows.Forms.Padding(4, 0, 0, 0);
@@ -580,7 +597,7 @@
             this.tabiParameters.ContentPanel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabiParameters.ContentPanel.ForeColor = System.Drawing.SystemColors.ControlText;
             this.tabiParameters.ContentPanel.Location = new System.Drawing.Point(0, 25);
-            this.tabiParameters.ContentPanel.Size = new System.Drawing.Size(652, 679);
+            this.tabiParameters.ContentPanel.Size = new System.Drawing.Size(627, 679);
             this.tabiParameters.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabiParameters.Margin = new System.Windows.Forms.Padding(4, 0, 0, 0);
             this.tabiParameters.Name = "tabiParameters";
@@ -594,7 +611,7 @@
             this.brwErrors.MinimumSize = new System.Drawing.Size(20, 20);
             this.brwErrors.Name = "brwErrors";
             this.brwErrors.ScriptErrorsSuppressed = true;
-            this.brwErrors.Size = new System.Drawing.Size(652, 679);
+            this.brwErrors.Size = new System.Drawing.Size(627, 679);
             this.brwErrors.TabIndex = 2;
             // 
             // tabiVariables
@@ -609,7 +626,7 @@
             this.tabiVariables.ContentPanel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabiVariables.ContentPanel.ForeColor = System.Drawing.SystemColors.ControlText;
             this.tabiVariables.ContentPanel.Location = new System.Drawing.Point(0, 25);
-            this.tabiVariables.ContentPanel.Size = new System.Drawing.Size(652, 679);
+            this.tabiVariables.ContentPanel.Size = new System.Drawing.Size(627, 679);
             this.tabiVariables.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabiVariables.Margin = new System.Windows.Forms.Padding(4, 0, 0, 0);
             this.tabiVariables.Name = "tabiVariables";
@@ -623,7 +640,7 @@
             this.brwLogs.MinimumSize = new System.Drawing.Size(20, 20);
             this.brwLogs.Name = "brwLogs";
             this.brwLogs.ScriptErrorsSuppressed = true;
-            this.brwLogs.Size = new System.Drawing.Size(652, 679);
+            this.brwLogs.Size = new System.Drawing.Size(627, 679);
             this.brwLogs.TabIndex = 2;
             // 
             // radSplitContainer1
@@ -690,6 +707,11 @@
             this.radListBox1.Text = "radListBoxItem1";
             this.radListBox1.SelectedIndexChanged += new System.EventHandler(this.radListBox1_SelectedIndexChanged);
             // 
+            // radListBoxItem1
+            // 
+            this.radListBoxItem1.Name = "radListBoxItem1";
+            this.radListBoxItem1.Text = "radListBoxItem1";
+            // 
             // radLabel1
             // 
             this.radLabel1.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -714,28 +736,6 @@
             this.splitPanel2.TabIndex = 1;
             this.splitPanel2.TabStop = false;
             this.splitPanel2.Text = "splitPanel2";
-            // 
-            // cntmSave
-            // 
-            this.cntmSave.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.cntmSave.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cntmSave.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.deleteToolStripMenuItem});
-            this.cntmSave.Name = "cntmUVScript";
-            this.cntmSave.Size = new System.Drawing.Size(106, 26);
-            // 
-            // deleteToolStripMenuItem
-            // 
-            this.deleteToolStripMenuItem.AutoToolTip = true;
-            this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
-            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.deleteToolStripMenuItem.Text = "&Save";
-            this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
-            // 
-            // radListBoxItem1
-            // 
-            this.radListBoxItem1.Name = "radListBoxItem1";
-            this.radListBoxItem1.Text = "radListBoxItem1";
             // 
             // userControlReports
             // 
@@ -794,6 +794,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.radLabel79)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel80)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel81)).EndInit();
+            this.cntmSave.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.tabsReport)).EndInit();
             this.tabsReport.ResumeLayout(false);
             this.tabiHeader.ContentPanel.ResumeLayout(false);
@@ -810,7 +811,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitPanel2)).EndInit();
             this.splitPanel2.ResumeLayout(false);
-            this.cntmSave.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
