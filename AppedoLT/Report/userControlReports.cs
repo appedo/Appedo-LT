@@ -15,6 +15,8 @@ namespace AppedoLT
         public userControlReports()
         {
             InitializeComponent();
+            //brwReportView.IsWebBrowserContextMenuEnabled = false;
+            //brwReportView.ContextMenuStrip = cntmSave;
             LoadReportName(string.Empty);
           
         }
@@ -255,6 +257,11 @@ namespace AppedoLT
             {
                 brwReportView.DocumentText = string.Empty;
             }
+        }
+
+        private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

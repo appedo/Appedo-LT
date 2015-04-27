@@ -70,6 +70,11 @@ namespace AppedoLT
             this.splcRunErrorReport = new Telerik.WinControls.UI.RadSplitContainer();
             this.splitPanel18 = new Telerik.WinControls.UI.SplitPanel();
             this.radTabStrip1 = new Telerik.WinControls.UI.RadTabStrip();
+            this.tabItem3 = new Telerik.WinControls.UI.TabItem();
+            this.listView1 = new System.Windows.Forms.ListView();
+            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tabItem2 = new Telerik.WinControls.UI.TabItem();
             this.lsvErrors = new System.Windows.Forms.ListView();
             this.lvcId = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -111,11 +116,6 @@ namespace AppedoLT
             this.imageListForHeading = new System.Windows.Forms.ImageList(this.components);
             this.tabItem4 = new Telerik.WinControls.UI.TabItem();
             this.radMenu1 = new Telerik.WinControls.UI.RadMenu();
-            this.tabItem3 = new Telerik.WinControls.UI.TabItem();
-            this.listView1 = new System.Windows.Forms.ListView();
-            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.userControlCharts1 = new AppedoLT.userControlCharts();
             this.userControlReports2 = new AppedoLT.userControlReports();
             this.ucMonitor1 = new AppedoLT.UCMonitor();
@@ -156,6 +156,7 @@ namespace AppedoLT
             this.splitPanel18.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radTabStrip1)).BeginInit();
             this.radTabStrip1.SuspendLayout();
+            this.tabItem3.ContentPanel.SuspendLayout();
             this.tabItem2.ContentPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnExport)).BeginInit();
             this.tabiCharts.ContentPanel.SuspendLayout();
@@ -164,7 +165,6 @@ namespace AppedoLT
             ((System.ComponentModel.ISupportInitialize)(this.splitPanel17)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitPanel14)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radMenu1)).BeginInit();
-            this.tabItem3.ContentPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
@@ -242,6 +242,7 @@ namespace AppedoLT
             this.tabiVUscript.ForeColor = System.Drawing.Color.Black;
             this.tabiVUscript.Image = ((System.Drawing.Image)(resources.GetObject("tabiVUscript.Image")));
             this.tabiVUscript.ImageKey = "scripts.gif";
+            this.tabiVUscript.IsSelected = true;
             this.tabiVUscript.Margin = new System.Windows.Forms.Padding(2, 0, 0, 0);
             this.tabiVUscript.Name = "tabiVUscript";
             this.tabiVUscript.ScaleTransform = new System.Drawing.SizeF(1.2F, 1.2F);
@@ -270,7 +271,6 @@ namespace AppedoLT
             this.tabiRun.ForeColor = System.Drawing.Color.Black;
             this.tabiRun.Image = ((System.Drawing.Image)(resources.GetObject("tabiRun.Image")));
             this.tabiRun.ImageKey = "arrow-right-3.png";
-            this.tabiRun.IsSelected = true;
             this.tabiRun.Margin = new System.Windows.Forms.Padding(2, 0, 0, 0);
             this.tabiRun.Name = "tabiRun";
             this.tabiRun.ScaleTransform = new System.Drawing.SizeF(1.2F, 1.2F);
@@ -304,9 +304,9 @@ namespace AppedoLT
             // 
             // 
             this.splitPanel4.RootElement.MinSize = new System.Drawing.Size(25, 25);
-            this.splitPanel4.Size = new System.Drawing.Size(292, 499);
-            this.splitPanel4.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(-0.1886994F, 0F);
-            this.splitPanel4.SizeInfo.SplitterCorrection = new System.Drawing.Size(-36, 0);
+            this.splitPanel4.Size = new System.Drawing.Size(222, 499);
+            this.splitPanel4.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(-0.2633262F, 0F);
+            this.splitPanel4.SizeInfo.SplitterCorrection = new System.Drawing.Size(-106, 0);
             this.splitPanel4.TabIndex = 0;
             this.splitPanel4.TabStop = false;
             this.splitPanel4.Text = "splitPanel4";
@@ -323,7 +323,7 @@ namespace AppedoLT
             // 
             // 
             this.radSplitContainer6.RootElement.MinSize = new System.Drawing.Size(25, 25);
-            this.radSplitContainer6.Size = new System.Drawing.Size(292, 499);
+            this.radSplitContainer6.Size = new System.Drawing.Size(222, 499);
             this.radSplitContainer6.TabIndex = 3;
             this.radSplitContainer6.TabStop = false;
             this.radSplitContainer6.Text = "radSplitContainer6";
@@ -342,7 +342,7 @@ namespace AppedoLT
             // 
             // 
             this.splitPanel9.RootElement.MinSize = new System.Drawing.Size(25, 25);
-            this.splitPanel9.Size = new System.Drawing.Size(292, 499);
+            this.splitPanel9.Size = new System.Drawing.Size(222, 499);
             this.splitPanel9.TabIndex = 0;
             this.splitPanel9.TabStop = false;
             this.splitPanel9.Text = "splitPanel9";
@@ -361,7 +361,7 @@ namespace AppedoLT
             this.tvScenarios.Location = new System.Drawing.Point(5, 32);
             this.tvScenarios.Name = "tvScenarios";
             this.tvScenarios.ShowLines = true;
-            this.tvScenarios.Size = new System.Drawing.Size(283, 463);
+            this.tvScenarios.Size = new System.Drawing.Size(213, 463);
             this.tvScenarios.TabIndex = 3;
             this.tvScenarios.Text = "radTreeView1";
             this.tvScenarios.ThemeName = "Vista";
@@ -402,7 +402,7 @@ namespace AppedoLT
             // 
             this.btnAddNewScenario.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnAddNewScenario.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAddNewScenario.Location = new System.Drawing.Point(205, 4);
+            this.btnAddNewScenario.Location = new System.Drawing.Point(135, 4);
             this.btnAddNewScenario.Name = "btnAddNewScenario";
             this.btnAddNewScenario.Size = new System.Drawing.Size(82, 24);
             this.btnAddNewScenario.TabIndex = 5;
@@ -423,15 +423,15 @@ namespace AppedoLT
             // splitPanel5
             // 
             this.splitPanel5.Controls.Add(this.radSplitContainer5);
-            this.splitPanel5.Location = new System.Drawing.Point(295, 0);
+            this.splitPanel5.Location = new System.Drawing.Point(225, 0);
             this.splitPanel5.Name = "splitPanel5";
             // 
             // 
             // 
             this.splitPanel5.RootElement.MinSize = new System.Drawing.Size(25, 25);
-            this.splitPanel5.Size = new System.Drawing.Size(646, 499);
-            this.splitPanel5.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(0.1886994F, 0F);
-            this.splitPanel5.SizeInfo.SplitterCorrection = new System.Drawing.Size(36, 0);
+            this.splitPanel5.Size = new System.Drawing.Size(716, 499);
+            this.splitPanel5.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(0.2633262F, 0F);
+            this.splitPanel5.SizeInfo.SplitterCorrection = new System.Drawing.Size(106, 0);
             this.splitPanel5.TabIndex = 1;
             this.splitPanel5.TabStop = false;
             this.splitPanel5.Text = "splitPanel5";
@@ -449,7 +449,7 @@ namespace AppedoLT
             // 
             // 
             this.radSplitContainer5.RootElement.MinSize = new System.Drawing.Size(25, 25);
-            this.radSplitContainer5.Size = new System.Drawing.Size(646, 499);
+            this.radSplitContainer5.Size = new System.Drawing.Size(716, 499);
             this.radSplitContainer5.TabIndex = 12;
             this.radSplitContainer5.TabStop = false;
             this.radSplitContainer5.Text = "radSplitContainer5";
@@ -465,7 +465,7 @@ namespace AppedoLT
             // 
             // 
             this.splitPanel7.RootElement.MinSize = new System.Drawing.Size(25, 25);
-            this.splitPanel7.Size = new System.Drawing.Size(646, 263);
+            this.splitPanel7.Size = new System.Drawing.Size(716, 263);
             this.splitPanel7.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(0F, 0.0308642F);
             this.splitPanel7.SizeInfo.SplitterCorrection = new System.Drawing.Size(0, 17);
             this.splitPanel7.TabIndex = 0;
@@ -496,7 +496,7 @@ namespace AppedoLT
             this.pnlRun.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.pnlRun.Location = new System.Drawing.Point(0, 1);
             this.pnlRun.Name = "pnlRun";
-            this.pnlRun.Size = new System.Drawing.Size(645, 102);
+            this.pnlRun.Size = new System.Drawing.Size(715, 102);
             this.pnlRun.TabIndex = 27;
             // 
             // label6
@@ -670,7 +670,7 @@ namespace AppedoLT
             this.pnlScriptSettings.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.pnlScriptSettings.Location = new System.Drawing.Point(1, 104);
             this.pnlScriptSettings.Name = "pnlScriptSettings";
-            this.pnlScriptSettings.Size = new System.Drawing.Size(644, 156);
+            this.pnlScriptSettings.Size = new System.Drawing.Size(714, 156);
             this.pnlScriptSettings.TabIndex = 28;
             // 
             // splitPanel8
@@ -682,7 +682,7 @@ namespace AppedoLT
             // 
             // 
             this.splitPanel8.RootElement.MinSize = new System.Drawing.Size(25, 25);
-            this.splitPanel8.Size = new System.Drawing.Size(646, 233);
+            this.splitPanel8.Size = new System.Drawing.Size(716, 233);
             this.splitPanel8.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(0F, -0.0308642F);
             this.splitPanel8.SizeInfo.SplitterCorrection = new System.Drawing.Size(0, -17);
             this.splitPanel8.TabIndex = 1;
@@ -700,7 +700,7 @@ namespace AppedoLT
             // 
             // 
             this.splcRunErrorReport.RootElement.MinSize = new System.Drawing.Size(25, 25);
-            this.splcRunErrorReport.Size = new System.Drawing.Size(646, 233);
+            this.splcRunErrorReport.Size = new System.Drawing.Size(716, 233);
             this.splcRunErrorReport.TabIndex = 13;
             this.splcRunErrorReport.TabStop = false;
             this.splcRunErrorReport.Text = "radSplitContainer7";
@@ -716,7 +716,7 @@ namespace AppedoLT
             // 
             // 
             this.splitPanel18.RootElement.MinSize = new System.Drawing.Size(25, 25);
-            this.splitPanel18.Size = new System.Drawing.Size(646, 233);
+            this.splitPanel18.Size = new System.Drawing.Size(716, 233);
             this.splitPanel18.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(-0.06465518F, 0F);
             this.splitPanel18.SizeInfo.SplitterCorrection = new System.Drawing.Size(-45, 0);
             this.splitPanel18.TabIndex = 0;
@@ -736,11 +736,65 @@ namespace AppedoLT
             this.radTabStrip1.Location = new System.Drawing.Point(0, 0);
             this.radTabStrip1.Name = "radTabStrip1";
             this.radTabStrip1.ScrollOffsetStep = 5;
-            this.radTabStrip1.Size = new System.Drawing.Size(646, 233);
+            this.radTabStrip1.Size = new System.Drawing.Size(716, 233);
             this.radTabStrip1.TabIndex = 0;
             this.radTabStrip1.TabScrollButtonsPosition = Telerik.WinControls.UI.TabScrollButtonsPosition.RightBottom;
             this.radTabStrip1.Text = "radTabStrip1";
             this.radTabStrip1.ThemeName = "Telerik";
+            // 
+            // tabItem3
+            // 
+            this.tabItem3.Alignment = System.Drawing.ContentAlignment.BottomLeft;
+            // 
+            // tabItem3.ContentPanel
+            // 
+            this.tabItem3.ContentPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(248)))));
+            this.tabItem3.ContentPanel.CausesValidation = true;
+            this.tabItem3.ContentPanel.Controls.Add(this.listView1);
+            this.tabItem3.ContentPanel.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tabItem3.ContentPanel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(66)))), ((int)(((byte)(139)))));
+            this.tabItem3.ContentPanel.Location = new System.Drawing.Point(0, 25);
+            this.tabItem3.ContentPanel.Size = new System.Drawing.Size(716, 208);
+            this.tabItem3.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tabItem3.IsSelected = true;
+            this.tabItem3.Margin = new System.Windows.Forms.Padding(4, 0, 0, 0);
+            this.tabItem3.Name = "tabItem3";
+            this.tabItem3.StretchHorizontally = false;
+            this.tabItem3.Text = "VUser Status";
+            // 
+            // listView1
+            // 
+            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader2,
+            this.columnHeader3,
+            this.columnHeader4});
+            this.listView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.listView1.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.listView1.FullRowSelect = true;
+            this.listView1.GridLines = true;
+            this.listView1.HideSelection = false;
+            this.listView1.Location = new System.Drawing.Point(0, 0);
+            this.listView1.MultiSelect = false;
+            this.listView1.Name = "listView1";
+            this.listView1.Size = new System.Drawing.Size(716, 208);
+            this.listView1.TabIndex = 2;
+            this.listView1.UseCompatibleStateImageBehavior = false;
+            this.listView1.View = System.Windows.Forms.View.Details;
+            // 
+            // columnHeader2
+            // 
+            this.columnHeader2.Text = "VUser id";
+            this.columnHeader2.Width = 133;
+            // 
+            // columnHeader3
+            // 
+            this.columnHeader3.Text = "Iteration Completed";
+            this.columnHeader3.Width = 190;
+            // 
+            // columnHeader4
+            // 
+            this.columnHeader4.Text = "Status";
+            this.columnHeader4.Width = 318;
             // 
             // tabItem2
             // 
@@ -755,7 +809,7 @@ namespace AppedoLT
             this.tabItem2.ContentPanel.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabItem2.ContentPanel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(66)))), ((int)(((byte)(139)))));
             this.tabItem2.ContentPanel.Location = new System.Drawing.Point(0, 25);
-            this.tabItem2.ContentPanel.Size = new System.Drawing.Size(646, 208);
+            this.tabItem2.ContentPanel.Size = new System.Drawing.Size(716, 208);
             this.tabItem2.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabItem2.Margin = new System.Windows.Forms.Padding(4, 0, 0, 0);
             this.tabItem2.Name = "tabItem2";
@@ -786,7 +840,7 @@ namespace AppedoLT
             this.lsvErrors.Location = new System.Drawing.Point(0, 0);
             this.lsvErrors.MultiSelect = false;
             this.lsvErrors.Name = "lsvErrors";
-            this.lsvErrors.Size = new System.Drawing.Size(646, 208);
+            this.lsvErrors.Size = new System.Drawing.Size(716, 208);
             this.lsvErrors.TabIndex = 1;
             this.lsvErrors.UseCompatibleStateImageBehavior = false;
             this.lsvErrors.View = System.Windows.Forms.View.Details;
@@ -854,7 +908,7 @@ namespace AppedoLT
             // 
             this.btnExport.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnExport.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnExport.Location = new System.Drawing.Point(668, 4);
+            this.btnExport.Location = new System.Drawing.Point(739, 4);
             this.btnExport.Name = "btnExport";
             this.btnExport.Size = new System.Drawing.Size(86, 20);
             this.btnExport.TabIndex = 35;
@@ -1119,60 +1173,6 @@ namespace AppedoLT
             this.radMenu1.Text = "radMenu1";
             this.radMenu1.ThemeName = "Windows7";
             // 
-            // tabItem3
-            // 
-            this.tabItem3.Alignment = System.Drawing.ContentAlignment.BottomLeft;
-            // 
-            // tabItem3.ContentPanel
-            // 
-            this.tabItem3.ContentPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(248)))));
-            this.tabItem3.ContentPanel.CausesValidation = true;
-            this.tabItem3.ContentPanel.Controls.Add(this.listView1);
-            this.tabItem3.ContentPanel.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tabItem3.ContentPanel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(66)))), ((int)(((byte)(139)))));
-            this.tabItem3.ContentPanel.Location = new System.Drawing.Point(0, 25);
-            this.tabItem3.ContentPanel.Size = new System.Drawing.Size(646, 208);
-            this.tabItem3.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tabItem3.IsSelected = true;
-            this.tabItem3.Margin = new System.Windows.Forms.Padding(4, 0, 0, 0);
-            this.tabItem3.Name = "tabItem3";
-            this.tabItem3.StretchHorizontally = false;
-            this.tabItem3.Text = "VUser Status";
-            // 
-            // listView1
-            // 
-            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader2,
-            this.columnHeader3,
-            this.columnHeader4});
-            this.listView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.listView1.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.listView1.FullRowSelect = true;
-            this.listView1.GridLines = true;
-            this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(0, 0);
-            this.listView1.MultiSelect = false;
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(646, 208);
-            this.listView1.TabIndex = 2;
-            this.listView1.UseCompatibleStateImageBehavior = false;
-            this.listView1.View = System.Windows.Forms.View.Details;
-            // 
-            // columnHeader2
-            // 
-            this.columnHeader2.Text = "VUser id";
-            this.columnHeader2.Width = 133;
-            // 
-            // columnHeader3
-            // 
-            this.columnHeader3.Text = "Iteration Completed";
-            this.columnHeader3.Width = 190;
-            // 
-            // columnHeader4
-            // 
-            this.columnHeader4.Text = "Status";
-            this.columnHeader4.Width = 318;
-            // 
             // userControlCharts1
             // 
             this.userControlCharts1.AutoScroll = true;
@@ -1272,6 +1272,7 @@ namespace AppedoLT
             this.splitPanel18.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.radTabStrip1)).EndInit();
             this.radTabStrip1.ResumeLayout(false);
+            this.tabItem3.ContentPanel.ResumeLayout(false);
             this.tabItem2.ContentPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.btnExport)).EndInit();
             this.tabiCharts.ContentPanel.ResumeLayout(false);
@@ -1280,7 +1281,6 @@ namespace AppedoLT
             ((System.ComponentModel.ISupportInitialize)(this.splitPanel17)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitPanel14)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radMenu1)).EndInit();
-            this.tabItem3.ContentPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -1383,8 +1383,5 @@ namespace AppedoLT
         private System.Windows.Forms.ColumnHeader columnHeader2;
         private System.Windows.Forms.ColumnHeader columnHeader3;
         private System.Windows.Forms.ColumnHeader columnHeader4;
-
-
-
     }
 }

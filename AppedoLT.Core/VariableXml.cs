@@ -5,7 +5,6 @@ using System.Xml;
 
 namespace AppedoLT.Core
 {
-
     public class VariableXml
     {
         public XmlDocument doc = new XmlDocument();

@@ -29,6 +29,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.radLabel32 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel35 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel38 = new Telerik.WinControls.UI.RadLabel();
@@ -79,15 +80,18 @@
             this.tabsReport = new Telerik.WinControls.UI.RadTabStrip();
             this.tabiHeader = new Telerik.WinControls.UI.TabItem();
             this.tabiParameters = new Telerik.WinControls.UI.TabItem();
+            this.brwErrors = new System.Windows.Forms.WebBrowser();
             this.tabiVariables = new Telerik.WinControls.UI.TabItem();
+            this.brwLogs = new System.Windows.Forms.WebBrowser();
             this.radSplitContainer1 = new Telerik.WinControls.UI.RadSplitContainer();
             this.splitPanel1 = new Telerik.WinControls.UI.SplitPanel();
-            this.splitPanel2 = new Telerik.WinControls.UI.SplitPanel();
-            this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
             this.radPanel2 = new Telerik.WinControls.UI.RadPanel();
             this.radListBox1 = new Telerik.WinControls.UI.RadListBox();
-            this.brwErrors = new System.Windows.Forms.WebBrowser();
-            this.brwLogs = new System.Windows.Forms.WebBrowser();
+            this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
+            this.splitPanel2 = new Telerik.WinControls.UI.SplitPanel();
+            this.cntmSave = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.radListBoxItem1 = new Telerik.WinControls.UI.RadListBoxItem();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel32)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel35)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel38)).BeginInit();
@@ -145,12 +149,13 @@
             this.radSplitContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitPanel1)).BeginInit();
             this.splitPanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.splitPanel2)).BeginInit();
-            this.splitPanel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radPanel2)).BeginInit();
             this.radPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radListBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.splitPanel2)).BeginInit();
+            this.splitPanel2.SuspendLayout();
+            this.cntmSave.SuspendLayout();
             this.SuspendLayout();
             // 
             // radLabel32
@@ -514,12 +519,13 @@
             // 
             // brwReportView
             // 
+            this.brwReportView.ContextMenuStrip = this.cntmSave;
             this.brwReportView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.brwReportView.Location = new System.Drawing.Point(0, 0);
             this.brwReportView.MinimumSize = new System.Drawing.Size(20, 20);
             this.brwReportView.Name = "brwReportView";
             this.brwReportView.ScriptErrorsSuppressed = true;
-            this.brwReportView.Size = new System.Drawing.Size(652, 680);
+            this.brwReportView.Size = new System.Drawing.Size(652, 679);
             this.brwReportView.TabIndex = 1;
             // 
             // tabsReport
@@ -535,7 +541,7 @@
             this.tabsReport.Location = new System.Drawing.Point(0, 0);
             this.tabsReport.Name = "tabsReport";
             this.tabsReport.ScrollOffsetStep = 5;
-            this.tabsReport.Size = new System.Drawing.Size(652, 704);
+            this.tabsReport.Size = new System.Drawing.Size(627, 704);
             this.tabsReport.TabIndex = 46;
             this.tabsReport.TabScrollButtonsPosition = Telerik.WinControls.UI.TabScrollButtonsPosition.RightBottom;
             this.tabsReport.Text = "radTabStrip1";
@@ -553,8 +559,9 @@
             this.tabiHeader.ContentPanel.Controls.Add(this.brwReportView);
             this.tabiHeader.ContentPanel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabiHeader.ContentPanel.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.tabiHeader.ContentPanel.Location = new System.Drawing.Point(0, 24);
-            this.tabiHeader.ContentPanel.Size = new System.Drawing.Size(652, 680);
+            this.tabiHeader.ContentPanel.Location = new System.Drawing.Point(0, 25);
+            this.tabiHeader.ContentPanel.Size = new System.Drawing.Size(652, 679);
+            this.tabiHeader.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabiHeader.IsSelected = true;
             this.tabiHeader.Margin = new System.Windows.Forms.Padding(4, 0, 0, 0);
             this.tabiHeader.Name = "tabiHeader";
@@ -572,12 +579,23 @@
             this.tabiParameters.ContentPanel.Controls.Add(this.brwErrors);
             this.tabiParameters.ContentPanel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabiParameters.ContentPanel.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.tabiParameters.ContentPanel.Location = new System.Drawing.Point(0, 24);
-            this.tabiParameters.ContentPanel.Size = new System.Drawing.Size(652, 680);
+            this.tabiParameters.ContentPanel.Location = new System.Drawing.Point(0, 25);
+            this.tabiParameters.ContentPanel.Size = new System.Drawing.Size(652, 679);
+            this.tabiParameters.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabiParameters.Margin = new System.Windows.Forms.Padding(4, 0, 0, 0);
             this.tabiParameters.Name = "tabiParameters";
             this.tabiParameters.StretchHorizontally = false;
             this.tabiParameters.Text = "Errors";
+            // 
+            // brwErrors
+            // 
+            this.brwErrors.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.brwErrors.Location = new System.Drawing.Point(0, 0);
+            this.brwErrors.MinimumSize = new System.Drawing.Size(20, 20);
+            this.brwErrors.Name = "brwErrors";
+            this.brwErrors.ScriptErrorsSuppressed = true;
+            this.brwErrors.Size = new System.Drawing.Size(652, 679);
+            this.brwErrors.TabIndex = 2;
             // 
             // tabiVariables
             // 
@@ -590,12 +608,23 @@
             this.tabiVariables.ContentPanel.Controls.Add(this.brwLogs);
             this.tabiVariables.ContentPanel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabiVariables.ContentPanel.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.tabiVariables.ContentPanel.Location = new System.Drawing.Point(0, 24);
-            this.tabiVariables.ContentPanel.Size = new System.Drawing.Size(652, 680);
+            this.tabiVariables.ContentPanel.Location = new System.Drawing.Point(0, 25);
+            this.tabiVariables.ContentPanel.Size = new System.Drawing.Size(652, 679);
+            this.tabiVariables.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabiVariables.Margin = new System.Windows.Forms.Padding(4, 0, 0, 0);
             this.tabiVariables.Name = "tabiVariables";
             this.tabiVariables.StretchHorizontally = false;
             this.tabiVariables.Text = "Logs";
+            // 
+            // brwLogs
+            // 
+            this.brwLogs.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.brwLogs.Location = new System.Drawing.Point(0, 0);
+            this.brwLogs.MinimumSize = new System.Drawing.Size(20, 20);
+            this.brwLogs.Name = "brwLogs";
+            this.brwLogs.ScriptErrorsSuppressed = true;
+            this.brwLogs.Size = new System.Drawing.Size(652, 679);
+            this.brwLogs.TabIndex = 2;
             // 
             // radSplitContainer1
             // 
@@ -622,37 +651,12 @@
             // 
             // 
             this.splitPanel1.RootElement.MinSize = new System.Drawing.Size(25, 25);
-            this.splitPanel1.Size = new System.Drawing.Size(170, 704);
-            this.splitPanel1.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(-0.2933227F, 0F);
-            this.splitPanel1.SizeInfo.SplitterCorrection = new System.Drawing.Size(-236, 0);
+            this.splitPanel1.Size = new System.Drawing.Size(195, 704);
+            this.splitPanel1.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(-0.2627737F, 0F);
+            this.splitPanel1.SizeInfo.SplitterCorrection = new System.Drawing.Size(-211, 0);
             this.splitPanel1.TabIndex = 0;
             this.splitPanel1.TabStop = false;
             this.splitPanel1.Text = "splitPanel1";
-            // 
-            // splitPanel2
-            // 
-            this.splitPanel2.Controls.Add(this.tabsReport);
-            this.splitPanel2.Location = new System.Drawing.Point(173, 0);
-            this.splitPanel2.Name = "splitPanel2";
-            // 
-            // 
-            // 
-            this.splitPanel2.RootElement.MinSize = new System.Drawing.Size(25, 25);
-            this.splitPanel2.Size = new System.Drawing.Size(652, 704);
-            this.splitPanel2.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(0.2933227F, 0F);
-            this.splitPanel2.SizeInfo.SplitterCorrection = new System.Drawing.Size(236, 0);
-            this.splitPanel2.TabIndex = 1;
-            this.splitPanel2.TabStop = false;
-            this.splitPanel2.Text = "splitPanel2";
-            // 
-            // radLabel1
-            // 
-            this.radLabel1.Font = new System.Drawing.Font("Verdana", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radLabel1.Location = new System.Drawing.Point(3, 3);
-            this.radLabel1.Name = "radLabel1";
-            this.radLabel1.Size = new System.Drawing.Size(108, 22);
-            this.radLabel1.TabIndex = 1;
-            this.radLabel1.Text = "Report name";
             // 
             // radPanel2
             // 
@@ -662,7 +666,7 @@
             this.radPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.radPanel2.Location = new System.Drawing.Point(0, 0);
             this.radPanel2.Name = "radPanel2";
-            this.radPanel2.Size = new System.Drawing.Size(170, 704);
+            this.radPanel2.Size = new System.Drawing.Size(195, 704);
             this.radPanel2.TabIndex = 2;
             this.radPanel2.Text = "radPanel2";
             // 
@@ -673,35 +677,65 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.radListBox1.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.radListBox1.ForeColor = System.Drawing.Color.Black;
-            this.radListBox1.Location = new System.Drawing.Point(2, 29);
+            this.radListBox1.Items.AddRange(new Telerik.WinControls.RadItem[] {
+            this.radListBoxItem1});
+            this.radListBox1.Location = new System.Drawing.Point(2, 25);
             this.radListBox1.Name = "radListBox1";
             // 
             // 
             // 
             this.radListBox1.RootElement.ForeColor = System.Drawing.Color.Black;
-            this.radListBox1.Size = new System.Drawing.Size(166, 673);
+            this.radListBox1.Size = new System.Drawing.Size(191, 677);
             this.radListBox1.TabIndex = 0;
+            this.radListBox1.Text = "radListBoxItem1";
             this.radListBox1.SelectedIndexChanged += new System.EventHandler(this.radListBox1_SelectedIndexChanged);
             // 
-            // brwErrors
+            // radLabel1
             // 
-            this.brwErrors.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.brwErrors.Location = new System.Drawing.Point(0, 0);
-            this.brwErrors.MinimumSize = new System.Drawing.Size(20, 20);
-            this.brwErrors.Name = "brwErrors";
-            this.brwErrors.ScriptErrorsSuppressed = true;
-            this.brwErrors.Size = new System.Drawing.Size(652, 680);
-            this.brwErrors.TabIndex = 2;
+            this.radLabel1.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radLabel1.Location = new System.Drawing.Point(3, 3);
+            this.radLabel1.Name = "radLabel1";
+            this.radLabel1.Size = new System.Drawing.Size(96, 18);
+            this.radLabel1.TabIndex = 1;
+            this.radLabel1.Text = "Report name";
             // 
-            // brwLogs
+            // splitPanel2
             // 
-            this.brwLogs.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.brwLogs.Location = new System.Drawing.Point(0, 0);
-            this.brwLogs.MinimumSize = new System.Drawing.Size(20, 20);
-            this.brwLogs.Name = "brwLogs";
-            this.brwLogs.ScriptErrorsSuppressed = true;
-            this.brwLogs.Size = new System.Drawing.Size(652, 680);
-            this.brwLogs.TabIndex = 2;
+            this.splitPanel2.Controls.Add(this.tabsReport);
+            this.splitPanel2.Location = new System.Drawing.Point(198, 0);
+            this.splitPanel2.Name = "splitPanel2";
+            // 
+            // 
+            // 
+            this.splitPanel2.RootElement.MinSize = new System.Drawing.Size(25, 25);
+            this.splitPanel2.Size = new System.Drawing.Size(627, 704);
+            this.splitPanel2.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(0.2627738F, 0F);
+            this.splitPanel2.SizeInfo.SplitterCorrection = new System.Drawing.Size(211, 0);
+            this.splitPanel2.TabIndex = 1;
+            this.splitPanel2.TabStop = false;
+            this.splitPanel2.Text = "splitPanel2";
+            // 
+            // cntmSave
+            // 
+            this.cntmSave.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.cntmSave.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cntmSave.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.deleteToolStripMenuItem});
+            this.cntmSave.Name = "cntmUVScript";
+            this.cntmSave.Size = new System.Drawing.Size(106, 26);
+            // 
+            // deleteToolStripMenuItem
+            // 
+            this.deleteToolStripMenuItem.AutoToolTip = true;
+            this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.deleteToolStripMenuItem.Text = "&Save";
+            this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
+            // 
+            // radListBoxItem1
+            // 
+            this.radListBoxItem1.Name = "radListBoxItem1";
+            this.radListBoxItem1.Text = "radListBoxItem1";
             // 
             // userControlReports
             // 
@@ -769,13 +803,14 @@
             this.radSplitContainer1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitPanel1)).EndInit();
             this.splitPanel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.splitPanel2)).EndInit();
-            this.splitPanel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radPanel2)).EndInit();
             this.radPanel2.ResumeLayout(false);
             this.radPanel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radListBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.splitPanel2)).EndInit();
+            this.splitPanel2.ResumeLayout(false);
+            this.cntmSave.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -841,5 +876,8 @@
         private Telerik.WinControls.UI.RadListBox radListBox1;
         private System.Windows.Forms.WebBrowser brwErrors;
         private System.Windows.Forms.WebBrowser brwLogs;
+        private Telerik.WinControls.UI.RadListBoxItem radListBoxItem1;
+        private System.Windows.Forms.ContextMenuStrip cntmSave;
+        private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
     }
 }

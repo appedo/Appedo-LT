@@ -94,7 +94,6 @@
     <Compile Include="Utility.cs" />
     <Compile Include="VariableXml.cs" />
     <Compile Include="VUScriptStatus.cs" />
-    <Compile Include="VUserStatus.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="DLL\Ionic.Zip.dll" />

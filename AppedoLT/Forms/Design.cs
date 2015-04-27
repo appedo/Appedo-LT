@@ -649,7 +649,6 @@ namespace AppedoLT
                             lsvErrors.Items.Clear();
                             lblErrorCount.Text = "0";
                             lblHitCount.Text = "0";
-                          
                             _hitCount = 0;
                             _repositoryXml.Save();
                             executionReport.ReportName = objFrmRun.strReportName;
@@ -733,7 +732,6 @@ namespace AppedoLT
                                         isAllLoadgenConnected = false;
                                         disconnectedHost.AppendLine(loadgen.Attributes["hostname"].Value);
                                     }
-
                                 }
                                 if (isAllLoadgenConnected == false)
                                 {
@@ -741,7 +739,6 @@ namespace AppedoLT
                                 }
                                 else
                                 {
-
                                     int loadGenId = 0;
                                     List<XmlNode> loadGens = objUCLoadGen.GetLoadGenerators();
 
@@ -795,7 +792,6 @@ namespace AppedoLT
                         ExceptionHandler.WritetoEventLog(ex.StackTrace + ex.Message);
                     }
                 }
-
             }
         }
 
