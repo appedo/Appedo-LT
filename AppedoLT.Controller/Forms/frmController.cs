@@ -109,7 +109,9 @@ namespace AppedoLTController
                                          break;
 
                                      case "test":
+
                                          UIclient.Send(new TrasportData("ok", string.Empty, null));
+
                                          break;
 
 
