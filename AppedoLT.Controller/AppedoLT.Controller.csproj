@@ -117,6 +117,7 @@
     <None Include="App.config">
       <SubType>Designer</SubType>
     </None>
+    <Content Include="Controller.xml" />
     <Content Include="database_jmeter.db">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
