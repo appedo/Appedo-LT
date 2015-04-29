@@ -35,6 +35,8 @@ namespace AppedoLT
             this.cmnuExpandAll = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.expandAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.collapseAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnViewError = new Telerik.WinControls.UI.RadButton();
+            this.btnViewLog = new Telerik.WinControls.UI.RadButton();
             this.btnStop = new Telerik.WinControls.UI.RadButton();
             this.radLabel8 = new Telerik.WinControls.UI.RadLabel();
             this.lblAvgResponse = new Telerik.WinControls.UI.RadLabel();
@@ -48,14 +50,14 @@ namespace AppedoLT
             this.spltcRecord = new Telerik.WinControls.UI.RadSplitContainer();
             this.splitPanel1 = new Telerik.WinControls.UI.SplitPanel();
             this.lsvResult = new System.Windows.Forms.ListView();
-            this.lvcId = new System.Windows.Forms.ColumnHeader();
-            this.lvcRequestid = new System.Windows.Forms.ColumnHeader();
-            this.lvcAddresss = new System.Windows.Forms.ColumnHeader();
-            this.lvcStartTime = new System.Windows.Forms.ColumnHeader();
-            this.lvcEndTime = new System.Windows.Forms.ColumnHeader();
-            this.lvcResTime = new System.Windows.Forms.ColumnHeader();
-            this.lvcStatusCode = new System.Windows.Forms.ColumnHeader();
-            this.lvcSuccess = new System.Windows.Forms.ColumnHeader();
+            this.lvcId = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.lvcRequestid = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.lvcAddresss = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.lvcStartTime = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.lvcEndTime = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.lvcResTime = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.lvcStatusCode = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.lvcSuccess = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.progressValidation = new Telerik.WinControls.UI.RadProgressBar();
             this.splitPanel2 = new Telerik.WinControls.UI.SplitPanel();
@@ -83,11 +85,14 @@ namespace AppedoLT
             this.webBrowser1 = new System.Windows.Forms.WebBrowser();
             this.vistaTheme1 = new Telerik.WinControls.Themes.VistaTheme();
             this.telerikTheme1 = new Telerik.WinControls.Themes.TelerikTheme();
+            ((System.ComponentModel.ISupportInitialize)(this.spltcValidation)).BeginInit();
             this.spltcValidation.Panel1.SuspendLayout();
             this.spltcValidation.Panel2.SuspendLayout();
             this.spltcValidation.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tvRequest)).BeginInit();
             this.cmnuExpandAll.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.btnViewError)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnViewLog)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnStop)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblAvgResponse)).BeginInit();
@@ -143,6 +148,8 @@ namespace AppedoLT
             // spltcValidation.Panel2
             // 
             this.spltcValidation.Panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(219)))), ((int)(((byte)(255)))));
+            this.spltcValidation.Panel2.Controls.Add(this.btnViewError);
+            this.spltcValidation.Panel2.Controls.Add(this.btnViewLog);
             this.spltcValidation.Panel2.Controls.Add(this.btnStop);
             this.spltcValidation.Panel2.Controls.Add(this.radLabel8);
             this.spltcValidation.Panel2.Controls.Add(this.lblAvgResponse);
@@ -194,6 +201,28 @@ namespace AppedoLT
             this.collapseAllToolStripMenuItem.Text = "&Collapse All";
             this.collapseAllToolStripMenuItem.Click += new System.EventHandler(this.collapseAllToolStripMenuItem_Click);
             // 
+            // btnViewError
+            // 
+            this.btnViewError.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnViewError.Location = new System.Drawing.Point(264, 9);
+            this.btnViewError.Name = "btnViewError";
+            this.btnViewError.Size = new System.Drawing.Size(82, 34);
+            this.btnViewError.TabIndex = 3;
+            this.btnViewError.Text = "&Errors";
+            this.btnViewError.ThemeName = "Telerik";
+            this.btnViewError.Click += new System.EventHandler(this.btnViewError_Click);
+            // 
+            // btnViewLog
+            // 
+            this.btnViewLog.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnViewLog.Location = new System.Drawing.Point(180, 9);
+            this.btnViewLog.Name = "btnViewLog";
+            this.btnViewLog.Size = new System.Drawing.Size(82, 34);
+            this.btnViewLog.TabIndex = 2;
+            this.btnViewLog.Text = "&Logs";
+            this.btnViewLog.ThemeName = "Telerik";
+            this.btnViewLog.Click += new System.EventHandler(this.btnViewLog_Click);
+            // 
             // btnStop
             // 
             this.btnStop.Enabled = false;
@@ -201,7 +230,7 @@ namespace AppedoLT
             this.btnStop.Location = new System.Drawing.Point(96, 9);
             this.btnStop.Name = "btnStop";
             this.btnStop.Size = new System.Drawing.Size(82, 34);
-            this.btnStop.TabIndex = 13;
+            this.btnStop.TabIndex = 1;
             this.btnStop.Text = "Stop";
             this.btnStop.ThemeName = "Telerik";
             this.btnStop.Click += new System.EventHandler(this.btnStop_Click);
@@ -209,7 +238,7 @@ namespace AppedoLT
             // radLabel8
             // 
             this.radLabel8.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radLabel8.Location = new System.Drawing.Point(397, 9);
+            this.radLabel8.Location = new System.Drawing.Point(567, 9);
             this.radLabel8.Name = "radLabel8";
             this.radLabel8.Size = new System.Drawing.Size(93, 17);
             this.radLabel8.TabIndex = 12;
@@ -218,7 +247,7 @@ namespace AppedoLT
             // lblAvgResponse
             // 
             this.lblAvgResponse.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAvgResponse.Location = new System.Drawing.Point(494, 26);
+            this.lblAvgResponse.Location = new System.Drawing.Point(664, 26);
             this.lblAvgResponse.Name = "lblAvgResponse";
             this.lblAvgResponse.Size = new System.Drawing.Size(46, 17);
             this.lblAvgResponse.TabIndex = 11;
@@ -227,7 +256,7 @@ namespace AppedoLT
             // lblAvgResponsetext
             // 
             this.lblAvgResponsetext.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAvgResponsetext.Location = new System.Drawing.Point(397, 28);
+            this.lblAvgResponsetext.Location = new System.Drawing.Point(567, 28);
             this.lblAvgResponsetext.Name = "lblAvgResponsetext";
             this.lblAvgResponsetext.Size = new System.Drawing.Size(91, 17);
             this.lblAvgResponsetext.TabIndex = 10;
@@ -236,7 +265,7 @@ namespace AppedoLT
             // lblTotalDuration
             // 
             this.lblTotalDuration.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTotalDuration.Location = new System.Drawing.Point(494, 9);
+            this.lblTotalDuration.Location = new System.Drawing.Point(664, 9);
             this.lblTotalDuration.Name = "lblTotalDuration";
             this.lblTotalDuration.Size = new System.Drawing.Size(46, 17);
             this.lblTotalDuration.TabIndex = 9;
@@ -245,7 +274,7 @@ namespace AppedoLT
             // radLabel6
             // 
             this.radLabel6.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radLabel6.Location = new System.Drawing.Point(193, 28);
+            this.radLabel6.Location = new System.Drawing.Point(363, 28);
             this.radLabel6.Name = "radLabel6";
             this.radLabel6.Size = new System.Drawing.Size(47, 17);
             this.radLabel6.TabIndex = 8;
@@ -254,7 +283,7 @@ namespace AppedoLT
             // lblVResult
             // 
             this.lblVResult.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblVResult.Location = new System.Drawing.Point(247, 28);
+            this.lblVResult.Location = new System.Drawing.Point(417, 28);
             this.lblVResult.Name = "lblVResult";
             this.lblVResult.Size = new System.Drawing.Size(46, 17);
             this.lblVResult.TabIndex = 7;
@@ -264,7 +293,7 @@ namespace AppedoLT
             // radLabel3
             // 
             this.radLabel3.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radLabel3.Location = new System.Drawing.Point(193, 9);
+            this.radLabel3.Location = new System.Drawing.Point(363, 9);
             this.radLabel3.Name = "radLabel3";
             this.radLabel3.Size = new System.Drawing.Size(48, 17);
             this.radLabel3.TabIndex = 5;
@@ -273,7 +302,7 @@ namespace AppedoLT
             // lblStatus
             // 
             this.lblStatus.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblStatus.Location = new System.Drawing.Point(247, 9);
+            this.lblStatus.Location = new System.Drawing.Point(417, 9);
             this.lblStatus.Name = "lblStatus";
             this.lblStatus.Size = new System.Drawing.Size(46, 17);
             this.lblStatus.TabIndex = 4;
@@ -285,17 +314,17 @@ namespace AppedoLT
             this.btnValidate.Location = new System.Drawing.Point(12, 9);
             this.btnValidate.Name = "btnValidate";
             this.btnValidate.Size = new System.Drawing.Size(82, 34);
-            this.btnValidate.TabIndex = 1;
+            this.btnValidate.TabIndex = 0;
             this.btnValidate.Text = "Run";
             this.btnValidate.ThemeName = "Telerik";
-            this.btnValidate.Click += new System.EventHandler(this.btnValidate_Click);
             this.btnValidate.EnabledChanged += new System.EventHandler(this.btnValidate_EnabledChanged);
+            this.btnValidate.Click += new System.EventHandler(this.btnValidate_Click);
             // 
             // spltcRecord
             // 
-            this.spltcRecord.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.spltcRecord.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.spltcRecord.Controls.Add(this.splitPanel1);
             this.spltcRecord.Controls.Add(this.splitPanel2);
             this.spltcRecord.Location = new System.Drawing.Point(0, 46);
@@ -331,9 +360,9 @@ namespace AppedoLT
             // 
             // lsvResult
             // 
-            this.lsvResult.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.lsvResult.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.lsvResult.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.lvcId,
             this.lvcRequestid,
@@ -354,8 +383,8 @@ namespace AppedoLT
             this.lsvResult.TabIndex = 0;
             this.lsvResult.UseCompatibleStateImageBehavior = false;
             this.lsvResult.View = System.Windows.Forms.View.Details;
-            this.lsvResult.SelectedIndexChanged += new System.EventHandler(this.lsvResult_SelectedIndexChanged);
             this.lsvResult.ItemSelectionChanged += new System.Windows.Forms.ListViewItemSelectionChangedEventHandler(this.lsvResult_ItemSelectionChanged);
+            this.lsvResult.SelectedIndexChanged += new System.EventHandler(this.lsvResult_SelectedIndexChanged);
             // 
             // lvcId
             // 
@@ -407,8 +436,8 @@ namespace AppedoLT
             // 
             // progressValidation
             // 
-            this.progressValidation.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.progressValidation.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.progressValidation.Dash = false;
             this.progressValidation.Location = new System.Drawing.Point(2, 3);
             this.progressValidation.Name = "progressValidation";
@@ -539,9 +568,9 @@ namespace AppedoLT
             // 
             // radTabStrip1
             // 
-            this.radTabStrip1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.radTabStrip1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.radTabStrip1.AutoScrollMargin = new System.Drawing.Size(0, 0);
             this.radTabStrip1.AutoScrollMinSize = new System.Drawing.Size(0, 0);
             this.radTabStrip1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
@@ -575,7 +604,6 @@ namespace AppedoLT
             this.tabiHeader.ContentPanel.ForeColor = System.Drawing.SystemColors.ControlText;
             this.tabiHeader.ContentPanel.Location = new System.Drawing.Point(0, 24);
             this.tabiHeader.ContentPanel.Size = new System.Drawing.Size(943, 248);
-            this.tabiHeader.IsSelected = true;
             this.tabiHeader.Margin = new System.Windows.Forms.Padding(4, 0, 0, 0);
             this.tabiHeader.Name = "tabiHeader";
             this.tabiHeader.StretchHorizontally = false;
@@ -593,7 +621,7 @@ namespace AppedoLT
             this.gvHeader.Name = "gvHeader";
             this.gvHeader.ReadOnly = true;
             this.gvHeader.Size = new System.Drawing.Size(943, 248);
-            this.gvHeader.TabIndex = 1;
+            this.gvHeader.TabIndex = 0;
             // 
             // tabiParameters
             // 
@@ -657,7 +685,7 @@ namespace AppedoLT
             this.gvVariables.Name = "gvVariables";
             this.gvVariables.ReadOnly = true;
             this.gvVariables.Size = new System.Drawing.Size(943, 248);
-            this.gvVariables.TabIndex = 1;
+            this.gvVariables.TabIndex = 0;
             // 
             // tabiExtractedVariable
             // 
@@ -689,7 +717,7 @@ namespace AppedoLT
             this.gvExtractedVariables.Name = "gvExtractedVariables";
             this.gvExtractedVariables.ReadOnly = true;
             this.gvExtractedVariables.Size = new System.Drawing.Size(943, 248);
-            this.gvExtractedVariables.TabIndex = 2;
+            this.gvExtractedVariables.TabIndex = 0;
             // 
             // tabiResponse
             // 
@@ -717,8 +745,8 @@ namespace AppedoLT
             this.txtResponse.Size = new System.Drawing.Size(943, 248);
             this.txtResponse.TabIndex = 0;
             this.txtResponse.Text = "";
-            this.txtResponse.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtResponse_KeyDown);
             this.txtResponse.LinkClicked += new System.Windows.Forms.LinkClickedEventHandler(this.txtResponse_LinkClicked);
+            this.txtResponse.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtResponse_KeyDown);
             // 
             // tabItem1
             // 
@@ -733,6 +761,7 @@ namespace AppedoLT
             this.tabItem1.ContentPanel.ForeColor = System.Drawing.SystemColors.ControlText;
             this.tabItem1.ContentPanel.Location = new System.Drawing.Point(0, 24);
             this.tabItem1.ContentPanel.Size = new System.Drawing.Size(943, 248);
+            this.tabItem1.IsSelected = true;
             this.tabItem1.Margin = new System.Windows.Forms.Padding(4, 0, 0, 0);
             this.tabItem1.Name = "tabItem1";
             this.tabItem1.StretchHorizontally = false;
@@ -768,9 +797,12 @@ namespace AppedoLT
             this.spltcValidation.Panel1.ResumeLayout(false);
             this.spltcValidation.Panel2.ResumeLayout(false);
             this.spltcValidation.Panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.spltcValidation)).EndInit();
             this.spltcValidation.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.tvRequest)).EndInit();
             this.cmnuExpandAll.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.btnViewError)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnViewLog)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnStop)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel8)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblAvgResponse)).EndInit();
@@ -871,6 +903,8 @@ namespace AppedoLT
         private Telerik.WinControls.UI.TabItem tabiExtractedVariable;
         private System.Windows.Forms.DataGridView gvVariables;
         private System.Windows.Forms.DataGridView gvExtractedVariables;
+        private Telerik.WinControls.UI.RadButton btnViewError;
+        private Telerik.WinControls.UI.RadButton btnViewLog;
     }
 }
 

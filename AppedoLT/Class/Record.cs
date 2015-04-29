@@ -22,11 +22,25 @@ namespace AppedoLT
 {
     class Record
     {
+        #region The private fields
+        private string _pageName = string.Empty;
+        private string _host = string.Empty;
+        private string _lastPageURL = string.Empty;
+        private string _scriptResourcePath = string.Empty;
+        private string _scriptid = string.Empty;
+        private bool _runstart = false;
+        private bool _isStop = false;
+        private int _processingRequestCount = 0;
+        private int _requestCount = 0;
+        private List<Connection> _connections = new List<Connection>();
+        private Queue<IRequestProcessor> _recordData = new Queue<IRequestProcessor>();
+        private ConnectionManager _connectionManager = new ConnectionManager(Constants.GetInstance().RecordConnection);
+        private Common _common = Common.GetInstance();
+        private Stopwatch _pageDelay = new Stopwatch();
+        private Thread _storeData = null;
         private X509Certificate2 _certificate;
         private BackgroundWorker _worker;
-        private int _requestCount = 0;
         private TcpListener _listener = null;
-       // private RepositoryXml _repositoryXml = RepositoryXml.GetInstance();
         private RadTextBox _txtContainer;
         private RadComboBox _ddlParentContainer;
         private XmlNode _uvScript;
@@ -34,12 +48,13 @@ namespace AppedoLT
         private XmlNode _lastInsertedPage;
         private XmlNode _selectedFirstLevelContainer;
         private Label _lblResult;
-        private string _pageName = string.Empty;
-        private string _host = string.Empty;
-        private string _lastPageURL = string.Empty;
-        private bool _runstart = false;
-        private Stopwatch _pageDelay = new Stopwatch();
+        private Regex _expressForhead = new Regex("([A-Z]*) (.*) ([A-Z]*)/(.*)");
+        private Regex _expressForHeaders = new Regex("(.*?): (.*?)\r\n");
+        #endregion
+
+        #region The event
         delegate void SetTextCallback(string txt);
+<<<<<<< HEAD
         List<Connection> connections = new List<Connection>();
         ConnectionManager connectionManager = new ConnectionManager(Constants.GetInstance().RecordConnection);
         Queue<IRequestProcessor> RecordData = new Queue<IRequestProcessor>();
@@ -58,17 +73,22 @@ namespace AppedoLT
         Common _common = Common.GetInstance();
     
 >>>>>>> dev_master
+=======
+        #endregion
+
+        #region The constructor
+>>>>>>> dev_master
         public Record(Label lblResult, RadTextBox txtContainer, RadComboBox ddlParentContainer, XmlNode vuScriptXml)
         {
             try
             {
                 _uvScript = vuScriptXml;
-               
                 _scriptid = vuScriptXml.Attributes["id"].Value;
                 _scriptResourcePath = Constants.GetInstance().ExecutingAssemblyLocation + "\\Scripts\\" + vuScriptXml.Attributes["id"].Value;
-                if (Directory.Exists(_scriptResourcePath) == true) Directory.Delete(_scriptResourcePath, true);
+                if (Directory.Exists(_scriptResourcePath) == true)
+                    Directory.Delete(_scriptResourcePath, true);
                 Directory.CreateDirectory(_scriptResourcePath);
-                isStop = false;
+                _isStop = false;
                 _txtContainer = txtContainer;
                 _lblResult = lblResult;
                 _listener = new TcpListener(Dns.Resolve(Constants.GetInstance().RecodingIPAddress).AddressList[0], int.Parse(Constants.GetInstance().RecodingPort));
@@ -88,14 +108,21 @@ namespace AppedoLT
                 ExceptionHandler.WritetoEventLog(ex.Message + Environment.NewLine + ex.StackTrace);
             }
         }
+        #endregion
 
+        #region The public methods
         public void Start()
         {
             try
             {
                 _worker.RunWorkerAsync();
+<<<<<<< HEAD
                 storeData = new Thread(new ThreadStart(StoreResult));
                 storeData.Start();
+=======
+                _storeData = new Thread(new ThreadStart(StoreResult));
+                _storeData.Start();
+>>>>>>> dev_master
             }
             catch (Exception ex)
             {
@@ -103,6 +130,7 @@ namespace AppedoLT
             }
         }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
         public void AutoRecovery()
@@ -142,21 +170,28 @@ namespace AppedoLT
         }
 
 >>>>>>> dev_master
+=======
+>>>>>>> dev_master
         public void Stop()
         {
             try
             {
+<<<<<<< HEAD
                 isStop = true;
                 connectionManager.CloseAllConnetions();
 <<<<<<< HEAD
 =======
+=======
+                _isStop = true;
+                _connectionManager.CloseAllConnetions();
+>>>>>>> dev_master
                 int priviousCount = 0;
                 int count = 0;
 
                 while (true)
                 {
                     count++;
-                    if (RecordData.Count > 0) Thread.Sleep(1000);
+                    if (_recordData.Count > 0) Thread.Sleep(1000);
                     else break;
 
                     if (count > 20)
@@ -168,32 +203,36 @@ namespace AppedoLT
 >>>>>>> dev_master
                 while (true)
                 {
-                    if (RecordData.Count > 0)
+                    if (_recordData.Count > 0)
                     {
                         Thread.Sleep(1000);
 <<<<<<< HEAD
 =======
                         count++;
-                        if (count > 30 && RecordData.Count != 0 && priviousCount == RecordData.Count)
+                        if (count > 30 && _recordData.Count != 0 && priviousCount == _recordData.Count)
                         {
-                            lock (StoreData)
+                            lock (_storeData)
                             {
                                 try
                                 {
-                                    StoreData.Abort();
-                                    StoreData = new Thread(new ThreadStart(StoreResult));
-                                    StoreData.Start();
+                                    _storeData.Abort();
+                                    _storeData = new Thread(new ThreadStart(StoreResult));
+                                    _storeData.Start();
                                     count = 0;
                                 }
                                 catch
                                 {
 
                                 }
-                                priviousCount = RecordData.Count;
+                                priviousCount = _recordData.Count;
                             }
                         }
+<<<<<<< HEAD
                         if (count > 30) priviousCount = RecordData.Count;
 
+>>>>>>> dev_master
+=======
+                        if (count > 30) priviousCount = _recordData.Count;
 >>>>>>> dev_master
                     }
                     else
@@ -201,38 +240,44 @@ namespace AppedoLT
                         break;
                     }
                 }
-
                 _pageDelay.Stop();
-                //_repositoryXml.Save();
                 _listener.Stop();
                 AppedoLT.Core.Constants.GetInstance().ReSetFirefoxProxy();
+<<<<<<< HEAD
+=======
+                _storeData.Abort();
+>>>>>>> dev_master
             }
             catch (Exception ex)
             {
                 ExceptionHandler.WritetoEventLog(ex.Message + Environment.NewLine + ex.StackTrace);
             }
         }
+        #endregion
 
-        public void DoWork(object sender, DoWorkEventArgs e)
+        #region The private methods
+
+        private void DoWork(object sender, DoWorkEventArgs e)
         {
             _listener.Start();
             try
             {
                 while (true)
                 {
+<<<<<<< HEAD
                     
                     if (processingRequestCount >= Constants.GetInstance().RecordConnection)
+=======
+                    if (_processingRequestCount >= Constants.GetInstance().RecordConnection)
+>>>>>>> dev_master
                     {
                         Thread.Sleep(1000);
                     }
                     else
                     {
-
                         TcpClient client = _listener.AcceptTcpClient();
-                        ProceessClient(client);
-                       // Thread th = new Thread(new ParameterizedThreadStart(ProceessClient));
-                        //th.Start(client);
-
+                        Thread th = new Thread(new ParameterizedThreadStart(ProceessClient));
+                        th.Start(client);
                     }
                 }
             }
@@ -243,13 +288,13 @@ namespace AppedoLT
             _listener.Stop();
         }
 
-        void ProceessClient(object clientObj)
+        private void ProceessClient(object clientObj)
         {
             try
             {
-                processingRequestCount++;
+                _processingRequestCount++;
                 TcpClient client = (TcpClient)clientObj;
-                RequestProcessor pro = new RequestProcessor(client, this.connectionManager,  _txtContainer.Text, _lblResult);
+                RequestProcessor pro = new RequestProcessor(client, this._connectionManager, _txtContainer.Text, _lblResult);
                 pro.Process();
                 if (((IRequestProcessor)pro) != null)
                 {
@@ -260,7 +305,14 @@ namespace AppedoLT
                     if (response.url != null && response.url.AbsoluteUri != string.Empty)
 >>>>>>> dev_master
                     {
+<<<<<<< HEAD
                         RecordData.Enqueue((IRequestProcessor)pro);
+=======
+                        lock (response)
+                        {
+                            _recordData.Enqueue(response);
+                        }
+>>>>>>> dev_master
                     }
                 }
             }
@@ -270,7 +322,7 @@ namespace AppedoLT
             }
             finally
             {
-                processingRequestCount--;
+                _processingRequestCount--;
             }
         }
 
@@ -280,6 +332,7 @@ namespace AppedoLT
             {
                 try
                 {
+<<<<<<< HEAD
                     if (RecordData.Count == 0 && isStop == true) break;
                     if (RecordData.Count == 0) Thread.Sleep(2000);
                     else
@@ -290,21 +343,36 @@ namespace AppedoLT
                             data = RecordData.Dequeue();
                         }
                         Thread.Sleep(100);
+=======
+                    if (_recordData.Count == 0 && _isStop == true)
+                    {
+                        break;
+                    }
+                    if (_recordData.Count == 0) Thread.Sleep(2000);
+                    else
+                    {
+                        IRequestProcessor data;
+                        data = _recordData.Dequeue();
+                        data.Requestid = Constants.GetInstance().UniqueID;
+>>>>>>> dev_master
                         string requestContentType = string.Empty;
                         string responseContentType = string.Empty;
-                        data.Requestid = Constants.GetInstance().UniqueID;
                         string reqFilename = data.Requestid + "_req.bin";
                         string resFilename = data.Requestid + "_res";
                         string contentEncoding = string.Empty;
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 =======
 >>>>>>> dev_master
                         Regex expressForhead = new Regex("([A-Z]*) (.*) ([A-Z]*)/(.*)");
                         Regex expressForHeaders = new Regex("(.*?): (.*?)\r\n");
+=======
+
+>>>>>>> dev_master
                         if (data.RequestHeader != null)
                         {
-                            MatchCollection matchs = expressForhead.Matches(data.RequestHeader);
+                            MatchCollection matchs = _expressForhead.Matches(data.RequestHeader);
                             if (matchs.Count > 0)
                             {
                                 XmlNode request = _uvScript.OwnerDocument.CreateElement("request");
@@ -332,7 +400,7 @@ namespace AppedoLT
                                 }
                                 #endregion
 
-                                matchs = expressForHeaders.Matches(data.RequestHeader);
+                                matchs = _expressForHeaders.Matches(data.RequestHeader);
                                 bool isWebServiceRequest = false;
 
                                 #region Headers
@@ -360,7 +428,7 @@ namespace AppedoLT
 
                                 #region Response Header
 
-                                matchs = expressForHeaders.Matches(data.ResponseHeader);
+                                matchs = _expressForHeaders.Matches(data.ResponseHeader);
                                 if (matchs.Count > 0)
                                 {
                                     request.Attributes.Append(_common.GetAttribute(_uvScript.OwnerDocument, "ResponseHeader", data.ResponseHeader));
@@ -526,7 +594,7 @@ namespace AppedoLT
 >>>>>>> dev_master
                                         {
                                             parameters.Attributes.Append(_common.GetAttribute(_uvScript.OwnerDocument, "type", "text"));
-                                            
+
                                             #region Text
                                             XmlNode param = _uvScript.OwnerDocument.CreateElement("Param");
                                             param.Attributes.Append(_common.GetAttribute(_uvScript.OwnerDocument, "name", System.Web.HttpUtility.UrlDecode("Text")));
@@ -673,7 +741,7 @@ namespace AppedoLT
                                             }
                                         }
                                     }
-                                    request.Attributes.Append(_common.GetAttribute(_uvScript.OwnerDocument,"resFilename", resFilename));
+                                    request.Attributes.Append(_common.GetAttribute(_uvScript.OwnerDocument, "resFilename", resFilename));
 
                                 }
                                 #endregion
@@ -779,7 +847,7 @@ namespace AppedoLT
         {
             try
             {
-                XmlNode container = _common.CreateContainer(_uvScript.OwnerDocument,  "Initialize");
+                XmlNode container = _common.CreateContainer(_uvScript.OwnerDocument, "Initialize");
                 _uvScript.AppendChild(container);
                 _ddlParentContainer.Items[0].Tag = container;
 
@@ -822,5 +890,7 @@ namespace AppedoLT
             }
             return header.ToString();
         }
+
+        #endregion
     }
 }

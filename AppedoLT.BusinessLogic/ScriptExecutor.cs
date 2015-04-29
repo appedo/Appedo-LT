@@ -1,5 +1,5 @@
 ﻿using AppedoLT.Core;
-using AppedoLT.DataAccessLayer;
+
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,32 +13,35 @@ namespace AppedoLT.BusinessLogic
 {
     public class ScriptExecutor
     {
-        public event LockReportData OnLockReportData;
-        public event LockLog OnLockLog;
-        public event LockError OnLockError;
-        public event LockTransactions OnLockTransactions;
-        public event LockUserDetail OnLockUserDetail;
 
-        private XmlNode _vuScript;
+        #region The private fields
+
+        private string _reportName = string.Empty;
+        private string _scriptid { get; set; }
+        private string _scriptname { get; set; }
         private int _startUserid;
         private int _endUserid;
         private int _createdUserCount = 0;
         private int _completedUserCount = 0;
-        private ManualResetEvent _threadRun = new ManualResetEvent(false);
-        private VUScriptSetting _setting = new VUScriptSetting();
-        private Result _resultLog = Result.GetInstance();
-        private string _reportName = string.Empty;
+        private object _userCreationLock = new object();
+        private object _userCompletedLock = new object();
         private List<VUser> _usersList = new List<VUser>();
         private Stopwatch _durationTimer = new System.Diagnostics.Stopwatch();
-        private System.Timers.Timer tmrRun = new System.Timers.Timer();
-        private System.Timers.Timer tmrVUCreator = new System.Timers.Timer();
+        private XmlNode _vuScript;
+        private ManualResetEvent _threadRun = new ManualResetEvent(false);
+        private System.Timers.Timer _tmrRun = new System.Timers.Timer();
+        private System.Timers.Timer _tmrVUCreator = new System.Timers.Timer();
+        private VUScriptSetting _setting = new VUScriptSetting();
+       
         private Constants _constant = Constants.GetInstance();
+
+        #endregion
+
+        #region The public property
+
         public BackgroundWorker Worker = new BackgroundWorker();
         public VUScriptStatus StatusSummary = new VUScriptStatus();
-
         public bool IsRunCompleted = false;
-        private string Scriptid { get; set; }
-        private string Scriptname { get; set; }
         public System.Diagnostics.Stopwatch elapsedTime = new System.Diagnostics.Stopwatch();
         public int StartUserId { get { return _startUserid; } private set { } }
         public List<VUser> UserList
@@ -49,15 +52,30 @@ namespace AppedoLT.BusinessLogic
             }
         }
         ExecutionReport Status = ExecutionReport.GetInstance();
-        object userCreationLock = new object();
-        object userCompletedLock = new object();
+
+        #endregion
+
+        #region The event
+
+        public event LockReportData OnLockReportData;
+        public event LockLog OnLockLog;
+        public event LockError OnLockError;
+        public event LockTransactions OnLockTransactions;
+        public event LockUserDetail OnLockUserDetail;
+        public event IterationCompleted OnIterationStarted;
+        public event VUserRunCompleted OnVUserRunCompleted;
+        public event VUserCreated OnVUserCreated;
+
+        #endregion
+
+        #region The constructor
 
         public ScriptExecutor(XmlNode settingNode, XmlNode vuScript, string reportName)
         {
             try
             {
-                StatusSummary .ScriptId=Scriptid = vuScript.Attributes["id"].Value;
-                StatusSummary.ScriptName=Scriptname = vuScript.Attributes["name"].Value;
+                StatusSummary .ScriptId=_scriptid = vuScript.Attributes["id"].Value;
+                StatusSummary.ScriptName=_scriptname = vuScript.Attributes["name"].Value;
                 VUScriptSetting setting = new VUScriptSetting();
                 setting.Type = settingNode.Attributes["type"].Value;
                 setting.BrowserCache = Convert.ToBoolean(settingNode.Attributes["browsercache"].Value);
@@ -74,18 +92,18 @@ namespace AppedoLT.BusinessLogic
 
                 _createdUserCount = setting.StartUserId;
 
-                tmrRun.Interval = 100;
+                _tmrRun.Interval = 100;
 
                 if (int.Parse(_setting.GetVUCreationIntervel().ToString()) < 1)
                 {
-                    tmrVUCreator.Interval = 1;
+                    _tmrVUCreator.Interval = 1;
                 }
                 else
                 {
-                    tmrVUCreator.Interval = int.Parse(_setting.GetVUCreationIntervel().ToString());
+                    _tmrVUCreator.Interval = int.Parse(_setting.GetVUCreationIntervel().ToString());
                 }
 
-                tmrVUCreator.Elapsed += new ElapsedEventHandler(tmrVUCreator_Tick);
+                _tmrVUCreator.Elapsed += new ElapsedEventHandler(tmrVUCreator_Tick);
 
                 #region Load Distrubution
 
@@ -132,7 +150,7 @@ namespace AppedoLT.BusinessLogic
                 }
                 #endregion
 
-                tmrRun.Elapsed += new ElapsedEventHandler(tmrRun_Tick);
+                _tmrRun.Elapsed += new ElapsedEventHandler(tmrRun_Tick);
                 Worker.DoWork += new DoWorkEventHandler(DoWork);
 
             }
@@ -146,8 +164,8 @@ namespace AppedoLT.BusinessLogic
         {
             try
             {
-                StatusSummary.ScriptId = Scriptid = vuScript.Attributes["id"].Value;
-                StatusSummary.ScriptName = Scriptname = vuScript.Attributes["name"].Value;
+                StatusSummary.ScriptId = _scriptid = vuScript.Attributes["id"].Value;
+                StatusSummary.ScriptName = _scriptname = vuScript.Attributes["name"].Value;
                 VUScriptSetting setting = new VUScriptSetting();
                 setting.Type = settingNode.Attributes["type"].Value;
                 setting.BrowserCache = Convert.ToBoolean(settingNode.Attributes["browsercache"].Value);
@@ -164,18 +182,18 @@ namespace AppedoLT.BusinessLogic
 
                 _createdUserCount = setting.StartUserId;
 
-                tmrRun.Interval = 100;
+                _tmrRun.Interval = 100;
 
                 if (int.Parse(_setting.GetVUCreationIntervel().ToString()) < 1)
                 {
-                    tmrVUCreator.Interval = 1;
+                    _tmrVUCreator.Interval = 1;
                 }
                 else
                 {
-                    tmrVUCreator.Interval = int.Parse(_setting.GetVUCreationIntervel().ToString());
+                    _tmrVUCreator.Interval = int.Parse(_setting.GetVUCreationIntervel().ToString());
                 }
 
-                tmrVUCreator.Elapsed += new ElapsedEventHandler(tmrVUCreator_Tick);
+                _tmrVUCreator.Elapsed += new ElapsedEventHandler(tmrVUCreator_Tick);
 
                 #region Load Distrubution
 
@@ -229,7 +247,7 @@ namespace AppedoLT.BusinessLogic
                 }
                 #endregion
 
-                tmrRun.Elapsed += new ElapsedEventHandler(tmrRun_Tick);
+                _tmrRun.Elapsed += new ElapsedEventHandler(tmrRun_Tick);
                 Worker.DoWork += new DoWorkEventHandler(DoWork);
 
             }
@@ -238,6 +256,10 @@ namespace AppedoLT.BusinessLogic
                 ExceptionHandler.WritetoEventLog(ex.StackTrace + Environment.NewLine + ex.Message);
             }
         }
+
+        #endregion
+
+        #region The public methods
 
         public void Run()
         {
@@ -253,6 +275,46 @@ namespace AppedoLT.BusinessLogic
                 ExceptionHandler.WritetoEventLog(ex.StackTrace + Environment.NewLine + ex.Message);
             }
         }
+
+        public void Stop()
+        {
+            lock (_userCreationLock)
+            {
+                lock (_userCompletedLock)
+                {
+                    _tmrRun.Stop();
+                    _tmrVUCreator.Stop();
+                    foreach (VUser user in _usersList)
+                    {
+                        user.Break = true;
+                    }
+                    foreach (VUser user in _usersList)
+                    {
+                        try
+                        {
+                            user.Stop();
+                            _completedUserCount++;
+
+                        }
+                        catch (Exception ex)
+                        {
+                            ExceptionHandler.WritetoEventLog(ex.StackTrace + Environment.NewLine + ex.Message);
+                        }
+                        finally
+                        {
+                            StatusSummary.TotalVUserCompleted++;
+                        }
+                    }
+                    _usersList.Clear();
+                    _threadRun.Reset();
+                    IsRunCompleted = true;
+                }
+            }
+        }
+
+        #endregion
+
+        #region The private methods
 
         private void DoWork(object sender, DoWorkEventArgs e)
         {
@@ -277,11 +339,11 @@ namespace AppedoLT.BusinessLogic
                 }
                 if (int.Parse(_setting.StartUser) < int.Parse(_setting.MaxUser))
                 {
-                    tmrVUCreator.Enabled = true;
-                    tmrVUCreator.Start();
+                    _tmrVUCreator.Enabled = true;
+                    _tmrVUCreator.Start();
                 }
                 _durationTimer.Start();
-                tmrRun.Start();
+                _tmrRun.Start();
                 _threadRun.Set();
                 _threadRun.WaitOne();
             }
@@ -302,9 +364,9 @@ namespace AppedoLT.BusinessLogic
                     StatusSummary.TotalVUserCompleted = _completedUserCount;
                     if ((_endUserid - (_startUserid - 1)) == _completedUserCount)
                     {
-                        lock (userCompletedLock)
+                        lock (_userCompletedLock)
                         {
-                            tmrRun.Stop();
+                            _tmrRun.Stop();
                             ClearUsers();
                             elapsedTime.Stop();
                             _threadRun.Reset();
@@ -319,11 +381,11 @@ namespace AppedoLT.BusinessLogic
                     {
                         try
                         {
-                            tmrVUCreator.Stop();
+                            _tmrVUCreator.Stop();
                             elapsedTime.Stop();
-                            tmrRun.Stop();
+                            _tmrRun.Stop();
                             _durationTimer.Stop();
-                            lock (userCompletedLock)
+                            lock (_userCompletedLock)
                             {
                                 foreach (VUser thread in _usersList)
                                 {
@@ -369,7 +431,7 @@ namespace AppedoLT.BusinessLogic
             List<VUser> VUCreatorUsers = new List<VUser>();
             try
             {
-                lock (userCreationLock)
+                lock (_userCreationLock)
                 {
                     if (_setting.Type == "2")
                     {
@@ -390,7 +452,7 @@ namespace AppedoLT.BusinessLogic
 
                     if (_createdUserCount >= int.Parse(_setting.MaxUser))
                     {
-                        tmrVUCreator.Stop();
+                        _tmrVUCreator.Stop();
                     }
 
                     foreach (VUser user in VUCreatorUsers)
@@ -410,43 +472,7 @@ namespace AppedoLT.BusinessLogic
                 VUCreatorUsers = null;
             }
         }
-
-        public void Stop()
-        {
-            lock (userCreationLock)
-            {
-                lock (userCompletedLock)
-                {
-                    tmrRun.Stop();
-                    tmrVUCreator.Stop();
-                    foreach (VUser user in _usersList)
-                    {
-                        user.Break = true;
-                    }
-                    foreach (VUser user in _usersList)
-                    {
-                        try
-                        {
-                            user.Stop();
-                            _completedUserCount++;
-
-                        }
-                        catch (Exception ex)
-                        {
-                            ExceptionHandler.WritetoEventLog(ex.StackTrace + Environment.NewLine + ex.Message);
-                        }
-                        finally
-                        {
-                            StatusSummary.TotalVUserCompleted++;
-                        }
-                    }
-                    _usersList.Clear();
-                    _threadRun.Reset();
-                    IsRunCompleted = true;
-                }
-            }
-        }
-
+       
         private void ClearUsers()
         {
             _usersList.Clear();
@@ -454,13 +480,15 @@ namespace AppedoLT.BusinessLogic
 
         private VUser GetVUser(int userid)
         {
-          
             VUser user=new VUser(int.Parse(_setting.MaxUser), _reportName, _setting.Type, userid, int.Parse(_setting.Iterations), _vuScript, _setting.BrowserCache, Request.GetIPAddress(_createdUserCount));
             if(OnLockReportData!=null) user.OnLockReportData+=OnLockReportData;
             if(OnLockError != null) user.OnLockError += OnLockError;
             if(OnLockLog != null) user.OnLockLog += OnLockLog;
             if(OnLockTransactions != null) user.OnLockTransactions += OnLockTransactions;
             if(OnLockUserDetail != null) user.OnLockUserDetail += OnLockUserDetail;
+            if (OnIterationStarted != null) user.OnIterationStart += OnIterationStarted;
+            if (OnVUserRunCompleted != null) user.OnVUserRunCompleted += OnVUserRunCompleted;
+            if (OnVUserCreated != null) user.OnVUserCreated += OnVUserCreated;
             return user;
         }
 
@@ -475,7 +503,8 @@ namespace AppedoLT.BusinessLogic
                 StatusSummary.TotalFiveHundredStatusCodeCount = _usersList.Sum((s) => s.VUserStatus.FiveHundredStatusCodeCount);
             }
         }
-       
+
+        #endregion
+
     }
-   
 }

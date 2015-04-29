@@ -1,15 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Text;
 using System.Xml;
-using AppedoLT.Core;
 
 namespace AppedoLT.Core
 {
-  
-   public class VariableXml
+    public class VariableXml
     {
         public XmlDocument doc = new XmlDocument();
         public XmlAttribute GetAttribute(string name, string value)
@@ -55,4 +51,5 @@ namespace AppedoLT.Core
             doc.Save(Constants.GetInstance().ExecutingAssemblyLocation + "\\variables.xml");
         }
     }
+
 }

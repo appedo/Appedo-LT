@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AppedoLT.Core;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
@@ -10,11 +11,6 @@ using System.Threading;
 using System.Web;
 using System.Windows.Forms;
 using System.Xml;
-using AppedoLT.Core;
-using AppedoLT.DataAccessLayer;
-using System.Runtime.Serialization.Json;
-using System.Messaging;
-
 
 namespace AppedoLT.BusinessLogic
 {
@@ -61,30 +57,20 @@ namespace AppedoLT.BusinessLogic
         }
         #endregion
 
+        public static string Result = string.Empty;
+
         public event LockReportData OnLockReportData;
         public event LockLog OnLockLog;
         public event LockError OnLockError;
         public event LockTransactions OnLockTransactions;
         public event LockUserDetail OnLockUserDetail;
         public event LockRequestResponse OnLockRequestResponse;
-
-        public static string Result = string.Empty;
-        private XmlNode _vuScriptXml;
-        private Constants _Constants = Constants.GetInstance();
-        private XmlDocument _doc = null;
-        private Thread _userThread;
-        private ExecutionReport Status = ExecutionReport.GetInstance();
-
-        private Dictionary<string, object> _exVariablesValues = new Dictionary<string, object>();
-        private Dictionary<string, TransactionRunTimeDetail> _transactions = new Dictionary<string, TransactionRunTimeDetail>();
-        private Dictionary<string, string> _ReceivedCookies = new Dictionary<string, string>();
-        private Stack<string[]> _containerId = new Stack<string[]>();
-        private Stack<string> _pageId = new Stack<string>();
-        private List<string> cacheUrl = new List<string>();
-        private IPEndPoint _IPAddress = null;
-        private Random _random = new Random();
-
+        public event IterationCompleted OnIterationStart;
+        public event VUserRunCompleted OnVUserRunCompleted;
+        public event VUserCreated OnVUserCreated;
+        
         private string _reportName = string.Empty;
+        private string _scriptName = string.Empty;
         private string _resposeUrl, _receivedCookies;
         private string _type = "1";
         private int _userid;
@@ -96,8 +82,23 @@ namespace AppedoLT.BusinessLogic
         private int _createdConnection = 1;
         private bool _browserCache = false;
         private bool _secondaryRequestPlayed = false;
+        private XmlNode _vuScriptXml;
+        private Constants _Constants = Constants.GetInstance();
+        private XmlDocument _doc = null;
+        private Thread _userThread;
+        private ExecutionReport Status = ExecutionReport.GetInstance();
+        private Dictionary<string, object> _exVariablesValues = new Dictionary<string, object>();
+        private Dictionary<string, TransactionRunTimeDetail> _transactions = new Dictionary<string, TransactionRunTimeDetail>();
+        private Dictionary<string, string> _ReceivedCookies = new Dictionary<string, string>();
+        private Stack<string[]> _containerId = new Stack<string[]>();
+        private Stack<string> _pageId = new Stack<string>();
+        private List<string> cacheUrl = new List<string>();
+        private IPEndPoint _IPAddress = null;
+        private Random _random = new Random();
+
         private Constants _constants = Constants.GetInstance();
         Request req;
+
         public bool IsValidation = false;
         public string HeaderCookie
         {
@@ -121,7 +122,8 @@ namespace AppedoLT.BusinessLogic
         private DateTime _userCreatededTime = new DateTime();
         public VUser(int maxUser, string reportName, string type, int userid, int iteration, XmlNode vuScript, bool browserCache, IPAddress ipaddress)
         {
-             _userCreatededTime = DateTime.Now;
+           
+            _userCreatededTime = DateTime.Now;
             _doc = vuScript.OwnerDocument;
             _maxUser = maxUser;
             _browserCache = browserCache;
@@ -132,6 +134,7 @@ namespace AppedoLT.BusinessLogic
             _reportName = reportName;
             _IPAddress = new IPEndPoint(ipaddress, 0);
             VUserStatus = new VUserStatus();
+            _scriptName = _vuScriptXml.Attributes["name"].Value;
             lock (Status.LockObjForCreatedUser)
             {
                 Status.CreatedUser++;
@@ -145,7 +148,7 @@ namespace AppedoLT.BusinessLogic
 
         public void Start()
         {
-             LockUserDetail(1);
+            LockUserDetail(1);
             _userThread = new Thread(new ThreadStart(StartExecution));
             _userThread.ApartmentState = ApartmentState.STA;
             _userThread.Start();
@@ -196,6 +199,7 @@ namespace AppedoLT.BusinessLogic
                     lock (Status.LockObjForCompletedUser)
                     {
                         Status.CompletedUser++;
+                        if (OnVUserRunCompleted != null) OnVUserRunCompleted.Invoke(_scriptName,_userid);
                         LockUserDetail(2);
                     }
                     WorkCompleted = true;
@@ -210,7 +214,7 @@ namespace AppedoLT.BusinessLogic
         {
             WorkCompleted = false;
             _exVariablesValues.Clear();
-
+            if (OnVUserCreated != null) OnVUserCreated.Invoke(_scriptName,_userid);
             #region Iterations
             try
             {
@@ -221,6 +225,7 @@ namespace AppedoLT.BusinessLogic
                     for (_index = 1; _index <= _iteration; _index++)
                     {
                         if (Break == true) break;
+                       
                         Result = "";
                         _iterationid = _index;
                         _resposeUrl = string.Empty;
@@ -256,6 +261,7 @@ namespace AppedoLT.BusinessLogic
                             }
                         }
                         _transactions.Clear();
+                        if (OnIterationStart != null) OnIterationStart.Invoke(_scriptName, _userid, _iterationid);
                     }
                     lock (Status.LockObjForCompletedUser)
                     {
@@ -272,6 +278,7 @@ namespace AppedoLT.BusinessLogic
                     for (_index = 1; true; _index++)
                     {
                         if (Break == true) break;
+                        
                         Result = "";
                         _iterationid = _index;
                         _resposeUrl = string.Empty;
@@ -296,6 +303,7 @@ namespace AppedoLT.BusinessLogic
                             }
                         }
                         _transactions.Clear();
+                        if (OnIterationStart != null) OnIterationStart.Invoke(_scriptName, _userid, _iterationid);
                     }
                     #endregion
                 }
@@ -308,6 +316,7 @@ namespace AppedoLT.BusinessLogic
             {
                 conncetionManager.CloseAllConnetions();
                 WorkCompleted = true;
+                if (OnVUserRunCompleted != null) OnVUserRunCompleted.Invoke(_scriptName, _userid);
             }
 
             #endregion
@@ -569,11 +578,11 @@ namespace AppedoLT.BusinessLogic
                         req.Variables = variables;
                         req.GetResponse();
 
-                        if (OnLockRequestResponse!=null)
+                        if (OnLockRequestResponse != null)
                         {
                             #region Validation
                             responseResult.RequestResult = req;
-                            responseResult.WebRequestResponseId =Convert.ToInt32(Constants.GetInstance().UniqueID);
+                            responseResult.WebRequestResponseId = Convert.ToInt32(Constants.GetInstance().UniqueID);
                             LockRequestResponse(responseResult);
                             #endregion
                         }
@@ -637,8 +646,7 @@ namespace AppedoLT.BusinessLogic
                                 req.Variables = variables;
                                 req.GetResponse();
 
-
-                                if (OnLockRequestResponse!=null)
+                                if (OnLockRequestResponse != null)
                                 {
                                     #region Validation
                                     StringBuilder pDataBuffer = new StringBuilder();
@@ -653,10 +661,10 @@ namespace AppedoLT.BusinessLogic
 
                                     #endregion
                                 }
-                                else
-                                {
+                               // else
+                              //  {
                                     LockResponseTime(req.RequestNode.Attributes["id"].Value, req.RequestNode.Attributes["Path"] == null ? req.RequestName : req.RequestNode.Attributes["Path"].Value, req.StartTime, req.EndTime, req.ResponseTime, req.ResponseSize, req.ResponseCode.ToString());
-                                }
+                              //  }
 
                                 #region SecondaryReqEnable
                                 if (Convert.ToBoolean(_vuScriptXml.Attributes["dynamicreqenable"].Value) == true && !(_browserCache == true && _index > 1))
@@ -688,7 +696,7 @@ namespace AppedoLT.BusinessLogic
                                                         {
                                                             secReq.GetResponse();
 
-                                                            if (OnLockRequestResponse!=null)
+                                                            if (OnLockRequestResponse != null)
                                                             {
                                                                 responseResultSec.RequestResult = secReq;
                                                                 responseResultSec.WebRequestResponseId = Convert.ToInt32(Constants.GetInstance().UniqueID);
@@ -1227,10 +1235,11 @@ namespace AppedoLT.BusinessLogic
                 exception.time = DateTime.Now;
                 exception.from = "Tool";
                 exception.message = ex.Message;
+                exception.errorcode = "700";
                 LockException(exception);
-               
+
                 requestResponse.IsSucess = false;
-                responseCode = exception.errorcode = "400";
+                responseCode = exception.errorcode;
                 return requestResponse;
             }
 
@@ -1268,41 +1277,41 @@ namespace AppedoLT.BusinessLogic
                         }
                         con.NetworkStream.ReadTimeout = 120000;
 
-                        con.client.ReceiveTimeout = 120000;
+                        con.Client.ReceiveTimeout = 120000;
 
                         int timeOut = 1000;
-                        while (con.client.Available < Convert.ToInt32(tcpRequest.Attributes["responsesize"].Value))
+                        while (con.Client.Available < Convert.ToInt32(tcpRequest.Attributes["responsesize"].Value))
                         {
                             Thread.Sleep(10);
                             timeOut = timeOut - 10;
                             if (timeOut <= 0) break;
                         }
                         timeOut = 119000;
-                        while (con.client.Available <= 0)
+                        while (con.Client.Available <= 0)
                         {
                             Thread.Sleep(10);
                             timeOut = timeOut - 10;
                             if (timeOut <= 0) break;
                         }
 
-                        while (con.client.Available != 0 && (responseSize = con.NetworkStream.Read(receiveBuffer, 0, receiveBuffer.Length)) != 0)
+                        while (con.Client.Available != 0 && (responseSize = con.NetworkStream.Read(receiveBuffer, 0, receiveBuffer.Length)) != 0)
                         {
                             for (int index = 0; index < responseSize; index++)
                                 response.Append(Convert.ToChar(receiveBuffer[index]));
-                            if (con.client.Available == 0) break;
+                            if (con.Client.Available == 0) break;
                         }
                         requestResponse.EndTime = end = DateTime.Now;
 
                         if (Convert.ToInt32(tcpRequest.Attributes["responsesize"].Value) > response.Length)
                         {
                             Thread.Sleep(10);
-                            while (con.client.Available != 0 && (responseSize = con.NetworkStream.Read(receiveBuffer, 0, receiveBuffer.Length)) != 0)
+                            while (con.Client.Available != 0 && (responseSize = con.NetworkStream.Read(receiveBuffer, 0, receiveBuffer.Length)) != 0)
                             {
                                 for (int index = 0; index < responseSize; index++)
                                     response.Append(Convert.ToChar(receiveBuffer[index]));
                                 requestResponse.EndTime = end = DateTime.Now;
 
-                                if (con.client.Available == 0) break;
+                                if (con.Client.Available == 0) break;
                             }
 
                         }
@@ -1612,6 +1621,7 @@ namespace AppedoLT.BusinessLogic
             exception.time = DateTime.Now;
             exception.from = "Script";
             exception.message = arg.Description;
+            exception.errorcode = "700";
             LockException(exception);
         }
 
@@ -1644,7 +1654,7 @@ namespace AppedoLT.BusinessLogic
             exception.message = message;
             exception.errorcode = errorCode;
             exception.request = url;
-            if (OnLockError != null && exception!=null) OnLockError.Invoke(exception);
+            if (OnLockError != null && exception != null) OnLockError.Invoke(exception);
             VUserStatus.ErrorCount++;
         }
         private void LockException(RequestException exception)
@@ -1682,6 +1692,7 @@ namespace AppedoLT.BusinessLogic
                 if (Break == false)
                 {
                     ReportData rd = new ReportData();
+
                     rd.loadgen = Constants.GetInstance().LoadGen;
                     rd.sourceip = _IPAddress.Address.ToString();
                     rd.loadgenanme = ExecutionReport.GetInstance().LoadGenName;
@@ -1700,8 +1711,10 @@ namespace AppedoLT.BusinessLogic
                     rd.responsesize = responsesize;
                     rd.reponseCode = reponseCode;
 
-                    if (OnLockReportData != null && rd != null) OnLockReportData.Invoke(rd);
-
+                    if (OnLockReportData != null && rd != null)
+                    {
+                        OnLockReportData.Invoke(rd);
+                    }
                     if (req.HasError == true)
                     {
                         LockException(req.RequestId.ToString(), req.ErrorMessage, req.ErrorCode, req.RequestName);
@@ -1723,6 +1736,7 @@ namespace AppedoLT.BusinessLogic
                         VUserStatus.FiveHundredStatusCodeCount++;
                     }
                 }
+
             }
             catch (Exception ex)
             {
@@ -1736,17 +1750,17 @@ namespace AppedoLT.BusinessLogic
         private void LockUserDetail(int type)
         {
             UserDetail userDetail = new UserDetail();
-            if (type == 1) userDetail.Time=_userCreatededTime;
+            if (type == 1) userDetail.Time = _userCreatededTime;
             else userDetail.Time = DateTime.Now;
             userDetail.scriptid = _vuScriptXml.Attributes["id"].Value;
             userDetail.userid = _userid;
             userDetail.Type = type;
             userDetail.loadgenanme = ExecutionReport.GetInstance().LoadGenName;
-            if (OnLockUserDetail != null && userDetail!=null) OnLockUserDetail.Invoke(userDetail);
+            if (OnLockUserDetail != null && userDetail != null) OnLockUserDetail.Invoke(userDetail);
         }
         private void LockRequestResponse(RequestResponse data)
         {
-          if(OnLockRequestResponse!=null) OnLockRequestResponse.Invoke(data);
+            if (OnLockRequestResponse != null) OnLockRequestResponse.Invoke(data);
         }
         #endregion
     }

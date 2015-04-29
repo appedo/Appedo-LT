@@ -166,7 +166,7 @@ namespace AppedoLT
                     header.Clear();
 
                     server = new Trasport(Constants.GetInstance().UploadIPAddress, Constants.GetInstance().UploadPort);
-                    XmlNode scriptNode = ((VuscriptXml)_treeNode.Tag).doc.SelectSingleNode("//vuscript");
+                    XmlNode scriptNode = ((VuscriptXml)_treeNode.Tag).Doc.SelectSingleNode("//vuscript");
                     string id = scriptNode.Attributes["id"].Value;
                     string name = scriptNode.Attributes["name"].Value;
                     string zipFilePath=MakeScriptZip(id, name);
@@ -312,7 +312,7 @@ namespace AppedoLT
                     TrasportData respose = null;
                     Dictionary<string, string> header = new Dictionary<string, string>();
                     Trasport  server = new Trasport(Constants.GetInstance().UploadIPAddress, Constants.GetInstance().UploadPort);
-                    XmlNode scriptNode = ((VuscriptXml)_treeNode.Tag).doc.SelectSingleNode("//vuscript");
+                    XmlNode scriptNode = ((VuscriptXml)_treeNode.Tag).Doc.SelectSingleNode("//vuscript");
                     string id = scriptNode.Attributes["id"].Value;
                     string name = scriptNode.Attributes["name"].Value;
                     header.Add("userid", Constants.GetInstance().UserId);

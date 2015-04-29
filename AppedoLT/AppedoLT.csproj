@@ -138,23 +138,24 @@
     <Reference Include="TelerikCommon, Version=2010.1.10.504, Culture=neutral, PublicKeyToken=5bb2a467cbec794e" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="About FloodGates.cs">
+    <Compile Include="Class\RequestProcessor.cs" />
+    <Compile Include="Forms\About FloodGates.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="About FloodGates.Designer.cs">
+    <Compile Include="Forms\About FloodGates.Designer.cs">
       <DependentUpon>About FloodGates.cs</DependentUpon>
     </Compile>
-    <Compile Include="AboutBox1.cs">
+    <Compile Include="Forms\AboutBox1.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AboutBox1.Designer.cs">
+    <Compile Include="Forms\AboutBox1.Designer.cs">
       <DependentUpon>AboutBox1.cs</DependentUpon>
     </Compile>
     <Compile Include="Class\Common.cs" />
-    <Compile Include="Counters.cs">
+    <Compile Include="Forms\Counters.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Counters.Designer.cs">
+    <Compile Include="Forms\Counters.Designer.cs">
       <DependentUpon>Counters.cs</DependentUpon>
     </Compile>
     <Compile Include="Design\Tcp\frmTcpAssertion.cs">
@@ -194,71 +195,65 @@
     <Compile Include="Design\frmAutoCorrelation.Designer.cs">
       <DependentUpon>frmAutoCorrelation.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form1.cs">
+    <Compile Include="Forms\Form1.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
+    <Compile Include="Forms\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmAssertion.cs">
+    <Compile Include="Forms\frmAssertion.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmAssertion.Designer.cs">
+    <Compile Include="Forms\frmAssertion.Designer.cs">
       <DependentUpon>frmAssertion.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmDownloadProgress.cs">
+    <Compile Include="Forms\frmDownloadProgress.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmDownloadProgress.Designer.cs">
+    <Compile Include="Forms\frmDownloadProgress.Designer.cs">
       <DependentUpon>frmDownloadProgress.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmLicenseActivation.cs">
+    <Compile Include="Forms\frmMessageBox.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmLicenseActivation.Designer.cs">
-      <DependentUpon>frmLicenseActivation.cs</DependentUpon>
-    </Compile>
-    <Compile Include="frmLicenseManagement.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmLicenseManagement.Designer.cs">
-      <DependentUpon>frmLicenseManagement.cs</DependentUpon>
-    </Compile>
-    <Compile Include="frmMessageBox.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmMessageBox.Designer.cs">
+    <Compile Include="Forms\frmMessageBox.Designer.cs">
       <DependentUpon>frmMessageBox.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmReplaceServer.cs">
+    <Compile Include="Forms\frmReplaceServer.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmReplaceServer.Designer.cs">
+    <Compile Include="Forms\frmReplaceServer.Designer.cs">
       <DependentUpon>frmReplaceServer.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmScriptNameList.cs">
+    <Compile Include="Forms\frmScriptNameList.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmScriptNameList.Designer.cs">
+    <Compile Include="Forms\frmScriptNameList.Designer.cs">
       <DependentUpon>frmScriptNameList.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmScriptUpgrade.cs">
+    <Compile Include="Forms\frmScriptUpgrade.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmScriptUpgrade.Designer.cs">
+    <Compile Include="Forms\frmScriptUpgrade.Designer.cs">
       <DependentUpon>frmScriptUpgrade.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmUserCount.cs">
+    <Compile Include="Forms\frmUserCount.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmUserCount.Designer.cs">
+    <Compile Include="Forms\frmUserCount.Designer.cs">
       <DependentUpon>frmUserCount.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmVUScriptNameHttp.cs">
+    <Compile Include="Forms\frmVUScriptNameHttp.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmVUScriptNameHttp.Designer.cs">
+    <Compile Include="Forms\frmVUScriptNameHttp.Designer.cs">
       <DependentUpon>frmVUScriptNameHttp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmShowData.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmShowData.Designer.cs">
+      <DependentUpon>frmShowData.cs</DependentUpon>
     </Compile>
     <Compile Include="HttpRequest\UCQueryStringData.cs">
       <SubType>UserControl</SubType>
@@ -267,21 +262,27 @@
       <DependentUpon>UCQueryStringData.cs</DependentUpon>
     </Compile>
     <Compile Include="Class\MonitorXml.cs" />
-    <Compile Include="InstallerClass.cs">
+    <Compile Include="Class\InstallerClass.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Login.cs">
+    <Compile Include="Forms\Login.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Login.Designer.cs">
+    <Compile Include="Forms\Login.Designer.cs">
       <DependentUpon>Login.cs</DependentUpon>
     </Compile>
-    <Compile Include="MonitorServer.cs" />
-    <Compile Include="RadForm1.cs">
+    <Compile Include="Class\MonitorServer.cs" />
+    <Compile Include="Forms\RadForm1.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="RadForm1.Designer.cs">
+    <Compile Include="Forms\RadForm1.Designer.cs">
       <DependentUpon>RadForm1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Design\UserControls\IntTextBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Design\UserControls\IntTextBox.Designer.cs">
+      <DependentUpon>IntTextBox.cs</DependentUpon>
     </Compile>
     <Compile Include="Report\userControlCharts.cs">
       <SubType>UserControl</SubType>
@@ -295,10 +296,10 @@
     <Compile Include="Run\frmRun.Designer.cs">
       <DependentUpon>frmRun.cs</DependentUpon>
     </Compile>
-    <Compile Include="Design.cs">
+    <Compile Include="Forms\Design.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Design.Designer.cs">
+    <Compile Include="Forms\Design.Designer.cs">
       <DependentUpon>Design.cs</DependentUpon>
     </Compile>
     <Compile Include="Design\frmExtrator.cs">
@@ -331,10 +332,10 @@
     <Compile Include="Design\frmDynamicRequestParameter.Designer.cs">
       <DependentUpon>frmDynamicRequestParameter.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmError.cs">
+    <Compile Include="Forms\frmError.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmError.Designer.cs">
+    <Compile Include="Forms\frmError.Designer.cs">
       <DependentUpon>frmError.cs</DependentUpon>
     </Compile>
     <Compile Include="Design\Http\frmRecord.cs">
@@ -397,9 +398,15 @@
     <Compile Include="Run\ListBoxMove.designer.cs">
       <DependentUpon>ListBoxMove.cs</DependentUpon>
     </Compile>
-    <Compile Include="Program.cs" />
+    <Compile Include="Class\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Class\VuscriptXml.cs" />
+    <Compile Include="Design\UserControls\UCTime.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Design\UserControls\UCTime.Designer.cs">
+      <DependentUpon>UCTime.cs</DependentUpon>
+    </Compile>
     <Content Include="error.xslt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -412,15 +419,15 @@
     <Content Include="sqlite3.exe">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <EmbeddedResource Include="About FloodGates.resx">
+    <EmbeddedResource Include="Forms\About FloodGates.resx">
       <DependentUpon>About FloodGates.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="AboutBox1.resx">
+    <EmbeddedResource Include="Forms\AboutBox1.resx">
       <DependentUpon>AboutBox1.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Counters.resx">
+    <EmbeddedResource Include="Forms\Counters.resx">
       <DependentUpon>Counters.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -444,40 +451,35 @@
       <DependentUpon>ucScript.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmAssertion.resx">
+    <EmbeddedResource Include="Forms\frmAssertion.resx">
       <DependentUpon>frmAssertion.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmDownloadProgress.resx">
+    <EmbeddedResource Include="Forms\frmDownloadProgress.resx">
       <DependentUpon>frmDownloadProgress.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmLicenseActivation.resx">
-      <DependentUpon>frmLicenseActivation.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmLicenseManagement.resx">
-      <DependentUpon>frmLicenseManagement.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmMessageBox.resx">
+    <EmbeddedResource Include="Forms\frmMessageBox.resx">
       <DependentUpon>frmMessageBox.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmReplaceServer.resx">
+    <EmbeddedResource Include="Forms\frmReplaceServer.resx">
       <DependentUpon>frmReplaceServer.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmScriptNameList.resx">
+    <EmbeddedResource Include="Forms\frmScriptNameList.resx">
       <DependentUpon>frmScriptNameList.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmScriptUpgrade.resx">
+    <EmbeddedResource Include="Forms\frmScriptUpgrade.resx">
       <DependentUpon>frmScriptUpgrade.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmUserCount.resx">
+    <EmbeddedResource Include="Forms\frmUserCount.resx">
       <DependentUpon>frmUserCount.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmVUScriptNameHttp.resx">
+    <EmbeddedResource Include="Forms\frmVUScriptNameHttp.resx">
       <DependentUpon>frmVUScriptNameHttp.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmShowData.resx">
+      <DependentUpon>frmShowData.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="HttpRequest\UCQueryStringData.resx">
       <DependentUpon>UCQueryStringData.cs</DependentUpon>
@@ -487,11 +489,15 @@
       <DependentUpon>UCTextPost.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Login.resx">
+    <EmbeddedResource Include="Forms\Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="RadForm1.resx">
+    <EmbeddedResource Include="Forms\RadForm1.resx">
       <DependentUpon>RadForm1.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Design\UserControls\IntTextBox.resx">
+      <DependentUpon>IntTextBox.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Report\userControlCharts.resx">
@@ -501,7 +507,7 @@
       <DependentUpon>frmRun.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Design.resx">
+    <EmbeddedResource Include="Forms\Design.resx">
       <DependentUpon>Design.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -525,7 +531,7 @@
       <DependentUpon>frmDynamicRequestParameter.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmError.resx">
+    <EmbeddedResource Include="Forms\frmError.resx">
       <DependentUpon>frmError.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -646,7 +652,7 @@
       <DependentUpon>ucLog.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="ucDesign.resx">
+    <EmbeddedResource Include="Design\UserControls\ucDesign.resx">
       <DependentUpon>ucDesign.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -675,6 +681,10 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="Design\UserControls\UCTime.resx">
+      <DependentUpon>UCTime.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <None Include="App.config">
       <SubType>Designer</SubType>
     </None>
@@ -712,7 +722,6 @@
     <Compile Include="Design\UCRequest.Designer.cs">
       <DependentUpon>UCRequest.cs</DependentUpon>
     </Compile>
-    <Compile Include="Class\RequestResponse.cs" />
     <Compile Include="Run\ucLoadGen.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -797,10 +806,10 @@
     <Compile Include="Design\UserControls\ucLog.Designer.cs">
       <DependentUpon>ucLog.cs</DependentUpon>
     </Compile>
-    <Compile Include="ucDesign.cs">
+    <Compile Include="Design\UserControls\ucDesign.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ucDesign.Designer.cs">
+    <Compile Include="Design\UserControls\ucDesign.Designer.cs">
       <DependentUpon>ucDesign.cs</DependentUpon>
     </Compile>
     <Compile Include="HttpRequest\UCFormPost.cs">

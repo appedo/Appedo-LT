@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Ionic.Zip;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -6,18 +7,15 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Net.Sockets;
 using System.Reflection;
+using System.Runtime.Serialization.Json;
 using System.Security.Cryptography;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Text.RegularExpressions;
-using System.Xml;
-using System.Net.Sockets;
-using System.Collections;
-using Ionic.Zip;
 using System.Threading;
-using System.Runtime.Serialization.Json;
-using System.Messaging;
+using System.Xml;
 
 namespace AppedoLT.Core
 {
@@ -29,7 +27,10 @@ namespace AppedoLT.Core
     public delegate void LockTransactions(TransactionRunTimeDetail data);
     public delegate void LockUserDetail(UserDetail data);
     public delegate void LockRequestResponse(RequestResponse data);
-    
+    public delegate void IterationCompleted(string scriptName,int userid,int iterationid);
+    public delegate void VUserRunCompleted(string scriptName,int userid);
+    public delegate void VUserCreated(string scriptName,int userid);
+
     public class Constants
     {
         private string _password = "ss1t_l1c@ns@_k@y_p@ssw0rd";
@@ -983,6 +984,7 @@ namespace AppedoLT.Core
             stream1.Seek(0, SeekOrigin.Begin);
             return stream1.ToArray();
         }
+      
         public DateTime ConvertFromUnixTimestamp(double timestamp)
         {
             DateTime origin = new DateTime(1970, 1, 1, 0, 0, 0, 0);

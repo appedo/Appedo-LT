@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
+using System.ComponentModel;
 
 namespace AppedoLT.Core
 {
@@ -61,8 +62,10 @@ namespace AppedoLT.Core
         [DataMember(Name = "userdetail")]
         public List<UserDetail> UserDetailData { get { return _userDetailData; } set { _userDetailData = value; } }
 
-    }
 
+
+    }
+    
     [DataContract]
     public class Log
     {
@@ -87,9 +90,11 @@ namespace AppedoLT.Core
         public string iterationid = string.Empty;
         [DataMember(Name = "message")]
         public string message = string.Empty;
-
+        
+        [Browsable(false)]
         public DateTime time { get { return _time; } set { _time = value; } }
 
+        [Browsable(false)]
         [DataMember(Name = "time")]
         public string timeStr
         {
@@ -105,6 +110,15 @@ namespace AppedoLT.Core
             }
         }
 
+      
+        [DisplayName("Logid")]
+        public string LogID { get { return logid; } private set { } }
+        [DisplayName("Log name")]
+        public string Logname { get { return logname; } private set { } }
+        [DisplayName("Message")]
+        public string Message { get { return message; } private set { } }
+        [DisplayName("Time")]
+        public string Time { get { return _time.ToString(); } private set { } }
         public override string ToString()
         {
             return string.Format("{0},{1},{2},{3},{4},{5},{6},{7},{8},\"{9}\",{10}", this.loadGen, this.reportname, this.scenarioname, this.scriptid, this.scriptname,
@@ -116,7 +130,9 @@ namespace AppedoLT.Core
     public class RequestException
     {
         private DateTime _time = new DateTime();
-
+        private string _errorcode = string.Empty;
+        
+        [Browsable(false)]
         [DataMember(Name = "requestexceptionid")]
         public string requestexceptionid { get; set; }
 
@@ -136,13 +152,23 @@ namespace AppedoLT.Core
 
         [DataMember(Name = "iterationid")]
         public string iterationid = string.Empty;
-
+        
+        [Browsable(false)]
         [DataMember(Name = "errorcode")]
-        public string errorcode = string.Empty;
+        public string errorcode
+        {
+            get {return _errorcode; }
+            set {
+                if (value == null || value == string.Empty)
+                    _errorcode = "700";
+                else _errorcode = value;
+            }
+        }
 
         [DataMember(Name = "message")]
         public string message = string.Empty;
 
+        [Browsable(false)]
         public DateTime time { get { return _time; } set { _time = value; } }
 
         [DataMember(Name = "from")]
@@ -153,7 +179,8 @@ namespace AppedoLT.Core
 
         [DataMember(Name = "request")]
         public string request = string.Empty;
-
+        
+        [Browsable(false)]
         [DataMember(Name = "time")]
         public string timeStr
         {
@@ -168,7 +195,17 @@ namespace AppedoLT.Core
                 _time = Constants.GetInstance().ConvertFromUnixTimestamp(Convert.ToDouble(value));
             }
         }
-
+     
+        [DisplayName("Url")]
+        public string Url { get { return request; } private set { } }
+        [DisplayName("Errorcode")]
+        public string Errorcode { get { return _errorcode; } private set { } }
+        [DisplayName("Message")]
+        public string Message { get { return message; } private set { } }
+        
+        [DisplayName("Requestid")]
+        public string Requestid { get { return requestid; } private set { } }
+        
         public override string ToString()
         {
 

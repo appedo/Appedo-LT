@@ -13,6 +13,9 @@ namespace AppedoLT.Core
 {
     public class Utility
     {
+
+        #region The static varialbles and methods
+
         public static DataSet StoredRequest = null;
 
         public static DataTable GetDataTableFromCSVFile1(string FilePath, string Delim)
@@ -193,5 +196,8 @@ namespace AppedoLT.Core
 
             return lstfinal;
         }
+
+        #endregion
+
     }
 }

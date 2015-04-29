@@ -77,10 +77,6 @@
       <Project>{0FD4A43E-E7BC-45BD-8897-537A46A0D54D}</Project>
       <Name>AppedoLT.Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\AppedoLT.DataAccessLayer\AppedoLT.DataAccessLayer.csproj">
-      <Project>{32074F4C-9AA8-42C8-A711-97BFF96E4C82}</Project>
-      <Name>AppedoLT.DataAccessLayer</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

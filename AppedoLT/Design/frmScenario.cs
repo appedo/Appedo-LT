@@ -102,11 +102,11 @@ namespace AppedoLT
                     XmlNode script=null;
                     if ((script = _alreadyMappedScripts.Find(p => p.Attributes["id"].Value == dr[0].ToString())) == null)
                     {
-                        script = repositoryXml.doc.CreateElement("script");
+                        script = repositoryXml.Doc.CreateElement("script");
                         script.Attributes.Append(repositoryXml.GetAttribute("id", dr[0].ToString()));
                         script.Attributes.Append(repositoryXml.GetAttribute("name", dr[1].ToString()));
 
-                        XmlNode setting = repositoryXml.doc.CreateElement("setting");
+                        XmlNode setting = repositoryXml.Doc.CreateElement("setting");
                         setting.Attributes.Append(repositoryXml.GetAttribute("type", "1"));
                         setting.Attributes.Append(repositoryXml.GetAttribute("durationtime", "0;0;0"));
                         setting.Attributes.Append(repositoryXml.GetAttribute("incrementtime", "0;0;0"));
@@ -120,7 +120,7 @@ namespace AppedoLT
                     }
                     _scenario.AppendChild(script);
                 }
-                repositoryXml.doc.SelectNodes("//scenarios")[0].AppendChild(_scenario);
+                repositoryXml.Doc.SelectNodes("//scenarios")[0].AppendChild(_scenario);
                 repositoryXml.Save();
                 this.Close();
             }
@@ -139,7 +139,7 @@ namespace AppedoLT
             }
             else
             {
-                XmlNode existingNode = repositoryXml.doc.SelectSingleNode("//scenarios/scenario[@name='" + txtScenarioName .Text+ "' and @id !='"+_scenarioId+"']");
+                XmlNode existingNode = repositoryXml.Doc.SelectSingleNode("//scenarios/scenario[@name='" + txtScenarioName .Text+ "' and @id !='"+_scenarioId+"']");
               if (existingNode != null)
               {
                   erpRequired.SetError(txtScenarioName, "Scenario name already exist");

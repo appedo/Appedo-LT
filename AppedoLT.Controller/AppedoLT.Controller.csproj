@@ -68,36 +68,36 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="frmAppedoIP.cs">
+    <Compile Include="Forms\frmAppedoIP.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmAppedoIP.Designer.cs">
+    <Compile Include="Forms\frmAppedoIP.Designer.cs">
       <DependentUpon>frmAppedoIP.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controller.cs" />
-    <Compile Include="frmController.cs">
+    <Compile Include="Class\Controller.cs" />
+    <Compile Include="Forms\frmController.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmController.Designer.cs">
+    <Compile Include="Forms\frmController.Designer.cs">
       <DependentUpon>frmController.cs</DependentUpon>
     </Compile>
     <Compile Include="InstallerClass.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Program.cs" />
+    <Compile Include="Class\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ControllerXml.cs" />
-    <Compile Include="ReportGenerate.cs">
+    <Compile Include="Class\ControllerXml.cs" />
+    <Compile Include="Forms\ReportGenerate.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ReportGenerate.Designer.cs">
+    <Compile Include="Forms\ReportGenerate.Designer.cs">
       <DependentUpon>ReportGenerate.cs</DependentUpon>
     </Compile>
-    <Compile Include="ResultFileGenerator.cs" />
-    <EmbeddedResource Include="frmAppedoIP.resx">
+    <Compile Include="Class\ResultFileGenerator.cs" />
+    <EmbeddedResource Include="Forms\frmAppedoIP.resx">
       <DependentUpon>frmAppedoIP.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmController.resx">
+    <EmbeddedResource Include="Forms\frmController.resx">
       <DependentUpon>frmController.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -111,15 +111,13 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="ReportGenerate.resx">
+    <EmbeddedResource Include="Forms\ReportGenerate.resx">
       <DependentUpon>ReportGenerate.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="App.config">
       <SubType>Designer</SubType>
     </None>
-    <Content Include="Controller.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
+    <Content Include="Controller.xml" />
     <Content Include="database_jmeter.db">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

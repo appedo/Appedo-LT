@@ -1,47 +1,55 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.Threading;
-
-
 
 namespace AppedoLT.Core
 {
-   public class ConnectionManager
+    public class ConnectionManager
     {
+
+        #region The private fields
+
         private int _maxConnction;
-        private List<Connection> connections = new List<Connection>();
+        private List<Connection> _connections = new List<Connection>();
+
+        #endregion
+
+        #region The constructor
+
         public ConnectionManager(int maxConnction)
         {
             _maxConnction = maxConnction;
         }
+
+        #endregion
+
+        #region The public methods
+
         public Connection GetConnection(string host, int port)
         {
             Connection connection = null;
-            if (connections.Exists(f => f.Host == host && f.Port == port) == true)
+            if (_connections.Exists(f => f.Host == host && f.Port == port) == true)
             {
-                if (connections.Find(f => f.Host == host && f.Port == port).IsHold == false)
+                if (_connections.Find(f => f.Host == host && f.Port == port).IsHold == false)
                 {
-                    connection = connections.Find(f => f.Host == host && f.Port == port);
+                    connection = _connections.Find(f => f.Host == host && f.Port == port);
                     connection.IsHold = true;
                 }
                 else
                 {
-                    if (connections.FindAll(f => f.Host == host && f.Port == port).Count < _maxConnction)
+                    if (_connections.FindAll(f => f.Host == host && f.Port == port).Count < _maxConnction)
                     {
                         Connection newConnection = new Connection(host, port);
-                        connections.Add(newConnection);
+                        _connections.Add(newConnection);
                         connection = newConnection;
                         connection.IsHold = true;
                     }
                     else
                     {
-                        while (connections.Find(f => f.Host == host && f.Port == port && f.IsHold == false) == null)
+                        while (_connections.Find(f => f.Host == host && f.Port == port && f.IsHold == false) == null)
                         {
                             Thread.Sleep(100);
                         }
-                        connection = connections.Find(f => f.Host == host && f.Port == port && f.IsHold == false);
+                        connection = _connections.Find(f => f.Host == host && f.Port == port && f.IsHold == false);
                         connection.IsHold = true;
                     }
                 }
@@ -49,21 +57,22 @@ namespace AppedoLT.Core
             else
             {
                 Connection newConnection = new Connection(host, port);
-                connections.Add(newConnection);
+                _connections.Add(newConnection);
                 connection = newConnection;
                 connection.IsHold = true;
             }
-            
+
             return connection;
 
         }
+
         public void CloseAllConnetions()
         {
-            foreach (Connection con in connections)
+            foreach (Connection con in _connections)
             {
                 try
                 {
-                    con.client.Close();
+                    con.Client.Close();
                 }
                 catch
                 {
@@ -71,5 +80,8 @@ namespace AppedoLT.Core
                 }
             }
         }
+
+        #endregion
+
     }
 }
