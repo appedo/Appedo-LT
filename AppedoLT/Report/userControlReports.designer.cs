@@ -89,7 +89,6 @@
             this.splitPanel1 = new Telerik.WinControls.UI.SplitPanel();
             this.radPanel2 = new Telerik.WinControls.UI.RadPanel();
             this.radListBox1 = new Telerik.WinControls.UI.RadListBox();
-            this.radListBoxItem1 = new Telerik.WinControls.UI.RadListBoxItem();
             this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
             this.splitPanel2 = new Telerik.WinControls.UI.SplitPanel();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel32)).BeginInit();
@@ -525,8 +524,9 @@
             this.brwReportView.MinimumSize = new System.Drawing.Size(20, 20);
             this.brwReportView.Name = "brwReportView";
             this.brwReportView.ScriptErrorsSuppressed = true;
-            this.brwReportView.Size = new System.Drawing.Size(627, 679);
+            this.brwReportView.Size = new System.Drawing.Size(625, 680);
             this.brwReportView.TabIndex = 1;
+            this.brwReportView.DocumentCompleted += new System.Windows.Forms.WebBrowserDocumentCompletedEventHandler(this.brwReportView_DocumentCompleted);
             // 
             // cntmSave
             // 
@@ -571,16 +571,16 @@
             // 
             // tabiHeader.ContentPanel
             // 
-            this.tabiHeader.ContentPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(248)))));
+            this.tabiHeader.ContentPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(239)))), ((int)(((byte)(249)))));
             this.tabiHeader.ContentPanel.CausesValidation = true;
             this.tabiHeader.ContentPanel.Controls.Add(this.brwReportView);
-            this.tabiHeader.ContentPanel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tabiHeader.ContentPanel.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.tabiHeader.ContentPanel.Location = new System.Drawing.Point(0, 25);
-            this.tabiHeader.ContentPanel.Size = new System.Drawing.Size(627, 679);
+            this.tabiHeader.ContentPanel.Font = new System.Drawing.Font("Segoe UI", 8.25F);
+            this.tabiHeader.ContentPanel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(66)))), ((int)(((byte)(139)))));
+            this.tabiHeader.ContentPanel.Location = new System.Drawing.Point(1, 23);
+            this.tabiHeader.ContentPanel.Size = new System.Drawing.Size(625, 680);
             this.tabiHeader.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabiHeader.IsSelected = true;
-            this.tabiHeader.Margin = new System.Windows.Forms.Padding(4, 0, 0, 0);
+            this.tabiHeader.Margin = new System.Windows.Forms.Padding(2, 0, 0, 0);
             this.tabiHeader.Name = "tabiHeader";
             this.tabiHeader.StretchHorizontally = false;
             this.tabiHeader.Text = "Summary";
@@ -591,15 +591,15 @@
             // 
             // tabiParameters.ContentPanel
             // 
-            this.tabiParameters.ContentPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(248)))));
+            this.tabiParameters.ContentPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(239)))), ((int)(((byte)(249)))));
             this.tabiParameters.ContentPanel.CausesValidation = true;
             this.tabiParameters.ContentPanel.Controls.Add(this.brwErrors);
-            this.tabiParameters.ContentPanel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tabiParameters.ContentPanel.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.tabiParameters.ContentPanel.Location = new System.Drawing.Point(0, 25);
-            this.tabiParameters.ContentPanel.Size = new System.Drawing.Size(627, 679);
+            this.tabiParameters.ContentPanel.Font = new System.Drawing.Font("Segoe UI", 8.25F);
+            this.tabiParameters.ContentPanel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(66)))), ((int)(((byte)(139)))));
+            this.tabiParameters.ContentPanel.Location = new System.Drawing.Point(1, 23);
+            this.tabiParameters.ContentPanel.Size = new System.Drawing.Size(625, 680);
             this.tabiParameters.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tabiParameters.Margin = new System.Windows.Forms.Padding(4, 0, 0, 0);
+            this.tabiParameters.Margin = new System.Windows.Forms.Padding(2, 0, 0, 0);
             this.tabiParameters.Name = "tabiParameters";
             this.tabiParameters.StretchHorizontally = false;
             this.tabiParameters.Text = "Errors";
@@ -611,7 +611,7 @@
             this.brwErrors.MinimumSize = new System.Drawing.Size(20, 20);
             this.brwErrors.Name = "brwErrors";
             this.brwErrors.ScriptErrorsSuppressed = true;
-            this.brwErrors.Size = new System.Drawing.Size(627, 679);
+            this.brwErrors.Size = new System.Drawing.Size(625, 680);
             this.brwErrors.TabIndex = 2;
             // 
             // tabiVariables
@@ -620,15 +620,15 @@
             // 
             // tabiVariables.ContentPanel
             // 
-            this.tabiVariables.ContentPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(248)))));
+            this.tabiVariables.ContentPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(239)))), ((int)(((byte)(249)))));
             this.tabiVariables.ContentPanel.CausesValidation = true;
             this.tabiVariables.ContentPanel.Controls.Add(this.brwLogs);
-            this.tabiVariables.ContentPanel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tabiVariables.ContentPanel.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.tabiVariables.ContentPanel.Location = new System.Drawing.Point(0, 25);
-            this.tabiVariables.ContentPanel.Size = new System.Drawing.Size(627, 679);
+            this.tabiVariables.ContentPanel.Font = new System.Drawing.Font("Segoe UI", 8.25F);
+            this.tabiVariables.ContentPanel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(66)))), ((int)(((byte)(139)))));
+            this.tabiVariables.ContentPanel.Location = new System.Drawing.Point(1, 23);
+            this.tabiVariables.ContentPanel.Size = new System.Drawing.Size(625, 680);
             this.tabiVariables.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tabiVariables.Margin = new System.Windows.Forms.Padding(4, 0, 0, 0);
+            this.tabiVariables.Margin = new System.Windows.Forms.Padding(2, 0, 0, 0);
             this.tabiVariables.Name = "tabiVariables";
             this.tabiVariables.StretchHorizontally = false;
             this.tabiVariables.Text = "Logs";
@@ -640,7 +640,7 @@
             this.brwLogs.MinimumSize = new System.Drawing.Size(20, 20);
             this.brwLogs.Name = "brwLogs";
             this.brwLogs.ScriptErrorsSuppressed = true;
-            this.brwLogs.Size = new System.Drawing.Size(627, 679);
+            this.brwLogs.Size = new System.Drawing.Size(625, 680);
             this.brwLogs.TabIndex = 2;
             // 
             // radSplitContainer1
@@ -694,8 +694,6 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.radListBox1.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.radListBox1.ForeColor = System.Drawing.Color.Black;
-            this.radListBox1.Items.AddRange(new Telerik.WinControls.RadItem[] {
-            this.radListBoxItem1});
             this.radListBox1.Location = new System.Drawing.Point(2, 25);
             this.radListBox1.Name = "radListBox1";
             // 
@@ -704,13 +702,8 @@
             this.radListBox1.RootElement.ForeColor = System.Drawing.Color.Black;
             this.radListBox1.Size = new System.Drawing.Size(191, 677);
             this.radListBox1.TabIndex = 0;
-            this.radListBox1.Text = "radListBoxItem1";
+            this.radListBox1.Text = "Click to add new item";
             this.radListBox1.SelectedIndexChanged += new System.EventHandler(this.radListBox1_SelectedIndexChanged);
-            // 
-            // radListBoxItem1
-            // 
-            this.radListBoxItem1.Name = "radListBoxItem1";
-            this.radListBoxItem1.Text = "radListBoxItem1";
             // 
             // radLabel1
             // 
@@ -876,7 +869,6 @@
         private Telerik.WinControls.UI.RadListBox radListBox1;
         private System.Windows.Forms.WebBrowser brwErrors;
         private System.Windows.Forms.WebBrowser brwLogs;
-        private Telerik.WinControls.UI.RadListBoxItem radListBoxItem1;
         private System.Windows.Forms.ContextMenuStrip cntmSave;
         private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
     }

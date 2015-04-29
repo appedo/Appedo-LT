@@ -263,5 +263,10 @@ namespace AppedoLT
         {
 
         }
+
+        private void brwReportView_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
+        {
+
+        }
     }
 }
