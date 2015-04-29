@@ -70,6 +70,7 @@ namespace AppedoLT.BusinessLogic
         public event VUserCreated OnVUserCreated;
         
         private string _reportName = string.Empty;
+        private string _scriptName = string.Empty;
         private string _resposeUrl, _receivedCookies;
         private string _type = "1";
         private int _userid;
@@ -121,6 +122,7 @@ namespace AppedoLT.BusinessLogic
         private DateTime _userCreatededTime = new DateTime();
         public VUser(int maxUser, string reportName, string type, int userid, int iteration, XmlNode vuScript, bool browserCache, IPAddress ipaddress)
         {
+           
             _userCreatededTime = DateTime.Now;
             _doc = vuScript.OwnerDocument;
             _maxUser = maxUser;
@@ -132,6 +134,7 @@ namespace AppedoLT.BusinessLogic
             _reportName = reportName;
             _IPAddress = new IPEndPoint(ipaddress, 0);
             VUserStatus = new VUserStatus();
+            _scriptName = _vuScriptXml.Attributes["name"].Value;
             lock (Status.LockObjForCreatedUser)
             {
                 Status.CreatedUser++;
@@ -196,7 +199,7 @@ namespace AppedoLT.BusinessLogic
                     lock (Status.LockObjForCompletedUser)
                     {
                         Status.CompletedUser++;
-                        if (OnVUserRunCompleted != null) OnVUserRunCompleted.Invoke(_userid);
+                        if (OnVUserRunCompleted != null) OnVUserRunCompleted.Invoke(_scriptName,_userid);
                         LockUserDetail(2);
                     }
                     WorkCompleted = true;
@@ -211,7 +214,7 @@ namespace AppedoLT.BusinessLogic
         {
             WorkCompleted = false;
             _exVariablesValues.Clear();
-            if (OnVUserCreated != null) OnVUserCreated.Invoke(_userid);
+            if (OnVUserCreated != null) OnVUserCreated.Invoke(_scriptName,_userid);
             #region Iterations
             try
             {
@@ -258,7 +261,7 @@ namespace AppedoLT.BusinessLogic
                             }
                         }
                         _transactions.Clear();
-                        if (OnIterationStart != null) OnIterationStart.Invoke(_userid, _iterationid);
+                        if (OnIterationStart != null) OnIterationStart.Invoke(_scriptName, _userid, _iterationid);
                     }
                     lock (Status.LockObjForCompletedUser)
                     {
@@ -300,7 +303,7 @@ namespace AppedoLT.BusinessLogic
                             }
                         }
                         _transactions.Clear();
-                        if (OnIterationStart != null) OnIterationStart.Invoke(_userid, _iterationid);
+                        if (OnIterationStart != null) OnIterationStart.Invoke(_scriptName, _userid, _iterationid);
                     }
                     #endregion
                 }
@@ -313,7 +316,7 @@ namespace AppedoLT.BusinessLogic
             {
                 conncetionManager.CloseAllConnetions();
                 WorkCompleted = true;
-                if (OnVUserRunCompleted != null) OnVUserRunCompleted.Invoke(_userid);
+                if (OnVUserRunCompleted != null) OnVUserRunCompleted.Invoke(_scriptName, _userid);
             }
 
             #endregion

@@ -27,9 +27,9 @@ namespace AppedoLT.Core
     public delegate void LockTransactions(TransactionRunTimeDetail data);
     public delegate void LockUserDetail(UserDetail data);
     public delegate void LockRequestResponse(RequestResponse data);
-    public delegate void IterationCompleted(int userid,int iterationid);
-    public delegate void VUserRunCompleted(int userid);
-    public delegate void VUserCreated(int userid);
+    public delegate void IterationCompleted(string scriptName,int userid,int iterationid);
+    public delegate void VUserRunCompleted(string scriptName,int userid);
+    public delegate void VUserCreated(string scriptName,int userid);
 
     public class Constants
     {

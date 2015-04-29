@@ -795,21 +795,21 @@ namespace AppedoLT
             }
         }
 
-        void scr_OnVUserCreated(int userid)
+        void scr_OnVUserCreated(string scriptname,int userid)
         {
             lock (listView1)
             {
-                ListViewItem newItem = new ListViewItem(userid.ToString());
+                ListViewItem newItem = new ListViewItem(scriptname+"_"+userid.ToString());
                 newItem.SubItems.AddRange(new string[] { "0".ToString(), "Running" });
                 listView1.Items.Add(newItem);
             }
         }
 
-        void scr_OnVUserRunCompleted(int userid)
+        void scr_OnVUserRunCompleted(string scriptname, int userid)
         {
             lock (listView1)
             {
-                ListViewItem newItem = listView1.FindItemWithText(userid.ToString());
+                ListViewItem newItem = listView1.FindItemWithText(scriptname + "_" + userid.ToString());
                 if (newItem != null)
                 {
                     newItem.SubItems[2].Text = "Completed";
@@ -817,11 +817,11 @@ namespace AppedoLT
             }
         }
 
-        void scr_OnIterationCompleted(int userid, int iterationid)
+        void scr_OnIterationCompleted(string scriptname, int userid, int iterationid)
         {
             lock (listView1)
             {
-                ListViewItem newItem = listView1.FindItemWithText(userid.ToString());
+                ListViewItem newItem = listView1.FindItemWithText(scriptname + "_" + userid.ToString());
                 if (newItem != null)
                 {
                     newItem.SubItems[1].Text = iterationid.ToString();

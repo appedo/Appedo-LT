@@ -91,8 +91,11 @@ namespace AppedoLT
             this.ivcErrorCode = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.btnExport = new Telerik.WinControls.UI.RadButton();
             this.tabiCharts = new Telerik.WinControls.UI.TabItem();
+            this.userControlCharts1 = new AppedoLT.userControlCharts();
             this.tabItem1 = new Telerik.WinControls.UI.TabItem();
+            this.userControlReports2 = new AppedoLT.userControlReports();
             this.tapiMonitor = new Telerik.WinControls.UI.TabItem();
+            this.ucMonitor1 = new AppedoLT.UCMonitor();
             this.imcDesign = new System.Windows.Forms.ImageList(this.components);
             this.tmrExecution = new System.Windows.Forms.Timer(this.components);
             this.splitPanel17 = new Telerik.WinControls.UI.SplitPanel();
@@ -116,9 +119,6 @@ namespace AppedoLT
             this.imageListForHeading = new System.Windows.Forms.ImageList(this.components);
             this.tabItem4 = new Telerik.WinControls.UI.TabItem();
             this.radMenu1 = new Telerik.WinControls.UI.RadMenu();
-            this.userControlCharts1 = new AppedoLT.userControlCharts();
-            this.userControlReports2 = new AppedoLT.userControlReports();
-            this.ucMonitor1 = new AppedoLT.UCMonitor();
             this.objUCLoadGen = new AppedoLT.ucLoadGen();
             ((System.ComponentModel.ISupportInitialize)(this.tabsDesign)).BeginInit();
             this.tabsDesign.SuspendLayout();
@@ -243,7 +243,6 @@ namespace AppedoLT
             this.tabiVUscript.ForeColor = System.Drawing.Color.Black;
             this.tabiVUscript.Image = ((System.Drawing.Image)(resources.GetObject("tabiVUscript.Image")));
             this.tabiVUscript.ImageKey = "scripts.gif";
-            this.tabiVUscript.IsSelected = true;
             this.tabiVUscript.Margin = new System.Windows.Forms.Padding(2, 0, 0, 0);
             this.tabiVUscript.Name = "tabiVUscript";
             this.tabiVUscript.ScaleTransform = new System.Drawing.SizeF(1.2F, 1.2F);
@@ -272,6 +271,7 @@ namespace AppedoLT
             this.tabiRun.ForeColor = System.Drawing.Color.Black;
             this.tabiRun.Image = ((System.Drawing.Image)(resources.GetObject("tabiRun.Image")));
             this.tabiRun.ImageKey = "arrow-right-3.png";
+            this.tabiRun.IsSelected = true;
             this.tabiRun.Margin = new System.Windows.Forms.Padding(2, 0, 0, 0);
             this.tabiRun.Name = "tabiRun";
             this.tabiRun.ScaleTransform = new System.Drawing.SizeF(1.2F, 1.2F);
@@ -784,8 +784,8 @@ namespace AppedoLT
             // 
             // columnHeader2
             // 
-            this.columnHeader2.Text = "VUser id";
-            this.columnHeader2.Width = 133;
+            this.columnHeader2.Text = "ScriptName_VUserId";
+            this.columnHeader2.Width = 160;
             // 
             // columnHeader3
             // 
@@ -942,6 +942,16 @@ namespace AppedoLT
             this.tabiCharts.Text = "Charts";
             this.tabiCharts.Visibility = Telerik.WinControls.ElementVisibility.Collapsed;
             // 
+            // userControlCharts1
+            // 
+            this.userControlCharts1.AutoScroll = true;
+            this.userControlCharts1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(219)))), ((int)(((byte)(255)))));
+            this.userControlCharts1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.userControlCharts1.Location = new System.Drawing.Point(0, 0);
+            this.userControlCharts1.Name = "userControlCharts1";
+            this.userControlCharts1.Size = new System.Drawing.Size(941, 499);
+            this.userControlCharts1.TabIndex = 0;
+            // 
             // tabItem1
             // 
             this.tabItem1.Alignment = System.Drawing.ContentAlignment.BottomLeft;
@@ -965,6 +975,17 @@ namespace AppedoLT
             this.tabItem1.StretchHorizontally = false;
             this.tabItem1.StretchVertically = false;
             this.tabItem1.Text = "Reports";
+            // 
+            // userControlReports2
+            // 
+            this.userControlReports2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.userControlReports2.Location = new System.Drawing.Point(0, 0);
+            this.userControlReports2.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.userControlReports2.Name = "userControlReports2";
+            this.userControlReports2.Size = new System.Drawing.Size(938, 499);
+            this.userControlReports2.TabIndex = 0;
             // 
             // tapiMonitor
             // 
@@ -990,6 +1011,15 @@ namespace AppedoLT
             this.tapiMonitor.StretchVertically = false;
             this.tapiMonitor.Text = "Monitor";
             this.tapiMonitor.Visibility = Telerik.WinControls.ElementVisibility.Hidden;
+            // 
+            // ucMonitor1
+            // 
+            this.ucMonitor1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucMonitor1.Location = new System.Drawing.Point(0, 0);
+            this.ucMonitor1.Margin = new System.Windows.Forms.Padding(5, 3, 5, 3);
+            this.ucMonitor1.Name = "ucMonitor1";
+            this.ucMonitor1.Size = new System.Drawing.Size(941, 499);
+            this.ucMonitor1.TabIndex = 0;
             // 
             // imcDesign
             // 
@@ -1173,36 +1203,6 @@ namespace AppedoLT
             this.radMenu1.TabIndex = 3;
             this.radMenu1.Text = "radMenu1";
             this.radMenu1.ThemeName = "Windows7";
-            // 
-            // userControlCharts1
-            // 
-            this.userControlCharts1.AutoScroll = true;
-            this.userControlCharts1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(219)))), ((int)(((byte)(255)))));
-            this.userControlCharts1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.userControlCharts1.Location = new System.Drawing.Point(0, 0);
-            this.userControlCharts1.Name = "userControlCharts1";
-            this.userControlCharts1.Size = new System.Drawing.Size(941, 499);
-            this.userControlCharts1.TabIndex = 0;
-            // 
-            // userControlReports2
-            // 
-            this.userControlReports2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.userControlReports2.Location = new System.Drawing.Point(0, 0);
-            this.userControlReports2.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.userControlReports2.Name = "userControlReports2";
-            this.userControlReports2.Size = new System.Drawing.Size(938, 499);
-            this.userControlReports2.TabIndex = 0;
-            // 
-            // ucMonitor1
-            // 
-            this.ucMonitor1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ucMonitor1.Location = new System.Drawing.Point(0, 0);
-            this.ucMonitor1.Margin = new System.Windows.Forms.Padding(5, 3, 5, 3);
-            this.ucMonitor1.Name = "ucMonitor1";
-            this.ucMonitor1.Size = new System.Drawing.Size(941, 499);
-            this.ucMonitor1.TabIndex = 0;
             // 
             // objUCLoadGen
             // 
