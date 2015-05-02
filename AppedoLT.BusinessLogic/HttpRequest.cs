@@ -1,5 +1,5 @@
-﻿using System;
-using System.Collections;
+﻿using AppedoLT.Core;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
@@ -9,12 +9,13 @@ using System.Net.Sockets;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Xml;
-using AppedoLT.Core;
 
 namespace AppedoLT.BusinessLogic
 {
     public class HttpRequest : Request
     {
+
+        #region The private fields
 
         private Dictionary<string, string> _cookiesBuffer
         {
@@ -43,7 +44,11 @@ namespace AppedoLT.BusinessLogic
         }
         private string _connectionGroup;
         private IPEndPoint _IPAdress = null;
-        HttpWebRequest request;
+        private HttpWebRequest _request;
+
+        #endregion
+
+        #region The constructor
 
         public HttpRequest(XmlNode request, ref Dictionary<string, string> cookies, string ConnectionGroup, IPEndPoint ipaddress, bool storeResult)
         {
@@ -58,6 +63,7 @@ namespace AppedoLT.BusinessLogic
             _IPAdress = ipaddress;
             _cookiesBuffer = cookies;
         }
+       
         public HttpRequest(XmlNode parentRequest, string secondaryRequest, Dictionary<string, string> cookies, string ConnectionGroup, IPEndPoint ipaddress, bool storeResult)
         {
             RequestId = 0;
@@ -70,16 +76,26 @@ namespace AppedoLT.BusinessLogic
             _connectionGroup = ConnectionGroup;
             _IPAdress = ipaddress;
         }
+      
+        #endregion
+
+        #region The destructor
+
         ~HttpRequest()
         {
             _posDataContainer = null;
             _connectionGroup = null;
         }
+
+        #endregion
+
+        #region The public methods
+
         public override void GetResponse()
         {
             responseTime.Start();
             StartTime = DateTime.Now;
-            request = null;
+            _request = null;
             try
             {
                 #region Bind QueryStringParam
@@ -92,13 +108,12 @@ namespace AppedoLT.BusinessLogic
                 #endregion
 
                 #region Create Request
-                request = (HttpWebRequest)WebRequest.Create(RequestNode.Attributes["Address"].Value);
-                request.Timeout = RequestTimeOut;
-                request.ConnectionGroupName = _connectionGroup;
-                
-                request.ServicePoint.BindIPEndPointDelegate += new BindIPEndPoint((ServicePoint servicePoint, IPEndPoint remoteEndPoint, int retryCount) =>
+                _request = (HttpWebRequest)WebRequest.Create(RequestNode.Attributes["Address"].Value);
+                _request.Timeout = RequestTimeOut;
+                _request.ConnectionGroupName = _connectionGroup;
+
+                _request.ServicePoint.BindIPEndPointDelegate += new BindIPEndPoint((ServicePoint servicePoint, IPEndPoint remoteEndPoint, int retryCount) =>
                 {
-                   
                     if (IPAddress.IsLoopback(remoteEndPoint.Address))
                     {
                         if (remoteEndPoint.Address.AddressFamily == AddressFamily.InterNetworkV6)
@@ -114,22 +129,46 @@ namespace AppedoLT.BusinessLogic
                     {
                         return _IPAdress;
                     }
+
+                    //if (Request.IPSpoofingEnabled == true)
+                    //{
+                    //    if (IPAddress.IsLoopback(remoteEndPoint.Address))
+                    //    {
+                    //        if (remoteEndPoint.Address.AddressFamily == AddressFamily.InterNetworkV6)
+                    //        {
+                    //            return new IPEndPoint(IPAddress.Parse("::1"), 0);
+                    //        }
+                    //        else
+                    //        {
+                    //            return new IPEndPoint(IPAddress.Loopback, 0);
+                    //        }
+                    //    }
+                    //    else
+                    //    {
+                    //        return _IPAdress;
+                    //    }
+                    //}
+                    //else
+                    //{
+                    //    return new IPEndPoint(IPAddress.Any, 0);
+                    //}
+
                 });
 
-                request.Proxy = null;
-                request.Expect = null;
-                request.KeepAlive = true;
-                request.AllowAutoRedirect = false;
-                request.Connection = "keepalive";
-                request.CachePolicy = new RequestCachePolicy(RequestCacheLevel.BypassCache);
-                request.ProtocolVersion = HttpVersion.Version11;
-                request.Method = RequestNode.Attributes["Method"].Value;
-                request.UnsafeAuthenticatedConnectionSharing = true;
+                _request.Proxy = null;
+                _request.Expect = null;
+                _request.KeepAlive = true;
+                _request.AllowAutoRedirect = false;
+                _request.Connection = "keepalive";
+                _request.CachePolicy = new RequestCachePolicy(RequestCacheLevel.BypassCache);
+                _request.ProtocolVersion = HttpVersion.Version11;
+                _request.Method = RequestNode.Attributes["Method"].Value;
+                _request.UnsafeAuthenticatedConnectionSharing = true;
 
                 #endregion
 
                 #region Header
-                request.Headers.Add("Cookie", this._headerCookie);
+                _request.Headers.Add("Cookie", this._headerCookie);
                 foreach (XmlNode hed in RequestNode.SelectSingleNode("headers").ChildNodes)
                 {
 
@@ -137,7 +176,7 @@ namespace AppedoLT.BusinessLogic
                     {
                         try
                         {
-                            request.Headers.Add(hed.Attributes["name"].Value, hed.Attributes["value"].Value);
+                            _request.Headers.Add(hed.Attributes["name"].Value, hed.Attributes["value"].Value);
                         }
                         catch (ArgumentException ex)
                         {
@@ -153,21 +192,21 @@ namespace AppedoLT.BusinessLogic
                         switch (hed.Attributes["name"].Value)
                         {
                             case "Accept":
-                                request.Accept = hed.Attributes["value"].Value;
+                                _request.Accept = hed.Attributes["value"].Value;
                                 break;
                             case "Referer":
-                                request.Referer = hed.Attributes["value"].Value;
+                                _request.Referer = hed.Attributes["value"].Value;
                                 break;
                             case "Content-Type":
-                                request.ContentType = hed.Attributes["value"].Value;
+                                _request.ContentType = hed.Attributes["value"].Value;
                                 break;
                             case "User-Agent":
-                                request.UserAgent = hed.Attributes["value"].Value;
+                                _request.UserAgent = hed.Attributes["value"].Value;
                                 break;
                             case "If-Modified-Since":
                                 try
                                 {
-                                    request.IfModifiedSince = Convert.ToDateTime(hed.Attributes["value"].Value);
+                                    _request.IfModifiedSince = Convert.ToDateTime(hed.Attributes["value"].Value);
                                 }
                                 catch
                                 {
@@ -181,24 +220,24 @@ namespace AppedoLT.BusinessLogic
                 #endregion
 
                 #region BindPostData
-                if (request.Method == "POST")
+                if (_request.Method == "POST")
                 {
                     _posDataContainer = GetPostData(RequestNode.SelectSingleNode("params"));
                     foreach (PostData pData in _posDataContainer.FindAll(f => f.size > 0))
                     {
-                        if (request.ContentLength < 0)
+                        if (_request.ContentLength < 0)
                         {
-                            request.ContentLength = pData.size;
+                            _request.ContentLength = pData.size;
                         }
                         else
                         {
-                            request.ContentLength += pData.size;
+                            _request.ContentLength += pData.size;
                         }
                     }
-                  
-                    using (var dataStream = request.GetRequestStream())
+
+                    using (var dataStream = _request.GetRequestStream())
                     {
-                        
+
                         foreach (PostData pData in _posDataContainer.FindAll(f => f.size > 0))
                         {
                             if (pData.type == 1)
@@ -237,7 +276,7 @@ namespace AppedoLT.BusinessLogic
                 try
                 {
                     #region GetVaildResponse
-                    using (var httpWebResponse = request.GetResponse() as HttpWebResponse)
+                    using (var httpWebResponse = _request.GetResponse() as HttpWebResponse)
                     {
                         if (httpWebResponse != null)
                         {
@@ -270,7 +309,7 @@ namespace AppedoLT.BusinessLogic
                 }
                 catch (WebException webEx)
                 {
-                   
+
                     Success = false;
                     HasError = true;
                     if (webEx.Response != null)
@@ -282,15 +321,15 @@ namespace AppedoLT.BusinessLogic
 
                     if (webEx == null)
                     {
-                        result.Append("http/" + request.ProtocolVersion).Append(" ").Append(webEx.Status.ToString("d")).Append(" ").Append(webEx.Status.ToString()).Append(Environment.NewLine);
+                        result.Append("http/" + _request.ProtocolVersion).Append(" ").Append(webEx.Status.ToString("d")).Append(" ").Append(webEx.Status.ToString()).Append(Environment.NewLine);
                     }
                     else if (webEx.Response != null)
                     {
-                        result.Append("http/" + request.ProtocolVersion).Append(" ").Append(ResponseCode.ToString()).Append(" ").Append(((HttpWebResponse)webEx.Response).StatusCode.ToString()).Append(Environment.NewLine);
+                        result.Append("http/" + _request.ProtocolVersion).Append(" ").Append(ResponseCode.ToString()).Append(" ").Append(((HttpWebResponse)webEx.Response).StatusCode.ToString()).Append(Environment.NewLine);
                     }
                     else
                     {
-                        result.Append("http/" + request.ProtocolVersion).Append(" ").Append(ResponseCode.ToString()).Append(" ").Append(webEx.Status.ToString()).Append(Environment.NewLine);
+                        result.Append("http/" + _request.ProtocolVersion).Append(" ").Append(ResponseCode.ToString()).Append(" ").Append(webEx.Status.ToString()).Append(Environment.NewLine);
                     }
 
                     if (webEx.Response != null)
@@ -341,13 +380,14 @@ namespace AppedoLT.BusinessLogic
             }
             finally
             {
-                if (request != null)
+                if (_request != null)
                 {
-                    request.ServicePoint.BindIPEndPointDelegate = null;
-                    request = null;
+                    _request.ServicePoint.BindIPEndPointDelegate = null;
+                    _request = null;
                 }
             }
         }
+
         public override void PerformAssertion()
         {
             #region Assertion
@@ -434,13 +474,14 @@ namespace AppedoLT.BusinessLogic
             }
             #endregion
         }
+
         public override void Abort()
         {
             try
             {
-                if (request != null)
+                if (_request != null)
                 {
-                    request.Abort();
+                    _request.Abort();
                 }
             }
             catch (Exception ex)
@@ -448,6 +489,10 @@ namespace AppedoLT.BusinessLogic
                 ExceptionHandler.WritetoEventLog(ex.StackTrace + ex.Message);
             }
         }
+
+        #endregion
+
+        #region The private methods
 
         private void SetCookies(string strCookHeader)
         {
@@ -489,6 +534,7 @@ namespace AppedoLT.BusinessLogic
                 ExceptionHandler.WritetoEventLog(ex.StackTrace + Environment.NewLine + ex.Message);
             }
         }
+
         private string GetQueryString(XmlNode queryString)
         {
             StringBuilder result = new StringBuilder();
@@ -500,6 +546,7 @@ namespace AppedoLT.BusinessLogic
             if (result.Length > 0) result.Remove(result.Length - 1, 1);
             return result.ToString();
         }
+
         private List<PostData> GetPostData(XmlNode postData)
         {
             int count = 0;
@@ -592,6 +639,7 @@ namespace AppedoLT.BusinessLogic
             }
             return postDataBuffer;
         }
+
         private MemoryStream ReadResponseBody(string contentType, long contentLength, Stream responseStream, ref MemoryStream responseBody)
         {
             int _bytesRead = 0;
@@ -667,6 +715,7 @@ namespace AppedoLT.BusinessLogic
             }
             return responseBody;
         }
+
         private XmlNode CreateRequestNode(XmlNode parentRequest, string url)
         {
             XmlNode request = parentRequest.OwnerDocument.CreateElement("request");
@@ -693,6 +742,7 @@ namespace AppedoLT.BusinessLogic
 
             return request;
         }
+
         private XmlAttribute GetAttribute(string name, string value, XmlDocument doc)
         {
             XmlAttribute att = doc.CreateAttribute(name);
@@ -700,7 +750,10 @@ namespace AppedoLT.BusinessLogic
             return att;
         }
 
+        #endregion
+
     }
+
     public class PostData
     {
         public int type;

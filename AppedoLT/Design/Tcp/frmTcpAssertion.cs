@@ -66,7 +66,7 @@ namespace AppedoLT
             {
                 if (_assertion == null)
                 {
-                    _assertion = _repositoryXml.doc.CreateElement("assertion");
+                    _assertion = _repositoryXml.Doc.CreateElement("assertion");
                     _assertions.AppendChild(_assertion);
                 }
                 else

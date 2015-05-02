@@ -41,6 +41,7 @@ namespace AppedoLT.DataAccessLayer
                 _instance.Start();
             }
             return _instance;
+
         }
         private void Start()
         {

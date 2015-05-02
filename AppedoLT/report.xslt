@@ -32,7 +32,7 @@
     <h1 style="width:600px; padding-bottom: 6px; background-color:#31c0be; color:#FFFFFF; text-align: center;">Appedo</h1>
 
     <span>
-      <b>Report Name:</b>
+      <b>Report Name:  </b>
       <xsl:value-of select="//report/@reportname"/>
     </span>
     

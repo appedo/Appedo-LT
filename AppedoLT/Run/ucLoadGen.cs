@@ -75,7 +75,7 @@ namespace AppedoLT
                 {
                     if (treeLoadGen.SelectedNode.Level == 2)
                     {
-                        RepositoryXml.GetInstance().doc.SelectSingleNode("//root//loadgens").RemoveChild(RepositoryXml.GetInstance().doc.SelectSingleNode("//root//loadgens//loadgen[@hostname='" + treeLoadGen.SelectedNode.Text + "']"));
+                        RepositoryXml.GetInstance().Doc.SelectSingleNode("//root//loadgens").RemoveChild(RepositoryXml.GetInstance().Doc.SelectSingleNode("//root//loadgens//loadgen[@hostname='" + treeLoadGen.SelectedNode.Text + "']"));
                         if (treeLoadGen.SelectedNode.Parent.Nodes.Count <= 1)
                         {
                             treeLoadGen.SelectedNode.Parent.Checked = false;
@@ -117,7 +117,7 @@ namespace AppedoLT
                 nodePublicZone.Text = "Public Zone";
                 nodePublicZone.Checked = false;
 
-                foreach (XmlNode objScenarioHost in RepositoryXml.GetInstance().doc.SelectSingleNode("//root//loadgens").ChildNodes)
+                foreach (XmlNode objScenarioHost in RepositoryXml.GetInstance().Doc.SelectSingleNode("//root//loadgens").ChildNodes)
                 {
                     RadTreeNode treeNode = new RadTreeNode();
 
@@ -194,7 +194,7 @@ namespace AppedoLT
             {
                 if (e.Node.Level == 2)
                 {
-                    RepositoryXml.GetInstance().doc.SelectSingleNode("//root//loadgens//loadgen[@hostname='" + treeLoadGen.SelectedNode.Text + "']").Attributes["ischecked"].Value = e.Node.Checked.ToString();
+                    RepositoryXml.GetInstance().Doc.SelectSingleNode("//root//loadgens//loadgen[@hostname='" + treeLoadGen.SelectedNode.Text + "']").Attributes["ischecked"].Value = e.Node.Checked.ToString();
                     RepositoryXml.GetInstance().Save();
                 }
             }

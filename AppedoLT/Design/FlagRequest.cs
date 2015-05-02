@@ -71,7 +71,7 @@ namespace AppedoLT
         {
             if (_flagRequest == null)
             {
-                _flagRequest = RepositoryXml.GetInstance().doc.CreateElement("flagrequest");
+                _flagRequest = RepositoryXml.GetInstance().Doc.CreateElement("flagrequest");
             }
             else
             {

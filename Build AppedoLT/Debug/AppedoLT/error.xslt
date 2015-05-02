@@ -12,7 +12,7 @@
   </xsl:template>
 
   <xsl:template match="error">
-    <h4> Logs</h4>
+    <h4> Errors</h4>
 
     <table border="1">
       <tr bgcolor="#9acd32">
@@ -36,10 +36,10 @@
             <xsl:value-of select="@scriptname"/>
           </td>
           <td>
-            <xsl:value-of select="@logid"/>
+            <xsl:value-of select="@requestid"/>
           </td>
           <td>
-            <xsl:value-of select="@logname"/>
+            <xsl:value-of select="@request"/>
           </td>
           <td>
             <xsl:value-of select="@userid"/>

@@ -9,6 +9,7 @@ using AppedoLT.Core;
 using AppedoLT.BusinessLogic;
 using Telerik.WinControls.UI;
 using System.Drawing;
+using System.ComponentModel;
 
 namespace AppedoLT
 {
@@ -25,11 +26,11 @@ namespace AppedoLT
         int intCountRequest;
         Thread backgroundThread1;
         bool firstRun;
-        Queue<Log> scriptWiseLog = new Queue<Log>();
-        Queue<RequestException> scriptWiseError = new Queue<RequestException>();
-        Queue<ReportData> scriptReportData = new Queue<ReportData>();
-        Queue<TransactionRunTimeDetail> scriptTransaction = new Queue<TransactionRunTimeDetail>();
-        Queue<UserDetail> scriptUserDetail = new Queue<UserDetail>();
+
+        BindingList<Log> _logObj = new BindingList<Log>();
+        BindingList<RequestException> _errorObj = new BindingList<RequestException>();
+
+       
 
         public frmValidation(XmlNode vuScript, RadTreeNode script, int _intCountRequest)
         {
@@ -51,12 +52,15 @@ namespace AppedoLT
 
                 tvRequest.Nodes.Clear();
                 tvRequest.Nodes.Add(script);
-               
+
                 lsvResult.Items.Clear();
-               
+
                 intCountRequest = _intCountRequest;
                 firstRun = true;
                 
+                btnViewError.Text = "&Errors(" + _errorObj.Count.ToString() + ")";
+                btnViewLog.Text = "&Logs(" + _logObj.Count.ToString() + ")";
+
             }
             catch (Exception ex)
             {
@@ -69,7 +73,21 @@ namespace AppedoLT
             VUser _vUSer = new VUser(1, DateTime.Now.ToString("dd_MMM_yyyy_hh_mm_ss"), "1", 1, 1, _vuScript, false, Request.GetIPAddress(1));
             _vUSer.IsValidation = true;
             _vUSer.OnLockRequestResponse += _vUSer_OnLockRequestResponse;
+            _vUSer.OnLockError += _vUSer_OnLockError;
+            _vUSer.OnLockLog += _vUSer_OnLockLog;
             return _vUSer;
+        }
+
+        void _vUSer_OnLockLog(Log data)
+        {
+            _logObj.Add(data);
+            btnViewLog.Text = "&Logs(" + _logObj.Count.ToString() + ")";
+        }
+
+        void _vUSer_OnLockError(RequestException data)
+        {
+            _errorObj.Add(data);
+            btnViewError.Text = "&Errors(" + _errorObj.Count.ToString() + ")";
         }
 
         void _vUSer_OnLockRequestResponse(RequestResponse requestResponse)
@@ -101,8 +119,12 @@ namespace AppedoLT
         {
             try
             {
-                if (firstRun==true || _vUSer.WorkCompleted == true)
+                if (firstRun == true || _vUSer.WorkCompleted == true)
                 {
+                    _errorObj.Clear();
+                    _logObj.Clear();
+                    btnViewError.Text = "&Errors(" + _errorObj.Count.ToString() + ")";
+                    btnViewLog.Text = "&Logs(" + _logObj.Count.ToString() + ")";
                     if (firstRun == true) firstRun = false;
                     VariableManager.dataCenter = new VariableManager();
                     lsvResult.Items.Clear();
@@ -118,7 +140,7 @@ namespace AppedoLT
                     lblStatus.Text = "Started";
                     _vUSer.WorkCompleted = false;
                     btnValidate.Enabled = false;
-                   
+
                 }
                 else if (_vUSer.WorkCompleted == false)
                 {
@@ -172,7 +194,7 @@ namespace AppedoLT
                     stopWatch.Stop();
                     try
                     {
-                        lblAvgResponse.Text = Avg().ToString() +" ms";
+                        lblAvgResponse.Text = Avg().ToString() + " ms";
                     }
                     catch (Exception ex)
                     {
@@ -242,7 +264,7 @@ namespace AppedoLT
 
                     if (node.Tag != null && ((XmlNode)node.Tag).Name == "request")
                     {
-                        
+
                         if (errorRequestid.FindAll(f => f == (((XmlNode)node.Tag).Attributes["id"].Value)).Count > 0)
                         {
                             errorRequestid.FindAll(f => f == ((XmlNode)node.Tag).Attributes["id"].Value).Clear();
@@ -344,7 +366,7 @@ namespace AppedoLT
             {
                 RadTreeNodeCollection tnc;
                 tnc = tvRequest.Nodes;
-               // FindNodeInHierarchy(tnc, (gvRecord.CurrentRow.Cells["Address"].Value).ToString(), (gvRecord.CurrentRow.Cells["Requestid"].Value).ToString());
+                // FindNodeInHierarchy(tnc, (gvRecord.CurrentRow.Cells["Address"].Value).ToString(), (gvRecord.CurrentRow.Cells["Requestid"].Value).ToString());
 
                 frmCompareResponse objFrmCompare = new frmCompareResponse(strRecordedResponse, strValidatedResponse);
                 objFrmCompare.Show();
@@ -359,7 +381,7 @@ namespace AppedoLT
         {
             try
             {
-                if (_vUSer.WorkCompleted==false)
+                if (_vUSer.WorkCompleted == false)
                 {
                     _vUSer.Stop();
                     timer.Stop();
@@ -384,7 +406,7 @@ namespace AppedoLT
         private void frmValidation_FormClosed(object sender, FormClosedEventArgs e)
         {
             Constants.GetInstance().IsValidationScreenOpen = false;
-            btnStop_Click(null,null);
+            btnStop_Click(null, null);
         }
 
         private void lsvResult_ItemSelectionChanged(object sender, ListViewItemSelectionChangedEventArgs e)
@@ -409,15 +431,15 @@ namespace AppedoLT
                             strValidatedResponse = requestRespose.RequestResult.ResponseStr;
                         }
                         txtResponse.Text = strValidatedResponse;
-                        gvHeader.DataSource =ConvertToTable(requestRespose.RequestResult.RequestNode.SelectSingleNode("headers"));
+                        gvHeader.DataSource = ConvertToTable(requestRespose.RequestResult.RequestNode.SelectSingleNode("headers"));
                         gvParameters.DataSource = ConvertToTable(requestRespose.RequestResult.Parameters);
                         gvVariables.DataSource = ConvertToTable(requestRespose.RequestResult.Variables);
                         gvExtractedVariables.DataSource = ConvertToTable(requestRespose.RequestResult.ExtractedVariables);
-                     
+
                         if (radTabStrip1.SelectedTab == tabItem1) webBrowser1.DocumentText = txtResponse.Text;
                         SelectRequest(tvRequest.Nodes[0], requestRespose.RequestResult.RequestId.ToString());
 
-                       // SelectTreeNode(tvRequest.Nodes[0], requestRespose.RequestId);
+                        // SelectTreeNode(tvRequest.Nodes[0], requestRespose.RequestId);
                     }
                     else
                     {
@@ -427,7 +449,7 @@ namespace AppedoLT
                     {
                         foreach (RadTreeNode node in tvRequest.Nodes)
                         {
-                             SelectRequest(node, requestRespose.RequestId);
+                            SelectRequest(node, requestRespose.RequestId);
                         }
                     }
                 }
@@ -453,7 +475,7 @@ namespace AppedoLT
             return resut;
         }
 
-        private DataTable ConvertToTable(List<AppedoLT.Core.Tuple<string,string>> root)
+        private DataTable ConvertToTable(List<AppedoLT.Core.Tuple<string, string>> root)
         {
             DataTable resut = new DataTable();
             resut.Columns.Add("Name");
@@ -467,7 +489,7 @@ namespace AppedoLT
             }
             return resut;
         }
-        private void SelectRequest(RadTreeNode node,string requestid)
+        private void SelectRequest(RadTreeNode node, string requestid)
         {
             if (node.Nodes.Count > 0)
             {
@@ -476,9 +498,9 @@ namespace AppedoLT
                     SelectRequest(nodes, requestid);
                 }
             }
-            else if (((XmlNode)node.Tag).Name == "request" && ((XmlNode)node.Tag).Attributes["id"].Value == requestid && requestid!="0")
+            else if (((XmlNode)node.Tag).Name == "request" && ((XmlNode)node.Tag).Attributes["id"].Value == requestid && requestid != "0")
             {
-                node.Selected=true;
+                node.Selected = true;
 
             }
         }
@@ -500,6 +522,15 @@ namespace AppedoLT
             }
         }
 
+        private void btnViewLog_Click(object sender, EventArgs e)
+        {
+            new frmShowData("Logs", _logObj).ShowDialog();
+        }
+
+        private void btnViewError_Click(object sender, EventArgs e)
+        {
+            new frmShowData("Errors", _errorObj).ShowDialog();
+        }
 
     }
 }
