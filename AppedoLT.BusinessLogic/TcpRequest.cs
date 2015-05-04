@@ -157,7 +157,7 @@ namespace AppedoLT.BusinessLogic
                             timeOut = timeOut - 10;
                             if (timeOut <= 0) break;
                         }
-                        timeOut = 119000;
+                        timeOut = 60000;
                         while (con.Client.Available <= 0)
                         {
                             Thread.Sleep(10);

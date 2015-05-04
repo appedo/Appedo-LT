@@ -3,6 +3,7 @@ using AppedoLT.Core;
 using AppedoLT.DataAccessLayer;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
@@ -15,7 +16,6 @@ using System.Threading;
 using System.Windows.Forms;
 using System.Xml;
 using Telerik.WinControls.UI;
-using System.ComponentModel;
 
 namespace AppedoLT
 {
@@ -858,9 +858,17 @@ namespace AppedoLT
                 {
                     data.message = data.message.Replace("\r\n", " ");
                     ListViewItem newItem = new ListViewItem(data.requestexceptionid.ToString());
-                    newItem.SubItems.AddRange(new string[] {  data.loadGen, data.reportname, data.scenarioname, data.scriptname, data.requestid,
-                                                          data.userid, data.iterationid,data.time.ToString("yyyy-MM-dd HH:mm:ss"), 
-                                                          data.message.Replace("\"", "\"\""),
+                    newItem.SubItems.AddRange(new string[] {  data.loadGen, 
+                                                           data.reportname,
+                                                           data.scenarioname, 
+                                                           data.scriptname, 
+                                                           data.containerid,
+                                                           data.containername,
+                                                           data.requestid,
+                                                           data.userid, 
+                                                           data.iterationid,
+                                                           data.time.ToString("yyyy-MM-dd HH:mm:ss"), 
+                                                           data.message.Replace("\"", "\"\""),
                                                            data.request.Replace("\"", "\"\""),
                                                            data.errorcode });
                     lsvErrors.Items.Add(newItem);

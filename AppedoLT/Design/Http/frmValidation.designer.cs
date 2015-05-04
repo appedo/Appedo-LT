@@ -51,13 +51,13 @@ namespace AppedoLT
             this.splitPanel1 = new Telerik.WinControls.UI.SplitPanel();
             this.lsvResult = new System.Windows.Forms.ListView();
             this.lvcId = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.lvcContainerName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.lvcRequestid = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.lvcAddresss = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.lvcStartTime = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.lvcEndTime = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.lvcResTime = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.lvcStatusCode = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.lvcSuccess = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.progressValidation = new Telerik.WinControls.UI.RadProgressBar();
             this.splitPanel2 = new Telerik.WinControls.UI.SplitPanel();
@@ -365,13 +365,13 @@ namespace AppedoLT
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lsvResult.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.lvcId,
+            this.lvcContainerName,
             this.lvcRequestid,
             this.lvcAddresss,
             this.lvcStartTime,
             this.lvcEndTime,
             this.lvcResTime,
-            this.lvcStatusCode,
-            this.lvcSuccess});
+            this.lvcStatusCode});
             this.lsvResult.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lsvResult.FullRowSelect = true;
             this.lsvResult.GridLines = true;
@@ -391,6 +391,11 @@ namespace AppedoLT
             this.lvcId.Text = "Id";
             this.lvcId.Width = 51;
             // 
+            // lvcContainerName
+            // 
+            this.lvcContainerName.Text = "ContainerName";
+            this.lvcContainerName.Width = 120;
+            // 
             // lvcRequestid
             // 
             this.lvcRequestid.Text = "Requestid";
@@ -399,17 +404,17 @@ namespace AppedoLT
             // lvcAddresss
             // 
             this.lvcAddresss.Text = "Addresss";
-            this.lvcAddresss.Width = 250;
+            this.lvcAddresss.Width = 200;
             // 
             // lvcStartTime
             // 
             this.lvcStartTime.Text = "Start time";
-            this.lvcStartTime.Width = 135;
+            this.lvcStartTime.Width = 140;
             // 
             // lvcEndTime
             // 
             this.lvcEndTime.Text = "End time";
-            this.lvcEndTime.Width = 135;
+            this.lvcEndTime.Width = 140;
             // 
             // lvcResTime
             // 
@@ -420,11 +425,6 @@ namespace AppedoLT
             // 
             this.lvcStatusCode.Text = "Status code";
             this.lvcStatusCode.Width = 100;
-            // 
-            // lvcSuccess
-            // 
-            this.lvcSuccess.Text = "Success";
-            this.lvcSuccess.Width = 100;
             // 
             // imageList1
             // 
@@ -897,7 +897,6 @@ namespace AppedoLT
         private System.Windows.Forms.ColumnHeader lvcEndTime;
         private System.Windows.Forms.ColumnHeader lvcResTime;
         private System.Windows.Forms.ColumnHeader lvcStatusCode;
-        private System.Windows.Forms.ColumnHeader lvcSuccess;
         private System.Windows.Forms.ImageList imageList1;
         private Telerik.WinControls.UI.TabItem tabiVariables;
         private Telerik.WinControls.UI.TabItem tabiExtractedVariable;
@@ -905,6 +904,7 @@ namespace AppedoLT
         private System.Windows.Forms.DataGridView gvExtractedVariables;
         private Telerik.WinControls.UI.RadButton btnViewError;
         private Telerik.WinControls.UI.RadButton btnViewLog;
+        private System.Windows.Forms.ColumnHeader lvcContainerName;
     }
 }
 

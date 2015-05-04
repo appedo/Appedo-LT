@@ -1,12 +1,8 @@
 ﻿using AppedoLT.Core;
-using AppedoLT.DataAccessLayer;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Net;
-using System.Net.Sockets;
 using System.Text;
-using System.Text.RegularExpressions;
 using System.Threading;
 using System.Xml;
 
@@ -16,24 +12,23 @@ namespace AppedoLTController
     {
         public static Dictionary<string, Controller> Controllers = new Dictionary<string, Controller>();
 
-        Thread _CollectorThread = null;
-        Constants _constants = Constants.GetInstance();
+        private int _reportDataCount = 0;
+        private Thread _CollectorThread = null;
+        private Constants _constants = Constants.GetInstance();
         private XmlNode _RunNode = null;
         private string _SourceIp = null;
-        ControllerStatus _staus = ControllerStatus.Idle;
+        private ControllerStatus _staus = ControllerStatus.Idle;
+        
         public string ScriptWiseStatus { get; set; }
         public string RunId = string.Empty;
         public ControllerStatus Status { get { return _staus; } }
         public string LastSentStatus = string.Empty;
         public LoadGenRunningStatusData _runningStatusData = new LoadGenRunningStatusData();
-        int _reportDataCount = 0;
-
         public int ReportDataCount
         {
             get { return _reportDataCount; }
             set { _reportDataCount = value; }
         }
-
         public LoadGenRunningStatusData RunningStatusData
         {
             get
@@ -57,6 +52,7 @@ namespace AppedoLTController
             _CollectorThread.Start();
             _staus = ControllerStatus.Running;
         }
+
         public void Stop()
         {
             ExceptionHandler.LogRunDetail(RunId, "Stop request received ");
@@ -226,6 +222,7 @@ namespace AppedoLTController
                 }
             }
         }
+
         private string GetStatusconcatenate(string allStatus)
         {
             Dictionary<string, string> scriptWiseResult = new Dictionary<string, string>();
@@ -272,6 +269,7 @@ namespace AppedoLTController
 
             return summary.ToString();
         }
+
         private void SendScriptWiseStatus(string scriptWiseStatus)
         {
             Dictionary<string, string> header = new Dictionary<string, string>();
@@ -297,11 +295,13 @@ namespace AppedoLTController
                 data = null;
             }
         }
+
         private void SendStatus()
         {
             Dictionary<string, string> header = new Dictionary<string, string>();
             Trasport server = null;
             TrasportData data = null;
+
             try
             {
                 header["runid"] = RunId;

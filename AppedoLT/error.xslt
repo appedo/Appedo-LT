@@ -18,6 +18,8 @@
       <tr bgcolor="#9acd32">
         <th>scenarioname</th>
         <th>scriptname</th>
+        <th>containerid</th>
+        <th>containername</th>
         <th>requestid</th>
         <th>url</th>
         <th>userid</th>
@@ -34,6 +36,12 @@
           </td>
           <td>
             <xsl:value-of select="@scriptname"/>
+          </td>
+          <td>
+            <xsl:value-of select="@containerid"/>
+          </td>
+          <td>
+            <xsl:value-of select="@containername"/>
           </td>
           <td>
             <xsl:value-of select="@requestid"/>

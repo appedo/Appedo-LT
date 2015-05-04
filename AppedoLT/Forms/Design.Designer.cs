@@ -82,6 +82,8 @@ namespace AppedoLT
             this.lvcReportname = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.lvcScenarioname = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.lvcscriptname = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.lvcContainerId = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.lvcContainerName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.lvcRequestid = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.lvcUserid = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.lvcIterationid = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -826,6 +828,8 @@ namespace AppedoLT
             this.lvcReportname,
             this.lvcScenarioname,
             this.lvcscriptname,
+            this.lvcContainerId,
+            this.lvcContainerName,
             this.lvcRequestid,
             this.lvcUserid,
             this.lvcIterationid,
@@ -870,6 +874,16 @@ namespace AppedoLT
             // 
             this.lvcscriptname.Text = "Scriptname ";
             this.lvcscriptname.Width = 129;
+            // 
+            // lvcContainerId
+            // 
+            this.lvcContainerId.Text = "ContainerId";
+            this.lvcContainerId.Width = 100;
+            // 
+            // lvcContainerName
+            // 
+            this.lvcContainerName.Text = "Container Name";
+            this.lvcContainerName.Width = 120;
             // 
             // lvcRequestid
             // 
@@ -1384,5 +1398,7 @@ namespace AppedoLT
         private System.Windows.Forms.ColumnHeader columnHeader2;
         private System.Windows.Forms.ColumnHeader columnHeader3;
         private System.Windows.Forms.ColumnHeader columnHeader4;
+        private System.Windows.Forms.ColumnHeader lvcContainerId;
+        private System.Windows.Forms.ColumnHeader lvcContainerName;
     }
 }
