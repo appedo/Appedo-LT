@@ -569,11 +569,8 @@ namespace AppedoLT.BusinessLogic
                         {
                             variables = EvaluteExpTcp(request);
                         }
-                        Connection con;
-                        lock (conncetionManager)
-                        {
-                            con = conncetionManager.GetConnection(request.Attributes["serverip"].Value, int.Parse(request.Attributes["port"].Value));
-                        }
+                        Connection con=new Connection(request.Attributes["serverip"].Value, int.Parse(request.Attributes["port"].Value));
+                       
                         req = new TcpRequest(request, con, false);
                         req.Variables = variables;
                         req.GetResponse();
@@ -1654,11 +1651,15 @@ namespace AppedoLT.BusinessLogic
             exception.message = message;
             exception.errorcode = errorCode;
             exception.request = url;
+            exception.containerid = _containerId.Peek()[0];
+            exception.containername = _containerId.Peek()[1];
             if (OnLockError != null && exception != null) OnLockError.Invoke(exception);
             VUserStatus.ErrorCount++;
         }
         private void LockException(RequestException exception)
         {
+            exception.containerid = _containerId.Peek()[0];
+            exception.containername = _containerId.Peek()[1];
             if (OnLockError != null && exception != null) OnLockError.Invoke(exception);
             VUserStatus.ErrorCount++;
         }
@@ -1760,6 +1761,7 @@ namespace AppedoLT.BusinessLogic
         }
         private void LockRequestResponse(RequestResponse data)
         {
+            data.ContainerName = _containerId.Peek()[1];
             if (OnLockRequestResponse != null) OnLockRequestResponse.Invoke(data);
         }
         #endregion

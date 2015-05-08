@@ -1,9 +1,13 @@
+<<<<<<< HEAD
 ﻿
 <<<<<<< HEAD
 using Amazon.EC2.Model;
 =======
 >>>>>>> dev_master
 using AppedoLT.Core;
+=======
+﻿using AppedoLT.Core;
+>>>>>>> dev_master
 using AppedoLT.DataAccessLayer;
 using System;
 using System.Collections.Generic;
@@ -168,7 +172,6 @@ namespace AppedoLTController
 
                                          break;
 
-
                                      case "stop":
                                          runid = data.Header["runid"];
                                          if (Controllers.ContainsKey(runid) == true) Controllers[runid].Stop();
@@ -185,13 +188,11 @@ namespace AppedoLTController
                                              {
                                                  Controllers[runid].RunningStatusData.Log.Clear();
                                              }
-
                                          }
                                          else
                                          {
                                              UIclient.Send(new TrasportData("status", Convert.ToString(constants.Serialise(new LoadGenRunningStatusData())), null));
                                              TrasportData ack = UIclient.Receive();
-
                                          }
                                          break;
 
