@@ -106,7 +106,7 @@ namespace AppedoLT
                 }
 
                 newItem.Tag = requestResponse;
-                newItem.SubItems.AddRange(new string[] { requestResponse.RequestResult.RequestId.ToString(), requestResponse.RequestResult.RequestName, requestResponse.RequestResult.StartTime.ToString(), requestResponse.RequestResult.EndTime.ToString(), requestResponse.RequestResult.ResponseTime.ToString(), requestResponse.RequestResult.ResponseCode.ToString(), requestResponse.RequestResult.Success.ToString() });
+                newItem.SubItems.AddRange(new string[] {requestResponse.ContainerName, requestResponse.RequestResult.RequestId.ToString(), requestResponse.RequestResult.RequestName, requestResponse.RequestResult.StartTime.ToString(), requestResponse.RequestResult.EndTime.ToString(), requestResponse.RequestResult.ResponseTime.ToString(), requestResponse.RequestResult.ResponseCode.ToString() });
                 lsvResult.Items.Add(newItem);
             }
             catch (Exception ex)

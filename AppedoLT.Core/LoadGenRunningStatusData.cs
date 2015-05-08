@@ -144,6 +144,12 @@ namespace AppedoLT.Core
         [DataMember(Name = "scriptname")]
         public string scriptname = string.Empty;
 
+        [DataMember(Name = "containerid")]
+        public string containerid { get; set; }
+
+        [DataMember(Name = "containername")]
+        public string containername { get; set; }
+
         [DataMember(Name = "requestid")]
         public string requestid = string.Empty;
 
@@ -209,8 +215,8 @@ namespace AppedoLT.Core
         public override string ToString()
         {
 
-            return string.Format("{0},{1},{2},{3},{4},{5},{6},{7},\"{8}\",{9},\"{10}\"", this.loadGen, this.reportname, this.scenarioname, this.scriptname, this.requestid,
-                                                                            this.userid, this.iterationid, this.errorcode, this.message.Replace("\"", "\"\""), this.time.ToString("yyyy-MM-dd HH:mm:ss"), this.request.Replace("\"", "\"\""));
+            return string.Format("{0},{1},{2},{3},{4},{5},{6},{7},\"{8}\",{9},\"{10}\",{11},{12}", this.loadGen, this.reportname, this.scenarioname, this.scriptname, this.requestid,
+                                                                            this.userid, this.iterationid, this.errorcode, this.message.Replace("\"", "\"\""), this.time.ToString("yyyy-MM-dd HH:mm:ss"), this.request.Replace("\"", "\"\""),this.containerid,this.containername);
         }
     }
 

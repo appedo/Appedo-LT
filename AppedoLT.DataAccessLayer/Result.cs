@@ -333,7 +333,7 @@ namespace AppedoLT.DataAccessLayer
                         report.AppendChild(logNode);
 
                         XmlNode errorNode = doc.CreateElement("error");
-                        reader = GetReader("select loadgen,reportname,scenarioname,scriptname, requestid,request,userid,iterationid,errorcode,message,time  from error order by time ", _con);
+                        reader = GetReader("select loadgen,reportname,scenarioname,scriptname,containerid,containername, requestid,request,userid,iterationid,errorcode,message,time  from error order by time ", _con);
                         reader.Read();
 
                         while (reader.HasRows == true)

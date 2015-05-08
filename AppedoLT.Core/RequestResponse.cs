@@ -13,6 +13,7 @@ namespace AppedoLT.Core
 
         public int WebRequestResponseId { get; set; }
         public string RequestId { get; set; }
+        public string ContainerName { get; set; }
         public HttpWebRequest Request = null;
         public string PostData;
         public string ResponseCode = string.Empty;
