@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.ComponentModel;
 using System.Runtime.Serialization;
 using System.Text;
-using System.ComponentModel;
 
 namespace AppedoLT.Core
 {
@@ -224,43 +223,54 @@ namespace AppedoLT.Core
     [Serializable]
     public class ReportData
     {
-        public DateTime _starttime = new DateTime();
-        public DateTime _endtime = new DateTime();
+        private DateTime _starttime = new DateTime();
+        private DateTime _endtime = new DateTime();
 
+        private string _loadgen = string.Empty;
+        private string _sourceip = "0";
+        private string _loadgenanme = string.Empty;
+        private string _scenarioname = string.Empty;
+        private string _scriptid = "0";
+        private string _containerid = "0";
+        private string _containername = string.Empty;
+        private string _pageid = "0";
+        private string _requestid = "0";
+        private string _address = string.Empty;
+        private string _reponseCode = "0";
 
         public DateTime starttime { get { return _starttime; } set { _starttime = value; } }
         public DateTime endtime { get { return _endtime; } set { _endtime = value; } }
 
 
         [DataMember(Name = "loadgen")]
-        public string loadgen { get; set; }
+        public string loadgen { get { return _loadgen; } set { _loadgen = value; } }
 
         [DataMember(Name = "sourceip")]
-        public string sourceip { get; set; }
+        public string sourceip { get { return _sourceip; } set { _sourceip = value; } }
 
         [DataMember(Name = "loadgenname")]
-        public string loadgenanme { get; set; }
+        public string loadgenanme { get { return _loadgenanme; } set { _loadgenanme = value; } }
 
         [DataMember(Name = "scenarioname")]
-        public string scenarioname { get; set; }
+        public string scenarioname { get { return _scenarioname; } set { _scenarioname = value; } }
 
         [DataMember(Name = "scriptid")]
-        public string scriptid { get; set; }
+        public string scriptid { get { return _scriptid; } set { _scriptid = value; } }
 
         [DataMember(Name = "containerid")]
-        public string containerid { get; set; }
+        public string containerid { get { return _containerid; } set { _containerid = value; } }
 
         [DataMember(Name = "containername")]
-        public string containername { get; set; }
+        public string containername { get { return _containername; } set { _containername = value; } }
 
         [DataMember(Name = "pageid")]
-        public string pageid { get; set; }
+        public string pageid { get { return _pageid; } set { _pageid = value; } }
 
         [DataMember(Name = "requestid")]
-        public string requestid { get; set; }
+        public string requestid { get { return _requestid; } set { _loadgen = _requestid; } }
 
         [DataMember(Name = "address")]
-        public string address { get; set; }
+        public string address { get { return _address; } set { _address = value; } }
 
         [DataMember(Name = "userid")]
         public int userid { get; set; }
@@ -303,9 +313,9 @@ namespace AppedoLT.Core
 
         [DataMember(Name = "responsesize")]
         public long responsesize { get; set; }
-
+        
         [DataMember(Name = "reponsecode")]
-        public string reponseCode { get; set; }
+        public string reponseCode { get { return _reponseCode; } set { _reponseCode = value; } }
         public ReportData()
         {
         }
