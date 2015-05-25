@@ -119,24 +119,6 @@ namespace AppedoLTController
                                          UIclient.Send(new TrasportData("response", "ok", null));
                                          break;
 
-                                     case "status":
-                                         runid = data.Header["runid"];
-                                         if (Controllers.ContainsKey(runid) == true)
-                                         {
-                                             UIclient.Send(new TrasportData("status", Convert.ToString(constants.Serialise(Controllers[runid].RunningStatusData)), null));
-                                             TrasportData ack = UIclient.Receive();
-                                             if (ack.Operation == "ok")
-                                             {
-                                                 Controllers[runid].RunningStatusData.Log.Clear();
-                                             }
-                                         }
-                                         else
-                                         {
-                                             UIclient.Send(new TrasportData("status", Convert.ToString(constants.Serialise(new LoadGenRunningStatusData())), null));
-                                             TrasportData ack = UIclient.Receive();
-                                         }
-                                         break;
-
                                      case "runstatus":
                                          UIclient.Send(new TrasportData("runstatus", ExceptionHandler.GetLog(), null));
                                          break;
@@ -412,12 +394,16 @@ namespace AppedoLTController
                                     data.Header.Add("totalloadgen", loadGenIps.Length.ToString());
                                     data.Header.Add("currentloadgenid", loadGenId++.ToString());
                                     data.Header.Add("loadgenname", ip);
+                                    data.Header.Add("appedoip", AppedoServer);
+                                    data.Header.Add("appedoport", Constants.GetInstance().AppedoPort);
                                 }
                                 else
                                 {
                                     data.Header["totalloadgen"] = loadGenIps.Length.ToString();
                                     data.Header["currentloadgenid"] = loadGenId++.ToString();
                                     data.Header["loadgenname"] = ip;
+                                    data.Header["appedoip"] = AppedoServer;
+                                    data.Header["appedoport"] = Constants.GetInstance().AppedoPort;
                                 }
                                 try
                                 {
@@ -575,7 +561,7 @@ namespace AppedoLTController
                 foreach (string users in Controllers.Keys)
                 {
                     ctrl = Controllers[users];
-                    statusList.Add(string.Format("{0},{1},{2},{3}", ctrl.RunId, ctrl.RunningStatusData.CreatedUser, ctrl.RunningStatusData.CompletedUser, ctrl.RunningStatusData.IsCompleted));
+                    statusList.Add(string.Format("{0},{1},{2},{3}", ctrl.RunId, ctrl.CreatedUser, ctrl.CompletedUser, ctrl.IsCompleted));
                 }
             }
             catch (Exception ex)

@@ -12,12 +12,15 @@ namespace AppedoLTLoadGenerator
 {
     public class RunScenario
     {
-        private  List<ScriptExecutor> _scriptExecutorList = new List<ScriptExecutor>();
+        private List<ScriptExecutor> _scriptExecutorList = new List<ScriptExecutor>();
         private string _scenarioXml;
         private int _tempCreatedUser = 0;
         private int _tempCompletedUser = 0;
         private string _distribution = string.Empty;
         private System.Timers.Timer _statusUpdateTimer;
+        private int _totalCreatedUser = 0;
+        private int _totalCompleted = 0;
+        private int _isCompleted = 0;
         private LoadGenRunningStatusData _runningStatusData = new LoadGenRunningStatusData();
         private ExecutionReport executionReport = ExecutionReport.GetInstance();
         private Constants _constants = Constants.GetInstance();
@@ -26,48 +29,23 @@ namespace AppedoLTLoadGenerator
         private Queue<ReportData> _reportDataBuffer = new Queue<ReportData>();
         private Queue<TransactionRunTimeDetail> _TransactionDataBuffer = new Queue<TransactionRunTimeDetail>();
         private Queue<UserDetail> _UserDetailBuffer = new Queue<UserDetail>();
+        private LoadGenRunningStatusData _faildData = null;
+        private string _runid = string.Empty;
+        private string _appedoIp = string.Empty;
+        private string _appedoPort = string.Empty;
 
-        public LoadGenRunningStatusData GetData()
-        {
-            LoadGenRunningStatusData data = new LoadGenRunningStatusData();
-            if ((_scriptExecutorList.Count == 0
-                    || _scriptExecutorList.FindAll(f => f.IsRunCompleted).Count == _scriptExecutorList.Count)
-                  && executionReport.ExecutionStatus == Status.Completed)
-            {
-                data.IsCompleted = 1;
-            }
-            else
-            {
-                data.IsCompleted = 0;
-            }
-            GetLog(data.Log);
-            GetError(data.Error);
-            GetReportData(data.ReportData);
-            GetTransactions(data.Transactions);
-            GetUserDetail(data.UserDetailData);
-            return data;
-        }
+        public int TotalCreatedUser { get { return _totalCreatedUser; } private set { } }
+        public int TotalCompletedUser { get { return _totalCompleted; } private set { } }
+        public int IsCompleted { get { return _isCompleted; } private set { } }
 
-        public LoadGenRunningStatusData DisplayStatusData
-        {
-            get
-            {
-                if ((_scriptExecutorList.Count == 0
-                        || _scriptExecutorList.FindAll(f => f.IsRunCompleted).Count == _scriptExecutorList.Count)
-                      && executionReport.ExecutionStatus == Status.Completed)
-                {
-                    _runningStatusData.IsCompleted = 1;
-                }
-                else
-                {
-                    _runningStatusData.IsCompleted = 0;
-                }
-                return _runningStatusData;
-            }
-        }
 
-        public RunScenario(string scenarioXml, string distribution)
+
+
+        public RunScenario(string runid, string appedoIP, string appedoPort, string scenarioXml, string distribution)
         {
+            _runid = runid;
+            _appedoIp = appedoIP;
+            _appedoPort = appedoPort;
             _scenarioXml = scenarioXml;
             _distribution = distribution;
             _statusUpdateTimer = new System.Timers.Timer(1000);
@@ -87,8 +65,8 @@ namespace AppedoLTLoadGenerator
                     _tempCreatedUser += scripts.StatusSummary.TotalVUserCreated;
                     _tempCompletedUser += scripts.StatusSummary.TotalVUserCompleted;
                 }
-                _runningStatusData.CreatedUser = _tempCreatedUser;
-                _runningStatusData.CompletedUser = _tempCompletedUser;
+                _totalCreatedUser = _tempCreatedUser;
+                _totalCompleted = _tempCompletedUser;
 
                 if (_scriptExecutorList.FindAll(f => f.IsRunCompleted).Count == _scriptExecutorList.Count && _tempCreatedUser != 0 && _tempCreatedUser == _tempCompletedUser)
                 {
@@ -116,6 +94,7 @@ namespace AppedoLTLoadGenerator
                     finally
                     {
                         executionReport.ExecutionStatus = Status.Completed;
+                        _isCompleted = 1;
                     }
                 }
 
@@ -164,6 +143,7 @@ namespace AppedoLTLoadGenerator
             if (_scriptExecutorList.Count > 0)
             {
                 _statusUpdateTimer.Start();
+                SendData();
                 return true;
             }
             else
@@ -254,14 +234,13 @@ namespace AppedoLTLoadGenerator
         {
             try
             {
-                foreach (ScriptExecutor scripts in _scriptExecutorList)
+
+                int count = _LogBuffer.Count;
+                for (; count > 0; count--)
                 {
-                    int count = _LogBuffer.Count;
-                    for (; count > 0; count--)
-                    {
-                        logList.Add(_LogBuffer.Dequeue());
-                    }
+                    logList.Add(_LogBuffer.Dequeue());
                 }
+
             }
             catch (Exception ex)
             {
@@ -272,13 +251,10 @@ namespace AppedoLTLoadGenerator
         {
             try
             {
-                foreach (ScriptExecutor scripts in _scriptExecutorList)
+                int count = _ErrorBuffer.Count;
+                for (; count > 0; count--)
                 {
-                    int count = _ErrorBuffer.Count;
-                    for (; count > 0; count--)
-                    {
-                        errorList.Add(_ErrorBuffer.Dequeue());
-                    }
+                    errorList.Add(_ErrorBuffer.Dequeue());
                 }
             }
             catch (Exception ex)
@@ -290,13 +266,10 @@ namespace AppedoLTLoadGenerator
         {
             try
             {
-                foreach (ScriptExecutor scripts in _scriptExecutorList)
+                int count = _reportDataBuffer.Count;
+                for (; count > 0; count--)
                 {
-                    int count = _reportDataBuffer.Count;
-                    for (; count > 0; count--)
-                    {
-                        reportDataList.Add(_reportDataBuffer.Dequeue());
-                    }
+                    reportDataList.Add(_reportDataBuffer.Dequeue());
                 }
             }
             catch (Exception ex)
@@ -308,13 +281,10 @@ namespace AppedoLTLoadGenerator
         {
             try
             {
-                foreach (ScriptExecutor scripts in _scriptExecutorList)
+                int count = _TransactionDataBuffer.Count;
+                for (; count > 0; count--)
                 {
-                    int count = _TransactionDataBuffer.Count;
-                    for (; count > 0; count--)
-                    {
-                        transactionsList.Add(_TransactionDataBuffer.Dequeue());
-                    }
+                    transactionsList.Add(_TransactionDataBuffer.Dequeue());
                 }
             }
             catch (Exception ex)
@@ -326,19 +296,74 @@ namespace AppedoLTLoadGenerator
         {
             try
             {
-                foreach (ScriptExecutor scripts in _scriptExecutorList)
+                int count = _UserDetailBuffer.Count;
+                for (; count > 0; count--)
                 {
-                    int count = _UserDetailBuffer.Count;
-                    for (; count > 0; count--)
-                    {
-                        userDetailsList.Add(_UserDetailBuffer.Dequeue());
-                    }
+                    userDetailsList.Add(_UserDetailBuffer.Dequeue());
                 }
             }
             catch (Exception ex)
             {
                 ExceptionHandler.WritetoEventLog(ex.StackTrace + ex.Message);
             }
+        }
+        private void SendData()
+        {
+            new Thread(() =>
+            {
+                while (true)
+                {
+                    try
+                    {
+                        if (_LogBuffer.Count != 0
+                              || _ErrorBuffer.Count != 0
+                              || _reportDataBuffer.Count != 0
+                              || _TransactionDataBuffer.Count != 0
+                              || _UserDetailBuffer.Count != 0)
+                        {
+                            LoadGenRunningStatusData data = new LoadGenRunningStatusData();
+                            data.Runid = _runid;
+                            GetLog(data.Log);
+                            GetError(data.Error);
+                            GetReportData(data.ReportData);
+                            GetTransactions(data.Transactions);
+                            GetUserDetail(data.UserDetailData);
+
+                            if (_faildData != null)
+                            {
+                                data.Log.AddRange(_faildData.Log);
+                                data.Error.AddRange(_faildData.Error);
+                                data.ReportData.AddRange(_faildData.ReportData);
+                                data.Transactions.AddRange(_faildData.Transactions);
+                                data.UserDetailData.AddRange(_faildData.UserDetailData);
+                            }
+                            _faildData = data;
+
+                            Trasport trasport = new Trasport(_appedoIp, _appedoPort,30000);
+                            trasport.Send(new TrasportData("status", ASCIIEncoding.Default.GetString(_constants.Serialise(data)), null));
+                            TrasportData ack = trasport.Receive();
+                            if (ack.Operation == "ok")
+                            {
+                                _faildData = null;
+                            }
+                            trasport.Close();
+                            trasport = null;
+                        }
+                        else if ((_scriptExecutorList.Count == 0
+                                    || _scriptExecutorList.FindAll(f => f.IsRunCompleted).Count == _scriptExecutorList.Count)
+                                  && executionReport.ExecutionStatus == Status.Completed)
+                        {
+                            break;
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+
+                    }
+                    finally { Thread.Sleep(5000); }
+                }
+
+            }).Start();
         }
     }
 }

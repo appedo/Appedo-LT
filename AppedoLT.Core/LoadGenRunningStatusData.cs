@@ -11,20 +11,7 @@ namespace AppedoLT.Core
     {
         private DateTime _time = new DateTime();
 
-        [DataMember(Name = "time")]
-        public string timeStr
-        {
-            get
-            {
-                DateTime origin = new DateTime(1970, 1, 1, 0, 0, 0, 0);
-                TimeSpan diff = _time.ToUniversalTime() - origin;
-                return Math.Floor(diff.TotalMilliseconds).ToString();
-            }
-            set
-            {
-                _time = Constants.GetInstance().ConvertFromUnixTimestamp(Convert.ToDouble(value));
-            }
-        }
+        
         public DateTime Time
         {
             get { return _time; }
@@ -41,15 +28,10 @@ namespace AppedoLT.Core
         private List<ReportData> _reportData = new List<ReportData>();
         private List<TransactionRunTimeDetail> _transactionsData = new List<TransactionRunTimeDetail>();
         private List<UserDetail> _userDetailData = new List<UserDetail>();
-
-        [DataMember(Name = "createduser")]
-        public int CreatedUser { get; set; }
-        [DataMember(Name = "completeduser")]
-        public int CompletedUser { get; set; }
-        [DataMember(Name = "iscompleted")]
-        public int IsCompleted { get; set; }
-        [DataMember(Name = "loadgens")]
-        public string LoadGens { get; set; }
+      
+      
+        [DataMember(Name = "runid")]
+        public string Runid { get; set; }
         [DataMember(Name = "log")]
         public List<Log> Log { get { return _log; } set { _log = value; } }
         [DataMember(Name = "error")]
@@ -61,8 +43,6 @@ namespace AppedoLT.Core
         [DataMember(Name = "userdetail")]
         public List<UserDetail> UserDetailData { get { return _userDetailData; } set { _userDetailData = value; } }
 
-
-
     }
     
     [DataContract]
@@ -71,7 +51,7 @@ namespace AppedoLT.Core
         private DateTime _time = new DateTime();
         public string reportname = string.Empty;
 
-        [DataMember(Name = "loadGen")]
+        [DataMember(Name = "loadgen")]
         public string loadGen = Constants.GetInstance().LoadGen;
         [DataMember(Name = "scenarioname")]
         public string scenarioname = string.Empty;
@@ -79,13 +59,13 @@ namespace AppedoLT.Core
         public string scriptid = string.Empty;
         [DataMember(Name = "scriptname")]
         public string scriptname = string.Empty;
-        [DataMember(Name = "logid")]
+        [DataMember(Name = "log_id")]
         public string logid = string.Empty;
-        [DataMember(Name = "logname")]
+        [DataMember(Name = "log_name")]
         public string logname = string.Empty;
-        [DataMember(Name = "userid")]
+        [DataMember(Name = "user_id")]
         public string userid = string.Empty;
-        [DataMember(Name = "iterationid")]
+        [DataMember(Name = "iteration_id")]
         public string iterationid = string.Empty;
         [DataMember(Name = "message")]
         public string message = string.Empty;
@@ -94,7 +74,7 @@ namespace AppedoLT.Core
         public DateTime time { get { return _time; } set { _time = value; } }
 
         [Browsable(false)]
-        [DataMember(Name = "time")]
+        [DataMember(Name = "log_time")]
         public string timeStr
         {
             get
@@ -152,10 +132,10 @@ namespace AppedoLT.Core
         [DataMember(Name = "requestid")]
         public string requestid = string.Empty;
 
-        [DataMember(Name = "userid")]
+        [DataMember(Name = "user_id")]
         public string userid = string.Empty;
 
-        [DataMember(Name = "iterationid")]
+        [DataMember(Name = "iteration_id")]
         public string iterationid = string.Empty;
         
         [Browsable(false)]
@@ -176,17 +156,17 @@ namespace AppedoLT.Core
         [Browsable(false)]
         public DateTime time { get { return _time; } set { _time = value; } }
 
-        [DataMember(Name = "from")]
+        [DataMember(Name = "source")]
         public string from = string.Empty;
 
-        [DataMember(Name = "loadGen")]
+        [DataMember(Name = "loadgen")]
         public string loadGen = Constants.GetInstance().LoadGen;
 
         [DataMember(Name = "request")]
         public string request = string.Empty;
         
         [Browsable(false)]
-        [DataMember(Name = "time")]
+        [DataMember(Name = "log_time")]
         public string timeStr
         {
             get
@@ -245,28 +225,28 @@ namespace AppedoLT.Core
         [DataMember(Name = "loadgen")]
         public string loadgen { get { return _loadgen; } set { _loadgen = value; } }
 
-        [DataMember(Name = "sourceip")]
+        [DataMember(Name = "source_ip")]
         public string sourceip { get { return _sourceip; } set { _sourceip = value; } }
 
-        [DataMember(Name = "loadgenname")]
+        [DataMember(Name = "loadgen_name")]
         public string loadgenanme { get { return _loadgenanme; } set { _loadgenanme = value; } }
 
         [DataMember(Name = "scenarioname")]
         public string scenarioname { get { return _scenarioname; } set { _scenarioname = value; } }
 
-        [DataMember(Name = "scriptid")]
+        [DataMember(Name = "script_id")]
         public string scriptid { get { return _scriptid; } set { _scriptid = value; } }
 
-        [DataMember(Name = "containerid")]
+        [DataMember(Name = "container_id")]
         public string containerid { get { return _containerid; } set { _containerid = value; } }
 
         [DataMember(Name = "containername")]
         public string containername { get { return _containername; } set { _containername = value; } }
 
-        [DataMember(Name = "pageid")]
+        [DataMember(Name = "page_id")]
         public string pageid { get { return _pageid; } set { _pageid = value; } }
 
-        [DataMember(Name = "requestid")]
+        [DataMember(Name = "request_id")]
         public string requestid { get { return _requestid; } set { _loadgen = _requestid; } }
 
         [DataMember(Name = "address")]
@@ -275,7 +255,7 @@ namespace AppedoLT.Core
         [DataMember(Name = "userid")]
         public int userid { get; set; }
 
-        [DataMember(Name = "iterationid")]
+        [DataMember(Name = "iteration_id")]
         public int iterationid { get; set; }
 
         [DataMember(Name = "starttime")]
@@ -360,7 +340,7 @@ namespace AppedoLT.Core
             set { _endtime = value; }
         }
 
-        [DataMember(Name = "scriptid")]
+        [DataMember(Name = "script_id")]
         public string ScriptId = string.Empty;
 
         [DataMember(Name = "scenarioname")]
@@ -372,7 +352,7 @@ namespace AppedoLT.Core
         [DataMember(Name = "userid")]
         public string UserId = string.Empty;
 
-        [DataMember(Name = "iterationid")]
+        [DataMember(Name = "iteration_id")]
         public string IterationId = string.Empty;
 
         [DataMember(Name = "transactionname")]
@@ -408,7 +388,7 @@ namespace AppedoLT.Core
             }
         }
 
-        [DataMember(Name = "difference")]
+        [DataMember(Name = "diff")]
         public double Difference
         {
             get
@@ -458,7 +438,7 @@ namespace AppedoLT.Core
         [DataMember(Name = "type")]
         public int Type { get; set; }
 
-        [DataMember(Name = "scriptid")]
+        [DataMember(Name = "script_id")]
         public string scriptid { get; set; }
 
         [DataMember(Name = "userid")]
@@ -467,7 +447,7 @@ namespace AppedoLT.Core
         public DateTime _time = new DateTime();
         public DateTime Time { get { return _time; } set { _time = value; } }
 
-        [DataMember(Name = "time")]
+        [DataMember(Name = "runtime")]
         public string timeStr
         {
             get
