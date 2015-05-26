@@ -240,14 +240,14 @@ namespace AppedoLT.Core
         [DataMember(Name = "container_id")]
         public string containerid { get { return _containerid; } set { _containerid = value; } }
 
-        [DataMember(Name = "containername")]
+        [DataMember(Name = "container_name")]
         public string containername { get { return _containername; } set { _containername = value; } }
 
         [DataMember(Name = "page_id")]
         public string pageid { get { return _pageid; } set { _pageid = value; } }
 
         [DataMember(Name = "request_id")]
-        public string requestid { get { return _requestid; } set { _loadgen = _requestid; } }
+        public string requestid { get { return _requestid; } set { _requestid = value; } }
 
         [DataMember(Name = "address")]
         public string address { get { return _address; } set { _address = value; } }
@@ -294,7 +294,7 @@ namespace AppedoLT.Core
         [DataMember(Name = "responsesize")]
         public long responsesize { get; set; }
         
-        [DataMember(Name = "reponsecode")]
+        [DataMember(Name = "responsecode")]
         public string reponseCode { get { return _reponseCode; } set { _reponseCode = value; } }
         public ReportData()
         {
@@ -432,10 +432,10 @@ namespace AppedoLT.Core
     [DataContract]
     public class UserDetail
     {
-        [DataMember(Name = "loadgenname")]
+        [DataMember(Name = "loadgen_name")]
         public string loadgenanme { get; set; }
 
-        [DataMember(Name = "type")]
+        [DataMember(Name = "runtype")]
         public int Type { get; set; }
 
         [DataMember(Name = "script_id")]

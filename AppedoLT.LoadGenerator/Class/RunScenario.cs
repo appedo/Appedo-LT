@@ -33,6 +33,8 @@ namespace AppedoLTLoadGenerator
         private string _runid = string.Empty;
         private string _appedoIp = string.Empty;
         private string _appedoPort = string.Empty;
+        private string _appedoFailedUrl = string.Empty;
+        private int _dataSendFailedCount = 0;
 
         public int TotalCreatedUser { get { return _totalCreatedUser; } private set { } }
         public int TotalCompletedUser { get { return _totalCompleted; } private set { } }
@@ -41,9 +43,10 @@ namespace AppedoLTLoadGenerator
 
 
 
-        public RunScenario(string runid, string appedoIP, string appedoPort, string scenarioXml, string distribution)
+        public RunScenario(string runid, string appedoIP, string appedoPort, string scenarioXml, string distribution,string appedoFailedUrl)
         {
             _runid = runid;
+            _appedoFailedUrl = appedoFailedUrl;
             _appedoIp = appedoIP;
             _appedoPort = appedoPort;
             _scenarioXml = scenarioXml;
@@ -94,7 +97,7 @@ namespace AppedoLTLoadGenerator
                     finally
                     {
                         executionReport.ExecutionStatus = Status.Completed;
-                        _isCompleted = 1;
+                        
                     }
                 }
 
@@ -319,7 +322,7 @@ namespace AppedoLTLoadGenerator
                               || _ErrorBuffer.Count != 0
                               || _reportDataBuffer.Count != 0
                               || _TransactionDataBuffer.Count != 0
-                              || _UserDetailBuffer.Count != 0)
+                              || _UserDetailBuffer.Count != 0 || _faildData!=null)
                         {
                             LoadGenRunningStatusData data = new LoadGenRunningStatusData();
                             data.Runid = _runid;
@@ -338,27 +341,51 @@ namespace AppedoLTLoadGenerator
                                 data.UserDetailData.AddRange(_faildData.UserDetailData);
                             }
                             _faildData = data;
-
-                            Trasport trasport = new Trasport(_appedoIp, _appedoPort,30000);
-                            trasport.Send(new TrasportData("status", ASCIIEncoding.Default.GetString(_constants.Serialise(data)), null));
-                            TrasportData ack = trasport.Receive();
-                            if (ack.Operation == "ok")
+                            try
                             {
-                                _faildData = null;
+                                Trasport trasport = new Trasport(_appedoIp, _appedoPort, 30000);
+                                trasport.Send(new TrasportData("status", ASCIIEncoding.Default.GetString(_constants.Serialise(data)), null));
+                                TrasportData ack = trasport.Receive();
+                                if (ack.Operation == "ok")
+                                {
+                                    _faildData = null;
+                                }
+                                trasport.Close();
+                                trasport = null;
                             }
-                            trasport.Close();
-                            trasport = null;
+                            catch(Exception ex1)
+                            {
+                                _dataSendFailedCount++;
+                                if(_dataSendFailedCount==3)
+                                {
+                                    _dataSendFailedCount = 0;
+                                    try
+                                    {
+                                        if (_appedoFailedUrl != string.Empty)
+                                        {
+                                            _constants.GetPageContent(_appedoFailedUrl);
+                                        }
+                                    }
+                                    catch (Exception ex2)
+                                    {
+                                        ExceptionHandler.WritetoEventLog(ex2.StackTrace + Environment.NewLine + ex2.Message);
+                                    }
+                                }
+                                ExceptionHandler.WritetoEventLog(ex1.StackTrace + Environment.NewLine + ex1.Message);
+                            }
                         }
                         else if ((_scriptExecutorList.Count == 0
                                     || _scriptExecutorList.FindAll(f => f.IsRunCompleted).Count == _scriptExecutorList.Count)
                                   && executionReport.ExecutionStatus == Status.Completed)
                         {
+                            _isCompleted = 1;
                             break;
+                           
                         }
                     }
                     catch (Exception ex)
                     {
-
+                        ExceptionHandler.WritetoEventLog(ex.StackTrace + Environment.NewLine + ex.Message);
                     }
                     finally { Thread.Sleep(5000); }
                 }

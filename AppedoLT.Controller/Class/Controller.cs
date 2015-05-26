@@ -20,6 +20,8 @@ namespace AppedoLTController
         private ControllerStatus _staus = ControllerStatus.Idle;
         private int _totalUserCreated = 0;
         private int _totalUserCompleted = 0;
+        private string _appedoFailedUrl = string.Empty;
+        private int failedScriptWaseSend = 0;
 
         public string ScriptWiseStatus { get; set; }
         public string RunId = string.Empty;
@@ -37,12 +39,12 @@ namespace AppedoLTController
         }
        
 
-        public Controller(string soureIP, string runid, XmlNode runNode, string loadgens)
+        public Controller(string soureIP, string runid, XmlNode runNode, string loadgens,string appedoFailedUrl)
         {
             RunId = runid;
             _SourceIp = soureIP;
             _RunNode = runNode;
-          
+            _appedoFailedUrl = appedoFailedUrl;
         }
 
         public void Start()
@@ -155,6 +157,11 @@ namespace AppedoLTController
                  
                     _totalUserCreated = totalCreated;
                     _totalUserCompleted = totalCompleted;
+                    if (runcompleted == loadGens.Count)
+                    {
+                        _staus = ControllerStatus.ReportGenerateCompleted;
+                        isEnd = true;
+                    }
                     ScriptWiseStatus = GetStatusconcatenate(scriptwisestatus.ToString());
                     SendScriptWiseStatus(ScriptWiseStatus);
 
@@ -177,11 +184,7 @@ namespace AppedoLTController
                         }
                         break;
                     }
-                    if (runcompleted == loadGens.Count)
-                    {
-                        _staus = ControllerStatus.ReportGenerateCompleted;
-                        isEnd = true;
-                    }
+                   
                 }
                 catch (Exception ex)
                 {
@@ -264,10 +267,8 @@ namespace AppedoLTController
             {
                 header["runid"] = RunId;
                 header["iscompleted"] = (_staus == ControllerStatus.ReportGenerateCompleted) ? "1" :"0";
-                header["createduser"] = _totalUserCreated.ToString();
-                header["completeduser"] = _totalUserCompleted.ToString();
-
-                server = new Trasport(_SourceIp, Constants.GetInstance().AppedoPort);
+               
+                server = new Trasport(_SourceIp, Constants.GetInstance().AppedoPort,20000);
                 data = new TrasportData("scriptwisestatus", scriptWiseStatus, header);
                 server.Send(data);
                 data = server.Receive();
@@ -275,6 +276,22 @@ namespace AppedoLTController
             }
             catch (Exception ex)
             {
+                failedScriptWaseSend++;
+                if(failedScriptWaseSend==5)
+                {
+                    failedScriptWaseSend = 0;
+                    try
+                    {
+                        if (_appedoFailedUrl != string.Empty)
+                        {
+                            _constants.GetPageContent(_appedoFailedUrl);
+                        }
+                    }
+                    catch (Exception ex1)
+                    {
+                        ExceptionHandler.WritetoEventLog(ex1.StackTrace + Environment.NewLine + ex1.Message);
+                    }
+                }
                 ExceptionHandler.WritetoEventLog(ex.StackTrace + Environment.NewLine + ex.Message);
             }
             finally

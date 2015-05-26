@@ -79,6 +79,7 @@ namespace AppedoLTLoadGenerator
                                                 runDetail.Add("runid", data.Header["runid"]);
                                                 runDetail.Add("appedoip", data.Header["appedoip"]);
                                                 runDetail.Add("appedoport", data.Header["appedoport"]);
+                                                runDetail.Add("appedofailedurl", data.Header["appedofailedurl"]);
                                                 runDetail.Add("totalloadgenused", data.Header["totalloadgen"] == null ? "1" : data.Header["totalloadgen"]);
                                                 runDetail.Add("currentloadgenid", data.Header["currentloadgenid"] == null ? "1" : data.Header["currentloadgenid"]);
                                                 runDetail.Add("souceip", ((IPEndPoint)controller.tcpClient.Client.RemoteEndPoint).Address.ToString());
@@ -119,7 +120,7 @@ namespace AppedoLTLoadGenerator
                                                     executionReport.TotalLoadGenUsed = Convert.ToInt16(runDetail["totalloadgenused"]);
                                                     executionReport.CurrentLoadGenid = Convert.ToInt16(runDetail["currentloadgenid"]);
                                                     executionReport.LoadGenName = runDetail["loadgenname"];
-                                                    run = new AppedoLTLoadGenerator.RunScenario(data.Header["runid"], runDetail["appedoip"], runDetail["appedoport"], runDetail["data"], runDetail["distribution"]);
+                                                    run = new AppedoLTLoadGenerator.RunScenario(data.Header["runid"], runDetail["appedoip"], runDetail["appedoport"], runDetail["data"], runDetail["distribution"], runDetail["appedofailedurl"]);
 
                                                     if (run.Start() == true)
                                                     {

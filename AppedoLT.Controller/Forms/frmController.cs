@@ -31,6 +31,7 @@ namespace AppedoLTController
 
         object test = new object();
         string AppedoServer = string.Empty;
+        string AppedoFailedUrl = string.Empty;
         bool isClientRunning = false;
 
         public frmController()
@@ -45,11 +46,13 @@ namespace AppedoLTController
                 if (!Directory.Exists(".\\Variables")) Directory.CreateDirectory(".\\Variables");
 
                 AppedoServer = ControllerXml.GetInstance().doc.SelectSingleNode("//runs").Attributes["appedoipaddress"].Value;
+                AppedoFailedUrl = ControllerXml.GetInstance().doc.SelectSingleNode("//runs").Attributes["failedurl"].Value;
                 if (AppedoServer == string.Empty)
                 {
                     if ((new frmAppedoIP().ShowDialog() == DialogResult.OK))
                     {
                         AppedoServer = ControllerXml.GetInstance().doc.SelectSingleNode("//runs").Attributes["appedoipaddress"].Value;
+                        AppedoFailedUrl = ControllerXml.GetInstance().doc.SelectSingleNode("//runs").Attributes["failedurl"].Value;
                     }
                     else
                     {
@@ -396,6 +399,7 @@ namespace AppedoLTController
                                     data.Header.Add("loadgenname", ip);
                                     data.Header.Add("appedoip", AppedoServer);
                                     data.Header.Add("appedoport", Constants.GetInstance().AppedoPort);
+                                    data.Header.Add("appedofailedurl", AppedoFailedUrl);
                                 }
                                 else
                                 {
@@ -404,6 +408,7 @@ namespace AppedoLTController
                                     data.Header["loadgenname"] = ip;
                                     data.Header["appedoip"] = AppedoServer;
                                     data.Header["appedoport"] = Constants.GetInstance().AppedoPort;
+                                    data.Header["appedofailedurl"] = AppedoFailedUrl;
                                 }
                                 try
                                 {
@@ -530,7 +535,7 @@ namespace AppedoLTController
                             if (runDetail != null)
                             {
                                 ExceptionHandler.LogRunDetail(runid, "Run started ");
-                                Controller controller = new Controller(server.IPAddressStr, runid, runDetail, loadGensStr);
+                                Controller controller = new Controller(server.IPAddressStr, runid, runDetail, loadGensStr,AppedoFailedUrl);
                                 Controllers.Add(runid, controller);
                                 _ControllerXml.doc.SelectSingleNode("root/runs").AppendChild(runDetail);
                                 _ControllerXml.Save();
