@@ -237,7 +237,7 @@ namespace AppedoLT
             foreach (ListViewItem item in this.lsvResult.Items)
             {
                 double temp = 0;
-                double.TryParse(item.SubItems[5].Text, out temp);
+                double.TryParse(item.SubItems[6].Text, out temp);
                 result += temp;
             }
             if (this.lsvResult.Items.Count > 0)
