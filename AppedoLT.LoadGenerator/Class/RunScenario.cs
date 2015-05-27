@@ -35,13 +35,9 @@ namespace AppedoLTLoadGenerator
         private string _appedoPort = string.Empty;
         private string _appedoFailedUrl = string.Empty;
         private int _dataSendFailedCount = 0;
-
         public int TotalCreatedUser { get { return _totalCreatedUser; } private set { } }
         public int TotalCompletedUser { get { return _totalCompleted; } private set { } }
         public int IsCompleted { get { return _isCompleted; } private set { } }
-
-
-
 
         public RunScenario(string runid, string appedoIP, string appedoPort, string scenarioXml, string distribution,string appedoFailedUrl)
         {

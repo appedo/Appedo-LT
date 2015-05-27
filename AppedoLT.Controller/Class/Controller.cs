@@ -28,7 +28,7 @@ namespace AppedoLTController
         public ControllerStatus Status { get { return _staus; } }
         public string LastSentStatus = string.Empty;
 
-        public int CreatedUser { get {return _totalUserCreated; } private set { } }
+        public int CreatedUser { get { return _totalUserCreated; } private set { } }
         public int CompletedUser { get { return _totalUserCompleted; } private set { } }
         public int IsCompleted { get { return (_staus == ControllerStatus.ReportGenerateCompleted ? 1 : 0); } private set { } }
 
@@ -37,9 +37,9 @@ namespace AppedoLTController
             get { return _reportDataCount; }
             set { _reportDataCount = value; }
         }
-       
 
-        public Controller(string soureIP, string runid, XmlNode runNode, string loadgens,string appedoFailedUrl)
+
+        public Controller(string soureIP, string runid, XmlNode runNode, string loadgens, string appedoFailedUrl)
         {
             RunId = runid;
             _SourceIp = soureIP;
@@ -88,7 +88,7 @@ namespace AppedoLTController
                 {
                     Directory.Delete(folderPath, true);
                     ExceptionHandler.LogRunDetail(reportname, "Directory deleted successfully.");
-                    
+
                 }
 
             }
@@ -124,7 +124,7 @@ namespace AppedoLTController
                             #region Retrive Created & Completed UserCount
                             Trasport loadGenConnection = new Trasport(loadGen.Attributes["ipaddress"].Value, "8889");
                             loadGenConnection.Send(new TrasportData("scriptwisestatus", string.Empty, null));
-                            TrasportData data=loadGenConnection.Receive();
+                            TrasportData data = loadGenConnection.Receive();
                             totalCreated += Convert.ToInt32(data.Header["createduser"]);
                             totalCompleted += Convert.ToInt32(data.Header["completeduser"]);
                             runcompleted += Convert.ToInt32(data.Header["iscompleted"]);
@@ -147,14 +147,27 @@ namespace AppedoLTController
                             {
                                 failedCount[loadGen.Attributes["ipaddress"].Value]++;
                             }
-                            if (failedCount[loadGen.Attributes["ipaddress"].Value] > 5)
+                            if (failedCount[loadGen.Attributes["ipaddress"].Value] > 2)
                             {
                                 runcompleted++;
                                 ExceptionHandler.LogRunDetail(RunId, "Unable to connect " + loadGen.Attributes["ipaddress"].Value + " " + ex.Message);
+                                Dictionary<string, string> header = new Dictionary<string, string>();
+                                Trasport server = null;
+                                try
+                                {
+                                    header["runid"] = RunId;
+                                    header["ipaddress"] = loadGen.Attributes["ipaddress"].Value;
+                                    server = new Trasport(_SourceIp, Constants.GetInstance().AppedoPort, 20000);
+                                    server.Send(new TrasportData("loadgenfailed", string.Empty, header));
+                                }
+                                catch (Exception ex1)
+                                {
+                                    ExceptionHandler.WritetoEventLog(ex1.StackTrace + ex1.Message);
+                                }
                             }
                         }
                     }
-                 
+
                     _totalUserCreated = totalCreated;
                     _totalUserCompleted = totalCompleted;
                     if (runcompleted == loadGens.Count)
@@ -184,7 +197,7 @@ namespace AppedoLTController
                         }
                         break;
                     }
-                   
+
                 }
                 catch (Exception ex)
                 {
@@ -192,7 +205,6 @@ namespace AppedoLTController
                     {
                         Thread.Sleep(10000);
                         _staus = ControllerStatus.ReportGenerateCompleted;
-                      
                         break;
                     }
                     catch (Exception ex1)
@@ -266,9 +278,9 @@ namespace AppedoLTController
             try
             {
                 header["runid"] = RunId;
-                header["iscompleted"] = (_staus == ControllerStatus.ReportGenerateCompleted) ? "1" :"0";
-               
-                server = new Trasport(_SourceIp, Constants.GetInstance().AppedoPort,20000);
+                header["iscompleted"] = (_staus == ControllerStatus.ReportGenerateCompleted) ? "1" : "0";
+
+                server = new Trasport(_SourceIp, Constants.GetInstance().AppedoPort, 20000);
                 data = new TrasportData("scriptwisestatus", scriptWiseStatus, header);
                 server.Send(data);
                 data = server.Receive();
@@ -277,7 +289,7 @@ namespace AppedoLTController
             catch (Exception ex)
             {
                 failedScriptWaseSend++;
-                if(failedScriptWaseSend==5)
+                if (failedScriptWaseSend == 5)
                 {
                     failedScriptWaseSend = 0;
                     try
