@@ -35,10 +35,12 @@ namespace AppedoLTController
         {
             try
             {
-                Test();
+                string url= Test();
                 ControllerXml.GetInstance().doc.SelectSingleNode("//runs").Attributes["appedoipaddress"].Value = txtIpAddress.Text;
+                ControllerXml.GetInstance().doc.SelectSingleNode("//runs").Attributes["failedurl"].Value = url;
                 ControllerXml.GetInstance().Save();
                 MessageBox.Show("Saved successfully");
+
             }
             catch (Exception ex)
             {
@@ -46,12 +48,13 @@ namespace AppedoLTController
                 MessageBox.Show(ex.Message);
             }
         }
-        private void Test()
+        private string Test()
         {
             Trasport loadGenConnection = new Trasport(txtIpAddress.Text, ConfigurationManager.AppSettings["appedoport"], 5000);
            
             loadGenConnection.Send(new TrasportData("TEST", string.Empty, null));
             TrasportData data = loadGenConnection.Receive();
+            return data.Header["url"];
         }
     }
 }

@@ -39,18 +39,31 @@ namespace AppedoLTController
         private XmlNode _RunNode = null;
         private string _SourceIp = null;
         private ControllerStatus _staus = ControllerStatus.Idle;
+<<<<<<< HEAD
         
+>>>>>>> dev_master
+=======
+        private int _totalUserCreated = 0;
+        private int _totalUserCompleted = 0;
+        private string _appedoFailedUrl = string.Empty;
+        private int failedScriptWaseSend = 0;
+
 >>>>>>> dev_master
         public string ScriptWiseStatus { get; set; }
         public string RunId = string.Empty;
         public ControllerStatus Status { get { return _staus; } }
         public string LastSentStatus = string.Empty;
-        public LoadGenRunningStatusData _runningStatusData = new LoadGenRunningStatusData();
+
+        public int CreatedUser { get { return _totalUserCreated; } private set { } }
+        public int CompletedUser { get { return _totalUserCompleted; } private set { } }
+        public int IsCompleted { get { return (_staus == ControllerStatus.ReportGenerateCompleted ? 1 : 0); } private set { } }
+
         public int ReportDataCount
         {
             get { return _reportDataCount; }
             set { _reportDataCount = value; }
         }
+<<<<<<< HEAD
         public LoadGenRunningStatusData RunningStatusData
         {
             get
@@ -60,13 +73,16 @@ namespace AppedoLTController
             }
         }
 >>>>>>> dev_master
+=======
+>>>>>>> dev_master
 
-        public Controller(string soureIP, string runid, XmlNode runNode, string loadgens)
+
+        public Controller(string soureIP, string runid, XmlNode runNode, string loadgens, string appedoFailedUrl)
         {
             RunId = runid;
             _SourceIp = soureIP;
             _RunNode = runNode;
-            _runningStatusData.LoadGens = loadgens;
+            _appedoFailedUrl = appedoFailedUrl;
         }
 
         public void Start()
@@ -124,7 +140,7 @@ namespace AppedoLTController
                 {
                     Directory.Delete(folderPath, true);
                     ExceptionHandler.LogRunDetail(reportname, "Directory deleted successfully.");
-                    
+
                 }
 
             }
@@ -167,25 +183,22 @@ namespace AppedoLTController
                         try
                         {
                             #region Retrive Created & Completed UserCount
-                            Trasport loadGenConnection = new Trasport(loadGen.Attributes["ipaddress"].Value, "8889", 20000);
-                            loadGenConnection.Send(new TrasportData("status", string.Empty, null));
-                            TrasportData data = loadGenConnection.Receive();
-                            LoadGenRunningStatusData status = Constants.GetInstance().Deserialise<LoadGenRunningStatusData>(data.DataStr);
-                            totalCreated += status.CreatedUser;
-                            totalCompleted += status.CompletedUser;
-                            runcompleted += status.IsCompleted;
-                            _runningStatusData.Log.AddRange(status.Log);
-                            _runningStatusData.Error.AddRange(status.Error);
-                            _reportDataCount += status.ReportData.Count;
-                            _runningStatusData.ReportData.AddRange(status.ReportData);
-                            _runningStatusData.Transactions.AddRange(status.Transactions);
-                            _runningStatusData.UserDetailData.AddRange(status.UserDetailData);
-                            loadGenConnection.Send(new TrasportData("ok", string.Empty, null));
-                            loadGenConnection.Close();
-                            loadGenConnection = new Trasport(loadGen.Attributes["ipaddress"].Value, "8889");
+                            Trasport loadGenConnection = new Trasport(loadGen.Attributes["ipaddress"].Value, "8889");
                             loadGenConnection.Send(new TrasportData("scriptwisestatus", string.Empty, null));
+<<<<<<< HEAD
                             scriptwisestatus.Append(loadGenConnection.Receive().DataStr);
 
+=======
+                            TrasportData data = loadGenConnection.Receive();
+                            totalCreated += Convert.ToInt32(data.Header["createduser"]);
+                            totalCompleted += Convert.ToInt32(data.Header["completeduser"]);
+                            runcompleted += Convert.ToInt32(data.Header["iscompleted"]);
+                            scriptwisestatus.Append(data.DataStr);
+                            if (failedCount.ContainsKey(loadGen.Attributes["ipaddress"].Value) == true)
+                            {
+                                failedCount.Remove(loadGen.Attributes["ipaddress"].Value);
+                            }
+>>>>>>> dev_master
                             #endregion
                         }
                         catch (Exception ex)
@@ -204,20 +217,37 @@ namespace AppedoLTController
                             {
                                 failedCount[loadGen.Attributes["ipaddress"].Value]++;
                             }
-                            if (failedCount[loadGen.Attributes["ipaddress"].Value] > 5)
+                            if (failedCount[loadGen.Attributes["ipaddress"].Value] > 2)
                             {
                                 runcompleted++;
                                 ExceptionHandler.LogRunDetail(RunId, "Unable to connect " + loadGen.Attributes["ipaddress"].Value + " " + ex.Message);
+                                Dictionary<string, string> header = new Dictionary<string, string>();
+                                Trasport server = null;
+                                try
+                                {
+                                    header["runid"] = RunId;
+                                    header["ipaddress"] = loadGen.Attributes["ipaddress"].Value;
+                                    server = new Trasport(_SourceIp, Constants.GetInstance().AppedoPort, 20000);
+                                    server.Send(new TrasportData("loadgenfailed", string.Empty, header));
+                                }
+                                catch (Exception ex1)
+                                {
+                                    ExceptionHandler.WritetoEventLog(ex1.StackTrace + ex1.Message);
+                                }
                             }
 >>>>>>> dev_master:AppedoLT.Controller/Class/Controller.cs
                         }
                     }
-                    _runningStatusData.Time = DateTime.Now;
-                    _runningStatusData.CreatedUser = totalCreated;
-                    _runningStatusData.CompletedUser = totalCompleted;
+
+                    _totalUserCreated = totalCreated;
+                    _totalUserCompleted = totalCompleted;
+                    if (runcompleted == loadGens.Count)
+                    {
+                        _staus = ControllerStatus.ReportGenerateCompleted;
+                        isEnd = true;
+                    }
                     ScriptWiseStatus = GetStatusconcatenate(scriptwisestatus.ToString());
                     SendScriptWiseStatus(ScriptWiseStatus);
-                    SendStatus();
 
                     if (isEnd == true)
                     {
@@ -238,6 +268,7 @@ namespace AppedoLTController
                         }
                         break;
                     }
+<<<<<<< HEAD
                     if (runcompleted == loadGens.Count)
                     {
 <<<<<<< HEAD:AppedoLT.Controller/Controller.cs
@@ -264,6 +295,8 @@ namespace AppedoLTController
                         isEnd = true;
 >>>>>>> dev_master:AppedoLT.Controller/Class/Controller.cs
                     }
+=======
+>>>>>>> dev_master
 
                 }
                 catch (Exception ex)
@@ -272,7 +305,6 @@ namespace AppedoLTController
                     {
                         Thread.Sleep(10000);
                         _staus = ControllerStatus.ReportGenerateCompleted;
-                        SendStatus();
                         break;
                     }
                     catch (Exception ex1)
@@ -346,48 +378,31 @@ namespace AppedoLTController
             try
             {
                 header["runid"] = RunId;
-                server = new Trasport(_SourceIp, Constants.GetInstance().AppedoPort);
+                header["iscompleted"] = (_staus == ControllerStatus.ReportGenerateCompleted) ? "1" : "0";
+
+                server = new Trasport(_SourceIp, Constants.GetInstance().AppedoPort, 20000);
                 data = new TrasportData("scriptwisestatus", scriptWiseStatus, header);
                 server.Send(data);
                 data = server.Receive();
             }
             catch (Exception ex)
             {
-                ExceptionHandler.WritetoEventLog(ex.StackTrace + Environment.NewLine + ex.Message);
-            }
-            finally
-            {
-                server = null;
-                header = null;
-                data = null;
-            }
-        }
-
-        private void SendStatus()
-        {
-            Dictionary<string, string> header = new Dictionary<string, string>();
-            Trasport server = null;
-            TrasportData data = null;
-
-            try
-            {
-                header["runid"] = RunId;
-                server = new Trasport(_SourceIp, Constants.GetInstance().AppedoPort);
-                data = new TrasportData("status", ASCIIEncoding.Default.GetString(Constants.GetInstance().Serialise(RunningStatusData)), header);
-                server.Send(data);
-                data = server.Receive();
-                if (data.Operation == "ok")
+                failedScriptWaseSend++;
+                if (failedScriptWaseSend == 5)
                 {
-                    
-                    _runningStatusData.Log.Clear();
-                    _runningStatusData.Error.Clear();
-                    _runningStatusData.ReportData.Clear();
-                    _runningStatusData.Transactions.Clear();
-                    _runningStatusData.UserDetailData.Clear();
+                    failedScriptWaseSend = 0;
+                    try
+                    {
+                        if (_appedoFailedUrl != string.Empty)
+                        {
+                            _constants.GetPageContent(_appedoFailedUrl);
+                        }
+                    }
+                    catch (Exception ex1)
+                    {
+                        ExceptionHandler.WritetoEventLog(ex1.StackTrace + Environment.NewLine + ex1.Message);
+                    }
                 }
-            }
-            catch (Exception ex)
-            {
                 ExceptionHandler.WritetoEventLog(ex.StackTrace + Environment.NewLine + ex.Message);
             }
             finally

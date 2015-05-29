@@ -25,7 +25,6 @@ namespace AppedoLTLoadGenerator
         ExecutionReport executionReport = ExecutionReport.GetInstance();
         Dictionary<string, Dictionary<string, string>> runScripts = new Dictionary<string, Dictionary<string, string>>();
         StringBuilder logMsg = new StringBuilder();
-        LoadGenRunningStatusData _faildData = null;
 
         public LoadGenerator()
         {
@@ -77,6 +76,10 @@ namespace AppedoLTLoadGenerator
                                                 runDetail.Add("data", data.DataStr);
                                                 runDetail.Add("reportfoldername", reportFolder);
                                                 runDetail.Add("scenarioname", data.Header["scenarioname"]);
+                                                runDetail.Add("runid", data.Header["runid"]);
+                                                runDetail.Add("appedoip", data.Header["appedoip"]);
+                                                runDetail.Add("appedoport", data.Header["appedoport"]);
+                                                runDetail.Add("appedofailedurl", data.Header["appedofailedurl"]);
                                                 runDetail.Add("totalloadgenused", data.Header["totalloadgen"] == null ? "1" : data.Header["totalloadgen"]);
                                                 runDetail.Add("currentloadgenid", data.Header["currentloadgenid"] == null ? "1" : data.Header["currentloadgenid"]);
                                                 runDetail.Add("souceip", ((IPEndPoint)controller.tcpClient.Client.RemoteEndPoint).Address.ToString());
@@ -104,7 +107,6 @@ namespace AppedoLTLoadGenerator
 
                                     case "run":
                                         {
-                                            _faildData = null;
                                             controller.Send(new TrasportData("ok", string.Empty, null));
                                             if (executionReport.ExecutionStatus == Status.Completed)
                                             {
@@ -118,7 +120,7 @@ namespace AppedoLTLoadGenerator
                                                     executionReport.TotalLoadGenUsed = Convert.ToInt16(runDetail["totalloadgenused"]);
                                                     executionReport.CurrentLoadGenid = Convert.ToInt16(runDetail["currentloadgenid"]);
                                                     executionReport.LoadGenName = runDetail["loadgenname"];
-                                                    run = new AppedoLTLoadGenerator.RunScenario(runDetail["data"], runDetail["distribution"]);
+                                                    run = new AppedoLTLoadGenerator.RunScenario(data.Header["runid"], runDetail["appedoip"], runDetail["appedoport"], runDetail["data"], runDetail["distribution"], runDetail["appedofailedurl"]);
 
                                                     if (run.Start() == true)
                                                     {
@@ -133,30 +135,16 @@ namespace AppedoLTLoadGenerator
                                         }
                                         break;
 
-                                    case "status":
-                                        {
-                                            LoadGenRunningStatusData statusdata = run.GetData();
-                                            if (_faildData != null)
-                                            {
-                                                statusdata.Log.AddRange(_faildData.Log);
-                                                statusdata.Error.AddRange(_faildData.Error);
-                                                statusdata.ReportData.AddRange(_faildData.ReportData);
-                                                statusdata.Transactions.AddRange(_faildData.Transactions);
-                                                statusdata.UserDetailData.AddRange(_faildData.UserDetailData);
-                                            }
-                                            _faildData = statusdata;
-                                            controller.Send(new TrasportData("status", ASCIIEncoding.Default.GetString(constants.Serialise(statusdata)), null));
-                                            TrasportData ack = controller.Receive();
-                                            if (ack.Operation == "ok")
-                                            {
-                                                _faildData = null;
-                                            }
-                                        }
-                                        break;
 
                                     case "scriptwisestatus":
                                         {
-                                            controller.Send(new TrasportData("scriptwisestatus", run.GetStatus(), null));
+
+                                            Dictionary<string, string> headers = new Dictionary<string, string>();
+                                            headers.Add("createduser", run.TotalCreatedUser.ToString());
+                                            headers.Add("completeduser", run.TotalCompletedUser.ToString());
+                                            headers.Add("iscompleted", run.IsCompleted.ToString());
+
+                                            controller.Send(new TrasportData("scriptwisestatus", run.GetStatus(), headers));
                                         }
                                         break;
 
@@ -316,15 +304,15 @@ namespace AppedoLTLoadGenerator
                         Thread.Sleep(1000);
                         if (run != null)
                         {
-                            if (run.DisplayStatusData.CreatedUser != 0 && run.DisplayStatusData.CreatedUser == run.DisplayStatusData.CompletedUser && run.DisplayStatusData.IsCompleted == 1)
+                            if (run.TotalCreatedUser != 0 && run.TotalCreatedUser == run.TotalCompletedUser && run.IsCompleted == 1)
                             {
 
-                                ni.Text = "Run completed" + System.Environment.NewLine + "Created: " + run.DisplayStatusData.CreatedUser.ToString() + Environment.NewLine + "Completed: " + run.DisplayStatusData.CompletedUser.ToString() + Environment.NewLine + timer.Elapsed.ToString(@"dd\.hh\:mm\:ss");
+                                ni.Text = "Run completed" + System.Environment.NewLine + "Created: " + run.TotalCreatedUser.ToString() + Environment.NewLine + "Completed: " + run.TotalCompletedUser.ToString() + Environment.NewLine + timer.Elapsed.ToString(@"dd\.hh\:mm\:ss");
                                 break;
                             }
                             else
                             {
-                                ni.Text = "Running.." + System.Environment.NewLine + "Created: " + run.DisplayStatusData.CreatedUser.ToString() + Environment.NewLine + "Completed: " + run.DisplayStatusData.CompletedUser.ToString() + Environment.NewLine + timer.Elapsed.ToString(@"dd\.hh\:mm\:ss");
+                                ni.Text = "Running.." + System.Environment.NewLine + "Created: " + run.TotalCreatedUser.ToString() + Environment.NewLine + "Completed: " + run.TotalCompletedUser.ToString() + Environment.NewLine + timer.Elapsed.ToString(@"dd\.hh\:mm\:ss");
                             }
                         }
                     }

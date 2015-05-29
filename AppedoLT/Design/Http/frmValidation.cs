@@ -106,7 +106,7 @@ namespace AppedoLT
                 }
 
                 newItem.Tag = requestResponse;
-                newItem.SubItems.AddRange(new string[] {requestResponse.ContainerName, requestResponse.RequestResult.RequestId.ToString(), requestResponse.RequestResult.RequestName, requestResponse.RequestResult.StartTime.ToString(), requestResponse.RequestResult.EndTime.ToString(), requestResponse.RequestResult.ResponseTime.ToString(), requestResponse.RequestResult.ResponseCode.ToString() });
+                newItem.SubItems.AddRange(new string[] { requestResponse.RequestResult.RequestId.ToString(), requestResponse.ContainerName, requestResponse.RequestResult.RequestName, requestResponse.RequestResult.StartTime.ToString(), requestResponse.RequestResult.EndTime.ToString(), requestResponse.RequestResult.ResponseTime.ToString(), requestResponse.RequestResult.ResponseCode.ToString(), requestResponse.RequestResult.Success.ToString() });
                 lsvResult.Items.Add(newItem);
             }
             catch (Exception ex)
@@ -209,7 +209,7 @@ namespace AppedoLT
                     errorRequestid.Clear();
                     foreach (ListViewItem item in lsvResult.Items)
                     {
-                        if (item.SubItems[7].Text == "False")
+                        if (item.SubItems[8].Text == "False")
                         {
                             errorRequestid.Add(item.SubItems[1].Text.ToString());
                         }
@@ -237,7 +237,7 @@ namespace AppedoLT
             foreach (ListViewItem item in this.lsvResult.Items)
             {
                 double temp = 0;
-                double.TryParse(item.SubItems[5].Text, out temp);
+                double.TryParse(item.SubItems[6].Text, out temp);
                 result += temp;
             }
             if (this.lsvResult.Items.Count > 0)

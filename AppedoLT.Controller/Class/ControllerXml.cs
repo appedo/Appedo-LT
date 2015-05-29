@@ -38,7 +38,7 @@ namespace AppedoLTController
                         StringBuilder xml = new StringBuilder();
                         xml.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>");
                         xml.Append("<root>");
-                        xml.Append("<runs appedoipaddress=\"\"/>");
+                        xml.Append("<runs appedoipaddress=\"\" failedurl=\"\"/>");
                         xml.Append("</root>");
                         streamWriter.Write(xml.ToString());
                     }

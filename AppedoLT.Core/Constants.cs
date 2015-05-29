@@ -772,15 +772,27 @@ namespace AppedoLT.Core
         }
         public string GetPageContent(string Url)
         {
-
-            HttpWebRequest WebRequestObject = (HttpWebRequest)HttpWebRequest.Create(Url);
-            WebResponse Response = WebRequestObject.GetResponse();
-            Stream WebStream = Response.GetResponseStream();
-            StreamReader objReader = new StreamReader(WebStream);
-            string PageContent = objReader.ReadToEnd();
-            objReader.Close();
-            WebStream.Close();
-            Response.Close();
+            HttpWebRequest WebRequestObject=null;
+            string PageContent =string.Empty;
+            try
+            {
+                WebRequestObject = (HttpWebRequest)HttpWebRequest.Create(Url);
+                WebResponse Response = WebRequestObject.GetResponse();
+                Stream WebStream = Response.GetResponseStream();
+                StreamReader objReader = new StreamReader(WebStream);
+                PageContent = objReader.ReadToEnd();
+                objReader.Close();
+                WebStream.Close();
+                Response.Close();
+            }
+            catch(Exception ex)
+            {
+                ExceptionHandler.WritetoEventLog(ex.Message + Environment.NewLine + ex.StackTrace);
+            }
+            finally
+            {
+                WebRequestObject = null;
+            }
             return PageContent;
         }
         public string GetPageContent(string Url, string data)

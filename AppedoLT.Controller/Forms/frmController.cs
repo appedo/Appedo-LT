@@ -40,6 +40,7 @@ namespace AppedoLTController
 
         object test = new object();
         string AppedoServer = string.Empty;
+        string AppedoFailedUrl = string.Empty;
         bool isClientRunning = false;
 
         public frmController()
@@ -54,11 +55,17 @@ namespace AppedoLTController
                 if (!Directory.Exists(".\\Variables")) Directory.CreateDirectory(".\\Variables");
 
                 AppedoServer = ControllerXml.GetInstance().doc.SelectSingleNode("//runs").Attributes["appedoipaddress"].Value;
+                AppedoFailedUrl = ControllerXml.GetInstance().doc.SelectSingleNode("//runs").Attributes["failedurl"].Value;
                 if (AppedoServer == string.Empty)
                 {
                     if ((new frmAppedoIP().ShowDialog() != DialogResult.OK))
                     {
+<<<<<<< HEAD
                         Environment.Exit(1);
+=======
+                        AppedoServer = ControllerXml.GetInstance().doc.SelectSingleNode("//runs").Attributes["appedoipaddress"].Value;
+                        AppedoFailedUrl = ControllerXml.GetInstance().doc.SelectSingleNode("//runs").Attributes["failedurl"].Value;
+>>>>>>> dev_master
                     }
                     else
                     {
@@ -176,24 +183,6 @@ namespace AppedoLTController
                                          runid = data.Header["runid"];
                                          if (Controllers.ContainsKey(runid) == true) Controllers[runid].Stop();
                                          UIclient.Send(new TrasportData("response", "ok", null));
-                                         break;
-
-                                     case "status":
-                                         runid = data.Header["runid"];
-                                         if (Controllers.ContainsKey(runid) == true)
-                                         {
-                                             UIclient.Send(new TrasportData("status", Convert.ToString(constants.Serialise(Controllers[runid].RunningStatusData)), null));
-                                             TrasportData ack = UIclient.Receive();
-                                             if (ack.Operation == "ok")
-                                             {
-                                                 Controllers[runid].RunningStatusData.Log.Clear();
-                                             }
-                                         }
-                                         else
-                                         {
-                                             UIclient.Send(new TrasportData("status", Convert.ToString(constants.Serialise(new LoadGenRunningStatusData())), null));
-                                             TrasportData ack = UIclient.Receive();
-                                         }
                                          break;
 
                                      case "runstatus":
@@ -483,12 +472,18 @@ namespace AppedoLTController
                                     data.Header.Add("totalloadgen", loadGenIps.Length.ToString());
                                     data.Header.Add("currentloadgenid", loadGenId++.ToString());
                                     data.Header.Add("loadgenname", ip);
+                                    data.Header.Add("appedoip", AppedoServer);
+                                    data.Header.Add("appedoport", Constants.GetInstance().AppedoPort);
+                                    data.Header.Add("appedofailedurl", AppedoFailedUrl);
                                 }
                                 else
                                 {
                                     data.Header["totalloadgen"] = loadGenIps.Length.ToString();
                                     data.Header["currentloadgenid"] = loadGenId++.ToString();
                                     data.Header["loadgenname"] = ip;
+                                    data.Header["appedoip"] = AppedoServer;
+                                    data.Header["appedoport"] = Constants.GetInstance().AppedoPort;
+                                    data.Header["appedofailedurl"] = AppedoFailedUrl;
                                 }
                                 try
                                 {
@@ -596,7 +591,11 @@ namespace AppedoLTController
                                 Controller controller = new Controller(server.IPAddressStr, runid, runDetail);
 =======
                                 ExceptionHandler.LogRunDetail(runid, "Run started ");
+<<<<<<< HEAD
                                 Controller controller = new Controller(server.IPAddressStr, runid, runDetail, loadGensStr);
+>>>>>>> dev_master
+=======
+                                Controller controller = new Controller(server.IPAddressStr, runid, runDetail, loadGensStr,AppedoFailedUrl);
 >>>>>>> dev_master
                                 Controllers.Add(runid, controller);
                                 _ControllerXml.doc.SelectSingleNode("root/runs").AppendChild(runDetail);
@@ -628,7 +627,7 @@ namespace AppedoLTController
                 foreach (string users in Controllers.Keys)
                 {
                     ctrl = Controllers[users];
-                    statusList.Add(string.Format("{0},{1},{2},{3}", ctrl.RunId, ctrl.RunningStatusData.CreatedUser, ctrl.RunningStatusData.CompletedUser, ctrl.RunningStatusData.IsCompleted));
+                    statusList.Add(string.Format("{0},{1},{2},{3}", ctrl.RunId, ctrl.CreatedUser, ctrl.CompletedUser, ctrl.IsCompleted));
                 }
             }
             catch (Exception ex)
