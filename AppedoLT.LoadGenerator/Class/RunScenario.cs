@@ -383,7 +383,7 @@ namespace AppedoLTLoadGenerator
                     {
                         ExceptionHandler.WritetoEventLog(ex.StackTrace + Environment.NewLine + ex.Message);
                     }
-                    finally { Thread.Sleep(5000); }
+                    finally { Thread.Sleep(10000); }
                 }
 
             }).Start();

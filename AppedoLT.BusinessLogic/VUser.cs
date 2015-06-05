@@ -616,7 +616,18 @@ namespace AppedoLT.BusinessLogic
                                     {
                                         string acceptType = requestHeadeNode.Attributes["value"].Value.Split('/')[1];
                                         acceptType = acceptType.ToLower();
-                                        if (acceptType.Contains("image") || acceptType.Contains("css") || acceptType.Contains("js") || acceptType.Contains("javascript"))
+                                        if (acceptType.Contains("image") 
+                                            || acceptType.Contains("css") 
+                                            || acceptType.Contains("js") 
+                                            || acceptType.Contains("javascript") 
+                                            || temp.LocalPath.EndsWith(".js")
+                                            || temp.LocalPath.EndsWith(".css")
+                                            || temp.LocalPath.EndsWith(".png")
+                                            || temp.LocalPath.EndsWith(".jpg")
+                                            || temp.LocalPath.EndsWith(".pdf")
+                                            || temp.LocalPath.EndsWith(".gif")
+                                            || temp.LocalPath.EndsWith(".ico")
+                                           )
                                         {
                                             cacheEnabled = true;
                                         }
@@ -625,7 +636,10 @@ namespace AppedoLT.BusinessLogic
                                     {
                                         string acceptType = mat.Groups[1].Value.Split('/')[1];
                                         acceptType = acceptType.ToLower();
-                                        if (acceptType.Contains("image") || acceptType.Contains("css") || acceptType.Contains("js") || acceptType.Contains("javascript"))
+                                        if (acceptType.Contains("image")
+                                            || acceptType.Contains("css") 
+                                            || acceptType.Contains("js") 
+                                            || acceptType.Contains("javascript"))
                                         {
                                             cacheEnabled = true;
                                         }

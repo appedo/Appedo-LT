@@ -113,7 +113,7 @@ namespace AppedoLT
             // 
             // tabiExtrator.ContentPanel
             // 
-            this.tabiExtrator.ContentPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(248)))));
+            this.tabiExtrator.ContentPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(239)))), ((int)(((byte)(249)))));
             this.tabiExtrator.ContentPanel.CausesValidation = true;
             this.tabiExtrator.ContentPanel.Controls.Add(this.panel1);
             this.tabiExtrator.ContentPanel.Controls.Add(this.radLabel3);
@@ -142,10 +142,10 @@ namespace AppedoLT
             this.tabiExtrator.ContentPanel.Controls.Add(this.txtName);
             this.tabiExtrator.ContentPanel.Font = new System.Drawing.Font("Segoe UI", 8.25F);
             this.tabiExtrator.ContentPanel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(66)))), ((int)(((byte)(139)))));
-            this.tabiExtrator.ContentPanel.Location = new System.Drawing.Point(0, 24);
-            this.tabiExtrator.ContentPanel.Size = new System.Drawing.Size(456, 331);
+            this.tabiExtrator.ContentPanel.Location = new System.Drawing.Point(1, 23);
+            this.tabiExtrator.ContentPanel.Size = new System.Drawing.Size(454, 331);
             this.tabiExtrator.IsSelected = true;
-            this.tabiExtrator.Margin = new System.Windows.Forms.Padding(4, 0, 0, 0);
+            this.tabiExtrator.Margin = new System.Windows.Forms.Padding(2, 0, 0, 0);
             this.tabiExtrator.Name = "tabiExtrator";
             this.tabiExtrator.StretchHorizontally = false;
             this.tabiExtrator.Text = "Extrator";
@@ -408,6 +408,7 @@ namespace AppedoLT
             this.radButton2.TabIndex = 13;
             this.radButton2.Text = "&Cancel";
             this.radButton2.ThemeName = "Telerik";
+            this.radButton2.Click += new System.EventHandler(this.radButton2_Click);
             // 
             // btnSave
             // 
@@ -450,7 +451,7 @@ namespace AppedoLT
             // 
             this.txtResult.RootElement.StretchVertically = true;
             this.txtResult.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtResult.Size = new System.Drawing.Size(308, 75);
+            this.txtResult.Size = new System.Drawing.Size(306, 75);
             this.txtResult.TabIndex = 10;
             this.txtResult.TabStop = false;
             this.txtResult.ThemeName = "Office2010";
@@ -514,14 +515,14 @@ namespace AppedoLT
             // 
             // tabiTest.ContentPanel
             // 
-            this.tabiTest.ContentPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(248)))));
+            this.tabiTest.ContentPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(239)))), ((int)(((byte)(249)))));
             this.tabiTest.ContentPanel.CausesValidation = true;
             this.tabiTest.ContentPanel.Controls.Add(this.txtResponse);
             this.tabiTest.ContentPanel.Font = new System.Drawing.Font("Segoe UI", 8.25F);
             this.tabiTest.ContentPanel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(66)))), ((int)(((byte)(139)))));
-            this.tabiTest.ContentPanel.Location = new System.Drawing.Point(0, 24);
-            this.tabiTest.ContentPanel.Size = new System.Drawing.Size(456, 331);
-            this.tabiTest.Margin = new System.Windows.Forms.Padding(4, 0, 0, 0);
+            this.tabiTest.ContentPanel.Location = new System.Drawing.Point(1, 23);
+            this.tabiTest.ContentPanel.Size = new System.Drawing.Size(454, 331);
+            this.tabiTest.Margin = new System.Windows.Forms.Padding(2, 0, 0, 0);
             this.tabiTest.Name = "tabiTest";
             this.tabiTest.StretchHorizontally = false;
             this.tabiTest.Text = "Response";
@@ -538,7 +539,7 @@ namespace AppedoLT
             // 
             // 
             this.txtResponse.RootElement.StretchVertically = true;
-            this.txtResponse.Size = new System.Drawing.Size(456, 331);
+            this.txtResponse.Size = new System.Drawing.Size(454, 331);
             this.txtResponse.TabIndex = 0;
             this.txtResponse.TabStop = false;
             // 
@@ -548,7 +549,7 @@ namespace AppedoLT
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(456, 355);
             this.Controls.Add(this.radTabStrip1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.MaximizeBox = false;
             this.Name = "frmExtrator";
             // 

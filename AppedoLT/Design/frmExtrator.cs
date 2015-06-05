@@ -108,6 +108,7 @@ namespace AppedoLT
             if (txtName.Text.Trim().Length == 0)
             {
                 MessageBox.Show("Name required");
+                this.DialogResult = DialogResult.None;
             }
             else if (rbtnSingleOccurrence.Checked == true && txtOrdinal.Text.Trim() == string.Empty)
             {
@@ -256,6 +257,11 @@ namespace AppedoLT
             {
                 e.Handled = true;
             }
+        }
+
+        private void radButton2_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
