@@ -258,7 +258,6 @@ namespace AppedoLT
                 e.Handled = true;
             }
         }
-
         private void radButton2_Click(object sender, EventArgs e)
         {
 
