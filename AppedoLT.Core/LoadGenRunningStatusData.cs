@@ -19,7 +19,9 @@ namespace AppedoLT.Core
             {
                 DateTime origin = new DateTime(1970, 1, 1, 0, 0, 0, 0);
                 TimeSpan diff = value.ToUniversalTime() - origin;
+
                 _time = Constants.GetInstance().ConvertFromUnixTimestamp(Math.Floor(diff.TotalMilliseconds));
+
             }
         }
 

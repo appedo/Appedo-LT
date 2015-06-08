@@ -357,7 +357,21 @@ namespace AppedoLT.Core
                 }
             }
         }
+        public byte[] DataBytes
+        {
+            get
+            {
+                return DataStream.ToArray();
+            }
 
+            set
+            {
+                if (value != null)
+                {
+                    DataStream.Write(value, 0, value.Length);
+                }
+            }
+        }
         public string FilePath
         {
             get { return _filePath; }
@@ -389,7 +403,12 @@ namespace AppedoLT.Core
             this.DataStr = data;
             this._header = header;
         }
-
+        public TrasportData(string operation, byte[] data, Dictionary<string, string> header)
+        {
+            this._operation = operation;
+            this.DataBytes = data;
+            this._header = header;
+        }
         #endregion
 
         #region The public property

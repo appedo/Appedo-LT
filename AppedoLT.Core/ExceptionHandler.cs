@@ -234,6 +234,29 @@ namespace AppedoLT.Core
             return logDetail.ToString();
         }
 
+        public static void WriteReportData(string strMessage)
+        {
+            try
+            {
+                string directoryPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+                if (!Directory.Exists(directoryPath))
+                {
+                    Directory.CreateDirectory(directoryPath);
+                }
+
+                string path = directoryPath + "\\ReportData.txt";
+                if (File.Exists(path)) File.Delete(path);
+                FileStream stream = new FileStream(path, FileMode.OpenOrCreate, FileAccess.ReadWrite);
+                StreamWriter writer = new StreamWriter(stream);
+                writer.BaseStream.Seek(0L, SeekOrigin.End);
+                writer.WriteLine(strMessage);
+                writer.Flush();
+                writer.Close();
+                stream.Close();
+            }
+            catch { }
+        }
+
         #endregion
     }
 }

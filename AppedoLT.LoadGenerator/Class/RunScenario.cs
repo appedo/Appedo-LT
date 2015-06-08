@@ -191,7 +191,7 @@ namespace AppedoLTLoadGenerator
         void scr_OnLockReportData(ReportData data)
         {
             lock (_reportDataBuffer)
-            {
+            {                
                 _reportDataBuffer.Enqueue(data);
             }
         }
@@ -340,7 +340,7 @@ namespace AppedoLTLoadGenerator
                             try
                             {
                                 Trasport trasport = new Trasport(_appedoIp, _appedoPort, 30000);
-                                trasport.Send(new TrasportData("status", ASCIIEncoding.Default.GetString(_constants.Serialise(data)), null));
+                                trasport.Send(new TrasportData("status",_constants.Serialise(data), null));
                                 TrasportData ack = trasport.Receive();
                                 if (ack.Operation == "ok")
                                 {
@@ -361,10 +361,16 @@ namespace AppedoLTLoadGenerator
                                         {
                                             _constants.GetPageContent(_appedoFailedUrl);
                                         }
+                                     //   ExceptionHandler.WriteReportData(ASCIIEncoding.Default.GetString(_constants.Serialise(data)));
+                                       
                                     }
                                     catch (Exception ex2)
                                     {
                                         ExceptionHandler.WritetoEventLog(ex2.StackTrace + Environment.NewLine + ex2.Message);
+                                    }
+                                    finally
+                                    {
+                                        _faildData = null;
                                     }
                                 }
                                 ExceptionHandler.WritetoEventLog(ex1.StackTrace + Environment.NewLine + ex1.Message);
@@ -383,7 +389,7 @@ namespace AppedoLTLoadGenerator
                     {
                         ExceptionHandler.WritetoEventLog(ex.StackTrace + Environment.NewLine + ex.Message);
                     }
-                    finally { Thread.Sleep(10000); }
+                    finally { Thread.Sleep(5000); }
                 }
 
             }).Start();
