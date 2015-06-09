@@ -1667,16 +1667,24 @@ namespace AppedoLT.BusinessLogic
             exception.request = url;
             exception.containerid = _containerId.Peek()[0];
             exception.containername = _containerId.Peek()[1];
-            if (OnLockError != null && exception != null) OnLockError.Invoke(exception);
-            VUserStatus.ErrorCount++;
+            if (OnLockError != null && exception != null)
+            {
+                OnLockError.Invoke(exception);
+                VUserStatus.ErrorCount++;
+            }
         }
+
         private void LockException(RequestException exception)
         {
             exception.containerid = _containerId.Peek()[0];
             exception.containername = _containerId.Peek()[1];
-            if (OnLockError != null && exception != null) OnLockError.Invoke(exception);
-            VUserStatus.ErrorCount++;
+            if (OnLockError != null && exception != null)
+            {
+                OnLockError.Invoke(exception);
+                VUserStatus.ErrorCount++;
+            }
         }
+
         private void LockLog(XmlNode log)
         {
             try
@@ -1700,6 +1708,7 @@ namespace AppedoLT.BusinessLogic
                 ExceptionHandler.WritetoEventLog(ex.StackTrace + Environment.NewLine + ex.Message);
             }
         }
+
         private void LockResponseTime(string requestid, string address, DateTime starttime, DateTime endtime, double diff, long responsesize, string reponseCode)
         {
             try
@@ -1707,7 +1716,6 @@ namespace AppedoLT.BusinessLogic
                 if (Break == false)
                 {
                     ReportData rd = new ReportData();
-
                     rd.loadgen = Constants.GetInstance().LoadGen;
                     rd.sourceip = _IPAddress.Address.ToString();
                     rd.loadgenanme = ExecutionReport.GetInstance().LoadGenName;
@@ -1729,39 +1737,40 @@ namespace AppedoLT.BusinessLogic
                     if (OnLockReportData != null && rd != null)
                     {
                         OnLockReportData.Invoke(rd);
-                    }
-                    if (req.HasError == true)
-                    {
-                        LockException(req.RequestId.ToString(), req.ErrorMessage, req.ErrorCode, req.RequestName);
-                    }
-                    if (req.ResponseCode >= 200 && req.ResponseCode <= 299)
-                    {
-                        VUserStatus.TwoHundredStatusCodeCount++;
-                    }
-                    else if (req.ResponseCode >= 300 && req.ResponseCode <= 399)
-                    {
-                        VUserStatus.ThreeHundredStatusCodeCount++;
-                    }
-                    else if (req.ResponseCode >= 400 && req.ResponseCode <= 499)
-                    {
-                        VUserStatus.FourHundredStatusCodeCount++;
-                    }
-                    else if (req.ResponseCode >= 500 && req.ResponseCode <= 599)
-                    {
-                        VUserStatus.FiveHundredStatusCodeCount++;
+                        if (req.HasError == true)
+                        {
+                            LockException(req.RequestId.ToString(), req.ErrorMessage, req.ErrorCode, req.RequestName);
+                        }
+                        if (req.ResponseCode >= 200 && req.ResponseCode <= 299)
+                        {
+                            VUserStatus.TwoHundredStatusCodeCount++;
+                        }
+                        else if (req.ResponseCode >= 300 && req.ResponseCode <= 399)
+                        {
+                            VUserStatus.ThreeHundredStatusCodeCount++;
+                        }
+                        else if (req.ResponseCode >= 400 && req.ResponseCode <= 499)
+                        {
+                            VUserStatus.FourHundredStatusCodeCount++;
+                        }
+                        else if (req.ResponseCode >= 500 && req.ResponseCode <= 599)
+                        {
+                            VUserStatus.FiveHundredStatusCodeCount++;
+                        }
                     }
                 }
-
             }
             catch (Exception ex)
             {
                 ExceptionHandler.WritetoEventLog(ex.StackTrace + Environment.NewLine + ex.Message);
             }
         }
+
         private void LockTransactions(TransactionRunTimeDetail tranDetailTemp)
         {
             if (OnLockTransactions != null && tranDetailTemp != null) OnLockTransactions.Invoke(tranDetailTemp);
         }
+
         private void LockUserDetail(int type)
         {
             UserDetail userDetail = new UserDetail();
@@ -1773,6 +1782,7 @@ namespace AppedoLT.BusinessLogic
             userDetail.loadgenanme = ExecutionReport.GetInstance().LoadGenName;
             if (OnLockUserDetail != null && userDetail != null) OnLockUserDetail.Invoke(userDetail);
         }
+
         private void LockRequestResponse(RequestResponse data)
         {
             data.ContainerName = _containerId.Peek()[1];

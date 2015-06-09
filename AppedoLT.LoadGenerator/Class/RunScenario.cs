@@ -171,29 +171,56 @@ namespace AppedoLTLoadGenerator
 
         void scr_OnLockUserDetail(UserDetail data)
         {
-            lock (_UserDetailBuffer) _UserDetailBuffer.Enqueue(data);
+            lock (_UserDetailBuffer)
+            {
+                if (data != null)
+                {
+                    _UserDetailBuffer.Enqueue(data);
+                }
+            }
         }
 
         void scr_OnLockTransactions(TransactionRunTimeDetail data)
         {
-            lock (_TransactionDataBuffer) _TransactionDataBuffer.Enqueue(data);
+            lock (_TransactionDataBuffer)
+            {
+                if (data != null)
+                {
+                    _TransactionDataBuffer.Enqueue(data);
+                }
+            }
         }
 
         void scr_OnLockLog(Log data)
         {
-            lock (_LogBuffer) _LogBuffer.Enqueue(data);
+            lock (_LogBuffer)
+            {
+                if (data != null)
+                {
+                    _LogBuffer.Enqueue(data);
+                }
+            }
         }
 
         void scr_OnLockError(RequestException data)
         {
-            lock (_ErrorBuffer) _ErrorBuffer.Enqueue(data);
+            lock (_ErrorBuffer)
+            {
+                if (data != null)
+                {
+                    _ErrorBuffer.Enqueue(data);
+                }
+            }
         }
 
         void scr_OnLockReportData(ReportData data)
         {
             lock (_reportDataBuffer)
             {
-                _reportDataBuffer.Enqueue(data);
+                if (data != null)
+                {
+                    _reportDataBuffer.Enqueue(data);
+                }
             }
         }
 
@@ -234,11 +261,13 @@ namespace AppedoLTLoadGenerator
         {
             try
             {
-
-                int count = _LogBuffer.Count;
-                for (; count > 0; count--)
+                lock (_LogBuffer)
                 {
-                    logList.Add(_LogBuffer.Dequeue());
+                    int count = _LogBuffer.Count;
+                    for (; count > 0; count--)
+                    {
+                        logList.Add(_LogBuffer.Dequeue());
+                    }
                 }
 
             }
@@ -252,9 +281,12 @@ namespace AppedoLTLoadGenerator
             try
             {
                 int count = _ErrorBuffer.Count;
-                for (; count > 0; count--)
+                lock (_ErrorBuffer)
                 {
-                    errorList.Add(_ErrorBuffer.Dequeue());
+                    for (; count > 0; count--)
+                    {
+                        errorList.Add(_ErrorBuffer.Dequeue());
+                    }
                 }
             }
             catch (Exception ex)
@@ -267,9 +299,12 @@ namespace AppedoLTLoadGenerator
             try
             {
                 int count = _reportDataBuffer.Count;
-                for (; count > 0; count--)
+                lock (_reportDataBuffer)
                 {
-                    reportDataList.Add(_reportDataBuffer.Dequeue());
+                    for (; count > 0; count--)
+                    {
+                        reportDataList.Add(_reportDataBuffer.Dequeue());
+                    }
                 }
             }
             catch (Exception ex)
@@ -282,9 +317,12 @@ namespace AppedoLTLoadGenerator
             try
             {
                 int count = _TransactionDataBuffer.Count;
-                for (; count > 0; count--)
+                lock (_TransactionDataBuffer)
                 {
-                    transactionsList.Add(_TransactionDataBuffer.Dequeue());
+                    for (; count > 0; count--)
+                    {
+                        transactionsList.Add(_TransactionDataBuffer.Dequeue());
+                    }
                 }
             }
             catch (Exception ex)
@@ -297,9 +335,12 @@ namespace AppedoLTLoadGenerator
             try
             {
                 int count = _UserDetailBuffer.Count;
-                for (; count > 0; count--)
+                lock (_UserDetailBuffer)
                 {
-                    userDetailsList.Add(_UserDetailBuffer.Dequeue());
+                    for (; count > 0; count--)
+                    {
+                        userDetailsList.Add(_UserDetailBuffer.Dequeue());
+                    }
                 }
             }
             catch (Exception ex)
@@ -352,21 +393,22 @@ namespace AppedoLTLoadGenerator
                             }
                             catch (Exception ex1)
                             {
+
                                 try
                                 {
-
                                     string path = ExceptionHandler.WriteReportData(DateTime.Now.Ticks.ToString(), _constants.Serialise(data));
                                     if (path != string.Empty)
                                     {
-                                        _dataXml.doc.SelectSingleNode("root").AppendChild(_dataXml.CreateData(_appedoIp, _appedoPort, path));
+                                        _dataXml.doc.SelectSingleNode("root").AppendChild(_dataXml.CreateData(_runid, _appedoIp, _appedoPort, path));
                                         _faildData = null;
+                                        _dataXml.Save();
                                     }
                                 }
                                 catch (Exception ex3)
                                 {
                                     ExceptionHandler.WritetoEventLog(ex3.StackTrace + Environment.NewLine + ex3.Message);
                                 }
-                                
+
                                 _dataSendFailedCount++;
                                 if (_dataSendFailedCount == 3)
                                 {
@@ -390,9 +432,22 @@ namespace AppedoLTLoadGenerator
                                     || _scriptExecutorList.FindAll(f => f.IsRunCompleted).Count == _scriptExecutorList.Count)
                                   && executionReport.ExecutionStatus == Status.Completed)
                         {
+                            int count = 0;
+                            while (true)
+                            {
+                                if (count > 20) break;
+                                if (_dataXml.doc.SelectSingleNode("/root/data[@runid='" + _runid + "']") == null)
+                                {
+                                    break;
+                                }
+                                else
+                                {
+                                    count++;
+                                    Thread.Sleep(5000);
+                                }
+                            }
                             _isCompleted = 1;
                             break;
-
                         }
                     }
                     catch (Exception ex)

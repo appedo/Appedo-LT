@@ -302,38 +302,58 @@ namespace AppedoLTLoadGenerator
                     }
                 }).Start();
         }
+
         private void DataService()
         {
-            while(true)
-            {
-                try
+            new Thread(() =>
                 {
-                    foreach (XmlNode data in _dataXml.doc.SelectNodes("/root/data"))
+                    while (true)
                     {
+                        try
                         {
-                            Trasport trasport = new Trasport(data["ipadddres"].Value, data["port"].Value,30000);
-                            trasport.Send(new TrasportData("status", null, data["filepath"].Value));
-                            TrasportData ack = trasport.Receive();
-                            if (ack.Operation == "ok")
+                            foreach (XmlNode data in _dataXml.doc.SelectNodes("/root/data"))
                             {
-                                data["issend"].Value = "1";
-                                _dataXml.doc.SelectSingleNode("/root").RemoveChild(data);
+                                try
+                                {
+                                    {
+                                        if (File.Exists(data.Attributes["filePath"].Value) == true)
+                                        {
+                                            Trasport trasport = new Trasport(data.Attributes["ipadddress"].Value, data.Attributes["port"].Value, 30000);
+                                            trasport.Send(new TrasportData("status", null, data.Attributes["filePath"].Value));
+                                            TrasportData ack = trasport.Receive();
+                                            if (ack.Operation == "ok")
+                                            {
+                                                _dataXml.doc.SelectSingleNode("/root").RemoveChild(data);
+                                                _dataXml.Save();
+                                                File.Delete(data.Attributes["filePath"].Value);
+                                            }
+                                            trasport.Close();
+                                            trasport = null;
+                                        }
+                                        else
+                                        {
+                                            _dataXml.doc.SelectSingleNode("/root").RemoveChild(data);
+                                            _dataXml.Save();
+                                        }
+                                    }
+                                }
+                                catch(Exception ex)
+                                {
+                                    ExceptionHandler.WritetoEventLog(ex.StackTrace + ex.Message);
+                                }
                             }
-                            trasport.Close();
-                            trasport = null;
+
+                        }
+                        catch (Exception ex)
+                        {
+                            Thread.Sleep(5000);
+                        }
+                        finally
+                        {
+                            Thread.Sleep(5000);
                         }
                     }
-                   
-                }
-                catch (Exception ex)
-                {
-                    Thread.Sleep(5000);
-                }
-                finally
-                {
-                    Thread.Sleep(5000);
-                }
-            }
+                }).Start();
         }
     }
 }

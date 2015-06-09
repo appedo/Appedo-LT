@@ -53,13 +53,13 @@ namespace AppedoLTLoadGenerator
 
             doc.Save(Constants.GetInstance().ExecutingAssemblyLocation + "\\Data.xml");
         }
-        public XmlNode CreateData(string ipadddres,string port,string filePath)
+        public XmlNode CreateData(string runid,string ipadddres,string port,string filePath)
         {
             XmlNode data = doc.CreateElement("data");
-            data.Attributes.Append(GetAttribute("ipadddres", ipadddres));
+            data.Attributes.Append(GetAttribute("ipadddress", ipadddres));
             data.Attributes.Append(GetAttribute("port", port));
             data.Attributes.Append(GetAttribute("filePath", filePath));
-            data.Attributes.Append(GetAttribute("issend", "0"));
+            data.Attributes.Append(GetAttribute("runid", runid));
             return data;
 
         }
