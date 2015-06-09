@@ -139,7 +139,7 @@ namespace AppedoLT.Core
         {
             try
             {
-                string directoryPath =Path.GetDirectoryName( Assembly.GetExecutingAssembly().Location) + "\\Request\\";
+                string directoryPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + "\\Request\\";
                 if (!Directory.Exists(directoryPath))
                 {
                     Directory.CreateDirectory(directoryPath);
@@ -190,7 +190,7 @@ namespace AppedoLT.Core
                     Directory.CreateDirectory(directoryPath);
                 }
 
-                string path = directoryPath + "\\RunTimeException_"+DateTime.Now.ToString("dd_MMM_yyy_hh_mm_ss")+".xml";
+                string path = directoryPath + "\\RunTimeException_" + DateTime.Now.ToString("dd_MMM_yyy_hh_mm_ss") + ".xml";
                 if (File.Exists(path)) File.Delete(path);
                 FileStream stream = new FileStream(path, FileMode.OpenOrCreate, FileAccess.ReadWrite);
                 StreamWriter writer = new StreamWriter(stream);
@@ -225,7 +225,7 @@ namespace AppedoLT.Core
             StringBuilder logDetail = new StringBuilder();
             try
             {
-               logDetail.AppendLine(RunDetaillog[runid].ToString());
+                logDetail.AppendLine(RunDetaillog[runid].ToString());
             }
             catch (Exception ex)
             {
@@ -234,8 +234,9 @@ namespace AppedoLT.Core
             return logDetail.ToString();
         }
 
-        public static void WriteReportData(string strMessage)
+        public static string WriteReportData(string fileName, byte[] strMessage)
         {
+            string path = string.Empty;
             try
             {
                 string directoryPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
@@ -244,17 +245,18 @@ namespace AppedoLT.Core
                     Directory.CreateDirectory(directoryPath);
                 }
 
-                string path = directoryPath + "\\ReportData.txt";
+                path = directoryPath + "\\Data\\" + fileName + ".json";
                 if (File.Exists(path)) File.Delete(path);
                 FileStream stream = new FileStream(path, FileMode.OpenOrCreate, FileAccess.ReadWrite);
-                StreamWriter writer = new StreamWriter(stream);
-                writer.BaseStream.Seek(0L, SeekOrigin.End);
-                writer.WriteLine(strMessage);
-                writer.Flush();
-                writer.Close();
+                stream.Write(strMessage, 0, strMessage.Length);
                 stream.Close();
             }
-            catch { }
+            catch (Exception ex)
+            {
+                ExceptionHandler.WritetoEventLog(ex.StackTrace + Environment.NewLine + ex.Message);
+            }
+
+            return path;
         }
 
         #endregion

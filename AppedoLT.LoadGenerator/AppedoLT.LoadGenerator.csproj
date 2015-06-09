@@ -79,6 +79,7 @@
     <Compile Include="Class\InstallerClass.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Class\DataXml.cs" />
     <Compile Include="Forms\frmLoadGenerator.cs">
       <SubType>Form</SubType>
     </Compile>

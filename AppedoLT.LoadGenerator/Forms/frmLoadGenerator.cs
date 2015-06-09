@@ -25,6 +25,9 @@ namespace AppedoLTLoadGenerator
         ExecutionReport executionReport = ExecutionReport.GetInstance();
         Dictionary<string, Dictionary<string, string>> runScripts = new Dictionary<string, Dictionary<string, string>>();
         StringBuilder logMsg = new StringBuilder();
+        string _lastRunAppedoIP = string.Empty;
+        string _lastRunAppedoPort = string.Empty;
+        DataXml _dataXml = DataXml.GetInstance();
 
         public LoadGenerator()
         {
@@ -39,6 +42,7 @@ namespace AppedoLTLoadGenerator
                 serverSocket.Start();
 
                 ni.Icon = new Form().Icon;
+                DataService();
                 ni.Text = "AppedoLT Loadgenerator.";
                 ni.Visible = true;
                 ni.ContextMenuStrip = new AppedoLTLoadGenerator.ContextMenus().Create();
@@ -124,6 +128,8 @@ namespace AppedoLTLoadGenerator
 
                                                     if (run.Start() == true)
                                                     {
+                                                        _lastRunAppedoIP = runDetail["appedoip"];
+                                                        _lastRunAppedoPort = runDetail["appedoport"];
                                                         ni.Text = "Running...";
                                                         ni.BalloonTipText = "Running...";
                                                         ni.ShowBalloonTip(2000);
@@ -295,6 +301,39 @@ namespace AppedoLTLoadGenerator
                         }
                     }
                 }).Start();
+        }
+        private void DataService()
+        {
+            while(true)
+            {
+                try
+                {
+                    foreach (XmlNode data in _dataXml.doc.SelectNodes("/root/data"))
+                    {
+                        {
+                            Trasport trasport = new Trasport(data["ipadddres"].Value, data["port"].Value,30000);
+                            trasport.Send(new TrasportData("status", null, data["filepath"].Value));
+                            TrasportData ack = trasport.Receive();
+                            if (ack.Operation == "ok")
+                            {
+                                data["issend"].Value = "1";
+                                _dataXml.doc.SelectSingleNode("/root").RemoveChild(data);
+                            }
+                            trasport.Close();
+                            trasport = null;
+                        }
+                    }
+                   
+                }
+                catch (Exception ex)
+                {
+                    Thread.Sleep(5000);
+                }
+                finally
+                {
+                    Thread.Sleep(5000);
+                }
+            }
         }
     }
 }

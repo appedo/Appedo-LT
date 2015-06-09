@@ -38,8 +38,9 @@ namespace AppedoLTLoadGenerator
         public int TotalCreatedUser { get { return _totalCreatedUser; } private set { } }
         public int TotalCompletedUser { get { return _totalCompleted; } private set { } }
         public int IsCompleted { get { return _isCompleted; } private set { } }
+        private DataXml _dataXml = DataXml.GetInstance();
 
-        public RunScenario(string runid, string appedoIP, string appedoPort, string scenarioXml, string distribution,string appedoFailedUrl)
+        public RunScenario(string runid, string appedoIP, string appedoPort, string scenarioXml, string distribution, string appedoFailedUrl)
         {
             _runid = runid;
             _appedoFailedUrl = appedoFailedUrl;
@@ -93,7 +94,7 @@ namespace AppedoLTLoadGenerator
                     finally
                     {
                         executionReport.ExecutionStatus = Status.Completed;
-                        
+
                     }
                 }
 
@@ -191,7 +192,7 @@ namespace AppedoLTLoadGenerator
         void scr_OnLockReportData(ReportData data)
         {
             lock (_reportDataBuffer)
-            {                
+            {
                 _reportDataBuffer.Enqueue(data);
             }
         }
@@ -318,7 +319,7 @@ namespace AppedoLTLoadGenerator
                               || _ErrorBuffer.Count != 0
                               || _reportDataBuffer.Count != 0
                               || _TransactionDataBuffer.Count != 0
-                              || _UserDetailBuffer.Count != 0 || _faildData!=null)
+                              || _UserDetailBuffer.Count != 0 || _faildData != null)
                         {
                             LoadGenRunningStatusData data = new LoadGenRunningStatusData();
                             data.Runid = _runid;
@@ -340,7 +341,7 @@ namespace AppedoLTLoadGenerator
                             try
                             {
                                 Trasport trasport = new Trasport(_appedoIp, _appedoPort, 30000);
-                                trasport.Send(new TrasportData("status",_constants.Serialise(data), null));
+                                trasport.Send(new TrasportData("status", _constants.Serialise(data), null));
                                 TrasportData ack = trasport.Receive();
                                 if (ack.Operation == "ok")
                                 {
@@ -349,10 +350,25 @@ namespace AppedoLTLoadGenerator
                                 trasport.Close();
                                 trasport = null;
                             }
-                            catch(Exception ex1)
+                            catch (Exception ex1)
                             {
+                                try
+                                {
+
+                                    string path = ExceptionHandler.WriteReportData(DateTime.Now.Ticks.ToString(), _constants.Serialise(data));
+                                    if (path != string.Empty)
+                                    {
+                                        _dataXml.doc.SelectSingleNode("root").AppendChild(_dataXml.CreateData(_appedoIp, _appedoPort, path));
+                                        _faildData = null;
+                                    }
+                                }
+                                catch (Exception ex3)
+                                {
+                                    ExceptionHandler.WritetoEventLog(ex3.StackTrace + Environment.NewLine + ex3.Message);
+                                }
+                                
                                 _dataSendFailedCount++;
-                                if(_dataSendFailedCount==3)
+                                if (_dataSendFailedCount == 3)
                                 {
                                     _dataSendFailedCount = 0;
                                     try
@@ -361,16 +377,10 @@ namespace AppedoLTLoadGenerator
                                         {
                                             _constants.GetPageContent(_appedoFailedUrl);
                                         }
-                                     //   ExceptionHandler.WriteReportData(ASCIIEncoding.Default.GetString(_constants.Serialise(data)));
-                                       
                                     }
                                     catch (Exception ex2)
                                     {
                                         ExceptionHandler.WritetoEventLog(ex2.StackTrace + Environment.NewLine + ex2.Message);
-                                    }
-                                    finally
-                                    {
-                                        _faildData = null;
                                     }
                                 }
                                 ExceptionHandler.WritetoEventLog(ex1.StackTrace + Environment.NewLine + ex1.Message);
@@ -382,7 +392,7 @@ namespace AppedoLTLoadGenerator
                         {
                             _isCompleted = 1;
                             break;
-                           
+
                         }
                     }
                     catch (Exception ex)
