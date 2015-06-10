@@ -39,10 +39,13 @@ namespace AppedoLTLoadGenerator
         public int TotalCompletedUser { get { return _totalCompleted; } private set { } }
         public int IsCompleted { get { return _isCompleted; } private set { } }
         private DataXml _dataXml = DataXml.GetInstance();
+        private Dictionary<string, string> _header = new Dictionary<string, string>();
 
         public RunScenario(string runid, string appedoIP, string appedoPort, string scenarioXml, string distribution, string appedoFailedUrl)
         {
             _runid = runid;
+            _header.Add("runid", runid);
+            _header.Add("queuename", "ltreport");
             _appedoFailedUrl = appedoFailedUrl;
             _appedoIp = appedoIP;
             _appedoPort = appedoPort;
@@ -382,7 +385,7 @@ namespace AppedoLTLoadGenerator
                             try
                             {
                                 Trasport trasport = new Trasport(_appedoIp, _appedoPort, 30000);
-                                trasport.Send(new TrasportData("status", _constants.Serialise(data), null));
+                                trasport.Send(new TrasportData("status", _constants.Serialise(data), _header));
                                 TrasportData ack = trasport.Receive();
                                 if (ack.Operation == "ok")
                                 {

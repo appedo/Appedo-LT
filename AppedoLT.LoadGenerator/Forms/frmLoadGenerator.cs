@@ -238,6 +238,7 @@ namespace AppedoLTLoadGenerator
             header.Add("errorcode", code);
             return new TrasportData("error", message, header);
         }
+
         private void testToolStripMenuItem_Click(object sender, EventArgs e)
         {
             try
@@ -255,6 +256,7 @@ namespace AppedoLTLoadGenerator
                 ExceptionHandler.WritetoEventLog(ex.StackTrace + ex.Message);
             }
         }
+
         private string GenerateReportFolder(string reportname)
         {
             try
@@ -277,6 +279,7 @@ namespace AppedoLTLoadGenerator
             }
             return reportname;
         }
+
         private void UpdateStatus()
         {
             new Thread(() =>
@@ -319,7 +322,10 @@ namespace AppedoLTLoadGenerator
                                         if (File.Exists(data.Attributes["filePath"].Value) == true)
                                         {
                                             Trasport trasport = new Trasport(data.Attributes["ipadddress"].Value, data.Attributes["port"].Value, 30000);
-                                            trasport.Send(new TrasportData("status", null, data.Attributes["filePath"].Value));
+                                            Dictionary<string, string> header = new Dictionary<string, string>();
+                                            header.Add("runid", data.Attributes["runid"].Value);
+                                            header.Add("queuename", "ltreport");
+                                            trasport.Send(new TrasportData("status", header, data.Attributes["filePath"].Value));
                                             TrasportData ack = trasport.Receive();
                                             if (ack.Operation == "ok")
                                             {
