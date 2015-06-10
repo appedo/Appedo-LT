@@ -29,9 +29,11 @@ namespace AppedoLT
         {
             XmlNode querySring = request.SelectSingleNode("querystringparams");
             XmlNode postData = request.SelectSingleNode("params");
-            
+
             tabItem1.ContentPanel.Controls.Clear();
+            tapPostParam.ContentPanel.Controls.Clear();
             tabItem1.ContentPanel.Controls.Add(UCQueryStringData.GetInstance(querySring));
+            
 
             if (request.Attributes["Method"].Value == "GET")
             {
@@ -42,26 +44,25 @@ namespace AppedoLT
             {
                 tapPostParam.Visibility = Telerik.WinControls.ElementVisibility.Visible;
                 tapPostParam.Select();
+
                 switch (postData.Attributes["type"].Value.ToString())
                 {
                     case "multipart/form-data":
-                        tapPostParam.ContentPanel.Controls.Clear();
                         tapPostParam.ContentPanel.Controls.Add(UCMultipartPost.GetInstance(postData));
                         tapPostParam.Text = "Multipart Parameters";
                         break;
                     case "text":
-                        tapPostParam.ContentPanel.Controls.Clear();
+
                         tapPostParam.ContentPanel.Controls.Add(UCTextPost.GetInstance(postData));
                         tapPostParam.Text = "Text Content";
                         break;
                     default:
-                        tapPostParam.ContentPanel.Controls.Clear();
                         tapPostParam.ContentPanel.Controls.Add(UCFormPost.GetInstance(postData));
                         tapPostParam.Text = "Post Parameters";
                         break;
                 }
             }
-           
+
         }
     }
 }

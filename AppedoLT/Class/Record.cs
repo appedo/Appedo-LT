@@ -348,9 +348,11 @@ namespace AppedoLT
                                 #endregion
 
                                 #region PostData
+
+                                string postData = data.RequestBody.Length > 0 || request.Attributes["Method"].Value == "POST" ? Encoding.Default.GetString(data.RequestBody.ToArray()) : string.Empty;
+
                                 if (data.RequestBody.Length > 0 || request.Attributes["Method"].Value == "POST")
                                 {
-                                    string postData = data.RequestBody.Length > 0 ? Encoding.Default.GetString(data.RequestBody.ToArray()) : string.Empty;
                                     if (!(postData == null || postData == string.Empty))
                                     {
                                         XmlNode parameters = _uvScript.OwnerDocument.CreateElement("params");
@@ -517,6 +519,21 @@ namespace AppedoLT
                                         request.AppendChild(parameters);
                                         #endregion
 
+                                    }
+                                    else if (postData == string.Empty)
+                                    {
+                                        XmlNode parameters = _uvScript.OwnerDocument.CreateElement("params");
+                                        parameters.Attributes.Append(_common.GetAttribute(_uvScript.OwnerDocument, "type", "text"));
+
+                                        #region Text
+                                        XmlNode param = _uvScript.OwnerDocument.CreateElement("Param");
+                                        param.Attributes.Append(_common.GetAttribute(_uvScript.OwnerDocument, "name", System.Web.HttpUtility.UrlDecode("Text")));
+                                        param.Attributes.Append(_common.GetAttribute(_uvScript.OwnerDocument, "rawname", "Text"));
+                                        param.Attributes.Append(_common.GetAttribute(_uvScript.OwnerDocument, "value", System.Web.HttpUtility.UrlDecode(postData)));
+                                        param.Attributes.Append(_common.GetAttribute(_uvScript.OwnerDocument, "rawvalue", postData));
+                                        parameters.AppendChild(param);
+                                        request.AppendChild(parameters);
+                                        #endregion
                                     }
                                 }
 
