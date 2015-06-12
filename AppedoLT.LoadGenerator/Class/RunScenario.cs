@@ -264,7 +264,7 @@ namespace AppedoLTLoadGenerator
         {
             try
             {
-                lock (_LogBuffer)
+               lock (_LogBuffer)
                 {
                     int count = _LogBuffer.Count;
                     for (; count > 0; count--)
@@ -284,7 +284,7 @@ namespace AppedoLTLoadGenerator
             try
             {
                 int count = _ErrorBuffer.Count;
-                lock (_ErrorBuffer)
+               lock (_ErrorBuffer)
                 {
                     for (; count > 0; count--)
                     {
@@ -338,7 +338,7 @@ namespace AppedoLTLoadGenerator
             try
             {
                 int count = _UserDetailBuffer.Count;
-                lock (_UserDetailBuffer)
+               lock (_UserDetailBuffer)
                 {
                     for (; count > 0; count--)
                     {
@@ -386,6 +386,7 @@ namespace AppedoLTLoadGenerator
                             {
                                 Trasport trasport = new Trasport(_appedoIp, _appedoPort, 30000);
                                 trasport.Send(new TrasportData("status", _constants.Serialise(data), _header));
+                               
                                 TrasportData ack = trasport.Receive();
                                 if (ack.Operation == "ok")
                                 {

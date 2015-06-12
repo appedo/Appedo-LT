@@ -122,6 +122,9 @@ namespace AppedoLT.Core
         [DataMember(Name = "scenarioname")]
         public string scenarioname = string.Empty;
 
+        [DataMember(Name = "scriptid")]
+        public string scriptid = string.Empty;
+
         [DataMember(Name = "scriptname")]
         public string scriptname = string.Empty;
 
@@ -218,7 +221,7 @@ namespace AppedoLT.Core
         private string _pageid = "0";
         private string _requestid = "0";
         private string _address = string.Empty;
-        private string _reponseCode = "0";
+        private string _reponseCode = "700";
 
         public DateTime starttime { get { return _starttime; } set { _starttime = value; } }
         public DateTime endtime { get { return _endtime; } set { _endtime = value; } }

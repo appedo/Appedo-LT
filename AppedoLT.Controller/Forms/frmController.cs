@@ -375,8 +375,17 @@ namespace AppedoLTController
                     #region SendData
                     XmlNode runDetail = null;
                     string loadGensStr = data.Header["loadgens"];
+                    string scriptWiseStatusIp = string.Empty;
+                    string scriptWiseStatusPort = string.Empty;
+                    string statusIp = string.Empty;
+                    string statusPort = string.Empty;
                     try
                     {
+                        scriptWiseStatusIp = data.Header["scriptwisedataconnection"].Split(',')[0].Trim();
+                        scriptWiseStatusPort = data.Header["scriptwisedataconnection"].Split(',')[1].Trim();
+                        statusIp = data.Header["scriptdataconnection"].Split(',')[0].Trim();
+                        statusPort = data.Header["scriptdataconnection"].Split(',')[1].Trim();
+
                         data.Operation = "savescenario";
                         GenerateReportFolder(runid);
                         XmlDocument runXml = new XmlDocument();
@@ -397,8 +406,8 @@ namespace AppedoLTController
                                     data.Header.Add("totalloadgen", loadGenIps.Length.ToString());
                                     data.Header.Add("currentloadgenid", loadGenId++.ToString());
                                     data.Header.Add("loadgenname", ip);
-                                    data.Header.Add("appedoip", AppedoServer);
-                                    data.Header.Add("appedoport", Constants.GetInstance().AppedoPort);
+                                    data.Header.Add("appedoip", statusIp);
+                                    data.Header.Add("appedoport", statusPort);
                                     data.Header.Add("appedofailedurl", AppedoFailedUrl);
                                 }
                                 else
@@ -406,8 +415,8 @@ namespace AppedoLTController
                                     data.Header["totalloadgen"] = loadGenIps.Length.ToString();
                                     data.Header["currentloadgenid"] = loadGenId++.ToString();
                                     data.Header["loadgenname"] = ip;
-                                    data.Header["appedoip"] = AppedoServer;
-                                    data.Header["appedoport"] = Constants.GetInstance().AppedoPort;
+                                    data.Header["appedoip"] = statusIp;
+                                    data.Header["appedoport"] = statusPort;
                                     data.Header["appedofailedurl"] = AppedoFailedUrl;
                                 }
                                 try
@@ -454,6 +463,7 @@ namespace AppedoLTController
                     }
                     catch (Exception ex)
                     {
+                        ExceptionHandler.LogRunDetail(runid, ex.Message);
                         ExceptionHandler.WritetoEventLog(ex.StackTrace + ex.Message);
                     }
 
@@ -535,12 +545,11 @@ namespace AppedoLTController
                             if (runDetail != null)
                             {
                                 ExceptionHandler.LogRunDetail(runid, "Run started ");
-                                Controller controller = new Controller(server.IPAddressStr, runid, runDetail, loadGensStr,AppedoFailedUrl);
+                                Controller controller = new Controller(scriptWiseStatusIp, scriptWiseStatusPort, runid, runDetail, loadGensStr, AppedoFailedUrl);
                                 Controllers.Add(runid, controller);
                                 _ControllerXml.doc.SelectSingleNode("root/runs").AppendChild(runDetail);
                                 _ControllerXml.Save();
                                 controller.Start();
-
                             }
                         }
                         server.Send(new TrasportData("OK", string.Empty, null));

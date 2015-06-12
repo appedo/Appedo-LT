@@ -1678,6 +1678,7 @@ namespace AppedoLT.BusinessLogic
         {
             exception.containerid = _containerId.Peek()[0];
             exception.containername = _containerId.Peek()[1];
+            exception.scriptid = _vuScriptXml.Attributes["id"].Value;
             if (OnLockError != null && exception != null)
             {
                 OnLockError.Invoke(exception);
