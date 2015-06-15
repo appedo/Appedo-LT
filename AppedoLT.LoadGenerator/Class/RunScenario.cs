@@ -279,6 +279,7 @@ namespace AppedoLTLoadGenerator
                 ExceptionHandler.WritetoEventLog(ex.StackTrace + ex.Message);
             }
         }
+
         private void GetError(List<RequestException> errorList)
         {
             try
@@ -297,6 +298,7 @@ namespace AppedoLTLoadGenerator
                 ExceptionHandler.WritetoEventLog(ex.StackTrace + ex.Message);
             }
         }
+
         private void GetReportData(List<ReportData> reportDataList)
         {
             try
@@ -315,6 +317,7 @@ namespace AppedoLTLoadGenerator
                 ExceptionHandler.WritetoEventLog(ex.StackTrace + ex.Message);
             }
         }
+
         private void GetTransactions(List<TransactionRunTimeDetail> transactionsList)
         {
             try
@@ -333,6 +336,7 @@ namespace AppedoLTLoadGenerator
                 ExceptionHandler.WritetoEventLog(ex.StackTrace + ex.Message);
             }
         }
+
         private void GetUserDetail(List<UserDetail> userDetailsList)
         {
             try
@@ -351,6 +355,7 @@ namespace AppedoLTLoadGenerator
                 ExceptionHandler.WritetoEventLog(ex.StackTrace + ex.Message);
             }
         }
+
         private void SendData()
         {
             new Thread(() =>
