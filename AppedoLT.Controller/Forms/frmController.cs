@@ -386,6 +386,7 @@ namespace AppedoLTController
                         statusIp = data.Header["scriptdataconnection"].Split(',')[0].Trim();
                         statusPort = data.Header["scriptdataconnection"].Split(',')[1].Trim();
 
+                        ExceptionHandler.WritetoEventLog("scriptwisedataconnection: " + scriptWiseStatusIp + " scriptWiseStatusPort: " + scriptWiseStatusPort + "scriptdataconnection: " + statusIp + "scriptdataconnection: " + statusPort);
                         data.Operation = "savescenario";
                         GenerateReportFolder(runid);
                         XmlDocument runXml = new XmlDocument();

@@ -285,7 +285,7 @@ namespace AppedoLTLoadGenerator
             try
             {
                 int count = _ErrorBuffer.Count;
-               lock (_ErrorBuffer)
+                lock (_ErrorBuffer)
                 {
                     for (; count > 0; count--)
                     {

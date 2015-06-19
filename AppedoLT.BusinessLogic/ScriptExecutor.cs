@@ -32,7 +32,7 @@ namespace AppedoLT.BusinessLogic
         private System.Timers.Timer _tmrRun = new System.Timers.Timer();
         private System.Timers.Timer _tmrVUCreator = new System.Timers.Timer();
         private VUScriptSetting _setting = new VUScriptSetting();
-       
+        private bool _isStop = false;
         private Constants _constant = Constants.GetInstance();
 
         #endregion
@@ -278,6 +278,8 @@ namespace AppedoLT.BusinessLogic
 
         public void Stop()
         {
+            _tmrVUCreator.Stop();
+            _isStop = true;
             lock (_userCreationLock)
             {
                 lock (_userCompletedLock)
@@ -433,33 +435,36 @@ namespace AppedoLT.BusinessLogic
             {
                 lock (_userCreationLock)
                 {
-                    if (_setting.Type == "2")
+                    if (_isStop == false)
                     {
-                        foreach (VUser thread in _usersList)
+                        if (_setting.Type == "2")
                         {
-                            if (thread.WorkCompleted == true) thread.Start();
+                            foreach (VUser thread in _usersList)
+                            {
+                                if (thread.WorkCompleted == true) thread.Start();
+                            }
                         }
-                    }
-                    for (int index = 1; index <= int.Parse(_setting.IncrementUser); index++)
-                    {
-                        if (_usersList.Count >= int.Parse(_setting.MaxUser)) break;
-                        _createdUserCount++;
-                        if (_createdUserCount >= _startUserid && _createdUserCount <= _endUserid)
+                        for (int index = 1; index <= int.Parse(_setting.IncrementUser); index++)
                         {
-                            VUCreatorUsers.Add(GetVUser(_createdUserCount));
+                            if (_usersList.Count >= int.Parse(_setting.MaxUser) || _isStop == true) break;
+                            _createdUserCount++;
+                            if (_createdUserCount >= _startUserid && _createdUserCount <= _endUserid)
+                            {
+                                VUCreatorUsers.Add(GetVUser(_createdUserCount));
+                            }
                         }
-                    }
 
-                    if (_createdUserCount >= int.Parse(_setting.MaxUser))
-                    {
-                        _tmrVUCreator.Stop();
-                    }
+                        if (_createdUserCount >= int.Parse(_setting.MaxUser))
+                        {
+                            _tmrVUCreator.Stop();
+                        }
 
-                    foreach (VUser user in VUCreatorUsers)
-                    {
-                        user.Start();
-                        StatusSummary.TotalVUserCreated++;
-                        _usersList.Add(user);
+                        foreach (VUser user in VUCreatorUsers)
+                        {
+                            user.Start();
+                            StatusSummary.TotalVUserCreated++;
+                            _usersList.Add(user);
+                        }
                     }
                 }
             }

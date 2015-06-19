@@ -1,11 +1,6 @@
 ﻿using AppedoLT.Core;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using System.Xml;
 using Telerik.WinControls.UI;
@@ -70,7 +65,7 @@ namespace AppedoLT
             {
                 RadTreeNode node = new RadTreeNode();
                 node.Tag = host;
-                node.Text =host.NewSchema+":\\\\"+ host.CurrentHost + ":" + host.CurrentPort;
+                node.Text =host.NewSchema+"://"+ host.CurrentHost + ":" + host.CurrentPort;
                 tvHostList.Nodes.Add(node);
             }
             if (tvHostList.Nodes.Count > 0) tvHostList.Nodes[0].Selected = true;
