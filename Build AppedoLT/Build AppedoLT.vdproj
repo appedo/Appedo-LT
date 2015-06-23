@@ -1138,7 +1138,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:APPEDO_LT"
         "ProductCode" = "8:{DAB98B24-0BF1-4DAC-AA1C-FFA53B70CB35}"
-        "PackageCode" = "8:{F6C518EC-9B1A-43AF-9029-6A6DA3DB7E09}"
+        "PackageCode" = "8:{5C073FD5-F357-48E3-8936-A8333B6A8765}"
         "UpgradeCode" = "8:{CB15E76E-67E8-47B2-9DAF-D40EDBB52CA2}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"

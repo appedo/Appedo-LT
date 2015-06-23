@@ -46,7 +46,22 @@ namespace AppedoLT.Core
         public List<UserDetail> UserDetailData { get { return _userDetailData; } set { _userDetailData = value; } }
 
     }
-    
+
+   [DataContract]
+    public class StatusData<T>
+    {
+
+       private List<T> _data = new List<T>();
+
+        [DataMember(Name = "runid")]
+        public string Runid { get; set; }
+        [DataMember(Name = "type")]
+        public string Type { get; set; }
+        [DataMember(Name = "data")]
+        public List<T> Data { get { return _data; } set { _data = value; } }
+
+    }
+
     [DataContract]
     public class Log
     {

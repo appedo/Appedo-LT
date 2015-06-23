@@ -908,6 +908,7 @@ namespace AppedoLT
                     ReportMaster reportMaster = new ReportMaster(executionReport.ReportName);
                     reportMaster.GenerateReports();
                     UpdateReportStatus();
+                    userControlReports2.LoadReportName(executionReport.ReportName);
 
                 }
                 else
