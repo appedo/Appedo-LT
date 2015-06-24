@@ -419,8 +419,8 @@ namespace AppedoLTLoadGenerator
             TrasportData data = null;
             try
             {
-                Trasport trasport = new Trasport(_appedoIp, _appedoPort, 30000);
                 data = new TrasportData("status", dataObj, _header);
+                Trasport trasport = new Trasport(_appedoIp, _appedoPort, 30000);
                 trasport.Send(data);
 
                 TrasportData ack = trasport.Receive();
@@ -447,6 +447,7 @@ namespace AppedoLTLoadGenerator
                 {
                     ExceptionHandler.WritetoEventLog(ex3.StackTrace + Environment.NewLine + ex3.Message);
                 }
+
                 _dataSendFailedCount++;
                 if (_dataSendFailedCount == 3)
                 {

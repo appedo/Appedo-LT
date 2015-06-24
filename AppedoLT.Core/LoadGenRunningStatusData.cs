@@ -11,7 +11,7 @@ namespace AppedoLT.Core
     {
         private DateTime _time = new DateTime();
 
-        
+
         public DateTime Time
         {
             get { return _time; }
@@ -30,8 +30,8 @@ namespace AppedoLT.Core
         private List<ReportData> _reportData = new List<ReportData>();
         private List<TransactionRunTimeDetail> _transactionsData = new List<TransactionRunTimeDetail>();
         private List<UserDetail> _userDetailData = new List<UserDetail>();
-      
-      
+
+
         [DataMember(Name = "runid")]
         public string Runid { get; set; }
         [DataMember(Name = "log")]
@@ -47,11 +47,11 @@ namespace AppedoLT.Core
 
     }
 
-   [DataContract]
+    [DataContract]
     public class StatusData<T>
     {
 
-       private List<T> _data = new List<T>();
+        private List<T> _data = new List<T>();
 
         [DataMember(Name = "runid")]
         public string Runid { get; set; }
@@ -86,7 +86,7 @@ namespace AppedoLT.Core
         public string iterationid = string.Empty;
         [DataMember(Name = "message")]
         public string message = string.Empty;
-        
+
         [Browsable(false)]
         public DateTime time { get { return _time; } set { _time = value; } }
 
@@ -106,7 +106,7 @@ namespace AppedoLT.Core
             }
         }
 
-      
+
         [DisplayName("Logid")]
         public string LogID { get { return logid; } private set { } }
         [DisplayName("Log name")]
@@ -127,7 +127,7 @@ namespace AppedoLT.Core
     {
         private DateTime _time = new DateTime();
         private string _errorcode = string.Empty;
-        
+
         [Browsable(false)]
         [DataMember(Name = "requestexceptionid")]
         public string requestexceptionid { get; set; }
@@ -138,15 +138,15 @@ namespace AppedoLT.Core
         public string scenarioname = string.Empty;
 
         [DataMember(Name = "scriptid")]
-        public string scriptid = string.Empty;
+        public string scriptid = "0";
 
         [DataMember(Name = "scriptname")]
         public string scriptname = string.Empty;
 
-        [DataMember(Name = "containerid")]
+        [DataMember(Name = "container_id")]
         public string containerid { get; set; }
 
-        [DataMember(Name = "containername")]
+        [DataMember(Name = "container_name")]
         public string containername { get; set; }
 
         [DataMember(Name = "requestid")]
@@ -157,13 +157,14 @@ namespace AppedoLT.Core
 
         [DataMember(Name = "iteration_id")]
         public string iterationid = string.Empty;
-        
+
         [Browsable(false)]
         [DataMember(Name = "errorcode")]
         public string errorcode
         {
-            get {return _errorcode; }
-            set {
+            get { return _errorcode; }
+            set
+            {
                 if (value == null || value == string.Empty)
                     _errorcode = "700";
                 else _errorcode = value;
@@ -184,7 +185,7 @@ namespace AppedoLT.Core
 
         [DataMember(Name = "request")]
         public string request = string.Empty;
-        
+
         [Browsable(false)]
         [DataMember(Name = "log_time")]
         public string timeStr
@@ -200,22 +201,22 @@ namespace AppedoLT.Core
                 _time = Constants.GetInstance().ConvertFromUnixTimestamp(Convert.ToDouble(value));
             }
         }
-     
+
         [DisplayName("Url")]
         public string Url { get { return request; } private set { } }
         [DisplayName("Errorcode")]
         public string Errorcode { get { return _errorcode; } private set { } }
         [DisplayName("Message")]
         public string Message { get { return message; } private set { } }
-        
+
         [DisplayName("Requestid")]
         public string Requestid { get { return requestid; } private set { } }
-        
+
         public override string ToString()
         {
 
             return string.Format("{0},{1},{2},{3},{4},{5},{6},{7},\"{8}\",{9},\"{10}\",{11},{12}", this.loadGen, this.reportname, this.scenarioname, this.scriptname, this.requestid,
-                                                                            this.userid, this.iterationid, this.errorcode, this.message.Replace("\"", "\"\""), this.time.ToString("yyyy-MM-dd HH:mm:ss"), this.request.Replace("\"", "\"\""),this.containerid,this.containername);
+                                                                            this.userid, this.iterationid, this.errorcode, this.message.Replace("\"", "\"\""), this.time.ToString("yyyy-MM-dd HH:mm:ss"), this.request.Replace("\"", "\"\""), this.containerid, this.containername);
         }
     }
 
@@ -237,12 +238,14 @@ namespace AppedoLT.Core
         private string _requestid = "0";
         private string _address = string.Empty;
         private string _reponseCode = "700";
+        private string _totalEndHrs = "0";
+        private string _totalEndMins = "0";
+        private string _totalEndSecs = "0";
 
         public DateTime starttime { get { return _starttime; } set { _starttime = value; } }
         public DateTime endtime { get { return _endtime; } set { _endtime = value; } }
 
 
-        [DataMember(Name = "loadgen")]
         public string loadgen { get { return _loadgen; } set { _loadgen = value; } }
 
         [DataMember(Name = "source_ip")]
@@ -308,12 +311,100 @@ namespace AppedoLT.Core
             }
         }
 
+        [DataMember(Name = "end_hrs")]
+        public string end_hrs
+        {
+            get
+            {
+                if (_totalEndHrs == "0" || _totalEndMins == "0" || _totalEndSecs == "0")
+                {
+                    DateTime origin = new DateTime(1970, 1, 1, 0, 0, 0, 0);
+                    DateTime temp = new DateTime();
+
+                    TimeSpan diff = _endtime.ToUniversalTime() - origin;
+                    _totalEndSecs = Math.Floor(diff.TotalSeconds).ToString();
+
+                    temp = origin.AddMinutes(Math.Floor(diff.TotalMinutes));
+                    diff = temp - origin;
+                    _totalEndMins = Math.Floor(diff.TotalSeconds).ToString();
+
+                    temp = origin.AddHours(Math.Floor(diff.TotalHours));
+                    diff = temp - origin;
+                    _totalEndHrs = Math.Floor(diff.TotalSeconds).ToString();
+
+                }
+                return _totalEndHrs;
+            }
+            private set
+            {
+
+            }
+        }
+
+        [DataMember(Name = "end_mins")]
+        public string end_mins
+        {
+            get
+            {
+                if (_totalEndHrs == "0" || _totalEndMins == "0" || _totalEndSecs == "0")
+                {
+                    DateTime origin = new DateTime(1970, 1, 1, 0, 0, 0, 0);
+                    DateTime temp = new DateTime();
+
+                    TimeSpan diff = _endtime.ToUniversalTime() - origin;
+                    _totalEndSecs = Math.Floor(diff.TotalSeconds).ToString();
+
+                    temp = origin.AddMinutes(Math.Floor(diff.TotalMinutes));
+                    diff = temp - origin;
+                    _totalEndMins = Math.Floor(diff.TotalSeconds).ToString();
+
+                    temp = origin.AddHours(Math.Floor(diff.TotalHours));
+                    diff = temp - origin;
+                    _totalEndHrs = Math.Floor(diff.TotalSeconds).ToString();
+                }
+                return _totalEndMins;
+            }
+            private set
+            {
+
+            }
+        }
+
+        [DataMember(Name = "end_secs")]
+        public string end_secs
+        {
+            get
+            {
+                if (_totalEndHrs == "0" || _totalEndMins == "0" || _totalEndSecs == "0")
+                {
+                    DateTime origin = new DateTime(1970, 1, 1, 0, 0, 0, 0);
+                    DateTime temp = new DateTime();
+
+                    TimeSpan diff = _endtime.ToUniversalTime() - origin;
+                    _totalEndSecs = Math.Floor(diff.TotalSeconds).ToString();
+
+                    temp = origin.AddMinutes(Math.Floor(diff.TotalMinutes));
+                    diff = temp - origin;
+                    _totalEndMins = Math.Floor(diff.TotalSeconds).ToString();
+
+                    temp = origin.AddHours(Math.Floor(diff.TotalHours));
+                    diff = temp - origin;
+                    _totalEndHrs = Math.Floor(diff.TotalSeconds).ToString();
+                }
+                return _totalEndSecs;
+            }
+            private set
+            {
+
+            }
+        }
+
         [DataMember(Name = "diff")]
         public double diff { get; set; }
 
         [DataMember(Name = "responsesize")]
         public long responsesize { get; set; }
-        
+
         [DataMember(Name = "responsecode")]
         public string reponseCode { get { return _reponseCode; } set { _reponseCode = value; } }
         public ReportData()

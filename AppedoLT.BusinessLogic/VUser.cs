@@ -1655,6 +1655,7 @@ namespace AppedoLT.BusinessLogic
             RequestException exception = new RequestException();
             exception.reportname = _reportName;
             exception.scenarioname = Status.ScenarioName;
+            exception.scriptid = _vuScriptXml.Attributes["id"].Value;
             exception.scriptname = _vuScriptXml.Attributes["name"].Value;
             exception.requestid = requestid;
             exception.iterationid = this._iterationid.ToString();
