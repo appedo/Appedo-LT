@@ -318,20 +318,8 @@ namespace AppedoLT.Core
             {
                 if (_totalEndHrs == "0" || _totalEndMins == "0" || _totalEndSecs == "0")
                 {
-                    DateTime origin = new DateTime(1970, 1, 1, 0, 0, 0, 0);
-                    DateTime temp = new DateTime();
 
-                    TimeSpan diff = _endtime.ToUniversalTime() - origin;
-                    _totalEndSecs = Math.Floor(diff.TotalSeconds).ToString();
-
-                    temp = origin.AddMinutes(Math.Floor(diff.TotalMinutes));
-                    diff = temp - origin;
-                    _totalEndMins = Math.Floor(diff.TotalSeconds).ToString();
-
-                    temp = origin.AddHours(Math.Floor(diff.TotalHours));
-                    diff = temp - origin;
-                    _totalEndHrs = Math.Floor(diff.TotalSeconds).ToString();
-
+                    SetHMS();
                 }
                 return _totalEndHrs;
             }
@@ -348,19 +336,7 @@ namespace AppedoLT.Core
             {
                 if (_totalEndHrs == "0" || _totalEndMins == "0" || _totalEndSecs == "0")
                 {
-                    DateTime origin = new DateTime(1970, 1, 1, 0, 0, 0, 0);
-                    DateTime temp = new DateTime();
-
-                    TimeSpan diff = _endtime.ToUniversalTime() - origin;
-                    _totalEndSecs = Math.Floor(diff.TotalSeconds).ToString();
-
-                    temp = origin.AddMinutes(Math.Floor(diff.TotalMinutes));
-                    diff = temp - origin;
-                    _totalEndMins = Math.Floor(diff.TotalSeconds).ToString();
-
-                    temp = origin.AddHours(Math.Floor(diff.TotalHours));
-                    diff = temp - origin;
-                    _totalEndHrs = Math.Floor(diff.TotalSeconds).ToString();
+                    SetHMS();
                 }
                 return _totalEndMins;
             }
@@ -377,19 +353,7 @@ namespace AppedoLT.Core
             {
                 if (_totalEndHrs == "0" || _totalEndMins == "0" || _totalEndSecs == "0")
                 {
-                    DateTime origin = new DateTime(1970, 1, 1, 0, 0, 0, 0);
-                    DateTime temp = new DateTime();
-
-                    TimeSpan diff = _endtime.ToUniversalTime() - origin;
-                    _totalEndSecs = Math.Floor(diff.TotalSeconds).ToString();
-
-                    temp = origin.AddMinutes(Math.Floor(diff.TotalMinutes));
-                    diff = temp - origin;
-                    _totalEndMins = Math.Floor(diff.TotalSeconds).ToString();
-
-                    temp = origin.AddHours(Math.Floor(diff.TotalHours));
-                    diff = temp - origin;
-                    _totalEndHrs = Math.Floor(diff.TotalSeconds).ToString();
+                    SetHMS();
                 }
                 return _totalEndSecs;
             }
@@ -431,6 +395,24 @@ namespace AppedoLT.Core
                                                                                  this.diff.ToString(),
                                                                                  this.reponseCode,
                                                                                  this.responsesize);
+        }
+        private void SetHMS()
+        {
+            DateTime origin = new DateTime(1970, 1, 1, 0, 0, 0, 0);
+            DateTime temp = new DateTime();
+            TimeSpan diff = _endtime.ToUniversalTime() - origin;
+
+            temp = origin.AddSeconds(Math.Floor(diff.TotalSeconds));
+            diff = temp - origin;
+            _totalEndSecs = Math.Floor(diff.TotalMilliseconds).ToString();
+
+            temp = origin.AddMinutes(Math.Floor(diff.TotalMinutes));
+            diff = temp - origin;
+            _totalEndMins = Math.Floor(diff.TotalMilliseconds).ToString();
+
+            temp = origin.AddHours(Math.Floor(diff.TotalHours));
+            diff = temp - origin;
+            _totalEndHrs = Math.Floor(diff.TotalMilliseconds).ToString();
         }
     }
 
