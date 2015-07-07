@@ -2,6 +2,7 @@
 using AppedoLT.Core;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading;
@@ -42,6 +43,7 @@ namespace AppedoLTLoadGenerator
         private StatusData<ReportData> _reportDataBuf = new StatusData<ReportData>();
         private StatusData<TransactionRunTimeDetail> _TransactionDataBuf = new StatusData<TransactionRunTimeDetail>();
         private StatusData<UserDetail> _userDetailBuf = new StatusData<UserDetail>();
+        Dictionary<string, List<PerformanceCounter>> CountersAllInstance = new Dictionary<string, List<PerformanceCounter>>();
 
         public RunScenario(string runid, string appedoIP, string appedoPort, string scenarioXml, string distribution, string appedoFailedUrl)
         {
@@ -62,8 +64,11 @@ namespace AppedoLTLoadGenerator
             _statusUpdateTimer = new System.Timers.Timer(1000);
             _statusUpdateTimer.Enabled = true;
             _statusUpdateTimer.Elapsed += new ElapsedEventHandler(StatusUpdateTimer_Tick);
+
+
         }
 
+       
         void StatusUpdateTimer_Tick(object sender, EventArgs e)
         {
             try

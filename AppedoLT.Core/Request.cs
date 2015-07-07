@@ -30,7 +30,6 @@ namespace AppedoLT.Core
                 if (_requestTimeOut == 0)
                 {
                     _requestTimeOut = _Constants.RequestTimeOut;
-                    //_requestTimeOut = 3000000;
                 }
                
                 return _requestTimeOut;

@@ -221,7 +221,6 @@ namespace AppedoLT.Core
     }
 
     [DataContract]
-    [Serializable]
     public class ReportData
     {
         private DateTime _starttime = new DateTime();
