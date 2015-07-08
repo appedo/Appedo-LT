@@ -554,4 +554,109 @@ namespace AppedoLT.Core
             }
         }
     }
+
+    [DataContract]
+    public class LoadGenMonitor
+    {
+        private DateTime _received_on = new DateTime();
+        private string _totalEndHrs = "0";
+        private string _totalEndMins = "0";
+        private string _totalEndSecs = "0";
+
+        public DateTime received_on { get { return _received_on; } set { _received_on = value; } }
+
+        [DataMember(Name = "loadgen_name")]
+        public string loadgenanme { get; set; }
+
+        [DataMember(Name = "counter_id")]
+        public int counter_id { get; set; }
+
+        [DataMember(Name = "counter_value")]
+        public decimal counter_value { get; set; }
+
+        [DataMember(Name = "received_on")]
+        public string received_on_str
+        {
+            get
+            {
+                DateTime origin = new DateTime(1970, 1, 1, 0, 0, 0, 0);
+                TimeSpan diff = _received_on.ToUniversalTime() - origin;
+                return Math.Floor(diff.TotalMilliseconds).ToString();
+            }
+            set
+            {
+                _received_on = Constants.GetInstance().ConvertFromUnixTimestamp(Convert.ToDouble(value));
+            }
+        }
+
+        [DataMember(Name = "end_hrs")]
+        public string end_hrs
+        {
+            get
+            {
+                if (_totalEndHrs == "0" || _totalEndMins == "0" || _totalEndSecs == "0")
+                {
+
+                    SetHMS();
+                }
+                return _totalEndHrs;
+            }
+            private set
+            {
+
+            }
+        }
+
+        [DataMember(Name = "end_mins")]
+        public string end_mins
+        {
+            get
+            {
+                if (_totalEndHrs == "0" || _totalEndMins == "0" || _totalEndSecs == "0")
+                {
+                    SetHMS();
+                }
+                return _totalEndMins;
+            }
+            private set
+            {
+
+            }
+        }
+
+        [DataMember(Name = "end_secs")]
+        public string end_secs
+        {
+            get
+            {
+                if (_totalEndHrs == "0" || _totalEndMins == "0" || _totalEndSecs == "0")
+                {
+                    SetHMS();
+                }
+                return _totalEndSecs;
+            }
+            private set
+            {
+
+            }
+        }
+        private void SetHMS()
+        {
+            DateTime origin = new DateTime(1970, 1, 1, 0, 0, 0, 0);
+            DateTime temp = new DateTime();
+            TimeSpan diff = _received_on.ToUniversalTime() - origin;
+
+            temp = origin.AddSeconds(Math.Floor(diff.TotalSeconds));
+            diff = temp - origin;
+            _totalEndSecs = Math.Floor(diff.TotalMilliseconds).ToString();
+
+            temp = origin.AddMinutes(Math.Floor(diff.TotalMinutes));
+            diff = temp - origin;
+            _totalEndMins = Math.Floor(diff.TotalMilliseconds).ToString();
+
+            temp = origin.AddHours(Math.Floor(diff.TotalHours));
+            diff = temp - origin;
+            _totalEndHrs = Math.Floor(diff.TotalMilliseconds).ToString();
+        }
+    }
 }
