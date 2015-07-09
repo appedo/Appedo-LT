@@ -344,7 +344,7 @@ namespace AppedoLTController
                         Controllers.Remove(runid);
                     }
                 }
-                if (data.DataStr.StartsWith("<?xml version=\"1.0\" encoding=\"UTF-8\"?><root/>") == true)
+                if (data.DataStr.EndsWith("?><root/>") == true)
                 {
                     ExceptionHandler.LogRunDetail(runid, "Empty scenario received");
                     Dictionary<string, string> headerrunid = new Dictionary<string, string>();
