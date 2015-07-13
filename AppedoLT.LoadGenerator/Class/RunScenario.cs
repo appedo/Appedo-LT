@@ -56,7 +56,7 @@ namespace AppedoLTLoadGenerator
             _reportDataBuf.Type = "reporddata";
             _TransactionDataBuf.Type = "transactions";
             _userDetailBuf.Type = "userdetail";
-            _loadGenMonitorBuf.Type = "ltloadgenstatus";
+            _loadGenMonitorBuf.Type = "loadgenstatus";
             _header.Add("runid", runid);
             _header.Add("queuename", "ltreport");
             _appedoFailedUrl = appedoFailedUrl;
@@ -327,8 +327,6 @@ namespace AppedoLTLoadGenerator
                         byte[] dataBuf;
                         bool hasData = false;
 
-                        UpdateCounter();
-
                         #region Report data
                         try
                         {
@@ -430,18 +428,21 @@ namespace AppedoLTLoadGenerator
                         #endregion
 
                         #region LoadGenMontor
-                        UpdateCounter();
+                      
                         try
                         {
-                            if (_loadGenMonitorBuf.Data.Count > 0)
+                            if (CountersAllInstance.Count > 0)
                             {
-                                hasData = true;
-                                lock (_loadGenMonitorBuf)
+                                UpdateCounter();
+                                if (_loadGenMonitorBuf.Data.Count > 0)
                                 {
-                                    dataBuf = _constants.Serialise(_loadGenMonitorBuf);
-                                    _loadGenMonitorBuf.Data.Clear();
+                                    lock (_loadGenMonitorBuf)
+                                    {
+                                        dataBuf = _constants.Serialise(_loadGenMonitorBuf);
+                                        _loadGenMonitorBuf.Data.Clear();
+                                    }
+                                    Send(dataBuf);
                                 }
-                                Send(dataBuf);
                             }
                         }
                         catch (Exception ex)
@@ -558,7 +559,7 @@ namespace AppedoLTLoadGenerator
                             mon.loadgenanme = executionReport.LoadGenName;
                             _loadGenMonitorBuf.Data.Add(mon);
                         }
-                        mon.counter_value = Convert.ToDecimal(CountersAllInstance[key].RawValue);
+                        mon.counter_value =Convert.ToDecimal(CountersAllInstance[key].NextValue());
                         mon.received_on = DateTime.Now;
                     }
                     catch (Exception ex)
