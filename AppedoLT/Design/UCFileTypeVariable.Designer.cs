@@ -81,9 +81,9 @@
             // 
             this.dgvData.AllowUserToAddRows = false;
             this.dgvData.AllowUserToDeleteRows = false;
-            this.dgvData.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.dgvData.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvData.BackgroundColor = System.Drawing.Color.White;
             this.dgvData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvData.Location = new System.Drawing.Point(3, 64);
@@ -100,7 +100,7 @@
             this.txtDelimiter.Size = new System.Drawing.Size(108, 19);
             this.txtDelimiter.TabIndex = 5;
             this.txtDelimiter.TabStop = false;
-            this.txtDelimiter.Text = ";";
+            this.txtDelimiter.Text = ",";
             // 
             // radLabel2
             // 
@@ -120,8 +120,8 @@
             this.txtStartFrom.TabIndex = 7;
             this.txtStartFrom.TabStop = false;
             this.txtStartFrom.Text = "1";
-            this.txtStartFrom.Leave += new System.EventHandler(this.txtStartFrom_Leave);
             this.txtStartFrom.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtStartFrom_KeyPress);
+            this.txtStartFrom.Leave += new System.EventHandler(this.txtStartFrom_Leave);
             // 
             // radLabel3
             // 
