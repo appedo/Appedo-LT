@@ -331,7 +331,6 @@ namespace AppedoLTController
             try
             {
                 string runid = data.Header["runid"];
-
                 if (Controllers.ContainsKey(runid) == true)
                 {
                     if (Controllers[runid].Status < ControllerStatus.ReportGenerateCompleted)

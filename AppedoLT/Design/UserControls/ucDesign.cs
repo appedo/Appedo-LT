@@ -1091,8 +1091,14 @@ namespace AppedoLT
                                 insertAfterToolStripMenuItem.Visible = insertBeforeToolStripMenuItem.Visible = insertAsChildToolStripMenuItemChild.Visible = deleteToolStripMenuItem.Visible = true;
                             }
                             break;
-                        case "page":
                         case "request":
+                            {
+                                if (((XmlNode)tvRequest.SelectedNode.Tag).ParentNode.Name != "page") insertAfterToolStripMenuItem.Visible = insertBeforeToolStripMenuItem.Visible = true;
+                                deleteToolStripMenuItem.Visible = true;
+
+                            }
+                            break;
+                        case "page":
                         case "delay":
                         case "javascript":
                         case "log":
@@ -1100,8 +1106,7 @@ namespace AppedoLT
                         case "endtransaction":
                         case "if":
                             {
-                                if (((XmlNode)tvRequest.SelectedNode.Tag).ParentNode.Name != "page")
-                                    insertAfterToolStripMenuItem.Visible = insertBeforeToolStripMenuItem.Visible = deleteToolStripMenuItem.Visible = true;
+                                if (((XmlNode)tvRequest.SelectedNode.Tag).ParentNode.Name != "page") insertAfterToolStripMenuItem.Visible = insertBeforeToolStripMenuItem.Visible = deleteToolStripMenuItem.Visible = true;
 
                             }
                             break;
