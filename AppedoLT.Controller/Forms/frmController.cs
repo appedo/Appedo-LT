@@ -615,7 +615,6 @@ namespace AppedoLTController
                 }
                 Directory.CreateDirectory(folderPath);
                 Directory.CreateDirectory(folderPath + "\\Report");
-
                 // File.Copy(Constants.GetInstance().ExecutingAssemblyLocation + "\\database.db", folderPath + "\\database.db");
 
             }
