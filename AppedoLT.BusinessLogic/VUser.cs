@@ -569,8 +569,8 @@ namespace AppedoLT.BusinessLogic
                         {
                             variables = EvaluteExpTcp(request);
                         }
-                        Connection con=new Connection(request.Attributes["serverip"].Value, int.Parse(request.Attributes["port"].Value));
-                       
+                        Connection con = new Connection(request.Attributes["serverip"].Value, int.Parse(request.Attributes["port"].Value));
+
                         req = new TcpRequest(request, con, false);
                         req.Variables = variables;
                         req.GetResponse();
@@ -614,34 +614,41 @@ namespace AppedoLT.BusinessLogic
 
                                     if (requestHeadeNode != null && requestHeadeNode.Attributes["value"].Value.Contains("/"))
                                     {
-                                        string acceptType = requestHeadeNode.Attributes["value"].Value.Split('/')[1];
-                                        acceptType = acceptType.ToLower();
-                                        if (acceptType.Contains("image") 
-                                            || acceptType.Contains("css") 
-                                            || acceptType.Contains("js") 
-                                            || acceptType.Contains("javascript") 
-                                            || temp.LocalPath.EndsWith(".js")
-                                            || temp.LocalPath.EndsWith(".css")
-                                            || temp.LocalPath.EndsWith(".png")
-                                            || temp.LocalPath.EndsWith(".jpg")
-                                            || temp.LocalPath.EndsWith(".pdf")
-                                            || temp.LocalPath.EndsWith(".gif")
-                                            || temp.LocalPath.EndsWith(".ico")
-                                           )
+                                        if (requestHeadeNode.Attributes["value"].Value.ToLower().Contains("application") == false)
                                         {
-                                            cacheEnabled = true;
+                                            string acceptType = requestHeadeNode.Attributes["value"].Value.Split('/')[1];
+                                            acceptType = acceptType.ToLower();
+                                            if ((acceptType.Contains("image")
+                                                || acceptType.Contains("css")
+                                                || acceptType.Contains("js")
+                                                || acceptType.Contains("javascript")
+                                                || temp.LocalPath.EndsWith(".js")
+                                                || temp.LocalPath.EndsWith(".css")
+                                                || temp.LocalPath.EndsWith(".png")
+                                                || temp.LocalPath.EndsWith(".jpg")
+                                                || temp.LocalPath.EndsWith(".pdf")
+                                                || temp.LocalPath.EndsWith(".gif")
+                                                || temp.LocalPath.EndsWith(".ico"))
+                                                && acceptType.Contains("application") == false
+                                               )
+                                            {
+                                                cacheEnabled = true;
+                                            }
                                         }
                                     }
                                     if (mat.Success == true && mat.Groups[1] != null && mat.Groups[1].Value.Contains("/"))
                                     {
-                                        string acceptType = mat.Groups[1].Value.Split('/')[1];
-                                        acceptType = acceptType.ToLower();
-                                        if (acceptType.Contains("image")
-                                            || acceptType.Contains("css") 
-                                            || acceptType.Contains("js") 
-                                            || acceptType.Contains("javascript"))
+                                        if (mat.Groups[1].Value.ToLower().Contains("application") == false)
                                         {
-                                            cacheEnabled = true;
+                                            string acceptType = mat.Groups[1].Value.Split('/')[1];
+                                            acceptType = acceptType.ToLower();
+                                            if (acceptType.Contains("image")
+                                                || acceptType.Contains("css")
+                                                || acceptType.Contains("js")
+                                                || acceptType.Contains("javascript"))
+                                            {
+                                                cacheEnabled = true;
+                                            }
                                         }
                                     }
                                 }
@@ -672,10 +679,10 @@ namespace AppedoLT.BusinessLogic
 
                                     #endregion
                                 }
-                               // else
-                              //  {
-                                    LockResponseTime(req.RequestNode.Attributes["id"].Value, req.RequestNode.Attributes["Path"] == null ? req.RequestName : req.RequestNode.Attributes["Path"].Value, req.StartTime, req.EndTime, req.ResponseTime, req.ResponseSize, req.ResponseCode.ToString());
-                              //  }
+                                // else
+                                //  {
+                                LockResponseTime(req.RequestNode.Attributes["id"].Value, req.RequestNode.Attributes["Path"] == null ? req.RequestName : req.RequestNode.Attributes["Path"].Value, req.StartTime, req.EndTime, req.ResponseTime, req.ResponseSize, req.ResponseCode.ToString());
+                                //  }
 
                                 #region SecondaryReqEnable
                                 if (Convert.ToBoolean(_vuScriptXml.Attributes["dynamicreqenable"].Value) == true && !(_browserCache == true && _index > 1))
