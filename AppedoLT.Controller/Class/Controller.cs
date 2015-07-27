@@ -22,7 +22,7 @@ namespace AppedoLTController
         private int _totalUserCreated = 0;
         private int _totalUserCompleted = 0;
         private string _appedoFailedUrl = string.Empty;
-        private int failedScriptWaseSend = 0;
+        private int _failedScriptWaseSend = 0;
 
         public string ScriptWiseStatus { get; set; }
         public string RunId = string.Empty;
@@ -207,8 +207,7 @@ namespace AppedoLTController
                     }
                     catch (Exception ex1)
                     {
-                        ExceptionHandler.WritetoEventLog(ex1.StackTrace + ex1.Message);
-                        //break;
+                        ExceptionHandler.WritetoEventLog(ex1.StackTrace + ex1.Message);                     
                     }
 
                 }
@@ -287,10 +286,10 @@ namespace AppedoLTController
             }
             catch (Exception ex)
             {
-                failedScriptWaseSend++;
-                if (failedScriptWaseSend == 5)
+                _failedScriptWaseSend++;
+                if (_failedScriptWaseSend == 5)
                 {
-                    failedScriptWaseSend = 0;
+                    _failedScriptWaseSend = 0;
                     try
                     {
                         if (_appedoFailedUrl != string.Empty)

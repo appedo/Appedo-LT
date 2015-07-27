@@ -77,6 +77,7 @@ namespace AppedoLT
             this.radPanelBar2 = new Telerik.WinControls.UI.RadPanelBar();
             this.btnDownload = new Telerik.WinControls.UI.RadButton();
             this.btnUploadVariables = new Telerik.WinControls.UI.RadButton();
+            this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             this.ucFileTypeVariable = new AppedoLT.UCFileTypeVariable();
             ((System.ComponentModel.ISupportInitialize)(this.lblVariableName)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtVariableName)).BeginInit();
@@ -168,7 +169,7 @@ namespace AppedoLT
             // 
             this.ddlVariableType.RootElement.AutoSizeMode = Telerik.WinControls.RadAutoSizeMode.WrapAroundChildren;
             this.ddlVariableType.RootElement.ForeColor = System.Drawing.Color.Black;
-            this.ddlVariableType.Size = new System.Drawing.Size(288, 19);
+            this.ddlVariableType.Size = new System.Drawing.Size(288, 21);
             this.ddlVariableType.TabIndex = 4;
             this.ddlVariableType.TabStop = false;
             this.ddlVariableType.ThemeName = "Telerik";
@@ -519,7 +520,7 @@ namespace AppedoLT
             // 
             this.ddlDateFormat.RootElement.AutoSizeMode = Telerik.WinControls.RadAutoSizeMode.WrapAroundChildren;
             this.ddlDateFormat.RootElement.ForeColor = System.Drawing.Color.Black;
-            this.ddlDateFormat.Size = new System.Drawing.Size(135, 19);
+            this.ddlDateFormat.Size = new System.Drawing.Size(135, 21);
             this.ddlDateFormat.TabIndex = 8;
             this.ddlDateFormat.TabStop = false;
             this.ddlDateFormat.ThemeName = "Telerik";
@@ -734,6 +735,12 @@ namespace AppedoLT
             this.btnUploadVariables.ThemeName = "Telerik";
             this.btnUploadVariables.Click += new System.EventHandler(this.btnUploadVariables_Click);
             // 
+            // toolTip
+            // 
+            this.toolTip.AutoPopDelay = 10000;
+            this.toolTip.InitialDelay = 500;
+            this.toolTip.ReshowDelay = 100;
+            // 
             // ucFileTypeVariable
             // 
             this.ucFileTypeVariable.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -855,6 +862,7 @@ namespace AppedoLT
         private Telerik.WinControls.UI.RadLabel radLabel6;
         private Telerik.WinControls.UI.RadButton btnUploadVariables;
         private Telerik.WinControls.UI.RadButton btnDownload;
+        private System.Windows.Forms.ToolTip toolTip;
     }
 }
 

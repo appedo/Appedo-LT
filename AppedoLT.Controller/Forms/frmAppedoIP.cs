@@ -8,6 +8,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using AppedoLT.DataAccessLayer;
 
 namespace AppedoLTController
 {
@@ -35,6 +36,7 @@ namespace AppedoLTController
         {
             try
             {
+                
                 string url= Test();
                 ControllerXml.GetInstance().doc.SelectSingleNode("//runs").Attributes["appedoipaddress"].Value = txtIpAddress.Text;
                 ControllerXml.GetInstance().doc.SelectSingleNode("//runs").Attributes["failedurl"].Value = url;

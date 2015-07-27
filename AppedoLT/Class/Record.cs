@@ -462,17 +462,29 @@ namespace AppedoLT
                                             }
                                             #endregion
                                         }
-                                        else if (isWebServiceRequest == true || requestContentType.ToLower().StartsWith("text/") || requestContentType.ToLower().StartsWith("application/json") || requestContentType == string.Empty)
+                                        else if (isWebServiceRequest == true || requestContentType.ToLower().StartsWith("text/") || requestContentType.ToLower().StartsWith("application/json") || requestContentType == string.Empty || requestContentType.ToLower().Contains("/soap"))
                                         {
                                             parameters.Attributes.Append(_common.GetAttribute(_uvScript.OwnerDocument, "type", "text"));
-
-                                            #region Text
-                                            XmlNode param = _uvScript.OwnerDocument.CreateElement("Param");
-                                            param.Attributes.Append(_common.GetAttribute(_uvScript.OwnerDocument, "name", System.Web.HttpUtility.UrlDecode("Text")));
-                                            param.Attributes.Append(_common.GetAttribute(_uvScript.OwnerDocument, "rawname", "Text"));
-                                            param.Attributes.Append(_common.GetAttribute(_uvScript.OwnerDocument, "value", System.Web.HttpUtility.UrlDecode(postData)));
-                                            param.Attributes.Append(_common.GetAttribute(_uvScript.OwnerDocument, "rawvalue", postData));
-                                            parameters.AppendChild(param);
+                                            if (requestContentType.ToLower().Contains("/soap"))
+                                            {
+                                                WcfBinaryCodec obj = new WcfBinaryCodec();
+                                                XmlNode param = _uvScript.OwnerDocument.CreateElement("Param");
+                                                param.Attributes.Append(_common.GetAttribute(_uvScript.OwnerDocument, "name", System.Web.HttpUtility.UrlDecode("Text")));
+                                                param.Attributes.Append(_common.GetAttribute(_uvScript.OwnerDocument, "rawname", "Text"));
+                                                param.Attributes.Append(_common.GetAttribute(_uvScript.OwnerDocument, "value", obj.DecodeBinaryXML(data.RequestBody.ToArray(), true)));
+                                                param.Attributes.Append(_common.GetAttribute(_uvScript.OwnerDocument, "rawvalue", obj.DecodeBinaryXML(data.RequestBody.ToArray(), true)));
+                                                parameters.AppendChild(param);
+                                            }
+                                            else
+                                            {
+                                                #region Text
+                                                XmlNode param = _uvScript.OwnerDocument.CreateElement("Param");
+                                                param.Attributes.Append(_common.GetAttribute(_uvScript.OwnerDocument, "name", System.Web.HttpUtility.UrlDecode("Text")));
+                                                param.Attributes.Append(_common.GetAttribute(_uvScript.OwnerDocument, "rawname", "Text"));
+                                                param.Attributes.Append(_common.GetAttribute(_uvScript.OwnerDocument, "value", System.Web.HttpUtility.UrlDecode(postData)));
+                                                param.Attributes.Append(_common.GetAttribute(_uvScript.OwnerDocument, "rawvalue", postData));
+                                                parameters.AppendChild(param);
+                                            }
                                             #endregion
                                         }
                                         else //if (requestContentType.Contains("application/x-www-form-urlencoded"))
@@ -619,6 +631,13 @@ namespace AppedoLT
                                             }
                                             #endregion
                                         }
+                                        else if (data.ResponseHeader.ToLower().Contains("content-type: application/soap"))
+                                        {
+                                            WcfBinaryCodec obj1 = new WcfBinaryCodec();
+                                            string soapData = obj1.DecodeBinaryXML(data.ResponseBody.ToArray(), true);
+                                            stream.Write(Encoding.Default.GetBytes(soapData), 0, soapData.Length);
+
+                                        }
                                         else
                                         {
                                             while ((readConut = data.ResponseBody.Read(buffer, 0, buffer.Length)) > 0)
@@ -697,11 +716,20 @@ namespace AppedoLT
                                     if (data.RequestBody.Length > 0)
                                     {
                                         data.RequestBody.Position = 0;
-                                        byte[] buffer = new byte[8129];
-                                        int readConut = 0;
-                                        while ((readConut = data.RequestBody.Read(buffer, 0, buffer.Length)) > 0)
+                                        if (requestContentType.ToLower().Contains("/soap"))
                                         {
-                                            stream.Write(buffer, 0, readConut);
+                                            WcfBinaryCodec obj1 = new WcfBinaryCodec();
+                                            string soapData = obj1.DecodeBinaryXML(data.RequestBody.ToArray(), true);
+                                            stream.Write(Encoding.Default.GetBytes(soapData), 0, soapData.Length);
+                                        }
+                                        else
+                                        {
+                                            byte[] buffer = new byte[8129];
+                                            int readConut = 0;
+                                            while ((readConut = data.RequestBody.Read(buffer, 0, buffer.Length)) > 0)
+                                            {
+                                                stream.Write(buffer, 0, readConut);
+                                            }
                                         }
                                     }
                                 }

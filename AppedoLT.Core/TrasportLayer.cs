@@ -346,14 +346,14 @@ namespace AppedoLT.Core
             get
             {
                 if (DataStream.Length == 0) return string.Empty;
-                else return ASCIIEncoding.ASCII.GetString(DataStream.ToArray());
+                else return Encoding.Default.GetString(DataStream.ToArray());
             }
 
             set
             {
                 if (value != null && value != string.Empty)
                 {
-                    DataStream.Write(ASCIIEncoding.ASCII.GetBytes(value), 0, value.Length);
+                    DataStream.Write(Encoding.Default.GetBytes(value), 0, value.Length);
                 }
             }
         }

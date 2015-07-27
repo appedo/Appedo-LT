@@ -2,6 +2,7 @@
 using AppedoLT.Core;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading;
@@ -24,7 +25,7 @@ namespace AppedoLTLoadGenerator
         private LoadGenRunningStatusData _runningStatusData = new LoadGenRunningStatusData();
         private ExecutionReport executionReport = ExecutionReport.GetInstance();
         private Constants _constants = Constants.GetInstance();
-      
+
         private LoadGenRunningStatusData _faildData = null;
         private string _runid = string.Empty;
         private string _appedoIp = string.Empty;
@@ -36,22 +37,26 @@ namespace AppedoLTLoadGenerator
         public int IsCompleted { get { return _isCompleted; } private set { } }
         private DataXml _dataXml = DataXml.GetInstance();
         private Dictionary<string, string> _header = new Dictionary<string, string>();
-
+        private int _currentUserMonierId = 0;
         private StatusData<Log> _logBuf = new StatusData<Log>();
         private StatusData<RequestException> _errorBuf = new StatusData<RequestException>();
         private StatusData<ReportData> _reportDataBuf = new StatusData<ReportData>();
         private StatusData<TransactionRunTimeDetail> _TransactionDataBuf = new StatusData<TransactionRunTimeDetail>();
         private StatusData<UserDetail> _userDetailBuf = new StatusData<UserDetail>();
+        private StatusData<LoadGenMonitor> _loadGenMonitorBuf = new StatusData<LoadGenMonitor>();
 
-        public RunScenario(string runid, string appedoIP, string appedoPort, string scenarioXml, string distribution, string appedoFailedUrl)
+        Dictionary<int, PerformanceCounter> CountersAllInstance = new Dictionary<int, PerformanceCounter>();
+
+        public RunScenario(string runid, string appedoIP, string appedoPort, string scenarioXml, string distribution, string appedoFailedUrl, string monitorCounter)
         {
             _runid = runid;
-            _logBuf.Runid = _errorBuf.Runid = _reportDataBuf.Runid = _TransactionDataBuf.Runid = _userDetailBuf.Runid = runid;
+            _loadGenMonitorBuf.Runid = _logBuf.Runid = _errorBuf.Runid = _reportDataBuf.Runid = _TransactionDataBuf.Runid = _userDetailBuf.Runid = runid;
             _logBuf.Type = "log";
             _errorBuf.Type = "error";
             _reportDataBuf.Type = "reporddata";
             _TransactionDataBuf.Type = "transactions";
             _userDetailBuf.Type = "userdetail";
+            _loadGenMonitorBuf.Type = "loadgenstatus";
             _header.Add("runid", runid);
             _header.Add("queuename", "ltreport");
             _appedoFailedUrl = appedoFailedUrl;
@@ -62,6 +67,49 @@ namespace AppedoLTLoadGenerator
             _statusUpdateTimer = new System.Timers.Timer(1000);
             _statusUpdateTimer.Enabled = true;
             _statusUpdateTimer.Elapsed += new ElapsedEventHandler(StatusUpdateTimer_Tick);
+            ConfigMoniter(monitorCounter);
+        }
+
+        void ConfigMoniter(string json)
+        {
+            try
+            {
+                System.Collections.Generic.List<MonitorCounter> obj = new System.Collections.Generic.List<MonitorCounter>();
+                obj = Constants.GetInstance().Deserialise<System.Collections.Generic.List<MonitorCounter>>(json);
+                foreach (MonitorCounter counter in obj)
+                {
+                    try
+                    {
+                        if (counter.CounterName != "Current User count")
+                        {
+                            PerformanceCounter count = null;
+                            if (counter.HasInstance == true)
+                            {
+                                count = new PerformanceCounter(counter.CategoryName, counter.CounterName, counter.InstanceName);
+                            }
+                            else
+                            {
+                                count = new PerformanceCounter(counter.CategoryName, counter.CounterName);
+                            }
+                            count.NextValue();
+                            CountersAllInstance.Add(counter.CounterId, count);
+                        }
+                        else
+                        {
+                            _currentUserMonierId = counter.CounterId;
+                        }
+
+                    }
+                    catch (Exception ex)
+                    {
+                        ExceptionHandler.WritetoEventLog(ex.StackTrace + ex.Message);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionHandler.WritetoEventLog(ex.StackTrace + ex.Message);
+            }
         }
 
         void StatusUpdateTimer_Tick(object sender, EventArgs e)
@@ -379,8 +427,32 @@ namespace AppedoLTLoadGenerator
                         }
                         #endregion
 
+                        #region LoadGenMontor
+                      
+                        try
+                        {
+                            if (CountersAllInstance.Count > 0)
+                            {
+                                UpdateCounter();
+                                if (_loadGenMonitorBuf.Data.Count > 0)
+                                {
+                                    lock (_loadGenMonitorBuf)
+                                    {
+                                        dataBuf = _constants.Serialise(_loadGenMonitorBuf);
+                                        _loadGenMonitorBuf.Data.Clear();
+                                    }
+                                    Send(dataBuf);
+                                }
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            ExceptionHandler.WritetoEventLog(ex.StackTrace + Environment.NewLine + ex.Message);
+                        }
+                        #endregion
+
                         #region After completed
-                        if (hasData==false
+                        if (hasData == false
                             && (_scriptExecutorList.Count == 0
                                 || _scriptExecutorList.FindAll(f => f.IsRunCompleted).Count == _scriptExecutorList.Count)
                             && executionReport.ExecutionStatus == Status.Completed)
@@ -403,6 +475,7 @@ namespace AppedoLTLoadGenerator
                             break;
                         }
                         #endregion
+
                     }
                     catch (Exception ex)
                     {
@@ -467,6 +540,48 @@ namespace AppedoLTLoadGenerator
                 ExceptionHandler.WritetoEventLog(ex1.StackTrace + Environment.NewLine + ex1.Message);
             }
 
+        }
+
+        private void UpdateCounter()
+        {
+            LoadGenMonitor mon = null;
+            try
+            {
+                foreach (int key in CountersAllInstance.Keys)
+                {
+                    try
+                    {
+                        mon = _loadGenMonitorBuf.Data.Find(f => f.counter_id == key);
+                        if (mon == null)
+                        {
+                            mon = new LoadGenMonitor();
+                            mon.counter_id = key;
+                            mon.loadgenanme = executionReport.LoadGenName;
+                            _loadGenMonitorBuf.Data.Add(mon);
+                        }
+                        mon.counter_value =Convert.ToDecimal(CountersAllInstance[key].NextValue());
+                        mon.received_on = DateTime.Now;
+                    }
+                    catch (Exception ex)
+                    {
+                        ExceptionHandler.WritetoEventLog(ex.StackTrace + Environment.NewLine + ex.Message);
+                    }
+                }
+                mon = _loadGenMonitorBuf.Data.Find(f => f.counter_id == _currentUserMonierId);
+                if (mon == null)
+                {
+                    mon = new LoadGenMonitor();
+                    mon.counter_id = _currentUserMonierId;
+                    mon.loadgenanme = executionReport.LoadGenName;
+                    _loadGenMonitorBuf.Data.Add(mon);
+                }
+                mon.counter_value = _totalCreatedUser - _totalCompleted;
+                mon.received_on = DateTime.Now;
+            }
+            catch (Exception ex)
+            {
+                ExceptionHandler.WritetoEventLog(ex.StackTrace + Environment.NewLine + ex.Message);
+            }
         }
     }
 }

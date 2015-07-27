@@ -43,8 +43,14 @@ namespace AppedoLT
             else if (request.Attributes["Method"].Value == "POST" && postData != null)
             {
                 tapPostParam.Visibility = Telerik.WinControls.ElementVisibility.Visible;
-                tapPostParam.Select();
-
+                if (postData.ChildNodes.Count > 0)
+                {
+                    tapPostParam.Select();
+                }
+                else
+                {
+                    tabItem1.Select();
+                }
                 switch (postData.Attributes["type"].Value.ToString())
                 {
                     case "multipart/form-data":

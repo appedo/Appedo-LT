@@ -331,7 +331,6 @@ namespace AppedoLTController
             try
             {
                 string runid = data.Header["runid"];
-
                 if (Controllers.ContainsKey(runid) == true)
                 {
                     if (Controllers[runid].Status < ControllerStatus.ReportGenerateCompleted)
@@ -344,7 +343,7 @@ namespace AppedoLTController
                         Controllers.Remove(runid);
                     }
                 }
-                if (data.DataStr.StartsWith("<?xml version=\"1.0\" encoding=\"UTF-8\"?><root/>") == true)
+                if (data.DataStr.EndsWith("?><root/>") == true)
                 {
                     ExceptionHandler.LogRunDetail(runid, "Empty scenario received");
                     Dictionary<string, string> headerrunid = new Dictionary<string, string>();
@@ -616,7 +615,6 @@ namespace AppedoLTController
                 }
                 Directory.CreateDirectory(folderPath);
                 Directory.CreateDirectory(folderPath + "\\Report");
-
                 // File.Copy(Constants.GetInstance().ExecutingAssemblyLocation + "\\database.db", folderPath + "\\database.db");
 
             }

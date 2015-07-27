@@ -22,7 +22,23 @@ namespace AppedoLT
         {
             InitializeComponent();
             LoadTree();
+        
+         // Force the ToolTip text to be displayed whether or not the form is active.
+            toolTip.ShowAlways = true;
+           toolTip.SetToolTip(txtVariableName, 
+@"Rules For Constructing Variable Name
 
+1. Characters Allowed :   
+     Underscore(_)
+     Capital Letters ( A – Z )
+     Small Letters ( a – z )
+     Digits ( 0 – 9 )
+
+2. Blanks & Commas are not allowed.
+
+3. No Special Symbols other than underscore(_) are allowed.
+
+4.First Character should be alphabet or Underscore.");
         }
 
         private void LoadTree()
@@ -178,7 +194,7 @@ namespace AppedoLT
 
         private void txtVariableName_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!(char.IsControl(e.KeyChar) == true || char.IsLetterOrDigit(e.KeyChar) == true || e.KeyChar == '_'))
+            if (!(char.IsControl(e.KeyChar) == true || char.IsLetterOrDigit(e.KeyChar) == true || e.KeyChar == '_') || (txtVariableName.Text.Length==0 && char.IsDigit(e.KeyChar)))
             {
                 e.Handled = true;
             }

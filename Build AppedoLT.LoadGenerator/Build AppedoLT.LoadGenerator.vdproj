@@ -421,8 +421,8 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:APPEDO_LT_LOAD_GENERATOR"
-        "ProductCode" = "8:{B53C4B0C-33F4-4DB8-994F-E3D5096CD4C1}"
-        "PackageCode" = "8:{577C961B-5095-45C8-B240-57DE68270FC6}"
+        "ProductCode" = "8:{FCF41222-8389-4AD6-8FDA-99FBD68FFCE6}"
+        "PackageCode" = "8:{392FF463-D4FF-4CC3-AE49-B193FAFDA4B7}"
         "UpgradeCode" = "8:{FDF822FA-D49E-4533-BE33-97FB08C152F3}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"

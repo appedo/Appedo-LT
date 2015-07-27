@@ -42,7 +42,7 @@ namespace AppedoLT
             try
             {
                 tvRequest.Nodes.Clear();
-
+                
                 foreach (string info in Directory.GetDirectories(".\\Scripts"))
                 {
                     DirectoryInfo dicinfo = new DirectoryInfo(info);
@@ -63,6 +63,7 @@ namespace AppedoLT
                                 RadTreeNode containerNode = new RadTreeNode();
                                 containerNode.Text = container.Attributes["name"].Value;
                                 containerNode.Tag = container;
+                                
                                 GetTreeNode(container, containerNode);
                                 vuScriptNode.Nodes.Add(containerNode);
                             }
@@ -920,11 +921,30 @@ namespace AppedoLT
                 {
                     for (; tvRequest.SelectedNodes.Count > 0; )
                     {
-                        RadTreeNode parentNode = new RadTreeNode();
-                        if (tvRequest.SelectedNode.Parent != null) parentNode = tvRequest.SelectedNode.Parent;
-                        ((XmlNode)tvRequest.SelectedNode.Tag).ParentNode.RemoveChild((XmlNode)tvRequest.SelectedNode.Tag);
-                        tvRequest.SelectedNode.Remove();
-                        isDeleteHapped = true;
+
+                        if (tvRequest.SelectedNode.Level == 0)
+                        {
+                            RadTreeNode parentNode = new RadTreeNode();
+                            if (tvRequest.SelectedNode != null)
+                            {
+
+                                DeleteScript((VuscriptXml)tvRequest.SelectedNode.Tag);
+                                tvRequest.SelectedNode.Remove();
+                                this.pnlMaster.Controls.Clear();
+                            }
+                        }
+                        else
+                        {
+                            RadTreeNode parentNode = new RadTreeNode();
+                            if (tvRequest.SelectedNode != null)
+                            {
+                                if (tvRequest.SelectedNode.Parent != null) parentNode = tvRequest.SelectedNode.Parent;
+                                ((XmlNode)tvRequest.SelectedNode.Tag).ParentNode.RemoveChild((XmlNode)tvRequest.SelectedNode.Tag);
+                                tvRequest.SelectedNode.Remove();
+                                isDeleteHapped = true;
+                                this.pnlMaster.Controls.Clear();
+                            }
+                        }
                     }
                     this.pnlMaster.Controls.Clear();
                 }
@@ -1071,8 +1091,14 @@ namespace AppedoLT
                                 insertAfterToolStripMenuItem.Visible = insertBeforeToolStripMenuItem.Visible = insertAsChildToolStripMenuItemChild.Visible = deleteToolStripMenuItem.Visible = true;
                             }
                             break;
-                        case "page":
                         case "request":
+                            {
+                                if (((XmlNode)tvRequest.SelectedNode.Tag).ParentNode.Name != "page") insertAfterToolStripMenuItem.Visible = insertBeforeToolStripMenuItem.Visible = true;
+                                deleteToolStripMenuItem.Visible = true;
+
+                            }
+                            break;
+                        case "page":
                         case "delay":
                         case "javascript":
                         case "log":
@@ -1080,8 +1106,7 @@ namespace AppedoLT
                         case "endtransaction":
                         case "if":
                             {
-                                if (((XmlNode)tvRequest.SelectedNode.Tag).ParentNode.Name != "page")
-                                    insertAfterToolStripMenuItem.Visible = insertBeforeToolStripMenuItem.Visible = deleteToolStripMenuItem.Visible = true;
+                                if (((XmlNode)tvRequest.SelectedNode.Tag).ParentNode.Name != "page") insertAfterToolStripMenuItem.Visible = insertBeforeToolStripMenuItem.Visible = deleteToolStripMenuItem.Visible = true;
 
                             }
                             break;

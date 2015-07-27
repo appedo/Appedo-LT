@@ -569,8 +569,8 @@ namespace AppedoLT.BusinessLogic
                         {
                             variables = EvaluteExpTcp(request);
                         }
-                        Connection con = new Connection(request.Attributes["serverip"].Value, int.Parse(request.Attributes["port"].Value));
-
+                        Connection con=new Connection(request.Attributes["serverip"].Value, int.Parse(request.Attributes["port"].Value));
+                       
                         req = new TcpRequest(request, con, false);
                         req.Variables = variables;
                         req.GetResponse();
@@ -679,10 +679,10 @@ namespace AppedoLT.BusinessLogic
 
                                     #endregion
                                 }
-                                // else
-                                //  {
-                                LockResponseTime(req.RequestNode.Attributes["id"].Value, req.RequestNode.Attributes["Path"] == null ? req.RequestName : req.RequestNode.Attributes["Path"].Value, req.StartTime, req.EndTime, req.ResponseTime, req.ResponseSize, req.ResponseCode.ToString());
-                                //  }
+                               // else
+                              //  {
+                                    LockResponseTime(req.RequestNode.Attributes["id"].Value, req.RequestNode.Attributes["Path"] == null ? req.RequestName : req.RequestNode.Attributes["Path"].Value, req.StartTime, req.EndTime, req.ResponseTime, req.ResponseSize, req.ResponseCode.ToString());
+                              //  }
 
                                 #region SecondaryReqEnable
                                 if (Convert.ToBoolean(_vuScriptXml.Attributes["dynamicreqenable"].Value) == true && !(_browserCache == true && _index > 1))
