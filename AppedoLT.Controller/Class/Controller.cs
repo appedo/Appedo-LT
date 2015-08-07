@@ -199,6 +199,7 @@ namespace AppedoLTController
                 }
                 catch (Exception ex)
                 {
+                    ExceptionHandler.WritetoEventLog(ex.StackTrace + ex.Message);   
                     try
                     {
                         Thread.Sleep(10000);

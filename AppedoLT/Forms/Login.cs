@@ -7,6 +7,7 @@ namespace AppedoLT
 {
     public partial class frmLogin : Form
     {
+
         private string _userid = string.Empty;
 
         public string Userid { get { return _userid; } set { _userid = value; } }
@@ -34,6 +35,10 @@ namespace AppedoLT
                     if (respose.Operation.ToLower() == "ok" && respose.Header["success"] == "1")
                     {
                         _userid = respose.Header["userid"];
+                        Session.UserID = _userid;
+                        Session.MachineUniqueID = respose.Header["machineid"];
+                        Session.UserCount = Convert.ToInt32(respose.Header["usercount"]);
+                        if (Session.UserCount > 0) Session.IsLicenseValid =true;
                         Design.mnuiLogin.Text = "&Logout";
                     }
                     else
@@ -75,5 +80,6 @@ namespace AppedoLT
             if (errLogin.GetError(txtEmailid) != string.Empty || errLogin.GetError(txtPassword) != string.Empty) return false;
             else return true;
         }
+
     }
 }

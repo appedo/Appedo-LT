@@ -140,25 +140,13 @@ namespace AppedoLT
 
             try
             {
-                if (Constants.GetInstance().UserId == string.Empty)
-                {
-                    frmLogin login = new frmLogin();
-                    if (login.ShowDialog() == DialogResult.OK && login.Userid != string.Empty)
-                    {
-                        Constants.GetInstance().UserId = login.Userid;
-                    }
-                    else
-                    {
-                        return;
-                    }
-                }
-                if (Constants.GetInstance().UserId != string.Empty)
+                if (Session.Login())
                 {
                     ValidateVariableVersion();
                     TrasportData respose = null;
                     Dictionary<string, string> header = new Dictionary<string, string>();
 
-                    header.Add("userid", Constants.GetInstance().UserId);
+                    header.Add("userid", Session.UserID);
                     Trasport server = new Trasport(Constants.GetInstance().UploadIPAddress, Constants.GetInstance().UploadPort);
                     UploadFile(server, new TrasportData("VARIABLES", GetVariableXmlWithContent(), header), "Variables");
                     respose = server.Receive();
@@ -171,7 +159,7 @@ namespace AppedoLT
                     string id = scriptNode.Attributes["id"].Value;
                     string name = scriptNode.Attributes["name"].Value;
                     string zipFilePath=MakeScriptZip(id, name);
-                    header.Add("userid", Constants.GetInstance().UserId);
+                    header.Add("userid", Session.UserID);
                     header.Add("scriptname", name);
                     UploadFile(server, new TrasportData("VUSCRIPT", header, zipFilePath), name);
                     server.Receive();
@@ -295,21 +283,8 @@ namespace AppedoLT
         {
             try
             {
-                if (Constants.GetInstance().UserId == string.Empty)
+                if (Session.Login())
                 {
-                    frmLogin login = new frmLogin();
-                    if (login.ShowDialog() == DialogResult.OK && login.Userid != string.Empty)
-                    {
-                        Constants.GetInstance().UserId = login.Userid;
-                    }
-                    else
-                    {
-                        return;
-                    }
-                }
-                if (Constants.GetInstance().UserId != string.Empty)
-                {
-                 
                     TrasportData respose = null;
                     Dictionary<string, string> header = new Dictionary<string, string>();
                     Trasport  server = new Trasport(Constants.GetInstance().UploadIPAddress, Constants.GetInstance().UploadPort);
@@ -318,7 +293,7 @@ namespace AppedoLT
                     XmlNode scriptNode = vuscriptXML.Doc.SelectSingleNode("//vuscript");
                     string id = scriptNode.Attributes["id"].Value;
                     string name = scriptNode.Attributes["name"].Value;
-                    header.Add("userid", Constants.GetInstance().UserId);
+                    header.Add("userid", Session.UserID);
                     header.Add("scriptname", name);
                     string zipFilePath = MakeScriptZip(id, name);
                     UploadFile(server, new TrasportData("VUSCRIPT", header, zipFilePath), name);

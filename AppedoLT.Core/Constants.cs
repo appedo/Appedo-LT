@@ -36,7 +36,7 @@ namespace AppedoLT.Core
         private string _password = "ss1t_l1c@ns@_k@y_p@ssw0rd";
         private string _salt = "ss1t_S@1t";
         private string _iv = "ssit1234products";
-        private string _MACAddress = string.Empty;
+        private string _MachineUniqueID = string.Empty;
         private string _executingAssplyFolder = string.Empty;
         private string _certificatePath = string.Empty;
         private string _dataFolderPath = string.Empty;
@@ -59,7 +59,6 @@ namespace AppedoLT.Core
         public string ReportPageSummayReportFileName = "report_pagesummaryreport.csv";
         public string ReportContainerSummayReportFileName = "report_containersummaryreport.csv";
         public string ReportTransactionSummayReportFileName = "report_transactionsummaryreport.csv";
-        public string UserId = string.Empty;
 
         public List<string> HttpPostContentType = null;
         public List<string> HttpMethods = null;
@@ -200,23 +199,23 @@ namespace AppedoLT.Core
         {
             get
             {
-                if (_MACAddress == string.Empty)
+                if (_MachineUniqueID == string.Empty)
                 {
                     try
                     {
-                        _MACAddress = String.Empty;
+                        _MachineUniqueID = String.Empty;
                         System.Management.ManagementClass mc = new System.Management.ManagementClass("Win32_Processor");
                         System.Management.ManagementObjectCollection moc = mc.GetInstances();
 
                         foreach (System.Management.ManagementObject mo in moc)
                         {
-                            _MACAddress = mo.Properties["ProcessorId"].Value.ToString();
+                            _MachineUniqueID = mo.Properties["ProcessorId"].Value.ToString();
                         }
                         mc = new System.Management.ManagementClass("Win32_BIOS");
                         moc = mc.GetInstances();
                         foreach (System.Management.ManagementObject mo in moc)
                         {
-                            _MACAddress = _MACAddress + "_" + mo.Properties["SerialNumber"].Value.ToString();
+                            _MachineUniqueID = _MachineUniqueID + "_" + mo.Properties["SerialNumber"].Value.ToString();
                         }
 
                     }
@@ -224,11 +223,11 @@ namespace AppedoLT.Core
                     {
                         ExceptionHandler.WritetoEventLog(ex.StackTrace + Environment.NewLine + ex.Message);
                     }
-                    return _MACAddress;
+                    return _MachineUniqueID;
                 }
                 else
                 {
-                    return _MACAddress;
+                    return _MachineUniqueID;
                 }
             }
             private set { }
@@ -996,7 +995,45 @@ namespace AppedoLT.Core
             stream1.Seek(0, SeekOrigin.Begin);
             return stream1.ToArray();
         }
-      
+
+        public string MachineUniqueID
+        {
+            get
+            {
+                if (_MachineUniqueID == string.Empty)
+                {
+                    try
+                    {
+                        _MachineUniqueID = String.Empty;
+                        System.Management.ManagementClass mc = new System.Management.ManagementClass("Win32_Processor");
+                        System.Management.ManagementObjectCollection moc = mc.GetInstances();
+
+                        foreach (System.Management.ManagementObject mo in moc)
+                        {
+                            _MachineUniqueID = mo.Properties["ProcessorId"].Value.ToString();
+                        }
+                        mc = new System.Management.ManagementClass("Win32_BIOS");
+                        moc = mc.GetInstances();
+                        foreach (System.Management.ManagementObject mo in moc)
+                        {
+                            _MachineUniqueID = _MachineUniqueID + "_" + mo.Properties["SerialNumber"].Value.ToString();
+                        }
+
+                    }
+                    catch (Exception ex)
+                    {
+                        ExceptionHandler.WritetoEventLog(ex.StackTrace + Environment.NewLine + ex.Message);
+                    }
+                    return _MachineUniqueID;
+                }
+                else
+                {
+                    return _MachineUniqueID;
+                }
+            }
+            private set { }
+        }
+
         public DateTime ConvertFromUnixTimestamp(double timestamp)
         {
             DateTime origin = new DateTime(1970, 1, 1, 0, 0, 0, 0);

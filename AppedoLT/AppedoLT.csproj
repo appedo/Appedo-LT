@@ -407,6 +407,7 @@
     <Compile Include="Design\UserControls\UCTime.Designer.cs">
       <DependentUpon>UCTime.cs</DependentUpon>
     </Compile>
+    <Compile Include="Class\Session.cs" />
     <Content Include="error.xslt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

@@ -295,7 +295,7 @@ namespace AppedoLTLoadGenerator
                             if (run.TotalCreatedUser != 0 && run.TotalCreatedUser == run.TotalCompletedUser && run.IsCompleted == 1)
                             {
 
-                                ni.Text = "Run completed" + System.Environment.NewLine + "Created: " + run.TotalCreatedUser.ToString() + Environment.NewLine + "Completed: " + run.TotalCompletedUser.ToString() + Environment.NewLine + timer.Elapsed.ToString(@"dd\.hh\:mm\:ss");
+                                ni.Text = "Run completed" + System.Environment.NewLine + "Created: " + run.TotalCreatedUser.ToString() + Environment.NewLine + "Completed: " + run.TotalCompletedUser.ToString() + Environment.NewLine + timer.Elapsed.ToString(@"dd\.hh\:mm\:ss")+Environment.NewLine+"Time: "+DateTime.Now.ToString();
                                 break;
                             }
                             else

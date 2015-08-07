@@ -462,6 +462,33 @@ namespace AppedoLT
                                             }
                                             #endregion
                                         }
+                                        else if (isWebServiceRequest == true && requestContentType.Contains("application/x-www-form-urlencoded"))
+                                        {
+                                            parameters.Attributes.Append(_common.GetAttribute(_uvScript.OwnerDocument, "type", "form"));
+
+                                            #region Postdata
+                                            foreach (string post in postData.Split('&'))
+                                            {
+                                                XmlNode param = _uvScript.OwnerDocument.CreateElement("Param");
+                                                string[] nameAndValue = post.Split('=');
+                                                if (nameAndValue.Length == 1)
+                                                {
+                                                    param.Attributes.Append(_common.GetAttribute(_uvScript.OwnerDocument, "name", System.Web.HttpUtility.UrlDecode(nameAndValue[0])));
+                                                    param.Attributes.Append(_common.GetAttribute(_uvScript.OwnerDocument, "value", string.Empty));
+                                                    param.Attributes.Append(_common.GetAttribute(_uvScript.OwnerDocument, "rawname", nameAndValue[0]));
+                                                    param.Attributes.Append(_common.GetAttribute(_uvScript.OwnerDocument, "rawvalue", string.Empty));
+                                                }
+                                                else if (nameAndValue.Length == 2)
+                                                {
+                                                    param.Attributes.Append(_common.GetAttribute(_uvScript.OwnerDocument, "name", System.Web.HttpUtility.UrlDecode(nameAndValue[0])));
+                                                    param.Attributes.Append(_common.GetAttribute(_uvScript.OwnerDocument, "value", System.Web.HttpUtility.UrlDecode(nameAndValue[1])));
+                                                    param.Attributes.Append(_common.GetAttribute(_uvScript.OwnerDocument, "rawname", nameAndValue[1]));
+                                                    param.Attributes.Append(_common.GetAttribute(_uvScript.OwnerDocument, "rawvalue", string.Empty));
+                                                }
+                                                parameters.AppendChild(param);
+                                            }
+                                            #endregion
+                                        }
                                         else if (isWebServiceRequest == true || requestContentType.ToLower().StartsWith("text/") || requestContentType.ToLower().StartsWith("application/json") || requestContentType == string.Empty || requestContentType.ToLower().Contains("/soap"))
                                         {
                                             parameters.Attributes.Append(_common.GetAttribute(_uvScript.OwnerDocument, "type", "text"));
@@ -485,7 +512,7 @@ namespace AppedoLT
                                                 param.Attributes.Append(_common.GetAttribute(_uvScript.OwnerDocument, "rawvalue", postData));
                                                 parameters.AppendChild(param);
                                             }
-                                            #endregion
+                                                #endregion
                                         }
                                         else //if (requestContentType.Contains("application/x-www-form-urlencoded"))
                                         {

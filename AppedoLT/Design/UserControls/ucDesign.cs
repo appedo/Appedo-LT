@@ -1149,24 +1149,12 @@ namespace AppedoLT
         {
             try
             {
-                if (Constants.GetInstance().UserId == string.Empty)
-                {
-                    frmLogin login = new frmLogin();
-                    if (login.ShowDialog() == DialogResult.OK && login.Userid != string.Empty)
-                    {
-                        Constants.GetInstance().UserId = login.Userid;
-                    }
-                    else
-                    {
-                        return;
-                    }
-                }
-                if (Constants.GetInstance().UserId != string.Empty)
+                if (Session.Login())
                 {
                     TrasportData respose = null;
                     Dictionary<string, string> header = new Dictionary<string, string>();
                     string scripts = string.Empty;
-                    header.Add("userid", Constants.GetInstance().UserId);
+                    header.Add("userid", Session.UserID);
                     Trasport server = new Trasport(Constants.GetInstance().UploadIPAddress, Constants.GetInstance().UploadPort);
                     server.Send(new TrasportData("AVAILABLESCRIPTS", string.Empty, header));
                     respose = server.Receive();
@@ -1175,7 +1163,6 @@ namespace AppedoLT
                     frmScriptNameList frm = new frmScriptNameList(GetAvailableScript(), scripts, this);
                     frm.ShowDialog();
                 }
-
             }
             catch (Exception ex)
             {

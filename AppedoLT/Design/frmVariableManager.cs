@@ -529,27 +529,14 @@ namespace AppedoLT
         {
             try
             {
-
-                if (Constants.GetInstance().UserId == string.Empty)
-                {
-                    frmLogin login = new frmLogin();
-                    if (login.ShowDialog() == DialogResult.OK && login.Userid != string.Empty)
-                    {
-                        Constants.GetInstance().UserId = login.Userid;
-                    }
-                    else
-                    {
-                        return;
-                    }
-                }
-                if (Constants.GetInstance().UserId != string.Empty)
+                if (Session.Login())
                 {
                     ValidateVariableVersion();
 
                     TrasportData respose = null;
                     Dictionary<string, string> header = new Dictionary<string, string>();
 
-                    header.Add("userid", Constants.GetInstance().UserId);
+                    header.Add("userid", Session.UserID);
                     Trasport server = new Trasport(Constants.GetInstance().UploadIPAddress, Constants.GetInstance().UploadPort);
                     UploadFile(server, new TrasportData("VARIABLES", GetVariableXmlWithContent(), header));
                    
@@ -649,20 +636,7 @@ namespace AppedoLT
         {
             try
             {
-
-                if (Constants.GetInstance().UserId == string.Empty)
-                {
-                    frmLogin login = new frmLogin();
-                    if (login.ShowDialog() == DialogResult.OK && login.Userid != string.Empty)
-                    {
-                        Constants.GetInstance().UserId = login.Userid;
-                    }
-                    else
-                    {
-                        return;
-                    }
-                }
-                if (Constants.GetInstance().UserId != string.Empty)
+                if (Session.Login())
                 {
                     FolderBrowserDialog folderBrowserDialog = new FolderBrowserDialog();
                     folderBrowserDialog.Description = "Please select folder to store data file(s)";
@@ -673,7 +647,7 @@ namespace AppedoLT
                         TrasportData respose = null;
                         Dictionary<string, string> header = new Dictionary<string, string>();
 
-                        header.Add("userid", Constants.GetInstance().UserId);
+                        header.Add("userid", Session.UserID);
                         Trasport server = new Trasport(Constants.GetInstance().UploadIPAddress, Constants.GetInstance().UploadPort);
                         server.Send(new TrasportData("AVAILABLEVARIABLES", string.Empty, header));
                         respose = server.Receive();
@@ -684,7 +658,7 @@ namespace AppedoLT
                         if (conflictName.Count > 0)
                         {
                             StringBuilder msg = new StringBuilder();
-                            msg.AppendLine("Following varialble(s) are available on your local machine.");
+                            msg.AppendLine("Following variable(s) are available on your local machine.");
                             foreach (string name in conflictName)
                             {
                                 msg.AppendLine(name);
@@ -706,7 +680,7 @@ namespace AppedoLT
                         Marge(_variableXml.doc, doc, folderBrowserDialog.SelectedPath);
                         _variableXml.Save();
                         LoadTree();
-                        MessageBox.Show("Downloaded succesfully.");
+                        MessageBox.Show("Downloaded successfully.");
                         if (File.Exists(tempFilePath))
                         {
                             try

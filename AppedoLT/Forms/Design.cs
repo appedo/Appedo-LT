@@ -351,16 +351,54 @@ namespace AppedoLT
 
             if (userCount > _constants.MaxUserCount)
             {
-                MessageBox.Show("Current license only allow max " + _constants.MaxUserCount + " users.");
-                return false;
+                if(Session.Login())
+                {
+                    if (Session.IsLicenseValid == true)
+                    {
+                        if (userCount > Session.UserCount)
+                        {
+                            MessageBox.Show("Current license only allow max " + Session.UserCount + " users.");
+                            return false;
+                        }
+                        else
+                        {
+                            if (Session.MachineUniqueID == string.Empty && Session.RegisterMachine() == false)
+                            {
+                                MessageBox.Show("Unable to register machine. Please contact Appedo support.");
+                                return false;
+                            }
+                            else
+                            {
+                                if (Session.MachineUniqueID == _constants.MachineUniqueID)
+                                {
+                                    return true;
+                                }
+                                else
+                                {
+                                    MessageBox.Show("AppedoLT already registered in another device. Please contact Appedo support.");
+                                    return false;
+                                }
+                            }
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("License has expired. Please contact Appedo support.");
+                        return false;
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Current license only allow max " + _constants.MaxUserCount + " users.");
+                    return false;
+                }
+               
             }
             else
             {
                 return true;
             }
         }
-
-
 
         public XmlDocument GetScenarioForRun(string scenarioid, string reportName, int totalLoadGen, int currentLoadGenid, bool enableipspoofing)
         {
@@ -636,7 +674,7 @@ namespace AppedoLT
             }
             else
             {
-                if (ValidateLicence((XmlNode)tvScenarios.SelectedNode.Tag) == true)
+                if ( ValidateLicence((XmlNode)tvScenarios.SelectedNode.Tag) == true)
                 {
                     try
                     {
@@ -1344,23 +1382,14 @@ namespace AppedoLT
         {
             if (mnuiLogin.Text == "&Login")
             {
-                if (_constants.UserId == string.Empty)
+                if (Session.Login())
                 {
-                    frmLogin login = new frmLogin();
-                    if (login.ShowDialog() == DialogResult.OK && login.Userid != string.Empty)
-                    {
-                        _constants.UserId = login.Userid;
-                        mnuiLogin.Text = "&Logout";
-                    }
-                    else
-                    {
-                        return;
-                    }
+                    mnuiLogin.Text = "&Logout";
                 }
             }
             else
             {
-                _constants.UserId = string.Empty;
+                Session.LogOut();
                 mnuiLogin.Text = "&Login";
             }
         }

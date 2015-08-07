@@ -15,7 +15,7 @@ namespace AppedoLT
         List<string> _availableScript = null;
         ucDesign _parent = null;
         int selectCount = 0;
-        string userid = Constants.GetInstance().UserId;
+        string userid =Session.UserID;
         string scriptResourcePath = Constants.GetInstance().ExecutingAssemblyLocation + "\\Scripts\\";
         public frmScriptNameList(List<string> availableScript,string scripts,ucDesign parent)
         {
