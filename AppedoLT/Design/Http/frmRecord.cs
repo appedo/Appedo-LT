@@ -5,11 +5,24 @@ using System.Threading;
 using AppedoLT.Core;
 namespace AppedoLT
 {
+    /// <summary>
+    /// Form used to give UI during recoding. Used to give container name.
+    /// 
+    /// Author: Rasith
+    /// </summary>
     public partial class frmRecord : Telerik.WinControls.UI.RadForm
     {
         Record rd = null;
         Design frm = null;
         XmlNode _vuscript;
+
+
+        /// <summary>
+        /// Create frmRecord object with parent form, script name, script node.
+        /// </summary>
+        /// <param name="_frm">Parent form</param>
+        /// <param name="vuName">Script name</param>
+        /// <param name="_vuScript">xml node to store recoded transactions</param>
         public frmRecord(Design _frm, string vuName, XmlNode _vuScript)
         {
             try
@@ -30,6 +43,12 @@ namespace AppedoLT
             }
 
         }
+
+        /// <summary>
+        /// Create frmRecord object with parent form, script node.
+        /// </summary>
+        /// <param name="_frm">Parent form</param>
+        /// <param name="vuscript">xml node to store recoded transactions</param>
         public frmRecord(Design _frm,XmlNode vuscript)
         {
             InitializeComponent();
@@ -42,11 +61,22 @@ namespace AppedoLT
             rd.Start();
 
         }
+
+        /// <summary>
+        /// To stop recoding.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnStop_Click(object sender, EventArgs e)
         {
             this.Close();
         }
 
+        /// <summary>
+        /// During form closing, We have to enable parent form view
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void frmRecord_FormClosing(object sender, FormClosingEventArgs e)
         {
             rd.Stop();
@@ -54,14 +84,5 @@ namespace AppedoLT
             frm.Visible = true; 
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            //string result = Utility.SerializeObjectToXML(Utility.GetFileContent(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)+"\\Repository.xml"),rd.loadscenario);
-        }
-
-        private void ddlParentContainer_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
     }
 }

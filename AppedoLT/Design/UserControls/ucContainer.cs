@@ -6,6 +6,11 @@ using AppedoLT.Core;
 
 namespace AppedoLT
 {
+    /// <summary>
+    /// User control used to get container name and update in script xml.
+    /// 
+    /// Author: Rasith
+    /// </summary>
     public partial class ucContainer : UserControl
     {
         RadTreeNode _treeNode = null;
@@ -21,6 +26,12 @@ namespace AppedoLT
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Used to created ucContainer object.
+        /// </summary>
+        /// <param name="xmlNode">Container xml node</param>
+        /// <param name="treeNode">Tree node from UI</param>
+        /// <returns></returns>
         public ucContainer GetControl(XmlNode xmlNode, RadTreeNode treeNode)
         {
             _treeNode = treeNode;
@@ -32,10 +43,6 @@ namespace AppedoLT
             this.Dock = DockStyle.Fill;
             return this;
         }
-        private void txt_Validated(object sender, EventArgs e)
-        {
-           
-        }
 
         private void txtContainer_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
@@ -43,6 +50,7 @@ namespace AppedoLT
             {
                 RadTextBox txt = (RadTextBox)sender;
                 XmlAttribute attr = (XmlAttribute)txt.Tag;
+                //If there is any change in container name, We need to update in container xml node.
                 if (txt.Text != attr.Value)
                 {
                     XmlNode vuscipt = Constants.GetInstance().FindThirdRoot((XmlNode)attr.OwnerElement);

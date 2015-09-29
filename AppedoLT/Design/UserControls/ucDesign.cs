@@ -10,6 +10,12 @@ using Telerik.WinControls.UI;
 
 namespace AppedoLT
 {
+
+    /// <summary>
+    /// Used to give design UI.
+    /// 
+    /// Author: Rasith
+    /// </summary>
     public partial class ucDesign : UserControl
     {
         private bool isDeleteHapped = false;
@@ -18,6 +24,10 @@ namespace AppedoLT
         private Color _treeNodeDefaultColor;
         private static ucDesign _instance;
 
+        /// <summary>
+        /// To implement single instance class
+        /// </summary>
+        /// <returns></returns>
         public static ucDesign GetInstance()
         {
             if (_instance == null)
@@ -37,12 +47,16 @@ namespace AppedoLT
 
         #region Design
 
+        /// <summary>
+        /// Load all script into tree view
+        /// </summary>
         public void LoadTreeItem()
         {
             try
             {
                 tvRequest.Nodes.Clear();
                 
+                //Read all script xml one by one
                 foreach (string info in Directory.GetDirectories(".\\Scripts"))
                 {
                     DirectoryInfo dicinfo = new DirectoryInfo(info);
@@ -82,6 +96,11 @@ namespace AppedoLT
             }
         }
 
+        /// <summary>
+        /// To create tree for each element in vuscript xml.
+        /// </summary>
+        /// <param name="ContainerNode"></param>
+        /// <param name="parentNode"></param>
         public void GetTreeNode(XmlNode ContainerNode, RadTreeNode parentNode)
         {
             foreach (XmlNode action in ContainerNode.ChildNodes)
@@ -1171,6 +1190,10 @@ namespace AppedoLT
 
         }
 
+        /// <summary>
+        /// To get available scripts
+        /// </summary>
+        /// <returns></returns>
         List<string> GetAvailableScript()
         {
             List<string> list = new List<string>();

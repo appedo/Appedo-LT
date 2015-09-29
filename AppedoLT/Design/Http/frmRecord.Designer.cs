@@ -87,7 +87,6 @@ namespace AppedoLT
             this.ddlParentContainer.TabIndex = 5;
             this.ddlParentContainer.TabStop = false;
             this.ddlParentContainer.ThemeName = "Telerik";
-            this.ddlParentContainer.SelectedIndexChanged += new System.EventHandler(this.ddlParentContainer_SelectedIndexChanged);
             // 
             // ddlInitialize
             // 

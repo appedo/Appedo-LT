@@ -7,6 +7,11 @@ using System.Xml;
 
 namespace AppedoLT
 {
+    /// <summary>
+    /// Used to create vuscript.xml for each script.
+    /// 
+    /// Author: Rasith
+    /// </summary>
     public class VuscriptXml
     {
         #region The private fields
@@ -29,6 +34,11 @@ namespace AppedoLT
 
         #region The public methods
 
+        /// <summary>
+        /// Create attribute in vuscript.xml for give name and value.
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="value"></param>
         public XmlAttribute GetAttribute(string name, string value)
         {
             XmlAttribute att = _doc.CreateAttribute(name);
@@ -36,6 +46,10 @@ namespace AppedoLT
             return att;
         }
 
+        /// <summary>
+        /// Create or open script file(vuscript.xml)
+        /// </summary>
+        /// <param name="id">Script id</param>
         public VuscriptXml(string id)
         {
             try
@@ -64,6 +78,11 @@ namespace AppedoLT
             }
         }
 
+       /// <summary>
+        /// Create or open script file(vuscript.xml)
+       /// </summary>
+       /// <param name="id">Script id</param>
+       /// <param name="content"> script content</param>
         public VuscriptXml(string id, string content)
         {
             try
@@ -91,6 +110,10 @@ namespace AppedoLT
             }
         }
 
+        /// <summary>
+        /// Save script file
+        /// </summary>
+        /// <param name="deleteUnwantedResource">If it true, it will delete unwanted resource</param>
         public void Save(bool deleteUnwantedResource = true)
         {
             if (deleteUnwantedResource == true)
@@ -118,6 +141,10 @@ namespace AppedoLT
             _doc.Save(_filePath);
         }
 
+        /// <summary>
+        /// Get list  of available scripts
+        /// </summary>
+        /// <returns>Available script list</returns>
         public static List<string> GetScriptName()
         {
             List<string> scritpNames = new List<string>();
@@ -142,6 +169,10 @@ namespace AppedoLT
 
         }
 
+        /// <summary>
+        /// Get list  of available script id with name
+        /// </summary>
+        /// <returns>Available script list</returns>
         public static Dictionary<string, string> GetScriptidAndName()
         {
             Dictionary<string, string> scritpNames = new Dictionary<string, string>();
@@ -165,6 +196,10 @@ namespace AppedoLT
             return scritpNames;
         }
 
+        /// <summary>
+        /// Get list  of available script name with id
+        /// </summary>
+        /// <returns></returns>
         public static Dictionary<string, string> GetScriptNameAndId()
         {
             Dictionary<string, string> scritpNames = new Dictionary<string, string>();

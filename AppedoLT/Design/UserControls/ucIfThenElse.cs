@@ -1,17 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
+﻿using AppedoLT.Core;
+using System;
 using System.Windows.Forms;
 using System.Xml;
 using Telerik.WinControls.UI;
-using AppedoLT.Core;
 
 namespace AppedoLT
 {
+    /// <summary>
+    /// User control used to set IfThenElse condition.
+    /// 
+    ///  Author: Rasith
+    /// </summary>
     public partial class ucIfThenElse : UserControl
     {
         RadTreeNode _treeNode = null;
@@ -27,6 +26,12 @@ namespace AppedoLT
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Used to created ucIfThenElse object.
+        /// </summary>
+        /// <param name="xmlNode">IfThenElse xml node</param>
+        /// <param name="treeNode">Tree node from UI</param>
+        /// <returns></returns>
         public ucIfThenElse GetControl(XmlNode xmlNode, RadTreeNode treeNode)
         {
             _treeNode = treeNode;
@@ -42,6 +47,7 @@ namespace AppedoLT
             {
                 RadTextBox txt = (RadTextBox)sender;
                 XmlAttribute attr = (XmlAttribute)txt.Tag;
+                //If there is any change in IfThenElse value, We need to update in IfThenElse xml node.
                 if (txt.Text != attr.Value)
                 {
                     if (attr.Name == "name" && _treeNode != null) _treeNode.Text = txt.Text;

@@ -12,6 +12,11 @@ using AppedoLT.Core;
 
 namespace AppedoLT
 {
+    /// <summary>
+    /// User control used to set Log.
+    /// 
+    /// Author: Rasith
+    /// </summary>
     public partial class ucLog : UserControl
     {
         RadTreeNode _treeNode =null;
@@ -27,6 +32,13 @@ namespace AppedoLT
             InitializeComponent();
             
         }
+
+        /// <summary>
+        /// Used to created ucLog object.
+        /// </summary>
+        /// <param name="xmlNode">Log xml node</param>
+        /// <param name="treeNode">Tree node from UI</param>
+        /// <returns></returns>
         public ucLog GetControl(XmlNode log,RadTreeNode treeNode)
         {
             _treeNode = treeNode;
@@ -38,12 +50,14 @@ namespace AppedoLT
             this.Dock = DockStyle.Fill;
             return this;
         }
+
         private void txt_Validated(object sender, EventArgs e)
         {
             try
             {
                 RadTextBox txt = (RadTextBox)sender;
                 XmlAttribute attr = (XmlAttribute)txt.Tag;
+                //If there is any change in log value, We need to update in log xml node.
                 if (txt.Text != attr.Value)
                 {
                     if (attr.Name == "name" && _treeNode != null) _treeNode.Text = txt.Text;
@@ -56,9 +70,5 @@ namespace AppedoLT
             }
         }
 
-        private void lblDelay_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }

@@ -57,7 +57,6 @@
             this.lblDelay.Size = new System.Drawing.Size(69, 17);
             this.lblDelay.TabIndex = 17;
             this.lblDelay.Text = "Message :";
-            this.lblDelay.Click += new System.EventHandler(this.lblDelay_Click);
             // 
             // lblLogname
             // 

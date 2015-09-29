@@ -6,6 +6,11 @@ using System.Xml;
 
 namespace AppedoLT
 {
+    /// <summary>
+    /// Single instance class for VUScripts.xml file. It is used to store and retrive data from VUScripts.xml file.
+    /// 
+    /// Author: Rasith
+    /// </summary>
     class RepositoryXml
     {
         #region The static varialbles and methods
@@ -74,11 +79,20 @@ namespace AppedoLT
 
         #region The public methods
 
+        /// <summary>
+        /// Save content into VUScripts.xml after any change.
+        /// </summary>
         public void Save()
         {
             _doc.Save(Constants.GetInstance().ExecutingAssemblyLocation + "\\VUScripts.xml");
         }
 
+        /// <summary>
+        /// Create attribute in VUScripts.xml for give name and value.
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="value"></param>
+        /// <returns></returns>
         public XmlAttribute GetAttribute(string name, string value)
         {
             XmlAttribute att = _doc.CreateAttribute(name);
@@ -86,6 +100,10 @@ namespace AppedoLT
             return att;
         }
 
+        /// <summary>
+        /// To create scenario xml node.
+        /// </summary>
+        /// <returns></returns>
         public XmlNode CreateScenario()
         {
             XmlNode scenario = _doc.CreateElement("scenario");
@@ -93,6 +111,13 @@ namespace AppedoLT
             return scenario;
         }
 
+        /// <summary>
+        /// To create load gen info node.
+        /// </summary>
+        /// <param name="ipAddress"></param>
+        /// <param name="hostname"></param>
+        /// <param name="isDefaultZone"></param>
+        /// <param name="isChecked"></param>
         public void CreateLoadgen(string ipAddress, string hostname, bool isDefaultZone, bool isChecked)
         {
             if (_doc.SelectNodes("//loadgens").Count == 0)

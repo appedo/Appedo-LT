@@ -10,6 +10,11 @@ using System.Xml;
 
 namespace AppedoLT
 {
+    /// <summary>
+    /// Used to record tcp transactions.
+    /// 
+    /// Author: Rasith
+    /// </summary>
     public partial class frmTCPIPRecord : Telerik.WinControls.UI.RadForm
     {
         private TcpClient _tcpclnt =null;
@@ -22,6 +27,11 @@ namespace AppedoLT
         private Design _frm;
         Common _common = Common.GetInstance();
         
+        /// <summary>
+        /// To create frmTCPIPRecord object with parent form and script node
+        /// </summary>
+        /// <param name="frm">Parent form</param>
+        /// <param name="scriptNode">To store tcp transactions</param>
         public frmTCPIPRecord(Design frm,  XmlNode scriptNode)
         {
             InitializeComponent();
@@ -33,6 +43,11 @@ namespace AppedoLT
             _scriptNode.AppendChild(_containerNode);
         }
 
+        /// <summary>
+        /// If user click connect button.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnConnect_Click(object sender, EventArgs e)
         {
             try
@@ -68,6 +83,11 @@ namespace AppedoLT
             }
         }
 
+        /// <summary>
+        /// If user click send button
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnSend_Click(object sender, EventArgs e)
         {
             try
@@ -129,6 +149,12 @@ namespace AppedoLT
             this.Close();
         }
 
+        /// <summary>
+        /// Used to create new container node
+        /// 
+        /// </summary>
+        /// <param name="containername">Container name</param>
+        /// <returns>Container node</returns>
         private XmlNode CreateNewContainer(string containername)
         {
             XmlNode container = _scriptNode.OwnerDocument.CreateElement("container");
@@ -137,6 +163,20 @@ namespace AppedoLT
             return container;
         }
 
+        /// <summary>
+        /// To create new request xml node
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="serverip"></param>
+        /// <param name="port"></param>
+        /// <param name="requestcontent"></param>
+        /// <param name="responsecontent"></param>
+        /// <param name="requestsize"></param>
+        /// <param name="responsesize"></param>
+        /// <param name="responsetime"></param>
+        /// <param name="requestsizeconstant"></param>
+        /// <param name="responsesizeconstant"></param>
+        /// <returns></returns>
         private XmlNode CreateNewRequst(string name, string serverip, string port, string requestcontent, string responsecontent, string requestsize, string responsesize, string responsetime, bool requestsizeconstant,bool responsesizeconstant)
         {
             XmlNode req = _scriptNode.OwnerDocument.CreateElement("request");

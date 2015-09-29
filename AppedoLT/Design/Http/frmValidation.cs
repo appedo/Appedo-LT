@@ -13,6 +13,11 @@ using System.ComponentModel;
 
 namespace AppedoLT
 {
+    /// <summary>
+    /// Used to validate http script.
+    /// 
+    /// Author: Rasith
+    /// </summary>
     public partial class frmValidation : Telerik.WinControls.UI.RadForm
     {
         XmlNode _vuScript;
@@ -26,12 +31,15 @@ namespace AppedoLT
         int intCountRequest;
         Thread backgroundThread1;
         bool firstRun;
-
         BindingList<Log> _logObj = new BindingList<Log>();
         BindingList<RequestException> _errorObj = new BindingList<RequestException>();
 
-       
-
+        /// <summary>
+        /// To create validation form
+        /// </summary>
+        /// <param name="vuScript">Script to be validated</param>
+        /// <param name="script">Tree for UI</param>
+        /// <param name="_intCountRequest">Total no of request count</param>
         public frmValidation(XmlNode vuScript, RadTreeNode script, int _intCountRequest)
         {
             try
@@ -68,6 +76,10 @@ namespace AppedoLT
             }
         }
 
+        /// <summary>
+        /// Used to create vuser for validation. this vuser act as single user.
+        /// </summary>
+        /// <returns>Vuser(single user)</returns>
         private VUser GetUser()
         {
             VUser _vUSer = new VUser(1, DateTime.Now.ToString("dd_MMM_yyyy_hh_mm_ss"), "1", 1, 1, _vuScript, false, Request.GetIPAddress(1));
@@ -78,18 +90,30 @@ namespace AppedoLT
             return _vUSer;
         }
 
+        /// <summary>
+        /// During the validation, it will be called by vuser if log exist. 
+        /// </summary>
+        /// <param name="data">Log data</param>
         void _vUSer_OnLockLog(Log data)
         {
             _logObj.Add(data);
             btnViewLog.Text = "&Logs(" + _logObj.Count.ToString() + ")";
         }
 
+        /// <summary>
+        /// During the validation, it will be called by vuser if error exist. 
+        /// </summary>
+        /// <param name="data">Error data</param>
         void _vUSer_OnLockError(RequestException data)
         {
             _errorObj.Add(data);
             btnViewError.Text = "&Errors(" + _errorObj.Count.ToString() + ")";
         }
 
+        /// <summary>
+        /// During the validation, it will be called by vuser for each request. 
+        /// </summary>
+        /// <param name="data">Request and corresponding response</param>
         void _vUSer_OnLockRequestResponse(RequestResponse requestResponse)
         {
             try
@@ -115,10 +139,16 @@ namespace AppedoLT
             }
         }
 
+        /// <summary>
+        /// If user click validation button.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnValidate_Click(object sender, EventArgs e)
         {
             try
             {
+                //If it is first validation  or no other validation is running.
                 if (firstRun == true || _vUSer.WorkCompleted == true)
                 {
                     _errorObj.Clear();
@@ -142,6 +172,7 @@ namespace AppedoLT
                     btnValidate.Enabled = false;
 
                 }
+                    //Another validation is in progress.
                 else if (_vUSer.WorkCompleted == false)
                 {
                     /*thread.Resume();
@@ -156,6 +187,9 @@ namespace AppedoLT
             }
         }
 
+        /// <summary>
+        /// To clear all data in validation grid.
+        /// </summary>
         public void Clear()
         {
             lblPath.Text = string.Empty;
@@ -168,6 +202,11 @@ namespace AppedoLT
 
         }
 
+        /// <summary>
+        /// To notify validation completion
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void timer_tick(object sender, EventArgs e)
         {
             try
@@ -231,6 +270,10 @@ namespace AppedoLT
             }
         }
 
+        /// <summary>
+        /// To calculate avg response time after validation complete.
+        /// </summary>
+        /// <returns>Avg response time</returns>
         public double Avg()
         {
             double result = 0;
@@ -247,6 +290,10 @@ namespace AppedoLT
             return result;
         }
 
+        /// <summary>
+        /// Set tree node color as Red if there is any error.
+        /// </summary>
+        /// <param name="node">Nodes contain all request</param>
         private void SetTreeNodeError(RadTreeNode node)
         {
             try
@@ -460,6 +507,7 @@ namespace AppedoLT
                 ExceptionHandler.WritetoEventLog(ex.StackTrace + Environment.NewLine + ex.Message);
             }
         }
+
         private DataTable ConvertToTable(XmlNode root)
         {
             DataTable resut = new DataTable();
@@ -489,6 +537,7 @@ namespace AppedoLT
             }
             return resut;
         }
+
         private void SelectRequest(RadTreeNode node, string requestid)
         {
             if (node.Nodes.Count > 0)
@@ -503,11 +552,6 @@ namespace AppedoLT
                 node.Selected = true;
 
             }
-        }
-
-        private void lsvResult_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
         }
 
         private void btnValidate_EnabledChanged(object sender, EventArgs e)

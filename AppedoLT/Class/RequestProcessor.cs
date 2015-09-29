@@ -26,6 +26,13 @@ namespace AppedoLT
         DateTime EndTime { get; set; }
     }
 
+
+    /// <summary>
+    ///It is act as a proxy between the browser and server.
+    ///Read the http request from the browser then send that http request to server then receive response finally send response to browser.
+    ///
+    /// Author: Rasith
+    /// </summary>
     public class RequestProcessor : IRequestProcessor
     {
         #region The private fields
@@ -90,6 +97,9 @@ namespace AppedoLT
 
         #endregion
 
+        /// <summary>
+        /// Process request from browser.
+        /// </summary>
         public void Process()
         {
             try
@@ -170,6 +180,9 @@ namespace AppedoLT
             }
         }
 
+        /// <summary>
+        /// Send request to server and get response from server.
+        /// </summary>
         private void ServerProcess()
         {
             lock (_serverConnection)
@@ -177,6 +190,8 @@ namespace AppedoLT
                 SendRequest(_serverConnection.NetworkStream);
                 ResponseHeader = ReceiveResponseHeader(_serverConnection.NetworkStream);
                 GetResponseCode(ResponseHeader);
+
+                //if Response code  is 100 then read response from server. 
                 if (ResponseCode == 100 || ResponseHeader.StartsWith("HTTP") == false)
                 {
                     ResponseHeader = ReceiveResponseHeader(_serverConnection.NetworkStream);
@@ -188,6 +203,7 @@ namespace AppedoLT
                     }
                 }
 
+                //If response header is empty then we try to send request agein.
                 if (ResponseHeader == string.Empty)
                 {
                     _serverConnection.Close();
@@ -221,9 +237,16 @@ namespace AppedoLT
         }
 
         #region Browser Operations
+
+        /// <summary>
+        /// Receive request header from browser stream.
+        /// </summary>
+        /// <returns>Http request header from browser</returns>
         private string ReceiveRequestHeader()
         {
             string requestHeader = ReceiveHeader(_browserStream);
+
+            //If it is secure connection that is ssl
             if (requestHeader.ToUpper().StartsWith("CONNECT") == true)
             {
 
@@ -247,7 +270,14 @@ namespace AppedoLT
             }
             return requestHeader;
         }
-       private  void ReceiveRequestBody(TcpClient _browserTcpClient, int contentLength, Stream requestBody)
+
+        /// <summary>
+        /// Read request body from browser stream.
+        /// </summary>
+        /// <param name="_browserTcpClient">Tcp client from browser</param>
+        /// <param name="contentLength">Content length</param>
+        /// <param name="requestBody">To store content</param>
+        private void ReceiveRequestBody(TcpClient _browserTcpClient, int contentLength, Stream requestBody)
         {
             if (contentLength > 0)
                 _buffer = new Byte[contentLength];
@@ -256,6 +286,7 @@ namespace AppedoLT
 
             if (contentLength != 0)
             {
+                //Read all content 
                 while (contentLength > 0)
                 {
                     _bytesRead = _browserStream.Read(_buffer, 0, _buffer.Length);
@@ -266,6 +297,7 @@ namespace AppedoLT
             else if (_browserTcpClient.Available > 0)
             {
                 _browserStream.ReadTimeout = 1000;
+                //Read all content 
                 while (_browserTcpClient.Available > 0 && (_bytesRead = _browserStream.Read(_buffer, 0, _buffer.Length)) > 0)
                 {
                     requestBody.Write(_buffer, 0, _bytesRead);
@@ -276,6 +308,7 @@ namespace AppedoLT
             {
                 _browserStream.ReadTimeout = 1000;
                 WaitUntilByteReceive(_browserTcpClient, 2000);
+                //Read all content 
                 while (_browserTcpClient.Available > 0 && (_bytesRead = _browserStream.Read(_buffer, 0, _buffer.Length)) > 0)
                 {
                     requestBody.Write(_buffer, 0, _bytesRead);
@@ -283,6 +316,8 @@ namespace AppedoLT
                 }
             }
         }
+
+        //Send response content to browser.
         private void SendResponse()
         {
 
@@ -296,6 +331,11 @@ namespace AppedoLT
         #endregion
 
         #region Server Operations
+
+        /// <summary>
+        /// Send request to the server.
+        /// </summary>
+        /// <param name="_server">Server stream</param>
         private void SendRequest(Stream _server)
         {
             Match firstLine = new Regex("(.*?) (.*?) (.*?)\r\n").Match(RequestHeader);
@@ -322,13 +362,28 @@ namespace AppedoLT
                 RequestBody.Seek(0, SeekOrigin.Begin);
             }
         }
+
+        /// <summary>
+        /// Receive response header from server stream.
+        /// </summary>
+        /// <param name="_server">Server stream</param>
+        /// <returns></returns>
         private string ReceiveResponseHeader(Stream _server)
         {
             return ReceiveHeader(_server);
         }
+
+        /// <summary>
+        /// Receive response body
+        /// </summary>
+        /// <param name="_ServerTcpClient">Server tcp client</param>
+        /// <param name="_server">Server stream</param>
+        /// <param name="contentLength">content length</param>
+        /// <param name="responseBody">To store content</param>
         private void ReceiveResponseBody(TcpClient _ServerTcpClient, Stream _server, int contentLength, Stream responseBody)
         {
             Match firstLine = new Regex("(.*?) (.*?) (.*?)\r\n").Match(ResponseHeader);
+            //Read first line
             if (firstLine.Success == true)
             {
                 string header = ResponseHeader.Remove(0, firstLine.Value.Length);
@@ -410,6 +465,13 @@ namespace AppedoLT
             }
 
         }
+
+        /// <summary>
+        /// Write response to browser stream.
+        /// </summary>
+        /// <param name="buffer">Data</param>
+        /// <param name="offset">Starting point</param>
+        /// <param name="count">Length</param>
         private void WriteToBrowser(byte[] buffer, int offset, int count)
         {
             try
@@ -424,6 +486,9 @@ namespace AppedoLT
         #endregion
 
         #region utility
+        /// <summary>
+        /// Set URL variable value from response header.
+        /// </summary>
         private void SetUrl()
         {
             object obj = new object();
@@ -484,6 +549,12 @@ namespace AppedoLT
                 }
             }
         }
+
+        /// <summary>
+        /// Read http header from given stream.
+        /// </summary>
+        /// <param name="stream"></param>
+        /// <returns></returns>
         private string ReceiveHeader(Stream stream)
         {
             StringBuilder header = new StringBuilder();
@@ -496,6 +567,12 @@ namespace AppedoLT
             }
             return header.ToString();
         }
+
+        /// <summary>
+        ///  Read http header from given GZip stream.
+        /// </summary>
+        /// <param name="stream"></param>
+        /// <returns></returns>
         private string ReceiveGZipHeader(Stream stream)
         {
             StringBuilder header = new StringBuilder();
@@ -508,6 +585,12 @@ namespace AppedoLT
             }
             return header.ToString();
         }
+
+        /// <summary>
+        /// Parse content length from http header.
+        /// </summary>
+        /// <param name="header">http header</param>
+        /// <returns>Content length</returns>
         private int GetContentLength(string header)
         {
             int contentLen = 0;
@@ -518,6 +601,12 @@ namespace AppedoLT
             }
             return contentLen;
         }
+
+        /// <summary>
+        /// Parse response code from http header.
+        /// </summary>
+        /// <param name="header">http header</param>
+        /// <returns>Content length</returns>
         private int GetResponseCode(string header)
         {
             MatchCollection matches = new Regex("HTTP/[0-9][.][0-9] ([0-9][0-9][0-9])").Matches(header);
@@ -529,6 +618,12 @@ namespace AppedoLT
             }
             return ResponseCode;
         }
+
+        /// <summary>
+        /// Waiting method until byte receive in given tcp client.
+        /// </summary>
+        /// <param name="client">Tcp client</param>
+        /// <param name="milisecond">waiting mili second</param>
         private void WaitUntilByteReceive(TcpClient client, int milisecond)
         {
             while (client.Available <= 0)

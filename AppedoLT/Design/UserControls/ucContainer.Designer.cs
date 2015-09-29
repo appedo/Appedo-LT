@@ -41,7 +41,6 @@
             this.txtContainer.Size = new System.Drawing.Size(294, 20);
             this.txtContainer.TabIndex = 17;
             this.txtContainer.TabStop = false;
-            this.txtContainer.Validated += new System.EventHandler(this.txt_Validated);
             this.txtContainer.Validating += new System.ComponentModel.CancelEventHandler(this.txtContainer_Validating);
             // 
             // radLabel7

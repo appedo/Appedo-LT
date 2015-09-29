@@ -1,4 +1,6 @@
-﻿using AppedoLT.Core;
+﻿
+
+using AppedoLT.Core;
 using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
@@ -20,6 +22,11 @@ using Telerik.WinControls.UI;
 
 namespace AppedoLT
 {
+    /// <summary>
+    /// Record Http transaction from browser and stored in xml.
+    /// 
+    /// Author: Rasith
+    /// </summary>
     class Record
     {
         #region The private fields
@@ -57,6 +64,14 @@ namespace AppedoLT
         #endregion
 
         #region The constructor
+
+        /// <summary>
+        /// To create Record object that used to record browser transactions.
+        /// </summary>
+        /// <param name="lblResult">To display url</param>
+        /// <param name="txtContainer">To user container name</param>
+        /// <param name="ddlParentContainer">To select parent container(Init, Action, End)</param>
+        /// <param name="vuScriptXml"></param>
         public Record(Label lblResult, RadTextBox txtContainer, RadComboBox ddlParentContainer, XmlNode vuScriptXml)
         {
             try
@@ -90,6 +105,10 @@ namespace AppedoLT
         #endregion
 
         #region The public methods
+
+        /// <summary>
+        /// To start thread for storing result.
+        /// </summary>
         public void Start()
         {
             try
@@ -104,6 +123,9 @@ namespace AppedoLT
             }
         }
 
+        /// <summary>
+        /// To stop recording.
+        /// </summary>
         public void Stop()
         {
             try
@@ -170,6 +192,11 @@ namespace AppedoLT
 
         #region The private methods
 
+        /// <summary>
+        /// Listener thread to listen tcp connection from browser.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void DoWork(object sender, DoWorkEventArgs e)
         {
             _listener.Start();
@@ -177,6 +204,7 @@ namespace AppedoLT
             {
                 while (true)
                 {
+                    //If parallel connection limit crossed
                     if (_processingRequestCount >= Constants.GetInstance().RecordConnection)
                     {
                         Thread.Sleep(1000);
@@ -196,6 +224,10 @@ namespace AppedoLT
             _listener.Stop();
         }
 
+        /// <summary>
+        /// To process tcp client from browser.
+        /// </summary>
+        /// <param name="clientObj"></param>
         private void ProceessClient(object clientObj)
         {
             try
@@ -204,6 +236,8 @@ namespace AppedoLT
                 TcpClient client = (TcpClient)clientObj;
                 RequestProcessor pro = new RequestProcessor(client, this._connectionManager, _txtContainer.Text, _lblResult);
                 pro.Process();
+
+                //If request processed with out any error.
                 if (((IRequestProcessor)pro) != null)
                 {
                     IRequestProcessor response = (IRequestProcessor)pro;
@@ -226,16 +260,21 @@ namespace AppedoLT
             }
         }
 
+        /// <summary>
+        /// To store processed request info into xml.
+        /// </summary>
         private void StoreResult()
         {
             while (true)
             {
                 try
                 {
+                    //If user stopped recoding.
                     if (_recordData.Count == 0 && _isStop == true)
                     {
                         break;
                     }
+                    //No record for storing.
                     if (_recordData.Count == 0) Thread.Sleep(2000);
                     else
                     {
@@ -785,6 +824,9 @@ namespace AppedoLT
             }
         }
 
+        /// <summary>
+        /// Used to create First Level Containers when record starts.
+        /// </summary>
         private void CreateFirstLevelContainers()
         {
             try
@@ -808,6 +850,26 @@ namespace AppedoLT
             }
         }
 
+        /// <summary>
+        /// To read GZipHeader from stream.
+        /// </summary>
+        /// <param name="stream"></param>
+        /// <returns></returns>
+        private string ReceiveGZipHeader(Stream stream)
+        {
+            StringBuilder header = new StringBuilder();
+            byte[] bytes = new byte[10];
+
+            //Read all bytes one by one until reach new line char.
+            while (stream.Read(bytes, 0, 1) > 0)
+            {
+                header.Append(Encoding.Default.GetString(bytes, 0, 1));
+                if (bytes[0] == '\n' && header.ToString().EndsWith("\r\n"))
+                    break;
+            }
+            return header.ToString();
+        }
+
         private void ddlParentContainer_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
@@ -818,19 +880,6 @@ namespace AppedoLT
             {
                 ExceptionHandler.WritetoEventLog(ex.Message + Environment.NewLine + ex.StackTrace);
             }
-        }
-
-        private string ReceiveGZipHeader(Stream stream)
-        {
-            StringBuilder header = new StringBuilder();
-            byte[] bytes = new byte[10];
-            while (stream.Read(bytes, 0, 1) > 0)
-            {
-                header.Append(Encoding.Default.GetString(bytes, 0, 1));
-                if (bytes[0] == '\n' && header.ToString().EndsWith("\r\n"))
-                    break;
-            }
-            return header.ToString();
         }
 
         #endregion

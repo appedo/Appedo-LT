@@ -215,7 +215,7 @@ namespace AppedoLT.BusinessLogic
             WorkCompleted = false;
             _exVariablesValues.Clear();
             if (OnVUserCreated != null) OnVUserCreated.Invoke(_scriptName,_userid);
-            #region Iterations
+           
             try
             {
                 if (_type == "1")
@@ -319,7 +319,6 @@ namespace AppedoLT.BusinessLogic
                 if (OnVUserRunCompleted != null) OnVUserRunCompleted.Invoke(_scriptName, _userid);
             }
 
-            #endregion
         }
 
         private void ExecuteContainer(XmlNode container)
