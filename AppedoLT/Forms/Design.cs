@@ -1444,6 +1444,7 @@ namespace AppedoLT
                 }
                 else if (result == DialogResult.Yes)
                 {
+                    Session.LogOut();
                     _ucDesignObj.btnScriptSave_Click(null, null);
                 }
                 Process.GetCurrentProcess().Kill();

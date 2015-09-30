@@ -10,6 +10,11 @@ using Telerik.WinControls.UI;
 
 namespace AppedoLT
 {
+    /// <summary>
+    /// User control used to set Scripts detail.
+    /// 
+    /// Author: Rasith
+    /// </summary>
     public partial class ucScript : UserControl
     {
        
@@ -31,6 +36,12 @@ namespace AppedoLT
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Used to created ucScript object.
+        /// </summary>
+        /// <param name="xmlNode">Script xml node</param>
+        /// <param name="treeNode">Tree node from UI</param>
+        /// <returns></returns>
         public ucScript GetControl(XmlNode xmlNode, RadTreeNode treeNode)
         {
             _treeNode = treeNode;
@@ -100,6 +111,7 @@ namespace AppedoLT
                 else
                 {
                     RunTimeException.GetInstance().storeErrors = false;
+
                     if (((XmlNode)this.Tag).Attributes["type"].Value == "tcp")
                     {
                         XmlNode selectNode = ((XmlNode)this.Tag);
@@ -214,7 +226,7 @@ namespace AppedoLT
             }
             if (Success == false)
             {
-                throw new Exception("Upload Faild");
+                throw new Exception("Upload Failed");
             }
         }
 

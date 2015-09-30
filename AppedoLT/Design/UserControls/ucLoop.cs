@@ -6,6 +6,11 @@ using AppedoLT.Core;
 
 namespace AppedoLT
 {
+    /// <summary>
+    ///  User control used to set Loop count.
+    ///  
+    /// Author: Rasith
+    /// </summary>
     public partial class ucLoop : UserControl
     {
         RadTreeNode _treeNode = null;
@@ -21,6 +26,13 @@ namespace AppedoLT
             InitializeComponent();
 
         }
+
+        /// <summary>
+        /// Used to created ucLoop object.
+        /// </summary>
+        /// <param name="xmlNode">ucLoop xml node</param>
+        /// <param name="treeNode">Tree node from UI</param>
+        /// <returns></returns>
         public ucLoop GetControl(XmlNode xmlNode, RadTreeNode treeNode)
         {
             _treeNode = treeNode;
@@ -38,6 +50,7 @@ namespace AppedoLT
             {
                 RadTextBox txt = (RadTextBox)sender;
                 XmlAttribute attr = (XmlAttribute)txt.Tag;
+                //If there is any change in loop count, We need to update in Loop xml node.
                 if (txt.Text != attr.Value)
                 {
                     if (attr.Name == "name" && _treeNode != null) _treeNode.Text = txt.Text;
@@ -76,6 +89,7 @@ namespace AppedoLT
         {
             try
             {
+                //Allow only digit
                 if (!(char.IsControl(e.KeyChar) == true || char.IsDigit(e.KeyChar) == true))
                 {
                     e.Handled = true;

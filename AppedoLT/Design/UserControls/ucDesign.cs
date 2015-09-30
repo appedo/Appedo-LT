@@ -179,6 +179,20 @@ namespace AppedoLT
             }
         }
 
+        /// <summary>
+        /// To get available scripts
+        /// </summary>
+        /// <returns></returns>
+        List<string> GetAvailableScript()
+        {
+            List<string> list = new List<string>();
+            foreach (RadTreeNode node in tvRequest.Nodes)
+            {
+                list.Add(node.Text);
+            }
+            return list;
+        }
+
         #region Flag Request
 
         private void searchToolStripMenuItem_Click(object sender, EventArgs e)
@@ -848,7 +862,6 @@ namespace AppedoLT
                 ExceptionHandler.WritetoEventLog(ex.StackTrace + Environment.NewLine + ex.Message);
             }
         }
-
         private RadTreeNode GetRootParent(RadTreeNode node)
         {
             if (node.Parent == null) return node;
@@ -1161,9 +1174,47 @@ namespace AppedoLT
         {
             btnTCPIPRecord_Click(null, null);
         }
-
-        #endregion
-
+        private void replaceServerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmReplaceServer frm = new frmReplaceServer((VuscriptXml)tvRequest.SelectedNode.Tag);
+            if (frm.ShowDialog() == DialogResult.OK)
+            {
+                bool Changed = false;
+                foreach (ReplaceHost host in frm.HostList)
+                {
+                    XmlNode vuscrip = ((VuscriptXml)tvRequest.SelectedNode.Tag).Doc.SelectSingleNode("//vuscript");
+                    if (vuscrip.Attributes["type"].Value == "http")
+                    {
+                        if (host.CurrentHost != host.NewHost || host.CurrentPort != host.NewPort || host.CurrentSchema != host.NewSchema)
+                        {
+                            if (Changed == false) Changed = true;
+                            vuscrip.InnerXml =
+                                 vuscrip.InnerXml.Replace(host.CurrentHost + ":" + host.CurrentPort, host.NewHost + ":" + host.NewPort)
+                                .Replace(host.CurrentHost, host.NewHost)
+                                .Replace("Port=\"" + host.CurrentPort + "\"", "Port=\"" + host.NewPort + "\"")
+                                .Replace("Schema=\"" + host.CurrentSchema + "\"", "Schema=\"" + host.NewSchema + "\"");
+                        }
+                    }
+                    else if (vuscrip.Attributes["type"].Value == "tcp")
+                    {
+                        if (host.CurrentHost != host.NewHost || host.CurrentPort != host.NewPort)
+                        {
+                            if (Changed == false) Changed = true;
+                            vuscrip.InnerXml =
+                                 vuscrip.InnerXml.Replace(host.CurrentHost + ":" + host.CurrentPort, host.NewHost + ":" + host.NewPort)
+                                .Replace(host.CurrentHost, host.NewHost)
+                                .Replace("port=\"" + host.CurrentPort + "\"", "port=\"" + host.NewPort + "\"")
+                                .Replace("serverip=\"" + host.CurrentPort + "\"", "serverip=\"" + host.NewPort + "\"");
+                        }
+                    }
+                }
+                if (Changed == true)
+                {
+                    ((VuscriptXml)tvRequest.SelectedNode.Tag).Save();
+                    LoadTreeItem();
+                }
+            }
+        }
         private void txtDownload_Click(object sender, EventArgs e)
         {
             try
@@ -1189,63 +1240,9 @@ namespace AppedoLT
             }
 
         }
-
-        /// <summary>
-        /// To get available scripts
-        /// </summary>
-        /// <returns></returns>
-        List<string> GetAvailableScript()
-        {
-            List<string> list = new List<string>();
-            foreach (RadTreeNode node in tvRequest.Nodes)
-            {
-                list.Add(node.Text);
-            }
-            return list;
-        }
+        #endregion
 
         #endregion
 
-        private void replaceServerToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            frmReplaceServer frm = new frmReplaceServer((VuscriptXml)tvRequest.SelectedNode.Tag);
-            if (frm.ShowDialog() == DialogResult.OK)
-            {
-                bool Changed = false;
-                foreach (ReplaceHost host in frm.HostList)
-                {
-                    XmlNode vuscrip = ((VuscriptXml)tvRequest.SelectedNode.Tag).Doc.SelectSingleNode("//vuscript");
-                    if (vuscrip.Attributes["type"].Value == "http")
-                    {
-                        if (host.CurrentHost != host.NewHost || host.CurrentPort != host.NewPort || host.CurrentSchema != host.NewSchema)
-                        {
-                            if (Changed == false) Changed = true;
-                            vuscrip.InnerXml =
-                                 vuscrip.InnerXml.Replace(host.CurrentHost + ":" + host.CurrentPort, host.NewHost + ":" + host.NewPort)
-                                .Replace(host.CurrentHost, host.NewHost)
-                                .Replace("Port=\"" + host.CurrentPort + "\"", "Port=\"" + host.NewPort + "\"")
-                                .Replace("Schema=\"" + host.CurrentSchema + "\"", "Schema=\"" + host.NewSchema + "\"");
-                        }
-                    }
-                    else if(vuscrip.Attributes["type"].Value == "tcp")
-                    {
-                        if (host.CurrentHost != host.NewHost || host.CurrentPort != host.NewPort )
-                        {
-                            if (Changed == false) Changed = true;
-                            vuscrip.InnerXml =
-                                 vuscrip.InnerXml.Replace(host.CurrentHost + ":" + host.CurrentPort, host.NewHost + ":" + host.NewPort)
-                                .Replace(host.CurrentHost, host.NewHost)
-                                .Replace("port=\"" + host.CurrentPort + "\"", "port=\"" + host.NewPort + "\"")
-                                .Replace("serverip=\"" + host.CurrentPort + "\"", "serverip=\"" + host.NewPort + "\"");
-                        }
-                    }
-                }
-                if (Changed == true)
-                {
-                    ((VuscriptXml)tvRequest.SelectedNode.Tag).Save();
-                    LoadTreeItem();
-                }
-            }
-        }
     }
 }

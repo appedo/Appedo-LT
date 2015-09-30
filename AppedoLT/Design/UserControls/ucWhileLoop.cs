@@ -5,6 +5,11 @@ using System.Xml;
 
 namespace AppedoLT
 {
+    /// <summary>
+    /// User control used to set WhileLoop condition.
+    /// 
+    ///  Author: Rasith
+    /// </summary>
     public partial class ucWhileLoop : UserControl
     {
         RadTreeNode _treeNode = null;
@@ -20,6 +25,13 @@ namespace AppedoLT
             InitializeComponent();
 
         }
+
+        /// <summary>
+        /// Used to created ucWhileLoop object.
+        /// </summary>
+        /// <param name="xmlNode">WhileLoop xml node</param>
+        /// <param name="treeNode">Tree node from UI</param>
+        /// <returns></returns>
         public ucWhileLoop GetControl(XmlNode xmlNode, RadTreeNode treeNode)
         {
             _treeNode = treeNode;
@@ -29,10 +41,13 @@ namespace AppedoLT
             this.Dock = DockStyle.Fill;
             return this;
         }
+
+
         private void txt_Validated(object sender, EventArgs e)
         {
             RadTextBox txt = (RadTextBox)sender;
             XmlAttribute attr = (XmlAttribute)txt.Tag;
+            //If there is any change in While loop value, We need to update in While loop xml node.
             if (txt.Text != attr.Value)
             {
                 if (attr.Name == "name" && _treeNode != null) _treeNode.Text = txt.Text;

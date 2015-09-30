@@ -9,6 +9,12 @@ using System.Windows.Forms;
 
 namespace AppedoLT
 {
+
+    /// <summary>
+    /// User control used to show time information.
+    /// 
+    /// Author: Rasith
+    /// </summary>
     public partial class UCTime : UserControl
     {
         public TimeSpan Time

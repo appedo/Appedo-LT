@@ -554,7 +554,6 @@
             this.gvRequestParam.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.gvRequestParam.Size = new System.Drawing.Size(738, 431);
             this.gvRequestParam.TabIndex = 6;
-            this.gvRequestParam.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.gvRequestParam_MouseDoubleClick);
             // 
             // name
             // 
@@ -876,7 +875,6 @@
             this.gvAssertion.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.gvAssertion.Size = new System.Drawing.Size(744, 243);
             this.gvAssertion.TabIndex = 23;
-            this.gvAssertion.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gvAssertion_CellContentClick);
             // 
             // dataGridViewTextBoxColumn1
             // 

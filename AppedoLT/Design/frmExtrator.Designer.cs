@@ -1,6 +1,6 @@
 namespace AppedoLT
 {
-    partial class frmExtrator
+    partial class frmExtractor
     {
         /// <summary>
         /// Required designer variable.
@@ -408,7 +408,6 @@ namespace AppedoLT
             this.radButton2.TabIndex = 13;
             this.radButton2.Text = "&Cancel";
             this.radButton2.ThemeName = "Telerik";
-            this.radButton2.Click += new System.EventHandler(this.radButton2_Click);
             // 
             // btnSave
             // 

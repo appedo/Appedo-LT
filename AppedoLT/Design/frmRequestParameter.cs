@@ -7,6 +7,11 @@ using AppedoLT.Core;
 
 namespace AppedoLT
 {
+    /// <summary>
+    /// Form  used to do parameterization. It will show list of available variables includes extracted variables.
+    /// 
+    /// Author: Rasith
+    /// </summary>
     public partial class RequestParameter : Telerik.WinControls.UI.RadForm
     {
         
@@ -15,6 +20,12 @@ namespace AppedoLT
         XmlNode _parentNode = null;
         bool isFromSigleValue = false;
 
+        /// <summary>
+        /// If you want parameterize both name and value.
+        /// </summary>
+        /// <param name="name">Variable name</param>
+        /// <param name="value">Variable value</param>
+        /// <param name="parent">Contain variable info</param>
         public RequestParameter(string name, string value,XmlNode parent)
         {
             InitializeComponent();
@@ -25,6 +36,12 @@ namespace AppedoLT
             _parentNode=parent;
             LoadVariables();
         }
+
+        /// <summary>
+        /// If you want parameterize value only.
+        /// </summary>
+        /// <param name="value">Variable value</param>
+        /// <param name="parent">Contain variable info</param>
         public RequestParameter(string value, XmlNode parent)
         {
             InitializeComponent();
@@ -35,6 +52,7 @@ namespace AppedoLT
             _parentNode=parent;
             LoadVariables();
         }
+
         public RequestParameter(XmlNode node)
         {
             InitializeComponent();
@@ -51,6 +69,11 @@ namespace AppedoLT
             }
             LoadVariables();
         }
+
+        /// <summary>
+        /// If you want parameterize xml attribute.
+        /// </summary>
+        /// <param name="att">xml attribute</param>
         public RequestParameter(XmlAttribute att)
         {
             InitializeComponent();
@@ -61,10 +84,15 @@ namespace AppedoLT
             _parentNode = att;
             LoadVariables();
         }
+
+        /// <summary>
+        /// Load all available variable into list.
+        /// </summary>
         private void LoadVariables()
         {
             tvVariables.Nodes.Clear();
 
+            //Load all variable
             foreach (XmlNode var in VariableXml.GetInstance().doc.SelectNodes("//variables/variable"))
             {
                 if (var.Attributes["type"].Value == "file")
@@ -85,6 +113,7 @@ namespace AppedoLT
                     tvVariables.Nodes.Add(item);
                 }
             }
+            //Load all extractor varialbes
             foreach (XmlNode var in _parentNode.OwnerDocument.SelectNodes("//extractor"))
             {
                 if (var.Attributes["selctiontype"].Value == "all")

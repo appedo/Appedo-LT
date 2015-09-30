@@ -6,6 +6,11 @@ using Telerik.WinControls.UI;
 using AppedoLT.Core;
 namespace AppedoLT
 {
+    /// <summary>
+    /// User control used to show TCP requset information.
+    /// 
+    /// Author: Rasith
+    /// </summary>
     public partial class UCTCPIPRequest : UserControl
     {
         FindDig fDig = null;
@@ -109,11 +114,20 @@ namespace AppedoLT
             gvAssertion.DataSource = assertion;
             gvAssertion.AutoGenerateColumns = false;
         }
+
+        /// <summary>
+        /// Populate data into corresponding field from xml node to show and edit.
+        /// </summary>
+        /// <param name="node">Xml node contain tcp request information</param>
         public void SetRequest(RadTreeNode node)
         {
             this.Request =(XmlNode) node.Tag;
             _node = node;
         }
+
+        /// <summary>
+        /// To load parameters into data grid.
+        /// </summary>
         private void LoadParams()
         {
             param.Rows.Clear();
@@ -123,6 +137,10 @@ namespace AppedoLT
                
             }
         }
+
+        /// <summary>
+        /// Load assertion detail into data grid
+        /// </summary>
         private void LoadAssertion()
         {
             assertion.Rows.Clear();
@@ -135,6 +153,10 @@ namespace AppedoLT
                 }
             }
         }
+
+        /// <summary>
+        /// Load extracted parameters list into data grid
+        /// </summary>
         private void LoadExtParameters()
         {
             try
@@ -155,6 +177,7 @@ namespace AppedoLT
                 ExceptionHandler.WritetoEventLog(ex.StackTrace + Environment.NewLine + ex.Message);
             }
         }
+
         private void btnAddParam_Click(object sender, EventArgs e)
         {
             frmTCPIPParam parm = new frmTCPIPParam(request.SelectNodes("params")[0],null);
@@ -163,7 +186,6 @@ namespace AppedoLT
         }
         private void btnRemoveParam_Click(object sender, EventArgs e)
         {
-           
             if (MessageBox.Show("Are you sure you want to delete selected parameter","delete",MessageBoxButtons.YesNo)==DialogResult.Yes && gvRequestParam.SelectedRows != null)
             {
                 try
@@ -185,11 +207,12 @@ namespace AppedoLT
                 }
             }
         }
+
         private void btnAdd_Click(object sender, EventArgs e)
         {
             try
             {
-                frmExtrator ext = new frmExtrator(txtResponse.Text, request,null);
+                frmExtractor ext = new frmExtractor(txtResponse.Text, request,null);
                 if ( ext.ShowDialog()==DialogResult.OK)
                 {
                      LoadExtParameters();
@@ -216,10 +239,7 @@ namespace AppedoLT
                 ExceptionHandler.WritetoEventLog(ex.StackTrace + Environment.NewLine + ex.Message);
             }
         }
-        private void gvRequestParam_MouseDoubleClick(object sender, MouseEventArgs e)
-        {
-            
-        }
+
         private void btnEdit_Click(object sender, EventArgs e)
         {
            if(gvRequestParam.SelectedRows.Count>0)
@@ -229,6 +249,7 @@ namespace AppedoLT
                LoadParams();
            }
         }
+
         private void txt_Leave(object sender, EventArgs e)
         {
             RadTextBox txt = (RadTextBox)sender;
@@ -240,6 +261,7 @@ namespace AppedoLT
             }
 
         }
+
         private void btnReqParam_Click(object sender, EventArgs e)
         {
             RequestParameter frm = new RequestParameter("Request", txtRequest.Text,(XmlNode)this.Tag );
@@ -326,7 +348,7 @@ namespace AppedoLT
                 if (dgvExtractor.SelectedRows.Count > 0)
                 {
 
-                    frmExtrator ext = new frmExtrator(txtResponse.Text, request,(XmlNode) dgvExtractor.SelectedRows[0].Cells[2].Value);
+                    frmExtractor ext = new frmExtractor(txtResponse.Text, request,(XmlNode) dgvExtractor.SelectedRows[0].Cells[2].Value);
                     if (ext.ShowDialog() == DialogResult.OK)
                     {
                         LoadExtParameters();
@@ -350,11 +372,5 @@ namespace AppedoLT
               
             }
         }
-
-        private void gvAssertion_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
     }
 }

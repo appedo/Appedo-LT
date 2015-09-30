@@ -1,18 +1,24 @@
+using AppedoLT.Core;
 using System;
 using System.Collections.Generic;
 using System.Xml;
-using AppedoLT.Core;
 using Telerik.WinControls.Enumerations;
 using Telerik.WinControls.UI;
 
 namespace AppedoLT
 {
+    /// <summary>
+    /// Form used to implement flag request. Search text in request.
+    /// 
+    /// Author: Rasith
+    /// </summary>
     public partial class FlagRequest : Telerik.WinControls.UI.RadForm
     {
         RadTreeNode receivedNode = new RadTreeNode();
         List<RequestResponse> requestResponse = new List<RequestResponse>();
         RepositoryXml reposioryXml = RepositoryXml.GetInstance();
         XmlNode _flagRequest = null;
+
         public XmlNode FlagRequestObj
         {
             get
@@ -22,6 +28,7 @@ namespace AppedoLT
             set
             {
                 _flagRequest = value;
+              
                 if (_flagRequest != null)
                 {
                     SetType(_flagRequest.Attributes["type"].Value);
@@ -39,6 +46,10 @@ namespace AppedoLT
             }
         }
 
+        /// <summary>
+        /// Flag request for a script
+        /// </summary>
+        /// <param name="flagRequset">Script xml node</param>
         public FlagRequest(XmlNode flagRequset)
         {
             try

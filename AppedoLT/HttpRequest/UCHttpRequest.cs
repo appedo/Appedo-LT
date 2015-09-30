@@ -332,7 +332,7 @@ namespace AppedoLT
         {
             try
             {
-                frmExtrator ext = new frmExtrator(txtResponse.Text, _request, null);
+                frmExtractor ext = new frmExtractor(txtResponse.Text, _request, null);
                 if (ext.ShowDialog() == DialogResult.OK)
                 {
                     LoadExtParameters();
@@ -351,7 +351,7 @@ namespace AppedoLT
                 if (dgvExtractor.SelectedRows.Count > 0)
                 {
 
-                    frmExtrator ext = new frmExtrator(txtResponse.Text, _request, (XmlNode)dgvExtractor.SelectedRows[0].Cells[2].Value);
+                    frmExtractor ext = new frmExtractor(txtResponse.Text, _request, (XmlNode)dgvExtractor.SelectedRows[0].Cells[2].Value);
                     if (ext.ShowDialog() == DialogResult.OK)
                     {
                         LoadExtParameters();

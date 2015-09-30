@@ -1,16 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using System.Xml;
 using Telerik.WinControls.UI;
 
 namespace AppedoLT
 {
+    /// <summary>
+    /// User control used to get transaction name.
+    /// 
+    /// Author: Rasith
+    /// </summary>
     public partial class ucTransaction : UserControl
     {
         RadTreeNode _treeNode = null;
@@ -25,6 +24,13 @@ namespace AppedoLT
         {
             InitializeComponent();
         }
+
+        /// <summary>
+        /// used to created ucTransaction object.
+        /// </summary>
+        /// <param name="transaction">Transaction xml node</param>
+        /// <param name="treeNode">Tree node from UI</param>
+        /// <returns></returns>
         public ucTransaction GetControl(XmlNode transaction,RadTreeNode treeNode)
         {
             _treeNode = treeNode;

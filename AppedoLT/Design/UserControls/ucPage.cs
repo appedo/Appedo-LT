@@ -6,10 +6,16 @@ using AppedoLT.Core;
 
 namespace AppedoLT
 {
+    /// <summary>
+    /// User control used to set Page name and delay.
+    /// 
+    /// Author: Rasith
+    /// </summary>
     public partial class ucPage : UserControl
     {    
         RadTreeNode _treeNode = null;
         private static ucPage _instance;
+
         public static ucPage GetInstance()
         {
             if (_instance == null)
@@ -20,6 +26,13 @@ namespace AppedoLT
         {
             InitializeComponent();
         }
+
+        /// <summary>
+        /// Used to created ucPage object.
+        /// </summary>
+        /// <param name="xmlNode">page xml node</param>
+        /// <param name="treeNode">Tree node from UI</param>
+        /// <returns></returns>
         public ucPage GetControl(XmlNode xmlNode, RadTreeNode treeNode)
         {
             _treeNode = treeNode;
@@ -30,12 +43,15 @@ namespace AppedoLT
             this.Dock = DockStyle.Fill;
             return this;
         }
+
+
         private void txt_Validated(object sender, EventArgs e)
         {
             try
             {
                 RadTextBox txt = (RadTextBox)sender;
                 XmlAttribute attr = (XmlAttribute)txt.Tag;
+                //If there is any change in page name, We need to update in page xml node.
                 if (txt.Text != attr.Value)
                 {
                     if (attr.Name == "name" && _treeNode != null) _treeNode.Text = txt.Text;

@@ -1,9 +1,14 @@
+using AppedoLT.Core;
 using System;
 using System.Windows.Forms;
-using AppedoLT.Core;
 
 namespace AppedoLT
 {
+    /// <summary>
+    /// Form used to find text in the given text box.
+    /// 
+    /// Author: Rasith
+    /// </summary>
     public partial class FindDig : Telerik.WinControls.UI.RadForm
     {
         RichTextBox receivedRichTextBox = new RichTextBox();
@@ -11,9 +16,12 @@ namespace AppedoLT
         public FindDig()
         {
             InitializeComponent();
-           
-
         }
+
+        /// <summary>
+        /// Set text box where we need to find text.
+        /// </summary>
+        /// <param name="txtText">text box where we need to find text.</param>
         public void SetTextBox(RichTextBox txtText)
         {
             try
@@ -26,6 +34,7 @@ namespace AppedoLT
                 ExceptionHandler.WritetoEventLog(ex.StackTrace + Environment.NewLine + ex.Message);
             }
         }
+
         private void btnFind_Click(object sender, EventArgs e)
         {
             try

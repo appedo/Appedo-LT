@@ -5,14 +5,26 @@ using System.Xml;
 
 namespace AppedoLT
 {
-    public partial class frmExtrator : Telerik.WinControls.UI.RadForm
+
+    /// <summary>
+    /// Form used to give UI for extractor. Extract value from response.
+    /// 
+    /// Author: Rasith
+    /// </summary>
+    public partial class frmExtractor : Telerik.WinControls.UI.RadForm
     {
         string _response = string.Empty;
         XmlNode _editVariable=null;
         XmlNode _request = null;
         Common _common = Common.GetInstance();
 
-        public frmExtrator(string response,XmlNode request, XmlNode extractVariable)
+        /// <summary>
+        /// Create extractor form object.
+        /// </summary>
+        /// <param name="response">Response string</param>
+        /// <param name="request">Request xml node</param>
+        /// <param name="extractVariable"><Extractor xml node/param>
+        public frmExtractor(string response,XmlNode request, XmlNode extractVariable)
         {
             InitializeComponent();
             _editVariable = extractVariable;
@@ -20,11 +32,17 @@ namespace AppedoLT
             _response = txtResponse.Text = response;
             if (extractVariable != null) setExtractorVar(extractVariable);
         }
+
+        /// <summary>
+        /// Populate data into corresponding field from xml node.
+        /// </summary>
+        /// <param name="extractVar">Extract xml node</param>
         public void setExtractorVar(XmlNode extractVar)
         {
             txtName.Text = extractVar.Attributes["name"].Value;
             txtStartwith.Text =extractVar.Attributes["start"].Value;
             txtEndwith.Text = extractVar.Attributes["end"].Value;
+            //Mode =1 it is simple mode, else it is advanced mode that is regular exp
             if (extractVar.Attributes["mode"].Value == "1")
             {
                 rbtnSimple.Checked = true;
@@ -64,6 +82,12 @@ namespace AppedoLT
                 txtEndwith.Text =st.txtResponse.SelectedText;
             }
         }
+
+        /// <summary>
+        /// Get extractor xml node to store
+        /// </summary>
+        /// <param name="ExtractVar">Contain extractor variable info</param>
+        /// <returns></returns>
         private XmlNode GetExtratorVar(XmlNode ExtractVar)
         {
             if (ExtractVar == null)
@@ -103,6 +127,7 @@ namespace AppedoLT
             }
             return ExtractVar;
         }
+
         private void btnSave_Click(object sender, EventArgs e)
         {
             if (txtName.Text.Trim().Length == 0)
@@ -163,10 +188,7 @@ namespace AppedoLT
                 e.Handled = true;
             }
         }
-        private void txtOrdinal_KeyDown(object sender, KeyEventArgs e)
-        {
-           
-        }
+
         private void rbtnSimple_CheckedChanged(object sender, EventArgs e)
         {
             if (rbtnSimple.Checked == true)
@@ -188,6 +210,11 @@ namespace AppedoLT
                 btnEndWith.Enabled = txtEndwith.Enabled = false;
             }
         }
+
+        /// <summary>
+        /// Form regular exp from startwith and endwith.
+        /// 
+        /// </summary>
         private void SetReg()
         {
             if (rbtnSimple.Checked == true)
@@ -221,6 +248,10 @@ namespace AppedoLT
         {
             SetReg();
         }
+
+        /// <summary>
+        /// Show result from given input(response text and reqular exp)
+        /// </summary>
         private void ShowResult()
         {
             string startWith = Regex.Escape(txtStartwith.Text);
@@ -259,9 +290,5 @@ namespace AppedoLT
             }
         }
 
-        private void radButton2_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }
