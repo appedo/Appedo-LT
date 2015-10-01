@@ -10,6 +10,11 @@ using Telerik.WinControls.UI;
 
 namespace AppedoLT
 {
+    /// <summary>
+    /// Form used to Add, Edit, Update user defined variables.
+    /// 
+    /// Author: Rasith
+    /// </summary>
     public partial class frmVariableManager : Telerik.WinControls.UI.RadForm
     {
         ErrorProvider _errMin = new ErrorProvider();
@@ -41,6 +46,9 @@ namespace AppedoLT
 4.First Character should be alphabet or Underscore.");
         }
 
+        /// <summary>
+        /// Load all available variables.
+        /// </summary>
         private void LoadTree()
         {
             tvVariables.Nodes.Clear();
@@ -54,39 +62,11 @@ namespace AppedoLT
             ddlVariableType.SelectedIndex = 0;
         }
 
-        private void radButton1_Click(object sender, EventArgs e)
-        {
-            if (tvVariables.SelectedNode != null)
-            {
-                Populate((XmlNode)tvVariables.SelectedNode.Tag);
-                MakeReadOnly();
-                if (MessageBox.Show("Are You sure You want to delete selected variable", "Delete", MessageBoxButtons.YesNo) == DialogResult.Yes)
-                {
-                    XmlNode deleteNode = (XmlNode)tvVariables.SelectedNode.Tag;
-                    try
-                    {
-                        if (deleteNode.Attributes["type"].Value == "file")
-                        {
-                            if (deleteNode.Attributes["vituallocation"] != null && File.Exists(Constants.GetInstance().ExecutingAssemblyLocation + deleteNode.Attributes["vituallocation"].Value))
-                            {
-
-                                File.Delete(Constants.GetInstance().ExecutingAssemblyLocation + deleteNode.Attributes["vituallocation"].Value);
-
-                            }
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        ExceptionHandler.WritetoEventLog(ex.StackTrace + Environment.NewLine + ex.Message);
-                    }
-                    _variableXml.doc.SelectSingleNode("//variables").RemoveChild(deleteNode);
-                    tvVariables.SelectedNode.Remove();
-                    ClearAll();
-                    btnView_Click(null, null);
-                }
-            }
-        }
-
+        /// <summary>
+        /// Get variable node from user input
+        /// </summary>
+        /// <param name="var">Node that contains variable information</param>
+        /// <returns></returns>
         public XmlNode GetVariableInfo(XmlNode var)
         {
             XmlNode variable;
@@ -171,6 +151,12 @@ namespace AppedoLT
             return variable;
         }
 
+        /// <summary>
+        /// Copy mapped variable file into variable folder
+        /// </summary>
+        /// <param name="source"></param>
+        /// <param name="modified"></param>
+        /// <returns></returns>
         public string CopyFileToVariableFolder(string source, string modified)
         {
             string destination = string.Empty;
@@ -241,6 +227,9 @@ namespace AppedoLT
             }
         }
 
+        /// <summary>
+        /// Make all control as read only for view variable.
+        /// </summary>
         private void MakeReadOnly()
         {
             txtVariableName.ReadOnly = true;
@@ -257,6 +246,9 @@ namespace AppedoLT
             txtNumber.ReadOnly = true;
         }
 
+        /// <summary>
+        /// Release all control from read only for edit variable
+        /// </summary>
         private void ReleaseReadOnly()
         {
             txtVariableName.ReadOnly = false;
@@ -273,6 +265,9 @@ namespace AppedoLT
             txtNumber.ReadOnly = false;
         }
 
+        /// <summary>
+        /// Clear all user inputs.
+        /// </summary>
         private void ClearAll()
         {
             txtVariableName.Text = string.Empty;
@@ -299,6 +294,10 @@ namespace AppedoLT
             }
         }
 
+        /// <summary>
+        /// Populate variable info into corresponding field.
+        /// </summary>
+        /// <param name="var"></param>
         private void Populate(XmlNode var)
         {
             try
@@ -834,6 +833,39 @@ namespace AppedoLT
             var.Attributes["modified"].Value = DateTime.Now.Ticks.ToString();
             var.Attributes["location"].Value = location;
 
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            if (tvVariables.SelectedNode != null)
+            {
+                Populate((XmlNode)tvVariables.SelectedNode.Tag);
+                MakeReadOnly();
+                if (MessageBox.Show("Are You sure You want to delete selected variable", "Delete", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    XmlNode deleteNode = (XmlNode)tvVariables.SelectedNode.Tag;
+                    try
+                    {
+                        if (deleteNode.Attributes["type"].Value == "file")
+                        {
+                            if (deleteNode.Attributes["vituallocation"] != null && File.Exists(Constants.GetInstance().ExecutingAssemblyLocation + deleteNode.Attributes["vituallocation"].Value))
+                            {
+
+                                File.Delete(Constants.GetInstance().ExecutingAssemblyLocation + deleteNode.Attributes["vituallocation"].Value);
+
+                            }
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        ExceptionHandler.WritetoEventLog(ex.StackTrace + Environment.NewLine + ex.Message);
+                    }
+                    _variableXml.doc.SelectSingleNode("//variables").RemoveChild(deleteNode);
+                    tvVariables.SelectedNode.Remove();
+                    ClearAll();
+                    btnView_Click(null, null);
+                }
+            }
         }
     }
 }

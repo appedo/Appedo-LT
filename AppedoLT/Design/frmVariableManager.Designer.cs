@@ -77,8 +77,8 @@ namespace AppedoLT
             this.radPanelBar2 = new Telerik.WinControls.UI.RadPanelBar();
             this.btnDownload = new Telerik.WinControls.UI.RadButton();
             this.btnUploadVariables = new Telerik.WinControls.UI.RadButton();
-            this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             this.ucFileTypeVariable = new AppedoLT.UCFileTypeVariable();
+            this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.lblVariableName)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtVariableName)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlVariableType)).BeginInit();
@@ -245,7 +245,7 @@ namespace AppedoLT
             this.btnDelete.TabIndex = 6;
             this.btnDelete.Text = "&Delete";
             this.btnDelete.ThemeName = "Telerik";
-            this.btnDelete.Click += new System.EventHandler(this.radButton1_Click);
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // pnlVariableValue
             // 
@@ -735,12 +735,6 @@ namespace AppedoLT
             this.btnUploadVariables.ThemeName = "Telerik";
             this.btnUploadVariables.Click += new System.EventHandler(this.btnUploadVariables_Click);
             // 
-            // toolTip
-            // 
-            this.toolTip.AutoPopDelay = 10000;
-            this.toolTip.InitialDelay = 500;
-            this.toolTip.ReshowDelay = 100;
-            // 
             // ucFileTypeVariable
             // 
             this.ucFileTypeVariable.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -749,6 +743,12 @@ namespace AppedoLT
             this.ucFileTypeVariable.Name = "ucFileTypeVariable";
             this.ucFileTypeVariable.Size = new System.Drawing.Size(530, 236);
             this.ucFileTypeVariable.TabIndex = 1;
+            // 
+            // toolTip
+            // 
+            this.toolTip.AutoPopDelay = 10000;
+            this.toolTip.InitialDelay = 500;
+            this.toolTip.ReshowDelay = 100;
             // 
             // frmVariableManager
             // 

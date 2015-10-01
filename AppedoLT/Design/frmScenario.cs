@@ -1,16 +1,16 @@
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Text;
 using System.Windows.Forms;
-using Telerik.WinControls;
-using System.Net;
 using System.Xml;
 
 namespace AppedoLT
 {
+    /// <summary>
+    /// Form used to create and update scenario.
+    /// 
+    /// Author: Rasith
+    /// </summary>
     public partial class frmScenario : Telerik.WinControls.UI.RadForm
     {
      
@@ -20,6 +20,10 @@ namespace AppedoLT
         List<XmlNode> _alreadyMappedScripts = new List<XmlNode>();
         string _scenarioId="0";
 
+        /// <summary>
+        /// Create new scenario.
+        /// </summary>
+        /// <param name="VUScripts">List of available scripts</param>
         public frmScenario(Dictionary<string,string> VUScripts)
         {
         
@@ -44,6 +48,12 @@ namespace AppedoLT
 
             listBoxMove1.SetItems(leftList, rightList);
         }
+
+        /// <summary>
+        /// Edit scenario
+        /// </summary>
+        /// <param name="VUScripts">Available scripts</param>
+        /// <param name="scenario">Scenario need to be edit</param>
         public frmScenario(Dictionary<string, string> VUScripts, XmlNode scenario)
         {
 
@@ -130,6 +140,11 @@ namespace AppedoLT
             }
 
         }
+
+        /// <summary>
+        /// Validate user input.
+        /// </summary>
+        /// <returns>True if user input is valid</returns>
         private bool Validate()
         {
             bool isValid=true;

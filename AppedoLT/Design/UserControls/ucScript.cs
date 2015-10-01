@@ -174,10 +174,10 @@ namespace AppedoLT
                     header.Add("userid", Session.UserID);
                     header.Add("scriptname", name);
                     UploadFile(server, new TrasportData("VUSCRIPT", header, zipFilePath), name);
-                    server.Receive();
+                    respose = server.Receive();
                     server.Close();
                     File.Delete(zipFilePath);
-                    MessageBox.Show("Uploaded successfully.");
+                    MessageBox.Show(respose.DataStr);
                 }
             }
             catch (Exception ex)
@@ -309,10 +309,10 @@ namespace AppedoLT
                     header.Add("scriptname", name);
                     string zipFilePath = MakeScriptZip(id, name);
                     UploadFile(server, new TrasportData("VUSCRIPT", header, zipFilePath), name);
-                    server.Receive();
+                    respose= server.Receive();
                     server.Close();
                     File.Delete(zipFilePath);
-                    MessageBox.Show("Uploaded successfully.");
+                    MessageBox.Show(respose.DataStr);
                 }
             }
             catch (Exception ex)
