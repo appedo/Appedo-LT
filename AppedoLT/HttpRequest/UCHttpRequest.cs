@@ -176,6 +176,17 @@ namespace AppedoLT
                     {
                         _paramTable.Rows[hit.RowIndex]["name"] = paramNode.Attributes["name"].Value;
                         _paramTable.Rows[hit.RowIndex]["value"] = paramNode.Attributes["value"].Value;
+                        Control obj = this.Parent;
+                        while (obj != null)
+                        {
+                            obj = obj.Parent;
+                            if (obj.GetType().Name == "ucDesign") break;
+                        }
+                        if (obj != null)
+                        {
+                            ((ucDesign)obj).btnScriptSave_Click(null, null);
+                            ((ucDesign)obj).LoadTreeItem();
+                        }
                     }
                 }
             }
@@ -215,7 +226,17 @@ namespace AppedoLT
                     {
                         _headerTable.Rows[hit.RowIndex]["name"] = headerNode.Attributes["name"].Value;
                         _headerTable.Rows[hit.RowIndex]["value"] = headerNode.Attributes["value"].Value;
-
+                        Control obj = this.Parent;
+                        while (obj != null)
+                        {
+                            obj = obj.Parent;
+                            if (obj.GetType().Name == "ucDesign") break;
+                        }
+                        if (obj != null)
+                        {
+                            ((ucDesign)obj).btnScriptSave_Click(null, null);
+                            ((ucDesign)obj).LoadTreeItem();
+                        }
                     }
                 }
             }
@@ -233,6 +254,17 @@ namespace AppedoLT
                 if (var.ShowDialog() == DialogResult.OK)
                 {
                     txtPath.Text = ((XmlAttribute)txtPath.Tag).Value;
+                    Control obj = this.Parent;
+                    while (obj != null)
+                    {
+                        obj = obj.Parent;
+                        if (obj.GetType().Name == "ucDesign") break;
+                    }
+                    if (obj != null)
+                    {
+                        ((ucDesign)obj).btnScriptSave_Click(null, null);
+                        ((ucDesign)obj).LoadTreeItem();
+                    }
                 }
             }
             catch (Exception ex)

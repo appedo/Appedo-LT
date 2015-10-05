@@ -154,6 +154,7 @@ namespace AppedoLT
                 }
             }
         }
+
         private void btnOk_Click(object sender, EventArgs e)
         {
             if (isFromSigleValue == false)
@@ -166,6 +167,11 @@ namespace AppedoLT
                         RadTextBox txt = (RadTextBox)tabitem.ContentPanel.Controls[tabitem.Name];
                         if (((XmlAttribute)txt.Tag).Value != txt.Text)
                         {
+                            string source = ((XmlAttribute)txt.Tag).Value;
+                            if(chkReplaceAll.Checked==true)
+                            {
+                                _parentNode.OwnerDocument.InnerXml = _parentNode.OwnerDocument.InnerXml.Replace(source,  txt.Text);
+                            }
                             ((XmlAttribute)txt.Tag).Value = txt.Text;
                             isChanged = true;
                         }

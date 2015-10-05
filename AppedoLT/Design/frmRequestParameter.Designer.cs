@@ -43,6 +43,7 @@ namespace AppedoLT
             this.splitPanel1 = new Telerik.WinControls.UI.SplitPanel();
             this.splitPanel2 = new Telerik.WinControls.UI.SplitPanel();
             this.office2007SilverTheme1 = new Telerik.WinControls.Themes.Office2007SilverTheme();
+            this.chkReplaceAll = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.btnVariableManager)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnOk)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnCancel)).BeginInit();
@@ -248,12 +249,23 @@ namespace AppedoLT
             this.splitPanel2.Text = "splitPanel2";
             this.splitPanel2.ThemeName = "Office2010";
             // 
+            // chkReplaceAll
+            // 
+            this.chkReplaceAll.AutoSize = true;
+            this.chkReplaceAll.Location = new System.Drawing.Point(0, 451);
+            this.chkReplaceAll.Name = "chkReplaceAll";
+            this.chkReplaceAll.Size = new System.Drawing.Size(79, 17);
+            this.chkReplaceAll.TabIndex = 9;
+            this.chkReplaceAll.Text = "Replace all";
+            this.chkReplaceAll.UseVisualStyleBackColor = true;
+            // 
             // RequestParameter
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(219)))), ((int)(((byte)(255)))));
             this.ClientSize = new System.Drawing.Size(315, 470);
+            this.Controls.Add(this.chkReplaceAll);
             this.Controls.Add(this.radSplitContainer1);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnOk);
@@ -284,6 +296,7 @@ namespace AppedoLT
             this.splitPanel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -302,6 +315,7 @@ namespace AppedoLT
         private Telerik.WinControls.Themes.Office2007SilverTheme office2007SilverTheme1;
         private Telerik.WinControls.UI.TabItem tabiValue;
         private Telerik.WinControls.UI.RadTextBox txtValue;
+        private System.Windows.Forms.CheckBox chkReplaceAll;
     }
 }
 

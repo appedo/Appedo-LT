@@ -19,6 +19,7 @@ namespace AppedoLT
         {
             InitializeComponent();
             _type = "http";
+            ddlParentContainer.SelectedIndex = 1;
         }
         private void btnOk_Click(object sender, EventArgs e)
         {

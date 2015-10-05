@@ -55,6 +55,17 @@ namespace AppedoLT
                     {
                         _paramTable.Rows[hit.RowIndex]["name"] = paramNode.Attributes["name"].Value;
                         _paramTable.Rows[hit.RowIndex]["value"] = paramNode.Attributes["value"].Value;
+                        Control obj = this.Parent;
+                        while (obj != null)
+                        {
+                            obj = obj.Parent;
+                            if (obj.GetType().Name == "ucDesign") break;
+                        }
+                        if (obj != null)
+                        {
+                            ((ucDesign)obj).btnScriptSave_Click(null, null);
+                            ((ucDesign)obj).LoadTreeItem();
+                        }
                     }
                 }
             }

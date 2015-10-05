@@ -23,13 +23,13 @@ namespace AppedoLT
         /// <param name="_frm">Parent form</param>
         /// <param name="vuName">Script name</param>
         /// <param name="_vuScript">xml node to store recoded transactions</param>
-        public frmRecord(Design _frm, string vuName, XmlNode _vuScript)
+        public frmRecord(Design _frm, string vuName, XmlNode _vuScript,int selectedIndex)
         {
             try
             {
                 InitializeComponent();
                 ThreadPool.SetMaxThreads(2, 2);
-                ddlParentContainer.SelectedIndex = 1;
+                ddlParentContainer.SelectedIndex = selectedIndex;
                 this.Location = new System.Drawing.Point((Screen.PrimaryScreen.Bounds.Width / 2) - (this.Size.Width / 2), 2);
                 lblRequest.Text = string.Empty;
                 Label.CheckForIllegalCrossThreadCalls = false;

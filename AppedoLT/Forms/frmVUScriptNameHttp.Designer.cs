@@ -39,6 +39,11 @@ namespace AppedoLT
             this.radLabel3 = new Telerik.WinControls.UI.RadLabel();
             this.txtOpenurl = new Telerik.WinControls.UI.RadTextBox();
             this.erpRequired = new System.Windows.Forms.ErrorProvider(this.components);
+            this.ddlParentContainer = new Telerik.WinControls.UI.RadComboBox();
+            this.radLabel4 = new Telerik.WinControls.UI.RadLabel();
+            this.radComboBoxItem1 = new Telerik.WinControls.UI.RadComboBoxItem();
+            this.radComboBoxItem2 = new Telerik.WinControls.UI.RadComboBoxItem();
+            this.radComboBoxItem3 = new Telerik.WinControls.UI.RadComboBoxItem();
             ((System.ComponentModel.ISupportInitialize)(this.txtName)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnOk)).BeginInit();
@@ -49,6 +54,8 @@ namespace AppedoLT
             ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtOpenurl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.erpRequired)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ddlParentContainer)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
@@ -75,7 +82,7 @@ namespace AppedoLT
             // 
             // btnOk
             // 
-            this.btnOk.Location = new System.Drawing.Point(112, 78);
+            this.btnOk.Location = new System.Drawing.Point(112, 105);
             this.btnOk.Name = "btnOk";
             this.btnOk.Size = new System.Drawing.Size(73, 24);
             this.btnOk.TabIndex = 4;
@@ -85,7 +92,7 @@ namespace AppedoLT
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(193, 78);
+            this.btnCancel.Location = new System.Drawing.Point(193, 105);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(73, 24);
             this.btnCancel.TabIndex = 5;
@@ -144,13 +151,56 @@ namespace AppedoLT
             // 
             this.erpRequired.ContainerControl = this;
             // 
+            // ddlParentContainer
+            // 
+            this.ddlParentContainer.DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
+            this.ddlParentContainer.Items.AddRange(new Telerik.WinControls.RadItem[] {
+            this.radComboBoxItem1,
+            this.radComboBoxItem2,
+            this.radComboBoxItem3});
+            this.ddlParentContainer.Location = new System.Drawing.Point(112, 74);
+            this.ddlParentContainer.Name = "ddlParentContainer";
+            // 
+            // 
+            // 
+            this.ddlParentContainer.RootElement.AutoSizeMode = Telerik.WinControls.RadAutoSizeMode.WrapAroundChildren;
+            this.ddlParentContainer.Size = new System.Drawing.Size(119, 21);
+            this.ddlParentContainer.TabIndex = 9;
+            this.ddlParentContainer.TabStop = false;
+            this.ddlParentContainer.ThemeName = "Telerik";
+            // 
+            // radLabel4
+            // 
+            this.radLabel4.Location = new System.Drawing.Point(1, 74);
+            this.radLabel4.Name = "radLabel4";
+            this.radLabel4.Size = new System.Drawing.Size(70, 17);
+            this.radLabel4.TabIndex = 10;
+            this.radLabel4.Text = "Container :";
+            // 
+            // radComboBoxItem1
+            // 
+            this.radComboBoxItem1.Name = "radComboBoxItem1";
+            this.radComboBoxItem1.Text = "Initialize";
+            // 
+            // radComboBoxItem2
+            // 
+            this.radComboBoxItem2.Name = "radComboBoxItem2";
+            this.radComboBoxItem2.Text = "Actions";
+            // 
+            // radComboBoxItem3
+            // 
+            this.radComboBoxItem3.Name = "radComboBoxItem3";
+            this.radComboBoxItem3.Text = "End";
+            // 
             // frmVUScriptNameHttp
             // 
             this.AcceptButton = this.btnOk;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.ClientSize = new System.Drawing.Size(401, 109);
+            this.ClientSize = new System.Drawing.Size(393, 136);
+            this.Controls.Add(this.radLabel4);
+            this.Controls.Add(this.ddlParentContainer);
             this.Controls.Add(this.radLabel3);
             this.Controls.Add(this.txtOpenurl);
             this.Controls.Add(this.rbtnOthers);
@@ -180,6 +230,8 @@ namespace AppedoLT
             ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtOpenurl)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.erpRequired)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ddlParentContainer)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -198,6 +250,11 @@ namespace AppedoLT
         private Telerik.WinControls.UI.RadLabel radLabel3;
         private Telerik.WinControls.UI.RadTextBox txtOpenurl;
         private System.Windows.Forms.ErrorProvider erpRequired;
+        private Telerik.WinControls.UI.RadLabel radLabel4;
+        public Telerik.WinControls.UI.RadComboBox ddlParentContainer;
+        private Telerik.WinControls.UI.RadComboBoxItem radComboBoxItem1;
+        private Telerik.WinControls.UI.RadComboBoxItem radComboBoxItem2;
+        private Telerik.WinControls.UI.RadComboBoxItem radComboBoxItem3;
     }
 }
 

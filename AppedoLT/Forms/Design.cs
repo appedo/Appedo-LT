@@ -257,7 +257,7 @@ namespace AppedoLT
                 if (frm.vuscriptXml != null)
                 {
                     XmlNode vuscriptNode = frm.vuscriptXml.Doc.SelectSingleNode("//vuscript");
-                    frmRecord rd = new frmRecord(this, frm.name, vuscriptNode);
+                    frmRecord rd = new frmRecord(this, frm.name, vuscriptNode, frm.ddlParentContainer.SelectedIndex);
                     this.Visible = false;
                     rd.ShowDialog();
                     frm.vuscriptXml.Save();
@@ -669,169 +669,171 @@ namespace AppedoLT
 
         private void btnRun_Click(object sender, EventArgs e)
         {
-            if (tvScenarios.SelectedNode == null || tvScenarios.SelectedNode.Level != 0)
+            if (tvScenarios.SelectedNode != null && tvScenarios.SelectedNode.Level != 0)
             {
-                MessageBox.Show("Please Select a Scenario");
-            }
-            else
-            {
-                if ( ValidateLicence((XmlNode)tvScenarios.SelectedNode.Tag) == true)
+                if (tvScenarios.SelectedNode.Level == 1)
                 {
-                    try
+                    tvScenarios.SelectedNode.Parent.Selected = true;
+                }
+            }
+
+            if (tvScenarios.SelectedNode != null && ValidateLicence((XmlNode)tvScenarios.SelectedNode.Tag) == true)
+            {
+                try
+                {
+                    _scriptExecutorList.Clear();
+                    tmrExecution.Stop();
+
+                    frmRun objFrmRun = new frmRun();
+                    if (objFrmRun.ShowDialog() == DialogResult.OK)
                     {
-                        _scriptExecutorList.Clear();
-                        tmrExecution.Stop();
+                        lsvErrors.Items.Clear();
+                        lblErrorCount.Text = "0";
+                        lblHitCount.Text = "0";
+                        _hitCount = 0;
+                        _repositoryXml.Save();
+                        executionReport.ReportName = objFrmRun.strReportName;
+                        executionReport.ScenarioName = tvScenarios.SelectedNode.Text;
+                        executionReport.ExecutionStatus = Status.Running;
 
-                        frmRun objFrmRun = new frmRun();
-                        if (objFrmRun.ShowDialog() == DialogResult.OK)
+                        Request.IPSpoofingEnabled = Convert.ToBoolean(((XmlNode)tvScenarios.SelectedNode.Tag).Attributes["enableipspoofing"].Value);
+                        lblStatus.Text = "Running";
+                        LoadReportName(executionReport.ReportName);
+                        userControlCharts1.LoadReportName(executionReport.ReportName);
+
+                        lblUserCompleted.Text = "0";
+                        listView1.Items.Clear();
+                        XmlNode run = _repositoryXml.Doc.CreateElement("run");
+                        run.Attributes.Append(_repositoryXml.GetAttribute("reportname", executionReport.ReportName));
+
+                        if (objUCLoadGen.IsLoadGeneratorSelected() == false)
                         {
-                            lsvErrors.Items.Clear();
-                            lblErrorCount.Text = "0";
-                            lblHitCount.Text = "0";
-                            _hitCount = 0;
-                            _repositoryXml.Save();
-                            executionReport.ReportName = objFrmRun.strReportName;
-                            executionReport.ScenarioName = tvScenarios.SelectedNode.Text;
-                            executionReport.ExecutionStatus = Status.Running;
+                            #region Without Loadgen
 
-                            Request.IPSpoofingEnabled = Convert.ToBoolean(((XmlNode)tvScenarios.SelectedNode.Tag).Attributes["enableipspoofing"].Value);
-                            lblStatus.Text = "Running";
-                            LoadReportName(executionReport.ReportName);
-                            userControlCharts1.LoadReportName(executionReport.ReportName);
-
-                            lblUserCompleted.Text = "0";
-                            listView1.Items.Clear();
-                            XmlNode run = _repositoryXml.Doc.CreateElement("run");
-                            run.Attributes.Append(_repositoryXml.GetAttribute("reportname", executionReport.ReportName));
-
-                            if (objUCLoadGen.IsLoadGeneratorSelected() == false)
+                            XmlDocument scenario = GetScenarioForRun(((XmlNode)tvScenarios.SelectedNode.Tag).Attributes["id"].Value, executionReport.ReportName, 1, 1, Convert.ToBoolean(((XmlNode)tvScenarios.SelectedNode.Tag).Attributes["enableipspoofing"].Value));
+                            run.AppendChild(GetRuntimeScriptDetail(scenario));
+                            VariableManager.dataCenter = new VariableManager();
+                            foreach (XmlNode script in scenario.SelectNodes("//script"))
                             {
-                                #region Without Loadgen
+                                string scriptid = script.Attributes["id"].Value;
+                                XmlNode setting = script.SelectNodes("//script[@id='" + scriptid + "']//setting")[0];
+                                XmlNode vuscript = script.SelectNodes("//script[@id='" + scriptid + "']//vuscript")[0];
+                                ScriptExecutor scriptRunnerSce = new ScriptExecutor(setting, vuscript, executionReport.ReportName);
+                                _scriptExecutorList.Add(scriptRunnerSce);
+                            }
 
-                                XmlDocument scenario = GetScenarioForRun(((XmlNode)tvScenarios.SelectedNode.Tag).Attributes["id"].Value, executionReport.ReportName, 1, 1, Convert.ToBoolean(((XmlNode)tvScenarios.SelectedNode.Tag).Attributes["enableipspoofing"].Value));
-                                run.AppendChild(GetRuntimeScriptDetail(scenario));
-                                VariableManager.dataCenter = new VariableManager();
-                                foreach (XmlNode script in scenario.SelectNodes("//script"))
+                            #region Run detail
+
+                            run.Attributes.Append(_repositoryXml.GetAttribute("starttime", DateTime.Now.ToString()));
+                            run.Attributes.Append(_repositoryXml.GetAttribute("loadgenused", false.ToString()));
+                            XmlNode runs = _repositoryXml.Doc.SelectSingleNode("//runs");
+                            if (runs != null)
+                            {
+                                runs.AppendChild(run);
+                                _repositoryXml.Save();
+                            }
+                            #endregion
+
+                            foreach (ScriptExecutor scr in _scriptExecutorList)
+                            {
+                                scr.OnLockReportData += scr_OnLockReportData;
+                                scr.OnLockError += scr_OnLockError;
+                                scr.OnLockLog += scr_OnLockLog;
+                                scr.OnLockTransactions += scr_OnLockTransactions;
+                                scr.OnLockUserDetail += scr_OnLockUserDetail;
+                                scr.OnIterationStarted += scr_OnIterationCompleted;
+                                scr.OnVUserRunCompleted += scr_OnVUserRunCompleted;
+                                scr.OnVUserCreated += scr_OnVUserCreated;
+                                scr.Run();
+                            }
+                            runTime.Reset();
+                            runTime.Start();
+                            tmrExecution.Start();
+                            #endregion
+                            _isUseLoadGen = false;
+                        }
+                        else
+                        {
+                            _loadGeneratorips.Clear();
+                            #region Loadgen
+                            bool isAllLoadgenConnected = true;
+                            StringBuilder disconnectedHost = new StringBuilder();
+                            foreach (XmlNode loadgen in objUCLoadGen.GetLoadGenerators())
+                            {
+                                System.Net.Sockets.TcpClient clientSocket = new System.Net.Sockets.TcpClient();
+                                try
                                 {
-                                    string scriptid = script.Attributes["id"].Value;
-                                    XmlNode setting = script.SelectNodes("//script[@id='" + scriptid + "']//setting")[0];
-                                    XmlNode vuscript = script.SelectNodes("//script[@id='" + scriptid + "']//vuscript")[0];
-                                    ScriptExecutor scriptRunnerSce = new ScriptExecutor(setting, vuscript, executionReport.ReportName);
-                                    _scriptExecutorList.Add(scriptRunnerSce);
+                                    Trasport controller = new Trasport(loadgen.Attributes["ipaddress"].Value, "8888");
+                                    controller.Send(new TrasportData("TEST", string.Empty, null));
+                                    controller.Receive();
+                                    controller.Close();
                                 }
-
-                                #region Run detail
-
-                                run.Attributes.Append(_repositoryXml.GetAttribute("starttime", DateTime.Now.ToString()));
-                                run.Attributes.Append(_repositoryXml.GetAttribute("loadgenused", false.ToString()));
-                                XmlNode runs = _repositoryXml.Doc.SelectSingleNode("//runs");
-                                if (runs != null)
+                                catch (Exception)
                                 {
-                                    runs.AppendChild(run);
-                                    _repositoryXml.Save();
+                                    isAllLoadgenConnected = false;
+                                    disconnectedHost.AppendLine(loadgen.Attributes["hostname"].Value);
                                 }
-                                #endregion
-
-                                foreach (ScriptExecutor scr in _scriptExecutorList)
-                                {
-                                    scr.OnLockReportData += scr_OnLockReportData;
-                                    scr.OnLockError += scr_OnLockError;
-                                    scr.OnLockLog += scr_OnLockLog;
-                                    scr.OnLockTransactions += scr_OnLockTransactions;
-                                    scr.OnLockUserDetail += scr_OnLockUserDetail;
-                                    scr.OnIterationStarted += scr_OnIterationCompleted;
-                                    scr.OnVUserRunCompleted += scr_OnVUserRunCompleted;
-                                    scr.OnVUserCreated += scr_OnVUserCreated;
-                                    scr.Run();
-                                }
-                                runTime.Reset();
-                                runTime.Start();
-                                tmrExecution.Start();
-                                #endregion
-                                _isUseLoadGen = false;
+                            }
+                            if (isAllLoadgenConnected == false)
+                            {
+                                MessageBox.Show("Please connect following host \n" + disconnectedHost.ToString());
                             }
                             else
                             {
-                                _loadGeneratorips.Clear();
-                                #region Loadgen
-                                bool isAllLoadgenConnected = true;
-                                StringBuilder disconnectedHost = new StringBuilder();
-                                foreach (XmlNode loadgen in objUCLoadGen.GetLoadGenerators())
+                                int loadGenId = 0;
+                                List<XmlNode> loadGens = objUCLoadGen.GetLoadGenerators();
+
+                                foreach (XmlNode loadgen in loadGens)
                                 {
-                                    System.Net.Sockets.TcpClient clientSocket = new System.Net.Sockets.TcpClient();
+                                    loadGenId++;
+                                    XmlDocument scenario = GetScenarioForRun(((XmlNode)tvScenarios.SelectedNode.Tag).Attributes["id"].Value, executionReport.ReportName, loadGens.Count, loadGenId, Convert.ToBoolean(((XmlNode)tvScenarios.SelectedNode.Tag).Attributes["enableipspoofing"].Value));
+                                    run.AppendChild(GetRuntimeScriptDetail(scenario));
+                                    //System.Net.Sockets.TcpClient clientSocket = new System.Net.Sockets.TcpClient();
                                     try
                                     {
                                         Trasport controller = new Trasport(loadgen.Attributes["ipaddress"].Value, "8888");
-                                        controller.Send(new TrasportData("TEST", string.Empty, null));
+                                        Dictionary<string, string> header = new Dictionary<string, string>();
+                                        header.Add("reportname", executionReport.ReportName);
+                                        header.Add("scenarioname", executionReport.ScenarioName);
+                                        header.Add("loadgens", "192.168.1.70");
+                                        controller.Send(new TrasportData("run", scenario.InnerXml, header));
+                                        _loadGeneratorips.Add(loadgen.Attributes["ipaddress"].Value);
+
+                                        #region Run detail
+                                        XmlNode loadGenDetail = loadgen.Clone();
+                                        loadGenDetail.Attributes.Append(_repositoryXml.GetAttribute("resultfilereceived", false.ToString()));
+                                        run.AppendChild(loadGenDetail);
+                                        run.Attributes.Append(_repositoryXml.GetAttribute("starttime", DateTime.Now.ToString()));
+                                        run.Attributes.Append(_repositoryXml.GetAttribute("loadgenused", true.ToString()));
+                                        XmlNode runs = _repositoryXml.Doc.SelectSingleNode("//runs");
+                                        if (runs != null)
+                                        {
+                                            runs.AppendChild(run);
+                                            _repositoryXml.Save();
+                                        }
                                         controller.Receive();
-                                        controller.Close();
+                                        #endregion
                                     }
                                     catch (Exception)
                                     {
-                                        isAllLoadgenConnected = false;
-                                        disconnectedHost.AppendLine(loadgen.Attributes["hostname"].Value);
+
                                     }
+                                    runTime.Reset();
+                                    runTime.Start();
+                                    tmrExecution.Start();
                                 }
-                                if (isAllLoadgenConnected == false)
-                                {
-                                    MessageBox.Show("Please connect following host \n" + disconnectedHost.ToString());
-                                }
-                                else
-                                {
-                                    int loadGenId = 0;
-                                    List<XmlNode> loadGens = objUCLoadGen.GetLoadGenerators();
-
-                                    foreach (XmlNode loadgen in loadGens)
-                                    {
-                                        loadGenId++;
-                                        XmlDocument scenario = GetScenarioForRun(((XmlNode)tvScenarios.SelectedNode.Tag).Attributes["id"].Value, executionReport.ReportName, loadGens.Count, loadGenId, Convert.ToBoolean(((XmlNode)tvScenarios.SelectedNode.Tag).Attributes["enableipspoofing"].Value));
-                                        run.AppendChild(GetRuntimeScriptDetail(scenario));
-                                        //System.Net.Sockets.TcpClient clientSocket = new System.Net.Sockets.TcpClient();
-                                        try
-                                        {
-                                            Trasport controller = new Trasport(loadgen.Attributes["ipaddress"].Value, "8888");
-                                            Dictionary<string, string> header = new Dictionary<string, string>();
-                                            header.Add("reportname", executionReport.ReportName);
-                                            header.Add("scenarioname", executionReport.ScenarioName);
-                                            header.Add("loadgens", "192.168.1.70");
-                                            controller.Send(new TrasportData("run", scenario.InnerXml, header));
-                                            _loadGeneratorips.Add(loadgen.Attributes["ipaddress"].Value);
-
-                                            #region Run detail
-                                            XmlNode loadGenDetail = loadgen.Clone();
-                                            loadGenDetail.Attributes.Append(_repositoryXml.GetAttribute("resultfilereceived", false.ToString()));
-                                            run.AppendChild(loadGenDetail);
-                                            run.Attributes.Append(_repositoryXml.GetAttribute("starttime", DateTime.Now.ToString()));
-                                            run.Attributes.Append(_repositoryXml.GetAttribute("loadgenused", true.ToString()));
-                                            XmlNode runs = _repositoryXml.Doc.SelectSingleNode("//runs");
-                                            if (runs != null)
-                                            {
-                                                runs.AppendChild(run);
-                                                _repositoryXml.Save();
-                                            }
-                                            controller.Receive();
-                                            #endregion
-                                        }
-                                        catch (Exception)
-                                        {
-
-                                        }
-                                        runTime.Reset();
-                                        runTime.Start();
-                                        tmrExecution.Start();
-                                    }
-                                }
-                                #endregion
-                                _isUseLoadGen = true;
                             }
+                            #endregion
+                            _isUseLoadGen = true;
                         }
                     }
-                    catch (Exception ex)
-                    {
-                        ExceptionHandler.WritetoEventLog(ex.StackTrace + ex.Message);
-                    }
+                }
+                catch (Exception ex)
+                {
+                    ExceptionHandler.WritetoEventLog(ex.StackTrace + ex.Message);
                 }
             }
+
         }
 
         void scr_OnVUserCreated(string scriptname,int userid)

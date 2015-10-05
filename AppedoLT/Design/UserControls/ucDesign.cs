@@ -1004,7 +1004,7 @@ namespace AppedoLT
                 {
                     ((VuscriptXml)script.Tag).Save();
                 }
-                MessageBox.Show("Saved");
+              if(sender!=null) MessageBox.Show("Saved");
             }
             catch (Exception ex)
             {
@@ -1025,7 +1025,7 @@ namespace AppedoLT
                 if (frm.vuscriptXml != null)
                 {
                     XmlNode vuscriptNode = frm.vuscriptXml.Doc.SelectSingleNode("//vuscript");
-                    frmRecord rd = new frmRecord((Design)this.Parent.Parent.Parent, frm.name, vuscriptNode);
+                    frmRecord rd = new frmRecord((Design)this.Parent.Parent.Parent, frm.name, vuscriptNode, frm.ddlParentContainer.SelectedIndex);
                     this.Parent.Parent.Parent.Visible = false;
                     rd.ShowDialog();
                     frm.vuscriptXml.Save();
@@ -1240,9 +1240,23 @@ namespace AppedoLT
             }
 
         }
+        private void expandAllToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (tvRequest.SelectedNode != null)
+            {
+                tvRequest.SelectedNode.ExpandAll();
+            }
+        }
+        private void collapseAllToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (tvRequest.SelectedNode != null)
+            {
+                tvRequest.SelectedNode.CollapseAll();
+            }
+        }
         #endregion
 
         #endregion
-
+       
     }
 }

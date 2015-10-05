@@ -70,14 +70,16 @@
             this.startTransactionToolStripMenuItemChild = new System.Windows.Forms.ToolStripMenuItem();
             this.endTransactionToolStripMenuItemChild = new System.Windows.Forms.ToolStripMenuItem();
             this.tsiLogChild = new System.Windows.Forms.ToolStripMenuItem();
+            this.replaceServerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.imglDesign = new System.Windows.Forms.ImageList(this.components);
             this.btnTCPIPRecord = new Telerik.WinControls.UI.RadButton();
             this.btnRecord = new Telerik.WinControls.UI.RadButton();
-            this.splitPanel2 = new Telerik.WinControls.UI.SplitPanel();
-            this.pnlMaster = new Telerik.WinControls.UI.RadPanel();
-            this.replaceServerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.btnScriptSave = new Telerik.WinControls.UI.RadButton();
             this.brnVariableManager = new Telerik.WinControls.UI.RadButton();
+            this.splitPanel2 = new Telerik.WinControls.UI.SplitPanel();
+            this.pnlMaster = new Telerik.WinControls.UI.RadPanel();
+            this.expandAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.collapseAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.radSplitContainer1)).BeginInit();
             this.radSplitContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitPanel1)).BeginInit();
@@ -87,11 +89,11 @@
             this.cntmUVScript.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnTCPIPRecord)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnRecord)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnScriptSave)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.brnVariableManager)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitPanel2)).BeginInit();
             this.splitPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pnlMaster)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnScriptSave)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.brnVariableManager)).BeginInit();
             this.SuspendLayout();
             // 
             // radSplitContainer1
@@ -186,9 +188,11 @@
             this.insertBeforeToolStripMenuItem,
             this.insertAfterToolStripMenuItem,
             this.insertAsChildToolStripMenuItemChild,
-            this.replaceServerToolStripMenuItem});
+            this.replaceServerToolStripMenuItem,
+            this.expandAllToolStripMenuItem,
+            this.collapseAllToolStripMenuItem});
             this.cntmUVScript.Name = "cntmUVScript";
-            this.cntmUVScript.Size = new System.Drawing.Size(169, 158);
+            this.cntmUVScript.Size = new System.Drawing.Size(169, 224);
             this.cntmUVScript.Opening += new System.ComponentModel.CancelEventHandler(this.cntmUVScript_Opening);
             // 
             // deleteToolStripMenuItem
@@ -467,6 +471,13 @@
             this.tsiLogChild.Text = "L&og";
             this.tsiLogChild.Click += new System.EventHandler(this.tsiLog_Click);
             // 
+            // replaceServerToolStripMenuItem
+            // 
+            this.replaceServerToolStripMenuItem.Name = "replaceServerToolStripMenuItem";
+            this.replaceServerToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
+            this.replaceServerToolStripMenuItem.Text = "Replace Server";
+            this.replaceServerToolStripMenuItem.Click += new System.EventHandler(this.replaceServerToolStripMenuItem_Click);
+            // 
             // imglDesign
             // 
             this.imglDesign.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imglDesign.ImageStream")));
@@ -513,6 +524,33 @@
             this.btnRecord.ThemeName = "Telerik";
             this.btnRecord.Click += new System.EventHandler(this.btnRecord_Click_1);
             // 
+            // btnScriptSave
+            // 
+            this.btnScriptSave.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.btnScriptSave.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold);
+            this.btnScriptSave.Image = ((System.Drawing.Image)(resources.GetObject("btnScriptSave.Image")));
+            this.btnScriptSave.Location = new System.Drawing.Point(34, 4);
+            this.btnScriptSave.Name = "btnScriptSave";
+            this.btnScriptSave.Size = new System.Drawing.Size(68, 24);
+            this.btnScriptSave.TabIndex = 42;
+            this.btnScriptSave.Text = "&Save";
+            this.btnScriptSave.ThemeName = "Telerik";
+            this.btnScriptSave.Click += new System.EventHandler(this.btnScriptSave_Click);
+            // 
+            // brnVariableManager
+            // 
+            this.brnVariableManager.BackColor = System.Drawing.Color.Transparent;
+            this.brnVariableManager.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.brnVariableManager.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            this.brnVariableManager.ImageIndex = 14;
+            this.brnVariableManager.ImageList = this.imglDesign;
+            this.brnVariableManager.Location = new System.Drawing.Point(5, 4);
+            this.brnVariableManager.Name = "brnVariableManager";
+            this.brnVariableManager.Size = new System.Drawing.Size(28, 24);
+            this.brnVariableManager.TabIndex = 41;
+            this.brnVariableManager.ThemeName = "Telerik";
+            this.brnVariableManager.Click += new System.EventHandler(this.brnVariableManager_Click);
+            // 
             // splitPanel2
             // 
             this.splitPanel2.Controls.Add(this.pnlMaster);
@@ -541,39 +579,19 @@
             this.pnlMaster.Size = new System.Drawing.Size(873, 445);
             this.pnlMaster.TabIndex = 19;
             // 
-            // replaceServerToolStripMenuItem
+            // expandAllToolStripMenuItem
             // 
-            this.replaceServerToolStripMenuItem.Name = "replaceServerToolStripMenuItem";
-            this.replaceServerToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
-            this.replaceServerToolStripMenuItem.Text = "Replace Server";
-            this.replaceServerToolStripMenuItem.Click += new System.EventHandler(this.replaceServerToolStripMenuItem_Click);
+            this.expandAllToolStripMenuItem.Name = "expandAllToolStripMenuItem";
+            this.expandAllToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
+            this.expandAllToolStripMenuItem.Text = "&Expand All";
+            this.expandAllToolStripMenuItem.Click += new System.EventHandler(this.expandAllToolStripMenuItem_Click);
             // 
-            // btnScriptSave
+            // collapseAllToolStripMenuItem
             // 
-            this.btnScriptSave.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            this.btnScriptSave.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold);
-            this.btnScriptSave.Image = ((System.Drawing.Image)(resources.GetObject("btnScriptSave.Image")));
-            this.btnScriptSave.Location = new System.Drawing.Point(34, 4);
-            this.btnScriptSave.Name = "btnScriptSave";
-            this.btnScriptSave.Size = new System.Drawing.Size(68, 24);
-            this.btnScriptSave.TabIndex = 42;
-            this.btnScriptSave.Text = "&Save";
-            this.btnScriptSave.ThemeName = "Telerik";
-            this.btnScriptSave.Click += new System.EventHandler(this.btnScriptSave_Click);
-            // 
-            // brnVariableManager
-            // 
-            this.brnVariableManager.BackColor = System.Drawing.Color.Transparent;
-            this.brnVariableManager.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.brnVariableManager.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            this.brnVariableManager.ImageIndex = 14;
-            this.brnVariableManager.ImageList = this.imglDesign;
-            this.brnVariableManager.Location = new System.Drawing.Point(5, 4);
-            this.brnVariableManager.Name = "brnVariableManager";
-            this.brnVariableManager.Size = new System.Drawing.Size(28, 24);
-            this.brnVariableManager.TabIndex = 41;
-            this.brnVariableManager.ThemeName = "Telerik";
-            this.brnVariableManager.Click += new System.EventHandler(this.brnVariableManager_Click);
+            this.collapseAllToolStripMenuItem.Name = "collapseAllToolStripMenuItem";
+            this.collapseAllToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
+            this.collapseAllToolStripMenuItem.Text = "C&ollapse All";
+            this.collapseAllToolStripMenuItem.Click += new System.EventHandler(this.collapseAllToolStripMenuItem_Click);
             // 
             // ucDesign
             // 
@@ -591,11 +609,11 @@
             this.cntmUVScript.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.btnTCPIPRecord)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnRecord)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnScriptSave)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.brnVariableManager)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitPanel2)).EndInit();
             this.splitPanel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pnlMaster)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnScriptSave)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.brnVariableManager)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -650,6 +668,8 @@
         private Telerik.WinControls.UI.RadPanel pnlMaster;
         private Telerik.WinControls.UI.RadButton txtDownload;
         private System.Windows.Forms.ToolStripMenuItem replaceServerToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem expandAllToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem collapseAllToolStripMenuItem;
 
     }
 }

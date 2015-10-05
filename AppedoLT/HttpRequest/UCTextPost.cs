@@ -46,6 +46,19 @@ namespace AppedoLT
             if (new RequestParameter((XmlAttribute)txtValue.Tag).ShowDialog() == DialogResult.OK)
             {
                 txtValue.Text = ((XmlAttribute)txtValue.Tag).Value;
+
+                Control obj = this.Parent;
+                while (obj != null)
+                {
+                    obj = obj.Parent;
+                    if (obj.GetType().Name == "ucDesign") break;
+
+                }
+                if (obj != null)
+                {
+                    ((ucDesign)obj).btnScriptSave_Click(null, null);
+                    ((ucDesign)obj).LoadTreeItem();
+                }
             }
         }
     }
