@@ -71,6 +71,8 @@
             this.endTransactionToolStripMenuItemChild = new System.Windows.Forms.ToolStripMenuItem();
             this.tsiLogChild = new System.Windows.Forms.ToolStripMenuItem();
             this.replaceServerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.expandAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.collapseAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.imglDesign = new System.Windows.Forms.ImageList(this.components);
             this.btnTCPIPRecord = new Telerik.WinControls.UI.RadButton();
             this.btnRecord = new Telerik.WinControls.UI.RadButton();
@@ -78,8 +80,7 @@
             this.brnVariableManager = new Telerik.WinControls.UI.RadButton();
             this.splitPanel2 = new Telerik.WinControls.UI.SplitPanel();
             this.pnlMaster = new Telerik.WinControls.UI.RadPanel();
-            this.expandAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.collapseAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.findAndReplaceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.radSplitContainer1)).BeginInit();
             this.radSplitContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitPanel1)).BeginInit();
@@ -190,16 +191,17 @@
             this.insertAsChildToolStripMenuItemChild,
             this.replaceServerToolStripMenuItem,
             this.expandAllToolStripMenuItem,
-            this.collapseAllToolStripMenuItem});
+            this.collapseAllToolStripMenuItem,
+            this.findAndReplaceToolStripMenuItem});
             this.cntmUVScript.Name = "cntmUVScript";
-            this.cntmUVScript.Size = new System.Drawing.Size(169, 224);
+            this.cntmUVScript.Size = new System.Drawing.Size(182, 246);
             this.cntmUVScript.Opening += new System.ComponentModel.CancelEventHandler(this.cntmUVScript_Opening);
             // 
             // deleteToolStripMenuItem
             // 
             this.deleteToolStripMenuItem.AutoToolTip = true;
             this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
-            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
             this.deleteToolStripMenuItem.Text = "&Delete";
             this.deleteToolStripMenuItem.Visible = false;
             this.deleteToolStripMenuItem.Click += new System.EventHandler(this.btnDelete_Click);
@@ -207,7 +209,7 @@
             // searchToolStripMenuItem
             // 
             this.searchToolStripMenuItem.Name = "searchToolStripMenuItem";
-            this.searchToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
+            this.searchToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
             this.searchToolStripMenuItem.Text = "&Flag Request";
             this.searchToolStripMenuItem.Click += new System.EventHandler(this.searchToolStripMenuItem_Click);
             // 
@@ -217,7 +219,7 @@
             this.httpToolStripMenuItem,
             this.tcpIpToolStripMenuItem});
             this.recordNewScripToolStripMenuItem.Name = "recordNewScripToolStripMenuItem";
-            this.recordNewScripToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
+            this.recordNewScripToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
             this.recordNewScripToolStripMenuItem.Text = "&New Script";
             // 
             // httpToolStripMenuItem
@@ -247,7 +249,7 @@
             this.endTransactionToolStripMenuItemBefore,
             this.tsiLogBefore});
             this.insertBeforeToolStripMenuItem.Name = "insertBeforeToolStripMenuItem";
-            this.insertBeforeToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
+            this.insertBeforeToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
             this.insertBeforeToolStripMenuItem.Text = "Insert &before";
             // 
             // containerToolStripMenuItemBefore
@@ -326,7 +328,7 @@
             this.endToolStripMenuItemAfter,
             this.tsiLogAfter});
             this.insertAfterToolStripMenuItem.Name = "insertAfterToolStripMenuItem";
-            this.insertAfterToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
+            this.insertAfterToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
             this.insertAfterToolStripMenuItem.Text = "Inser &after";
             // 
             // containerToolStripMenuItemAfter
@@ -405,7 +407,7 @@
             this.endTransactionToolStripMenuItemChild,
             this.tsiLogChild});
             this.insertAsChildToolStripMenuItemChild.Name = "insertAsChildToolStripMenuItemChild";
-            this.insertAsChildToolStripMenuItemChild.Size = new System.Drawing.Size(168, 22);
+            this.insertAsChildToolStripMenuItemChild.Size = new System.Drawing.Size(181, 22);
             this.insertAsChildToolStripMenuItemChild.Text = "Insert as &child";
             // 
             // containerToolStripMenuItemChild
@@ -474,9 +476,23 @@
             // replaceServerToolStripMenuItem
             // 
             this.replaceServerToolStripMenuItem.Name = "replaceServerToolStripMenuItem";
-            this.replaceServerToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
+            this.replaceServerToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
             this.replaceServerToolStripMenuItem.Text = "Replace Server";
             this.replaceServerToolStripMenuItem.Click += new System.EventHandler(this.replaceServerToolStripMenuItem_Click);
+            // 
+            // expandAllToolStripMenuItem
+            // 
+            this.expandAllToolStripMenuItem.Name = "expandAllToolStripMenuItem";
+            this.expandAllToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
+            this.expandAllToolStripMenuItem.Text = "&Expand All";
+            this.expandAllToolStripMenuItem.Click += new System.EventHandler(this.expandAllToolStripMenuItem_Click);
+            // 
+            // collapseAllToolStripMenuItem
+            // 
+            this.collapseAllToolStripMenuItem.Name = "collapseAllToolStripMenuItem";
+            this.collapseAllToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
+            this.collapseAllToolStripMenuItem.Text = "C&ollapse All";
+            this.collapseAllToolStripMenuItem.Click += new System.EventHandler(this.collapseAllToolStripMenuItem_Click);
             // 
             // imglDesign
             // 
@@ -579,19 +595,12 @@
             this.pnlMaster.Size = new System.Drawing.Size(873, 445);
             this.pnlMaster.TabIndex = 19;
             // 
-            // expandAllToolStripMenuItem
+            // findAndReplaceToolStripMenuItem
             // 
-            this.expandAllToolStripMenuItem.Name = "expandAllToolStripMenuItem";
-            this.expandAllToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
-            this.expandAllToolStripMenuItem.Text = "&Expand All";
-            this.expandAllToolStripMenuItem.Click += new System.EventHandler(this.expandAllToolStripMenuItem_Click);
-            // 
-            // collapseAllToolStripMenuItem
-            // 
-            this.collapseAllToolStripMenuItem.Name = "collapseAllToolStripMenuItem";
-            this.collapseAllToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
-            this.collapseAllToolStripMenuItem.Text = "C&ollapse All";
-            this.collapseAllToolStripMenuItem.Click += new System.EventHandler(this.collapseAllToolStripMenuItem_Click);
+            this.findAndReplaceToolStripMenuItem.Name = "findAndReplaceToolStripMenuItem";
+            this.findAndReplaceToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
+            this.findAndReplaceToolStripMenuItem.Text = "F&ind and Replace";
+            this.findAndReplaceToolStripMenuItem.Click += new System.EventHandler(this.findAndReplaceToolStripMenuItem_Click);
             // 
             // ucDesign
             // 
@@ -670,6 +679,7 @@
         private System.Windows.Forms.ToolStripMenuItem replaceServerToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem expandAllToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem collapseAllToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem findAndReplaceToolStripMenuItem;
 
     }
 }

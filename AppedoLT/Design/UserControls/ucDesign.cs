@@ -1090,12 +1090,13 @@ namespace AppedoLT
         {
             try
             {
-                replaceServerToolStripMenuItem.Visible = searchToolStripMenuItem.Visible = insertAfterToolStripMenuItem.Visible = insertBeforeToolStripMenuItem.Visible = insertAsChildToolStripMenuItemChild.Visible = recordNewScripToolStripMenuItem.Visible = deleteToolStripMenuItem.Visible = false;
+               findAndReplaceToolStripMenuItem.Visible= replaceServerToolStripMenuItem.Visible = searchToolStripMenuItem.Visible = insertAfterToolStripMenuItem.Visible = insertBeforeToolStripMenuItem.Visible = insertAsChildToolStripMenuItemChild.Visible = recordNewScripToolStripMenuItem.Visible = deleteToolStripMenuItem.Visible = false;
 
                 if (tvRequest.SelectedNode.Level == 0)
                 {
                     searchToolStripMenuItem.Visible = true;
                     replaceServerToolStripMenuItem.Visible = true;
+                    findAndReplaceToolStripMenuItem.Visible = true;
                 }
                 if (tvRequest.SelectedNode != null)
                 {
@@ -1253,6 +1254,11 @@ namespace AppedoLT
             {
                 tvRequest.SelectedNode.CollapseAll();
             }
+        }
+        private void findAndReplaceToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmFindAndReplace frm = new frmFindAndReplace(string.Empty, ((VuscriptXml)tvRequest.SelectedNode.Tag),this);
+            frm.ShowDialog();
         }
         #endregion
 

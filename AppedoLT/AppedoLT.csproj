@@ -249,6 +249,12 @@
     <Compile Include="Forms\frmVUScriptNameHttp.Designer.cs">
       <DependentUpon>frmVUScriptNameHttp.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmFindAndReplace.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmFindAndReplace.Designer.cs">
+      <DependentUpon>frmFindAndReplace.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmShowData.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -477,6 +483,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmVUScriptNameHttp.resx">
       <DependentUpon>frmVUScriptNameHttp.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmFindAndReplace.resx">
+      <DependentUpon>frmFindAndReplace.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="frmShowData.resx">
