@@ -38,7 +38,7 @@ namespace AppedoLT
                         Constants constants = AppedoLT.Core.Constants.GetInstance();
                         constants.ApplicationStartTime = DateTime.Now;
                         Application.Run(new Design());
-                      
+                        //Application.Run(new frmUserCount());
                     }
                     else
                     {

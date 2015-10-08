@@ -233,7 +233,6 @@ namespace AppedoLT
 
         private void SetFlagRequestHttp(RadTreeNode request, XmlNode flagRequest, string scriptId)
         {
-
             if (request.Nodes.Count > 0)
             {
                 foreach (RadTreeNode requestChild in request.Nodes)
@@ -242,9 +241,9 @@ namespace AppedoLT
                     {
                         SetFlagRequestHttp(requestChild, flagRequest, scriptId);
                     }
-                    catch
+                    catch (Exception ex)
                     {
-
+                        ExceptionHandler.WritetoEventLog(ex.StackTrace + Environment.NewLine + ex.Message);
                     }
                 }
             }
@@ -675,7 +674,6 @@ namespace AppedoLT
                         tvRequest.SelectedNode.Nodes.Add(IfContainerNode);
                     }
 
-
                 }
             }
             catch (Exception ex)
@@ -996,21 +994,6 @@ namespace AppedoLT
                 Directory.Delete(".\\Scripts\\" + scriptid, true);
             }
         }
-        public void btnScriptSave_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                foreach (RadTreeNode script in tvRequest.Nodes)
-                {
-                    ((VuscriptXml)script.Tag).Save();
-                }
-              if(sender!=null) MessageBox.Show("Saved");
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
         private void brnVariableManager_Click(object sender, EventArgs e)
         {
             frmVariableManager vm = new frmVariableManager();
@@ -1259,6 +1242,21 @@ namespace AppedoLT
         {
             frmFindAndReplace frm = new frmFindAndReplace(string.Empty, ((VuscriptXml)tvRequest.SelectedNode.Tag),this);
             frm.ShowDialog();
+        }
+        public void btnScriptSave_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                foreach (RadTreeNode script in tvRequest.Nodes)
+                {
+                    ((VuscriptXml)script.Tag).Save();
+                }
+                if (sender != null) MessageBox.Show("Saved");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
         #endregion
 
