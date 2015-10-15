@@ -4,6 +4,7 @@ using System.Xml;
 using Telerik.WinControls;
 using Telerik.WinControls.UI;
 using AppedoLT.Core;
+using System.Windows.Forms;
 
 namespace AppedoLT
 {
@@ -12,76 +13,27 @@ namespace AppedoLT
     /// 
     /// Author: Rasith
     /// </summary>
-    public partial class RequestParameter : Telerik.WinControls.UI.RadForm
+    public partial class frmFindAndReplace : Telerik.WinControls.UI.RadForm
     {
-        
         public string _resultName = string.Empty;
         public string _resultValue = string.Empty;
-        XmlNode _parentNode = null;
+        VuscriptXml _parentNode = null;
+        ucDesign _frm;
         bool isFromSigleValue = false;
-
-        /// <summary>
-        /// If you want parameterize both name and value.
-        /// </summary>
-        /// <param name="name">Variable name</param>
-        /// <param name="value">Variable value</param>
-        /// <param name="parent">Contain variable info</param>
-        public RequestParameter(string name, string value,XmlNode parent)
-        {
-            InitializeComponent();
-            tabiValue.Name = name;
-            tabiValue.Text = name;
-            txtValue.Text = value;
-            isFromSigleValue = true;
-            _parentNode=parent;
-            LoadVariables();
-        }
 
         /// <summary>
         /// If you want parameterize value only.
         /// </summary>
         /// <param name="value">Variable value</param>
         /// <param name="parent">Contain variable info</param>
-        public RequestParameter(string value, XmlNode parent)
+        public frmFindAndReplace(string sourceText, VuscriptXml parent,ucDesign frm)
         {
             InitializeComponent();
-            tabiValue.Name = "Value";
-            tabiValue.Text = "Value";
-            txtValue.Text = value;
+            isFromSigleValue = true;
+            txtValue.Text = sourceText;
             isFromSigleValue = true;
             _parentNode=parent;
-            LoadVariables();
-        }
-
-        public RequestParameter(XmlNode node)
-        {
-            InitializeComponent();
-            _parentNode=node;
-            tabsRequestParameter.Items.Clear();
-            foreach (XmlAttribute attribute in node.Attributes)
-            {
-                if (!(attribute.Name == "rawname" || attribute.Name == "rawvalue"))
-                {
-                    TabItem item = GetTabItem(attribute);
-                    tabsRequestParameter.Items.Add(item);
-                    if (item.Name == "value") tabsRequestParameter.SelectItem(item);
-                }
-            }
-            LoadVariables();
-        }
-
-        /// <summary>
-        /// If you want parameterize xml attribute.
-        /// </summary>
-        /// <param name="att">xml attribute</param>
-        public RequestParameter(XmlAttribute att)
-        {
-            InitializeComponent();
-            tabsRequestParameter.Items.Clear();
-            TabItem item = GetTabItem(att);
-            tabsRequestParameter.Items.Add(item);
-            tabsRequestParameter.SelectItem(item);
-            _parentNode = att;
+            _frm = frm;
             LoadVariables();
         }
 
@@ -114,7 +66,7 @@ namespace AppedoLT
                 }
             }
             //Load all extractor varialbes
-            foreach (XmlNode var in _parentNode.OwnerDocument.SelectNodes("//extractor"))
+            foreach (XmlNode var in _parentNode.Doc.SelectNodes("//extractor"))
             {
                 if (var.Attributes["selctiontype"].Value == "all")
                 {
@@ -157,74 +109,28 @@ namespace AppedoLT
 
         private void btnOk_Click(object sender, EventArgs e)
         {
-            if (isFromSigleValue == false)
+            if(MessageBox.Show("Are you sure you want to replace?","Replace",MessageBoxButtons.YesNoCancel)==DialogResult.Yes)
             {
-                bool isChanged = false;
-                foreach (TabItem tabitem in tabsRequestParameter.Items)
-                {
-                    if (tabitem.Visibility == ElementVisibility.Visible)
-                    {
-                        RadTextBox txt = (RadTextBox)tabitem.ContentPanel.Controls[tabitem.Name];
-                        if (((XmlAttribute)txt.Tag).Value != txt.Text)
-                        {
-                            string source = ((XmlAttribute)txt.Tag).Value;
-                            if(chkReplaceAll.Checked==true)
-                            {
-                                _parentNode.OwnerDocument.InnerXml = _parentNode.OwnerDocument.InnerXml.Replace("=\"" + source + "\"", "=\"" + txt.Text + "\"");
-                            }
-                            ((XmlAttribute)txt.Tag).Value = txt.Text;
-                            isChanged = true;
-                        }
-                    }
-                }
-                //if (isChanged) repositoryXml.Save();
+               _parentNode.Doc.InnerXml= _parentNode.Doc.InnerXml.Replace(txtSourceText.Text, txtValue.Text);
+               _parentNode.Save();
+               _frm.LoadTreeItem();
             }
-            else
-            {
-                _resultValue = txtValue.Text;
-            }
-        }
-
-        private void btnVariableManager_Click(object sender, EventArgs e)
-        {
-            frmVariableManager vm = new frmVariableManager();
-            vm.ShowDialog();
-            LoadVariables();
         }
 
         private void tvVariables_SelectedNodeChanged(object sender, RadTreeViewEventArgs e)
         {
-            if (isFromSigleValue == false)
+            TabItem tabItem = (TabItem)tabsRequestParameter.SelectedTab;
+            RadTextBox txt = (RadTextBox)tabItem.ContentPanel.Controls["txtValue"];
+            if (txt.SelectionLength == 0)
             {
-                if (tabsRequestParameter.SelectedTab != null)
-                {
-                    TabItem tabItem = (TabItem)tabsRequestParameter.SelectedTab;
-                    RadTextBox txt = (RadTextBox)tabItem.ContentPanel.Controls[tabItem.Name];
-                    if (txt.SelectionLength == 0)
-                    {
-                        txt.Text = "$$" + tvVariables.SelectedNode.Text + "$$";
-                    }
-                    else
-                    {
-                        string val = "$$" + tvVariables.SelectedNode.Text + "$$";
-                        txt.Text = txt.Text.Insert(txt.SelectionStart, val).Remove(txt.SelectionStart + val.Length, txt.SelectionLength);
-                    }
-                }
+                txt.Text = "$$" + tvVariables.SelectedNode.Text + "$$";
             }
             else
             {
-                TabItem tabItem = (TabItem)tabsRequestParameter.SelectedTab;
-                RadTextBox txt = (RadTextBox)tabItem.ContentPanel.Controls[0];
-                if (txt.SelectionLength == 0)
-                {
-                    txt.Text = "$$" + tvVariables.SelectedNode.Text + "$$";
-                }
-                else
-                {
-                    string val = "$$" + tvVariables.SelectedNode.Text + "$$";
-                    txt.Text = txt.Text.Insert(txt.SelectionStart, val).Remove(txt.SelectionStart + val.Length, txt.SelectionLength);
-                }
+                string val = "$$" + tvVariables.SelectedNode.Text + "$$";
+                txt.Text = txt.Text.Insert(txt.SelectionStart, val).Remove(txt.SelectionStart + val.Length, txt.SelectionLength);
             }
+
             if (tvVariables.Nodes.Count < 0) btnOk.Enabled = false;
             else btnOk.Enabled = true;
         }
@@ -241,6 +147,7 @@ namespace AppedoLT
             txt.Tag = attribute;
             return txt;
         }
+
         private TabItem GetTabItem(XmlAttribute attribute)
         {
             TabItem tabi = new TabItem();
@@ -257,6 +164,11 @@ namespace AppedoLT
             tabi.StretchHorizontally = false;
             tabi.Text = attribute.Name;
             return tabi;
+        }
+
+        private void frmFindAndReplace_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

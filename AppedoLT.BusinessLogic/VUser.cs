@@ -120,6 +120,7 @@ namespace AppedoLT.BusinessLogic
         Dictionary<string, string> receivedCookies = new Dictionary<string, string>();
         public VUserStatus VUserStatus;
         private DateTime _userCreatededTime = new DateTime();
+
         public VUser(int maxUser, string reportName, string type, int userid, int iteration, XmlNode vuScript, bool browserCache, IPAddress ipaddress)
         {
            

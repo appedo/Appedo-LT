@@ -501,7 +501,7 @@ namespace AppedoLT
                                             }
                                             #endregion
                                         }
-                                        else if (isWebServiceRequest == true && requestContentType.Contains("application/x-www-form-urlencoded"))
+                                        else if (isWebServiceRequest == true && requestContentType.Contains("application/x-www-form-urlencoded") && !data.RequestHeader.Contains("X-Requested-With: XMLHttpRequest"))
                                         {
                                             parameters.Attributes.Append(_common.GetAttribute(_uvScript.OwnerDocument, "type", "form"));
 
