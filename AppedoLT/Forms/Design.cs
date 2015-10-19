@@ -17,6 +17,7 @@ using System.Windows.Forms;
 using System.Xml;
 using Telerik.WinControls.UI;
 
+
 namespace AppedoLT
 {
     public partial class Design : Telerik.WinControls.UI.RadForm
@@ -101,6 +102,7 @@ namespace AppedoLT
                 LoadReportName(string.Empty);
                 lblUserCompleted.Text = "0";
                 lblUserCreated.Text = "0";
+                DataRecieve();
             }
             catch (Exception ex)
             {
@@ -340,6 +342,7 @@ namespace AppedoLT
         #endregion
 
         #region Run
+
         private bool ValidateLicence(XmlNode scenario)
         {
             int userCount = 0;
@@ -351,7 +354,7 @@ namespace AppedoLT
 
             if (userCount > _constants.MaxUserCount)
             {
-                if(Session.Login())
+                if (Session.Login())
                 {
                     if (Session.IsLicenseValid == true)
                     {
@@ -392,7 +395,7 @@ namespace AppedoLT
                     MessageBox.Show("Current license only allow max " + _constants.MaxUserCount + " users.");
                     return false;
                 }
-               
+
             }
             else
             {
@@ -400,18 +403,19 @@ namespace AppedoLT
             }
         }
 
-
         public XmlDocument GetScenarioForRun(string scenarioid, string reportName, int totalLoadGen, int currentLoadGenid, bool enableipspoofing)
         {
             XmlDocument scenarioDoc = new XmlDocument();
             try
             {
 
-                scenarioDoc.LoadXml("<?xml version=\"1.0\" encoding=\"utf-8\"?><root><scenario id='" + scenarioid + "' reportname='" + reportName + "' enableipspoofing='" + enableipspoofing + "'></scenario></root>");
+                scenarioDoc.LoadXml("<?xml version=\"1.0\" encoding=\"utf-8\"?><root><scenario id='" + scenarioid + "' reportname='" + reportName + "' enableipspoofing='" + enableipspoofing + "'></scenario><variables></variables></root>");
 
                 XmlNode root = scenarioDoc.SelectSingleNode("//root/scenario");
                 XmlNode setting = scenarioDoc.SelectSingleNode("//root/setting");
                 XmlNode scenario = _repositoryXml.Doc.SelectSingleNode("//scenario[@id='" + scenarioid + "']").Clone();
+                XmlNode variables = scenarioDoc.SelectSingleNode("//root/variables");
+                variables.InnerXml=GetVariableXmlWithContent();
 
                 foreach (XmlNode script in scenario.ChildNodes)
                 {
@@ -433,6 +437,7 @@ namespace AppedoLT
                     }
                 }
                 root = scenarioDoc.SelectSingleNode("//root");
+               
                 //scenarioDoc.Save(reportName + ".xml");
 
             }
@@ -444,6 +449,34 @@ namespace AppedoLT
             return scenarioDoc;
         }
 
+        private string GetVariableXmlWithContent()
+        {
+            XmlDocument doc = new XmlDocument();
+            doc.LoadXml("<?xml version=\"1.0\" encoding=\"utf-8\" standalone=\"no\"?>" + VariableXml.GetInstance().doc.SelectSingleNode("//variables").OuterXml);
+            string filepath = string.Empty;
+            foreach (XmlNode var in doc.SelectNodes("//variable"))
+            {
+                if (var.Attributes["type"].Value == "file")
+                {
+                    filepath = Constants.GetInstance().ExecutingAssemblyLocation + var.Attributes["vituallocation"].Value;
+                    if (File.Exists(filepath))
+                    {
+                        XmlNode content = doc.CreateElement("content");
+                        try
+                        {
+                            StreamReader file = new StreamReader(new FileStream(filepath, FileMode.Open, FileAccess.Read));
+                            content.InnerText = file.ReadToEnd();
+                        }
+                        catch (Exception ex)
+                        {
+                            ExceptionHandler.WritetoEventLog(ex.StackTrace + Environment.NewLine + ex.Message);
+                        }
+                        var.AppendChild(content);
+                    }
+                }
+            }
+            return doc.SelectSingleNode("//variables").InnerXml;
+        }
         private void Export_TO_Excel(DataGridView grdView, String grdName)
         {
             try
@@ -493,6 +526,7 @@ namespace AppedoLT
                 ExceptionHandler.WritetoEventLog(ex.StackTrace + ex.Message);
             }
         }
+
         private void Export_TO_Excel(RadGridView grdView, String grdName)
         {
             try
@@ -542,6 +576,7 @@ namespace AppedoLT
                 ExceptionHandler.WritetoEventLog(ex.StackTrace + ex.Message);
             }
         }
+
         private void Export_TO_Excel(ListView grdView, String grdName)
         {
             try
@@ -609,6 +644,7 @@ namespace AppedoLT
                 ExceptionHandler.WritetoEventLog(ex.StackTrace + ex.Message);
             }
         }
+
         private void UpdateReportStatus()
         {
             new Thread(() =>
@@ -763,7 +799,7 @@ namespace AppedoLT
                                 System.Net.Sockets.TcpClient clientSocket = new System.Net.Sockets.TcpClient();
                                 try
                                 {
-                                    Trasport controller = new Trasport(loadgen.Attributes["ipaddress"].Value, "8888");
+                                    Trasport controller = new Trasport(loadgen.Attributes["ipaddress"].Value, "8889");
                                     controller.Send(new TrasportData("TEST", string.Empty, null));
                                     controller.Receive();
                                     controller.Close();
@@ -788,15 +824,31 @@ namespace AppedoLT
                                     loadGenId++;
                                     XmlDocument scenario = GetScenarioForRun(((XmlNode)tvScenarios.SelectedNode.Tag).Attributes["id"].Value, executionReport.ReportName, loadGens.Count, loadGenId, Convert.ToBoolean(((XmlNode)tvScenarios.SelectedNode.Tag).Attributes["enableipspoofing"].Value));
                                     run.AppendChild(GetRuntimeScriptDetail(scenario));
+                                    run.Attributes.Append(_repositoryXml.GetAttribute("reportname", executionReport.ReportName));
+
                                     //System.Net.Sockets.TcpClient clientSocket = new System.Net.Sockets.TcpClient();
                                     try
                                     {
-                                        Trasport controller = new Trasport(loadgen.Attributes["ipaddress"].Value, "8888");
+                                        Trasport controller = new Trasport(loadgen.Attributes["ipaddress"].Value, "8889");
                                         Dictionary<string, string> header = new Dictionary<string, string>();
                                         header.Add("reportname", executionReport.ReportName);
                                         header.Add("scenarioname", executionReport.ScenarioName);
-                                        header.Add("loadgens", "192.168.1.70");
+                                        header.Add("runid", executionReport.ReportName);
+                                        header.Add("appedoip", "127.0.0.1");
+                                        header.Add("appedoport", "8886");
+                                        header.Add("appedofailedurl", "");
+                                        header.Add("totalloadgen", loadGens.Count.ToString());
+                                        header.Add("currentloadgenid", loadGenId.ToString());
+                                        header.Add("loadgenname", loadgen.Attributes["ipaddress"].Value);
+                                        header.Add("distribution",Math.Floor((100.0/loadGens.Count)).ToString());
+                                        header.Add("loadgencounters", loadGens.Count.ToString());
+
+                                        controller.Send(new TrasportData("savescenario", scenario.InnerXml, header));
+                                        controller.Receive();
+                                        controller = new Trasport(loadgen.Attributes["ipaddress"].Value, "8889");
                                         controller.Send(new TrasportData("run", scenario.InnerXml, header));
+                                        controller.Receive();
+
                                         _loadGeneratorips.Add(loadgen.Attributes["ipaddress"].Value);
 
                                         #region Run detail
@@ -836,11 +888,11 @@ namespace AppedoLT
 
         }
 
-        void scr_OnVUserCreated(string scriptname,int userid)
+        void scr_OnVUserCreated(string scriptname, int userid)
         {
             lock (listView1)
             {
-                ListViewItem newItem = new ListViewItem(scriptname+"_"+userid.ToString());
+                ListViewItem newItem = new ListViewItem(scriptname + "_" + userid.ToString());
                 newItem.SubItems.AddRange(new string[] { "0".ToString(), "Running" });
                 listView1.Items.Add(newItem);
             }
@@ -1060,7 +1112,7 @@ namespace AppedoLT
 
                 if (tvScenarios.SelectedNode.Level == 0)
                 {
-                    //  objUCLoadGen.Visible = true;
+                     objUCLoadGen.Visible = true;
                 }
                 else if (tvScenarios.SelectedNode.Level == 1)
                 {
@@ -1117,15 +1169,15 @@ namespace AppedoLT
                         try
                         {
                             #region Retrive Created & Completed UserCount
-                            Trasport controller = new Trasport(objClient, "8888");
-                            controller.Send(new TrasportData("status", string.Empty, null));
+                            Trasport controller = new Trasport(objClient, "8889");
+                            controller.Send(new TrasportData("scriptwisestatus", string.Empty, null));
                             TrasportData data = controller.Receive();
 
                             string dataStr = data.DataStr;
 
-                            loadGenCreatedUser = Convert.ToInt32(log.Match(dataStr).Groups[1].Value);
-                            loadGenCompetedUser = Convert.ToInt32(log.Match(dataStr).Groups[2].Value);
-                            tempIsCompleted = Convert.ToInt32(log.Match(dataStr).Groups[3].Value);
+                            loadGenCreatedUser = Convert.ToInt32(data.Header["createduser"]);
+                            loadGenCompetedUser = Convert.ToInt32(data.Header["completeduser"]);
+                            tempIsCompleted = Convert.ToInt32(data.Header["iscompleted"]);
                             #endregion
 
                             #region Store info into list
@@ -1187,16 +1239,24 @@ namespace AppedoLT
                         executionReport.ExecutionStatus = Status.Completed;
                         runTime.Stop();
                         tmrExecution.Stop();
-                        Thread.Sleep(6000);
-                        ReceiveAllLoadGenDatafiles(executionReport.ReportName);
-                        WaitUntillExecutionComplete();
+                       
                         if (executionReport.ReportName != null)
                         {
                             CreateSummaryReport(executionReport.ReportName);
                             ReportMaster reportMaster = new ReportMaster(executionReport.ReportName);
                             reportMaster.GenerateReports();
                             UpdateReportStatus();
+                            userControlReports2.LoadReportName(executionReport.ReportName);
                         }
+                        //ReceiveAllLoadGenDatafiles(executionReport.ReportName);
+                        //WaitUntillExecutionComplete();
+                        //if (executionReport.ReportName != null)
+                        //{
+                        //    CreateSummaryReport(executionReport.ReportName);
+                        //    ReportMaster reportMaster = new ReportMaster(executionReport.ReportName);
+                        //    reportMaster.GenerateReports();
+                        //    UpdateReportStatus();
+                        //}
                     }
                     #endregion
                 }
@@ -1458,9 +1518,54 @@ namespace AppedoLT
             }
         }
 
-        private void tabsDesign_TabSelected(object sender, TabEventArgs args)
+        private void DataRecieve()
         {
+            new Thread(() =>
+                {
+                    TcpListener listener = new TcpListener(8886);
+                    listener.Start();
+                    while (true)
+                    {
+                        Trasport trasport = new Trasport(listener.AcceptTcpClient());
+                        new Thread(() =>
+                          {
+                              TrasportData data = trasport.Receive();
+                              trasport.Send(new TrasportData("ok", string.Empty, null));
+                              switch(data.Operation)
+                              {
+                                  case "status":
+                                      LoadGenRunningStatusData loadGen = _constants.Deserialise<LoadGenRunningStatusData>(data.DataStr);
+                                      foreach (ReportData rda in loadGen.ReportData) { _hitCount++; _dataServer.LogResult(rda); }
+                                      foreach (Log rda in loadGen.Log) _dataServer.logs.Enqueue(rda);
+                                      foreach (RequestException rda in loadGen.Error)
+                                      { 
+                                          _dataServer.errors.Enqueue(rda);
+                                          rda.message = rda.message.Replace("\r\n", " ");
+                                          ListViewItem newItem = new ListViewItem(rda.requestexceptionid.ToString());
+                                          newItem.SubItems.AddRange(new string[] {  rda.loadGen, 
+                                                              rda.reportname,
+                                                              rda.scenarioname, 
+                                                              rda.scriptname, 
+                                                              rda.containerid,
+                                                              rda.containername,
+                                                              rda.requestid,
+                                                              rda.userid, 
+                                                              rda.iterationid,
+                                                              rda.time.ToString("yyyy-MM-dd HH:mm:ss"), 
+                                                              rda.message.Replace("\"", "\"\""),
+                                                              rda.request.Replace("\"", "\"\""),
+                                                              rda.errorcode });
+                                          lsvErrors.Items.Add(newItem);
+                                         
+                                      }
+                                      foreach (TransactionRunTimeDetail rda in loadGen.Transactions) _dataServer.transcations.Enqueue(rda);
+                                      break;
+                              }
+                             
+                          }).Start();
+                    }
 
+                }).Start();
         }
 
     }

@@ -126,7 +126,7 @@ namespace AppedoLT
                     Image ImageGreen = Image.FromFile(AppedoLT.Core.Constants.GetInstance().ExecutingAssemblyLocation + "\\green.JPG");
                     try
                     {
-                        clientSocket.Connect(objScenarioHost.Attributes["ipaddress"].Value, 8888);
+                        clientSocket.Connect(objScenarioHost.Attributes["ipaddress"].Value, 8889);
                         clientSocket.Client.Send(Encoding.ASCII.GetBytes("TEST: 0"+Environment.NewLine+Environment.NewLine));
                         treeNode.Image = ImageGreen;
                         clientSocket.Close();

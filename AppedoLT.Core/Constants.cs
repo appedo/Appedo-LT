@@ -832,17 +832,17 @@ namespace AppedoLT.Core
             if (runNode != null)
             {
 
-                foreach (XmlNode loadgen in runNode.SelectNodes("loadgen"))
-                {
-                    result.AppendFormat(@"
-                                           ATTACH '{0}\database_{1}.db' AS AM;
-                                           INSERT INTO reportdata SELECT * FROM AM.reportdata;
-                                           INSERT INTO transactions SELECT * FROM AM.transactions;
-                                           INSERT INTO log SELECT * FROM AM.log;
-                                           INSERT INTO error SELECT * FROM AM.error;
-                                           DETACH DATABASE 'AM';
-                                         ", this.ExecutingAssemblyLocation + "\\data\\" + reportName + "", loadgen.Attributes["ipaddress"].Value.Replace('.', '_'));
-                }
+//                foreach (XmlNode loadgen in runNode.SelectNodes("loadgen"))
+//                {
+//                    result.AppendFormat(@"
+//                                           ATTACH '{0}\database_{1}.db' AS AM;
+//                                           INSERT INTO reportdata SELECT * FROM AM.reportdata;
+//                                           INSERT INTO transactions SELECT * FROM AM.transactions;
+//                                           INSERT INTO log SELECT * FROM AM.log;
+//                                           INSERT INTO error SELECT * FROM AM.error;
+//                                           DETACH DATABASE 'AM';
+//                                         ", this.ExecutingAssemblyLocation + "\\data\\" + reportName + "", loadgen.Attributes["ipaddress"].Value.Replace('.', '_'));
+//                }
 
                 result.AppendLine(@" CREATE INDEX idx_reportdata ON reportdata(scriptid);
                                            CREATE INDEX idx_reportdata_requestid ON reportdata(requestid);

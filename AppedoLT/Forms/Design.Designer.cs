@@ -48,24 +48,6 @@ namespace AppedoLT
             this.radLabel4 = new Telerik.WinControls.UI.RadLabel();
             this.splitPanel5 = new Telerik.WinControls.UI.SplitPanel();
             this.radSplitContainer5 = new Telerik.WinControls.UI.RadSplitContainer();
-            this.splitPanel7 = new Telerik.WinControls.UI.SplitPanel();
-            this.pnlRun = new Telerik.WinControls.UI.RadPanel();
-            this.label6 = new System.Windows.Forms.Label();
-            this.lblHitCount = new Telerik.WinControls.UI.RadLabel();
-            this.label2 = new System.Windows.Forms.Label();
-            this.lblErrorCount = new Telerik.WinControls.UI.RadLabel();
-            this.label5 = new System.Windows.Forms.Label();
-            this.lblStatus = new System.Windows.Forms.Label();
-            this.btnSave = new Telerik.WinControls.UI.RadButton();
-            this.btnStop = new Telerik.WinControls.UI.RadButton();
-            this.btnRun = new Telerik.WinControls.UI.RadButton();
-            this.label1 = new System.Windows.Forms.Label();
-            this.lblElapsedTime = new System.Windows.Forms.Label();
-            this.lblUserCreated = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.lblUserCompleted = new System.Windows.Forms.Label();
-            this.pnlScriptSettings = new System.Windows.Forms.Panel();
             this.splitPanel8 = new Telerik.WinControls.UI.SplitPanel();
             this.splcRunErrorReport = new Telerik.WinControls.UI.RadSplitContainer();
             this.splitPanel18 = new Telerik.WinControls.UI.SplitPanel();
@@ -93,11 +75,8 @@ namespace AppedoLT
             this.ivcErrorCode = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.btnExport = new Telerik.WinControls.UI.RadButton();
             this.tabiCharts = new Telerik.WinControls.UI.TabItem();
-            this.userControlCharts1 = new AppedoLT.userControlCharts();
             this.tabItem1 = new Telerik.WinControls.UI.TabItem();
-            this.userControlReports2 = new AppedoLT.userControlReports();
             this.tapiMonitor = new Telerik.WinControls.UI.TabItem();
-            this.ucMonitor1 = new AppedoLT.UCMonitor();
             this.imcDesign = new System.Windows.Forms.ImageList(this.components);
             this.tmrExecution = new System.Windows.Forms.Timer(this.components);
             this.splitPanel17 = new Telerik.WinControls.UI.SplitPanel();
@@ -121,7 +100,28 @@ namespace AppedoLT
             this.imageListForHeading = new System.Windows.Forms.ImageList(this.components);
             this.tabItem4 = new Telerik.WinControls.UI.TabItem();
             this.radMenu1 = new Telerik.WinControls.UI.RadMenu();
+            this.userControlCharts1 = new AppedoLT.userControlCharts();
+            this.userControlReports2 = new AppedoLT.userControlReports();
+            this.ucMonitor1 = new AppedoLT.UCMonitor();
             this.objUCLoadGen = new AppedoLT.ucLoadGen();
+            this.pnlScriptSettings = new System.Windows.Forms.Panel();
+            this.pnlRun = new Telerik.WinControls.UI.RadPanel();
+            this.lblUserCompleted = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.lblUserCreated = new System.Windows.Forms.Label();
+            this.lblElapsedTime = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.btnRun = new Telerik.WinControls.UI.RadButton();
+            this.btnStop = new Telerik.WinControls.UI.RadButton();
+            this.btnSave = new Telerik.WinControls.UI.RadButton();
+            this.lblStatus = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.lblErrorCount = new Telerik.WinControls.UI.RadLabel();
+            this.label2 = new System.Windows.Forms.Label();
+            this.lblHitCount = new Telerik.WinControls.UI.RadLabel();
+            this.label6 = new System.Windows.Forms.Label();
+            this.splitPanel7 = new Telerik.WinControls.UI.SplitPanel();
             ((System.ComponentModel.ISupportInitialize)(this.tabsDesign)).BeginInit();
             this.tabsDesign.SuspendLayout();
             this.tabiRun.ContentPanel.SuspendLayout();
@@ -141,15 +141,6 @@ namespace AppedoLT
             this.splitPanel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radSplitContainer5)).BeginInit();
             this.radSplitContainer5.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.splitPanel7)).BeginInit();
-            this.splitPanel7.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pnlRun)).BeginInit();
-            this.pnlRun.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.lblHitCount)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lblErrorCount)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnSave)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnStop)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnRun)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitPanel8)).BeginInit();
             this.splitPanel8.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splcRunErrorReport)).BeginInit();
@@ -167,6 +158,15 @@ namespace AppedoLT
             ((System.ComponentModel.ISupportInitialize)(this.splitPanel17)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitPanel14)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radMenu1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pnlRun)).BeginInit();
+            this.pnlRun.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.btnRun)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnStop)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnSave)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblErrorCount)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblHitCount)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.splitPanel7)).BeginInit();
+            this.splitPanel7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
@@ -222,7 +222,6 @@ namespace AppedoLT
             this.tabsDesign.TabScrollButtonsPosition = Telerik.WinControls.UI.TabScrollButtonsPosition.RightBottom;
             this.tabsDesign.Text = "radTabStrip1";
             this.tabsDesign.ThemeName = "ControlDefault";
-            this.tabsDesign.TabSelected += new Telerik.WinControls.UI.TabEventHandler(this.tabsDesign_TabSelected);
             this.tabsDesign.Resize += new System.EventHandler(this.tabsDesign_Resize);
             // 
             // tabiVUscript
@@ -458,236 +457,18 @@ namespace AppedoLT
             this.radSplitContainer5.Text = "radSplitContainer5";
             this.radSplitContainer5.ThemeName = "Office2010";
             // 
-            // splitPanel7
-            // 
-            this.splitPanel7.Controls.Add(this.pnlRun);
-            this.splitPanel7.Controls.Add(this.pnlScriptSettings);
-            this.splitPanel7.Location = new System.Drawing.Point(0, 0);
-            this.splitPanel7.Name = "splitPanel7";
-            // 
-            // 
-            // 
-            this.splitPanel7.RootElement.MinSize = new System.Drawing.Size(25, 25);
-            this.splitPanel7.Size = new System.Drawing.Size(716, 263);
-            this.splitPanel7.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(0F, 0.0308642F);
-            this.splitPanel7.SizeInfo.SplitterCorrection = new System.Drawing.Size(0, 17);
-            this.splitPanel7.TabIndex = 0;
-            this.splitPanel7.TabStop = false;
-            this.splitPanel7.Text = "splitPanel7";
-            this.splitPanel7.ThemeName = "Office2010";
-            // 
-            // pnlRun
-            // 
-            this.pnlRun.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.pnlRun.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(219)))), ((int)(((byte)(255)))));
-            this.pnlRun.Controls.Add(this.label6);
-            this.pnlRun.Controls.Add(this.lblHitCount);
-            this.pnlRun.Controls.Add(this.label2);
-            this.pnlRun.Controls.Add(this.lblErrorCount);
-            this.pnlRun.Controls.Add(this.label5);
-            this.pnlRun.Controls.Add(this.lblStatus);
-            this.pnlRun.Controls.Add(this.btnSave);
-            this.pnlRun.Controls.Add(this.btnStop);
-            this.pnlRun.Controls.Add(this.btnRun);
-            this.pnlRun.Controls.Add(this.label1);
-            this.pnlRun.Controls.Add(this.lblElapsedTime);
-            this.pnlRun.Controls.Add(this.lblUserCreated);
-            this.pnlRun.Controls.Add(this.label4);
-            this.pnlRun.Controls.Add(this.label3);
-            this.pnlRun.Controls.Add(this.lblUserCompleted);
-            this.pnlRun.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.pnlRun.Location = new System.Drawing.Point(0, 1);
-            this.pnlRun.Name = "pnlRun";
-            this.pnlRun.Size = new System.Drawing.Size(715, 102);
-            this.pnlRun.TabIndex = 27;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.BackColor = System.Drawing.Color.Transparent;
-            this.label6.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(13, 76);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(75, 14);
-            this.label6.TabIndex = 42;
-            this.label6.Text = "Hit Count :";
-            // 
-            // lblHitCount
-            // 
-            this.lblHitCount.AutoSize = false;
-            this.lblHitCount.BackColor = System.Drawing.Color.Transparent;
-            this.lblHitCount.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
-            this.lblHitCount.Location = new System.Drawing.Point(136, 76);
-            this.lblHitCount.Name = "lblHitCount";
-            this.lblHitCount.Size = new System.Drawing.Size(45, 13);
-            this.lblHitCount.TabIndex = 43;
-            this.lblHitCount.Text = "0";
-            this.lblHitCount.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.BackColor = System.Drawing.Color.Transparent;
-            this.label2.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(219, 34);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(89, 14);
-            this.label2.TabIndex = 40;
-            this.label2.Text = "Error Count :";
-            // 
-            // lblErrorCount
-            // 
-            this.lblErrorCount.AutoSize = false;
-            this.lblErrorCount.BackColor = System.Drawing.Color.Transparent;
-            this.lblErrorCount.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
-            this.lblErrorCount.Location = new System.Drawing.Point(328, 34);
-            this.lblErrorCount.Name = "lblErrorCount";
-            this.lblErrorCount.Size = new System.Drawing.Size(45, 13);
-            this.lblErrorCount.TabIndex = 41;
-            this.lblErrorCount.Text = "0";
-            this.lblErrorCount.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(219, 76);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(57, 14);
-            this.label5.TabIndex = 38;
-            this.label5.Text = "Status :";
-            // 
-            // lblStatus
-            // 
-            this.lblStatus.AutoSize = true;
-            this.lblStatus.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblStatus.Location = new System.Drawing.Point(332, 76);
-            this.lblStatus.Name = "lblStatus";
-            this.lblStatus.Size = new System.Drawing.Size(0, 13);
-            this.lblStatus.TabIndex = 39;
-            this.lblStatus.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // btnSave
-            // 
-            this.btnSave.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            this.btnSave.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSave.Image = ((System.Drawing.Image)(resources.GetObject("btnSave.Image")));
-            this.btnSave.Location = new System.Drawing.Point(182, 3);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(82, 24);
-            this.btnSave.TabIndex = 36;
-            this.btnSave.Text = "&Save";
-            this.btnSave.ThemeName = "Telerik";
-            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
-            // 
-            // btnStop
-            // 
-            this.btnStop.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnStop.Location = new System.Drawing.Point(98, 3);
-            this.btnStop.Name = "btnStop";
-            this.btnStop.Size = new System.Drawing.Size(82, 24);
-            this.btnStop.TabIndex = 35;
-            this.btnStop.Text = "Stop";
-            this.btnStop.ThemeName = "Telerik";
-            this.btnStop.Click += new System.EventHandler(this.btnStop_Click);
-            // 
-            // btnRun
-            // 
-            this.btnRun.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRun.Location = new System.Drawing.Point(15, 3);
-            this.btnRun.Name = "btnRun";
-            this.btnRun.Size = new System.Drawing.Size(82, 24);
-            this.btnRun.TabIndex = 34;
-            this.btnRun.Text = "Run";
-            this.btnRun.ThemeName = "Telerik";
-            this.btnRun.Click += new System.EventHandler(this.btnRun_Click);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(12, 34);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(100, 14);
-            this.label1.TabIndex = 19;
-            this.label1.Text = "User Created :";
-            // 
-            // lblElapsedTime
-            // 
-            this.lblElapsedTime.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblElapsedTime.Location = new System.Drawing.Point(328, 54);
-            this.lblElapsedTime.Name = "lblElapsedTime";
-            this.lblElapsedTime.Size = new System.Drawing.Size(111, 13);
-            this.lblElapsedTime.TabIndex = 26;
-            this.lblElapsedTime.Text = "0";
-            this.lblElapsedTime.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // lblUserCreated
-            // 
-            this.lblUserCreated.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblUserCreated.Location = new System.Drawing.Point(136, 34);
-            this.lblUserCreated.Name = "lblUserCreated";
-            this.lblUserCreated.Size = new System.Drawing.Size(41, 13);
-            this.lblUserCreated.TabIndex = 20;
-            this.lblUserCreated.Text = "0";
-            this.lblUserCreated.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(219, 54);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(99, 14);
-            this.label4.TabIndex = 25;
-            this.label4.Text = "Elapsed Time :";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(12, 55);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(117, 14);
-            this.label3.TabIndex = 21;
-            this.label3.Text = "User Completed :";
-            // 
-            // lblUserCompleted
-            // 
-            this.lblUserCompleted.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblUserCompleted.Location = new System.Drawing.Point(136, 55);
-            this.lblUserCompleted.Name = "lblUserCompleted";
-            this.lblUserCompleted.Size = new System.Drawing.Size(41, 13);
-            this.lblUserCompleted.TabIndex = 22;
-            this.lblUserCompleted.Text = "0";
-            this.lblUserCompleted.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // pnlScriptSettings
-            // 
-            this.pnlScriptSettings.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.pnlScriptSettings.AutoScroll = true;
-            this.pnlScriptSettings.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(219)))), ((int)(((byte)(255)))));
-            this.pnlScriptSettings.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.pnlScriptSettings.Location = new System.Drawing.Point(1, 104);
-            this.pnlScriptSettings.Name = "pnlScriptSettings";
-            this.pnlScriptSettings.Size = new System.Drawing.Size(714, 156);
-            this.pnlScriptSettings.TabIndex = 28;
-            // 
             // splitPanel8
             // 
             this.splitPanel8.Controls.Add(this.splcRunErrorReport);
-            this.splitPanel8.Location = new System.Drawing.Point(0, 266);
+            this.splitPanel8.Location = new System.Drawing.Point(0, 278);
             this.splitPanel8.Name = "splitPanel8";
             // 
             // 
             // 
             this.splitPanel8.RootElement.MinSize = new System.Drawing.Size(25, 25);
-            this.splitPanel8.Size = new System.Drawing.Size(716, 233);
-            this.splitPanel8.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(0F, -0.0308642F);
-            this.splitPanel8.SizeInfo.SplitterCorrection = new System.Drawing.Size(0, -17);
+            this.splitPanel8.Size = new System.Drawing.Size(716, 221);
+            this.splitPanel8.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(0F, -0.05443548F);
+            this.splitPanel8.SizeInfo.SplitterCorrection = new System.Drawing.Size(0, -29);
             this.splitPanel8.TabIndex = 1;
             this.splitPanel8.TabStop = false;
             this.splitPanel8.Text = "splitPanel8";
@@ -703,7 +484,7 @@ namespace AppedoLT
             // 
             // 
             this.splcRunErrorReport.RootElement.MinSize = new System.Drawing.Size(25, 25);
-            this.splcRunErrorReport.Size = new System.Drawing.Size(716, 233);
+            this.splcRunErrorReport.Size = new System.Drawing.Size(716, 221);
             this.splcRunErrorReport.TabIndex = 13;
             this.splcRunErrorReport.TabStop = false;
             this.splcRunErrorReport.Text = "radSplitContainer7";
@@ -719,7 +500,7 @@ namespace AppedoLT
             // 
             // 
             this.splitPanel18.RootElement.MinSize = new System.Drawing.Size(25, 25);
-            this.splitPanel18.Size = new System.Drawing.Size(716, 233);
+            this.splitPanel18.Size = new System.Drawing.Size(716, 221);
             this.splitPanel18.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(-0.06465518F, 0F);
             this.splitPanel18.SizeInfo.SplitterCorrection = new System.Drawing.Size(-45, 0);
             this.splitPanel18.TabIndex = 0;
@@ -739,7 +520,7 @@ namespace AppedoLT
             this.radTabStrip1.Location = new System.Drawing.Point(0, 0);
             this.radTabStrip1.Name = "radTabStrip1";
             this.radTabStrip1.ScrollOffsetStep = 5;
-            this.radTabStrip1.Size = new System.Drawing.Size(716, 233);
+            this.radTabStrip1.Size = new System.Drawing.Size(716, 221);
             this.radTabStrip1.TabIndex = 0;
             this.radTabStrip1.TabScrollButtonsPosition = Telerik.WinControls.UI.TabScrollButtonsPosition.RightBottom;
             this.radTabStrip1.Text = "radTabStrip1";
@@ -757,7 +538,7 @@ namespace AppedoLT
             this.tabItem3.ContentPanel.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabItem3.ContentPanel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(66)))), ((int)(((byte)(139)))));
             this.tabItem3.ContentPanel.Location = new System.Drawing.Point(0, 25);
-            this.tabItem3.ContentPanel.Size = new System.Drawing.Size(716, 208);
+            this.tabItem3.ContentPanel.Size = new System.Drawing.Size(716, 196);
             this.tabItem3.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabItem3.IsSelected = true;
             this.tabItem3.Margin = new System.Windows.Forms.Padding(4, 0, 0, 0);
@@ -779,7 +560,7 @@ namespace AppedoLT
             this.listView1.Location = new System.Drawing.Point(0, 0);
             this.listView1.MultiSelect = false;
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(716, 208);
+            this.listView1.Size = new System.Drawing.Size(716, 196);
             this.listView1.TabIndex = 2;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
@@ -812,7 +593,7 @@ namespace AppedoLT
             this.tabItem2.ContentPanel.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabItem2.ContentPanel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(66)))), ((int)(((byte)(139)))));
             this.tabItem2.ContentPanel.Location = new System.Drawing.Point(0, 25);
-            this.tabItem2.ContentPanel.Size = new System.Drawing.Size(716, 208);
+            this.tabItem2.ContentPanel.Size = new System.Drawing.Size(716, 196);
             this.tabItem2.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabItem2.Margin = new System.Windows.Forms.Padding(4, 0, 0, 0);
             this.tabItem2.Name = "tabItem2";
@@ -845,7 +626,7 @@ namespace AppedoLT
             this.lsvErrors.Location = new System.Drawing.Point(0, 0);
             this.lsvErrors.MultiSelect = false;
             this.lsvErrors.Name = "lsvErrors";
-            this.lsvErrors.Size = new System.Drawing.Size(716, 208);
+            this.lsvErrors.Size = new System.Drawing.Size(716, 196);
             this.lsvErrors.TabIndex = 1;
             this.lsvErrors.UseCompatibleStateImageBehavior = false;
             this.lsvErrors.View = System.Windows.Forms.View.Details;
@@ -956,16 +737,6 @@ namespace AppedoLT
             this.tabiCharts.Text = "Charts";
             this.tabiCharts.Visibility = Telerik.WinControls.ElementVisibility.Collapsed;
             // 
-            // userControlCharts1
-            // 
-            this.userControlCharts1.AutoScroll = true;
-            this.userControlCharts1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(219)))), ((int)(((byte)(255)))));
-            this.userControlCharts1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.userControlCharts1.Location = new System.Drawing.Point(0, 0);
-            this.userControlCharts1.Name = "userControlCharts1";
-            this.userControlCharts1.Size = new System.Drawing.Size(941, 499);
-            this.userControlCharts1.TabIndex = 0;
-            // 
             // tabItem1
             // 
             this.tabItem1.Alignment = System.Drawing.ContentAlignment.BottomLeft;
@@ -989,17 +760,6 @@ namespace AppedoLT
             this.tabItem1.StretchHorizontally = false;
             this.tabItem1.StretchVertically = false;
             this.tabItem1.Text = "Reports";
-            // 
-            // userControlReports2
-            // 
-            this.userControlReports2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.userControlReports2.Location = new System.Drawing.Point(0, 0);
-            this.userControlReports2.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.userControlReports2.Name = "userControlReports2";
-            this.userControlReports2.Size = new System.Drawing.Size(938, 499);
-            this.userControlReports2.TabIndex = 0;
             // 
             // tapiMonitor
             // 
@@ -1025,15 +785,6 @@ namespace AppedoLT
             this.tapiMonitor.StretchVertically = false;
             this.tapiMonitor.Text = "Monitor";
             this.tapiMonitor.Visibility = Telerik.WinControls.ElementVisibility.Hidden;
-            // 
-            // ucMonitor1
-            // 
-            this.ucMonitor1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ucMonitor1.Location = new System.Drawing.Point(0, 0);
-            this.ucMonitor1.Margin = new System.Windows.Forms.Padding(5, 3, 5, 3);
-            this.ucMonitor1.Name = "ucMonitor1";
-            this.ucMonitor1.Size = new System.Drawing.Size(941, 499);
-            this.ucMonitor1.TabIndex = 0;
             // 
             // imcDesign
             // 
@@ -1218,6 +969,36 @@ namespace AppedoLT
             this.radMenu1.Text = "radMenu1";
             this.radMenu1.ThemeName = "Windows7";
             // 
+            // userControlCharts1
+            // 
+            this.userControlCharts1.AutoScroll = true;
+            this.userControlCharts1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(219)))), ((int)(((byte)(255)))));
+            this.userControlCharts1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.userControlCharts1.Location = new System.Drawing.Point(0, 0);
+            this.userControlCharts1.Name = "userControlCharts1";
+            this.userControlCharts1.Size = new System.Drawing.Size(941, 499);
+            this.userControlCharts1.TabIndex = 0;
+            // 
+            // userControlReports2
+            // 
+            this.userControlReports2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.userControlReports2.Location = new System.Drawing.Point(0, 0);
+            this.userControlReports2.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.userControlReports2.Name = "userControlReports2";
+            this.userControlReports2.Size = new System.Drawing.Size(938, 499);
+            this.userControlReports2.TabIndex = 0;
+            // 
+            // ucMonitor1
+            // 
+            this.ucMonitor1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucMonitor1.Location = new System.Drawing.Point(0, 0);
+            this.ucMonitor1.Margin = new System.Windows.Forms.Padding(5, 3, 5, 3);
+            this.ucMonitor1.Name = "ucMonitor1";
+            this.ucMonitor1.Size = new System.Drawing.Size(941, 499);
+            this.ucMonitor1.TabIndex = 0;
+            // 
             // objUCLoadGen
             // 
             this.objUCLoadGen.BackColor = System.Drawing.SystemColors.ControlLight;
@@ -1228,7 +1009,225 @@ namespace AppedoLT
             this.objUCLoadGen.Name = "objUCLoadGen";
             this.objUCLoadGen.Size = new System.Drawing.Size(318, 156);
             this.objUCLoadGen.TabIndex = 0;
-            this.objUCLoadGen.Visible = false;
+            // 
+            // pnlScriptSettings
+            // 
+            pnlScriptSettings.Controls.Add(objUCLoadGen);
+            this.pnlScriptSettings.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.pnlScriptSettings.AutoScroll = true;
+            this.pnlScriptSettings.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(219)))), ((int)(((byte)(255)))));
+            this.pnlScriptSettings.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.pnlScriptSettings.Location = new System.Drawing.Point(1, 104);
+            this.pnlScriptSettings.Name = "pnlScriptSettings";
+            this.pnlScriptSettings.Size = new System.Drawing.Size(714, 168);
+            this.pnlScriptSettings.TabIndex = 28;
+            // 
+            // pnlRun
+            // 
+            this.pnlRun.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.pnlRun.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(219)))), ((int)(((byte)(255)))));
+            this.pnlRun.Controls.Add(this.label6);
+            this.pnlRun.Controls.Add(this.lblHitCount);
+            this.pnlRun.Controls.Add(this.label2);
+            this.pnlRun.Controls.Add(this.lblErrorCount);
+            this.pnlRun.Controls.Add(this.label5);
+            this.pnlRun.Controls.Add(this.lblStatus);
+            this.pnlRun.Controls.Add(this.btnSave);
+            this.pnlRun.Controls.Add(this.btnStop);
+            this.pnlRun.Controls.Add(this.btnRun);
+            this.pnlRun.Controls.Add(this.label1);
+            this.pnlRun.Controls.Add(this.lblElapsedTime);
+            this.pnlRun.Controls.Add(this.lblUserCreated);
+            this.pnlRun.Controls.Add(this.label4);
+            this.pnlRun.Controls.Add(this.label3);
+            this.pnlRun.Controls.Add(this.lblUserCompleted);
+            this.pnlRun.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.pnlRun.Location = new System.Drawing.Point(0, 1);
+            this.pnlRun.Name = "pnlRun";
+            this.pnlRun.Size = new System.Drawing.Size(715, 102);
+            this.pnlRun.TabIndex = 27;
+            // 
+            // lblUserCompleted
+            // 
+            this.lblUserCompleted.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblUserCompleted.Location = new System.Drawing.Point(136, 55);
+            this.lblUserCompleted.Name = "lblUserCompleted";
+            this.lblUserCompleted.Size = new System.Drawing.Size(41, 13);
+            this.lblUserCompleted.TabIndex = 22;
+            this.lblUserCompleted.Text = "0";
+            this.lblUserCompleted.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(12, 55);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(117, 14);
+            this.label3.TabIndex = 21;
+            this.label3.Text = "User Completed :";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(219, 54);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(99, 14);
+            this.label4.TabIndex = 25;
+            this.label4.Text = "Elapsed Time :";
+            // 
+            // lblUserCreated
+            // 
+            this.lblUserCreated.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblUserCreated.Location = new System.Drawing.Point(136, 34);
+            this.lblUserCreated.Name = "lblUserCreated";
+            this.lblUserCreated.Size = new System.Drawing.Size(41, 13);
+            this.lblUserCreated.TabIndex = 20;
+            this.lblUserCreated.Text = "0";
+            this.lblUserCreated.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // lblElapsedTime
+            // 
+            this.lblElapsedTime.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblElapsedTime.Location = new System.Drawing.Point(328, 54);
+            this.lblElapsedTime.Name = "lblElapsedTime";
+            this.lblElapsedTime.Size = new System.Drawing.Size(111, 13);
+            this.lblElapsedTime.TabIndex = 26;
+            this.lblElapsedTime.Text = "0";
+            this.lblElapsedTime.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(12, 34);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(100, 14);
+            this.label1.TabIndex = 19;
+            this.label1.Text = "User Created :";
+            // 
+            // btnRun
+            // 
+            this.btnRun.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRun.Location = new System.Drawing.Point(15, 3);
+            this.btnRun.Name = "btnRun";
+            this.btnRun.Size = new System.Drawing.Size(82, 24);
+            this.btnRun.TabIndex = 34;
+            this.btnRun.Text = "Run";
+            this.btnRun.ThemeName = "Telerik";
+            this.btnRun.Click += new System.EventHandler(this.btnRun_Click);
+            // 
+            // btnStop
+            // 
+            this.btnStop.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnStop.Location = new System.Drawing.Point(98, 3);
+            this.btnStop.Name = "btnStop";
+            this.btnStop.Size = new System.Drawing.Size(82, 24);
+            this.btnStop.TabIndex = 35;
+            this.btnStop.Text = "Stop";
+            this.btnStop.ThemeName = "Telerik";
+            this.btnStop.Click += new System.EventHandler(this.btnStop_Click);
+            // 
+            // btnSave
+            // 
+            this.btnSave.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.btnSave.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSave.Image = ((System.Drawing.Image)(resources.GetObject("btnSave.Image")));
+            this.btnSave.Location = new System.Drawing.Point(182, 3);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(82, 24);
+            this.btnSave.TabIndex = 36;
+            this.btnSave.Text = "&Save";
+            this.btnSave.ThemeName = "Telerik";
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            // 
+            // lblStatus
+            // 
+            this.lblStatus.AutoSize = true;
+            this.lblStatus.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblStatus.Location = new System.Drawing.Point(332, 76);
+            this.lblStatus.Name = "lblStatus";
+            this.lblStatus.Size = new System.Drawing.Size(0, 13);
+            this.lblStatus.TabIndex = 39;
+            this.lblStatus.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(219, 76);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(57, 14);
+            this.label5.TabIndex = 38;
+            this.label5.Text = "Status :";
+            // 
+            // lblErrorCount
+            // 
+            this.lblErrorCount.AutoSize = false;
+            this.lblErrorCount.BackColor = System.Drawing.Color.Transparent;
+            this.lblErrorCount.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
+            this.lblErrorCount.Location = new System.Drawing.Point(328, 34);
+            this.lblErrorCount.Name = "lblErrorCount";
+            this.lblErrorCount.Size = new System.Drawing.Size(45, 13);
+            this.lblErrorCount.TabIndex = 41;
+            this.lblErrorCount.Text = "0";
+            this.lblErrorCount.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.Color.Transparent;
+            this.label2.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(219, 34);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(89, 14);
+            this.label2.TabIndex = 40;
+            this.label2.Text = "Error Count :";
+            // 
+            // lblHitCount
+            // 
+            this.lblHitCount.AutoSize = false;
+            this.lblHitCount.BackColor = System.Drawing.Color.Transparent;
+            this.lblHitCount.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
+            this.lblHitCount.Location = new System.Drawing.Point(136, 76);
+            this.lblHitCount.Name = "lblHitCount";
+            this.lblHitCount.Size = new System.Drawing.Size(45, 13);
+            this.lblHitCount.TabIndex = 43;
+            this.lblHitCount.Text = "0";
+            this.lblHitCount.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.BackColor = System.Drawing.Color.Transparent;
+            this.label6.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(13, 76);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(75, 14);
+            this.label6.TabIndex = 42;
+            this.label6.Text = "Hit Count :";
+            // 
+            // splitPanel7
+            // 
+            this.splitPanel7.Controls.Add(this.pnlRun);
+            this.splitPanel7.Controls.Add(this.pnlScriptSettings);
+            this.splitPanel7.Location = new System.Drawing.Point(0, 0);
+            this.splitPanel7.Name = "splitPanel7";
+            // 
+            // 
+            // 
+            this.splitPanel7.RootElement.MinSize = new System.Drawing.Size(25, 25);
+            this.splitPanel7.Size = new System.Drawing.Size(716, 275);
+            this.splitPanel7.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(0F, 0.05443548F);
+            this.splitPanel7.SizeInfo.SplitterCorrection = new System.Drawing.Size(0, 29);
+            this.splitPanel7.TabIndex = 0;
+            this.splitPanel7.TabStop = false;
+            this.splitPanel7.Text = "splitPanel7";
+            this.splitPanel7.ThemeName = "Office2010";
             // 
             // Design
             // 
@@ -1269,16 +1268,6 @@ namespace AppedoLT
             this.splitPanel5.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.radSplitContainer5)).EndInit();
             this.radSplitContainer5.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.splitPanel7)).EndInit();
-            this.splitPanel7.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pnlRun)).EndInit();
-            this.pnlRun.ResumeLayout(false);
-            this.pnlRun.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.lblHitCount)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lblErrorCount)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnSave)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnStop)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnRun)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitPanel8)).EndInit();
             this.splitPanel8.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splcRunErrorReport)).EndInit();
@@ -1296,6 +1285,16 @@ namespace AppedoLT
             ((System.ComponentModel.ISupportInitialize)(this.splitPanel17)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitPanel14)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radMenu1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pnlRun)).EndInit();
+            this.pnlRun.ResumeLayout(false);
+            this.pnlRun.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.btnRun)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnStop)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnSave)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblErrorCount)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblHitCount)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.splitPanel7)).EndInit();
+            this.splitPanel7.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -1312,13 +1311,6 @@ namespace AppedoLT
         private Telerik.WinControls.UI.SplitPanel splitPanel4;
         private Telerik.WinControls.UI.SplitPanel splitPanel5;
         private Telerik.WinControls.UI.RadSplitContainer radSplitContainer5;
-        private Telerik.WinControls.UI.SplitPanel splitPanel7;
-        private System.Windows.Forms.Label lblElapsedTime;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label lblUserCompleted;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label lblUserCreated;
-        private System.Windows.Forms.Label label1;
         private Telerik.WinControls.UI.SplitPanel splitPanel8;
         private Telerik.WinControls.UI.RadSplitContainer radSplitContainer6;
         private Telerik.WinControls.UI.SplitPanel splitPanel9;
@@ -1329,7 +1321,6 @@ namespace AppedoLT
         private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem runToolStripMenuItem;
-        private Telerik.WinControls.UI.RadPanel pnlRun;
         private Telerik.WinControls.UI.TabItem tabiCharts;
         private Telerik.WinControls.UI.SplitPanel splitPanel17;
         private Telerik.WinControls.UI.SplitPanel splitPanel14;
@@ -1338,10 +1329,6 @@ namespace AppedoLT
         private System.Windows.Forms.ImageList imglDesign;
         private userControlCharts userControlCharts1;
         private Telerik.WinControls.UI.TabItem tabItem1;
-
-        private Telerik.WinControls.UI.RadButton btnRun;
-        private Telerik.WinControls.UI.RadButton btnStop;
-        private Telerik.WinControls.UI.RadButton btnSave;
         // private Microsoft.VisualBasic.PowerPacks.Printing.PrintForm printForm1;
         private Telerik.WinControls.UI.TabOffice12Shape tabOffice12Shape1;
         private Telerik.WinControls.UI.TrackBarRThumbShape trackBarRThumbShape1;
@@ -1366,10 +1353,6 @@ namespace AppedoLT
         private Telerik.WinControls.UI.RadMenuItem mnuiStop;
         private Telerik.WinControls.UI.RadMenuItem radMenuItem5;
         private System.Windows.Forms.ImageList imageListForHeading;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label lblStatus;
-        private System.Windows.Forms.Label label2;
-        private Telerik.WinControls.UI.RadLabel lblErrorCount;
         private ucLoadGen objUCLoadGen;
         private Telerik.WinControls.UI.TabItem tapiMonitor;
         private UCMonitor ucMonitor1;
@@ -1389,10 +1372,7 @@ namespace AppedoLT
         private System.Windows.Forms.ColumnHeader lcvMessage;
         private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.ColumnHeader ivcErrorCode;
-        private System.Windows.Forms.Panel pnlScriptSettings;
         private Telerik.WinControls.UI.RadMenu radMenu1;
-        private System.Windows.Forms.Label label6;
-        private Telerik.WinControls.UI.RadLabel lblHitCount;
         private Telerik.WinControls.UI.TabItem tabItem3;
         private System.Windows.Forms.ListView listView1;
         private System.Windows.Forms.ColumnHeader columnHeader2;
@@ -1400,5 +1380,23 @@ namespace AppedoLT
         private System.Windows.Forms.ColumnHeader columnHeader4;
         private System.Windows.Forms.ColumnHeader lvcContainerId;
         private System.Windows.Forms.ColumnHeader lvcContainerName;
+        private Telerik.WinControls.UI.SplitPanel splitPanel7;
+        private Telerik.WinControls.UI.RadPanel pnlRun;
+        private System.Windows.Forms.Label label6;
+        private Telerik.WinControls.UI.RadLabel lblHitCount;
+        private System.Windows.Forms.Label label2;
+        private Telerik.WinControls.UI.RadLabel lblErrorCount;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label lblStatus;
+        private Telerik.WinControls.UI.RadButton btnSave;
+        private Telerik.WinControls.UI.RadButton btnStop;
+        private Telerik.WinControls.UI.RadButton btnRun;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblElapsedTime;
+        private System.Windows.Forms.Label lblUserCreated;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label lblUserCompleted;
+        private System.Windows.Forms.Panel pnlScriptSettings;
     }
 }

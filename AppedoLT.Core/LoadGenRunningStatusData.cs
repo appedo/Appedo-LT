@@ -60,6 +60,8 @@ namespace AppedoLT.Core
         [DataMember(Name = "data")]
         public List<T> Data { get { return _data; } set { _data = value; } }
 
+
+
     }
 
     [DataContract]

@@ -4,6 +4,7 @@ using System.Data;
 using System.Windows.Forms;
 using System.Xml;
 
+
 namespace AppedoLT
 {
     public partial class UCQueryStringData : UserControl
@@ -69,6 +70,5 @@ namespace AppedoLT
                 ExceptionHandler.WritetoEventLog(ex.StackTrace + Environment.NewLine + ex.Message);
             }
         }
-
     }
 }
