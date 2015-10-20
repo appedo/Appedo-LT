@@ -79,6 +79,7 @@ namespace AppedoLTLoadGenerator
                                                 Dictionary<string, string> runDetail = new Dictionary<string, string>();
                                                 runDetail.Add("data", data.DataStr);
                                                 runDetail.Add("reportfoldername", reportFolder);
+                                                runDetail.Add("reportname", data.Header["runid"]);
                                                 runDetail.Add("scenarioname", data.Header["scenarioname"]);
                                                 runDetail.Add("runid", data.Header["runid"]);
                                                 runDetail.Add("appedoip", data.Header["appedoip"]);
@@ -120,7 +121,7 @@ namespace AppedoLTLoadGenerator
                                                 if (runScripts.ContainsKey(data.Header["runid"]) == true)
                                                 {
                                                     Dictionary<string, string> runDetail = runScripts[data.Header["runid"]];
-                                                    executionReport.ReportName = runDetail["reportfoldername"];
+                                                    executionReport.ReportName = runDetail["reportname"];
                                                     executionReport.ScenarioName = runDetail["scenarioname"];
                                                     executionReport.TotalLoadGenUsed = Convert.ToInt16(runDetail["totalloadgenused"]);
                                                     executionReport.CurrentLoadGenid = Convert.ToInt16(runDetail["currentloadgenid"]);

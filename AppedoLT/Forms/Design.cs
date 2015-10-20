@@ -35,6 +35,7 @@ namespace AppedoLT
         private DataServer _dataServer = DataServer.GetInstance();
         private int _hitCount = 0;
         private BindingList<VUScriptStatus> _vususerStatus = new BindingList<VUScriptStatus>();
+        private IPAddress _localIpAddress = null;
 
         public Design()
         {
@@ -102,7 +103,10 @@ namespace AppedoLT
                 LoadReportName(string.Empty);
                 lblUserCompleted.Text = "0";
                 lblUserCreated.Text = "0";
-                DataRecieve();
+                String strHostName = Dns.GetHostName();
+                IPHostEntry iphostentry = Dns.GetHostByName(strHostName);
+                _localIpAddress = iphostentry.AddressList[0];
+                DataRecieve(_localIpAddress);
             }
             catch (Exception ex)
             {
@@ -219,7 +223,11 @@ namespace AppedoLT
             try
             {
                 System.Data.DataTable dt = new System.Data.DataTable();
-                dt = Result.GetInstance().GetReportNameList(repoerName);
+                Result _resultLog = Result.GetInstance();
+                dt = _resultLog.GetReportNameList(repoerName);
+                ddlReports.DataSource = dt.Copy();
+                ddlReports.DisplayMember = "reportname";
+                if (dt.Rows.Count > 0) ddlReports.SelectedIndex = 0;
 
             }
             catch (Exception ex)
@@ -415,7 +423,7 @@ namespace AppedoLT
                 XmlNode setting = scenarioDoc.SelectSingleNode("//root/setting");
                 XmlNode scenario = _repositoryXml.Doc.SelectSingleNode("//scenario[@id='" + scenarioid + "']").Clone();
                 XmlNode variables = scenarioDoc.SelectSingleNode("//root/variables");
-                variables.InnerXml=GetVariableXmlWithContent();
+                variables.InnerXml = GetVariableXmlWithContent();
 
                 foreach (XmlNode script in scenario.ChildNodes)
                 {
@@ -437,7 +445,7 @@ namespace AppedoLT
                     }
                 }
                 root = scenarioDoc.SelectSingleNode("//root");
-               
+
                 //scenarioDoc.Save(reportName + ".xml");
 
             }
@@ -477,6 +485,7 @@ namespace AppedoLT
             }
             return doc.SelectSingleNode("//variables").InnerXml;
         }
+
         private void Export_TO_Excel(DataGridView grdView, String grdName)
         {
             try
@@ -734,11 +743,11 @@ namespace AppedoLT
 
                         Request.IPSpoofingEnabled = Convert.ToBoolean(((XmlNode)tvScenarios.SelectedNode.Tag).Attributes["enableipspoofing"].Value);
                         lblStatus.Text = "Running";
-                        LoadReportName(executionReport.ReportName);
+                        this.LoadReportName(executionReport.ReportName);
                         userControlCharts1.LoadReportName(executionReport.ReportName);
 
                         lblUserCompleted.Text = "0";
-                        listView1.Items.Clear();
+                       // listView1.Items.Clear();
                         XmlNode run = _repositoryXml.Doc.CreateElement("run");
                         run.Attributes.Append(_repositoryXml.GetAttribute("reportname", executionReport.ReportName));
 
@@ -834,13 +843,13 @@ namespace AppedoLT
                                         header.Add("reportname", executionReport.ReportName);
                                         header.Add("scenarioname", executionReport.ScenarioName);
                                         header.Add("runid", executionReport.ReportName);
-                                        header.Add("appedoip", "127.0.0.1");
+                                        header.Add("appedoip", _localIpAddress.ToString());
                                         header.Add("appedoport", "8886");
                                         header.Add("appedofailedurl", "");
                                         header.Add("totalloadgen", loadGens.Count.ToString());
                                         header.Add("currentloadgenid", loadGenId.ToString());
                                         header.Add("loadgenname", loadgen.Attributes["ipaddress"].Value);
-                                        header.Add("distribution",Math.Floor((100.0/loadGens.Count)).ToString());
+                                        header.Add("distribution",GetDistribution(loadGens.Count));
                                         header.Add("loadgencounters", loadGens.Count.ToString());
 
                                         controller.Send(new TrasportData("savescenario", scenario.InnerXml, header));
@@ -863,7 +872,7 @@ namespace AppedoLT
                                             runs.AppendChild(run);
                                             _repositoryXml.Save();
                                         }
-                                        controller.Receive();
+                                        
                                         #endregion
                                     }
                                     catch (Exception)
@@ -890,36 +899,36 @@ namespace AppedoLT
 
         void scr_OnVUserCreated(string scriptname, int userid)
         {
-            lock (listView1)
-            {
-                ListViewItem newItem = new ListViewItem(scriptname + "_" + userid.ToString());
-                newItem.SubItems.AddRange(new string[] { "0".ToString(), "Running" });
-                listView1.Items.Add(newItem);
-            }
+            //lock (listView1)
+            //{
+            //    ListViewItem newItem = new ListViewItem(scriptname + "_" + userid.ToString());
+            //    newItem.SubItems.AddRange(new string[] { "0".ToString(), "Running" });
+            //    listView1.Items.Add(newItem);
+            //}
         }
 
         void scr_OnVUserRunCompleted(string scriptname, int userid)
         {
-            lock (listView1)
-            {
-                ListViewItem newItem = listView1.FindItemWithText(scriptname + "_" + userid.ToString());
-                if (newItem != null)
-                {
-                    newItem.SubItems[2].Text = "Completed";
-                }
-            }
+            //lock (listView1)
+            //{
+            //    ListViewItem newItem = listView1.FindItemWithText(scriptname + "_" + userid.ToString());
+            //    if (newItem != null)
+            //    {
+            //        newItem.SubItems[2].Text = "Completed";
+            //    }
+            //}
         }
 
         void scr_OnIterationCompleted(string scriptname, int userid, int iterationid)
         {
-            lock (listView1)
-            {
-                ListViewItem newItem = listView1.FindItemWithText(scriptname + "_" + userid.ToString());
-                if (newItem != null)
-                {
-                    newItem.SubItems[1].Text = iterationid.ToString();
-                }
-            }
+            //lock (listView1)
+            //{
+            //    ListViewItem newItem = listView1.FindItemWithText(scriptname + "_" + userid.ToString());
+            //    if (newItem != null)
+            //    {
+            //        newItem.SubItems[1].Text = iterationid.ToString();
+            //    }
+            //}
         }
 
         void scr_OnLockUserDetail(UserDetail data)
@@ -1112,7 +1121,7 @@ namespace AppedoLT
 
                 if (tvScenarios.SelectedNode.Level == 0)
                 {
-                     objUCLoadGen.Visible = true;
+                    objUCLoadGen.Visible = true;
                 }
                 else if (tvScenarios.SelectedNode.Level == 1)
                 {
@@ -1146,6 +1155,15 @@ namespace AppedoLT
             Export_TO_Excel(lsvErrors, "Error_Data");
         }
 
+        private string GetDistribution(int count)
+        {
+            StringBuilder output = new StringBuilder();
+            for(int index=0;index<count;index++)
+            {
+                output.Append(Math.Floor(100.0 / count).ToString()).Append(",");
+            }
+           return output.ToString().TrimEnd(',');
+        }
 
         #endregion
 
@@ -1239,7 +1257,7 @@ namespace AppedoLT
                         executionReport.ExecutionStatus = Status.Completed;
                         runTime.Stop();
                         tmrExecution.Stop();
-                       
+                        Thread.Sleep(10000);
                         if (executionReport.ReportName != null)
                         {
                             CreateSummaryReport(executionReport.ReportName);
@@ -1518,11 +1536,12 @@ namespace AppedoLT
             }
         }
 
-        private void DataRecieve()
+        private void DataRecieve(IPAddress localIpAddress)
         {
             new Thread(() =>
                 {
-                    TcpListener listener = new TcpListener(8886);
+
+                    TcpListener listener = new TcpListener(localIpAddress, 8886);
                     listener.Start();
                     while (true)
                     {
@@ -1530,15 +1549,15 @@ namespace AppedoLT
                         new Thread(() =>
                           {
                               TrasportData data = trasport.Receive();
-                              trasport.Send(new TrasportData("ok", string.Empty, null));
-                              switch(data.Operation)
+                              
+                              switch (data.Operation)
                               {
                                   case "status":
                                       LoadGenRunningStatusData loadGen = _constants.Deserialise<LoadGenRunningStatusData>(data.DataStr);
                                       foreach (ReportData rda in loadGen.ReportData) { _hitCount++; _dataServer.LogResult(rda); }
                                       foreach (Log rda in loadGen.Log) _dataServer.logs.Enqueue(rda);
                                       foreach (RequestException rda in loadGen.Error)
-                                      { 
+                                      {
                                           _dataServer.errors.Enqueue(rda);
                                           rda.message = rda.message.Replace("\r\n", " ");
                                           ListViewItem newItem = new ListViewItem(rda.requestexceptionid.ToString());
@@ -1556,16 +1575,38 @@ namespace AppedoLT
                                                               rda.request.Replace("\"", "\"\""),
                                                               rda.errorcode });
                                           lsvErrors.Items.Add(newItem);
-                                         
+
                                       }
                                       foreach (TransactionRunTimeDetail rda in loadGen.Transactions) _dataServer.transcations.Enqueue(rda);
                                       break;
                               }
-                             
+                              trasport.Send(new TrasportData("ok", string.Empty, null));
                           }).Start();
                     }
 
                 }).Start();
+        }
+
+        private void btnShow_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                System.Data.DataTable dt = new System.Data.DataTable();
+                Result _resultLog = Result.GetInstance();
+                dt = _resultLog.GetReportData(ddlReports.Text);
+                dt.Columns.RemoveAt(0);
+                dt.Columns.RemoveAt(0);
+                grdvData.DataSource = dt.Copy();
+            }
+            catch (Exception ex)
+            {
+                ExceptionHandler.WritetoEventLog(ex.StackTrace + ex.Message);
+            }
+        }
+
+        private void btnExpt_Click(object sender, EventArgs e)
+        {
+            Export_TO_Excel(grdvData, ddlReports.Text);
         }
 
     }

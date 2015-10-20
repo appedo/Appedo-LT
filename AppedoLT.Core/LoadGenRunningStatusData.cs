@@ -134,6 +134,7 @@ namespace AppedoLT.Core
         [DataMember(Name = "requestexceptionid")]
         public string requestexceptionid { get; set; }
 
+         [DataMember(Name = "reportname")]
         public string reportname = string.Empty;
 
         [DataMember(Name = "scenarioname")]
