@@ -56,6 +56,7 @@ namespace AppedoLT
             lblRequest.Text = string.Empty;
            
             Label.CheckForIllegalCrossThreadCalls = false;
+           
             rd = new Record(lblRequest, txtContainer,ddlParentContainer, vuscript);
             frm = _frm;
             rd.Start();
@@ -83,6 +84,33 @@ namespace AppedoLT
             ThreadPool.SetMaxThreads(50, 50);
             frm.Visible = true; 
         }
+
+        /// <summary>
+        /// Used to create First Level Containers when record starts.
+        /// </summary>
+        private void CreateFirstLevelContainers()
+        {
+            try
+            {
+                Common _common = Common.GetInstance();
+                XmlNode container = _common.CreateContainer(_vuscript.OwnerDocument, "Initialize");
+                _vuscript.AppendChild(container);
+                ddlParentContainer.Items[0].Tag = container;
+
+                container = _common.CreateContainer(_vuscript.OwnerDocument, "Actions");
+                _vuscript.AppendChild(container);
+                ddlParentContainer.Items[1].Tag = container;
+
+                container = _common.CreateContainer(_vuscript.OwnerDocument, "End");
+                _vuscript.AppendChild(container);
+                ddlParentContainer.Items[2].Tag = container;
+            }
+            catch (Exception ex)
+            {
+                ExceptionHandler.WritetoEventLog(ex.Message + Environment.NewLine + ex.StackTrace);
+            }
+        }
+
 
     }
 }

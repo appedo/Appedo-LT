@@ -323,7 +323,6 @@ namespace AppedoLT
                         server.Close();
                         File.Delete(zipFilePath);
                         MessageBox.Show(respose.DataStr);
-
                     }
                     catch (Exception ex)
                     {

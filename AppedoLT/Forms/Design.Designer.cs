@@ -66,6 +66,7 @@ namespace AppedoLT
             this.label3 = new System.Windows.Forms.Label();
             this.lblUserCompleted = new System.Windows.Forms.Label();
             this.pnlScriptSettings = new System.Windows.Forms.Panel();
+            this.objUCLoadGen = new AppedoLT.ucLoadGen();
             this.splitPanel8 = new Telerik.WinControls.UI.SplitPanel();
             this.splcRunErrorReport = new Telerik.WinControls.UI.RadSplitContainer();
             this.splitPanel18 = new Telerik.WinControls.UI.SplitPanel();
@@ -74,7 +75,6 @@ namespace AppedoLT
             this.btnExpt = new Telerik.WinControls.UI.RadButton();
             this.btnShow = new Telerik.WinControls.UI.RadButton();
             this.ddlReports = new System.Windows.Forms.ComboBox();
-            this.grdvData = new Telerik.WinControls.UI.RadGridView();
             this.tabItem2 = new Telerik.WinControls.UI.TabItem();
             this.lsvErrors = new System.Windows.Forms.ListView();
             this.lvcId = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -93,8 +93,11 @@ namespace AppedoLT
             this.ivcErrorCode = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.btnExport = new Telerik.WinControls.UI.RadButton();
             this.tabiCharts = new Telerik.WinControls.UI.TabItem();
+            this.userControlCharts1 = new AppedoLT.userControlCharts();
             this.tabItem1 = new Telerik.WinControls.UI.TabItem();
+            this.userControlReports2 = new AppedoLT.userControlReports();
             this.tapiMonitor = new Telerik.WinControls.UI.TabItem();
+            this.ucMonitor1 = new AppedoLT.UCMonitor();
             this.imcDesign = new System.Windows.Forms.ImageList(this.components);
             this.tmrExecution = new System.Windows.Forms.Timer(this.components);
             this.splitPanel17 = new Telerik.WinControls.UI.SplitPanel();
@@ -118,10 +121,7 @@ namespace AppedoLT
             this.imageListForHeading = new System.Windows.Forms.ImageList(this.components);
             this.tabItem4 = new Telerik.WinControls.UI.TabItem();
             this.radMenu1 = new Telerik.WinControls.UI.RadMenu();
-            this.objUCLoadGen = new AppedoLT.ucLoadGen();
-            this.userControlCharts1 = new AppedoLT.userControlCharts();
-            this.userControlReports2 = new AppedoLT.userControlReports();
-            this.ucMonitor1 = new AppedoLT.UCMonitor();
+            this.grdvData = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.tabsDesign)).BeginInit();
             this.tabsDesign.SuspendLayout();
             this.tabiRun.ContentPanel.SuspendLayout();
@@ -162,8 +162,6 @@ namespace AppedoLT
             this.tabItem3.ContentPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnExpt)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnShow)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.grdvData)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.grdvData.MasterGridViewTemplate)).BeginInit();
             this.tabItem2.ContentPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnExport)).BeginInit();
             this.tabiCharts.ContentPanel.SuspendLayout();
@@ -172,6 +170,7 @@ namespace AppedoLT
             ((System.ComponentModel.ISupportInitialize)(this.splitPanel17)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitPanel14)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radMenu1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grdvData)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
@@ -680,6 +679,18 @@ namespace AppedoLT
             this.pnlScriptSettings.Name = "pnlScriptSettings";
             this.pnlScriptSettings.Size = new System.Drawing.Size(714, 168);
             this.pnlScriptSettings.TabIndex = 28;
+            this.pnlScriptSettings.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlScriptSettings_Paint);
+            // 
+            // objUCLoadGen
+            // 
+            this.objUCLoadGen.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.objUCLoadGen.Dock = System.Windows.Forms.DockStyle.Left;
+            this.objUCLoadGen.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.objUCLoadGen.Location = new System.Drawing.Point(0, 0);
+            this.objUCLoadGen.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.objUCLoadGen.Name = "objUCLoadGen";
+            this.objUCLoadGen.Size = new System.Drawing.Size(318, 168);
+            this.objUCLoadGen.TabIndex = 0;
             // 
             // splitPanel8
             // 
@@ -758,10 +769,10 @@ namespace AppedoLT
             // 
             this.tabItem3.ContentPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(248)))));
             this.tabItem3.ContentPanel.CausesValidation = true;
+            this.tabItem3.ContentPanel.Controls.Add(this.grdvData);
             this.tabItem3.ContentPanel.Controls.Add(this.btnExpt);
             this.tabItem3.ContentPanel.Controls.Add(this.btnShow);
             this.tabItem3.ContentPanel.Controls.Add(this.ddlReports);
-            this.tabItem3.ContentPanel.Controls.Add(this.grdvData);
             this.tabItem3.ContentPanel.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabItem3.ContentPanel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(66)))), ((int)(((byte)(139)))));
             this.tabItem3.ContentPanel.Location = new System.Drawing.Point(0, 25);
@@ -803,29 +814,6 @@ namespace AppedoLT
             this.ddlReports.Name = "ddlReports";
             this.ddlReports.Size = new System.Drawing.Size(257, 21);
             this.ddlReports.TabIndex = 1;
-            // 
-            // grdvData
-            // 
-            this.grdvData.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.grdvData.Location = new System.Drawing.Point(3, 40);
-            // 
-            // 
-            // 
-            this.grdvData.MasterGridViewTemplate.AllowAddNewRow = false;
-            this.grdvData.MasterGridViewTemplate.AllowColumnReorder = false;
-            this.grdvData.MasterGridViewTemplate.EnableFiltering = true;
-            this.grdvData.Name = "grdvData";
-            this.grdvData.Padding = new System.Windows.Forms.Padding(0, 0, 0, 1);
-            this.grdvData.ReadOnly = true;
-            // 
-            // 
-            // 
-            this.grdvData.RootElement.Padding = new System.Windows.Forms.Padding(0, 0, 0, 1);
-            this.grdvData.ShowNoDataText = false;
-            this.grdvData.Size = new System.Drawing.Size(713, 152);
-            this.grdvData.TabIndex = 0;
             // 
             // tabItem2
             // 
@@ -984,6 +972,16 @@ namespace AppedoLT
             this.tabiCharts.Text = "Charts";
             this.tabiCharts.Visibility = Telerik.WinControls.ElementVisibility.Collapsed;
             // 
+            // userControlCharts1
+            // 
+            this.userControlCharts1.AutoScroll = true;
+            this.userControlCharts1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(219)))), ((int)(((byte)(255)))));
+            this.userControlCharts1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.userControlCharts1.Location = new System.Drawing.Point(0, 0);
+            this.userControlCharts1.Name = "userControlCharts1";
+            this.userControlCharts1.Size = new System.Drawing.Size(941, 499);
+            this.userControlCharts1.TabIndex = 0;
+            // 
             // tabItem1
             // 
             this.tabItem1.Alignment = System.Drawing.ContentAlignment.BottomLeft;
@@ -1007,6 +1005,17 @@ namespace AppedoLT
             this.tabItem1.StretchHorizontally = false;
             this.tabItem1.StretchVertically = false;
             this.tabItem1.Text = "Reports";
+            // 
+            // userControlReports2
+            // 
+            this.userControlReports2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.userControlReports2.Location = new System.Drawing.Point(0, 0);
+            this.userControlReports2.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.userControlReports2.Name = "userControlReports2";
+            this.userControlReports2.Size = new System.Drawing.Size(938, 499);
+            this.userControlReports2.TabIndex = 0;
             // 
             // tapiMonitor
             // 
@@ -1032,6 +1041,15 @@ namespace AppedoLT
             this.tapiMonitor.StretchVertically = false;
             this.tapiMonitor.Text = "Monitor";
             this.tapiMonitor.Visibility = Telerik.WinControls.ElementVisibility.Hidden;
+            // 
+            // ucMonitor1
+            // 
+            this.ucMonitor1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucMonitor1.Location = new System.Drawing.Point(0, 0);
+            this.ucMonitor1.Margin = new System.Windows.Forms.Padding(5, 3, 5, 3);
+            this.ucMonitor1.Name = "ucMonitor1";
+            this.ucMonitor1.Size = new System.Drawing.Size(941, 499);
+            this.ucMonitor1.TabIndex = 0;
             // 
             // imcDesign
             // 
@@ -1216,46 +1234,19 @@ namespace AppedoLT
             this.radMenu1.Text = "radMenu1";
             this.radMenu1.ThemeName = "Windows7";
             // 
-            // objUCLoadGen
+            // grdvData
             // 
-            this.objUCLoadGen.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.objUCLoadGen.Dock = System.Windows.Forms.DockStyle.Left;
-            this.objUCLoadGen.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.objUCLoadGen.Location = new System.Drawing.Point(0, 0);
-            this.objUCLoadGen.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.objUCLoadGen.Name = "objUCLoadGen";
-            this.objUCLoadGen.Size = new System.Drawing.Size(318, 168);
-            this.objUCLoadGen.TabIndex = 0;
-            // 
-            // userControlCharts1
-            // 
-            this.userControlCharts1.AutoScroll = true;
-            this.userControlCharts1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(219)))), ((int)(((byte)(255)))));
-            this.userControlCharts1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.userControlCharts1.Location = new System.Drawing.Point(0, 0);
-            this.userControlCharts1.Name = "userControlCharts1";
-            this.userControlCharts1.Size = new System.Drawing.Size(941, 499);
-            this.userControlCharts1.TabIndex = 0;
-            // 
-            // userControlReports2
-            // 
-            this.userControlReports2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.grdvData.AllowUserToAddRows = false;
+            this.grdvData.AllowUserToDeleteRows = false;
+            this.grdvData.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.userControlReports2.Location = new System.Drawing.Point(0, 0);
-            this.userControlReports2.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.userControlReports2.Name = "userControlReports2";
-            this.userControlReports2.Size = new System.Drawing.Size(938, 499);
-            this.userControlReports2.TabIndex = 0;
-            // 
-            // ucMonitor1
-            // 
-            this.ucMonitor1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ucMonitor1.Location = new System.Drawing.Point(0, 0);
-            this.ucMonitor1.Margin = new System.Windows.Forms.Padding(5, 3, 5, 3);
-            this.ucMonitor1.Name = "ucMonitor1";
-            this.ucMonitor1.Size = new System.Drawing.Size(941, 499);
-            this.ucMonitor1.TabIndex = 0;
+            this.grdvData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.grdvData.Location = new System.Drawing.Point(3, 36);
+            this.grdvData.Name = "grdvData";
+            this.grdvData.ReadOnly = true;
+            this.grdvData.Size = new System.Drawing.Size(712, 156);
+            this.grdvData.TabIndex = 37;
             // 
             // Design
             // 
@@ -1318,8 +1309,6 @@ namespace AppedoLT
             this.tabItem3.ContentPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.btnExpt)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnShow)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.grdvData.MasterGridViewTemplate)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.grdvData)).EndInit();
             this.tabItem2.ContentPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.btnExport)).EndInit();
             this.tabiCharts.ContentPanel.ResumeLayout(false);
@@ -1328,6 +1317,7 @@ namespace AppedoLT
             ((System.ComponentModel.ISupportInitialize)(this.splitPanel17)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitPanel14)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radMenu1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grdvData)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -1430,6 +1420,6 @@ namespace AppedoLT
         private Telerik.WinControls.UI.RadButton btnExpt;
         private Telerik.WinControls.UI.RadButton btnShow;
         private System.Windows.Forms.ComboBox ddlReports;
-        private Telerik.WinControls.UI.RadGridView grdvData;
+        private System.Windows.Forms.DataGridView grdvData;
     }
 }
