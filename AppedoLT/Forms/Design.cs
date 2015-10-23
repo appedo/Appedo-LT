@@ -747,7 +747,7 @@ namespace AppedoLT
                         userControlCharts1.LoadReportName(executionReport.ReportName);
 
                         lblUserCompleted.Text = "0";
-                       // listView1.Items.Clear();
+                        // listView1.Items.Clear();
                         XmlNode run = _repositoryXml.Doc.CreateElement("run");
                         run.Attributes.Append(_repositoryXml.GetAttribute("reportname", executionReport.ReportName));
 
@@ -849,7 +849,7 @@ namespace AppedoLT
                                         header.Add("totalloadgen", loadGens.Count.ToString());
                                         header.Add("currentloadgenid", loadGenId.ToString());
                                         header.Add("loadgenname", loadgen.Attributes["ipaddress"].Value);
-                                        header.Add("distribution",GetDistribution(loadGens.Count));
+                                        header.Add("distribution", GetDistribution(loadGens.Count));
                                         header.Add("loadgencounters", loadGens.Count.ToString());
 
                                         controller.Send(new TrasportData("savescenario", scenario.InnerXml, header));
@@ -872,7 +872,7 @@ namespace AppedoLT
                                             runs.AppendChild(run);
                                             _repositoryXml.Save();
                                         }
-                                        
+
                                         #endregion
                                     }
                                     catch (Exception)
@@ -1019,7 +1019,7 @@ namespace AppedoLT
                     {
                         try
                         {
-                            Trasport controller = new Trasport(objClient, "8888");
+                            Trasport controller = new Trasport(objClient, "8889");
                             controller.Send(new TrasportData("stop", string.Empty, null));
                             controller.Receive();
                         }
@@ -1029,16 +1029,29 @@ namespace AppedoLT
 
                     }
 
+                    //executionReport.ExecutionStatus = Status.Completed;
+                    //runTime.Stop();
+                    //tmrExecution.Stop();
+                    //WaitUntillExecutionComplete();
+                    //if (executionReport.ReportName != null)
+                    //{
+                    //    CreateSummaryReport(executionReport.ReportName);
+                    //    ReportMaster reportMaster = new ReportMaster(executionReport.ReportName);
+                    //    reportMaster.GenerateReports();
+                    //    UpdateReportStatus();
+                    //}
+
                     executionReport.ExecutionStatus = Status.Completed;
                     runTime.Stop();
                     tmrExecution.Stop();
-                    WaitUntillExecutionComplete();
+                    Thread.Sleep(10000);
                     if (executionReport.ReportName != null)
                     {
                         CreateSummaryReport(executionReport.ReportName);
                         ReportMaster reportMaster = new ReportMaster(executionReport.ReportName);
                         reportMaster.GenerateReports();
                         UpdateReportStatus();
+                        userControlReports2.LoadReportName(executionReport.ReportName);
                     }
                 }
             }
@@ -1158,11 +1171,11 @@ namespace AppedoLT
         private string GetDistribution(int count)
         {
             StringBuilder output = new StringBuilder();
-            for(int index=0;index<count;index++)
+            for (int index = 0; index < count; index++)
             {
                 output.Append(Math.Floor(100.0 / count).ToString()).Append(",");
             }
-           return output.ToString().TrimEnd(',');
+            return output.ToString().TrimEnd(',');
         }
 
         #endregion
@@ -1549,12 +1562,18 @@ namespace AppedoLT
                         new Thread(() =>
                           {
                               TrasportData data = trasport.Receive();
-                              
+
                               switch (data.Operation)
                               {
                                   case "status":
                                       LoadGenRunningStatusData loadGen = _constants.Deserialise<LoadGenRunningStatusData>(data.DataStr);
-                                      foreach (ReportData rda in loadGen.ReportData) { _hitCount++; _dataServer.LogResult(rda); }
+                                      foreach (ReportData rda in loadGen.ReportData)
+                                      {
+                                          _hitCount++;
+                                          rda.starttime = rda.starttime.ToLocalTime();
+                                          rda.endtime = rda.endtime.ToLocalTime();
+                                          _dataServer.LogResult(rda);
+                                      }
                                       foreach (Log rda in loadGen.Log) _dataServer.logs.Enqueue(rda);
                                       foreach (RequestException rda in loadGen.Error)
                                       {
@@ -1607,6 +1626,11 @@ namespace AppedoLT
         private void btnExpt_Click(object sender, EventArgs e)
         {
             Export_TO_Excel(grdvData, ddlReports.Text);
+        }
+
+        private void pnlScriptSettings_Paint(object sender, PaintEventArgs e)
+        {
+
         }
 
     }

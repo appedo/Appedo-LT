@@ -1,6 +1,4 @@
-﻿
-
-using AppedoLT.Core;
+﻿using AppedoLT.Core;
 using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
@@ -89,9 +87,14 @@ namespace AppedoLT
                 _worker = new BackgroundWorker();
                 _worker.WorkerSupportsCancellation = true;
                 _worker.DoWork += new DoWorkEventHandler(DoWork);
+                int seleindex = ddlParentContainer.SelectedIndex;
                 _ddlParentContainer = ddlParentContainer;
-                CreateFirstLevelContainers();
-                ddlParentContainer.SelectedIndexChanged += new EventHandler(ddlParentContainer_SelectedIndexChanged);
+                 CreateFirstLevelContainers();
+                 _ddlParentContainer.SelectedIndexChanged += new EventHandler(ddlParentContainer_SelectedIndexChanged);
+                 _ddlParentContainer.SelectedIndex = 0;
+                 _ddlParentContainer.SelectedIndex = 1;
+                 _ddlParentContainer.SelectedIndex = seleindex;
+               
                 String certFilePath = String.Empty;
                 if (ConfigurationManager.AppSettings["CertificateFile"] != null)
                     certFilePath = Constants.GetInstance().CertificatePath;
