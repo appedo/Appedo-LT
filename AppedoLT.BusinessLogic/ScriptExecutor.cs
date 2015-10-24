@@ -204,7 +204,7 @@ namespace AppedoLT.BusinessLogic
 
                 for (int index = 1; index <= Status.TotalLoadGenUsed; index++)
                 {
-                    userDistribution.Add(index, (int)Math.Round((Convert.ToInt16(distributionValues[index - 1]) / 100.0) * maxUser));
+                    userDistribution.Add(index, (int)Math.Floor((Convert.ToInt16(distributionValues[index - 1]) / 100.0) * maxUser));
                 }
                 int userDistributionSum = userDistribution.Sum(v => v.Value);
                 if (userDistributionSum != maxUser)

@@ -168,7 +168,6 @@ namespace AppedoLT.BusinessLogic
                         {
                             if (req != null) req.Abort();
                             _userThread.Abort();
-
                         }
                         catch (Exception ex)
                         {
