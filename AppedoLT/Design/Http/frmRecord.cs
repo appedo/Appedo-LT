@@ -8,6 +8,12 @@ namespace AppedoLT
     /// <summary>
     /// Form used to give UI during recoding. Used to give container name.
     /// 
+    /// prerequisites: 
+    ///   _frm- Form that need to be shown after record stop. 
+    ///   scriptName- Script Name
+    ///   _vuScript- XmlNode where we need to store recorded request and response.
+    ///   selectedIndex- Parent container index(0- Init, 1- Actions, 2- End)
+    /// 
     /// Author: Rasith
     /// </summary>
     public partial class frmRecord : Telerik.WinControls.UI.RadForm
@@ -21,14 +27,15 @@ namespace AppedoLT
         /// Create frmRecord object with parent form, script name, script node.
         /// </summary>
         /// <param name="_frm">Parent form</param>
-        /// <param name="vuName">Script name</param>
+        /// <param name="scriptName">Script name</param>
         /// <param name="_vuScript">xml node to store recoded transactions</param>
-        public frmRecord(Design _frm, string vuName, XmlNode _vuScript,int selectedIndex)
+        public frmRecord(Design _frm, string scriptName, XmlNode _vuScript,int selectedIndex)
         {
             try
             {
                 InitializeComponent();
                 ThreadPool.SetMaxThreads(2, 2);
+                //Select parent container.
                 ddlParentContainer.SelectedIndex = selectedIndex;
                 this.Location = new System.Drawing.Point((Screen.PrimaryScreen.Bounds.Width / 2) - (this.Size.Width / 2), 2);
                 lblRequest.Text = string.Empty;

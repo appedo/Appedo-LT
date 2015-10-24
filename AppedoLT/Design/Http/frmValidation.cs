@@ -1,20 +1,24 @@
+using AppedoLT.BusinessLogic;
+using AppedoLT.Core;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
 using System.Threading;
 using System.Windows.Forms;
 using System.Xml;
-using AppedoLT.Core;
-using AppedoLT.BusinessLogic;
 using Telerik.WinControls.UI;
-using System.Drawing;
-using System.ComponentModel;
 
 namespace AppedoLT
 {
     /// <summary>
     /// Used to validate http script.
+    /// 
+    /// prerequisites: 
+    ///  vuScript- Script that need to be validate
+    ///  script- UI TreeNode to display right side tree.
+    ///  _intCountRequest- Total number of request to calculate percentage for progress bar.
     /// 
     /// Author: Rasith
     /// </summary>
@@ -44,6 +48,7 @@ namespace AppedoLT
         {
             try
             {
+                //Timer task. Timer will method timer_tick in given interval
                 timer.Tick += new EventHandler(timer_tick);
                 timer.Interval = 100;
                 InitializeComponent();
@@ -84,8 +89,11 @@ namespace AppedoLT
         {
             VUser _vUSer = new VUser(1, DateTime.Now.ToString("dd_MMM_yyyy_hh_mm_ss"), "1", 1, 1, _vuScript, false, Request.GetIPAddress(1));
             _vUSer.IsValidation = true;
+            //Mapping event to methods. If vuser has request and response data it will call _vUSer_OnLockRequestResponse method
             _vUSer.OnLockRequestResponse += _vUSer_OnLockRequestResponse;
+            //If vuser has Error it will call _vUSer_OnLockError method
             _vUSer.OnLockError += _vUSer_OnLockError;
+            //If vuser has Log it will call _vUSer_OnLockLog method
             _vUSer.OnLockLog += _vUSer_OnLockLog;
             return _vUSer;
         }
@@ -120,16 +128,20 @@ namespace AppedoLT
             {
                 ListViewItem newItem = new ListViewItem(requestResponse.WebRequestResponseId.ToString());
                 newItem.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                // If request has error response
                 if (requestResponse.RequestResult.HasError == true || requestResponse.RequestResult.Success == false)
                 {
+                    //It show green color
                     newItem.StateImageIndex = 1;
                 }
                 else
                 {
+                    //It show red color
                     newItem.StateImageIndex = 0;
                 }
 
                 newItem.Tag = requestResponse;
+                //Adding details into grid
                 newItem.SubItems.AddRange(new string[] { requestResponse.RequestResult.RequestId.ToString(), requestResponse.ContainerName, requestResponse.RequestResult.RequestName, requestResponse.RequestResult.StartTime.ToString(), requestResponse.RequestResult.EndTime.ToString(), requestResponse.RequestResult.ResponseTime.ToString(), requestResponse.RequestResult.ResponseCode.ToString(), requestResponse.RequestResult.Success.ToString() });
                 lsvResult.Items.Add(newItem);
             }
@@ -156,14 +168,17 @@ namespace AppedoLT
                     btnViewError.Text = "&Errors(" + _errorObj.Count.ToString() + ")";
                     btnViewLog.Text = "&Logs(" + _logObj.Count.ToString() + ")";
                     if (firstRun == true) firstRun = false;
+                    //Creating data center for variables
                     VariableManager.dataCenter = new VariableManager();
                     lsvResult.Items.Clear();
                     lblVResult.Text = string.Empty;
                     Clear();
                     lblVResult.Visible = true;
+                    //Creating single vuser object.
                     _vUSer = GetUser();
                     _vUSer.Start();
                     timer.Start();
+                    // stop watch used to calculate  response time.
                     stopWatch.Reset();
                     stopWatch.Start();
                     lblAvgResponse.Text = string.Empty;
@@ -211,8 +226,10 @@ namespace AppedoLT
         {
             try
             {
+                //If vuser completed all transactions.
                 if (_vUSer.WorkCompleted == false)
                 {
+                    //Calculating avg response time.
                     int inGridVal = Int32.Parse(lsvResult.Items.Count.ToString(), System.Globalization.NumberStyles.AllowHexSpecifier);
                     int inintCountRequest = Int32.Parse(intCountRequest.ToString(), System.Globalization.NumberStyles.AllowHexSpecifier);
                     String a = inGridVal.ToString();
@@ -225,10 +242,12 @@ namespace AppedoLT
                     {
                     }
                     lblStatus.Text = "Running";
+                    //Total duration
                     lblTotalDuration.Text = stopWatch.Elapsed.ToString();
                 }
                 else
                 {
+                    // Frequently update status until user complete.
                     progressValidation.Value1 = 100;
                     stopWatch.Stop();
                     try
@@ -246,8 +265,11 @@ namespace AppedoLT
                     btnValidate.Enabled = true;
                     bool isError = false;
                     errorRequestid.Clear();
+
+                    //Getting all failed request to set TreeView node red color.
                     foreach (ListViewItem item in lsvResult.Items)
                     {
+                        //Failed response.
                         if (item.SubItems[8].Text == "False")
                         {
                             errorRequestid.Add(item.SubItems[1].Text.ToString());
@@ -277,14 +299,18 @@ namespace AppedoLT
         public double Avg()
         {
             double result = 0;
+
+            //Getting sum of response time.
             foreach (ListViewItem item in this.lsvResult.Items)
             {
                 double temp = 0;
                 double.TryParse(item.SubItems[6].Text, out temp);
                 result += temp;
             }
+
             if (this.lsvResult.Items.Count > 0)
             {
+                //Calculate avg.
                 result = result / this.lsvResult.Items.Count;
             }
             return result;
@@ -303,22 +329,23 @@ namespace AppedoLT
                     node.Expand();
                     foreach (RadTreeNode childNode in node.Nodes)
                     {
+                        //Reset default
                         SetTreeNodeError(childNode);
                     }
                 }
                 else
                 {
-
                     if (node.Tag != null && ((XmlNode)node.Tag).Name == "request")
                     {
-
                         if (errorRequestid.FindAll(f => f == (((XmlNode)node.Tag).Attributes["id"].Value)).Count > 0)
                         {
                             errorRequestid.FindAll(f => f == ((XmlNode)node.Tag).Attributes["id"].Value).Clear();
+                            //Set red color for failed request
                             node.BackColor = System.Drawing.Color.Red;
                         }
                         else
                         {
+                            //Set white color for successful request
                             node.BackColor = System.Drawing.Color.White;
                         }
                     }
@@ -407,23 +434,6 @@ namespace AppedoLT
             System.Diagnostics.Process.Start(e.LinkText);
         }
 
-        private void btnCompare_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                RadTreeNodeCollection tnc;
-                tnc = tvRequest.Nodes;
-                // FindNodeInHierarchy(tnc, (gvRecord.CurrentRow.Cells["Address"].Value).ToString(), (gvRecord.CurrentRow.Cells["Requestid"].Value).ToString());
-
-                frmCompareResponse objFrmCompare = new frmCompareResponse(strRecordedResponse, strValidatedResponse);
-                objFrmCompare.Show();
-            }
-            catch (Exception ex)
-            {
-                ExceptionHandler.WritetoEventLog(ex.StackTrace + Environment.NewLine + ex.Message);
-            }
-        }
-
         private void btnStop_Click(object sender, EventArgs e)
         {
             try
@@ -463,12 +473,15 @@ namespace AppedoLT
                 if (e.IsSelected == true)
                 {
                     RequestResponse requestRespose = (RequestResponse)e.Item.Tag;
+
+                    //If user selected item in grid
                     if (requestRespose != null)
                     {
                         lblPath.Text = requestRespose.RequestResult.RequestName;
                         lblStartTime.Text = requestRespose.RequestResult.StartTime.ToString("dd/MMM/yyyy hh:mm:ss");
                         lblEndTime.Text = requestRespose.RequestResult.EndTime.ToString("dd/MMM/yyyy hh:mm:ss");
                         lblDuration.Text = requestRespose.RequestResult.ResponseTime.ToString() + " ms";
+                        //If user has valid response
                         if (requestRespose.RequestResult.HasError == true)
                         {
                             strValidatedResponse = requestRespose.RequestResult.ErrorMessage + Environment.NewLine + requestRespose.RequestResult.ResponseStr;
@@ -484,6 +497,8 @@ namespace AppedoLT
                         gvExtractedVariables.DataSource = ConvertToTable(requestRespose.RequestResult.ExtractedVariables);
 
                         if (radTabStrip1.SelectedTab == tabItem1) webBrowser1.DocumentText = txtResponse.Text;
+
+                        //Select corresponding tree node request in right side tree view
                         SelectRequest(tvRequest.Nodes[0], requestRespose.RequestResult.RequestId.ToString());
 
                         // SelectTreeNode(tvRequest.Nodes[0], requestRespose.RequestId);
@@ -508,6 +523,11 @@ namespace AppedoLT
             }
         }
 
+        /// <summary>
+        /// Convert xmlnode into data table.
+        /// </summary>
+        /// <param name="root">xml which contain attribute name and value</param>
+        /// <returns>Table that contain name and value</returns>
         private DataTable ConvertToTable(XmlNode root)
         {
             DataTable resut = new DataTable();
@@ -523,6 +543,11 @@ namespace AppedoLT
             return resut;
         }
 
+        /// <summary>
+        /// Convert key and value collection into table
+        /// </summary>
+        /// <param name="root">key value collection</param>
+        /// <returns>Table that contains name and value column</returns>
         private DataTable ConvertToTable(List<AppedoLT.Core.Tuple<string, string>> root)
         {
             DataTable resut = new DataTable();
@@ -568,11 +593,13 @@ namespace AppedoLT
 
         private void btnViewLog_Click(object sender, EventArgs e)
         {
+            // To show logs tables to user
             new frmShowData("Logs", _logObj).ShowDialog();
         }
 
         private void btnViewError_Click(object sender, EventArgs e)
         {
+            // To show Errors tables to user
             new frmShowData("Errors", _errorObj).ShowDialog();
         }
 

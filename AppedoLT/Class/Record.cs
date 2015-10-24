@@ -1,6 +1,4 @@
-﻿
-
-using AppedoLT.Core;
+﻿using AppedoLT.Core;
 using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
@@ -25,6 +23,12 @@ namespace AppedoLT
     /// <summary>
     /// Record Http transaction from browser and stored in xml.
     /// 
+    /// prerequisites: 
+    ///  lblResult- To display url.
+    ///  txtContainer- To change container name
+    ///  ddlParentContainer- To change parent container(Initialize, Actions, End)
+    ///  vuScriptXml- To store request and response in xml
+    ///  
     /// Author: Rasith
     /// </summary>
     class Record
@@ -114,6 +118,7 @@ namespace AppedoLT
             try
             {
                 _worker.RunWorkerAsync();
+                //Create thread to store result.
                 _storeData = new Thread(new ThreadStart(StoreResult));
                 _storeData.Start();
             }
@@ -212,6 +217,7 @@ namespace AppedoLT
                     else
                     {
                         TcpClient client = _listener.AcceptTcpClient();
+                        //Create new thread to process request from browser.
                         Thread th = new Thread(new ParameterizedThreadStart(ProceessClient));
                         th.Start(client);
                     }
@@ -831,15 +837,18 @@ namespace AppedoLT
         {
             try
             {
+                //Create Initialize node
                 XmlNode container = _common.CreateContainer(_uvScript.OwnerDocument, "Initialize");
                 _uvScript.AppendChild(container);
                 _ddlParentContainer.Items[0].Tag = container;
 
+                //Create Actions node
                 container = _common.CreateContainer(_uvScript.OwnerDocument, "Actions");
                 _uvScript.AppendChild(container);
                 _ddlParentContainer.Items[1].Tag = container;
                 _selectedFirstLevelContainer = container;
 
+                //Create End node
                 container = _common.CreateContainer(_uvScript.OwnerDocument, "End");
                 _uvScript.AppendChild(container);
                 _ddlParentContainer.Items[2].Tag = container;
