@@ -12,7 +12,10 @@ namespace AppedoLT
 {
 
     /// <summary>
-    /// Used to give design UI.
+    /// Used to give design UI. It is used to show scripts. We can able to edit script. 
+    /// 
+    /// prerequisites: 
+    ///  List of scripts.
     /// 
     /// Author: Rasith
     /// </summary>
@@ -111,6 +114,8 @@ namespace AppedoLT
                         RadTreeNode childContainerNode = new RadTreeNode();
                         childContainerNode.Text = action.Attributes["name"].Value;
                         childContainerNode.Tag = action;
+
+                        //To change request tree node as Red if it has error response
                         if (action.Attributes["HasErrorResponse"] != null && Convert.ToBoolean(action.Attributes["HasErrorResponse"].Value) == true)
                         {
                             childContainerNode.BackColor = Color.Red;
@@ -195,6 +200,7 @@ namespace AppedoLT
 
         #region Flag Request
 
+        // Flag request event
         private void searchToolStripMenuItem_Click(object sender, EventArgs e)
         {
             try
@@ -202,6 +208,8 @@ namespace AppedoLT
                 XmlNode vuscript = ((VuscriptXml)tvRequest.SelectedNode.Tag).Doc.SelectSingleNode("//vuscript");
                 string scriptId = vuscript.Attributes["id"].Value;
                 FlagRequest fRequest;
+
+                //Create flag request node if not exist
                 if (_repositoryXml.Doc.SelectSingleNode("//flag/flagrequest[@scriptid='" + scriptId + "']") == null)
                 {
                     fRequest = new FlagRequest(null);
@@ -222,6 +230,7 @@ namespace AppedoLT
                 SetDefaultcolor(tvRequest.SelectedNode);
                 if (vuscript.Attributes["type"].Value == "http")
                 {
+                    //To change color of request node if it has text that searched by user
                     SetFlagRequestHttp(tvRequest.SelectedNode, fRequest.FlagRequestObj, scriptId);
                 }
             }
@@ -231,6 +240,7 @@ namespace AppedoLT
             }
         }
 
+        //Set request color if it has text that searched by user
         private void SetFlagRequestHttp(RadTreeNode request, XmlNode flagRequest, string scriptId)
         {
             if (request.Nodes.Count > 0)
@@ -254,6 +264,7 @@ namespace AppedoLT
                 {
                     switch (flagRequest.Attributes["type"].Value)
                     {
+                        //If user try to search text in requestheader
                         case "requestheader":
                             {
                                 StringBuilder headerText = new StringBuilder();
@@ -279,7 +290,7 @@ namespace AppedoLT
                                 }
                             }
                             break;
-
+                        //If user try to search text in requestbody
                         case "requestbody":
                             {
                                 StringBuilder paramText = new StringBuilder();
@@ -315,6 +326,7 @@ namespace AppedoLT
                             }
                             break;
 
+                        //If user try to search text in responseheader
                         case "responseheader":
                             {
                                 StringBuilder headerText = new StringBuilder();
@@ -337,6 +349,7 @@ namespace AppedoLT
                             }
                             break;
 
+                        //If user try to search text in responsebody
                         case "responsebody":
                             {
                                 StringBuilder respose = new StringBuilder();
@@ -358,6 +371,7 @@ namespace AppedoLT
                             }
                             break;
 
+                        //If user try to search text in variables
                         case "hasvariable":
                             {
                                 StringBuilder paramText = new StringBuilder();
@@ -420,6 +434,7 @@ namespace AppedoLT
 
         }
 
+        //Set color to given node
         private void SetFlagRequstcolor(RadTreeNode node)
         {
             node.BackColor = Color.Aqua;
@@ -429,6 +444,7 @@ namespace AppedoLT
             }
         }
 
+        //Reset color to given node
         private void SetDefaultcolor(RadTreeNode node)
         {
             node.BackColor = _treeNodeDefaultColor;
@@ -442,6 +458,7 @@ namespace AppedoLT
 
         #region MenuEvents
 
+        //To add new container.
         private void tsContainer_Click(object sender, EventArgs e)
         {
             try
@@ -484,6 +501,7 @@ namespace AppedoLT
             }
         }
 
+        //To add new Delay.
         private void addDelayOnToolStripMenuItem_Click(object sender, EventArgs e)
         {
             try
@@ -519,6 +537,7 @@ namespace AppedoLT
             }
         }
 
+        //To add new Loop.
         private void addLoopToolStripMenuItem_Click(object sender, EventArgs e)
         {
             try
@@ -562,6 +581,7 @@ namespace AppedoLT
             }
         }
 
+        //To add new WhileLoop.
         private void addWhileLoopToolStripMenuItem_Click(object sender, EventArgs e)
         {
             try
@@ -598,6 +618,7 @@ namespace AppedoLT
             }
         }
 
+        //To add new JavaScript.
         private void addJavaScriptToolStripMenuItem_Click(object sender, EventArgs e)
         {
             try
@@ -634,6 +655,7 @@ namespace AppedoLT
             }
         }
 
+        //To add new IfThenElse.
         private void addIfThenElseMenuItem_Click(object sender, EventArgs e)
         {
             try
@@ -682,6 +704,7 @@ namespace AppedoLT
             }
         }
 
+        //To add new StartTransaction.
         private void addStartTransactionToolStripMenuItem_Click(object sender, EventArgs e)
         {
             try
@@ -718,6 +741,7 @@ namespace AppedoLT
             }
         }
 
+        //To add new EndTransaction.
         private void addEndTransactionToolStripMenuItem_Click(object sender, EventArgs e)
         {
             try
@@ -754,6 +778,7 @@ namespace AppedoLT
             }
         }
 
+        //To add new Log.
         private void tsiLog_Click(object sender, EventArgs e)
         {
             try
@@ -793,6 +818,7 @@ namespace AppedoLT
 
         #region Events
 
+        //If user changing selection in Right side tree node.
         private void tvRequest_SelectedNodeChanged(object sender, RadTreeViewEventArgs e)
         {
             try

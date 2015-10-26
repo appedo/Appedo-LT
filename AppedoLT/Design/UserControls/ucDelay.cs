@@ -9,6 +9,11 @@ namespace AppedoLT
     /// <summary>
     /// User control used to set delay value and update in script xml.
     /// 
+    ///  prerequisites: 
+    ///  xmlNode- delay xml node. It contains delay information.
+    ///  
+    ///  treeNode- Tree node from UI
+    ///  
     /// Author: Rasith
     /// </summary>
     public partial class ucDelay : UserControl

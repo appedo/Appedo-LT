@@ -9,6 +9,11 @@ namespace AppedoLT
     /// <summary>
     /// User control used to get container name and update in script xml.
     /// 
+    /// prerequisites: 
+    ///  xmlNode- Container xml node. It contains Container information.
+    ///  treeNode- Tree node from UI
+    ///  
+    /// 
     /// Author: Rasith
     /// </summary>
     public partial class ucContainer : UserControl
@@ -54,8 +59,10 @@ namespace AppedoLT
                 if (txt.Text != attr.Value)
                 {
                     XmlNode vuscipt = Constants.GetInstance().FindThirdRoot((XmlNode)attr.OwnerElement);
+                    //If container name already exist
                     if (vuscipt.SelectSingleNode(".//container[@name='" + txt.Text + "']") != null)
                     {
+                        //Generate unique container name.
                         txt.Text = Constants.GetInstance().GetUniqueContainerName(txt.Text, vuscipt, 1);
                     }
                     attr.Value = txt.Text;
