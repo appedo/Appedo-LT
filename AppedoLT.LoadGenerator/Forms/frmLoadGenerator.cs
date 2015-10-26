@@ -14,6 +14,12 @@ using System.Xml;
 
 namespace AppedoLTLoadGenerator
 {
+    /// <summary>
+    /// It will run in background. To get run request from AppedoController. 
+    /// 
+    /// Author: Rasith
+    /// 
+    /// </summary>
     public partial class LoadGenerator : Form
     {
         NotifyIcon ni = new NotifyIcon();
@@ -32,6 +38,7 @@ namespace AppedoLTLoadGenerator
         public LoadGenerator()
         {
             InitializeComponent();
+            //It is old logic that listening port.
             worker.DoWork += new DoWorkEventHandler(worker_DoWork);
             try
             {
@@ -57,6 +64,7 @@ namespace AppedoLTLoadGenerator
             }
         }
 
+        //It is old logic. It will listening on port 8888 to receive request from appedo controller.
         void worker_DoWork(object sender, DoWorkEventArgs e)
         {
             try
@@ -230,6 +238,7 @@ namespace AppedoLTLoadGenerator
         }
 
         /* 
+         * To get error Transport data
          code:
          * 401:Unable to Save
          */
@@ -240,6 +249,8 @@ namespace AppedoLTLoadGenerator
             return new TrasportData("error", message, header);
         }
 
+
+        //it will be called once user click exit
         private void testToolStripMenuItem_Click(object sender, EventArgs e)
         {
             try
@@ -258,6 +269,7 @@ namespace AppedoLTLoadGenerator
             }
         }
 
+        //It is old logic. Used to generate report.
         private string GenerateReportFolder(string reportname)
         {
             try
@@ -281,6 +293,7 @@ namespace AppedoLTLoadGenerator
             return reportname;
         }
 
+        //To show user created and completed text to user. Text will be updated for every 1 sec.
         private void UpdateStatus()
         {
             new Thread(() =>
@@ -295,7 +308,7 @@ namespace AppedoLTLoadGenerator
                             if (run.TotalCreatedUser != 0 && run.TotalCreatedUser == run.TotalCompletedUser && run.IsCompleted == 1)
                             {
 
-                                ni.Text = "Run completed" + System.Environment.NewLine + "Created: " + run.TotalCreatedUser.ToString() + Environment.NewLine + "Completed: " + run.TotalCompletedUser.ToString() + Environment.NewLine + timer.Elapsed.ToString(@"dd\.hh\:mm\:ss")+Environment.NewLine+"Time: "+DateTime.Now.ToString();
+                                ni.Text = "Run completed" + System.Environment.NewLine + "Created: " + run.TotalCreatedUser.ToString() + Environment.NewLine + "Completed: " + run.TotalCompletedUser.ToString() + Environment.NewLine + timer.Elapsed.ToString(@"dd\.hh\:mm\:ss") + Environment.NewLine + "Time: " + DateTime.Now.ToString();
                                 break;
                             }
                             else
@@ -307,6 +320,7 @@ namespace AppedoLTLoadGenerator
                 }).Start();
         }
 
+        //Old logic. To send failed run report to appedo server.
         private void DataService()
         {
             new Thread(() =>

@@ -11,6 +11,21 @@ using System.Xml;
 
 namespace AppedoLTLoadGenerator
 {
+    /// <summary>
+    /// 
+    /// It is used to run scenario, collect data and send to appedo server.
+    /// 
+    /// prerequisites: 
+    ///  runid- Runid 
+    ///  appedoIP- To send data
+    ///  appedoPort- To send data
+    ///  scenarioXml- Scenario need to be execute
+    ///  distribution- Distribution detail.
+    ///  appedoFailedUrl- Send failed notification to this url
+    ///  monitorCounter- Loadgen monitor counters
+    /// 
+    /// Author: Rasith
+    /// </summary>
     public class RunScenario
     {
         private List<ScriptExecutor> _scriptExecutorList = new List<ScriptExecutor>();
@@ -70,6 +85,7 @@ namespace AppedoLTLoadGenerator
             ConfigMoniter(monitorCounter);
         }
 
+        //Config monitor conunters for loadgen.
         void ConfigMoniter(string json)
         {
             try
@@ -83,6 +99,7 @@ namespace AppedoLTLoadGenerator
                         if (counter.CounterName != "Current User count")
                         {
                             PerformanceCounter count = null;
+                            //If Counters is parent counter. 
                             if (counter.HasInstance == true)
                             {
                                 count = new PerformanceCounter(counter.CategoryName, counter.CounterName, counter.InstanceName);
@@ -112,6 +129,7 @@ namespace AppedoLTLoadGenerator
             }
         }
 
+        //It will calculate total user created and total user completed for every 5sec
         void StatusUpdateTimer_Tick(object sender, EventArgs e)
         {
             try
@@ -127,6 +145,7 @@ namespace AppedoLTLoadGenerator
                 _totalCreatedUser = _tempCreatedUser;
                 _totalCompleted = _tempCompletedUser;
 
+                //If run completed
                 if (_scriptExecutorList.FindAll(f => f.IsRunCompleted).Count == _scriptExecutorList.Count && _tempCreatedUser != 0 && _tempCreatedUser == _tempCompletedUser)
                 {
                     try
@@ -134,6 +153,7 @@ namespace AppedoLTLoadGenerator
                         _statusUpdateTimer.Stop();
                         for (int index = 0; index < 9; index++)
                         {
+                            //If there is any unsent data
                             if (_reportDataBuf.Data.Count > 0 || _TransactionDataBuf.Data.Count > 0 || _logBuf.Data.Count > 0 || _errorBuf.Data.Count > 0 || _userDetailBuf.Data.Count > 0)
                             {
                                 Thread.Sleep(5000);
@@ -169,6 +189,7 @@ namespace AppedoLTLoadGenerator
             }
         }
 
+        //To start run.
         public bool Start()
         {
             XmlDocument scenario = new XmlDocument();
@@ -183,6 +204,7 @@ namespace AppedoLTLoadGenerator
                 XmlNode setting = script.SelectNodes("//script[@id='" + scriptid + "']//setting")[0];
                 XmlNode vuscript = script.SelectNodes("//script[@id='" + scriptid + "']//vuscript")[0];
                 ScriptExecutor scriptRunnerSce = new ScriptExecutor(setting, vuscript, executionReport.ReportName, _distribution);
+                //After distribution calculated, If StartUserId is greater than 0.
                 if (scriptRunnerSce.StartUserId > 0)
                 {
                     _scriptExecutorList.Add(scriptRunnerSce);
@@ -190,18 +212,25 @@ namespace AppedoLTLoadGenerator
             }
             executionReport.StartTime = DateTime.Now;
 
+            //We need to map each script result to corresponding method.
             foreach (ScriptExecutor scr in _scriptExecutorList)
             {
+                //if script has report data, it will call scr_OnLockReportData
                 scr.OnLockReportData += scr_OnLockReportData;
+                //if script has error data, it will call scr_OnLockError
                 scr.OnLockError += scr_OnLockError;
+                //if script has log data, it will call scr_OnLockLog
                 scr.OnLockLog += scr_OnLockLog;
+                //if script has Transactions data, it will call scr_OnLockTransactions
                 scr.OnLockTransactions += scr_OnLockTransactions;
+                //if script has UserDetail data, it will call scr_OnLockUserDetail
                 scr.OnLockUserDetail += scr_OnLockUserDetail;
                 scr.Run();
             }
             if (_scriptExecutorList.Count > 0)
             {
                 _statusUpdateTimer.Start();
+                //To send status.
                 SendData();
                 return true;
             }
@@ -212,6 +241,7 @@ namespace AppedoLTLoadGenerator
             }
         }
 
+        //Clear all queue items
         private void ClearData()
         {
             try
@@ -228,6 +258,7 @@ namespace AppedoLTLoadGenerator
             }
         }
 
+        //Store UserDetail into queue
         void scr_OnLockUserDetail(UserDetail data)
         {
             lock (_userDetailBuf)
@@ -239,6 +270,7 @@ namespace AppedoLTLoadGenerator
             }
         }
 
+        //Store TransactionRunTimeDetail into queue
         void scr_OnLockTransactions(TransactionRunTimeDetail data)
         {
             lock (_TransactionDataBuf)
@@ -250,6 +282,7 @@ namespace AppedoLTLoadGenerator
             }
         }
 
+        //Store Log into queue
         void scr_OnLockLog(Log data)
         {
             lock (_logBuf)
@@ -261,6 +294,7 @@ namespace AppedoLTLoadGenerator
             }
         }
 
+        //Store RequestException into queue
         void scr_OnLockError(RequestException data)
         {
             lock (_errorBuf)
@@ -272,6 +306,7 @@ namespace AppedoLTLoadGenerator
             }
         }
 
+        //Store ReportData into queue
         void scr_OnLockReportData(ReportData data)
         {
             lock (_reportDataBuf)
@@ -283,6 +318,7 @@ namespace AppedoLTLoadGenerator
             }
         }
 
+        //To stop execution.
         public void Stop()
         {
             try
@@ -299,6 +335,7 @@ namespace AppedoLTLoadGenerator
             }
         }
 
+        //Get script wise status
         public string GetStatus()
         {
             StringBuilder status = new StringBuilder();
@@ -316,6 +353,7 @@ namespace AppedoLTLoadGenerator
             return status.ToString();
         }
 
+        //To send all data to appedo server.
         private void SendData()
         {
             new Thread(() =>
@@ -487,6 +525,7 @@ namespace AppedoLTLoadGenerator
             }).Start();
         }
 
+        //Send data to appedo server
         private void Send(byte[] dataObj)
         {
             TrasportData data = null;
@@ -506,6 +545,7 @@ namespace AppedoLTLoadGenerator
             }
             catch (Exception ex1)
             {
+                //Failed data. We keep failed data into file. Next time sending status, Failed data will be send.
                 try
                 {
                     string path = ExceptionHandler.WriteReportData(DateTime.Now.Ticks.ToString(), data.DataBytes);

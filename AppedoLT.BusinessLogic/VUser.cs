@@ -14,9 +14,24 @@ using System.Xml;
 
 namespace AppedoLT.BusinessLogic
 {
+
+    /// <summary>
+    /// This is used to create single vuser. Given script will be executed and result will be send to client.
+    /// 
+    /// prerequisites: 
+    ///   maxUser- Max user count
+    ///   reportName- Report name given by user
+    ///   type- Iteration or duration.
+    ///   userid- User id
+    ///   iteration- Iteration count
+    ///   vuScript- Script to be execute
+    ///   browserCache- True- Browser cache enabled, else Browser cache diabled
+    ///   ipaddress- Ip address is used by this vuser
+    /// 
+    /// Author: Rasith
+    /// </summary>
     [PermissionSet(SecurityAction.Demand, Name = "FullTrust")]
     [System.Runtime.InteropServices.ComVisibleAttribute(true)]
-
     public class VUser : IDisposable
     {
         #region Dispose
@@ -147,14 +162,17 @@ namespace AppedoLT.BusinessLogic
             Dispose(false);
         }
 
+        //To start vuser
         public void Start()
         {
             LockUserDetail(1);
             _userThread = new Thread(new ThreadStart(StartExecution));
+            //An apartment is a logical container within a process for objects sharing the same thread access requirements.
             _userThread.ApartmentState = ApartmentState.STA;
             _userThread.Start();
         }
 
+        //To stop vuser.
         public void Stop()
         {
             new Thread(() =>
@@ -166,7 +184,9 @@ namespace AppedoLT.BusinessLogic
                     {
                         try
                         {
+                            //To abort request
                             if (req != null) req.Abort();
+                            //To stop vuser thread
                             _userThread.Abort();
 
                         }
@@ -180,6 +200,7 @@ namespace AppedoLT.BusinessLogic
                     _resposeUrl = string.Empty;
                     _receivedCookies = string.Empty;
 
+                    //To execute end container.
                     foreach (XmlNode container in _vuScriptXml.ChildNodes)
                     {
                         if (container.Attributes["name"].Value == "End")
@@ -197,6 +218,7 @@ namespace AppedoLT.BusinessLogic
                 }
                 finally
                 {
+                    //To update user completed detail
                     lock (Status.LockObjForCompletedUser)
                     {
                         Status.CompletedUser++;
@@ -211,6 +233,7 @@ namespace AppedoLT.BusinessLogic
             }).Start();
         }
 
+        //This is vuser background operation
         private void StartExecution()
         {
             WorkCompleted = false;
@@ -245,12 +268,14 @@ namespace AppedoLT.BusinessLogic
                                     _containerId.Pop();
                                 }
                             }
+                             // To execute Action container
                             else if (container.Attributes["name"].Value == "Actions")
                             {
                                 _containerId.Push(new string[2] { container.Attributes["id"].Value, container.Attributes["name"].Value });
                                 ExecuteContainer(container);
                                 _containerId.Pop();
                             }
+                            // To execute End container
                             else if (container.Attributes["name"].Value == "End")
                             {
                                 if (_index == _iteration)
@@ -322,6 +347,7 @@ namespace AppedoLT.BusinessLogic
 
         }
 
+        //It will execute give container. It is also used as recursive function when container is in another container.
         private void ExecuteContainer(XmlNode container)
         {
             try
@@ -549,6 +575,7 @@ namespace AppedoLT.BusinessLogic
             }
         }
 
+        //It will process a single http or tcp request
         private void ProcessRequest(XmlNode request)
         {
             if (Break == true) { return; }
@@ -594,17 +621,21 @@ namespace AppedoLT.BusinessLogic
                 {
                     #region Http
                     bool cacheEnabled = false;
+                    //If request is enabled
                     if (request != null && Convert.ToBoolean(request.Attributes["IsEnable"].Value) == true)
                     {
                         try
                         {
                             List<AppedoLT.Core.Tuple<string, string>> variables = new List<AppedoLT.Core.Tuple<string, string>>();
+                            //If request has parameterization. 
                             if (request.OuterXml.Contains("$$"))
                             {
+                                //It will replace variable with corresponding value.
                                 variables = EvaluteExp(request);
                             }
                             request.Attributes["Address"].Value = new StringBuilder().Append(request.Attributes["Schema"].Value).Append("://").Append(request.Attributes["Host"].Value).Append(":").Append(request.Attributes["Port"].Value).Append(request.Attributes["Path"].Value).ToString();
                             Uri temp = new Uri(request.Attributes["Address"].Value);
+                            //If Browser cache enabled
                             if (_browserCache == true && _index > 1)
                             {
                                 try
@@ -618,6 +649,7 @@ namespace AppedoLT.BusinessLogic
                                         {
                                             string acceptType = requestHeadeNode.Attributes["value"].Value.Split('/')[1];
                                             acceptType = acceptType.ToLower();
+                                            //Filter request if Browser cache enabled
                                             if ((acceptType.Contains("image")
                                                 || acceptType.Contains("css")
                                                 || acceptType.Contains("js")
@@ -636,6 +668,7 @@ namespace AppedoLT.BusinessLogic
                                             }
                                         }
                                     }
+                                    //Filter request if Browser cache enabled
                                     if (mat.Success == true && mat.Groups[1] != null && mat.Groups[1].Value.Contains("/"))
                                     {
                                         if (mat.Groups[1].Value.ToLower().Contains("application") == false)
@@ -658,12 +691,14 @@ namespace AppedoLT.BusinessLogic
                                 }
                             }
                             string fileNameExt = Path.GetExtension(temp.LocalPath);
+                            //Check request is not in exclutionfiletypes
                             if (cacheEnabled == false && !(fileNameExt != string.Empty && _vuScriptXml.Attributes["exclutionfiletypes"].Value.Contains(fileNameExt.Replace(".", string.Empty).Trim().ToLower()) == true))
                             {
                                 req = new HttpRequest(request, ref receivedCookies, _userid.ToString() + (_createdConnection++ % _maxConnection).ToString(), _IPAddress, IsValidation);
                                 req.Variables = variables;
                                 req.GetResponse();
 
+                                //For validation
                                 if (OnLockRequestResponse != null)
                                 {
                                     #region Validation
@@ -679,10 +714,8 @@ namespace AppedoLT.BusinessLogic
 
                                     #endregion
                                 }
-                               // else
-                              //  {
-                                    LockResponseTime(req.RequestNode.Attributes["id"].Value, req.RequestNode.Attributes["Path"] == null ? req.RequestName : req.RequestNode.Attributes["Path"].Value, req.StartTime, req.EndTime, req.ResponseTime, req.ResponseSize, req.ResponseCode.ToString());
-                              //  }
+
+                                LockResponseTime(req.RequestNode.Attributes["id"].Value, req.RequestNode.Attributes["Path"] == null ? req.RequestName : req.RequestNode.Attributes["Path"].Value, req.StartTime, req.EndTime, req.ResponseTime, req.ResponseSize, req.ResponseCode.ToString());
 
                                 #region SecondaryReqEnable
                                 if (Convert.ToBoolean(_vuScriptXml.Attributes["dynamicreqenable"].Value) == true && !(_browserCache == true && _index > 1))
@@ -881,6 +914,7 @@ namespace AppedoLT.BusinessLogic
             }
         }
 
+        //Get query string from given queryString node.
         private string GetQueryString(XmlNode queryString)
         {
             StringBuilder result = new StringBuilder();
@@ -892,6 +926,7 @@ namespace AppedoLT.BusinessLogic
             return result.ToString();
         }
 
+        //Get post data from post data node
         private List<PostData> GetPostData(XmlNode postData)
         {
             int count = 0;
@@ -976,28 +1011,30 @@ namespace AppedoLT.BusinessLogic
             return postDataBuffer;
         }
 
+        //Get value for given variable. 
         private string GetVariableValue(string variablename)
         {
-            //lock (_exVariablesValues)
+            string result = string.Empty;
+
+            //If given variable is in extractor values
+            if (_exVariablesValues.ContainsKey(variablename) == true)
             {
-                string result = string.Empty;
-                if (_exVariablesValues.ContainsKey(variablename) == true)
-                {
-                    result = _exVariablesValues[variablename].ToString();
-                }
-                else
-                {
-                    string type = VariableManager.dataCenter.GetVariableType(variablename.Split('.')[0]);
-                    if (type == "file" || type == "string" || type == "number" || type == "randomnumber" || type == "randomstring" || type == "currentdate")
-                    {
-                        result = VariableManager.dataCenter.GetVariableValue(_userid, _iterationid, variablename, _maxUser).ToString();
-                    }
-                }
-                return System.Web.HttpUtility.HtmlEncode(result);
+                result = _exVariablesValues[variablename].ToString();
             }
+            //Else it will search given variable in file. 
+            else
+            {
+                string type = VariableManager.dataCenter.GetVariableType(variablename.Split('.')[0]);
+                if (type == "file" || type == "string" || type == "number" || type == "randomnumber" || type == "randomstring" || type == "currentdate")
+                {
+                    result = VariableManager.dataCenter.GetVariableValue(_userid, _iterationid, variablename, _maxUser).ToString();
+                }
+            }
+            return System.Web.HttpUtility.HtmlEncode(result);
 
         }
 
+        //Old logic. To replace variable name with value.
         private object GetValue(object variableName)
         {
             if (_exVariablesValues.ContainsKey(variableName.ToString()) == true)
@@ -1023,14 +1060,18 @@ namespace AppedoLT.BusinessLogic
             }
         }
 
+        //It will replace all variables with value in given xmlnode(Http request).
         public List<AppedoLT.Core.Tuple<string, string>> EvaluteExp(XmlNode expression)
         {
             #region Parm has variable
             List<AppedoLT.Core.Tuple<string, string>> Varialbles = new List<AppedoLT.Core.Tuple<string, string>>();
+
+            //Regular exp for find variable($$variableName$$)
             Regex regex = new Regex(@"\$\$([a-zA-Z_][a-zA-Z0-9_.]*)\$\$");
 
             Match match = null;
 
+            //Replace variable in attributes
             foreach (XmlAttribute attribute in expression.Attributes)
             {
                 match = regex.Match(attribute.Value);
@@ -1061,6 +1102,8 @@ namespace AppedoLT.BusinessLogic
             StringBuilder exp = new StringBuilder();
             exp.Append(expression.InnerXml);
             match = Regex.Match(exp.ToString(), @"\$\$([a-zA-Z_][a-zA-Z0-9_.]*)\$\$");
+
+            //Replace rest of variables
             while (match.Success == true)
             {
                 AppedoLT.Core.Tuple<string, string> parm = new AppedoLT.Core.Tuple<string, string>();
@@ -1087,6 +1130,8 @@ namespace AppedoLT.BusinessLogic
             return Varialbles;
             #endregion
         }
+
+        //It will replace all variables with value in given xmlnode(TCP request).
         public List<AppedoLT.Core.Tuple<string, string>> EvaluteExpTcp(XmlNode expression)
         {
             #region Parm has variable
@@ -1153,6 +1198,7 @@ namespace AppedoLT.BusinessLogic
         #endregion
 
         #region TCP Function
+        //Get response for tcp request.
         private RequestResponse GetResponse(string containerid, string containername, string pageid, XmlNode tcpRequest, int _userid, int _iterationid, ref RequestResponse requestResponse)
         {
 
@@ -1175,7 +1221,7 @@ namespace AppedoLT.BusinessLogic
             string requestStr = tcpRequest.Attributes["requestcontent"].Value;
             try
             {
-
+                //Replace all variables with value.
                 EvalutionResult EvalutionResult = EvaluteExp(requestStr);
                 if (EvalutionResult.isSuccess == true)
                 {
@@ -1185,11 +1231,11 @@ namespace AppedoLT.BusinessLogic
                 {
                     LockException(tcpRequest.Attributes["id"].Value, EvalutionResult.value, "600", tcpRequest.Attributes["name"].Value);
                 }
-
+                //Replace all variables with value(in parameters).
                 foreach (XmlNode reqParam in tcpRequest.SelectNodes("params/param"))
                 {
                     XmlNode param = reqParam.CloneNode(true);
-
+                    //If contain variable
                     if (param.Attributes["value"].Value.Contains("$$") == true)
                     {
                         EvalutionResult = EvaluteExp(param.Attributes["value"].Value);
@@ -1203,7 +1249,7 @@ namespace AppedoLT.BusinessLogic
                         }
                     }
 
-                    #region Padding(Adding Char)
+                    #region Padding(Adding Char)(old logic
                     if (param.Attributes["length"] != null && param.Attributes["length"].Value.Length > 0)
                     {
                         int totalWidth = Convert.ToInt32(param.Attributes["length"].Value);
@@ -1270,8 +1316,8 @@ namespace AppedoLT.BusinessLogic
                 Connection con;
                 lock (conncetionManager)
                 {
+                    //Get connection.
                     con = conncetionManager.GetConnection(tcpRequest.Attributes["serverip"].Value, int.Parse(tcpRequest.Attributes["port"].Value));
-
                 }
                 lock (con)
                 {
@@ -1279,9 +1325,10 @@ namespace AppedoLT.BusinessLogic
                     {
                         try
                         {
+                            //Clear NetworkStream
                             con.NetworkStream.Flush();
+                            //Send data
                             con.NetworkStream.Write(requestBytes, 0, requestBytes.Length);
-
                         }
                         catch
                         {
@@ -1293,11 +1340,14 @@ namespace AppedoLT.BusinessLogic
                             con.NetworkStream.Write(requestBytes, 0, requestBytes.Length);
 
                         }
+                        //Set ReadTimeout to 120sec
                         con.NetworkStream.ReadTimeout = 120000;
 
+                        //Set ReceiveTimeout to 120sec
                         con.Client.ReceiveTimeout = 120000;
 
                         int timeOut = 1000;
+                        //Read all data
                         while (con.Client.Available < Convert.ToInt32(tcpRequest.Attributes["responsesize"].Value))
                         {
                             Thread.Sleep(10);
@@ -1305,13 +1355,14 @@ namespace AppedoLT.BusinessLogic
                             if (timeOut <= 0) break;
                         }
                         timeOut = 119000;
+                        //Read if there is any bending data
                         while (con.Client.Available <= 0)
                         {
                             Thread.Sleep(10);
                             timeOut = timeOut - 10;
                             if (timeOut <= 0) break;
                         }
-
+                        //Read if there is any bending data
                         while (con.Client.Available != 0 && (responseSize = con.NetworkStream.Read(receiveBuffer, 0, receiveBuffer.Length)) != 0)
                         {
                             for (int index = 0; index < responseSize; index++)
@@ -1320,6 +1371,7 @@ namespace AppedoLT.BusinessLogic
                         }
                         requestResponse.EndTime = end = DateTime.Now;
 
+                        //Read if there is any bending data
                         if (Convert.ToInt32(tcpRequest.Attributes["responsesize"].Value) > response.Length)
                         {
                             Thread.Sleep(10);
@@ -1574,6 +1626,7 @@ namespace AppedoLT.BusinessLogic
             return att;
         }
 
+        //Used to get list of link for secondary request
         private Queue<String> FetchLinksFromSource(string htmlSource)
         {
 
@@ -1625,6 +1678,7 @@ namespace AppedoLT.BusinessLogic
             return links;
         }
 
+        //Lock exception during html parsing
         public void GetScriptException(object sender, HtmlElementErrorEventArgs arg)
         {
             RequestException exception = new RequestException();
@@ -1648,7 +1702,7 @@ namespace AppedoLT.BusinessLogic
         #region Logs
 
         /// <summary>
-        /// 
+        ///  Lock Exception
         /// </summary>
         /// <param name="requestid"></param>
         /// <param name="message"></param>
@@ -1682,6 +1736,7 @@ namespace AppedoLT.BusinessLogic
             }
         }
 
+        //Lock exception
         private void LockException(RequestException exception)
         {
             exception.containerid = _containerId.Peek()[0];
@@ -1694,6 +1749,7 @@ namespace AppedoLT.BusinessLogic
             }
         }
 
+        //Lock log
         private void LockLog(XmlNode log)
         {
             try
@@ -1718,6 +1774,7 @@ namespace AppedoLT.BusinessLogic
             }
         }
 
+        //Lock report data
         private void LockResponseTime(string requestid, string address, DateTime starttime, DateTime endtime, double diff, long responsesize, string reponseCode)
         {
             try
@@ -1775,11 +1832,13 @@ namespace AppedoLT.BusinessLogic
             }
         }
 
+        //Lock transaction
         private void LockTransactions(TransactionRunTimeDetail tranDetailTemp)
         {
             if (OnLockTransactions != null && tranDetailTemp != null) OnLockTransactions.Invoke(tranDetailTemp);
         }
 
+        //Lock user detail
         private void LockUserDetail(int type)
         {
             UserDetail userDetail = new UserDetail();
@@ -1792,6 +1851,7 @@ namespace AppedoLT.BusinessLogic
             if (OnLockUserDetail != null && userDetail != null) OnLockUserDetail.Invoke(userDetail);
         }
 
+        //Lock request and response if it is validation
         private void LockRequestResponse(RequestResponse data)
         {
             data.ContainerName = _containerId.Peek()[1];
