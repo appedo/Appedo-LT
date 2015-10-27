@@ -1558,29 +1558,33 @@ namespace AppedoLT
                     listener.Start();
                     while (true)
                     {
-                        Trasport trasport = new Trasport(listener.AcceptTcpClient());
-                        new Thread(() =>
-                          {
-                              TrasportData data = trasport.Receive();
-
-                              switch (data.Operation)
+                        try
+                        {
+                            Trasport trasport = new Trasport(listener.AcceptTcpClient());
+                            new Thread(() =>
                               {
-                                  case "status":
-                                      LoadGenRunningStatusData loadGen = _constants.Deserialise<LoadGenRunningStatusData>(data.DataStr);
-                                      foreach (ReportData rda in loadGen.ReportData)
+                                  try
+                                  {
+                                      TrasportData data = trasport.Receive();
+
+                                      switch (data.Operation)
                                       {
-                                          _hitCount++;
-                                          rda.starttime = rda.starttime.ToLocalTime();
-                                          rda.endtime = rda.endtime.ToLocalTime();
-                                          _dataServer.LogResult(rda);
-                                      }
-                                      foreach (Log rda in loadGen.Log) _dataServer.logs.Enqueue(rda);
-                                      foreach (RequestException rda in loadGen.Error)
-                                      {
-                                          _dataServer.errors.Enqueue(rda);
-                                          rda.message = rda.message.Replace("\r\n", " ");
-                                          ListViewItem newItem = new ListViewItem(rda.requestexceptionid.ToString());
-                                          newItem.SubItems.AddRange(new string[] {  rda.loadGen, 
+                                          case "status":
+                                              LoadGenRunningStatusData loadGen = _constants.Deserialise<LoadGenRunningStatusData>(data.DataStr);
+                                              foreach (ReportData rda in loadGen.ReportData)
+                                              {
+                                                  _hitCount++;
+                                                  rda.starttime = rda.starttime.ToLocalTime();
+                                                  rda.endtime = rda.endtime.ToLocalTime();
+                                                  _dataServer.LogResult(rda);
+                                              }
+                                              foreach (Log rda in loadGen.Log) _dataServer.logs.Enqueue(rda);
+                                              foreach (RequestException rda in loadGen.Error)
+                                              {
+                                                  _dataServer.errors.Enqueue(rda);
+                                                  rda.message = rda.message.Replace("\r\n", " ");
+                                                  ListViewItem newItem = new ListViewItem(rda.requestexceptionid.ToString());
+                                                  newItem.SubItems.AddRange(new string[] {  rda.loadGen, 
                                                               rda.reportname,
                                                               rda.scenarioname, 
                                                               rda.scriptname, 
@@ -1593,15 +1597,26 @@ namespace AppedoLT
                                                               rda.message.Replace("\"", "\"\""),
                                                               rda.request.Replace("\"", "\"\""),
                                                               rda.errorcode });
-                                          lsvErrors.Items.Add(newItem);
+                                                  lsvErrors.Items.Add(newItem);
 
+                                              }
+                                              foreach (TransactionRunTimeDetail rda in loadGen.Transactions) _dataServer.transcations.Enqueue(rda);
+                                              break;
                                       }
-                                      foreach (TransactionRunTimeDetail rda in loadGen.Transactions) _dataServer.transcations.Enqueue(rda);
-                                      break;
-                              }
-                              trasport.Send(new TrasportData("ok", string.Empty, null));
-                          }).Start();
+                                      trasport.Send(new TrasportData("ok", string.Empty, null));
+                                  }
+                                  catch (Exception ex)
+                                  {
+
+                                  }
+                              }).Start();
+                        }
+                        catch (Exception ex1)
+                        {
+
+                        }
                     }
+
 
                 }).Start();
         }

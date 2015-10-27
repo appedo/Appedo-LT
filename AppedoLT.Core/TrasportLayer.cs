@@ -297,16 +297,23 @@ namespace AppedoLT.Core
         private static string ReadHeader(Stream stream)
         {
             StringBuilder header = new StringBuilder();
-            byte[] bytes = new byte[10];
-            StringBuilder response = new StringBuilder();
-
-            while (stream.Read(bytes, 0, 1) > 0)
+            try
             {
-                header.Append(Encoding.Default.GetString(bytes, 0, 1));
-                response.Append(Encoding.Default.GetString(bytes, 0, 1));
+                byte[] bytes = new byte[10];
+                StringBuilder response = new StringBuilder();
 
-                if (bytes[0] == '\n' && header.ToString().EndsWith("\r\n\r\n"))
-                    break;
+                while (stream.Read(bytes, 0, 1) > 0)
+                {
+                    header.Append(Encoding.Default.GetString(bytes, 0, 1));
+                    response.Append(Encoding.Default.GetString(bytes, 0, 1));
+
+                    if (bytes[0] == '\n' && header.ToString().EndsWith("\r\n\r\n"))
+                        break;
+                }
+            }
+            catch (Exception ex)
+            {
+               
             }
             return header.ToString();
         }
