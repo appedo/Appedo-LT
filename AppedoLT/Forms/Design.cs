@@ -1169,6 +1169,7 @@ namespace AppedoLT
                 lblUserCompleted.Text = executionReport.CompletedUser.ToString();
                 lblErrorCount.Text = lsvErrors.Items.Count.ToString();
                 lblHitCount.Text = _hitCount.ToString();
+                //If running update status
                 if (runTime.IsRunning == true)
                 {
                     lblElapsedTime.Text = string.Format("{0}:{1}:{2}", runTime.Elapsed.Hours.ToString("00"), runTime.Elapsed.Minutes.ToString("00"), runTime.Elapsed.Seconds.ToString("00"));
@@ -1178,26 +1179,30 @@ namespace AppedoLT
                     lblElapsedTime.Text = "0";
                 }
 
+                //If loadgen used.
                 if (_isUseLoadGen)
                 {
                     #region loadgen
-                    if (lblUserCreated.Text != "0" && lblUserCreated.Text == lblUserCompleted.Text && _loadGeneratorips.Count == isCompleted)
-                    {
-                        lblElapsedTime.Text = string.Format("{0}:{1}:{2}", runTime.Elapsed.Hours.ToString("00"), runTime.Elapsed.Minutes.ToString("00"), runTime.Elapsed.Seconds.ToString("00"));
-                        executionReport.ExecutionStatus = Status.Completed;
-                        runTime.Stop();
-                        tmrExecution.Stop();
-                        Thread.Sleep(6000);
-                        ReceiveAllLoadGenDatafiles(executionReport.ReportName);
-                        WaitUntillExecutionComplete();
-                        if (executionReport.ReportName != null)
-                        {
-                            CreateSummaryReport(executionReport.ReportName);
-                            ReportMaster reportMaster = new ReportMaster(executionReport.ReportName);
-                            reportMaster.GenerateReports();
-                            UpdateReportStatus();
-                        }
-                    }
+                    //If run completed. It is old logic
+                    //if (lblUserCreated.Text != "0" && lblUserCreated.Text == lblUserCompleted.Text && _loadGeneratorips.Count == isCompleted)
+                    //{
+                    //    lblElapsedTime.Text = string.Format("{0}:{1}:{2}", runTime.Elapsed.Hours.ToString("00"), runTime.Elapsed.Minutes.ToString("00"), runTime.Elapsed.Seconds.ToString("00"));
+                    //    executionReport.ExecutionStatus = Status.Completed;
+                    //    //Stop status update timers
+                    //    runTime.Stop();
+                    //    tmrExecution.Stop();
+                    //    Thread.Sleep(6000);
+                    //    //Receive all data file
+                    //    ReceiveAllLoadGenDatafiles(executionReport.ReportName);
+                    //    WaitUntillExecutionComplete();
+                    //    if (executionReport.ReportName != null)
+                    //    {
+                    //        CreateSummaryReport(executionReport.ReportName);
+                    //        ReportMaster reportMaster = new ReportMaster(executionReport.ReportName);
+                    //        reportMaster.GenerateReports();
+                    //        UpdateReportStatus();
+                    //    }
+                    //}
                     #endregion
                 }
                 else
@@ -1205,14 +1210,16 @@ namespace AppedoLT
                     // if (_scriptExecutorList.Count > 0 && _scriptExecutorList.FindAll(f => f.IsRunCompleted).Count == _scriptExecutorList.Count && executionReport.CreatedUser != 0 && executionReport.CreatedUser == executionReport.CompletedUser)
                     int tempCreatedUser = 0;
                     int tempCompletedUser = 0;
+                    //To calculate total user created and total user completed
                     foreach (ScriptExecutor scripts in _scriptExecutorList)
                     {
                         tempCreatedUser += scripts.StatusSummary.TotalVUserCreated;
                         tempCompletedUser += scripts.StatusSummary.TotalVUserCompleted;
                     }
-
+                    //If run completed
                     if (_scriptExecutorList.FindAll(f => f.IsRunCompleted).Count == _scriptExecutorList.Count && tempCreatedUser != 0 && tempCreatedUser == tempCompletedUser)
                     {
+                        //Stop status update timers
                         runTime.Stop();
                         tmrExecution.Stop();
                         executionReport.ExecutionStatus = Status.Completed;
@@ -1224,6 +1231,7 @@ namespace AppedoLT
                         Thread.Sleep(5000);
                         if (executionReport.ReportName != null)
                         {
+                            //To create summmary report
                             CreateSummaryReport(executionReport.ReportName);
                             ReportMaster reportMaster = new ReportMaster(executionReport.ReportName);
                             reportMaster.GenerateReports();
@@ -1241,6 +1249,7 @@ namespace AppedoLT
             }
         }
 
+        //Delay until run complete
         private void WaitUntillExecutionComplete()
         {
             ReceiveAllLoadGenDatafiles(executionReport.ReportName);
@@ -1273,6 +1282,7 @@ namespace AppedoLT
 
         }
 
+        //Old logic
         private void ReceiveAllLoadGenDatafiles(string reportName)
         {
             try
@@ -1342,6 +1352,7 @@ namespace AppedoLT
             }
         }
 
+        //It will return list of scripts name and corresponding id
         private XmlNode GetRuntimeScriptDetail(XmlNode scenario)
         {
 
@@ -1359,6 +1370,7 @@ namespace AppedoLT
 
         #endregion
 
+        //To create summary report
         private void CreateSummaryReport(string reportName)
         {
             try
