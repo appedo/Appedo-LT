@@ -883,6 +883,7 @@ namespace AppedoLT
             }
         }
 
+        //Store errors during the run
         void scr_OnLockLog(Log data)
         {
             lock (DataServer.GetInstance().logs)
@@ -891,6 +892,7 @@ namespace AppedoLT
             }
         }
 
+        //Store errors during the run
         void scr_OnLockError(RequestException data)
         {
             lock (DataServer.GetInstance().errors)
@@ -898,6 +900,7 @@ namespace AppedoLT
                 try
                 {
                     data.message = data.message.Replace("\r\n", " ");
+                    //To show errors to user
                     ListViewItem newItem = new ListViewItem(data.requestexceptionid.ToString());
                     newItem.SubItems.AddRange(new string[] {  data.loadGen, 
                                                               data.reportname,
@@ -928,12 +931,15 @@ namespace AppedoLT
             _dataServer.LogResult(data);
         }
 
+        //Stop run
         private void btnStop_Click(object sender, EventArgs e)
         {
             try
             {
+                //Stop status update timers
                 runTime.Stop();
                 tmrExecution.Stop();
+                //Local run
                 if (_isUseLoadGen == false)
                 {
                     foreach (ScriptExecutor thread in _scriptExecutorList)
@@ -945,6 +951,7 @@ namespace AppedoLT
                     }
                     executionReport.ExecutionStatus = Status.Completed;
                     WaitUntillExecutionComplete();
+                    //Create summary report
                     CreateSummaryReport(executionReport.ReportName);
                     ReportMaster reportMaster = new ReportMaster(executionReport.ReportName);
                     reportMaster.GenerateReports();
@@ -952,6 +959,7 @@ namespace AppedoLT
                     userControlReports2.LoadReportName(executionReport.ReportName);
 
                 }
+                //Old logic
                 else
                 {
                     foreach (string objClient in _loadGeneratorips)
@@ -987,6 +995,7 @@ namespace AppedoLT
             }
         }
 
+        //Sava script
         private void btnSave_Click(object sender, EventArgs e)
         {
             if (tvScenarios.SelectedNode != null && tvScenarios.SelectedNode.Level == 1)
@@ -995,6 +1004,7 @@ namespace AppedoLT
             }
         }
 
+        //Add new scenario
         private void btnAddNewScenario_Click(object sender, EventArgs e)
         {
             try
@@ -1011,6 +1021,7 @@ namespace AppedoLT
             }
         }
 
+        //Edit scenario
         private void editToolStripMenuItem_Click(object sender, EventArgs e)
         {
             try
@@ -1030,11 +1041,11 @@ namespace AppedoLT
             }
         }
 
+        //Scenario context menu opening
         private void cmnuScenario_Opening(object sender, System.ComponentModel.CancelEventArgs e)
         {
             try
             {
-
                 if (tvScenarios.SelectedNode.Level == 0)
                 {
                     editToolStripMenuItem.Visible = deleteToolStripMenuItem1.Visible = runToolStripMenuItem.Visible = true;
@@ -1050,6 +1061,7 @@ namespace AppedoLT
             }
         }
 
+        //User click scenario node
         private void tvScenarios_SelectedNodeChanged(object sender, RadTreeViewEventArgs e)
         {
             try
@@ -1062,12 +1074,14 @@ namespace AppedoLT
                 {
                     //  objUCLoadGen.Visible = true;
                 }
+                //User select script
                 else if (tvScenarios.SelectedNode.Level == 1)
                 {
                     objUCLoadGen.Visible = false;
                     try
                     {
                         XmlNode node = ((XmlNode)tvScenarios.SelectedNode.Tag);
+                        //To display script setting UI
                         UCScriptSetting objUCScript = new UCScriptSetting();
                         objUCScript.Tag = tvScenarios.SelectedNode.Tag;
                         objUCScript.vUScriptSetting = (XmlNode)tvScenarios.SelectedNode.Tag;
@@ -1382,7 +1396,7 @@ namespace AppedoLT
             }
             catch (Exception ex)
             {
-
+                ExceptionHandler.WritetoEventLog(ex.StackTrace + Environment.NewLine + ex.Message);
             }
         }
 
@@ -1393,6 +1407,7 @@ namespace AppedoLT
             btnRun_Click(null, null);
         }
 
+        //user click login option
         private void mnuiLogin_Click(object sender, EventArgs e)
         {
             if (mnuiLogin.Text == "&Login")
@@ -1409,6 +1424,7 @@ namespace AppedoLT
             }
         }
 
+        //Old logic. To upgrade vuscripts.
         void Upgrade(ref long totalByte, ref long recivedByte, ref bool Success)
         {
             XmlNode vuscripts = RepositoryXml.GetInstance().Doc.SelectSingleNode("//vuscripts");
@@ -1436,7 +1452,7 @@ namespace AppedoLT
                     }
                     catch (Exception ex)
                     {
-
+                        ExceptionHandler.WritetoEventLog(ex.StackTrace + Environment.NewLine + ex.Message);
                     }
                     recivedByte += 1;
                 }
@@ -1445,12 +1461,14 @@ namespace AppedoLT
             RepositoryXml.GetInstance().Save();
         }
 
+        //During the form closing
         private void Design_FormClosing(object sender, FormClosingEventArgs e)
         {
             try
             {
                 DialogResult result = MessageBox.Show("Do you want to save changes?", "Save", MessageBoxButtons.YesNoCancel);
 
+                //Cancel form close
                 if (result == DialogResult.Cancel)
                 {
                     e.Cancel = true;
@@ -1462,17 +1480,12 @@ namespace AppedoLT
                     _ucDesignObj.btnScriptSave_Click(null, null);
                 }
                 Process.GetCurrentProcess().Kill();
-                AppedoLT.Core.Constants.GetInstance().ReSetFirefoxProxy();//(Core.Constants.GetInstance().ExecutingAssemblyLocation + "\\proxyresetff.bat");
+                AppedoLT.Core.Constants.GetInstance().ReSetFirefoxProxy();
             }
             catch (Exception ex)
             {
                 ExceptionHandler.WritetoEventLog(ex.StackTrace + Environment.NewLine + ex.Message);
             }
-        }
-
-        private void tabsDesign_TabSelected(object sender, TabEventArgs args)
-        {
-
         }
 
     }
