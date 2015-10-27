@@ -19,6 +19,11 @@ using Telerik.WinControls.UI;
 
 namespace AppedoLT
 {
+    /// <summary>
+    /// Application starting form.
+    /// 
+    /// Author: Rasith
+    /// </summary>
     public partial class Design : Telerik.WinControls.UI.RadForm
     {
         public static Telerik.WinControls.UI.RadMenuItem mnuiLogin;
@@ -53,6 +58,7 @@ namespace AppedoLT
                     long recivedByte = 0;
                     bool Success = true;
 
+                    //Upgrade old scripts
                     new Thread(() =>
                     {
                         try
@@ -66,6 +72,7 @@ namespace AppedoLT
                         }
                     }).Start();
 
+                    //Show upgrade status
                     while (((totalByte == 0 && recivedByte == 0) || recivedByte < totalByte))
                     {
                         if (totalByte > 0)
@@ -85,6 +92,7 @@ namespace AppedoLT
 
                 }
                 Directory.SetCurrentDirectory(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location));
+                //Create required folders
                 if (!Directory.Exists(".\\Data")) Directory.CreateDirectory(".\\Data");
                 if (!Directory.Exists(".\\DataMonitor")) Directory.CreateDirectory(".\\DataMonitor");
                 if (!Directory.Exists(".\\Exported Charts")) Directory.CreateDirectory(".\\Exported Charts");
@@ -95,6 +103,7 @@ namespace AppedoLT
                 if (!Directory.Exists(".\\Variables")) Directory.CreateDirectory(".\\Variables");
                 _ucDesignObj = ucDesign.GetInstance();
                 tabiVUscript.ContentPanel.Controls.Add(_ucDesignObj);
+                //To allow cross thread access
                 ListView.CheckForIllegalCrossThreadCalls = false;
                 tabiVUscript.Select();
                 LoadScenarioTree();
@@ -112,6 +121,7 @@ namespace AppedoLT
 
         #region Design
 
+        //To form script tree view. 
         public void GetTreeNode(XmlNode ContainerNode, RadTreeNode parentNode)
         {
             foreach (XmlNode action in ContainerNode.ChildNodes)
@@ -184,17 +194,21 @@ namespace AppedoLT
             }
         }
 
+        //Load list of scenario in right side tree view in run screen
         public void LoadScenarioTree()
         {
             try
             {
                 tvScenarios.Nodes.Clear();
+                //Get all scenarios
                 foreach (XmlNode scenario in _repositoryXml.Doc.SelectNodes("//scenarios//scenario"))
                 {
                     RadTreeNode scenarioNode = new RadTreeNode();
                     scenarioNode.Text = scenario.Attributes["name"].Value;
                     scenarioNode.Tag = scenario;
+                    //Set scenario icon
                     scenarioNode.ImageKey = "scenarios.gif";
+                    //Get all scripts
                     foreach (XmlNode script in scenario.SelectNodes("script"))
                     {
                         RadTreeNode scenarioScriptNode = new RadTreeNode();
@@ -212,13 +226,13 @@ namespace AppedoLT
             }
         }
 
+        //To get list of report name
         public void LoadReportName(string repoerName)
         {
             try
             {
                 System.Data.DataTable dt = new System.Data.DataTable();
                 dt = Result.GetInstance().GetReportNameList(repoerName);
-
             }
             catch (Exception ex)
             {
@@ -228,10 +242,12 @@ namespace AppedoLT
 
         #region Events
 
+        //Fire when user open application
         private void Design_Load(object sender, EventArgs e)
         {
             try
             {
+                //If out.txt file not exist, we need to create to store report data.
                 if (File.Exists(Constants.GetInstance().ExecutingAssemblyLocation + "\\out.txt") == false) File.Create(Constants.GetInstance().ExecutingAssemblyLocation + "\\out.txt");
             }
             catch (Exception ex)
@@ -239,15 +255,21 @@ namespace AppedoLT
                 ExceptionHandler.WritetoEventLog(ex.StackTrace + Environment.NewLine + ex.Message);
             }
         }
+
+        //Fire when user resize form
         private void tabsDesign_Resize(object sender, EventArgs e)
         {
             tabsDesign.ItemsOffset = (tabsDesign.Width / 3) + 5;
         }
+
+        //Fire when user click Variable Manager option
         private void mnuiVariableManager_Click(object sender, EventArgs e)
         {
             frmVariableManager vm = new frmVariableManager();
             vm.ShowDialog();
         }
+
+        //Fire when user click Record http option
         private void mnuiHttp_Click(object sender, EventArgs e)
         {
             try
@@ -264,7 +286,9 @@ namespace AppedoLT
                     RadTreeNode vuScriptNode = new RadTreeNode();
                     vuScriptNode.Text = vuscriptNode.Attributes["name"].Value;
                     vuScriptNode.Tag = frm.vuscriptXml;
+                    //Change icon for script node
                     vuScriptNode.ImageKey = "scripts.gif";
+                    //To form script tree view
                     foreach (XmlNode container in vuscriptNode.ChildNodes)
                     {
                         RadTreeNode containerNode = new RadTreeNode();
@@ -282,6 +306,8 @@ namespace AppedoLT
                 ExceptionHandler.WritetoEventLog(ex.StackTrace + Environment.NewLine + ex.Message);
             }
         }
+
+        //Fire when user click Record tcp ip option
         private void mnuiTcpip_Click(object sender, EventArgs e)
         {
             try
@@ -298,7 +324,10 @@ namespace AppedoLT
                     RadTreeNode vuScriptNode = new RadTreeNode();
                     vuScriptNode.Text = vuscriptNode.Attributes["name"].Value;
                     vuScriptNode.Tag = frm.vuscriptXml;
+                    //Change icon for script node
                     vuScriptNode.ImageKey = "scripts.gif";
+
+                    //To form script tree view
                     foreach (XmlNode container in vuscriptNode.ChildNodes)
                     {
                         RadTreeNode containerNode = new RadTreeNode();
@@ -315,46 +344,146 @@ namespace AppedoLT
                 ExceptionHandler.WritetoEventLog(ex.StackTrace + Environment.NewLine + ex.Message);
             }
         }
+
+        //Fire when user click NewScenario
         private void mnuiNewScenario_Click(object sender, EventArgs e)
         {
             tabiRun.Select();
             btnAddNewScenario_Click(null, null);
         }
+
+        //Fire when user click run menu
         private void mnuiRun_Click(object sender, EventArgs e)
         {
             tabiRun.Select();
             btnRun_Click(null, null);
         }
+
+        //Fire when user click Stop menu
         private void mnuiStop_Click(object sender, EventArgs e)
         {
             tabiRun.Select();
             btnStop_Click(null, null);
         }
+
+        //Fire when user click about menu
         private void radMenuItem5_Click(object sender, EventArgs e)
         {
             new About_FloodGates().ShowDialog();
         }
 
+        //Fire when user click run option
+        private void runToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            btnRun_Click(null, null);
+        }
+
+        //user click login option
+        private void mnuiLogin_Click(object sender, EventArgs e)
+        {
+            if (mnuiLogin.Text == "&Login")
+            {
+                if (Session.Login())
+                {
+                    mnuiLogin.Text = "&Logout";
+                }
+            }
+            else
+            {
+                Session.LogOut();
+                mnuiLogin.Text = "&Login";
+            }
+        }
+
+        //Old logic. To upgrade vuscripts.
+        void Upgrade(ref long totalByte, ref long recivedByte, ref bool Success)
+        {
+            XmlNode vuscripts = RepositoryXml.GetInstance().Doc.SelectSingleNode("//vuscripts");
+            //  File.Copy(RepositoryXml.GetInstance().doc.)
+            string sorceRequestFolderPath = ".\\Request\\";
+            string sorceResponseFolderPath = ".\\Response\\";
+            if (vuscripts != null && vuscripts.ChildNodes.Count > 0)
+            {
+                foreach (XmlNode script in vuscripts.ChildNodes)
+                {
+                    try
+                    {
+                        string scriptid = script.Attributes["id"].Value;
+
+                        string desFolderPath = ".\\Scripts\\" + scriptid + "\\";
+                        if (Directory.Exists(desFolderPath)) Directory.Delete(desFolderPath, true);
+                        VuscriptXml vuscriptxml = new VuscriptXml(scriptid, script.OuterXml);
+                        vuscriptxml.Save();
+
+                        foreach (XmlNode request in vuscriptxml.Doc.SelectNodes("//request"))
+                        {
+                            if (File.Exists(sorceRequestFolderPath + request.Attributes["reqFilename"].Value)) File.Copy(sorceRequestFolderPath + request.Attributes["reqFilename"].Value, desFolderPath + request.Attributes["reqFilename"].Value);
+                            if (File.Exists(sorceResponseFolderPath + request.Attributes["resFilename"].Value)) File.Copy(sorceResponseFolderPath + request.Attributes["resFilename"].Value, desFolderPath + request.Attributes["resFilename"].Value);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        ExceptionHandler.WritetoEventLog(ex.StackTrace + Environment.NewLine + ex.Message);
+                    }
+                    recivedByte += 1;
+                }
+            }
+            RepositoryXml.GetInstance().Doc.SelectSingleNode(".//root").RemoveChild(vuscripts);
+            RepositoryXml.GetInstance().Save();
+        }
+
+        //During the form closing
+        private void Design_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            try
+            {
+                DialogResult result = MessageBox.Show("Do you want to save changes?", "Save", MessageBoxButtons.YesNoCancel);
+
+                //Cancel form close
+                if (result == DialogResult.Cancel)
+                {
+                    e.Cancel = true;
+                    return;
+                }
+                else if (result == DialogResult.Yes)
+                {
+                    Session.LogOut();
+                    _ucDesignObj.btnScriptSave_Click(null, null);
+                }
+                Process.GetCurrentProcess().Kill();
+                AppedoLT.Core.Constants.GetInstance().ReSetFirefoxProxy();
+            }
+            catch (Exception ex)
+            {
+                ExceptionHandler.WritetoEventLog(ex.StackTrace + Environment.NewLine + ex.Message);
+            }
+        }
         #endregion
 
         #endregion
 
         #region Run
+
+        // validate license info. Restrict user count
         private bool ValidateLicence(XmlNode scenario)
         {
             int userCount = 0;
 
+            //Getting total user count given by user
             foreach (XmlNode script in scenario.ChildNodes)
             {
                 userCount += int.Parse(script.ChildNodes[0].Attributes["maxuser"].Value);
             }
-
+            //Check Maxuser count
             if (userCount > _constants.MaxUserCount)
             {
+                //Login to get user count for given user
                 if(Session.Login())
                 {
+                    //If license valid
                     if (Session.IsLicenseValid == true)
                     {
+                        //User given user count is greater than max user count in license
                         if (userCount > Session.UserCount)
                         {
                             MessageBox.Show("Current license only allow max " + Session.UserCount + " users.");
@@ -362,6 +491,7 @@ namespace AppedoLT
                         }
                         else
                         {
+                            //Lock license to avoid multiple machine use same license
                             if (Session.MachineUniqueID == string.Empty && Session.RegisterMachine() == false)
                             {
                                 MessageBox.Show("Unable to register machine. Please contact Appedo support.");
@@ -369,6 +499,7 @@ namespace AppedoLT
                             }
                             else
                             {
+                                //Allow user to run
                                 if (Session.MachineUniqueID == _constants.MachineUniqueID)
                                 {
                                     return true;
@@ -400,7 +531,7 @@ namespace AppedoLT
             }
         }
 
-
+        //Create scenario for run. It is temp scenario xml for run.
         public XmlDocument GetScenarioForRun(string scenarioid, string reportName, int totalLoadGen, int currentLoadGenid, bool enableipspoofing)
         {
             XmlDocument scenarioDoc = new XmlDocument();
@@ -413,6 +544,7 @@ namespace AppedoLT
                 XmlNode setting = scenarioDoc.SelectSingleNode("//root/setting");
                 XmlNode scenario = _repositoryXml.Doc.SelectSingleNode("//scenario[@id='" + scenarioid + "']").Clone();
 
+                //Getting script one by one
                 foreach (XmlNode script in scenario.ChildNodes)
                 {
                     VuscriptXml vuscript = new VuscriptXml(script.Attributes["id"].Value);
@@ -444,6 +576,7 @@ namespace AppedoLT
             return scenarioDoc;
         }
 
+        //Export DataGridView data into html file
         private void Export_TO_Excel(DataGridView grdView, String grdName)
         {
             try
@@ -493,6 +626,8 @@ namespace AppedoLT
                 ExceptionHandler.WritetoEventLog(ex.StackTrace + ex.Message);
             }
         }
+
+        //Export RadGridView data into html file
         private void Export_TO_Excel(RadGridView grdView, String grdName)
         {
             try
@@ -542,6 +677,8 @@ namespace AppedoLT
                 ExceptionHandler.WritetoEventLog(ex.StackTrace + ex.Message);
             }
         }
+
+        //Export list view data into html file
         private void Export_TO_Excel(ListView grdView, String grdName)
         {
             try
@@ -609,6 +746,8 @@ namespace AppedoLT
                 ExceptionHandler.WritetoEventLog(ex.StackTrace + ex.Message);
             }
         }
+
+        //To update report generation status to user
         private void UpdateReportStatus()
         {
             new Thread(() =>
@@ -647,7 +786,7 @@ namespace AppedoLT
         }
 
         #region events
-
+        //Delete a scenario
         private void deleteToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             try
@@ -667,8 +806,10 @@ namespace AppedoLT
             }
         }
 
+        //This function will be called when user click run button.
         private void btnRun_Click(object sender, EventArgs e)
         {
+            //If script selected, We try to select scenario
             if (tvScenarios.SelectedNode != null && tvScenarios.SelectedNode.Level != 0)
             {
                 if (tvScenarios.SelectedNode.Level == 1)
@@ -677,6 +818,7 @@ namespace AppedoLT
                 }
             }
 
+            //Checking license
             if (tvScenarios.SelectedNode != null && ValidateLicence((XmlNode)tvScenarios.SelectedNode.Tag) == true)
             {
                 try
@@ -692,12 +834,14 @@ namespace AppedoLT
                         lblHitCount.Text = "0";
                         _hitCount = 0;
                         _repositoryXml.Save();
+                        //Global setting to store data
                         executionReport.ReportName = objFrmRun.strReportName;
                         executionReport.ScenarioName = tvScenarios.SelectedNode.Text;
                         executionReport.ExecutionStatus = Status.Running;
 
                         Request.IPSpoofingEnabled = Convert.ToBoolean(((XmlNode)tvScenarios.SelectedNode.Tag).Attributes["enableipspoofing"].Value);
                         lblStatus.Text = "Running";
+                        //Update new report name 
                         LoadReportName(executionReport.ReportName);
                         userControlCharts1.LoadReportName(executionReport.ReportName);
 
@@ -706,12 +850,14 @@ namespace AppedoLT
                         XmlNode run = _repositoryXml.Doc.CreateElement("run");
                         run.Attributes.Append(_repositoryXml.GetAttribute("reportname", executionReport.ReportName));
 
+                        //if Local run
                         if (objUCLoadGen.IsLoadGeneratorSelected() == false)
                         {
                             #region Without Loadgen
-
+                            //Creating scenario xml
                             XmlDocument scenario = GetScenarioForRun(((XmlNode)tvScenarios.SelectedNode.Tag).Attributes["id"].Value, executionReport.ReportName, 1, 1, Convert.ToBoolean(((XmlNode)tvScenarios.SelectedNode.Tag).Attributes["enableipspoofing"].Value));
                             run.AppendChild(GetRuntimeScriptDetail(scenario));
+                            //Update varialble details
                             VariableManager.dataCenter = new VariableManager();
                             foreach (XmlNode script in scenario.SelectNodes("//script"))
                             {
@@ -719,11 +865,12 @@ namespace AppedoLT
                                 XmlNode setting = script.SelectNodes("//script[@id='" + scriptid + "']//setting")[0];
                                 XmlNode vuscript = script.SelectNodes("//script[@id='" + scriptid + "']//vuscript")[0];
                                 ScriptExecutor scriptRunnerSce = new ScriptExecutor(setting, vuscript, executionReport.ReportName);
+                                //_scriptExecutorList used to store list of script selected by user
                                 _scriptExecutorList.Add(scriptRunnerSce);
                             }
 
                             #region Run detail
-
+                            // Run detail stored in xml for further ref.
                             run.Attributes.Append(_repositoryXml.GetAttribute("starttime", DateTime.Now.ToString()));
                             run.Attributes.Append(_repositoryXml.GetAttribute("loadgenused", false.ToString()));
                             XmlNode runs = _repositoryXml.Doc.SelectSingleNode("//runs");
@@ -736,22 +883,31 @@ namespace AppedoLT
 
                             foreach (ScriptExecutor scr in _scriptExecutorList)
                             {
+                                //Mapping function
+                                //scr_OnLockReportData function will be called when vuser has reportdata
                                 scr.OnLockReportData += scr_OnLockReportData;
+                                //scr_OnLockError function will be called when vuser has error
                                 scr.OnLockError += scr_OnLockError;
+                                //scr_OnLockLog function will be called when vuser has log
                                 scr.OnLockLog += scr_OnLockLog;
+                                //scr_OnLockTransactions function will be called when vuser has Transactions
                                 scr.OnLockTransactions += scr_OnLockTransactions;
-                                scr.OnLockUserDetail += scr_OnLockUserDetail;
+                                //scr_OnIterationCompleted function will be called when iteration complete
                                 scr.OnIterationStarted += scr_OnIterationCompleted;
+                                //scr_OnVUserRunCompleted function will be called when vuser is completed
                                 scr.OnVUserRunCompleted += scr_OnVUserRunCompleted;
+                                //scr_OnVUserCreated function will be called when vuser is created
                                 scr.OnVUserCreated += scr_OnVUserCreated;
                                 scr.Run();
                             }
+                            //Start timers to update status
                             runTime.Reset();
                             runTime.Start();
                             tmrExecution.Start();
                             #endregion
                             _isUseLoadGen = false;
                         }
+                        //Old log
                         else
                         {
                             _loadGeneratorips.Clear();
@@ -836,20 +992,24 @@ namespace AppedoLT
 
         }
 
+        //This function will be called when new vuser creates.
         void scr_OnVUserCreated(string scriptname,int userid)
         {
             lock (listView1)
             {
+                //To show user creation details to user
                 ListViewItem newItem = new ListViewItem(scriptname+"_"+userid.ToString());
                 newItem.SubItems.AddRange(new string[] { "0".ToString(), "Running" });
                 listView1.Items.Add(newItem);
             }
         }
 
+        //This function will be called when vuser complete.
         void scr_OnVUserRunCompleted(string scriptname, int userid)
         {
             lock (listView1)
             {
+                //To show user completed details to user
                 ListViewItem newItem = listView1.FindItemWithText(scriptname + "_" + userid.ToString());
                 if (newItem != null)
                 {
@@ -858,10 +1018,12 @@ namespace AppedoLT
             }
         }
 
+        //This function will be called when user complete iteration
         void scr_OnIterationCompleted(string scriptname, int userid, int iterationid)
         {
             lock (listView1)
             {
+                //To show iteration completed details to user
                 ListViewItem newItem = listView1.FindItemWithText(scriptname + "_" + userid.ToString());
                 if (newItem != null)
                 {
@@ -870,11 +1032,8 @@ namespace AppedoLT
             }
         }
 
-        void scr_OnLockUserDetail(UserDetail data)
-        {
 
-        }
-
+        //Store Transactions during the run
         void scr_OnLockTransactions(TransactionRunTimeDetail data)
         {
             lock (DataServer.GetInstance().transcations)
@@ -925,6 +1084,7 @@ namespace AppedoLT
             }
         }
 
+        //Store report data during the run
         void scr_OnLockReportData(ReportData data)
         {
             _hitCount++;
@@ -1401,92 +1561,6 @@ namespace AppedoLT
         }
 
         #endregion
-
-        private void runToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            btnRun_Click(null, null);
-        }
-
-        //user click login option
-        private void mnuiLogin_Click(object sender, EventArgs e)
-        {
-            if (mnuiLogin.Text == "&Login")
-            {
-                if (Session.Login())
-                {
-                    mnuiLogin.Text = "&Logout";
-                }
-            }
-            else
-            {
-                Session.LogOut();
-                mnuiLogin.Text = "&Login";
-            }
-        }
-
-        //Old logic. To upgrade vuscripts.
-        void Upgrade(ref long totalByte, ref long recivedByte, ref bool Success)
-        {
-            XmlNode vuscripts = RepositoryXml.GetInstance().Doc.SelectSingleNode("//vuscripts");
-            //  File.Copy(RepositoryXml.GetInstance().doc.)
-            string sorceRequestFolderPath = ".\\Request\\";
-            string sorceResponseFolderPath = ".\\Response\\";
-            if (vuscripts != null && vuscripts.ChildNodes.Count > 0)
-            {
-                foreach (XmlNode script in vuscripts.ChildNodes)
-                {
-                    try
-                    {
-                        string scriptid = script.Attributes["id"].Value;
-
-                        string desFolderPath = ".\\Scripts\\" + scriptid + "\\";
-                        if (Directory.Exists(desFolderPath)) Directory.Delete(desFolderPath, true);
-                        VuscriptXml vuscriptxml = new VuscriptXml(scriptid, script.OuterXml);
-                        vuscriptxml.Save();
-
-                        foreach (XmlNode request in vuscriptxml.Doc.SelectNodes("//request"))
-                        {
-                            if (File.Exists(sorceRequestFolderPath + request.Attributes["reqFilename"].Value)) File.Copy(sorceRequestFolderPath + request.Attributes["reqFilename"].Value, desFolderPath + request.Attributes["reqFilename"].Value);
-                            if (File.Exists(sorceResponseFolderPath + request.Attributes["resFilename"].Value)) File.Copy(sorceResponseFolderPath + request.Attributes["resFilename"].Value, desFolderPath + request.Attributes["resFilename"].Value);
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        ExceptionHandler.WritetoEventLog(ex.StackTrace + Environment.NewLine + ex.Message);
-                    }
-                    recivedByte += 1;
-                }
-            }
-            RepositoryXml.GetInstance().Doc.SelectSingleNode(".//root").RemoveChild(vuscripts);
-            RepositoryXml.GetInstance().Save();
-        }
-
-        //During the form closing
-        private void Design_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            try
-            {
-                DialogResult result = MessageBox.Show("Do you want to save changes?", "Save", MessageBoxButtons.YesNoCancel);
-
-                //Cancel form close
-                if (result == DialogResult.Cancel)
-                {
-                    e.Cancel = true;
-                    return;
-                }
-                else if (result == DialogResult.Yes)
-                {
-                    Session.LogOut();
-                    _ucDesignObj.btnScriptSave_Click(null, null);
-                }
-                Process.GetCurrentProcess().Kill();
-                AppedoLT.Core.Constants.GetInstance().ReSetFirefoxProxy();
-            }
-            catch (Exception ex)
-            {
-                ExceptionHandler.WritetoEventLog(ex.StackTrace + Environment.NewLine + ex.Message);
-            }
-        }
 
     }
 }
