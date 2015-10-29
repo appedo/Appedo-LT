@@ -209,19 +209,19 @@ namespace AppedoLT
             {
                 while (true)
                 {
-                    //If parallel connection limit crossed
-                    //if (_processingRequestCount >= Constants.GetInstance().RecordConnection)
-                    //{
-                    //    Thread.Sleep(1000);
-                    //}
-                    //else
-                    //{
+                    // If parallel connection limit crossed
+                    if (_processingRequestCount >= Constants.GetInstance().RecordConnection)
+                    {
+                        Thread.Sleep(1000);
+                    }
+                    else
+                    {
                         TcpClient client = _listener.AcceptTcpClient();
-                        ProceessClient(client);
-                        //Create new thread to process request from browser.
-                       // Thread th = new Thread(new ParameterizedThreadStart(ProceessClient));
-                       // th.Start(client);
-                   // }
+                       // ProceessClient(client);
+                        // Create new thread to process request from browser.
+                        Thread th = new Thread(new ParameterizedThreadStart(ProceessClient));
+                        th.Start(client);
+                    }
                 }
             }
             catch (Exception ex)

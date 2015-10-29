@@ -112,8 +112,10 @@ namespace AppedoLT
                 _browserStream = _browserTcpClient.GetStream();
                 RequestHeader = ReceiveRequestHeader();
 
+                //To url to end user
                 SetUrl();
 
+                //Get request content length
                 _contentLength = GetContentLength(RequestHeader);
                 if (_contentLength > 0)
                 {
@@ -131,6 +133,7 @@ namespace AppedoLT
                         StartTime = DateTime.Now;
                         lock (_connectionManager)
                         {
+                            //Get server connection
                             connection = _connectionManager.GetConnection(url.Host, url.Port);
                         }
                         if (connection != null)
@@ -146,6 +149,7 @@ namespace AppedoLT
                         if (connection != null) connection.IsHold = false;
                         if (ResponseHeader == string.Empty)
                         {
+                            //Send failed response to browser
                             StringBuilder test = new StringBuilder();
                             test.AppendLine("HTTP/1.0 " + 400 + "");
                             test.AppendLine("Content-Type: text/html");
@@ -203,7 +207,7 @@ namespace AppedoLT
                     }
                 }
 
-                //If response header is empty then we try to send request agein.
+                //If response header is empty then we try to send request again.
                 if (ResponseHeader == string.Empty)
                 {
                     _serverConnection.Close();
@@ -224,7 +228,10 @@ namespace AppedoLT
                 }
 
                 _contentLength = GetContentLength(ResponseHeader);
+                //Receive response body from server
                 ReceiveResponseBody(_serverConnection.Client, _serverConnection.NetworkStream, _contentLength, ResponseBody);
+
+                //Server wants to close connection
                 if (ResponseHeader.Contains("Connection: Close"))
                 {
                     _serverConnection.Close();
@@ -264,6 +271,7 @@ namespace AppedoLT
                 connectStreamWriter.WriteLine();
                 connectStreamWriter.Flush();
                 #endregion
+                //Create ssl stream for browser
                 sslStream.AuthenticateAsServer(Constants.GetInstance().Certificate, false, SslProtocols.Tls, true);
                 _browserStream = sslStream;
                 requestHeader = ReceiveHeader(_browserStream);
@@ -339,6 +347,7 @@ namespace AppedoLT
         private void SendRequest(Stream _server)
         {
             Match firstLine = new Regex("(.*?) (.*?) (.*?)\r\n").Match(RequestHeader);
+            //Check http first line
             if (firstLine.Success == true)
             {
                 string header = RequestHeader.Remove(0, firstLine.Value.Length);
@@ -411,6 +420,7 @@ namespace AppedoLT
                         contentLength -= _bytesRead;
                     }
                 }
+                //If response content is chunked
                 else if (ResponseHeader.ToLower().Contains("Transfer-Encoding: chunked".ToLower()) == true)
                 {
 
