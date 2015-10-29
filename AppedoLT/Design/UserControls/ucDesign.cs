@@ -64,6 +64,7 @@ namespace AppedoLT
                 {
                     DirectoryInfo dicinfo = new DirectoryInfo(info);
 
+                    //Reading vuscipt xml
                     if (File.Exists(info + "\\vuscript.xml"))
                     {
                         try
@@ -75,6 +76,7 @@ namespace AppedoLT
                             vuScriptNode.Text = vuscript.Attributes["name"].Value;
                             vuScriptNode.Tag = vuscriptXml;
                             vuScriptNode.ImageKey = "scripts.gif";
+
                             foreach (XmlNode container in vuscript.ChildNodes)
                             {
                                 RadTreeNode containerNode = new RadTreeNode();
