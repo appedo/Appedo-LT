@@ -106,7 +106,7 @@ namespace AppedoLT.Core
                 _client.SendBufferSize = 8192;
             }
             //If it is ssl transaction
-            if (_port == 443)
+            if (_port == Constants.GetInstance().RecodingHttpsPort)
             {
                 X509Certificate2 _certificate = new X509Certificate2(Constants.GetInstance().CertificatePath, "pass@12345");
                 X509CertificateCollection cCollection = new X509CertificateCollection();
@@ -129,7 +129,7 @@ namespace AppedoLT.Core
             _client.ReceiveBufferSize = 8192;
             _client.SendBufferSize = 8192;
             //If it is ssl transaction
-            if (_port == 443)
+            if (_port == Constants.GetInstance().RecodingHttpsPort)
             {
                 X509Certificate2 _certificate = new X509Certificate2(ConfigurationManager.AppSettings["CertificateFile"], "pass@12345");
                 X509CertificateCollection cCollection = new X509CertificateCollection();

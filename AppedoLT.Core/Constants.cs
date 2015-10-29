@@ -43,6 +43,7 @@ namespace AppedoLT.Core
         private string _dataFolderPathMonitor = string.Empty;
         private int _recordConncetion = -1;
         private string _recodingIPAddress = string.Empty;
+        private int _recodingHttpsPort =0;
         private string _recodingPort = string.Empty;
         private int _requestTimeOut = 0;
         private string _uploadIPAddress = string.Empty;
@@ -144,6 +145,19 @@ namespace AppedoLT.Core
                     _recodingIPAddress = System.Configuration.ConfigurationManager.AppSettings["RecordingIPAddress"];
                 }
                 return _recodingIPAddress;
+            }
+            private set { }
+        }
+
+        public int RecodingHttpsPort
+        {
+            get
+            {
+                if (_recodingHttpsPort == 0)
+                {
+                    _recodingHttpsPort =Convert.ToInt16(System.Configuration.ConfigurationManager.AppSettings["RecodingHttpsPort"]);
+                }
+                return _recodingHttpsPort;
             }
             private set { }
         }
