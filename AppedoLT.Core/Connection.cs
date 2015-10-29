@@ -7,11 +7,16 @@ using System.Text;
 
 namespace AppedoLT.Core
 {
+    /// <summary>
+    /// Used to manage connection sockets.
+    /// 
+    /// Author: Rasith
+    /// </summary>
     public class Connection
     {
 
         #region The private fields
-       
+
         private string _host;
         private int _port;
         private bool _isHold = false;
@@ -80,7 +85,7 @@ namespace AppedoLT.Core
         #endregion
 
         #region The public methods
-
+        //Close socket connection
         public void Close()
         {
             if (_client.Connected == true)
@@ -89,8 +94,10 @@ namespace AppedoLT.Core
             }
         }
 
+        //Connect to given ip and port
         private void Connect()
         {
+            //If client is  not connected
             if (_client.Connected == false)
             {
                 _client = new TcpClient();
@@ -98,12 +105,14 @@ namespace AppedoLT.Core
                 _client.ReceiveBufferSize = 8192;
                 _client.SendBufferSize = 8192;
             }
+            //If it is ssl transaction
             if (_port == 443)
             {
                 X509Certificate2 _certificate = new X509Certificate2(Constants.GetInstance().CertificatePath, "pass@12345");
                 X509CertificateCollection cCollection = new X509CertificateCollection();
                 cCollection.Add(_certificate);
                 _networkStream = new SslStream(_client.GetStream(), false, new RemoteCertificateValidationCallback(ValidateServerCertificate), null);
+                //Send authentication to given host(server)
                 ((SslStream)_networkStream).AuthenticateAsClient(_host);
             }
             else
@@ -112,19 +121,22 @@ namespace AppedoLT.Core
             }
         }
 
+        //Reconnect socket
         public void Reconnect()
         {
             _client = new TcpClient();
             _client.Connect(_host, _port);
             _client.ReceiveBufferSize = 8192;
             _client.SendBufferSize = 8192;
+            //If it is ssl transaction
             if (_port == 443)
             {
                 X509Certificate2 _certificate = new X509Certificate2(ConfigurationManager.AppSettings["CertificateFile"], "pass@12345");
                 X509CertificateCollection cCollection = new X509CertificateCollection();
                 cCollection.Add(_certificate);
                 _networkStream = new SslStream(_client.GetStream(), false, new RemoteCertificateValidationCallback(ValidateServerCertificate), null);
-                ((SslStream)_networkStream).AuthenticateAsClient(_host);//, cCollection, SslProtocols.Default, false);
+                //Send authentication to given host(server)
+                ((SslStream)_networkStream).AuthenticateAsClient(_host);
             }
             else
             {
@@ -132,6 +144,7 @@ namespace AppedoLT.Core
             }
         }
 
+        //Receive http header. double newline is indicates end of header
         public string ReceiveHeader()
         {
             StringBuilder header = new StringBuilder();
@@ -141,6 +154,7 @@ namespace AppedoLT.Core
             while (_networkStream.Read(bytes, 0, 1) > 0)
             {
                 header.Append(Encoding.ASCII.GetString(bytes, 0, 1));
+                //double newline is indicates end of header
                 if (bytes[0] == '\n' && header.ToString().EndsWith("\r\n\r\n"))
                     break;
             }
