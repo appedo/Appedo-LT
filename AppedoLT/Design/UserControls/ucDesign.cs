@@ -77,6 +77,7 @@ namespace AppedoLT
                             vuScriptNode.Tag = vuscriptXml;
                             vuScriptNode.ImageKey = "scripts.gif";
 
+                            //Read all container
                             foreach (XmlNode container in vuscript.ChildNodes)
                             {
                                 RadTreeNode containerNode = new RadTreeNode();
@@ -112,6 +113,7 @@ namespace AppedoLT
             {
                 switch (action.Name)
                 {
+                    //Xml node is request type
                     case "request":
                         RadTreeNode childContainerNode = new RadTreeNode();
                         childContainerNode.Text = action.Attributes["name"].Value;
@@ -124,6 +126,7 @@ namespace AppedoLT
                         }
                         parentNode.Nodes.Add(childContainerNode);
                         break;
+                    //Xml node is container type
                     case "container":
                     case "if":
                     case "then":

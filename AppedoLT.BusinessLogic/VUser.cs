@@ -102,8 +102,11 @@ namespace AppedoLT.BusinessLogic
         private XmlDocument _doc = null;
         private Thread _userThread;
         private ExecutionReport Status = ExecutionReport.GetInstance();
+        //To store extracted variables
         private Dictionary<string, object> _exVariablesValues = new Dictionary<string, object>();
+        //To store transaction details
         private Dictionary<string, TransactionRunTimeDetail> _transactions = new Dictionary<string, TransactionRunTimeDetail>();
+        //To receive cookies
         private Dictionary<string, string> _ReceivedCookies = new Dictionary<string, string>();
         private Stack<string[]> _containerId = new Stack<string[]>();
         private Stack<string> _pageId = new Stack<string>();
@@ -115,6 +118,8 @@ namespace AppedoLT.BusinessLogic
         Request req;
 
         public bool IsValidation = false;
+
+        //To store cookies
         public string HeaderCookie
         {
             get
@@ -1860,12 +1865,15 @@ namespace AppedoLT.BusinessLogic
         #endregion
     }
 
+    //To store evaluated exp info
     public class EvalutionResult
     {
         public bool isSuccess = true;
         public string value = string.Empty;
         public string errorMsg = string.Empty;
     }
+
+    //To store vuser detail
     public class VUserStatus
     {
         public int TwoHundredStatusCodeCount { get; set; }
