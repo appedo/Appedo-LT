@@ -443,6 +443,7 @@ namespace AppedoLT.BusinessLogic
                                 if (thread.WorkCompleted == true) thread.Start();
                             }
                         }
+
                         for (int index = 1; index <= int.Parse(_setting.IncrementUser); index++)
                         {
                             if (_usersList.Count >= int.Parse(_setting.MaxUser) || _isStop == true) break;

@@ -334,23 +334,23 @@ namespace AppedoLT
                         //If user try to search text in responseheader
                         case "responseheader":
                             {
-                                StringBuilder headerText = new StringBuilder();
-                                headerText.Append(requestNode.Attributes["ResponseHeader"].Value);
+                                //StringBuilder headerText = new StringBuilder();
+                                //headerText.Append(requestNode.Attributes["ResponseHeader"].Value);
 
-                                if (flagRequest.Attributes["condition"].Value == "contain")
-                                {
-                                    if (headerText.ToString().Contains(flagRequest.Attributes["text"].Value))
-                                    {
-                                        SetFlagRequstcolor(request);
-                                    }
-                                }
-                                else if (flagRequest.Attributes["condition"].Value == "notcontain")
-                                {
-                                    if (!headerText.ToString().Contains(flagRequest.Attributes["text"].Value))
-                                    {
-                                        SetFlagRequstcolor(request);
-                                    }
-                                }
+                                //if (flagRequest.Attributes["condition"].Value == "contain")
+                                //{
+                                //    if (headerText.ToString().Contains(flagRequest.Attributes["text"].Value))
+                                //    {
+                                //        SetFlagRequstcolor(request);
+                                //    }
+                                //}
+                                //else if (flagRequest.Attributes["condition"].Value == "notcontain")
+                                //{
+                                //    if (!headerText.ToString().Contains(flagRequest.Attributes["text"].Value))
+                                //    {
+                                //        SetFlagRequstcolor(request);
+                                //    }
+                                //}
                             }
                             break;
 

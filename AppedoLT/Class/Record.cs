@@ -355,7 +355,7 @@ namespace AppedoLT
                                 matchs = _expressForHeaders.Matches(data.ResponseHeader);
                                 if (matchs.Count > 0)
                                 {
-                                    request.Attributes.Append(_common.GetAttribute(_uvScript.OwnerDocument, "ResponseHeader", data.ResponseHeader));
+                                   // request.Attributes.Append(_common.GetAttribute(_uvScript.OwnerDocument, "ResponseHeader", data.ResponseHeader));
                                 }
                                 matchs = new Regex("Content-Type: (.*?)\r\n").Matches(data.ResponseHeader);
                                 if (matchs.Count > 0)
@@ -628,6 +628,9 @@ namespace AppedoLT
 
                                 using (FileStream stream = new FileStream(_scriptResourcePath + "\\" + resFilename, FileMode.OpenOrCreate, FileAccess.Write))
                                 {
+                                    byte[] bytes=ASCIIEncoding.ASCII.GetBytes( data.ResponseHeader+"\r\n\r\n");
+                                    stream.Write(bytes, 0, bytes.Length);
+
                                     if (data.ResponseBody.Length > 0)
                                     {
                                         byte[] buffer = new byte[1000000];
@@ -719,6 +722,7 @@ namespace AppedoLT
                                             }
                                         }
                                     }
+                                  
                                     request.Attributes.Append(_common.GetAttribute(_uvScript.OwnerDocument, "resFilename", resFilename));
 
                                 }

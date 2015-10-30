@@ -84,7 +84,8 @@ namespace AppedoLT
                 try
                 {
                     txtRequest.Text = Utility.GetFileContent(Constants.GetInstance().ExecutingAssemblyLocation + "\\Scripts\\" + _scriptId + "\\" + _request.Attributes["reqFilename"].Value);
-                    txtResponse.Text = _request.Attributes["ResponseHeader"].Value + Utility.GetFileContent(Constants.GetInstance().ExecutingAssemblyLocation + "\\Scripts\\" + _scriptId + "\\" + _request.Attributes["resFilename"].Value);
+                   // txtResponse.Text = _request.Attributes["ResponseHeader"].Value + Utility.GetFileContent(Constants.GetInstance().ExecutingAssemblyLocation + "\\Scripts\\" + _scriptId + "\\" + _request.Attributes["resFilename"].Value);
+                    txtResponse.Text =Utility.GetFileContent(Constants.GetInstance().ExecutingAssemblyLocation + "\\Scripts\\" + _scriptId + "\\" + _request.Attributes["resFilename"].Value);
                     webBrowserResponse.DocumentText = txtResponse.Text;
                     if (imageTest.IsMatch(_request.Attributes["resFilename"].Value))
                     {

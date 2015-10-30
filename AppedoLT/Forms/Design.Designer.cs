@@ -222,7 +222,6 @@ namespace AppedoLT
             this.tabsDesign.TabScrollButtonsPosition = Telerik.WinControls.UI.TabScrollButtonsPosition.RightBottom;
             this.tabsDesign.Text = "radTabStrip1";
             this.tabsDesign.ThemeName = "ControlDefault";
-           
             this.tabsDesign.Resize += new System.EventHandler(this.tabsDesign_Resize);
             // 
             // tabiVUscript
@@ -245,6 +244,7 @@ namespace AppedoLT
             this.tabiVUscript.ForeColor = System.Drawing.Color.Black;
             this.tabiVUscript.Image = ((System.Drawing.Image)(resources.GetObject("tabiVUscript.Image")));
             this.tabiVUscript.ImageKey = "scripts.gif";
+            this.tabiVUscript.IsSelected = true;
             this.tabiVUscript.Margin = new System.Windows.Forms.Padding(2, 0, 0, 0);
             this.tabiVUscript.Name = "tabiVUscript";
             this.tabiVUscript.ScaleTransform = new System.Drawing.SizeF(1.2F, 1.2F);
@@ -273,7 +273,6 @@ namespace AppedoLT
             this.tabiRun.ForeColor = System.Drawing.Color.Black;
             this.tabiRun.Image = ((System.Drawing.Image)(resources.GetObject("tabiRun.Image")));
             this.tabiRun.ImageKey = "arrow-right-3.png";
-            this.tabiRun.IsSelected = true;
             this.tabiRun.Margin = new System.Windows.Forms.Padding(2, 0, 0, 0);
             this.tabiRun.Name = "tabiRun";
             this.tabiRun.ScaleTransform = new System.Drawing.SizeF(1.2F, 1.2F);

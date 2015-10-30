@@ -109,12 +109,22 @@ namespace AppedoLT
 
         private void btnOk_Click(object sender, EventArgs e)
         {
-            if(MessageBox.Show("Are you sure you want to replace?","Replace",MessageBoxButtons.YesNoCancel)==DialogResult.Yes)
+            if (txtSourceText.Text.Trim() == string.Empty || txtValue.Text.Trim() == string.Empty)
             {
-               _parentNode.Doc.InnerXml= _parentNode.Doc.InnerXml.Replace(txtSourceText.Text, txtValue.Text);
-               _parentNode.Save();
-               _frm.LoadTreeItem();
+                DialogResult = DialogResult.None;
+                if (txtSourceText.Text.Trim() == string.Empty) MessageBox.Show("Please enter source text.");
+                else if (txtValue.Text.Trim() == string.Empty) MessageBox.Show("Please replace with text.");
             }
+            else
+            {
+                if (MessageBox.Show("Are you sure you want to replace?", "Replace", MessageBoxButtons.YesNoCancel) == DialogResult.Yes)
+                {
+                    _parentNode.Doc.InnerXml = _parentNode.Doc.InnerXml.Replace(txtSourceText.Text, txtValue.Text);
+                    _parentNode.Save();
+                    _frm.LoadTreeItem();
+                }
+            }
+           
         }
 
         private void tvVariables_SelectedNodeChanged(object sender, RadTreeViewEventArgs e)
@@ -133,6 +143,7 @@ namespace AppedoLT
 
             if (tvVariables.Nodes.Count < 0) btnOk.Enabled = false;
             else btnOk.Enabled = true;
+           
         }
 
         private RadTextBox GetTextBox(XmlAttribute attribute)
@@ -166,9 +177,5 @@ namespace AppedoLT
             return tabi;
         }
 
-        private void frmFindAndReplace_Load(object sender, EventArgs e)
-        {
-
-        }
     }
 }

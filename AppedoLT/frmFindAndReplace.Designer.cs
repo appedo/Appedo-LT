@@ -288,7 +288,6 @@ namespace AppedoLT
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Find and Replace";
             this.ThemeName = "Vista";
-            this.Load += new System.EventHandler(this.frmFindAndReplace_Load);
             ((System.ComponentModel.ISupportInitialize)(this.btnOk)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnCancel)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tabsRequestParameter)).EndInit();
