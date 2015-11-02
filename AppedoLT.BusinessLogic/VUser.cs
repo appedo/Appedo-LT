@@ -1039,8 +1039,8 @@ namespace AppedoLT.BusinessLogic
 
         }
 
-        //Old logic. To replace variable name with value.
-        private object GetValue(object variableName)
+        //To replace variable name with value.
+        public object GetValue(object variableName)
         {
             if (_exVariablesValues.ContainsKey(variableName.ToString()) == true)
             {
@@ -1561,7 +1561,7 @@ namespace AppedoLT.BusinessLogic
             return requestResponse;
         }
 
-        private void SetValue(object variableName, object value)
+        public void SetValue(object variableName, object value)
         {
             VariableManager.dataCenter.SetVariableValue(_userid, _iterationid, variableName.ToString(), value, _maxUser);
         }
@@ -1621,6 +1621,7 @@ namespace AppedoLT.BusinessLogic
 
             #endregion
         }
+
         #endregion
 
         #region Utility
