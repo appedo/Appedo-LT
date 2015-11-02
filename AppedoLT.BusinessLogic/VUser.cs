@@ -997,7 +997,7 @@ namespace AppedoLT.BusinessLogic
 
         }
 
-        private object GetValue(object variableName)
+        public object GetValue(object variableName)
         {
             if (_exVariablesValues.ContainsKey(variableName.ToString()) == true)
             {
@@ -1503,7 +1503,7 @@ namespace AppedoLT.BusinessLogic
             return requestResponse;
         }
 
-        private void SetValue(object variableName, object value)
+        public void SetValue(object variableName, object value)
         {
             VariableManager.dataCenter.SetVariableValue(_userid, _iterationid, variableName.ToString(), value, _maxUser);
         }
