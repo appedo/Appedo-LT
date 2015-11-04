@@ -843,7 +843,7 @@ namespace AppedoLT
                         lblStatus.Text = "Running";
                         //Update new report name 
                         LoadReportName(executionReport.ReportName);
-                     //   userControlCharts1.LoadReportName(executionReport.ReportName);
+                       // userControlCharts1.LoadReportName(executionReport.ReportName);
 
                         lblUserCompleted.Text = "0";
                         listView1.Items.Clear();

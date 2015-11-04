@@ -825,22 +825,23 @@ namespace AppedoLT.BusinessLogic
                     }
                     if (match.Count > 0)
                     {
+                        //if it is random type or array type
                         if (selectionType == "all" || selectionType == "random")
                         {
                             int randValue = _random.Next(1, match.Count + 1);
                             _exVariablesValues.Add(variableName + "_arraysize", match.Count);
-                            _exVariablesValues.Add(variableName + "_last", match[match.Count - 1].Groups[groupindex].Value);
+                            _exVariablesValues.Add(variableName + "_last", match[match.Count - 1].Groups[groupindex].Value.Trim());
                             req.ExtractedVariables.Add(new AppedoLT.Core.Tuple<string, string>(variableName + "_arraysize", match.Count.ToString()));
-                            req.ExtractedVariables.Add(new AppedoLT.Core.Tuple<string, string>(variableName + "_last", match[match.Count - 1].Groups[groupindex].Value));
+                            req.ExtractedVariables.Add(new AppedoLT.Core.Tuple<string, string>(variableName + "_last", match[match.Count - 1].Groups[groupindex].Value.Trim()));
                             if (selectionType == "random")
                             {
-                                _exVariablesValues.Add(variableName + "_rand", match[randValue - 1].Groups[groupindex].Value);
-                                req.ExtractedVariables.Add(new AppedoLT.Core.Tuple<string, string>(variableName + "_rand", match[randValue - 1].Groups[groupindex].Value));
+                                _exVariablesValues.Add(variableName + "_rand", match[randValue - 1].Groups[groupindex].Value.Trim());
+                                req.ExtractedVariables.Add(new AppedoLT.Core.Tuple<string, string>(variableName + "_rand", match[randValue - 1].Groups[groupindex].Value.Trim()));
                             }
                             for (int i = 0; i < match.Count; i++)
                             {
-                                _exVariablesValues.Add(variableName + "_" + (i + 1).ToString(), match[i].Groups[groupindex].Value);
-                                req.ExtractedVariables.Add(new AppedoLT.Core.Tuple<string, string>(variableName + "_" + (i + 1).ToString(), match[i].Groups[groupindex].Value));
+                                _exVariablesValues.Add(variableName + "_" + (i + 1).ToString(), match[i].Groups[groupindex].Value.Trim());
+                                req.ExtractedVariables.Add(new AppedoLT.Core.Tuple<string, string>(variableName + "_" + (i + 1).ToString(), match[i].Groups[groupindex].Value.Trim()));
                             }
                         }
                         else if (selectionType == "single")
@@ -850,8 +851,8 @@ namespace AppedoLT.BusinessLogic
                             if (ordinal == 0)
                             {
                                 _exVariablesValues.Remove(variableName);
-                                _exVariablesValues.Add(variableName, match[0].Groups[groupindex].Value);
-                                req.ExtractedVariables.Add(new AppedoLT.Core.Tuple<string, string>(variableName, match[0].Groups[groupindex].Value));
+                                _exVariablesValues.Add(variableName, match[0].Groups[groupindex].Value.Trim());
+                                req.ExtractedVariables.Add(new AppedoLT.Core.Tuple<string, string>(variableName, match[0].Groups[groupindex].Value.Trim()));
 
                             }
                             else
@@ -861,8 +862,8 @@ namespace AppedoLT.BusinessLogic
                                     if (i + 1 == ordinal)
                                     {
                                         _exVariablesValues.Remove(variableName);
-                                        _exVariablesValues.Add(variableName, match[i].Groups[groupindex].Value);
-                                        req.ExtractedVariables.Add(new AppedoLT.Core.Tuple<string, string>(variableName, match[i].Groups[groupindex].Value));
+                                        _exVariablesValues.Add(variableName, match[i].Groups[groupindex].Value.Trim());
+                                        req.ExtractedVariables.Add(new AppedoLT.Core.Tuple<string, string>(variableName, match[i].Groups[groupindex].Value.Trim()));
 
                                         break;
                                     }

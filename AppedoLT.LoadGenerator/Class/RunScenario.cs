@@ -85,7 +85,7 @@ namespace AppedoLTLoadGenerator
             ConfigMoniter(monitorCounter);
         }
 
-        //Config monitor conunters for loadgen.
+        //Config monitor counters for loadgen.
         void ConfigMoniter(string json)
         {
             try

@@ -217,7 +217,7 @@ namespace AppedoLT
                     else
                     {
                         TcpClient client = _listener.AcceptTcpClient();
-                       // ProceessClient(client);
+                        // ProceessClient(client);
                         // Create new thread to process request from browser.
                         Thread th = new Thread(new ParameterizedThreadStart(ProceessClient));
                         th.Start(client);

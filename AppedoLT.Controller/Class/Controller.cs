@@ -8,6 +8,20 @@ using System.Xml;
 
 namespace AppedoLTController
 {
+    /// <summary>
+    /// This used to get scriptwise data from all loadgen and send to appedo server.
+    /// 
+    /// prerequisites: 
+    ///  scriptWiserIP: Ip address where we need to send script wise report
+    ///  scriptWiserPort: port  where we need to send script wise report
+    ///  runid: Current runid received from appedo
+    ///  runNode: run details
+    ///  loadgens: list of load gen with comma separated value
+    ///  appedoFailedUrl: Controller has to call this url when appedo server is unavailable
+    /// 
+    /// Author: Rasith
+    ///
+    /// </summary>
     class Controller
     {
         public static Dictionary<string, Controller> Controllers = new Dictionary<string, Controller>();
@@ -54,6 +68,7 @@ namespace AppedoLTController
             _staus = ControllerStatus.Running;
         }
 
+        //To stop run
         public void Stop()
         {
             ExceptionHandler.LogRunDetail(RunId, "Stop request received ");
@@ -79,6 +94,7 @@ namespace AppedoLTController
             }
         }
 
+        //Old logic
         private string DeleteReportFolder(string reportname)
         {
             string folderPath = Constants.GetInstance().ExecutingAssemblyLocation + "\\Data\\" + reportname;
@@ -97,6 +113,7 @@ namespace AppedoLTController
             return folderPath;
         }
 
+        //It act as service. it will  collect result from all loadgen and accumulate and send to appedo
         private void DoWork()
         {
 
@@ -115,6 +132,8 @@ namespace AppedoLTController
                     loadGens = _runNode.SelectNodes("loadgen");
                     if (isEnd == false) Thread.Sleep(5000);
                     scriptwisestatus = new StringBuilder();
+
+                    //Get all loadgen one by one
                     foreach (XmlNode loadGen in loadGens)
                     {
                         try
@@ -127,6 +146,7 @@ namespace AppedoLTController
                             totalCompleted += Convert.ToInt32(data.Header["completeduser"]);
                             runcompleted += Convert.ToInt32(data.Header["iscompleted"]);
                             scriptwisestatus.Append(data.DataStr);
+                            //Successfully send means we need to remove from failed list
                             if (failedCount.ContainsKey(loadGen.Attributes["ipaddress"].Value) == true)
                             {
                                 failedCount.Remove(loadGen.Attributes["ipaddress"].Value);
@@ -145,6 +165,7 @@ namespace AppedoLTController
                             {
                                 failedCount[loadGen.Attributes["ipaddress"].Value]++;
                             }
+                            //If send attempt failed more than 2 times it will call failed url
                             if (failedCount[loadGen.Attributes["ipaddress"].Value] > 2)
                             {
                                 runcompleted++;
@@ -168,6 +189,7 @@ namespace AppedoLTController
 
                     _totalUserCreated = totalCreated;
                     _totalUserCompleted = totalCompleted;
+                    //If run completed
                     if (runcompleted == loadGens.Count)
                     {
                         _staus = ControllerStatus.ReportGenerateCompleted;
@@ -175,7 +197,7 @@ namespace AppedoLTController
                     }
                     ScriptWiseStatus = GetStatusconcatenate(scriptwisestatus.ToString());
                     SendScriptWiseStatus(ScriptWiseStatus);
-
+                    //If run completed
                     if (isEnd == true)
                     {
                         try
@@ -221,6 +243,7 @@ namespace AppedoLTController
             }
         }
 
+        //Consolidate result from different loadgens
         private string GetStatusconcatenate(string allStatus)
         {
             Dictionary<string, string> scriptWiseResult = new Dictionary<string, string>();
@@ -269,6 +292,7 @@ namespace AppedoLTController
             return summary.ToString();
         }
 
+        //Send consolidated result to appedo.
         private void SendScriptWiseStatus(string scriptWiseStatus)
         {
             Dictionary<string, string> header = new Dictionary<string, string>();
@@ -315,6 +339,7 @@ namespace AppedoLTController
 
     }
 
+    //Current running scenarios status list
     public enum ControllerStatus { Idle = 0, Running, RunCompleted, ReportGenerating, ReportGenerateCompleted }
 
 }
