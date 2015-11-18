@@ -25,7 +25,7 @@ namespace AppedoLT.BusinessLogic
     ///   userid- User id
     ///   iteration- Iteration count
     ///   vuScript- Script to be execute
-    ///   browserCache- True- Browser cache enabled, else Browser cache diabled
+    ///   browserCache- True- Browser cache enabled, else Browser cache disabled
     ///   ipaddress- Ip address is used by this vuser
     /// 
     /// Author: Rasith
@@ -143,8 +143,9 @@ namespace AppedoLT.BusinessLogic
 
         public VUser(int maxUser, string reportName, string type, int userid, int iteration, XmlNode vuScript, bool browserCache, IPAddress ipaddress)
         {
-           
+            //Set current time
             _userCreatededTime = DateTime.Now;
+            //Assign vuscript xml to local variable
             _doc = vuScript.OwnerDocument;
             _maxUser = maxUser;
             _browserCache = browserCache;
@@ -1207,7 +1208,7 @@ namespace AppedoLT.BusinessLogic
         //Get response for tcp request.
         private RequestResponse GetResponse(string containerid, string containername, string pageid, XmlNode tcpRequest, int _userid, int _iterationid, ref RequestResponse requestResponse)
         {
-
+            //If it is validation
             if (IsValidation == true) requestResponse.IsSucess = true;
             DateTime start = new DateTime();
             DateTime end = new DateTime();
@@ -1235,6 +1236,7 @@ namespace AppedoLT.BusinessLogic
                 }
                 else
                 {
+                    //Store exception
                     LockException(tcpRequest.Attributes["id"].Value, EvalutionResult.value, "600", tcpRequest.Attributes["name"].Value);
                 }
                 //Replace all variables with value(in parameters).
@@ -1249,7 +1251,7 @@ namespace AppedoLT.BusinessLogic
                         {
                             param.Attributes["value"].Value = EvalutionResult.value;
                         }
-
+                        else
                         {
                             LockException(tcpRequest.Attributes["id"].Value, EvalutionResult.value, "600", tcpRequest.Attributes["name"].Value);
                         }
@@ -1517,7 +1519,7 @@ namespace AppedoLT.BusinessLogic
                     }
                 }
                 #endregion
-
+                //If assertion failed
                 if (isAssertionFaild == true)
                 {
                     assertionFaildMsg.Append(Environment.NewLine).Append("Request sent:").Append(Environment.NewLine).Append(requestStr).Append(Environment.NewLine).Append("Received Respose: ").Append(Environment.NewLine).Append(response.ToString()).Append(Environment.NewLine);
@@ -1562,6 +1564,7 @@ namespace AppedoLT.BusinessLogic
             return requestResponse;
         }
 
+        //Set variable value from javascript
         public void SetValue(object variableName, object value)
         {
             VariableManager.dataCenter.SetVariableValue(_userid, _iterationid, variableName.ToString(), value, _maxUser);
@@ -1626,6 +1629,7 @@ namespace AppedoLT.BusinessLogic
         #endregion
 
         #region Utility
+        //Get attributes from document
         private XmlAttribute GetAttribute(string name, string value)
         {
             XmlAttribute att = _doc.CreateAttribute(name);
