@@ -741,9 +741,12 @@ namespace AppedoLT.BusinessLogic
                                             //  Request secReq = new HttpRequest(request, links.Dequeue(), receivedCookies, _userid.ToString(), _IPAddress, IsValidation);
 
                                             RequestResponse responseResultSec = new RequestResponse();
+
                                             if (_browserCache == false || cacheUrl.Exists(t => t.CompareTo(secReq.RequestNode.Attributes["Address"].Value) == 0) == false)
                                             {
                                                 cacheUrl.Add(secReq.RequestNode.Attributes["Address"].Value);
+                                               if (secReq.RequestNode.Attributes["Path"].Value.StartsWith("//") == true) secReq.RequestNode.Attributes["Path"].Value = secReq.RequestNode.Attributes["Path"].Value.Replace("//", "/");
+                                             
                                                 if (secReq.RequestNode.Attributes["Address"].Value.EndsWith(".jsp") == false)
                                                 {
                                                     //new Thread(() =>
@@ -757,7 +760,7 @@ namespace AppedoLT.BusinessLogic
                                                             {
                                                                 responseResultSec.RequestResult = secReq;
                                                                 responseResultSec.WebRequestResponseId = Convert.ToInt32(Constants.GetInstance().UniqueID);
-                                                                LockRequestResponse(responseResult);
+                                                                LockRequestResponse(responseResultSec);
                                                             }
                                                             else
                                                             {
