@@ -11,6 +11,7 @@ using System.Threading;
 using System.Web;
 using System.Windows.Forms;
 using System.Xml;
+using System.Configuration;
 
 namespace AppedoLT.BusinessLogic
 {
@@ -720,11 +721,12 @@ namespace AppedoLT.BusinessLogic
 
                                     #endregion
                                 }
-
+                                
                                 LockResponseTime(req.RequestNode.Attributes["id"].Value, req.RequestNode.Attributes["Path"] == null ? req.RequestName : req.RequestNode.Attributes["Path"].Value, req.StartTime, req.EndTime, req.ResponseTime, req.ResponseSize, req.ResponseCode.ToString());
-
+                                //string aa = System.Configuration.ConfigurationSettings.AppSettings.Get("xx");
+                               
                                 #region SecondaryReqEnable
-                                if (Convert.ToBoolean(_vuScriptXml.Attributes["dynamicreqenable"].Value) == true && !(_browserCache == true && _index > 1))
+                                if (Convert.ToBoolean(_vuScriptXml.Attributes["dynamicreqenable"].Value) == true && !(_browserCache == true && _index > 1) && Convert.ToBoolean(req.RequestNode.Attributes["Excludesecondaryreq"].Value) == true)
                                 {
 
                                     Queue<String> links = FetchLinksFromSource(req.ResponseStr);
@@ -1684,6 +1686,15 @@ namespace AppedoLT.BusinessLogic
                 {
 
                     if (tag.Attributes.TryGetValue("href", out value))
+                    {
+                        links.Enqueue(baseURL + value);
+                    }
+                }
+                parse.Reset();
+                while (parse.ParseNext("script", out tag))
+                {
+
+                    if (tag.Attributes.TryGetValue("src", out value))
                     {
                         links.Enqueue(baseURL + value);
                     }

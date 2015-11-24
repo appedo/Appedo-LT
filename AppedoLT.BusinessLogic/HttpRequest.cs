@@ -728,6 +728,11 @@ namespace AppedoLT.BusinessLogic
             {
                 request.Attributes.Append(GetAttribute("Address", url, request.OwnerDocument));
             }
+            else if (url.StartsWith("/") == false)
+            {
+                url = "/" + url;
+                request.Attributes.Append(GetAttribute("Address", new StringBuilder().Append(parentRequest.Attributes["Address"].Value).Append(url).ToString(), request.OwnerDocument));
+            }
             else
             {
                 request.Attributes.Append(GetAttribute("Address", new StringBuilder().Append(parentRequest.Attributes["Address"].Value).Append(url).ToString(), request.OwnerDocument));
