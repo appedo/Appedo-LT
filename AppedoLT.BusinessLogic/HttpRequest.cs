@@ -718,6 +718,8 @@ namespace AppedoLT.BusinessLogic
 
         private XmlNode CreateRequestNode(XmlNode parentRequest, string url)
         {
+            
+
             XmlNode request = parentRequest.OwnerDocument.CreateElement("request");
             if (url.StartsWith("/") == true)
             {
@@ -728,11 +730,20 @@ namespace AppedoLT.BusinessLogic
             {
                 request.Attributes.Append(GetAttribute("Address", url, request.OwnerDocument));
             }
+            else if (url.StartsWith("../") == true)
+            {
+                string strUriString = parentRequest.Attributes["Address"].Value;
+                int pos = strUriString.LastIndexOf('/');
+                if (pos > 0) { strUriString = strUriString.Substring(0, pos) + "/"; }
+
+                request.Attributes.Append(GetAttribute("Address", new StringBuilder().Append(strUriString).Append(url).ToString(), request.OwnerDocument));
+            }
             else if (url.StartsWith("/") == false)
             {
                 url = "/" + url;
                 request.Attributes.Append(GetAttribute("Address", new StringBuilder().Append(parentRequest.Attributes["Address"].Value).Append(url).ToString(), request.OwnerDocument));
             }
+            
             else
             {
                 request.Attributes.Append(GetAttribute("Address", new StringBuilder().Append(parentRequest.Attributes["Address"].Value).Append(url).ToString(), request.OwnerDocument));

@@ -58,8 +58,11 @@ namespace AppedoLT
                         }
                         if (obj != null)
                         {
-                            ((ucDesign)obj).btnScriptSave_Click(null, null);
-                            ((ucDesign)obj).LoadTreeItem();
+                            if(var.chkReplaceAll.Checked) {
+                                ((ucDesign)obj).btnScriptSave_Click(null, null);
+                                ((ucDesign)obj).LoadTreeItem();
+                            }
+                            
                         }
                     }
                 }

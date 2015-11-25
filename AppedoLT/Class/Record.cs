@@ -327,14 +327,17 @@ namespace AppedoLT
                                 // 
                                 if (liExcludeTypes.Count>0)
                                 {
+                                    Boolean bCheck = false;
                                     foreach(string str in liExcludeTypes) {
                                         if(data.url.AbsolutePath.EndsWith(str)) {
                                             request.Attributes.Append(_common.GetAttribute(_uvScript.OwnerDocument, "Excludesecondaryreq", "false"));
+                                            bCheck = true;
                                             break;
                                         }
                                     }
 
-                                    request.Attributes.Append(_common.GetAttribute(_uvScript.OwnerDocument, "Excludesecondaryreq", "true"));
+                                    if (!bCheck) { request.Attributes.Append(_common.GetAttribute(_uvScript.OwnerDocument, "Excludesecondaryreq", "true")); }
+                                    
 
                                 }
                                 else if (liExcludeTypes.Count==0)

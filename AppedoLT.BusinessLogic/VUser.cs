@@ -724,7 +724,10 @@ namespace AppedoLT.BusinessLogic
                                 
                                 LockResponseTime(req.RequestNode.Attributes["id"].Value, req.RequestNode.Attributes["Path"] == null ? req.RequestName : req.RequestNode.Attributes["Path"].Value, req.StartTime, req.EndTime, req.ResponseTime, req.ResponseSize, req.ResponseCode.ToString());
                                 //string aa = System.Configuration.ConfigurationSettings.AppSettings.Get("xx");
-                               
+                                if (req.RequestNode.Attributes["Path"].Value.EndsWith("HotelResult.aspx"))
+                                {
+                                    int a = 6;
+                                }
                                 #region SecondaryReqEnable
                                 if (Convert.ToBoolean(_vuScriptXml.Attributes["dynamicreqenable"].Value) == true && !(_browserCache == true && _index > 1) && Convert.ToBoolean(req.RequestNode.Attributes["Excludesecondaryreq"].Value) == true)
                                 {
