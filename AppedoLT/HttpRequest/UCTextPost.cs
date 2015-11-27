@@ -43,7 +43,8 @@ namespace AppedoLT
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (new RequestParameter((XmlAttribute)txtValue.Tag).ShowDialog() == DialogResult.OK)
+            RequestParameter var = new RequestParameter((XmlAttribute)txtValue.Tag);
+            if (var.ShowDialog() == DialogResult.OK)
             {
                 txtValue.Text = ((XmlAttribute)txtValue.Tag).Value;
 
@@ -56,8 +57,11 @@ namespace AppedoLT
                 }
                 if (obj != null)
                 {
-                    ((ucDesign)obj).btnScriptSave_Click(null, null);
-                    ((ucDesign)obj).LoadTreeItem();
+                    if (var.chkReplaceAll.Checked)
+                    {
+                        ((ucDesign)obj).btnScriptSave_Click(null, null);
+                        ((ucDesign)obj).LoadTreeItem();
+                    }
                 }
             }
         }

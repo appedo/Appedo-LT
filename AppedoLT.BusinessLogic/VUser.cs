@@ -684,7 +684,7 @@ namespace AppedoLT.BusinessLogic
                               //  }
 
                                 #region SecondaryReqEnable
-                                if (Convert.ToBoolean(_vuScriptXml.Attributes["dynamicreqenable"].Value) == true && !(_browserCache == true && _index > 1))
+                                if (Convert.ToBoolean(_vuScriptXml.Attributes["dynamicreqenable"].Value) == true && !(_browserCache == true && _index > 1) && Convert.ToBoolean(req.RequestNode.Attributes["Excludesecondaryreq"].Value) == true)
                                 {
 
                                     Queue<String> links = FetchLinksFromSource(req.ResponseStr);
@@ -717,7 +717,7 @@ namespace AppedoLT.BusinessLogic
                                                             {
                                                                 responseResultSec.RequestResult = secReq;
                                                                 responseResultSec.WebRequestResponseId = Convert.ToInt32(Constants.GetInstance().UniqueID);
-                                                                LockRequestResponse(responseResult);
+                                                                LockRequestResponse(responseResultSec);
                                                             }
                                                             else
                                                             {

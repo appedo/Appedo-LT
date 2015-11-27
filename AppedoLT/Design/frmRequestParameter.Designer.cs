@@ -315,7 +315,7 @@ namespace AppedoLT
         private Telerik.WinControls.Themes.Office2007SilverTheme office2007SilverTheme1;
         private Telerik.WinControls.UI.TabItem tabiValue;
         private Telerik.WinControls.UI.RadTextBox txtValue;
-        private System.Windows.Forms.CheckBox chkReplaceAll;
+        public System.Windows.Forms.CheckBox chkReplaceAll;
     }
 }
 

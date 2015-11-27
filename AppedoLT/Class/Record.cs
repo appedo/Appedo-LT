@@ -268,6 +268,14 @@ namespace AppedoLT
         /// </summary>
         private void StoreResult()
         {
+            List<string> liExcludeTypes = new List<string>();
+            if (ConfigurationManager.AppSettings["ExcludeSecondaryRequest"].Trim() != null && ConfigurationManager.AppSettings["ExcludeSecondaryRequest"].Trim().Contains(","))
+            {
+                string[] arrExludeTypes = ConfigurationManager.AppSettings["ExcludeSecondaryRequest"].Trim().Split(',');//<string1/string2/string3/--->     
+                //make a new string list    
+                liExcludeTypes.AddRange(arrExludeTypes);
+
+            }
             while (true)
             {
                 try
@@ -310,6 +318,41 @@ namespace AppedoLT
                                 request.Attributes.Append(_common.GetAttribute(_uvScript.OwnerDocument, "QueryString", data.url.Query));
                                 request.Attributes.Append(_common.GetAttribute(_uvScript.OwnerDocument, "Address", data.url.AbsoluteUri.Split('?')[0]));
                                 request.Attributes.Append(_common.GetAttribute(_uvScript.OwnerDocument, "Url", data.url.AbsoluteUri));
+                                if (liExcludeTypes.Count > 0)
+                                {
+                                    Boolean bCheck = false;
+                                    foreach (string str in liExcludeTypes)
+                                    {
+                                        if (data.url.AbsolutePath.EndsWith(str))
+                                        {
+                                            request.Attributes.Append(_common.GetAttribute(_uvScript.OwnerDocument, "Excludesecondaryreq", "false"));
+                                            bCheck = true;
+                                            break;
+                                        }
+                                    }
+
+                                    if (!bCheck) { request.Attributes.Append(_common.GetAttribute(_uvScript.OwnerDocument, "Excludesecondaryreq", "true")); }
+
+
+                                }
+                                else if (liExcludeTypes.Count == 0)
+                                {
+                                    if (data.url.AbsolutePath.EndsWith(ConfigurationManager.AppSettings["ExcludeSecondaryRequest"].Trim()))
+                                    {
+                                        request.Attributes.Append(_common.GetAttribute(_uvScript.OwnerDocument, "Excludesecondaryreq", "false"));
+
+                                    }
+                                    else
+                                    {
+                                        request.Attributes.Append(_common.GetAttribute(_uvScript.OwnerDocument, "Excludesecondaryreq", "true"));
+                                    }
+                                }
+                                else
+                                {
+                                    request.Attributes.Append(_common.GetAttribute(_uvScript.OwnerDocument, "Excludesecondaryreq", "true"));
+                                }
+
+
                                 if (data.ResponseCode >= 400 || data.ResponseCode <= 99)
                                 {
                                     request.Attributes.Append(_common.GetAttribute(_uvScript.OwnerDocument, "HasErrorResponse", true.ToString()));
