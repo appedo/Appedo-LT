@@ -16,7 +16,7 @@ using System.Threading;
 using System.Windows.Forms;
 using System.Xml;
 using Telerik.WinControls.UI;
-
+using System.Windows.Forms;
 
 namespace AppedoLT
 {
@@ -332,6 +332,7 @@ namespace AppedoLT
         }
         private void mnuiRun_Click(object sender, EventArgs e)
         {
+            
             tabiRun.Select();
             btnRun_Click(null, null);
         }
@@ -714,6 +715,8 @@ namespace AppedoLT
 
         private void btnRun_Click(object sender, EventArgs e)
         {
+
+           
             if (tvScenarios.SelectedNode != null && tvScenarios.SelectedNode.Level != 0)
             {
                 if (tvScenarios.SelectedNode.Level == 1)
@@ -726,6 +729,7 @@ namespace AppedoLT
             {
                 try
                 {
+                    MessageBox.Show("Please save any changes done, before validating or running scripts.");
                     _scriptExecutorList.Clear();
                     tmrExecution.Stop();
 
@@ -754,8 +758,25 @@ namespace AppedoLT
                         if (objUCLoadGen.IsLoadGeneratorSelected() == false)
                         {
                             #region Without Loadgen
-
+                           
+                           String value = ((KeyValuePair<string, string>)comboBrowserVersion.SelectedItem).Value;
                             XmlDocument scenario = GetScenarioForRun(((XmlNode)tvScenarios.SelectedNode.Tag).Attributes["id"].Value, executionReport.ReportName, 1, 1, Convert.ToBoolean(((XmlNode)tvScenarios.SelectedNode.Tag).Attributes["enableipspoofing"].Value));
+                            string x = scenario.InnerXml.ToString();
+
+                            String pattern = "<header name=\"User-Agent\" value=\"(.*?)\"";
+                            //string pattern = @"\b\w*z+\w*\b";
+                            Match m = Regex.Match(x, pattern);
+                            while (m.Success)
+                            {
+                               Console.WriteLine("'{0}' found at position {1}", m.Value, m.Index);
+                               Group g = m.Groups[1];
+                               x = x.Replace(g.Value, value);
+                               m = m.NextMatch();
+                            }
+
+                            XmlDocument aa = new XmlDocument();
+                            aa.LoadXml(x);
+                            scenario = aa;
                             run.AppendChild(GetRuntimeScriptDetail(scenario));
                             VariableManager.dataCenter = new VariableManager();
                             foreach (XmlNode script in scenario.SelectNodes("//script"))
@@ -909,6 +930,7 @@ namespace AppedoLT
 
         void scr_OnVUserRunCompleted(string scriptname, int userid)
         {
+            
             //lock (listView1)
             //{
             //    ListViewItem newItem = listView1.FindItemWithText(scriptname + "_" + userid.ToString());
@@ -1273,6 +1295,7 @@ namespace AppedoLT
                         Thread.Sleep(10000);
                         if (executionReport.ReportName != null)
                         {
+                            
                             CreateSummaryReport(executionReport.ReportName);
                             ReportMaster reportMaster = new ReportMaster(executionReport.ReportName);
                             reportMaster.GenerateReports();
@@ -1315,8 +1338,10 @@ namespace AppedoLT
                         Thread.Sleep(5000);
                         if (executionReport.ReportName != null)
                         {
+                            MessageBox.Show("Report Generation is in progress. Please wait.");
                             CreateSummaryReport(executionReport.ReportName);
                             ReportMaster reportMaster = new ReportMaster(executionReport.ReportName);
+
                             reportMaster.GenerateReports();
                             UpdateReportStatus();
                             userControlReports2.LoadReportName(executionReport.ReportName);

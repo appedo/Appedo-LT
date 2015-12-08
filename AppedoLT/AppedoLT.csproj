@@ -196,6 +196,12 @@
     <Compile Include="Design\frmAutoCorrelation.Designer.cs">
       <DependentUpon>frmAutoCorrelation.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\dropdownrnd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\dropdownrnd.Designer.cs">
+      <DependentUpon>dropdownrnd.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -458,6 +464,9 @@
     <EmbeddedResource Include="Design\UserControls\ucScript.resx">
       <DependentUpon>ucScript.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\dropdownrnd.resx">
+      <DependentUpon>dropdownrnd.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmAssertion.resx">
       <DependentUpon>frmAssertion.cs</DependentUpon>

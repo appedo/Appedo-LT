@@ -102,8 +102,13 @@ namespace AppedoLT
 
         private void btnValidate_Click(object sender, EventArgs e)
         {
+         
+
             try
             {
+
+                MessageBox.Show("Please save any changes done, before validating or running scripts.");
+
                 if (Constants.GetInstance().IsValidationScreenOpen == true)
                 {
                     MessageBox.Show("Please close existing validation screen");

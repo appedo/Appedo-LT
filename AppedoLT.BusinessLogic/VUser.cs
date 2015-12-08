@@ -1031,6 +1031,7 @@ namespace AppedoLT.BusinessLogic
 
             Match match = null;
 
+         
             foreach (XmlAttribute attribute in expression.Attributes)
             {
                 match = regex.Match(attribute.Value);
@@ -1710,6 +1711,7 @@ namespace AppedoLT.BusinessLogic
                 logObj.userid = this._userid.ToString();
                 logObj.time = DateTime.Now;
                 logObj.message = HttpUtility.HtmlDecode(log.Attributes["message"].Value);
+                
                 if (OnLockLog != null && logObj != null) OnLockLog.Invoke(logObj);
             }
             catch (Exception ex)

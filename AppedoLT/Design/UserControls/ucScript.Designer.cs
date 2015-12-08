@@ -1,4 +1,6 @@
-﻿namespace AppedoLT
+﻿using System.Collections.Generic;
+using System.Windows.Forms;
+namespace AppedoLT
 {
     partial class ucScript
     {

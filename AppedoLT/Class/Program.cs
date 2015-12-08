@@ -7,6 +7,7 @@ using System.IO;
 using AppedoLT.Core;
 using System.Runtime.InteropServices;
 using System.Diagnostics;
+using AppedoLT.Forms;
 
 namespace AppedoLT
 {
@@ -37,8 +38,9 @@ namespace AppedoLT
                         Application.EnableVisualStyles();
                         Constants constants = AppedoLT.Core.Constants.GetInstance();
                         constants.ApplicationStartTime = DateTime.Now;
-                        Application.Run(new Design());
-                        //Application.Run(new frmUserCount());
+                      Application.Run(new Design());
+                       //Application.Run(new frmUserCount());
+                       //Application.Run(new dropdownrnd());
                     }
                     else
                     {
