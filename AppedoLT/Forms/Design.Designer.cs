@@ -1261,6 +1261,9 @@ namespace AppedoLT
             this.comboBrowserVersion.TabIndex = 44;
 
             Dictionary<string, string> comboSource = new Dictionary<string, string>();
+            // Recorded Agent
+
+            comboSource.Add("Recorded Agent", "Recorded Agent");
 
             comboSource.Add("Chrome 45", "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.101 Safari/537.36");
             comboSource.Add("Chrome 44", "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2395.5 Safari/537.36");

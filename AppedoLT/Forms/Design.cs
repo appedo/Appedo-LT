@@ -758,25 +758,30 @@ namespace AppedoLT
                         if (objUCLoadGen.IsLoadGeneratorSelected() == false)
                         {
                             #region Without Loadgen
-                           
-                           String value = ((KeyValuePair<string, string>)comboBrowserVersion.SelectedItem).Value;
                             XmlDocument scenario = GetScenarioForRun(((XmlNode)tvScenarios.SelectedNode.Tag).Attributes["id"].Value, executionReport.ReportName, 1, 1, Convert.ToBoolean(((XmlNode)tvScenarios.SelectedNode.Tag).Attributes["enableipspoofing"].Value));
-                            string x = scenario.InnerXml.ToString();
-
-                            String pattern = "<header name=\"User-Agent\" value=\"(.*?)\"";
-                            //string pattern = @"\b\w*z+\w*\b";
-                            Match m = Regex.Match(x, pattern);
-                            while (m.Success)
+                            
+                            string strSelectedUserAgent = ((KeyValuePair<string, string>)comboBrowserVersion.SelectedItem).Value.Trim();
+                            
+                            if (strSelectedUserAgent != null && strSelectedUserAgent != "Recorded Agent")
                             {
-                               Console.WriteLine("'{0}' found at position {1}", m.Value, m.Index);
-                               Group g = m.Groups[1];
-                               x = x.Replace(g.Value, value);
-                               m = m.NextMatch();
-                            }
+                                string strScenario = scenario.InnerXml.ToString();
+                                string pattern = "<header name=\"User-Agent\" value=\"(.*?)\"";
 
-                            XmlDocument aa = new XmlDocument();
-                            aa.LoadXml(x);
-                            scenario = aa;
+                                Match m = Regex.Match(strScenario, pattern);
+                                while (m.Success)
+                                {
+                                    Console.WriteLine("'{0}' found at position {1}", m.Value, m.Index);
+                                    Group g = m.Groups[1];
+                                    strScenario = strScenario.Replace(g.Value, strSelectedUserAgent);
+                                    m = m.NextMatch();
+                                }
+                                scenario = new XmlDocument();
+                                scenario.LoadXml(strScenario);
+                                //XmlDocument aa = new XmlDocument();
+                                //aa.LoadXml(strScenario);
+                                //scenario = aa;
+                            }
+                            
                             run.AppendChild(GetRuntimeScriptDetail(scenario));
                             VariableManager.dataCenter = new VariableManager();
                             foreach (XmlNode script in scenario.SelectNodes("//script"))
