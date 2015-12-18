@@ -715,7 +715,7 @@ namespace AppedoLT
 
         private void btnRun_Click(object sender, EventArgs e)
         {
-
+            AppedoLT.Core.Constants.GetInstance().btnExecutionType = "Run";
            
             if (tvScenarios.SelectedNode != null && tvScenarios.SelectedNode.Level != 0)
             {

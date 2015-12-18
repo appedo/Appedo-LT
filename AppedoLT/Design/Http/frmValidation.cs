@@ -148,6 +148,7 @@ namespace AppedoLT
         {
             try
             {
+                AppedoLT.Core.Constants.GetInstance().btnExecutionType = "Validate";
                 //If it is first validation  or no other validation is running.
                 if (firstRun == true || _vUSer.WorkCompleted == true)
                 {

@@ -11,6 +11,9 @@ using System.Threading;
 using System.Web;
 using System.Windows.Forms;
 using System.Xml;
+using System.Threading;
+using System.Threading.Tasks;
+using System.Configuration;
 
 namespace AppedoLT.BusinessLogic
 {
@@ -357,29 +360,70 @@ namespace AppedoLT.BusinessLogic
                                     System.Threading.Thread.Sleep(child.Attributes["delay"].Value == "" ? 0 : Convert.ToInt32(child.Attributes["delay"].Value));
                                 }
                                 _secondaryRequestPlayed = false;
-
-                                foreach (XmlNode req in child.ChildNodes)
+                                if (AppedoLT.Core.Constants.GetInstance().btnExecutionType == "Run")
                                 {
-                                    if (Break == true) break;
-                                    //  receivedCookies = req1.ResponseCookies;
-                                    //  req1.parameterization();
-                                    //req.ChildNodes.
-                                    //// req.
-                                    ////
-                                    //new Thread(() =>
-                                    //{
-
-                                    ProcessRequest(req.Clone());
-
-                                    // }
-                                    // 
-                                    // ).Start();
-
-                                    if (_secondaryRequestPlayed == true)
+                                    Queue<XmlNode> reqQ = new Queue<XmlNode>();
+                                    foreach (XmlNode req in child.ChildNodes)
                                     {
-                                        break;
+                                        reqQ.Enqueue(req);
+                                        if (reqQ.Count == int.Parse(ConfigurationManager.AppSettings["ParallelConncetions"].Trim()))
+                                        {
+                                            Parallel.For(0, reqQ.Count, i =>
+                                            {
+                                                //Do Work.
+                                                // if (Break == true) break;
+                                                XmlNode xn = reqQ.Dequeue();
+
+                                                //ProcessRequest(xn);
+                                                ProcessRequest pr = new ProcessRequest(_maxUser, _reportName, _type, _userid, _iteration, _vuScriptXml, _browserCache, _IPAddress, _exVariablesValues, receivedCookies, OnLockError, VUserStatus, OnLockReportData, IsValidation, _pageId, _containerId);
+                                                pr.ProcessParallelRequest(xn);
+
+
+                                                if (_secondaryRequestPlayed == true)
+                                                {
+                                                    // break;
+                                                }
+                                            });
+
+                                            reqQ.Clear();
+
+                                        }
+
+                                       
+                                    }
+
+
+                                    foreach (XmlNode req in reqQ)
+                                    {
+                                        if (Break == true) break;
+                                        ProcessRequest(req.Clone());
+                                        if (_secondaryRequestPlayed == true)
+                                        {
+                                            break;
+                                        }
+                                    }
+
+                                }
+                                else
+                                {
+                                    foreach (XmlNode req in child.ChildNodes)
+                                    {
+                                        if (Break == true) break;
+
+                                        ProcessRequest(req.Clone());
+
+
+                                        if (_secondaryRequestPlayed == true)
+                                        {
+                                            break;
+                                        }
                                     }
                                 }
+                               
+                                
+                                
+
+                                
 
                             }
                             catch (Exception ex)

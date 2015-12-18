@@ -53,6 +53,8 @@ namespace AppedoLT.Core
         private object _logObj = new object();
         private DateTime _dateTime = new DateTime(2000, 1, 1);
 
+        public string btnExecutionType = "Validate";
+
         public string ChartsSummaryFileName = "chart_ summary.csv";
         public string ChartsAvgResponse = "chart_useravgresponse.csv";
         public string ReportSummayReportFileName = "report_summaryreport.csv";
