@@ -133,6 +133,9 @@ namespace AppedoLT
                 repositoryXml.Doc.SelectNodes("//scenarios")[0].AppendChild(_scenario);
                 repositoryXml.Save();
                 this.Close();
+
+                MessageBox.Show("Scenario mapped successfully");
+                
             }
             else
             {

@@ -362,17 +362,88 @@ namespace AppedoLT.BusinessLogic
                                 _secondaryRequestPlayed = false;
                                 if (AppedoLT.Core.Constants.GetInstance().btnExecutionType == "Run")
                                 {
-                                    Queue<XmlNode> reqQ = new Queue<XmlNode>();
+                                    //Queue<XmlNode> reqQ = new Queue<XmlNode>();
+
+                                    Queue<XmlNode> reqParallelQ = new Queue<XmlNode>();
+                                    Queue<XmlNode> reqSeqQ = new Queue<XmlNode>();
+
+                                    Boolean enablePrallel = false;
                                     foreach (XmlNode req in child.ChildNodes)
                                     {
-                                        reqQ.Enqueue(req);
-                                        if (reqQ.Count == int.Parse(ConfigurationManager.AppSettings["ParallelConncetions"].Trim()))
+                                        enablePrallel = false;
+                                        req.Attributes["Address"].Value = new StringBuilder().Append(req.Attributes["Schema"].Value).Append("://").Append(req.Attributes["Host"].Value).Append(":").Append(req.Attributes["Port"].Value).Append(req.Attributes["Path"].Value).ToString();
+                                        Uri temp = new Uri(req.Attributes["Address"].Value);
+                                        //reqQ.Enqueue(req);
+
+                                        try
                                         {
-                                            Parallel.For(0, reqQ.Count, i =>
+                                            XmlNode requestHeadeNode = req.SelectSingleNode("./headers/header[@name='Accept']");
+                                            Match mat = new Regex("Content-Type: (.*?)\r\n", RegexOptions.Singleline | RegexOptions.Multiline).Match(req.Attributes["ResponseHeader"].Value);
+
+                                            if (requestHeadeNode != null && requestHeadeNode.Attributes["value"].Value.Contains("/"))
+                                            {
+                                                if (requestHeadeNode.Attributes["value"].Value.ToLower().Contains("application") == false)
+                                                {
+                                                    string acceptType = requestHeadeNode.Attributes["value"].Value.Split('/')[1];
+                                                    acceptType = acceptType.ToLower();
+                                                    if ((acceptType.Contains("image")
+                                                        || acceptType.Contains("css")
+                                                        || acceptType.Contains("js")
+                                                        || acceptType.Contains("javascript")
+                                                        || temp.LocalPath.EndsWith(".js")
+                                                        || temp.LocalPath.EndsWith(".css")
+                                                        || temp.LocalPath.EndsWith(".png")
+                                                        || temp.LocalPath.EndsWith(".jpg")
+                                                        || temp.LocalPath.EndsWith(".pdf")
+                                                        || temp.LocalPath.EndsWith(".gif")
+                                                        || temp.LocalPath.EndsWith(".ico"))
+                                                        && acceptType.Contains("application") == false
+                                                       )
+                                                    {
+
+                                                        enablePrallel = true;
+                                                        
+                                                    }
+                                                }
+                                            }
+                                            if (mat.Success == true && mat.Groups[1] != null && mat.Groups[1].Value.Contains("/"))
+                                            {
+                                                if (mat.Groups[1].Value.ToLower().Contains("application") == false)
+                                                {
+                                                    string acceptType = mat.Groups[1].Value.Split('/')[1];
+                                                    acceptType = acceptType.ToLower();
+                                                    if (acceptType.Contains("image")
+                                                        || acceptType.Contains("css")
+                                                        || acceptType.Contains("js")
+                                                        || acceptType.Contains("javascript"))
+                                                    {
+                                                        enablePrallel = true;
+                                                        
+                                                    }
+                                                }
+                                            }
+                                        }
+                                        catch (Exception ex)
+                                        {
+                                            ExceptionHandler.WritetoEventLog(ex.StackTrace + Environment.NewLine + ex.Message);
+                                        }
+
+                                        if (enablePrallel)
+                                        {
+                                            reqParallelQ.Enqueue(req);
+                                        }
+                                        else
+                                        {
+                                            reqSeqQ.Enqueue(req);
+                                        }
+
+                                        if (reqParallelQ.Count == int.Parse(ConfigurationManager.AppSettings["ParallelConncetions"].Trim()))
+                                        {
+                                            Parallel.For(0, reqParallelQ.Count, i =>
                                             {
                                                 //Do Work.
                                                 // if (Break == true) break;
-                                                XmlNode xn = reqQ.Dequeue();
+                                                XmlNode xn = reqParallelQ.Dequeue();
 
                                                 //ProcessRequest(xn);
                                                 ProcessRequest pr = new ProcessRequest(_maxUser, _reportName, _type, _userid, _iteration, _vuScriptXml, _browserCache, _IPAddress, _exVariablesValues, receivedCookies, OnLockError, VUserStatus, OnLockReportData, IsValidation, _pageId, _containerId);
@@ -385,7 +456,7 @@ namespace AppedoLT.BusinessLogic
                                                 }
                                             });
 
-                                            reqQ.Clear();
+                                            reqParallelQ.Clear();
 
                                         }
 
@@ -393,7 +464,18 @@ namespace AppedoLT.BusinessLogic
                                     }
 
 
-                                    foreach (XmlNode req in reqQ)
+                                    foreach (XmlNode req in reqParallelQ)
+                                    {
+                                        if (Break == true) break;
+                                        ProcessRequest(req.Clone());
+                                        if (_secondaryRequestPlayed == true)
+                                        {
+                                            break;
+                                        }
+                                    }
+
+
+                                    foreach (XmlNode req in reqSeqQ)
                                     {
                                         if (Break == true) break;
                                         ProcessRequest(req.Clone());
