@@ -133,7 +133,8 @@ namespace AppedoLT
                         break;
                     case "loop":
                         RadTreeNode loop = new RadTreeNode();
-                        loop.Text = "Loop";
+                       // loop.Text = "Loop";
+                        loop.Text = action.Attributes["name"].Value;
                         loop.Tag = action;
                         GetTreeNode(action, loop);
                         parentNode.Nodes.Add(loop);
