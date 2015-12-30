@@ -170,7 +170,7 @@ namespace AppedoLT
                             string source = ((XmlAttribute)txt.Tag).Value;
                             if(chkReplaceAll.Checked==true)
                             {
-                                _parentNode.OwnerDocument.InnerXml = _parentNode.OwnerDocument.InnerXml.Replace("=\"" + source + "\"", "=\"" + txt.Text + "\"");
+                                _parentNode.OwnerDocument.InnerXml = _parentNode.OwnerDocument.InnerXml.Replace("=\"" + System.Web.HttpUtility.HtmlEncode(source) + "\"", "=\"" + System.Web.HttpUtility.HtmlEncode(txt.Text) + "\"");
                             }
                             ((XmlAttribute)txt.Tag).Value = txt.Text;
                             isChanged = true;
