@@ -74,6 +74,12 @@
     <Compile Include="Connection.cs" />
     <Compile Include="ConnectionManager.cs" />
     <Compile Include="Constants.cs" />
+    <Compile Include="CreateConnectionAsyncCompletedEventArgs.cs" />
+    <Compile Include="HttpProxyClient.cs" />
+    <Compile Include="IProxyClient.cs" />
+    <Compile Include="ProxyClientFactory.cs" />
+    <Compile Include="ProxyException.cs" />
+    <Compile Include="RequestCountHandler.cs" />
     <Compile Include="RequestResponse.cs" />
     <Compile Include="RunningScriptWiseStatusData.cs" />
     <Compile Include="EvaluteException.cs" />
@@ -91,8 +97,12 @@
     <Compile Include="RunningStatus.cs" />
     <Compile Include="LoadGenRunningStatusData.cs" />
     <Compile Include="Session.cs" />
+    <Compile Include="Socks4aProxyClient.cs" />
+    <Compile Include="Socks4ProxyClient.cs" />
+    <Compile Include="Socks5ProxyClient.cs" />
     <Compile Include="TrasportLayer.cs" />
     <Compile Include="Utility.cs" />
+    <Compile Include="Utils.cs" />
     <Compile Include="VariableXml.cs" />
     <Compile Include="VUScriptStatus.cs" />
   </ItemGroup>

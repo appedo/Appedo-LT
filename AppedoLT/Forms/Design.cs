@@ -716,7 +716,8 @@ namespace AppedoLT
         private void btnRun_Click(object sender, EventArgs e)
         {
             AppedoLT.Core.Constants.GetInstance().btnExecutionType = "Run";
-           
+            
+            RequestCountHandler._ReqCount = 0;
             if (tvScenarios.SelectedNode != null && tvScenarios.SelectedNode.Level != 0)
             {
                 if (tvScenarios.SelectedNode.Level == 1)
@@ -1332,13 +1333,17 @@ namespace AppedoLT
 
                     if (_scriptExecutorList.FindAll(f => f.IsRunCompleted).Count == _scriptExecutorList.Count && tempCreatedUser != 0 && tempCreatedUser == tempCompletedUser)
                     {
+                        Thread.Sleep(10000);
                         runTime.Stop();
                         tmrExecution.Stop();
                         executionReport.ExecutionStatus = Status.Completed;
                         _scriptExecutorList.Clear();
                         lblUserCreated.Text = tempCreatedUser.ToString();
                         lblUserCompleted.Text = tempCompletedUser.ToString();
-                        lblHitCount.Text = _hitCount.ToString();
+                        // lblHitCount.Text = _hitCount.ToString();
+                        lblHitCount.Text = Convert.ToString(RequestCountHandler._ReqCount);
+                        // reset request count to zero                        
+                        RequestCountHandler._ReqCount = 0;
                         WaitUntillExecutionComplete();
                         Thread.Sleep(5000);
                         if (executionReport.ReportName != null)
@@ -1676,6 +1681,12 @@ namespace AppedoLT
         private void pnlScriptSettings_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void proxySettings_Click(object sender, EventArgs e)
+        {
+            AppedoLT.Forms.frmProxyConfiguration vm = new AppedoLT.Forms.frmProxyConfiguration();
+            vm.ShowDialog();
         }
 
     }

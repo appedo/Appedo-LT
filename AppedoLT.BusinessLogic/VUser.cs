@@ -378,7 +378,7 @@ namespace AppedoLT.BusinessLogic
                                         try
                                         {
                                             XmlNode requestHeadeNode = req.SelectSingleNode("./headers/header[@name='Accept']");
-                                            Match mat = new Regex("Content-Type: (.*?)\r\n", RegexOptions.Singleline | RegexOptions.Multiline).Match(req.Attributes["ResponseHeader"].Value);
+                                           // Match mat = new Regex("Content-Type: (.*?)\r\n", RegexOptions.Singleline | RegexOptions.Multiline).Match(req.Attributes["ResponseHeader"].Value);
 
                                             if (requestHeadeNode != null && requestHeadeNode.Attributes["value"].Value.Contains("/"))
                                             {
@@ -402,26 +402,26 @@ namespace AppedoLT.BusinessLogic
                                                     {
 
                                                         enablePrallel = true;
-                                                        
+
                                                     }
                                                 }
                                             }
-                                            if (mat.Success == true && mat.Groups[1] != null && mat.Groups[1].Value.Contains("/"))
-                                            {
-                                                if (mat.Groups[1].Value.ToLower().Contains("application") == false)
-                                                {
-                                                    string acceptType = mat.Groups[1].Value.Split('/')[1];
-                                                    acceptType = acceptType.ToLower();
-                                                    if (acceptType.Contains("image")
-                                                        || acceptType.Contains("css")
-                                                        || acceptType.Contains("js")
-                                                        || acceptType.Contains("javascript"))
-                                                    {
-                                                        enablePrallel = true;
-                                                        
-                                                    }
-                                                }
-                                            }
+                                            //if (mat.Success == true && mat.Groups[1] != null && mat.Groups[1].Value.Contains("/"))
+                                            //{
+                                            //    if (mat.Groups[1].Value.ToLower().Contains("application") == false)
+                                            //    {
+                                            //        string acceptType = mat.Groups[1].Value.Split('/')[1];
+                                            //        acceptType = acceptType.ToLower();
+                                            //        if (acceptType.Contains("image")
+                                            //            || acceptType.Contains("css")
+                                            //            || acceptType.Contains("js")
+                                            //            || acceptType.Contains("javascript"))
+                                            //        {
+                                            //            enablePrallel = true;
+
+                                            //        }
+                                            //    }
+                                            //}
                                         }
                                         catch (Exception ex)
                                         {
@@ -445,6 +445,7 @@ namespace AppedoLT.BusinessLogic
                                                 // if (Break == true) break;
                                                 XmlNode xn = reqParallelQ.Dequeue();
 
+                                                RequestCountHandler._ReqCount++;
                                                 //ProcessRequest(xn);
                                                 ProcessRequest pr = new ProcessRequest(_maxUser, _reportName, _type, _userid, _iteration, _vuScriptXml, _browserCache, _IPAddress, _exVariablesValues, receivedCookies, OnLockError, VUserStatus, OnLockReportData, IsValidation, _pageId, _containerId);
                                                 pr.ProcessParallelRequest(xn);
@@ -467,6 +468,7 @@ namespace AppedoLT.BusinessLogic
                                     foreach (XmlNode req in reqParallelQ)
                                     {
                                         if (Break == true) break;
+                                        RequestCountHandler._ReqCount++;
                                         ProcessRequest(req.Clone());
                                         if (_secondaryRequestPlayed == true)
                                         {
@@ -477,11 +479,12 @@ namespace AppedoLT.BusinessLogic
 
                                     foreach (XmlNode req in reqSeqQ)
                                     {
-                                        if (Break == true) break;
+                                       if (Break == true) break;
+                                       RequestCountHandler._ReqCount++;
                                         ProcessRequest(req.Clone());
                                         if (_secondaryRequestPlayed == true)
                                         {
-                                            break;
+                                           break;
                                         }
                                     }
 
@@ -490,23 +493,16 @@ namespace AppedoLT.BusinessLogic
                                 {
                                     foreach (XmlNode req in child.ChildNodes)
                                     {
-                                        if (Break == true) break;
-
+                                       if (Break == true) break;
+                                       RequestCountHandler._ReqCount++;
                                         ProcessRequest(req.Clone());
-
-
                                         if (_secondaryRequestPlayed == true)
                                         {
-                                            break;
+                                           break;
                                         }
                                     }
                                 }
                                
-                                
-                                
-
-                                
-
                             }
                             catch (Exception ex)
                             {

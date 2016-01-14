@@ -52,6 +52,7 @@ namespace AppedoLT
             this.radSplitContainer5 = new Telerik.WinControls.UI.RadSplitContainer();
             this.splitPanel7 = new Telerik.WinControls.UI.SplitPanel();
             this.pnlRun = new Telerik.WinControls.UI.RadPanel();
+            this.comboBrowserVersion = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
             this.lblHitCount = new Telerik.WinControls.UI.RadLabel();
             this.label2 = new System.Windows.Forms.Label();
@@ -110,6 +111,7 @@ namespace AppedoLT
             this.mnuiRecord = new Telerik.WinControls.UI.RadMenuItem();
             this.mnuiHttp = new Telerik.WinControls.UI.RadMenuItem();
             this.mnuiTcpip = new Telerik.WinControls.UI.RadMenuItem();
+            this.proxySettings = new Telerik.WinControls.UI.RadMenuItem();
             this.radMenuItem3 = new Telerik.WinControls.UI.RadMenuItem();
             this.mnuiNewScenario = new Telerik.WinControls.UI.RadMenuItem();
             this.mnuiRun = new Telerik.WinControls.UI.RadMenuItem();
@@ -124,7 +126,6 @@ namespace AppedoLT
             this.userControlCharts1 = new AppedoLT.userControlCharts();
             this.userControlReports2 = new AppedoLT.userControlReports();
             this.ucMonitor1 = new AppedoLT.UCMonitor();
-            this.comboBrowserVersion = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.tabsDesign)).BeginInit();
             this.tabsDesign.SuspendLayout();
             this.tabiRun.ContentPanel.SuspendLayout();
@@ -508,6 +509,30 @@ namespace AppedoLT
             this.pnlRun.Name = "pnlRun";
             this.pnlRun.Size = new System.Drawing.Size(715, 102);
             this.pnlRun.TabIndex = 27;
+            // 
+            // comboBrowserVersion
+            // 
+            this.comboBrowserVersion.DisplayMember = "Key";
+            this.comboBrowserVersion.FormattingEnabled = true;
+            this.comboBrowserVersion.Items.AddRange(new object[] {
+            ((object)(resources.GetObject("comboBrowserVersion.Items"))),
+            ((object)(resources.GetObject("comboBrowserVersion.Items1"))),
+            ((object)(resources.GetObject("comboBrowserVersion.Items2"))),
+            ((object)(resources.GetObject("comboBrowserVersion.Items3"))),
+            ((object)(resources.GetObject("comboBrowserVersion.Items4"))),
+            ((object)(resources.GetObject("comboBrowserVersion.Items5"))),
+            ((object)(resources.GetObject("comboBrowserVersion.Items6"))),
+            ((object)(resources.GetObject("comboBrowserVersion.Items7"))),
+            ((object)(resources.GetObject("comboBrowserVersion.Items8"))),
+            ((object)(resources.GetObject("comboBrowserVersion.Items9"))),
+            ((object)(resources.GetObject("comboBrowserVersion.Items10"))),
+            ((object)(resources.GetObject("comboBrowserVersion.Items11"))),
+            ((object)(resources.GetObject("comboBrowserVersion.Items12")))});
+            this.comboBrowserVersion.Location = new System.Drawing.Point(335, 5);
+            this.comboBrowserVersion.Name = "comboBrowserVersion";
+            this.comboBrowserVersion.Size = new System.Drawing.Size(121, 21);
+            this.comboBrowserVersion.TabIndex = 44;
+            this.comboBrowserVersion.ValueMember = "Value";
             // 
             // label6
             // 
@@ -1071,7 +1096,8 @@ namespace AppedoLT
             this.mnuiVuscript.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.mnuiVuscript.Items.AddRange(new Telerik.WinControls.RadItem[] {
             this.mnuiVariableManager,
-            this.mnuiRecord});
+            this.mnuiRecord,
+            this.proxySettings});
             this.mnuiVuscript.Name = "mnuiVuscript";
             this.mnuiVuscript.Text = "&VUScripts";
             // 
@@ -1104,6 +1130,13 @@ namespace AppedoLT
             this.mnuiTcpip.Name = "mnuiTcpip";
             this.mnuiTcpip.Text = "&TCP/IP";
             this.mnuiTcpip.Click += new System.EventHandler(this.mnuiTcpip_Click);
+            // 
+            // proxySettings
+            // 
+            this.proxySettings.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.proxySettings.Name = "proxySettings";
+            this.proxySettings.Text = "Settings";
+            this.proxySettings.Click += new System.EventHandler(this.proxySettings_Click);
             // 
             // radMenuItem3
             // 
@@ -1251,6 +1284,7 @@ namespace AppedoLT
             this.ucMonitor1.Name = "ucMonitor1";
             this.ucMonitor1.Size = new System.Drawing.Size(941, 499);
             this.ucMonitor1.TabIndex = 0;
+
             // 
             // comboBrowserVersion
             // 
@@ -1269,7 +1303,7 @@ namespace AppedoLT
             comboSource.Add("Chrome 44", "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2395.5 Safari/537.36");
             comboSource.Add("Chrome 43", "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/43.0.2314.2 Safari/537.36");
             comboSource.Add("Chrome 42", "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2302.4 Safari/537.36");
-            
+
 
             comboSource.Add("Firefox 38", "Mozilla/5.0 (Windows NT 10.0; WOW64; rv:38.0) Gecko/20100101 Firefox/38.0");
             comboSource.Add("Firefox 37", "Mozilla/5.0 (Windows NT 10.0; WOW64; rv:37.0) Gecko/20100101 Firefox/37.0");
@@ -1278,7 +1312,7 @@ namespace AppedoLT
             comboSource.Add("IE 11", "Mozilla/5.0 (Windows NT 6.1; WOW64; Trident/7.0; AS; rv:11.0) like Gecko");
             comboSource.Add("IE 10", "Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.1; WOW64; Trident/6.0)");
             comboSource.Add("IE 09", "Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; WOW64; Trident/5.0; SLCC2; Media Center PC 6.0)");
-                       
+
             comboSource.Add("Edge", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2311.135 Safari/537.36 Edge/12.10240SS");
 
 
@@ -1461,5 +1495,6 @@ namespace AppedoLT
         private System.Windows.Forms.ComboBox ddlReports;
         private System.Windows.Forms.DataGridView grdvData;
         private ComboBox comboBrowserVersion;
+        private Telerik.WinControls.UI.RadMenuItem proxySettings;
     }
 }

@@ -607,6 +607,7 @@ namespace AppedoLT.BusinessLogic
 
                     if (OnLockReportData != null && rd != null)
                     {
+                        
                         OnLockReportData.Invoke(rd);
                         if (req.HasError == true)
                         {

@@ -38,9 +38,9 @@ namespace AppedoLT
                         Application.EnableVisualStyles();
                         Constants constants = AppedoLT.Core.Constants.GetInstance();
                         constants.ApplicationStartTime = DateTime.Now;
-                      Application.Run(new Design());
+                        Application.Run(new Design());
                        //Application.Run(new frmUserCount());
-                       //Application.Run(new dropdownrnd());
+                       // Application.Run(new frmProxyConfiguration());
                     }
                     else
                     {

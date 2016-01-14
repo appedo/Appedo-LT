@@ -9,6 +9,7 @@ using System.Net.Sockets;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Xml;
+using System.Configuration;
 
 namespace AppedoLT.BusinessLogic
 {
@@ -109,6 +110,8 @@ namespace AppedoLT.BusinessLogic
 
                 #region Create Request
                 _request = (HttpWebRequest)WebRequest.Create(RequestNode.Attributes["Address"].Value);
+                
+
                 _request.Timeout = RequestTimeOut;
                 _request.ConnectionGroupName = _connectionGroup;
 
@@ -155,15 +158,37 @@ namespace AppedoLT.BusinessLogic
 
                 });
 
-                _request.Proxy = null;
+                
                 _request.Expect = null;
                 _request.KeepAlive = true;
                 _request.AllowAutoRedirect = false;
                 _request.Connection = "keepalive";
-                _request.CachePolicy = new RequestCachePolicy(RequestCacheLevel.BypassCache);
+               _request.CachePolicy = new RequestCachePolicy(RequestCacheLevel.BypassCache);
                 _request.ProtocolVersion = HttpVersion.Version11;
                 _request.Method = RequestNode.Attributes["Method"].Value;
                 _request.UnsafeAuthenticatedConnectionSharing = true;
+
+                if (bool.Parse(ConfigurationManager.AppSettings["IsProxyEnabled"].ToString()))
+                {
+                    IWebProxy proxy = _request.Proxy;
+                    WebProxy myProxy = new WebProxy();
+                    // Print the Proxy Url to the console.
+                    if (proxy != null)
+                    {
+                        
+                        // Create a new Uri object.
+                        Uri newUri = new Uri("http://" + ConfigurationManager.AppSettings["ProxyHost"].ToString() + ":" + ConfigurationManager.AppSettings["ProxyPort"].ToString());
+                        // Associate the newUri object to 'myProxy' object so that new myProxy settings can be set.
+                        myProxy.Address = newUri;
+                    }
+
+                    _request.Proxy = myProxy;
+                }
+                else
+                {
+                    _request.Proxy = null;
+                }
+                
 
                 #endregion
 
@@ -206,7 +231,7 @@ namespace AppedoLT.BusinessLogic
                             case "If-Modified-Since":
                                 try
                                 {
-                                    _request.IfModifiedSince = Convert.ToDateTime(hed.Attributes["value"].Value);
+                                   _request.IfModifiedSince = Convert.ToDateTime(hed.Attributes["value"].Value);
                                 }
                                 catch
                                 {
