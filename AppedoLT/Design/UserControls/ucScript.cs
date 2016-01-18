@@ -111,7 +111,7 @@ namespace AppedoLT
 
                 if (Constants.GetInstance().IsValidationScreenOpen == true)
                 {
-                    MessageBox.Show("Please close existing validation screen");
+                    MessageBox.Show("Please close and reopen to load latest script details");
                 }
                 else
                 {

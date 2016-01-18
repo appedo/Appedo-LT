@@ -93,6 +93,8 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.tabWebBrowser = new Telerik.WinControls.UI.TabItem();
             this.webBrowserResponse = new System.Windows.Forms.WebBrowser();
+            this.label1 = new System.Windows.Forms.Label();
+            this.radTxtPort = new Telerik.WinControls.UI.RadTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.sptcRequest)).BeginInit();
             this.sptcRequest.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitPanel1)).BeginInit();
@@ -138,6 +140,7 @@
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tabWebBrowser.ContentPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radTxtPort)).BeginInit();
             this.SuspendLayout();
             // 
             // sptcRequest
@@ -180,6 +183,8 @@
             // radGroupBox1
             // 
             this.radGroupBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(219)))), ((int)(((byte)(255)))));
+            this.radGroupBox1.Controls.Add(this.radTxtPort);
+            this.radGroupBox1.Controls.Add(this.label1);
             this.radGroupBox1.Controls.Add(this.radLabel5);
             this.radGroupBox1.Controls.Add(this.txtSchema);
             this.radGroupBox1.Controls.Add(this.lblContentType);
@@ -237,7 +242,7 @@
             // lblContentType
             // 
             this.lblContentType.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblContentType.Location = new System.Drawing.Point(363, 33);
+            this.lblContentType.Location = new System.Drawing.Point(469, 33);
             this.lblContentType.Name = "lblContentType";
             this.lblContentType.Size = new System.Drawing.Size(105, 18);
             this.lblContentType.TabIndex = 25;
@@ -247,7 +252,7 @@
             // 
             this.ddlPostContentType.DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
             this.ddlPostContentType.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ddlPostContentType.Location = new System.Drawing.Point(473, 32);
+            this.ddlPostContentType.Location = new System.Drawing.Point(580, 33);
             this.ddlPostContentType.Name = "ddlPostContentType";
             // 
             // 
@@ -961,6 +966,25 @@
             this.webBrowserResponse.Size = new System.Drawing.Size(1180, 533);
             this.webBrowserResponse.TabIndex = 1;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(341, 33);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(44, 14);
+            this.label1.TabIndex = 29;
+            this.label1.Text = "Port :";
+            // 
+            // radTxtPort
+            // 
+            this.radTxtPort.Location = new System.Drawing.Point(392, 30);
+            this.radTxtPort.Name = "radTxtPort";
+            this.radTxtPort.ReadOnly = true;
+            this.radTxtPort.Size = new System.Drawing.Size(78, 20);
+            this.radTxtPort.TabIndex = 30;
+            this.radTxtPort.TabStop = false;
+            // 
             // UCHttpRequest
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 14F);
@@ -1018,6 +1042,7 @@
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.tabWebBrowser.ContentPanel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.radTxtPort)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1086,5 +1111,7 @@
         private Telerik.WinControls.UI.RadComboBox ddlPostContentType;
         private Telerik.WinControls.UI.RadLabel radLabel5;
         private Telerik.WinControls.UI.RadTextBox txtSchema;
+        private Telerik.WinControls.UI.RadTextBox radTxtPort;
+        private System.Windows.Forms.Label label1;
     }
 }

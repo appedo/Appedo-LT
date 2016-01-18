@@ -1115,7 +1115,7 @@ namespace AppedoLT.BusinessLogic
                         result = VariableManager.dataCenter.GetVariableValue(_userid, _iterationid, variablename, _maxUser).ToString();
                     }
                 }
-                return System.Web.HttpUtility.HtmlEncode(result);
+                return System.Web.HttpUtility.HtmlDecode(result);
             }
 
         }

@@ -81,6 +81,7 @@ namespace AppedoLT
                 txtServer.Tag = _request.Attributes["Host"];
                 txtPath.Text = _request.Attributes["Path"].Value;
                 txtPath.Tag = _request.Attributes["Path"];
+                radTxtPort.Text = _request.Attributes["Port"].Value;
                 try
                 {
                     txtRequest.Text = Utility.GetFileContent(Constants.GetInstance().ExecutingAssemblyLocation + "\\Scripts\\" + _scriptId + "\\" + _request.Attributes["reqFilename"].Value);
