@@ -428,6 +428,19 @@ namespace AppedoLT.Core
         {
             try
             {
+                // to find the firefox process by name & then to close
+                Process[] AllProcesses = Process.GetProcesses();
+                foreach (var process in AllProcesses)
+                {
+                    if (process.MainWindowTitle != "")
+                    {
+                        string s = process.ProcessName.ToLower();
+                        //if (s == "iexplore" || s == "iexplorer" || s == "chrome" || s == "firefox")
+                        if (s == "firefox")
+                            process.Kill();
+                    }
+                }
+
                 DirectoryInfo[] myProfileDirectory = new DirectoryInfo(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\Mozilla\\Firefox\\Profiles\\").GetDirectories("*.default");
                 String myFFPrefFile = myProfileDirectory[0].FullName + "\\prefs.js";
                 if (File.Exists(myFFPrefFile) == true)

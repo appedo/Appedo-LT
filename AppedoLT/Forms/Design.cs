@@ -1665,7 +1665,9 @@ namespace AppedoLT
                 dt = _resultLog.GetReportData(ddlReports.Text);
                 dt.Columns.RemoveAt(0);
                 dt.Columns.RemoveAt(0);
-                grdvData.DataSource = dt.Copy();
+                //grdvData.DataSource = dt.Copy();
+               this.radReportData.DataSource = dt.Copy();
+               
             }
             catch (Exception ex)
             {
@@ -1675,7 +1677,7 @@ namespace AppedoLT
 
         private void btnExpt_Click(object sender, EventArgs e)
         {
-            Export_TO_Excel(grdvData, ddlReports.Text);
+            Export_TO_Excel(this.radReportData, ddlReports.Text);
         }
 
         private void pnlScriptSettings_Paint(object sender, PaintEventArgs e)

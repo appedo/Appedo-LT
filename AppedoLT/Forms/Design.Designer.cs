@@ -74,10 +74,10 @@ namespace AppedoLT
             this.splitPanel18 = new Telerik.WinControls.UI.SplitPanel();
             this.radTabStrip1 = new Telerik.WinControls.UI.RadTabStrip();
             this.tabItem3 = new Telerik.WinControls.UI.TabItem();
-            this.grdvData = new System.Windows.Forms.DataGridView();
             this.btnExpt = new Telerik.WinControls.UI.RadButton();
             this.btnShow = new Telerik.WinControls.UI.RadButton();
             this.ddlReports = new System.Windows.Forms.ComboBox();
+            this.radReportData = new Telerik.WinControls.UI.RadGridView();
             this.tabItem2 = new Telerik.WinControls.UI.TabItem();
             this.lsvErrors = new System.Windows.Forms.ListView();
             this.lvcId = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -164,9 +164,10 @@ namespace AppedoLT
             ((System.ComponentModel.ISupportInitialize)(this.radTabStrip1)).BeginInit();
             this.radTabStrip1.SuspendLayout();
             this.tabItem3.ContentPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.grdvData)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnExpt)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnShow)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radReportData)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radReportData.MasterGridViewTemplate)).BeginInit();
             this.tabItem2.ContentPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnExport)).BeginInit();
             this.tabiCharts.ContentPanel.SuspendLayout();
@@ -259,9 +260,6 @@ namespace AppedoLT
             this.tabiVUscript.StretchHorizontally = false;
             this.tabiVUscript.StretchVertically = false;
             this.tabiVUscript.Text = "Design";
-            ((Telerik.WinControls.Primitives.ImagePrimitive)(this.tabiVUscript.GetChildAt(2).GetChildAt(1))).ScaleSize = new System.Drawing.Size(32, 32);
-            ((Telerik.WinControls.Primitives.ImagePrimitive)(this.tabiVUscript.GetChildAt(2).GetChildAt(1))).Alignment = System.Drawing.ContentAlignment.MiddleLeft;
-            ((Telerik.WinControls.Primitives.ImagePrimitive)(this.tabiVUscript.GetChildAt(2).GetChildAt(1))).AngleTransform = 0F;
             // 
             // tabiRun
             // 
@@ -787,10 +785,10 @@ namespace AppedoLT
             // 
             this.tabItem3.ContentPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(248)))));
             this.tabItem3.ContentPanel.CausesValidation = true;
-            this.tabItem3.ContentPanel.Controls.Add(this.grdvData);
             this.tabItem3.ContentPanel.Controls.Add(this.btnExpt);
             this.tabItem3.ContentPanel.Controls.Add(this.btnShow);
             this.tabItem3.ContentPanel.Controls.Add(this.ddlReports);
+            this.tabItem3.ContentPanel.Controls.Add(this.radReportData);
             this.tabItem3.ContentPanel.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabItem3.ContentPanel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(66)))), ((int)(((byte)(139)))));
             this.tabItem3.ContentPanel.Location = new System.Drawing.Point(0, 25);
@@ -801,20 +799,6 @@ namespace AppedoLT
             this.tabItem3.Name = "tabItem3";
             this.tabItem3.StretchHorizontally = false;
             this.tabItem3.Text = "Report data";
-            // 
-            // grdvData
-            // 
-            this.grdvData.AllowUserToAddRows = false;
-            this.grdvData.AllowUserToDeleteRows = false;
-            this.grdvData.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.grdvData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.grdvData.Location = new System.Drawing.Point(3, 36);
-            this.grdvData.Name = "grdvData";
-            this.grdvData.ReadOnly = true;
-            this.grdvData.Size = new System.Drawing.Size(712, 156);
-            this.grdvData.TabIndex = 37;
             // 
             // btnExpt
             // 
@@ -846,6 +830,31 @@ namespace AppedoLT
             this.ddlReports.Name = "ddlReports";
             this.ddlReports.Size = new System.Drawing.Size(257, 21);
             this.ddlReports.TabIndex = 1;
+            // 
+            // radReportData
+            // 
+            this.radReportData.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.radReportData.Location = new System.Drawing.Point(3, 40);
+            // 
+            // 
+            // 
+            this.radReportData.MasterGridViewTemplate.AllowAddNewRow = false;
+            this.radReportData.MasterGridViewTemplate.AllowColumnReorder = false;
+            this.radReportData.MasterGridViewTemplate.EnableFiltering = true;
+            this.radReportData.Name = "radReportData";
+            this.radReportData.Padding = new System.Windows.Forms.Padding(0, 0, 0, 1);
+            this.radReportData.ReadOnly = true;
+            // 
+            // 
+            // 
+            
+            this.radReportData.RootElement.Padding = new System.Windows.Forms.Padding(0, 0, 0, 1);
+            this.radReportData.ShowNoDataText = false;
+            this.radReportData.Size = new System.Drawing.Size(713, 152);
+            this.radReportData.TabIndex = 0;
+            
             // 
             // tabItem2
             // 
@@ -1380,9 +1389,10 @@ namespace AppedoLT
             ((System.ComponentModel.ISupportInitialize)(this.radTabStrip1)).EndInit();
             this.radTabStrip1.ResumeLayout(false);
             this.tabItem3.ContentPanel.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.grdvData)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnExpt)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnShow)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radReportData.MasterGridViewTemplate)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radReportData)).EndInit();
             this.tabItem2.ContentPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.btnExport)).EndInit();
             this.tabiCharts.ContentPanel.ResumeLayout(false);
@@ -1493,8 +1503,8 @@ namespace AppedoLT
         private Telerik.WinControls.UI.RadButton btnExpt;
         private Telerik.WinControls.UI.RadButton btnShow;
         private System.Windows.Forms.ComboBox ddlReports;
-        private System.Windows.Forms.DataGridView grdvData;
         private ComboBox comboBrowserVersion;
         private Telerik.WinControls.UI.RadMenuItem proxySettings;
+        private Telerik.WinControls.UI.RadGridView radReportData;
     }
 }
