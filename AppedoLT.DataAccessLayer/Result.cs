@@ -38,11 +38,11 @@ namespace AppedoLT.DataAccessLayer
         {
             DataTable dt = new DataTable();
             dt.Columns.Add("Report name", typeof(string));
-            dt.Columns.Add("Timestamp", typeof(DateTime));
+            dt.Columns.Add("Timestamp", typeof(string));
             DirectoryInfo dicInfo = new DirectoryInfo(Constants.GetInstance().DataFolderPath);
             foreach (DirectoryInfo info in dicInfo.GetDirectories().OrderByDescending(p => p.CreationTime))
             {
-                dt.Rows.Add(info.Name, info.CreationTime);                
+                dt.Rows.Add(info.Name, info.CreationTime.ToShortDateString());                
             }
             return dt;
         }

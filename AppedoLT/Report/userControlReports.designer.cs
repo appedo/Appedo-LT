@@ -523,7 +523,7 @@
             this.brwReportView.MinimumSize = new System.Drawing.Size(20, 20);
             this.brwReportView.Name = "brwReportView";
             this.brwReportView.ScriptErrorsSuppressed = true;
-            this.brwReportView.Size = new System.Drawing.Size(625, 680);
+            this.brwReportView.Size = new System.Drawing.Size(627, 679);
             this.brwReportView.TabIndex = 1;
             this.brwReportView.DocumentCompleted += new System.Windows.Forms.WebBrowserDocumentCompletedEventHandler(this.brwReportView_DocumentCompleted);
             // 

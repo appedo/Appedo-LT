@@ -285,8 +285,9 @@ namespace AppedoLT
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void radGridView1_SelectionChanged(object sender, EventArgs e)
-        {            
-            LoadResult((string)this.radGridReport.SelectedRows[0].Cells[0].Value);
+        {
+            if(this.radGridReport.SelectedRows.Count>0)
+                LoadResult((string)this.radGridReport.SelectedRows[0].Cells[0].Value);
         }
 
        
