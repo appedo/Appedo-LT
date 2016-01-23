@@ -226,7 +226,7 @@ namespace AppedoLT
                 Result _resultLog = Result.GetInstance();
                 dt = _resultLog.GetReportNameList(repoerName);
                 ddlReports.DataSource = dt.Copy();
-                ddlReports.DisplayMember = "reportname";
+                ddlReports.DisplayMember = "Report Name";
                 if (dt.Rows.Count > 0) ddlReports.SelectedIndex = 0;
 
             }

@@ -610,7 +610,6 @@ namespace AppedoLT
             this.tabiHeader.ContentPanel.ForeColor = System.Drawing.SystemColors.ControlText;
             this.tabiHeader.ContentPanel.Location = new System.Drawing.Point(0, 24);
             this.tabiHeader.ContentPanel.Size = new System.Drawing.Size(1029, 248);
-            this.tabiHeader.IsSelected = true;
             this.tabiHeader.Margin = new System.Windows.Forms.Padding(4, 0, 0, 0);
             this.tabiHeader.Name = "tabiHeader";
             this.tabiHeader.StretchHorizontally = false;
@@ -769,6 +768,7 @@ namespace AppedoLT
             this.tabItem1.ContentPanel.ForeColor = System.Drawing.SystemColors.ControlText;
             this.tabItem1.ContentPanel.Location = new System.Drawing.Point(0, 24);
             this.tabItem1.ContentPanel.Size = new System.Drawing.Size(1029, 248);
+            this.tabItem1.IsSelected = true;
             this.tabItem1.Margin = new System.Windows.Forms.Padding(4, 0, 0, 0);
             this.tabItem1.Name = "tabItem1";
             this.tabItem1.StretchHorizontally = false;

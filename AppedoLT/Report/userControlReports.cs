@@ -18,18 +18,26 @@ namespace AppedoLT
             //brwReportView.IsWebBrowserContextMenuEnabled = false;
             //brwReportView.ContextMenuStrip = cntmSave;
             LoadReportName(string.Empty);
+            // this event will fire when user select the report 
+            this.radGridReport.SelectionChanged += new System.EventHandler(this.radGridView1_SelectionChanged);
           
         }
         private Result _resultLog = Result.GetInstance();
     
-        public void LoadReportName(string repoerName)
+        public void LoadReportName(string reportName)
         {
             try
             {
                 System.Data.DataTable dt = new System.Data.DataTable();
-                dt = _resultLog.GetReportNameList(repoerName);
-                radListBox1.DisplayMember = "reportname";
-                radListBox1.DataSource = dt.Copy();
+                dt = _resultLog.GetReportNameList(reportName);
+              // radListBox1.DisplayMember = "reportname";
+            //  radListBox1.DataSource = dt.Copy();
+                this.radGridReport.DataSource = dt.Copy();
+                this.radGridReport.Columns[0].Width = 170;
+                this.radGridReport.Columns[1].Width = 110;
+                this.radGridReport.MultiSelect = false;
+
+                LoadResult((string)this.radGridReport.CurrentRow.Cells[0].Value);
               
             }
             catch (Exception ex)
@@ -199,7 +207,7 @@ namespace AppedoLT
 
         private void radListBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            LoadResult(radListBox1.SelectedText);
+          //  LoadResult(radListBox1.SelectedText);
         }
 
         private void tabsReport_TabSelected(object sender, Telerik.WinControls.UI.TabEventArgs args)
@@ -268,5 +276,19 @@ namespace AppedoLT
         {
 
         }
+
+        
+        /// <summary>
+        /// This event function will trigger when the user select the report 
+        /// and the it will generate report on right hand side panel
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void radGridView1_SelectionChanged(object sender, EventArgs e)
+        {            
+            LoadResult((string)this.radGridReport.SelectedRows[0].Cells[0].Value);
+        }
+
+       
     }
 }
