@@ -114,6 +114,8 @@ namespace AppedoLT
                         if (action.Attributes["HasErrorResponse"] != null && Convert.ToBoolean(action.Attributes["HasErrorResponse"].Value) == true)
                         {
                             childContainerNode.BackColor = Color.Red;
+                            parentNode.BackColor = Color.Red;
+                            parentNode.ToolTipText = "Errors Found";
                         }
                         parentNode.Nodes.Add(childContainerNode);
                         break;
