@@ -1160,6 +1160,7 @@ namespace AppedoLT.Core
         public string ScenarioId { get; set; }
         public bool BrowserCache { get; set; }
         public int StartUserId { get; set; }
+        public bool ReplyThinkTime { get; set; }
 
         public static VUScriptSetting GetDefault(string scriptId)
         {
@@ -1176,6 +1177,7 @@ namespace AppedoLT.Core
             vUScriptSetting.ScenarioId = string.Empty;
             vUScriptSetting.BrowserCache = false;
             vUScriptSetting.StartUserId = 0;
+            vUScriptSetting.ReplyThinkTime = true;
             return vUScriptSetting;
 
         }
@@ -1194,7 +1196,7 @@ namespace AppedoLT.Core
             vUScriptSetting.ScenarioId = scenarioId;
             vUScriptSetting.BrowserCache = false;
             vUScriptSetting.StartUserId = 0;
-
+            vUScriptSetting.ReplyThinkTime = true;
             return vUScriptSetting;
 
         }

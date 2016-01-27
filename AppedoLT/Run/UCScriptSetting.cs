@@ -35,10 +35,30 @@ namespace AppedoLT
                 txtIncrementUser.Text = value.Attributes["incrementuser"].Value;
                 ucIncrementTime.Time = new TimeSpan(int.Parse(value.Attributes["incrementtime"].Value.Split(';')[0]), int.Parse(value.Attributes["incrementtime"].Value.Split(';')[1]), int.Parse(value.Attributes["incrementtime"].Value.Split(';')[2]));
                 chkBrowseCache.Checked = Convert.ToBoolean(value.Attributes["browsercache"].Value);
+                if (value.Attributes["replythinktime"] != null)
+                {
+                    radReplyThinkTime.Checked = Convert.ToBoolean(value.Attributes["replythinktime"].Value);
+                }
+                else
+                {
+                    radReplyThinkTime.Checked = true;
+                    radReplyThinkTime.Hide();
+                }
+
+                
+                
             }
             get
             {
                 VUScriptSetting vUScriptSettingObj = new VUScriptSetting();
+                if (radReplyThinkTime.Checked)
+                {
+                    _setting.Attributes["replythinktime"].Value = "true";
+                }
+                else {
+                    _setting.Attributes["replythinktime"].Value = "false";
+                }
+
                 if (chkBrowseCache.Checked == true) _setting.Attributes["browsercache"].Value = "true";
                 else _setting.Attributes["browsercache"].Value = "false";
                 if (rbtnIteration.Checked==true)

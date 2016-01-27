@@ -50,6 +50,7 @@ namespace AppedoLT
             this.ucIncrementTime = new AppedoLT.UCTime();
             this.ucDurationTime = new AppedoLT.UCTime();
             this.lblUserCount = new Telerik.WinControls.UI.RadLabel();
+            this.radReplyThinkTime = new Telerik.WinControls.UI.RadCheckBox();
             this.txtStatUserCount = new AppedoLT.IntTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.lblScriptName)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).BeginInit();
@@ -61,6 +62,7 @@ namespace AppedoLT
             ((System.ComponentModel.ISupportInitialize)(this.radLabel5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblTime)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblUserCount)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radReplyThinkTime)).BeginInit();
             this.SuspendLayout();
             // 
             // imglSettings
@@ -309,6 +311,15 @@ namespace AppedoLT
             this.lblUserCount.TabIndex = 45;
             this.lblUserCount.Text = "Start User Count :";
             // 
+            // radReplyThinkTime
+            // 
+            this.radReplyThinkTime.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radReplyThinkTime.Location = new System.Drawing.Point(172, 26);
+            this.radReplyThinkTime.Name = "radReplyThinkTime";
+            this.radReplyThinkTime.Size = new System.Drawing.Size(130, 17);
+            this.radReplyThinkTime.TabIndex = 50;
+            this.radReplyThinkTime.Text = "Reply Think Time";
+            // 
             // txtStatUserCount
             // 
             this.txtStatUserCount.BackColor = System.Drawing.Color.White;
@@ -326,6 +337,7 @@ namespace AppedoLT
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.radReplyThinkTime);
             this.Controls.Add(this.lblScriptName);
             this.Controls.Add(this.chkBrowseCache);
             this.Controls.Add(this.radLabel3);
@@ -346,6 +358,7 @@ namespace AppedoLT
             ((System.ComponentModel.ISupportInitialize)(this.radLabel5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblTime)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblUserCount)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radReplyThinkTime)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -373,5 +386,6 @@ namespace AppedoLT
         private System.Windows.Forms.RadioButton rbtnDuraion;
         private System.Windows.Forms.RadioButton rbtnIteration;
         private Telerik.WinControls.UI.RadLabel radLabel2;
+        private Telerik.WinControls.UI.RadCheckBox radReplyThinkTime;
     }
 }

@@ -36,7 +36,7 @@ namespace AppedoLT
                 this.radGridReport.Columns[0].Width = 170;
                 this.radGridReport.Columns[1].Width = 110;
                 this.radGridReport.MultiSelect = false;
-
+               
                 LoadResult((string)this.radGridReport.CurrentRow.Cells[0].Value);
               
             }

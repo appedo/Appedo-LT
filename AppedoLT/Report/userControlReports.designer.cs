@@ -89,6 +89,7 @@
             this.splitPanel1 = new Telerik.WinControls.UI.SplitPanel();
             this.radPanel2 = new Telerik.WinControls.UI.RadPanel();
             this.radGridReport = new Telerik.WinControls.UI.RadGridView();
+            this.gridViewTemplate1 = new Telerik.WinControls.UI.GridViewTemplate();
             this.splitPanel2 = new Telerik.WinControls.UI.SplitPanel();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel32)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel35)).BeginInit();
@@ -152,6 +153,7 @@
             this.radPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radGridReport)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGridReport.MasterGridViewTemplate)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridViewTemplate1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitPanel2)).BeginInit();
             this.splitPanel2.SuspendLayout();
             this.SuspendLayout();
@@ -687,6 +689,7 @@
             // 
             // radGridReport
             // 
+            this.radGridReport.ForeColor = System.Drawing.Color.Black;
             this.radGridReport.Location = new System.Drawing.Point(4, 28);
             // 
             // 
@@ -694,12 +697,15 @@
             this.radGridReport.MasterGridViewTemplate.AllowAddNewRow = false;
             this.radGridReport.MasterGridViewTemplate.AllowDeleteRow = false;
             this.radGridReport.MasterGridViewTemplate.AllowEditRow = false;
+            this.radGridReport.MasterGridViewTemplate.ChildGridViewTemplates.AddRange(new Telerik.WinControls.UI.GridViewTemplate[] {
+            this.gridViewTemplate1});
             this.radGridReport.MasterGridViewTemplate.EnableFiltering = true;
             this.radGridReport.Name = "radGridReport";
             this.radGridReport.Padding = new System.Windows.Forms.Padding(0, 0, 0, 1);
             // 
             // 
             // 
+            this.radGridReport.RootElement.ForeColor = System.Drawing.Color.Black;
             this.radGridReport.RootElement.Padding = new System.Windows.Forms.Padding(0, 0, 0, 1);
             this.radGridReport.Size = new System.Drawing.Size(306, 654);
             this.radGridReport.TabIndex = 2;
@@ -791,6 +797,7 @@
             this.radPanel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.radGridReport.MasterGridViewTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGridReport)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridViewTemplate1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitPanel2)).EndInit();
             this.splitPanel2.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -859,5 +866,6 @@
         private System.Windows.Forms.ContextMenuStrip cntmSave;
         private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
         private Telerik.WinControls.UI.RadGridView radGridReport;
+        private Telerik.WinControls.UI.GridViewTemplate gridViewTemplate1;
     }
 }

@@ -84,6 +84,7 @@ namespace AppedoLT.BusinessLogic
         private int _maxConnection = 1;
         private int _createdConnection = 1;
         private bool _browserCache = false;
+        private bool _bReplyThinkTime = true;
         private bool _secondaryRequestPlayed = false;
         private XmlNode _vuScriptXml;
         private Constants _Constants = Constants.GetInstance();
@@ -124,13 +125,14 @@ namespace AppedoLT.BusinessLogic
         public VUserStatus VUserStatus;
         private DateTime _userCreatededTime = new DateTime();
 
-        public VUser(int maxUser, string reportName, string type, int userid, int iteration, XmlNode vuScript, bool browserCache, IPAddress ipaddress)
+        public VUser(int maxUser, string reportName, string type, int userid, int iteration, XmlNode vuScript, bool browserCache, IPAddress ipaddress, bool bReplyThinkTime)
         {
            
             _userCreatededTime = DateTime.Now;
             _doc = vuScript.OwnerDocument;
             _maxUser = maxUser;
             _browserCache = browserCache;
+            _bReplyThinkTime = bReplyThinkTime;
             _type = type;
             _userid = userid;
             _iteration = iteration;
@@ -357,7 +359,12 @@ namespace AppedoLT.BusinessLogic
                                     {
                                         EvaluteExp(child.Clone());
                                     }
-                                    System.Threading.Thread.Sleep(child.Attributes["delay"].Value == "" ? 0 : Convert.ToInt32(child.Attributes["delay"].Value));
+                                    if (_bReplyThinkTime)
+                                        {
+                                            System.Threading.Thread.Sleep(child.Attributes["delay"].Value == "" ? 0 : Convert.ToInt32(child.Attributes["delay"].Value));
+                                        }
+                                    
+                                    //System.Threading.Thread.Sleep(child.Attributes["delay"].Value == "" ? 0 : Convert.ToInt32(child.Attributes["delay"].Value));
                                 }
                                 _secondaryRequestPlayed = false;
                                 if (AppedoLT.Core.Constants.GetInstance().btnExecutionType == "Run")

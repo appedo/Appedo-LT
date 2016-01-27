@@ -84,6 +84,15 @@ namespace AppedoLT.BusinessLogic
                 setting.Iterations = settingNode.Attributes["iterations"].Value;
                 setting.MaxUser = settingNode.Attributes["maxuser"].Value;
                 setting.StartUser = settingNode.Attributes["startuser"].Value;
+                if (settingNode.Attributes["replythinktime"]!=null)
+                {
+                    setting.ReplyThinkTime = Convert.ToBoolean(settingNode.Attributes["replythinktime"].Value);
+                }
+                else
+                {
+                    setting.ReplyThinkTime = true;
+                }
+                
 
                 _vuScript = vuScript;
                 _setting = setting;
@@ -484,7 +493,7 @@ namespace AppedoLT.BusinessLogic
 
         private VUser GetVUser(int userid)
         {
-            VUser user=new VUser(int.Parse(_setting.MaxUser), _reportName, _setting.Type, userid, int.Parse(_setting.Iterations), _vuScript, _setting.BrowserCache, Request.GetIPAddress(_createdUserCount));
+            VUser user = new VUser(int.Parse(_setting.MaxUser), _reportName, _setting.Type, userid, int.Parse(_setting.Iterations), _vuScript, _setting.BrowserCache, Request.GetIPAddress(_createdUserCount), _setting.ReplyThinkTime);
             if(OnLockReportData!=null) user.OnLockReportData+=OnLockReportData;
             if(OnLockError != null) user.OnLockError += OnLockError;
             if(OnLockLog != null) user.OnLockLog += OnLockLog;
