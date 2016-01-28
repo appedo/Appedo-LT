@@ -1663,10 +1663,18 @@ namespace AppedoLT
                 System.Data.DataTable dt = new System.Data.DataTable();
                 Result _resultLog = Result.GetInstance();
                 dt = _resultLog.GetReportData(ddlReports.Text);
-                dt.Columns.RemoveAt(0);
-                dt.Columns.RemoveAt(0);
+               // dt.Columns.RemoveAt(0);
+               // dt.Columns.RemoveAt(0);
                 //grdvData.DataSource = dt.Copy();
                this.radReportData.DataSource = dt.Copy();
+               // radReportData.GridElement.BorderColor = Color.Red;
+               // radReportData.GridElement.BackColor = Color.PowderBlue;
+                radReportData.MasterGridViewInfo.GridViewElement.BorderColor = Color.Red;
+                
+                for (int i = 0; i < dt.Columns.Count; i++  )
+                    this.radReportData.Columns[i].Width = 66;
+
+               
                
             }
             catch (Exception ex)
