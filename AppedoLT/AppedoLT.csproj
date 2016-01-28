@@ -134,41 +134,41 @@
     <Reference Include="Telerik.WinControls.RadDock, Version=2010.1.10.504, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL" />
     <Reference Include="Telerik.WinControls.Scheduler, Version=2010.1.10.504, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL" />
     <Reference Include="Telerik.WinControls.Themes.Aqua, Version=2010.1.10.504, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
-      <Private>True</Private>
+      <Private>False</Private>
     </Reference>
     <Reference Include="Telerik.WinControls.Themes.Breeze, Version=2010.1.10.504, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
-      <Private>True</Private>
+      <Private>False</Private>
       <EmbedInteropTypes>False</EmbedInteropTypes>
     </Reference>
     <Reference Include="Telerik.WinControls.Themes.BreezeExtended, Version=2010.1.10.504, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
-      <Private>True</Private>
+      <Private>False</Private>
     </Reference>
     <Reference Include="Telerik.WinControls.Themes.ControlDefault, Version=2010.1.10.504, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
-      <Private>True</Private>
+      <Private>False</Private>
     </Reference>
     <Reference Include="Telerik.WinControls.Themes.Desert, Version=2010.1.10.504, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
-      <Private>True</Private>
+      <Private>False</Private>
     </Reference>
     <Reference Include="Telerik.WinControls.Themes.Miscellaneous, Version=2010.1.10.504, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
-      <Private>True</Private>
+      <Private>False</Private>
     </Reference>
     <Reference Include="Telerik.WinControls.Themes.Office2007Black, Version=2010.1.10.504, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
-      <Private>True</Private>
+      <Private>False</Private>
     </Reference>
     <Reference Include="Telerik.WinControls.Themes.Office2007Silver, Version=2010.1.10.504, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
-      <Private>True</Private>
+      <Private>False</Private>
     </Reference>
     <Reference Include="Telerik.WinControls.Themes.Office2010, Version=2010.1.10.504, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
-      <Private>True</Private>
+      <Private>False</Private>
     </Reference>
     <Reference Include="Telerik.WinControls.Themes.Telerik, Version=2010.1.10.504, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
-      <Private>True</Private>
+      <Private>False</Private>
     </Reference>
     <Reference Include="Telerik.WinControls.Themes.Vista, Version=2010.1.10.504, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
-      <Private>True</Private>
+      <Private>False</Private>
     </Reference>
     <Reference Include="Telerik.WinControls.Themes.Windows7, Version=2010.1.10.504, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
-      <Private>True</Private>
+      <Private>False</Private>
     </Reference>
     <Reference Include="Telerik.WinControls.UI, Version=2010.1.10.504, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL" />
     <Reference Include="TelerikCommon, Version=2010.1.10.504, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL" />

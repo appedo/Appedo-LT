@@ -906,6 +906,7 @@ namespace AppedoLT
         private System.Windows.Forms.ColumnHeader lvcStatusCode;
         private System.Windows.Forms.ImageList imageList1;
         private Telerik.WinControls.UI.TabItem tabiVariables;
+        private Telerik.WinControls.UI.TabItem tabiAssertions;
         private Telerik.WinControls.UI.TabItem tabiExtractedVariable;
         private System.Windows.Forms.DataGridView gvVariables;
         private System.Windows.Forms.DataGridView gvExtractedVariables;

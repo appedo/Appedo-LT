@@ -483,7 +483,7 @@ namespace AppedoLT
                         gvParameters.DataSource = ConvertToTable(requestRespose.RequestResult.Parameters);
                         gvVariables.DataSource = ConvertToTable(requestRespose.RequestResult.Variables);
                         gvExtractedVariables.DataSource = ConvertToTable(requestRespose.RequestResult.ExtractedVariables);
-
+                        //requestRespose.RequestResult.
                         if (radTabStrip1.SelectedTab == tabItem1) webBrowser1.DocumentText = txtResponse.Text;
                         SelectRequest(tvRequest.Nodes[0], requestRespose.RequestResult.RequestId.ToString());
 
