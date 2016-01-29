@@ -40,7 +40,7 @@ namespace AppedoLT
                         constants.ApplicationStartTime = DateTime.Now;
                         Application.Run(new Design());
                        //Application.Run(new frmUserCount());
-                       // Application.Run(new frmProxyConfiguration());
+                        //Application.Run(new NetworkForm());
                     }
                     else
                     {

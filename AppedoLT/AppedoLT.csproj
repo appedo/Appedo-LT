@@ -297,6 +297,12 @@
     <Compile Include="Forms\frmVUScriptNameHttp.Designer.cs">
       <DependentUpon>frmVUScriptNameHttp.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\NetworkForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\NetworkForm.Designer.cs">
+      <DependentUpon>NetworkForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmFindAndReplace.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -471,6 +477,8 @@
     <Content Include="report.xslt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <None Include="Resources\green.png" />
+    <None Include="Resources\red.png" />
     <Content Include="sqlite3.exe">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -538,6 +546,9 @@
     <EmbeddedResource Include="Forms\frmVUScriptNameHttp.resx">
       <DependentUpon>frmVUScriptNameHttp.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\NetworkForm.resx">
+      <DependentUpon>NetworkForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmFindAndReplace.resx">
       <DependentUpon>frmFindAndReplace.cs</DependentUpon>
