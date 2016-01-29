@@ -472,12 +472,14 @@ namespace AppedoLT
                         lblDuration.Text = requestRespose.RequestResult.ResponseTime.ToString() + " ms";
                         if (requestRespose.RequestResult.HasError == true)
                         {
-                            strValidatedResponse = requestRespose.RequestResult.ErrorMessage + Environment.NewLine + requestRespose.RequestResult.ResponseStr;
+                            //strValidatedResponse = requestRespose.RequestResult.ErrorMessage + Environment.NewLine + requestRespose.RequestResult.ResponseStr;
+                            strValidatedResponse = requestRespose.RequestResult.ResponseStr;
                         }
                         else
                         {
                             strValidatedResponse = requestRespose.RequestResult.ResponseStr;
                         }
+                        richTextBox1.Text = requestRespose.RequestResult.AssertionFaildMsg.ToString();
                         txtResponse.Text = strValidatedResponse;
                         gvHeader.DataSource = ConvertToTable(requestRespose.RequestResult.RequestNode.SelectSingleNode("headers"));
                         gvParameters.DataSource = ConvertToTable(requestRespose.RequestResult.Parameters);

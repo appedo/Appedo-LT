@@ -84,8 +84,10 @@ namespace AppedoLT
             this.txtResponse = new System.Windows.Forms.RichTextBox();
             this.tabItem1 = new Telerik.WinControls.UI.TabItem();
             this.webBrowser1 = new System.Windows.Forms.WebBrowser();
+            this.tabiAssertion = new Telerik.WinControls.UI.TabItem();
             this.vistaTheme1 = new Telerik.WinControls.Themes.VistaTheme();
             this.telerikTheme1 = new Telerik.WinControls.Themes.TelerikTheme();
+            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.spltcValidation)).BeginInit();
             this.spltcValidation.Panel1.SuspendLayout();
             this.spltcValidation.Panel2.SuspendLayout();
@@ -133,6 +135,7 @@ namespace AppedoLT
             ((System.ComponentModel.ISupportInitialize)(this.gvExtractedVariables)).BeginInit();
             this.tabiResponse.ContentPanel.SuspendLayout();
             this.tabItem1.ContentPanel.SuspendLayout();
+            this.tabiAssertion.ContentPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
@@ -586,7 +589,8 @@ namespace AppedoLT
             this.tabiVariables,
             this.tabiExtractedVariable,
             this.tabiResponse,
-            this.tabItem1});
+            this.tabItem1,
+            this.tabiAssertion});
             this.radTabStrip1.Location = new System.Drawing.Point(2, 69);
             this.radTabStrip1.Name = "radTabStrip1";
             this.radTabStrip1.ScrollOffsetStep = 5;
@@ -768,7 +772,6 @@ namespace AppedoLT
             this.tabItem1.ContentPanel.ForeColor = System.Drawing.SystemColors.ControlText;
             this.tabItem1.ContentPanel.Location = new System.Drawing.Point(0, 24);
             this.tabItem1.ContentPanel.Size = new System.Drawing.Size(1029, 248);
-            this.tabItem1.IsSelected = true;
             this.tabItem1.Margin = new System.Windows.Forms.Padding(4, 0, 0, 0);
             this.tabItem1.Name = "tabItem1";
             this.tabItem1.StretchHorizontally = false;
@@ -783,6 +786,34 @@ namespace AppedoLT
             this.webBrowser1.ScriptErrorsSuppressed = true;
             this.webBrowser1.Size = new System.Drawing.Size(1029, 248);
             this.webBrowser1.TabIndex = 0;
+            // 
+            // tabiAssertion
+            // 
+            this.tabiAssertion.Alignment = System.Drawing.ContentAlignment.BottomLeft;
+            // 
+            // tabiAssertion.ContentPanel
+            // 
+            this.tabiAssertion.ContentPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(248)))));
+            this.tabiAssertion.ContentPanel.CausesValidation = true;
+            this.tabiAssertion.ContentPanel.Controls.Add(this.richTextBox1);
+            this.tabiAssertion.ContentPanel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tabiAssertion.ContentPanel.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.tabiAssertion.ContentPanel.Location = new System.Drawing.Point(0, 24);
+            this.tabiAssertion.ContentPanel.Size = new System.Drawing.Size(1029, 248);
+            this.tabiAssertion.IsSelected = true;
+            this.tabiAssertion.Margin = new System.Windows.Forms.Padding(4, 0, 0, 0);
+            this.tabiAssertion.Name = "tabiAssertion";
+            this.tabiAssertion.StretchHorizontally = false;
+            this.tabiAssertion.Text = "Assertion";
+            // 
+            // richTextBox1
+            // 
+            this.richTextBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.richTextBox1.Location = new System.Drawing.Point(0, 0);
+            this.richTextBox1.Name = "richTextBox1";
+            this.richTextBox1.Size = new System.Drawing.Size(1029, 248);
+            this.richTextBox1.TabIndex = 0;
+            this.richTextBox1.Text = "";
             // 
             // frmValidation
             // 
@@ -850,6 +881,7 @@ namespace AppedoLT
             ((System.ComponentModel.ISupportInitialize)(this.gvExtractedVariables)).EndInit();
             this.tabiResponse.ContentPanel.ResumeLayout(false);
             this.tabItem1.ContentPanel.ResumeLayout(false);
+            this.tabiAssertion.ContentPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
 
@@ -914,6 +946,8 @@ namespace AppedoLT
         private Telerik.WinControls.UI.RadButton btnViewLog;
         private System.Windows.Forms.ColumnHeader lvcContainerName;
         private System.Windows.Forms.ColumnHeader lvcSuccess;
+        private Telerik.WinControls.UI.TabItem tabiAssertion;
+        private System.Windows.Forms.RichTextBox richTextBox1;
     }
 }
 
