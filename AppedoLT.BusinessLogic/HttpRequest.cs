@@ -434,7 +434,7 @@ namespace AppedoLT.BusinessLogic
                             {
                                 AssertionResult = false;
                                // AssertionFaildMsg.Append(string.Format("Assertion({0}) Failed.\r\n", assertion.Attributes["name"].Value));
-                                AssertionFaildMsg.Append(string.Format("Expectedd value({0}) not present in the response.\r\n", assertion.Attributes["text"].Value));
+                                AssertionFaildMsg.Append(string.Format("Expected value({0}) not present in the response.\r\n", assertion.Attributes["text"].Value));
                             }
                         }
                         else

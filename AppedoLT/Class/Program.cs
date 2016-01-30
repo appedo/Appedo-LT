@@ -33,7 +33,7 @@ namespace AppedoLT
                 {
                     if (createdNew)
                     {
-
+                        RequestCountHandler._NetworkConnectedIP = System.Net.Dns.GetHostByName(System.Net.Dns.GetHostName()).AddressList[0].ToString();
                         Thread.CurrentThread.SetApartmentState(ApartmentState.STA);
                         Application.EnableVisualStyles();
                         Constants constants = AppedoLT.Core.Constants.GetInstance();
