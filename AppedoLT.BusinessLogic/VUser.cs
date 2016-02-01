@@ -847,6 +847,12 @@ namespace AppedoLT.BusinessLogic
                                                                 responseResultSec.RequestResult = secReq;
                                                                 responseResultSec.WebRequestResponseId = Convert.ToInt32(Constants.GetInstance().UniqueID);
                                                                 LockRequestResponse(responseResultSec);
+                                                                //responseResultSec.re
+                                                                if (!secReq.ErrorCode.StartsWith("2") && !secReq.ErrorCode.StartsWith("3"))
+                                                                {
+                                                                    LockException(Convert.ToString(secReq.RequestId), secReq.ErrorMessage, secReq.ErrorCode, secReq.RequestNode.Attributes["Address"].Value);
+                                                                }
+                                                                
                                                             }
                                                             else
                                                             {
