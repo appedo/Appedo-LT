@@ -656,7 +656,7 @@ namespace AppedoLT
             //save the output to a file
             xmldoc.Save(FILE_NAME);
 
-            //ucDesign.GetInstance().LoadTreeItem();
+            ucDesign.GetInstance().LoadTreeItem();
 
             this.SetRequest(oldRequest);
             }catch (Exception ex) {
