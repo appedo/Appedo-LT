@@ -10,6 +10,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Xml;
 using System.Configuration;
+using System.Collections;
 
 namespace AppedoLT.BusinessLogic
 {
@@ -415,6 +416,7 @@ namespace AppedoLT.BusinessLogic
 
         public override void PerformAssertion()
         {
+            Hashtable hashtable = new Hashtable();
             #region Assertion
 
             if (RequestNode.SelectSingleNode("assertions") != null && RequestNode.SelectSingleNode("assertions").ChildNodes.Count > 0)
@@ -489,14 +491,26 @@ namespace AppedoLT.BusinessLogic
                         }
                         #endregion
                     }
+
+                    hashtable.Add(assertion.Attributes["name"].Value, AssertionResult);
                 }
-                if (AssertionResult == false)
+                if (hashtable.ContainsValue(false))
                 {
                     Success = false;
                     HasError = true;
                     ErrorMessage = AssertionFaildMsg.ToString();
                     ErrorCode = "800";
                 }
+
+                //if (AssertionResult == false)
+                //{
+                //    Success = false;
+                //    HasError = true;
+                //    ErrorMessage = AssertionFaildMsg.ToString();
+                //    ErrorCode = "800";
+                //}
+
+                
             }
             #endregion
         }
