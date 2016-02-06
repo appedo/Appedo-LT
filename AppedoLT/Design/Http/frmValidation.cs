@@ -132,6 +132,8 @@ namespace AppedoLT
                 newItem.Tag = requestResponse;
                 newItem.SubItems.AddRange(new string[] { requestResponse.RequestResult.RequestId.ToString(), requestResponse.ContainerName, requestResponse.RequestResult.RequestName, requestResponse.RequestResult.StartTime.ToString(), requestResponse.RequestResult.EndTime.ToString(), requestResponse.RequestResult.ResponseTime.ToString(), requestResponse.RequestResult.ResponseCode.ToString(), requestResponse.RequestResult.Success.ToString() });
                 lsvResult.Items.Add(newItem);
+
+                lblHitcoutValue.Text = lsvResult.Items.Count.ToString();
             }
             catch (Exception ex)
             {
@@ -164,6 +166,7 @@ namespace AppedoLT
                         _logObj.Clear();
                         btnViewError.Text = "&Errors(" + _errorObj.Count.ToString() + ")";
                         btnViewLog.Text = "&Logs(" + _logObj.Count.ToString() + ")";
+                        lblHitcoutValue.Text = lsvResult.Items.Count.ToString();
                         if (firstRun == true) firstRun = false;
                         VariableManager.dataCenter = new VariableManager();
                         lsvResult.Items.Clear();
@@ -179,6 +182,7 @@ namespace AppedoLT
                         lblStatus.Text = "Started";
                         _vUSer.WorkCompleted = false;
                         btnValidate.Enabled = false;
+                        
 
                     }
                     //Another validation is in progress.

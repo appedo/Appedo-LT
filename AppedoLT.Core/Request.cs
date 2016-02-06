@@ -71,6 +71,7 @@ namespace AppedoLT.Core
         public bool Success { get; set; }
         public bool AssertionResult { get; set; }
         public StringBuilder AssertionFaildMsg = new StringBuilder();
+        public StringBuilder AssertionSucessMsg = new StringBuilder();
         public double ResponseTime
         {
             get

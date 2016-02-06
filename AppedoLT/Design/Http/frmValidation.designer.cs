@@ -35,6 +35,8 @@ namespace AppedoLT
             this.cmnuExpandAll = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.expandAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.collapseAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.lblHitcoutValue = new System.Windows.Forms.Label();
+            this.lblHitCount = new System.Windows.Forms.Label();
             this.btnViewError = new Telerik.WinControls.UI.RadButton();
             this.btnViewLog = new Telerik.WinControls.UI.RadButton();
             this.btnStop = new Telerik.WinControls.UI.RadButton();
@@ -85,9 +87,9 @@ namespace AppedoLT
             this.tabItem1 = new Telerik.WinControls.UI.TabItem();
             this.webBrowser1 = new System.Windows.Forms.WebBrowser();
             this.tabiAssertion = new Telerik.WinControls.UI.TabItem();
+            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.vistaTheme1 = new Telerik.WinControls.Themes.VistaTheme();
             this.telerikTheme1 = new Telerik.WinControls.Themes.TelerikTheme();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.spltcValidation)).BeginInit();
             this.spltcValidation.Panel1.SuspendLayout();
             this.spltcValidation.Panel2.SuspendLayout();
@@ -152,6 +154,8 @@ namespace AppedoLT
             // spltcValidation.Panel2
             // 
             this.spltcValidation.Panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(219)))), ((int)(((byte)(255)))));
+            this.spltcValidation.Panel2.Controls.Add(this.lblHitcoutValue);
+            this.spltcValidation.Panel2.Controls.Add(this.lblHitCount);
             this.spltcValidation.Panel2.Controls.Add(this.btnViewError);
             this.spltcValidation.Panel2.Controls.Add(this.btnViewLog);
             this.spltcValidation.Panel2.Controls.Add(this.btnStop);
@@ -204,6 +208,26 @@ namespace AppedoLT
             this.collapseAllToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
             this.collapseAllToolStripMenuItem.Text = "&Collapse All";
             this.collapseAllToolStripMenuItem.Click += new System.EventHandler(this.collapseAllToolStripMenuItem_Click);
+            // 
+            // lblHitcoutValue
+            // 
+            this.lblHitcoutValue.AutoSize = true;
+            this.lblHitcoutValue.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblHitcoutValue.Location = new System.Drawing.Point(926, 9);
+            this.lblHitcoutValue.Name = "lblHitcoutValue";
+            this.lblHitcoutValue.Size = new System.Drawing.Size(23, 13);
+            this.lblHitcoutValue.TabIndex = 14;
+            this.lblHitcoutValue.Text = "  0";
+            // 
+            // lblHitCount
+            // 
+            this.lblHitCount.AutoSize = true;
+            this.lblHitCount.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblHitCount.Location = new System.Drawing.Point(860, 9);
+            this.lblHitCount.Name = "lblHitCount";
+            this.lblHitCount.Size = new System.Drawing.Size(73, 13);
+            this.lblHitCount.TabIndex = 13;
+            this.lblHitCount.Text = "Hit Count : ";
             // 
             // btnViewError
             // 
@@ -948,6 +972,8 @@ namespace AppedoLT
         private System.Windows.Forms.ColumnHeader lvcSuccess;
         private Telerik.WinControls.UI.TabItem tabiAssertion;
         private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.Label lblHitCount;
+        private System.Windows.Forms.Label lblHitcoutValue;
     }
 }
 

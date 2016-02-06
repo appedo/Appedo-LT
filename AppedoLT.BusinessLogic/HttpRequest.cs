@@ -431,6 +431,7 @@ namespace AppedoLT.BusinessLogic
                             if (ResponseStr.Contains(assertion.Attributes["text"].Value) == true)
                             {
                                 AssertionResult = true;
+                                AssertionFaildMsg.Append(string.Format("Expected value({0}) present in the response.\r\n", assertion.Attributes["text"].Value));
                             }
                             else
                             {
@@ -444,6 +445,7 @@ namespace AppedoLT.BusinessLogic
                             if (!(ResponseStr.Contains(assertion.Attributes["text"].Value) == true))
                             {
                                 AssertionResult = true;
+                                AssertionFaildMsg.Append(string.Format("Expected value({0}) present in the response.\r\n", assertion.Attributes["text"].Value));
                             }
                             else
                             {
@@ -470,6 +472,7 @@ namespace AppedoLT.BusinessLogic
                             if (matchCount > 0)
                             {
                                 AssertionResult = true;
+                                AssertionFaildMsg.Append(string.Format("Expected value({0}) present in the response.\r\n", assertion.Attributes["text"].Value));
                             }
                             else
                             {
@@ -482,6 +485,7 @@ namespace AppedoLT.BusinessLogic
                             if (!(matchCount > 0))
                             {
                                 AssertionResult = true;
+                                AssertionFaildMsg.Append(string.Format("Expected value({0}) present in the response.\r\n", assertion.Attributes["text"].Value));
                             }
                             else
                             {
