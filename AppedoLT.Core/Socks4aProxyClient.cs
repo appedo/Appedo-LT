@@ -43,9 +43,10 @@ namespace AppedoLT.Core
     {
         private const string PROXY_NAME = "SOCKS4a";
 
-        /// <summary>
-        /// Default constructor.
-        /// </summary>
+        /// <summary>   Default constructor. </summary>
+        ///
+        /// <remarks>   Rasith, 08-02-2016. </remarks>
+
         public Socks4aProxyClient()
             : base()
         { }
@@ -102,20 +103,20 @@ namespace AppedoLT.Core
             get { return PROXY_NAME; }
         }
 
-
-        /// <summary>
-        /// Sends a command to the proxy server.
-        /// </summary>
-        /// <param name="proxy">Proxy server data stream.</param>
-        /// <param name="command">Proxy byte command to execute.</param>
-        /// <param name="destinationHost">Destination host name or IP address.</param>
-        /// <param name="destinationPort">Destination port number</param>
-        /// <param name="userId">IDENTD user ID value.</param>
+        /// <summary>   Sends a command to the proxy server. </summary>
+        ///
         /// <remarks>
-        /// This method override the SendCommand message in the Sock4ProxyClient object.  The override adds support for the
-        /// Socks4a extensions which allow the proxy client to optionally command the proxy server to resolve the 
-        /// destination host IP address. 
+        /// This method override the SendCommand message in the Sock4ProxyClient object.  The override
+        /// adds support for the Socks4a extensions which allow the proxy client to optionally command
+        /// the proxy server to resolve the destination host IP address.
         /// </remarks>
+        ///
+        /// <param name="proxy">            Proxy server data stream. </param>
+        /// <param name="command">          Proxy byte command to execute. </param>
+        /// <param name="destinationHost">  Destination host name or IP address. </param>
+        /// <param name="destinationPort">  Destination port number. </param>
+        /// <param name="userId">           IDENTD user ID value. </param>
+
         internal override void SendCommand(NetworkStream proxy, byte command, string destinationHost, int destinationPort, string userId)
         {
             // PROXY SERVER REQUEST

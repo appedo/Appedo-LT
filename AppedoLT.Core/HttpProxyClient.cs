@@ -29,88 +29,155 @@ using System.Net.Sockets;
 using System.Threading;
 using System.Globalization;
 using System.ComponentModel;
+using System.Net;
+using System.Reflection;
 
 namespace AppedoLT.Core
 {
     /// <summary>
     /// HTTP connection proxy class.  This class implements the HTTP standard proxy protocol.
     /// <para>
-    /// You can use this class to set up a connection to an HTTP proxy server.  Calling the 
+    /// You can use this class to set up a connection to an HTTP proxy server.  Calling the
     /// CreateConnection() method initiates the proxy connection and returns a standard
-    /// System.Net.Socks.TcpClient object that can be used as normal.  The proxy plumbing
-    /// is all handled for you.
+    /// System.Net.Socks.TcpClient object that can be used as normal.  The proxy plumbing is all
+    /// handled for you.
     /// </para>
     /// <code>
     /// 
     /// </code>
     /// </summary>
+    ///
+    /// <remarks>   Veeru, 08-02-2016. </remarks>
+
     public class HttpProxyClient : IProxyClient
     {
+        /// <summary>   The proxy host. </summary>
         private string _proxyHost;
+        /// <summary>   The proxy port. </summary>
         private int _proxyPort;
+        /// <summary>   The resp code. </summary>
         private HttpResponseCodes _respCode;
+        /// <summary>   The resp text. </summary>
         private string _respText;
+        /// <summary>   The TCP client. </summary>
         private TcpClient _tcpClient;
 
+        /// <summary>   The HTTP proxy default port. </summary>
         private const int HTTP_PROXY_DEFAULT_PORT = 8080;
+        /// <summary>   The HTTP proxy connect command. </summary>
         private const string HTTP_PROXY_CONNECT_CMD = "CONNECT {0}:{1} HTTP/1.0\r\nHost: {0}:{1}\r\n\r\n";
-        private const int WAIT_FOR_DATA_INTERVAL = 50; // 50 ms
-        private const int WAIT_FOR_DATA_TIMEOUT = 15000; // 15 seconds
+        /// <summary>   50 ms. </summary>
+        private const int WAIT_FOR_DATA_INTERVAL = 50;
+        /// <summary>   15 seconds. </summary>
+        private const int WAIT_FOR_DATA_TIMEOUT = 15000;
+        /// <summary>   Name of the proxy. </summary>
         private const string PROXY_NAME = "HTTP";
+
+        /// <summary>   Values that represent HTTP response codes. </summary>
+        ///
+        /// <remarks>   Veeru, 08-02-2016. </remarks>
 
         private enum HttpResponseCodes
         {
+            /// <summary>   An enum constant representing the none option. </summary>
             None = 0,
+            /// <summary>   An enum constant representing the continue option. </summary>
             Continue = 100,
+            /// <summary>   An enum constant representing the switching protocols option. </summary>
             SwitchingProtocols = 101,
+            /// <summary>   An enum constant representing the ok option. </summary>
             OK = 200,
+            /// <summary>   An enum constant representing the created option. </summary>
             Created = 201,
+            /// <summary>   An enum constant representing the accepted option. </summary>
             Accepted = 202,
+            /// <summary>   An enum constant representing the non authoritive information option. </summary>
             NonAuthoritiveInformation = 203,
+            /// <summary>   An enum constant representing the no content option. </summary>
             NoContent = 204,
+            /// <summary>   An enum constant representing the reset content option. </summary>
             ResetContent = 205,
+            /// <summary>   An enum constant representing the partial content option. </summary>
             PartialContent = 206,
+            /// <summary>   An enum constant representing the multiple choices option. </summary>
             MultipleChoices = 300,
+            /// <summary>   An enum constant representing the moved permanetly option. </summary>
             MovedPermanetly = 301,
+            /// <summary>   An enum constant representing the found option. </summary>
             Found = 302,
+            /// <summary>   An enum constant representing the see other option. </summary>
             SeeOther = 303,
+            /// <summary>   An enum constant representing the not modified option. </summary>
             NotModified = 304,
+            /// <summary>   An enum constant representing the user proxy option. </summary>
             UserProxy = 305,
+            /// <summary>   An enum constant representing the temporary redirect option. </summary>
             TemporaryRedirect = 307,
+            /// <summary>   An enum constant representing the bad request option. </summary>
             BadRequest = 400,
+            /// <summary>   An enum constant representing the unauthorized option. </summary>
             Unauthorized = 401,
+            /// <summary>   An enum constant representing the payment required option. </summary>
             PaymentRequired = 402,
+            /// <summary>   An enum constant representing the forbidden option. </summary>
             Forbidden = 403,
+            /// <summary>   An enum constant representing the not found option. </summary>
             NotFound = 404,
+            /// <summary>   An enum constant representing the method not allowed option. </summary>
             MethodNotAllowed = 405,
+            /// <summary>   An enum constant representing the not acceptable option. </summary>
             NotAcceptable = 406,
+            /// <summary>   An enum constant representing the proxy authenticantion required option. </summary>
             ProxyAuthenticantionRequired = 407,
+            /// <summary>   An enum constant representing the request timeout option. </summary>
             RequestTimeout = 408,
+            /// <summary>   An enum constant representing the conflict option. </summary>
             Conflict = 409,
+            /// <summary>   An enum constant representing the gone option. </summary>
             Gone = 410,
+            /// <summary>   An enum constant representing the precondition failed option. </summary>
             PreconditionFailed = 411,
+            /// <summary>   An enum constant representing the request entity too large option. </summary>
             RequestEntityTooLarge = 413,
+            /// <summary>   An enum constant representing the request URI too long option. </summary>
             RequestURITooLong = 414,
+            /// <summary>   An enum constant representing the unsupported media type option. </summary>
             UnsupportedMediaType = 415,
+            /// <summary>   An enum constant representing the requested range not satisfied option. </summary>
             RequestedRangeNotSatisfied = 416,
+            /// <summary>   An enum constant representing the expectation failed option. </summary>
             ExpectationFailed = 417,
+            /// <summary>   An enum constant representing the internal server error option. </summary>
             InternalServerError = 500,
+            /// <summary>   An enum constant representing the not implemented option. </summary>
             NotImplemented = 501,
+            /// <summary>   An enum constant representing the bad gateway option. </summary>
             BadGateway = 502,
+            /// <summary>   An enum constant representing the service unavailable option. </summary>
             ServiceUnavailable = 503,
+            /// <summary>   An enum constant representing the gateway timeout option. </summary>
             GatewayTimeout = 504,
+            /// <summary>   An enum constant representing the HTTP version not supported option. </summary>
             HTTPVersionNotSupported = 505
         }
 
-        /// <summary>
-        /// Constructor.
-        /// </summary>
+        /// <summary>   Constructor. </summary>
+        ///
+        /// <remarks>   Rasith, 08-02-2016. </remarks>
+
         public HttpProxyClient() { }
 
         /// <summary>
         /// Creates a HTTP proxy client object using the supplied TcpClient object connection.
         /// </summary>
-        /// <param name="tcpClient">A TcpClient connection object.</param>
+        ///
+        /// <remarks>   Veeru, 08-02-2016. </remarks>
+        ///
+        /// <exception cref="ArgumentNullException">    Thrown when one or more required arguments are
+        ///                                             null. </exception>
+        ///
+        /// <param name="tcpClient">    A TcpClient connection object. </param>
+
         public HttpProxyClient(TcpClient tcpClient)
         {
             if (tcpClient == null)
@@ -119,11 +186,15 @@ namespace AppedoLT.Core
             _tcpClient = tcpClient;
         }
 
+        /// <summary>   Constructor.  The default HTTP proxy port 8080 is used. </summary>
+        ///
+        /// <remarks>   Veeru, 08-02-2016. </remarks>
+        ///
+        /// <exception cref="ArgumentNullException">    Thrown when one or more required arguments are
+        ///                                             null. </exception>
+        ///
+        /// <param name="proxyHost">    Host name or IP address of the proxy. </param>
 
-        /// <summary>
-        /// Constructor.  The default HTTP proxy port 8080 is used.
-        /// </summary>
-        /// <param name="proxyHost">Host name or IP address of the proxy.</param>
         public HttpProxyClient(string proxyHost)
         {
             if (String.IsNullOrEmpty(proxyHost))
@@ -133,11 +204,18 @@ namespace AppedoLT.Core
             _proxyPort = HTTP_PROXY_DEFAULT_PORT;
         }
 
-        /// <summary>
-        /// Constructor.  
-        /// </summary>
-        /// <param name="proxyHost">Host name or IP address of the proxy server.</param>
-        /// <param name="proxyPort">Port number for the proxy server.</param>
+        /// <summary>   Constructor. </summary>
+        ///
+        /// <remarks>   Veeru, 08-02-2016. </remarks>
+        ///
+        /// <exception cref="ArgumentNullException">        Thrown when one or more required arguments
+        ///                                                 are null. </exception>
+        /// <exception cref="ArgumentOutOfRangeException">  Thrown when one or more arguments are outside
+        ///                                                 the required range. </exception>
+        ///
+        /// <param name="proxyHost">    Host name or IP address of the proxy server. </param>
+        /// <param name="proxyPort">    Port number for the proxy server. </param>
+
         public HttpProxyClient(string proxyHost, int proxyPort)
         {
             if (String.IsNullOrEmpty(proxyHost))
@@ -150,58 +228,70 @@ namespace AppedoLT.Core
             _proxyPort = proxyPort;
         }
 
-        /// <summary>
-        /// Gets or sets host name or IP address of the proxy server.
-        /// </summary>
+        /// <summary>   Gets or sets host name or IP address of the proxy server. </summary>
+        ///
+        /// <value> The proxy host. </value>
+
         public string ProxyHost
         {
             get { return _proxyHost; }
             set { _proxyHost = value; }
         }
 
-        /// <summary>
-        /// Gets or sets port number for the proxy server.
-        /// </summary>
+        /// <summary>   Gets or sets port number for the proxy server. </summary>
+        ///
+        /// <value> The proxy port. </value>
+
         public int ProxyPort
         {
             get { return _proxyPort; }
             set { _proxyPort = value; }
         }
 
-        /// <summary>
-        /// Gets String representing the name of the proxy. 
-        /// </summary>
-        /// <remarks>This property will always return the value 'HTTP'</remarks>
+        /// <summary>   Gets String representing the name of the proxy. </summary>
+        ///
+        /// <remarks>   This property will always return the value 'HTTP'. </remarks>
+        ///
+        /// <value> The name of the proxy. </value>
+
         public string ProxyName
         {
             get { return PROXY_NAME; }
         }
 
         /// <summary>
-        /// Gets or sets the TcpClient object. 
-        /// This property can be set prior to executing CreateConnection to use an existing TcpClient connection.
+        /// Gets or sets the TcpClient object. This property can be set prior to executing
+        /// CreateConnection to use an existing TcpClient connection.
         /// </summary>
+        ///
+        /// <value> The TCP client. </value>
+
         public TcpClient TcpClient
         {
             get { return _tcpClient; }
             set { _tcpClient = value; }
         }
 
-
         /// <summary>
-        /// Creates a remote TCP connection through a proxy server to the destination host on the destination port.
+        /// Creates a remote TCP connection through a proxy server to the destination host on the
+        /// destination port.
         /// </summary>
-        /// <param name="destinationHost">Destination host name or IP address.</param>
-        /// <param name="destinationPort">Port number to connect to on the destination host.</param>
-        /// <returns>
-        /// Returns an open TcpClient object that can be used normally to communicate
-        /// with the destination server
-        /// </returns>
+        ///
         /// <remarks>
-        /// This method creates a connection to the proxy server and instructs the proxy server
-        /// to make a pass through connection to the specified destination host on the specified
-        /// port.  
+        /// This method creates a connection to the proxy server and instructs the proxy server to make a
+        /// pass through connection to the specified destination host on the specified port.  
         /// </remarks>
+        ///
+        /// <exception cref="ProxyException">   Thrown when a Proxy error condition occurs. </exception>
+        ///
+        /// <param name="destinationHost">  Destination host name or IP address. </param>
+        /// <param name="destinationPort">  Port number to connect to on the destination host. </param>
+        ///
+        /// <returns>
+        /// Returns an open TcpClient object that can be used normally to communicate with the
+        /// destination server.
+        /// </returns>
+
         public TcpClient CreateConnection(string destinationHost, int destinationPort)
         {
             try
@@ -225,6 +315,8 @@ namespace AppedoLT.Core
                 //  send connection command to proxy host for the specified destination host and port
                 SendConnectionCommand(destinationHost, destinationPort);
 
+                //connectViaHTTPProxy(destinationHost, destinationPort,_proxyHost, _proxyPort,"","");
+
                 // return the open proxied tcp client object to the caller for normal use
                 return _tcpClient;
             }
@@ -234,9 +326,75 @@ namespace AppedoLT.Core
             }
         }
 
+        /// <summary>   Connects a via HTTP proxy. </summary>
+        ///
+        /// <remarks>   Veeru, 08-02-2016. </remarks>
+        ///
+        /// <param name="targetHost">       Target host. </param>
+        /// <param name="targetPort">       Target port. </param>
+        /// <param name="httpProxyHost">    The HTTP proxy host. </param>
+        /// <param name="httpProxyPort">    The HTTP proxy port. </param>
+        /// <param name="proxyUserName">    Name of the proxy user. </param>
+        /// <param name="proxyPassword">    The proxy password. </param>
+        ///
+        /// <returns>   A TcpClient. </returns>
+
+        static TcpClient connectViaHTTPProxy(string targetHost,int targetPort, string httpProxyHost, int httpProxyPort, string proxyUserName, string proxyPassword)
+        {
+            var uriBuilder = new UriBuilder
+            {
+                Scheme = Uri.UriSchemeHttp,
+                Host = httpProxyHost,
+                Port = httpProxyPort
+            };
+
+            var proxyUri = uriBuilder.Uri;
+
+            var request = WebRequest.Create("https://" + targetHost + ":" + targetPort);
+
+            var webProxy = new WebProxy(proxyUri);
+
+            request.Proxy = webProxy;
+            request.Method = "CONNECT";
+
+            var credentials = new NetworkCredential(proxyUserName, proxyPassword);
+
+            webProxy.Credentials = credentials;
+            webProxy.BypassProxyOnLocal = true;
+
+            var response = request.GetResponse();
+
+            var responseStream = response.GetResponseStream();
+            //Debug.Assert(responseStream != null);
+
+            const BindingFlags Flags = BindingFlags.NonPublic | BindingFlags.Instance;
+
+            var rsType = responseStream.GetType();
+            var connectionProperty = rsType.GetProperty("Connection", Flags);
+
+            var connection = connectionProperty.GetValue(responseStream, null);
+            var connectionType = connection.GetType();
+            var networkStreamProperty = connectionType.GetProperty("NetworkStream", Flags);
+
+            var networkStream = networkStreamProperty.GetValue(connection, null);
+            var nsType = networkStream.GetType();
+            var socketProperty = nsType.GetProperty("Socket", Flags);
+            var socket = (Socket)socketProperty.GetValue(networkStream, null);
+
+            return new TcpClient { Client = socket };
+        }
+
+        /// <summary>   Sends a connection command. </summary>
+        ///
+        /// <remarks>   Veeru, 08-02-2016. </remarks>
+        ///
+        /// <param name="host"> The host. </param>
+        /// <param name="port"> The port. </param>
 
         private void SendConnectionCommand(string host, int port)
         {
+
+
             NetworkStream stream = _tcpClient.GetStream(); 
 
             // PROXY SERVER REQUEST
@@ -281,7 +439,16 @@ namespace AppedoLT.Core
             if (_respCode != HttpResponseCodes.OK)
                 HandleProxyCommandError(host, port);
         }
-        
+
+        /// <summary>   Handles the proxy command error. </summary>
+        ///
+        /// <remarks>   Veeru, 08-02-2016. </remarks>
+        ///
+        /// <exception cref="ProxyException">   Thrown when a Proxy error condition occurs. </exception>
+        ///
+        /// <param name="host"> The host. </param>
+        /// <param name="port"> The port. </param>
+
         private void HandleProxyCommandError(string host, int port)
         {
             string msg;
@@ -306,6 +473,14 @@ namespace AppedoLT.Core
             throw new ProxyException(msg);
         }
 
+        /// <summary>   Wait for data. </summary>
+        ///
+        /// <remarks>   Veeru, 08-02-2016. </remarks>
+        ///
+        /// <exception cref="ProxyException">   Thrown when a Proxy error condition occurs. </exception>
+        ///
+        /// <param name="stream">   The stream. </param>
+
         private void WaitForData(NetworkStream stream)
         {
             int sleepTime = 0;
@@ -318,6 +493,12 @@ namespace AppedoLT.Core
             }
         }
 
+        /// <summary>   Parse response. </summary>
+        ///
+        /// <remarks>   Veeru, 08-02-2016. </remarks>
+        ///
+        /// <param name="response"> The response. </param>
+
         private void ParseResponse(string response)
         {
             string[] data = null;
@@ -327,6 +508,14 @@ namespace AppedoLT.Core
             
             ParseCodeAndText(data[0]);
         }
+
+        /// <summary>   Parse code and text. </summary>
+        ///
+        /// <remarks>   Veeru, 08-02-2016. </remarks>
+        ///
+        /// <exception cref="ProxyException">   Thrown when a Proxy error condition occurs. </exception>
+        ///
+        /// <param name="line"> The line. </param>
 
         private void ParseCodeAndText(string line)
         {
@@ -354,33 +543,39 @@ namespace AppedoLT.Core
 
 #region "Async Methods"
 
+        /// <summary>   The asynchronous worker. </summary>
         private BackgroundWorker _asyncWorker;
+        /// <summary>   The asynchronous exception. </summary>
         private Exception _asyncException;
+        /// <summary>   true if asynchronous cancelled. </summary>
         bool _asyncCancelled;
 
-        /// <summary>
-        /// Gets a value indicating whether an asynchronous operation is running.
-        /// </summary>
-        /// <remarks>Returns true if an asynchronous operation is running; otherwise, false.
-        /// </remarks>
+        /// <summary>   Gets a value indicating whether an asynchronous operation is running. </summary>
+        ///
+        /// <remarks>   Returns true if an asynchronous operation is running; otherwise, false. </remarks>
+        ///
+        /// <value> true if this object is busy, false if not. </value>
+
         public bool IsBusy
         {
             get { return _asyncWorker == null ? false : _asyncWorker.IsBusy; }
         }
 
-        /// <summary>
-        /// Gets a value indicating whether an asynchronous operation is cancelled.
-        /// </summary>
-        /// <remarks>Returns true if an asynchronous operation is cancelled; otherwise, false.
-        /// </remarks>
+        /// <summary>   Gets a value indicating whether an asynchronous operation is cancelled. </summary>
+        ///
+        /// <remarks>   Returns true if an asynchronous operation is cancelled; otherwise, false. </remarks>
+        ///
+        /// <value> true if this object is asynchronous cancelled, false if not. </value>
+
         public bool IsAsyncCancelled
         {
             get { return _asyncCancelled; }
         }
 
-        /// <summary>
-        /// Cancels any asychronous operation that is currently active.
-        /// </summary>
+        /// <summary>   Cancels any asychronous operation that is currently active. </summary>
+        ///
+        /// <remarks>   Veeru, 08-02-2016. </remarks>
+
         public void CancelAsync()
         {
             if (_asyncWorker != null && !_asyncWorker.CancellationPending && _asyncWorker.IsBusy)
@@ -389,6 +584,10 @@ namespace AppedoLT.Core
                 _asyncWorker.CancelAsync();
             }
         }
+
+        /// <summary>   Creates asynchronous worker. </summary>
+        ///
+        /// <remarks>   Veeru, 08-02-2016. </remarks>
 
         private void CreateAsyncWorker()
         {
@@ -400,25 +599,25 @@ namespace AppedoLT.Core
             _asyncWorker = new BackgroundWorker();
         }
 
-        /// <summary>
-        /// Event handler for CreateConnectionAsync method completed.
-        /// </summary>
+        /// <summary>   Event handler for CreateConnectionAsync method completed. </summary>
         public event EventHandler<CreateConnectionAsyncCompletedEventArgs> CreateConnectionAsyncCompleted;
 
         /// <summary>
-        /// Asynchronously creates a remote TCP connection through a proxy server to the destination host on the destination port.
+        /// Asynchronously creates a remote TCP connection through a proxy server to the destination host
+        /// on the destination port.
         /// </summary>
-        /// <param name="destinationHost">Destination host name or IP address.</param>
-        /// <param name="destinationPort">Port number to connect to on the destination host.</param>
-        /// <returns>
-        /// Returns an open TcpClient object that can be used normally to communicate
-        /// with the destination server
-        /// </returns>
+        ///
         /// <remarks>
-        /// This method creates a connection to the proxy server and instructs the proxy server
-        /// to make a pass through connection to the specified destination host on the specified
-        /// port.  
+        /// This method creates a connection to the proxy server and instructs the proxy server to make a
+        /// pass through connection to the specified destination host on the specified port.  
         /// </remarks>
+        ///
+        /// <exception cref="InvalidOperationException">    Thrown when the requested operation is
+        ///                                                 invalid. </exception>
+        ///
+        /// <param name="destinationHost">  Destination host name or IP address. </param>
+        /// <param name="destinationPort">  Port number to connect to on the destination host. </param>
+
         public void CreateConnectionAsync(string destinationHost, int destinationPort)
         {
             if (_asyncWorker != null && _asyncWorker.IsBusy)
@@ -434,6 +633,13 @@ namespace AppedoLT.Core
             _asyncWorker.RunWorkerAsync(args);
         }
 
+        /// <summary>   Event handler. Called by CreateConnectionAsync for do work events. </summary>
+        ///
+        /// <remarks>   Veeru, 08-02-2016. </remarks>
+        ///
+        /// <param name="sender">   Source of the event. </param>
+        /// <param name="e">        Do work event information. </param>
+
         private void CreateConnectionAsync_DoWork(object sender, DoWorkEventArgs e)
         {
             try
@@ -446,6 +652,15 @@ namespace AppedoLT.Core
                 _asyncException = ex;
             }
         }
+
+        /// <summary>
+        /// Event handler. Called by CreateConnectionAsync for run worker completed events.
+        /// </summary>
+        ///
+        /// <remarks>   Veeru, 08-02-2016. </remarks>
+        ///
+        /// <param name="sender">   Source of the event. </param>
+        /// <param name="e">        Run worker completed event information. </param>
 
         private void CreateConnectionAsync_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {

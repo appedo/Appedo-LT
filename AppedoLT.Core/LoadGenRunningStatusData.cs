@@ -4,6 +4,11 @@ using System.ComponentModel;
 using System.Runtime.Serialization;
 using System.Text;
 
+
+// namespace: AppedoLT.Core
+//
+// summary:	.
+
 namespace AppedoLT.Core
 {
     [DataContract]
@@ -52,6 +57,10 @@ namespace AppedoLT.Core
     {
 
         private List<T> _data = new List<T>();
+
+        /// <summary>   Gets or sets the runid. </summary>
+        ///
+        /// <value> The runid. </value>
 
         [DataMember(Name = "runid")]
         public string Runid { get; set; }

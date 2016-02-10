@@ -494,6 +494,7 @@ namespace AppedoLT
                             strValidatedResponse = requestRespose.RequestResult.ResponseStr;
                         }
                         richTextBox1.Text = requestRespose.RequestResult.AssertionFaildMsg.ToString();
+                        richTextBox1.ReadOnly = true;                        
                         txtResponse.Text = strValidatedResponse;
                         gvHeader.DataSource = ConvertToTable(requestRespose.RequestResult.RequestNode.SelectSingleNode("headers"));
                         gvParameters.DataSource = ConvertToTable(requestRespose.RequestResult.Parameters);
