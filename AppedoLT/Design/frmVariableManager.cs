@@ -169,7 +169,7 @@ namespace AppedoLT
                     destination = Constants.GetInstance().ExecutingAssemblyLocation + "\\Variables\\" + modified + "_" + fileinfo.Name;
                     File.Copy(source, destination, true);
                     destination = "\\Variables\\" + modified + "_" + fileinfo.Name;
-                }
+               }
             }
             catch (Exception ex)
             {
@@ -565,7 +565,7 @@ namespace AppedoLT
                         if (source.LastWriteTime.Ticks != Convert.ToDouble(variable.Attributes["modified"].Value))
                         {
                             string ticks = source.LastWriteTime.Ticks.ToString();
-                            File.Copy(variable.Attributes["location"].Value, Constants.GetInstance().ExecutingAssemblyLocation + "\\" + variable.Attributes["vituallocation"].Value, true);
+                            string startcount = variable.Attributes["start"].Value;
                             variable.Attributes["modified"].Value = ticks;
                         }
                     }
