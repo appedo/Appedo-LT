@@ -273,13 +273,16 @@ namespace AppedoLT.BusinessLogic
                     if (File.Exists(variable.Attributes["location"].Value))
                     {
                         FileInfo source = new FileInfo(variable.Attributes["location"].Value);
-                        if (source.LastWriteTime.Ticks != Convert.ToDouble(variable.Attributes["modified"].Value))
-                        {
+                       // if (source.LastWriteTime.Ticks != Convert.ToDouble(variable.Attributes["modified"].Value))
+                        //{
                             string ticks = source.LastWriteTime.Ticks.ToString();
                             //File.Copy(variable.Attributes["location"].Value, Constants.GetInstance().ExecutingAssemblyLocation + "\\" + variable.Attributes["vituallocation"].Value, true);
                             string fsource = variable.Attributes["location"].Value;
-                            string fdestination = Constants.GetInstance().ExecutingAssemblyLocation + "\\" + variable.Attributes["vituallocation"].Value;
+                            string fdestination = Constants.GetInstance().ExecutingAssemblyLocation + "\\" + DateTime.Now.Ticks+".csv";
                             // File.Copy(variable.Attributes["location"].Value, Constants.GetInstance().ExecutingAssemblyLocation + "\\" + variable.Attributes["vituallocation"].Value, true);
+                            //FileInfo fdest = new FileInfo(fdestination);
+                            //fdest.Delete();
+
                             string line = null;
                             int line_number = 0;
                             int line_to_start = int.Parse(variable.Attributes["start"].Value);
@@ -295,6 +298,7 @@ namespace AppedoLT.BusinessLogic
                                         {
                                             writer.WriteLine(line);
                                             bFirstRow = false;
+                                            line_number++;
                                             continue;
                                         }
 
@@ -307,15 +311,20 @@ namespace AppedoLT.BusinessLogic
                                         line_number++;
                                         
                                     }
-                                }
-                            }
 
-                            String strFile = File.ReadAllText(Constants.GetInstance().ExecutingAssemblyLocation + "\\" + variable.Attributes["vituallocation"].Value);
-                            strFile = System.Web.HttpUtility.HtmlEncode(strFile);
-                            File.WriteAllText(Constants.GetInstance().ExecutingAssemblyLocation + "\\" + variable.Attributes["vituallocation"].Value, strFile);
+                                    writer.Close();
+                                }
+                                reader.Close();
+                            }
+                            File.Copy(fdestination, Constants.GetInstance().ExecutingAssemblyLocation + "\\" + variable.Attributes["vituallocation"].Value, true);
+                            File.Delete(fdestination);
+                            
+                          //String strFile = File.ReadAllText(Constants.GetInstance().ExecutingAssemblyLocation + "\\" + variable.Attributes["vituallocation"].Value);
+                           // strFile = System.Web.HttpUtility.HtmlEncode(strFile);
+                           // File.WriteAllText(Constants.GetInstance().ExecutingAssemblyLocation + "\\" + variable.Attributes["vituallocation"].Value, strFile);
                             variable.Attributes["modified"].Value = ticks;
                         }
-                    }
+                   // }
                 }
                 catch (Exception ex)
                 {

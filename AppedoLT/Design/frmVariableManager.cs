@@ -167,8 +167,9 @@ namespace AppedoLT
                 {
                     FileInfo fileinfo = new FileInfo(source);
                     destination = Constants.GetInstance().ExecutingAssemblyLocation + "\\Variables\\" + modified + "_" + fileinfo.Name;
-                    File.Copy(source, destination, true);
+                    //File.Copy(source, destination, true);
                     destination = "\\Variables\\" + modified + "_" + fileinfo.Name;
+                    
                }
             }
             catch (Exception ex)
