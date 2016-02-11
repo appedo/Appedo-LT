@@ -282,7 +282,7 @@ namespace AppedoLT.BusinessLogic
                             // File.Copy(variable.Attributes["location"].Value, Constants.GetInstance().ExecutingAssemblyLocation + "\\" + variable.Attributes["vituallocation"].Value, true);
                             string line = null;
                             int line_number = 0;
-                            int line_to_start = 5;
+                            int line_to_start = int.Parse(variable.Attributes["start"].Value);
                             bool bFirstRow = true;
                             using (StreamReader reader = new StreamReader(fsource))
                             {
