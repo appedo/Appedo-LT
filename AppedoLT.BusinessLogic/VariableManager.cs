@@ -278,7 +278,7 @@ namespace AppedoLT.BusinessLogic
                             string ticks = source.LastWriteTime.Ticks.ToString();
                             //File.Copy(variable.Attributes["location"].Value, Constants.GetInstance().ExecutingAssemblyLocation + "\\" + variable.Attributes["vituallocation"].Value, true);
                             string fsource = variable.Attributes["location"].Value;
-                            string fdestination = Constants.GetInstance().ExecutingAssemblyLocation + "\\" + DateTime.Now.Ticks+".csv";
+                            string fdestination = Constants.GetInstance().ExecutingAssemblyLocation + "\\" +variable.Attributes["vituallocation"].Value;
                             // File.Copy(variable.Attributes["location"].Value, Constants.GetInstance().ExecutingAssemblyLocation + "\\" + variable.Attributes["vituallocation"].Value, true);
                             //FileInfo fdest = new FileInfo(fdestination);
                             //fdest.Delete();
@@ -316,8 +316,8 @@ namespace AppedoLT.BusinessLogic
                                 }
                                 reader.Close();
                             }
-                            File.Copy(fdestination, Constants.GetInstance().ExecutingAssemblyLocation + "\\" + variable.Attributes["vituallocation"].Value, true);
-                            File.Delete(fdestination);
+                            //File.Copy(fdestination, Constants.GetInstance().ExecutingAssemblyLocation + "\\" + variable.Attributes["vituallocation"].Value, true);
+                           // File.Delete(fdestination);
                             
                           //String strFile = File.ReadAllText(Constants.GetInstance().ExecutingAssemblyLocation + "\\" + variable.Attributes["vituallocation"].Value);
                            // strFile = System.Web.HttpUtility.HtmlEncode(strFile);
