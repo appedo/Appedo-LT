@@ -28,7 +28,15 @@ namespace AppedoLT
         private void SetValue(XmlNode textPostData)
         {
             
-            txtValue.Text = textPostData.ChildNodes[0].Attributes["value"].Value;
+            //txtValue.Text = textPostData.ChildNodes[0].Attributes["value"].Value;
+            if (textPostData.ChildNodes[0].Attributes["value"].Value.StartsWith("Text="))
+            {
+                txtValue.Text = textPostData.ChildNodes[0].Attributes["value"].Value.Replace("Text=", "");
+            }
+            else
+            {
+                txtValue.Text = textPostData.ChildNodes[0].Attributes["value"].Value;
+            }
             txtValue.Tag = textPostData.ChildNodes[0].Attributes["value"];
         }
 

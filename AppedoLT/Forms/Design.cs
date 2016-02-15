@@ -809,6 +809,7 @@ namespace AppedoLT
         //This function will be called when user click run button.
         private void btnRun_Click(object sender, EventArgs e)
         {
+            AppedoLT.Core.Constants.GetInstance().btnExecutionType = "Run";
             //If script selected, We try to select scenario
             if (tvScenarios.SelectedNode != null && tvScenarios.SelectedNode.Level != 0)
             {

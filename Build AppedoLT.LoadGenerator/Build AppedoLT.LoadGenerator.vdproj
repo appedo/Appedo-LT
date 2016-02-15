@@ -15,19 +15,25 @@
     {
         "Entry"
         {
-        "MsmKey" = "8:_12E6A4EC2A984B462B1F83D3BB15DABE"
+        "MsmKey" = "8:_4D39C2826B6511D06ABCEF250161BA8A"
+        "OwnerKey" = "8:_590BDA3EA80B740C8F8413D97DC315A3"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_4D39C2826B6511D06ABCEF250161BA8A"
         "OwnerKey" = "8:_75CA0F3DAC374998BB5F833832106E21"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_57734B4432E0498E240C695D62F52496"
-        "OwnerKey" = "8:_12E6A4EC2A984B462B1F83D3BB15DABE"
+        "MsmKey" = "8:_590BDA3EA80B740C8F8413D97DC315A3"
+        "OwnerKey" = "8:_7C901534C6CD0E4F06F411EB7602BDB6"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_57734B4432E0498E240C695D62F52496"
+        "MsmKey" = "8:_590BDA3EA80B740C8F8413D97DC315A3"
         "OwnerKey" = "8:_75CA0F3DAC374998BB5F833832106E21"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -39,13 +45,7 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_8D53CD1C1CCEFFE5E08639E099715D16"
-        "OwnerKey" = "8:_57734B4432E0498E240C695D62F52496"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_8D53CD1C1CCEFFE5E08639E099715D16"
+        "MsmKey" = "8:_7C901534C6CD0E4F06F411EB7602BDB6"
         "OwnerKey" = "8:_75CA0F3DAC374998BB5F833832106E21"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -64,19 +64,19 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_12E6A4EC2A984B462B1F83D3BB15DABE"
+        "OwnerKey" = "8:_7C901534C6CD0E4F06F411EB7602BDB6"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_57734B4432E0498E240C695D62F52496"
+        "OwnerKey" = "8:_590BDA3EA80B740C8F8413D97DC315A3"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_8D53CD1C1CCEFFE5E08639E099715D16"
+        "OwnerKey" = "8:_4D39C2826B6511D06ABCEF250161BA8A"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -230,20 +230,20 @@
         }
         "File"
         {
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_12E6A4EC2A984B462B1F83D3BB15DABE"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_4D39C2826B6511D06ABCEF250161BA8A"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:AppedoLT.BusinessLogic, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:Ionic.Zip, Version=1.9.1.8, Culture=neutral, PublicKeyToken=edbe51ad942a3f5c, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_12E6A4EC2A984B462B1F83D3BB15DABE"
+                    "_4D39C2826B6511D06ABCEF250161BA8A"
                     {
-                    "Name" = "8:AppedoLT.BusinessLogic.dll"
+                    "Name" = "8:Ionic.Zip.dll"
                     "Attributes" = "3:512"
                     }
                 }
-            "SourcePath" = "8:AppedoLT.BusinessLogic.dll"
+            "SourcePath" = "8:Ionic.Zip.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_DD960546DE5D4C51B33A55EC3C31EE14"
@@ -261,14 +261,14 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_57734B4432E0498E240C695D62F52496"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_590BDA3EA80B740C8F8413D97DC315A3"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
             "AssemblyAsmDisplayName" = "8:AppedoLT.Core, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_57734B4432E0498E240C695D62F52496"
+                    "_590BDA3EA80B740C8F8413D97DC315A3"
                     {
                     "Name" = "8:AppedoLT.Core.dll"
                     "Attributes" = "3:512"
@@ -292,20 +292,20 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_8D53CD1C1CCEFFE5E08639E099715D16"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_7C901534C6CD0E4F06F411EB7602BDB6"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:Ionic.Zip, Version=1.9.1.8, Culture=neutral, PublicKeyToken=edbe51ad942a3f5c, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:AppedoLT.BusinessLogic, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_8D53CD1C1CCEFFE5E08639E099715D16"
+                    "_7C901534C6CD0E4F06F411EB7602BDB6"
                     {
-                    "Name" = "8:Ionic.Zip.dll"
+                    "Name" = "8:AppedoLT.BusinessLogic.dll"
                     "Attributes" = "3:512"
                     }
                 }
-            "SourcePath" = "8:Ionic.Zip.dll"
+            "SourcePath" = "8:AppedoLT.BusinessLogic.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_DD960546DE5D4C51B33A55EC3C31EE14"
@@ -421,15 +421,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:APPEDO_LT_LOAD_GENERATOR"
-        "ProductCode" = "8:{FCF41222-8389-4AD6-8FDA-99FBD68FFCE6}"
-        "PackageCode" = "8:{392FF463-D4FF-4CC3-AE49-B193FAFDA4B7}"
+        "ProductCode" = "8:{1185ACBA-3D29-485C-9C63-A2F1FFE35951}"
+        "PackageCode" = "8:{4C4832FC-082B-4346-B5BB-E373D43B36F7}"
         "UpgradeCode" = "8:{FDF822FA-D49E-4533-BE33-97FB08C152F3}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:TRUE"
-        "ProductVersion" = "8:1.0.19"
+        "ProductVersion" = "8:1.0.21"
         "Manufacturer" = "8:Appedo"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
