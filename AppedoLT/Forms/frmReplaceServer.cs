@@ -65,7 +65,14 @@ namespace AppedoLT
             {
                 RadTreeNode node = new RadTreeNode();
                 node.Tag = host;
-                node.Text =host.NewSchema+"://"+ host.CurrentHost + ":" + host.CurrentPort;
+                if (host.CurrentPort != null && host.CurrentPort.Length > 0 && host.CurrentPort != "")
+                { 
+                    node.Text = host.NewSchema + "://" + host.CurrentHost + ":" + host.CurrentPort; }
+                else
+                {
+                    node.Text = host.NewSchema + "://" + host.CurrentHost + host.CurrentPort;
+                }
+                
                 tvHostList.Nodes.Add(node);
             }
             if (tvHostList.Nodes.Count > 0) tvHostList.Nodes[0].Selected = true;
