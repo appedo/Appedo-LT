@@ -1175,11 +1175,24 @@ namespace AppedoLT
                         if (host.CurrentHost != host.NewHost || host.CurrentPort != host.NewPort || host.CurrentSchema != host.NewSchema)
                         {
                             if (Changed == false) Changed = true;
-                            vuscrip.InnerXml =
-                                 vuscrip.InnerXml.Replace(host.CurrentHost + ":" + host.CurrentPort, host.NewHost + ":" + host.NewPort)
-                                .Replace(host.CurrentHost, host.NewHost)
-                                .Replace("Port=\"" + host.CurrentPort + "\"", "Port=\"" + host.NewPort + "\"")
-                                .Replace("Schema=\"" + host.CurrentSchema + "\"", "Schema=\"" + host.NewSchema + "\"");
+
+                            if (host.NewPort != null && host.NewPort.Length > 0 && host.NewPort != "")
+                            {
+                                vuscrip.InnerXml =
+                                vuscrip.InnerXml.Replace(host.CurrentHost + ":" + host.CurrentPort, host.NewHost + ":" + host.NewPort)
+                               .Replace(host.CurrentHost, host.NewHost)
+                               .Replace("Port=\"" + host.CurrentPort + "\"", "Port=\"" + host.NewPort + "\"")
+                               .Replace("Schema=\"" + host.CurrentSchema + "\"", "Schema=\"" + host.NewSchema + "\"");
+                            }
+                            else
+                            {
+                                vuscrip.InnerXml =
+                                vuscrip.InnerXml.Replace(host.CurrentHost + ":" + host.CurrentPort, host.NewHost + host.NewPort)
+                               .Replace(host.CurrentHost, host.NewHost)
+                               .Replace("Port=\"" + host.CurrentPort + "\"", "Port=\"" + host.NewPort + "\"")
+                               .Replace("Schema=\"" + host.CurrentSchema + "\"", "Schema=\"" + host.NewSchema + "\"");
+                            }
+                           
                         }
                     }
                     else if (vuscrip.Attributes["type"].Value == "tcp")
