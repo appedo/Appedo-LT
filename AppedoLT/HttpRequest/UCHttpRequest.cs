@@ -22,6 +22,7 @@ namespace AppedoLT
         private static UCHttpRequest _instance;
         private Constants _constant = Constants.GetInstance();
         string _scriptId = string.Empty;
+        private bool bRequestChanged = false;
 
         Regex imageTest = new Regex(@"\.(jpg|JPG|gif|GIF|jpeg|JPEG|png|PNG)$");
         public static UCHttpRequest GetInstance()
@@ -82,6 +83,7 @@ namespace AppedoLT
                 txtServer.Tag = _request.Attributes["Host"];
                 txtPath.Text = _request.Attributes["Path"].Value;
                 txtPath.Tag = _request.Attributes["Path"];
+                radTxtPort.Text = _request.Attributes["Port"].Value;
                 try
                 {
                     txtRequest.Text = Utility.GetFileContent(Constants.GetInstance().ExecutingAssemblyLocation + "\\Scripts\\" + _scriptId + "\\" + _request.Attributes["reqFilename"].Value);
@@ -524,20 +526,29 @@ namespace AppedoLT
                 {
                     if (param.Attributes["type"].Value == "multipart/form-data")
                     {
+                        bRequestChanged = true;
                         ddlPostContentType.SelectedIndex = 1;
+                        bRequestChanged = false;
                     }
                     else if (param.Attributes["type"].Value == "text")
                     {
+                        bRequestChanged = true;
                         ddlPostContentType.SelectedIndex = 2;
+                        bRequestChanged = false;
+
                     }
                     else
                     {
+                        bRequestChanged = true;
                         ddlPostContentType.SelectedIndex = 0;
+                        bRequestChanged = false;
                     }
                 }
                 else
                 {
+                    bRequestChanged = true;
                     ddlPostContentType.SelectedIndex = 0;
+                    bRequestChanged = false;
                 }
             }
             else
@@ -563,7 +574,7 @@ namespace AppedoLT
             }
             else
             {
-                if (_request != null)
+                if (_request != null && !bRequestChanged)
                 {
                     // if content type text then convert the text into form formate
                     if (ddlPostContentType.SelectedValue.ToString() == "Text")

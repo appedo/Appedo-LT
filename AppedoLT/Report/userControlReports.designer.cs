@@ -18,7 +18,7 @@
                 components.Dispose();
             }
             base.Dispose(disposing);
-            
+
         }
 
         #region Component Designer generated code
@@ -88,8 +88,8 @@
             this.radSplitContainer1 = new Telerik.WinControls.UI.RadSplitContainer();
             this.splitPanel1 = new Telerik.WinControls.UI.SplitPanel();
             this.radPanel2 = new Telerik.WinControls.UI.RadPanel();
-            this.radListBox1 = new Telerik.WinControls.UI.RadListBox();
-            this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
+            this.radGridReport = new Telerik.WinControls.UI.RadGridView();
+            this.gridViewTemplate1 = new Telerik.WinControls.UI.GridViewTemplate();
             this.splitPanel2 = new Telerik.WinControls.UI.SplitPanel();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel32)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel35)).BeginInit();
@@ -151,8 +151,9 @@
             this.splitPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radPanel2)).BeginInit();
             this.radPanel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radListBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radGridReport)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radGridReport.MasterGridViewTemplate)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridViewTemplate1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitPanel2)).BeginInit();
             this.splitPanel2.SuspendLayout();
             this.SuspendLayout();
@@ -524,7 +525,7 @@
             this.brwReportView.MinimumSize = new System.Drawing.Size(20, 20);
             this.brwReportView.Name = "brwReportView";
             this.brwReportView.ScriptErrorsSuppressed = true;
-            this.brwReportView.Size = new System.Drawing.Size(625, 680);
+            this.brwReportView.Size = new System.Drawing.Size(627, 679);
             this.brwReportView.TabIndex = 1;
             this.brwReportView.DocumentCompleted += new System.Windows.Forms.WebBrowserDocumentCompletedEventHandler(this.brwReportView_DocumentCompleted);
             // 
@@ -571,16 +572,16 @@
             // 
             // tabiHeader.ContentPanel
             // 
-            this.tabiHeader.ContentPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(239)))), ((int)(((byte)(249)))));
+            this.tabiHeader.ContentPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(248)))));
             this.tabiHeader.ContentPanel.CausesValidation = true;
             this.tabiHeader.ContentPanel.Controls.Add(this.brwReportView);
             this.tabiHeader.ContentPanel.Font = new System.Drawing.Font("Segoe UI", 8.25F);
             this.tabiHeader.ContentPanel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(66)))), ((int)(((byte)(139)))));
-            this.tabiHeader.ContentPanel.Location = new System.Drawing.Point(1, 23);
-            this.tabiHeader.ContentPanel.Size = new System.Drawing.Size(625, 680);
+            this.tabiHeader.ContentPanel.Location = new System.Drawing.Point(0, 25);
+            this.tabiHeader.ContentPanel.Size = new System.Drawing.Size(627, 679);
             this.tabiHeader.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabiHeader.IsSelected = true;
-            this.tabiHeader.Margin = new System.Windows.Forms.Padding(2, 0, 0, 0);
+            this.tabiHeader.Margin = new System.Windows.Forms.Padding(4, 0, 0, 0);
             this.tabiHeader.Name = "tabiHeader";
             this.tabiHeader.StretchHorizontally = false;
             this.tabiHeader.Text = "Summary";
@@ -591,15 +592,15 @@
             // 
             // tabiParameters.ContentPanel
             // 
-            this.tabiParameters.ContentPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(239)))), ((int)(((byte)(249)))));
+            this.tabiParameters.ContentPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(248)))));
             this.tabiParameters.ContentPanel.CausesValidation = true;
             this.tabiParameters.ContentPanel.Controls.Add(this.brwErrors);
             this.tabiParameters.ContentPanel.Font = new System.Drawing.Font("Segoe UI", 8.25F);
             this.tabiParameters.ContentPanel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(66)))), ((int)(((byte)(139)))));
-            this.tabiParameters.ContentPanel.Location = new System.Drawing.Point(1, 23);
-            this.tabiParameters.ContentPanel.Size = new System.Drawing.Size(625, 680);
+            this.tabiParameters.ContentPanel.Location = new System.Drawing.Point(0, 25);
+            this.tabiParameters.ContentPanel.Size = new System.Drawing.Size(627, 679);
             this.tabiParameters.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tabiParameters.Margin = new System.Windows.Forms.Padding(2, 0, 0, 0);
+            this.tabiParameters.Margin = new System.Windows.Forms.Padding(4, 0, 0, 0);
             this.tabiParameters.Name = "tabiParameters";
             this.tabiParameters.StretchHorizontally = false;
             this.tabiParameters.Text = "Errors";
@@ -611,7 +612,7 @@
             this.brwErrors.MinimumSize = new System.Drawing.Size(20, 20);
             this.brwErrors.Name = "brwErrors";
             this.brwErrors.ScriptErrorsSuppressed = true;
-            this.brwErrors.Size = new System.Drawing.Size(625, 680);
+            this.brwErrors.Size = new System.Drawing.Size(627, 679);
             this.brwErrors.TabIndex = 2;
             // 
             // tabiVariables
@@ -620,15 +621,15 @@
             // 
             // tabiVariables.ContentPanel
             // 
-            this.tabiVariables.ContentPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(239)))), ((int)(((byte)(249)))));
+            this.tabiVariables.ContentPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(248)))));
             this.tabiVariables.ContentPanel.CausesValidation = true;
             this.tabiVariables.ContentPanel.Controls.Add(this.brwLogs);
             this.tabiVariables.ContentPanel.Font = new System.Drawing.Font("Segoe UI", 8.25F);
             this.tabiVariables.ContentPanel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(66)))), ((int)(((byte)(139)))));
-            this.tabiVariables.ContentPanel.Location = new System.Drawing.Point(1, 23);
-            this.tabiVariables.ContentPanel.Size = new System.Drawing.Size(625, 680);
+            this.tabiVariables.ContentPanel.Location = new System.Drawing.Point(0, 25);
+            this.tabiVariables.ContentPanel.Size = new System.Drawing.Size(627, 679);
             this.tabiVariables.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tabiVariables.Margin = new System.Windows.Forms.Padding(2, 0, 0, 0);
+            this.tabiVariables.Margin = new System.Windows.Forms.Padding(4, 0, 0, 0);
             this.tabiVariables.Name = "tabiVariables";
             this.tabiVariables.StretchHorizontally = false;
             this.tabiVariables.Text = "Logs";
@@ -640,7 +641,7 @@
             this.brwLogs.MinimumSize = new System.Drawing.Size(20, 20);
             this.brwLogs.Name = "brwLogs";
             this.brwLogs.ScriptErrorsSuppressed = true;
-            this.brwLogs.Size = new System.Drawing.Size(625, 680);
+            this.brwLogs.Size = new System.Drawing.Size(627, 679);
             this.brwLogs.TabIndex = 2;
             // 
             // radSplitContainer1
@@ -678,8 +679,7 @@
             // radPanel2
             // 
             this.radPanel2.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.radPanel2.Controls.Add(this.radListBox1);
-            this.radPanel2.Controls.Add(this.radLabel1);
+            this.radPanel2.Controls.Add(this.radGridReport);
             this.radPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.radPanel2.Location = new System.Drawing.Point(0, 0);
             this.radPanel2.Name = "radPanel2";
@@ -687,32 +687,28 @@
             this.radPanel2.TabIndex = 2;
             this.radPanel2.Text = "radPanel2";
             // 
-            // radListBox1
+            // radGridReport
             // 
-            this.radListBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.radListBox1.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radListBox1.ForeColor = System.Drawing.Color.Black;
-            this.radListBox1.Location = new System.Drawing.Point(2, 25);
-            this.radListBox1.Name = "radListBox1";
+            this.radGridReport.ForeColor = System.Drawing.Color.Black;
+            this.radGridReport.Location = new System.Drawing.Point(4, 28);
             // 
             // 
             // 
-            this.radListBox1.RootElement.ForeColor = System.Drawing.Color.Black;
-            this.radListBox1.Size = new System.Drawing.Size(191, 677);
-            this.radListBox1.TabIndex = 0;
-            this.radListBox1.Text = "Click to add new item";
-            this.radListBox1.SelectedIndexChanged += new System.EventHandler(this.radListBox1_SelectedIndexChanged);
+            this.radGridReport.MasterGridViewTemplate.AllowAddNewRow = false;
+            this.radGridReport.MasterGridViewTemplate.AllowDeleteRow = false;
+            this.radGridReport.MasterGridViewTemplate.AllowEditRow = false;
+            this.radGridReport.MasterGridViewTemplate.ChildGridViewTemplates.AddRange(new Telerik.WinControls.UI.GridViewTemplate[] {
+            this.gridViewTemplate1});
+            this.radGridReport.MasterGridViewTemplate.EnableFiltering = true;
+            this.radGridReport.Name = "radGridReport";
+            this.radGridReport.Padding = new System.Windows.Forms.Padding(0, 0, 0, 1);
             // 
-            // radLabel1
             // 
-            this.radLabel1.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radLabel1.Location = new System.Drawing.Point(3, 3);
-            this.radLabel1.Name = "radLabel1";
-            this.radLabel1.Size = new System.Drawing.Size(96, 18);
-            this.radLabel1.TabIndex = 1;
-            this.radLabel1.Text = "Report name";
+            // 
+            this.radGridReport.RootElement.ForeColor = System.Drawing.Color.Black;
+            this.radGridReport.RootElement.Padding = new System.Windows.Forms.Padding(0, 0, 0, 1);
+            this.radGridReport.Size = new System.Drawing.Size(306, 654);
+            this.radGridReport.TabIndex = 2;
             // 
             // splitPanel2
             // 
@@ -799,9 +795,9 @@
             this.splitPanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.radPanel2)).EndInit();
             this.radPanel2.ResumeLayout(false);
-            this.radPanel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radListBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radGridReport.MasterGridViewTemplate)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radGridReport)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridViewTemplate1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitPanel2)).EndInit();
             this.splitPanel2.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -864,12 +860,12 @@
         private Telerik.WinControls.UI.RadSplitContainer radSplitContainer1;
         private Telerik.WinControls.UI.SplitPanel splitPanel1;
         private Telerik.WinControls.UI.SplitPanel splitPanel2;
-        private Telerik.WinControls.UI.RadLabel radLabel1;
         private Telerik.WinControls.UI.RadPanel radPanel2;
-        private Telerik.WinControls.UI.RadListBox radListBox1;
         private System.Windows.Forms.WebBrowser brwErrors;
         private System.Windows.Forms.WebBrowser brwLogs;
         private System.Windows.Forms.ContextMenuStrip cntmSave;
         private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
+        private Telerik.WinControls.UI.RadGridView radGridReport;
+        private Telerik.WinControls.UI.GridViewTemplate gridViewTemplate1;
     }
 }

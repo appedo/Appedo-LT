@@ -276,6 +276,10 @@ namespace AppedoLT.BusinessLogic
                         {
                             string ticks = source.LastWriteTime.Ticks.ToString();
                             File.Copy(variable.Attributes["location"].Value, Constants.GetInstance().ExecutingAssemblyLocation + "\\" + variable.Attributes["vituallocation"].Value, true);
+                            String strFile = File.ReadAllText(Constants.GetInstance().ExecutingAssemblyLocation + "\\" + variable.Attributes["vituallocation"].Value);
+                            strFile = System.Web.HttpUtility.HtmlEncode(strFile);
+                            File.WriteAllText(Constants.GetInstance().ExecutingAssemblyLocation + "\\" + variable.Attributes["vituallocation"].Value, strFile);
+                              
                             variable.Attributes["modified"].Value = ticks;
                         }
                     }

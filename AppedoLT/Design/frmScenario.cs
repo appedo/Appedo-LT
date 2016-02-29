@@ -126,6 +126,7 @@ namespace AppedoLT
                         setting.Attributes.Append(repositoryXml.GetAttribute("incrementuser", "1"));
                         setting.Attributes.Append(repositoryXml.GetAttribute("browsercache", "false"));
                         setting.Attributes.Append(repositoryXml.GetAttribute("startuserid", "0"));
+                        setting.Attributes.Append(repositoryXml.GetAttribute("replythinktime", "true"));
                         script.AppendChild(setting);
                     }
                     _scenario.AppendChild(script);

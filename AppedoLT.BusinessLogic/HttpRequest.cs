@@ -9,6 +9,7 @@ using System.Net.Sockets;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Xml;
+using System.Collections;
 
 namespace AppedoLT.BusinessLogic
 {
@@ -390,6 +391,7 @@ namespace AppedoLT.BusinessLogic
 
         public override void PerformAssertion()
         {
+            Hashtable hashtable = new Hashtable();
             #region Assertion
 
             if (RequestNode.SelectSingleNode("assertions") != null && RequestNode.SelectSingleNode("assertions").ChildNodes.Count > 0)
@@ -404,11 +406,13 @@ namespace AppedoLT.BusinessLogic
                             if (ResponseStr.Contains(assertion.Attributes["text"].Value) == true)
                             {
                                 AssertionResult = true;
+                                AssertionFaildMsg.Append(string.Format("Expected value({0}) present in the response.\r\n", assertion.Attributes["text"].Value));
                             }
                             else
                             {
                                 AssertionResult = false;
-                                AssertionFaildMsg.Append(string.Format("Assertion({0}) Failed.\r\n", assertion.Attributes["name"].Value));
+                                // AssertionFaildMsg.Append(string.Format("Assertion({0}) Failed.\r\n", assertion.Attributes["name"].Value));
+                                AssertionFaildMsg.Append(string.Format("Expected value({0}) not present in the response.\r\n", assertion.Attributes["text"].Value));
                             }
                         }
                         else
@@ -416,6 +420,7 @@ namespace AppedoLT.BusinessLogic
                             if (!(ResponseStr.Contains(assertion.Attributes["text"].Value) == true))
                             {
                                 AssertionResult = true;
+                                AssertionFaildMsg.Append(string.Format("Expected value({0}) present in the response.\r\n", assertion.Attributes["text"].Value));
                             }
                             else
                             {
@@ -442,6 +447,7 @@ namespace AppedoLT.BusinessLogic
                             if (matchCount > 0)
                             {
                                 AssertionResult = true;
+                                AssertionFaildMsg.Append(string.Format("Expected value({0}) present in the response.\r\n", assertion.Attributes["text"].Value));
                             }
                             else
                             {
@@ -454,6 +460,7 @@ namespace AppedoLT.BusinessLogic
                             if (!(matchCount > 0))
                             {
                                 AssertionResult = true;
+                                AssertionFaildMsg.Append(string.Format("Expected value({0}) present in the response.\r\n", assertion.Attributes["text"].Value));
                             }
                             else
                             {
@@ -463,14 +470,26 @@ namespace AppedoLT.BusinessLogic
                         }
                         #endregion
                     }
+
+                    hashtable.Add(assertion.Attributes["name"].Value, AssertionResult);
                 }
-                if (AssertionResult == false)
+                if (hashtable.ContainsValue(false))
                 {
                     Success = false;
                     HasError = true;
                     ErrorMessage = AssertionFaildMsg.ToString();
                     ErrorCode = "800";
                 }
+
+                //if (AssertionResult == false)
+                //{
+                //    Success = false;
+                //    HasError = true;
+                //    ErrorMessage = AssertionFaildMsg.ToString();
+                //    ErrorCode = "800";
+                //}
+
+
             }
             #endregion
         }

@@ -87,7 +87,7 @@ namespace AppedoLT
         /// <returns>Vuser(single user)</returns>
         private VUser GetUser()
         {
-            VUser _vUSer = new VUser(1, DateTime.Now.ToString("dd_MMM_yyyy_hh_mm_ss"), "1", 1, 1, _vuScript, false, Request.GetIPAddress(1));
+            VUser _vUSer = new VUser(1, DateTime.Now.ToString("dd_MMM_yyyy_hh_mm_ss"), "1", 1, 1, _vuScript, false, Request.GetIPAddress(1), true);
             _vUSer.IsValidation = true;
             //Mapping event to methods. If vuser has request and response data it will call _vUSer_OnLockRequestResponse method
             _vUSer.OnLockRequestResponse += _vUSer_OnLockRequestResponse;
@@ -485,12 +485,14 @@ namespace AppedoLT
                         //If user has valid response
                         if (requestRespose.RequestResult.HasError == true)
                         {
-                            strValidatedResponse = requestRespose.RequestResult.ErrorMessage + Environment.NewLine + requestRespose.RequestResult.ResponseStr;
+                            //strValidatedResponse = requestRespose.RequestResult.ErrorMessage + Environment.NewLine + requestRespose.RequestResult.ResponseStr;
+                            strValidatedResponse = requestRespose.RequestResult.ResponseStr;
                         }
                         else
                         {
                             strValidatedResponse = requestRespose.RequestResult.ResponseStr;
                         }
+                        richTextBox1.Text = requestRespose.RequestResult.AssertionFaildMsg.ToString();
                         txtResponse.Text = strValidatedResponse;
                         gvHeader.DataSource = ConvertToTable(requestRespose.RequestResult.RequestNode.SelectSingleNode("headers"));
                         gvParameters.DataSource = ConvertToTable(requestRespose.RequestResult.Parameters);

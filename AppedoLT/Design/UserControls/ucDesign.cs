@@ -143,7 +143,7 @@ namespace AppedoLT
                         break;
                     case "loop":
                         RadTreeNode loop = new RadTreeNode();
-                        loop.Text = "Loop";
+                        loop.Text = action.Attributes["name"].Value;
                         loop.Tag = action;
                         GetTreeNode(action, loop);
                         parentNode.Nodes.Add(loop);
@@ -1203,11 +1203,22 @@ namespace AppedoLT
                         if (host.CurrentHost != host.NewHost || host.CurrentPort != host.NewPort || host.CurrentSchema != host.NewSchema)
                         {
                             if (Changed == false) Changed = true;
-                            vuscrip.InnerXml =
-                                 vuscrip.InnerXml.Replace(host.CurrentHost + ":" + host.CurrentPort, host.NewHost + ":" + host.NewPort)
+                            if (host.NewPort != null && host.NewPort.Length > 0 && host.NewPort != "")
+                            {
+                                vuscrip.InnerXml =
+                               vuscrip.InnerXml.Replace(host.CurrentHost + ":" + host.CurrentPort, host.NewHost + ":" + host.NewPort)
+                               .Replace(host.CurrentHost, host.NewHost)
+                               .Replace("Port=\"" + host.CurrentPort + "\"", "Port=\"" + host.NewPort + "\"")
+                               .Replace("Schema=\"" + host.CurrentSchema + "\"", "Schema=\"" + host.NewSchema + "\"");
+                            }
+                            else
+                            {
+                                vuscrip.InnerXml =
+                                vuscrip.InnerXml.Replace(host.CurrentHost + ":" + host.CurrentPort, host.NewHost + host.NewPort)
                                 .Replace(host.CurrentHost, host.NewHost)
                                 .Replace("Port=\"" + host.CurrentPort + "\"", "Port=\"" + host.NewPort + "\"")
                                 .Replace("Schema=\"" + host.CurrentSchema + "\"", "Schema=\"" + host.NewSchema + "\"");
+                            }
                         }
                     }
                     else if (vuscrip.Attributes["type"].Value == "tcp")
@@ -1274,6 +1285,71 @@ namespace AppedoLT
             frmFindAndReplace frm = new frmFindAndReplace(string.Empty, ((VuscriptXml)tvRequest.SelectedNode.Tag),this);
             frm.ShowDialog();
         }
+        /// <summary>
+        /// To update the container id after swiching one position to another position 
+        /// </summary>
+        /// <param name="scriptId"></param>
+        public void updateContainerId(string scriptId)
+        {
+            XmlDocument document = null;
+            XmlNodeList nodeList = null;
+            XmlNode node = null;
+            // Try and load xml data into an Xml document object and throw an
+            // error message if this fails
+            try
+            {
+                document = new XmlDocument();
+
+                document.Load(@"./Scripts/" + scriptId + "/vuscript.xml");
+
+                // Try and retrieve all book nodes
+                nodeList = document.SelectNodes("/vuscript//container");
+                List<int> listContainerId = new List<int>();
+                foreach (XmlNode xNode in nodeList)
+                {
+                    listContainerId.Add(int.Parse(xNode.Attributes["id"].Value));
+                }
+                listContainerId.Sort();
+
+                int i = 0;
+                foreach (XmlNode xNode in nodeList)
+                {
+                    xNode.Attributes["id"].Value = listContainerId[i].ToString();
+                    i++;
+                }
+                document.Save(@"./Scripts/" + scriptId + "/vuscript.xml");
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+        /// <summary>
+        /// This is to get all scriptid's from scripts folder
+        /// </summary>
+        public void getScriptIds()
+        {
+            try
+            {
+
+                //Read all script xml one by one
+                foreach (string info in Directory.GetDirectories(".\\Scripts"))
+                {
+                    DirectoryInfo dicinfo = new DirectoryInfo(info);
+
+                    if (File.Exists(info + "\\vuscript.xml"))
+                    {
+                        updateContainerId(dicinfo.Name);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionHandler.WritetoEventLog(ex.StackTrace + Environment.NewLine + ex.Message);
+            }
+        }
+
         public void btnScriptSave_Click(object sender, EventArgs e)
         {
             try
@@ -1282,6 +1358,7 @@ namespace AppedoLT
                 {
                     ((VuscriptXml)script.Tag).Save();
                 }
+                getScriptIds();
                 if (sender != null) MessageBox.Show("Saved");
             }
             catch (Exception ex)
@@ -1292,6 +1369,6 @@ namespace AppedoLT
         #endregion
 
         #endregion
-       
+
     }
 }

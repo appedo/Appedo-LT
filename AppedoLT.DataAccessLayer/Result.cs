@@ -37,11 +37,12 @@ namespace AppedoLT.DataAccessLayer
         public DataTable GetReportNameList(string ReportName)
         {
             DataTable dt = new DataTable();
-            dt.Columns.Add("reportname");
+            dt.Columns.Add("Report name", typeof(string));
+            dt.Columns.Add("Timestamp", typeof(DateTime));
             DirectoryInfo dicInfo = new DirectoryInfo(Constants.GetInstance().DataFolderPath);
             foreach (DirectoryInfo info in dicInfo.GetDirectories().OrderByDescending(p => p.CreationTime))
             {
-                dt.Rows.Add(info.Name);
+                dt.Rows.Add(info.Name, info.CreationTime);
             }
             return dt;
         }

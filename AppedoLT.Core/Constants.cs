@@ -52,7 +52,7 @@ namespace AppedoLT.Core
         private int _uniqueID = 0;
         private object _logObj = new object();
         private DateTime _dateTime = new DateTime(2000, 1, 1);
-        public string btnExecutionType = "Validate";
+        public string btnExecutionType = "Run";
 
         public string ChartsSummaryFileName = "chart_ summary.csv";
         public string ChartsAvgResponse = "chart_useravgresponse.csv";
@@ -1146,6 +1146,7 @@ namespace AppedoLT.Core
         public string ScenarioId { get; set; }
         public bool BrowserCache { get; set; }
         public int StartUserId { get; set; }
+        public bool ReplyThinkTime { get; set; }
 
         public static VUScriptSetting GetDefault(string scriptId)
         {
@@ -1162,6 +1163,7 @@ namespace AppedoLT.Core
             vUScriptSetting.ScenarioId = string.Empty;
             vUScriptSetting.BrowserCache = false;
             vUScriptSetting.StartUserId = 0;
+            vUScriptSetting.ReplyThinkTime = true;
             return vUScriptSetting;
 
         }
@@ -1180,7 +1182,7 @@ namespace AppedoLT.Core
             vUScriptSetting.ScenarioId = scenarioId;
             vUScriptSetting.BrowserCache = false;
             vUScriptSetting.StartUserId = 0;
-
+            vUScriptSetting.ReplyThinkTime = true;
             return vUScriptSetting;
 
         }
