@@ -1,3 +1,6 @@
+using System.Collections.Generic;
+using System.Windows.Forms;
+
 namespace AppedoLT
 {
     partial class Design
@@ -50,6 +53,7 @@ namespace AppedoLT
             this.radSplitContainer5 = new Telerik.WinControls.UI.RadSplitContainer();
             this.splitPanel7 = new Telerik.WinControls.UI.SplitPanel();
             this.pnlRun = new Telerik.WinControls.UI.RadPanel();
+            this.comboBrowserVersion = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
             this.lblHitCount = new Telerik.WinControls.UI.RadLabel();
             this.label2 = new System.Windows.Forms.Label();
@@ -93,11 +97,8 @@ namespace AppedoLT
             this.ivcErrorCode = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.btnExport = new Telerik.WinControls.UI.RadButton();
             this.tabiCharts = new Telerik.WinControls.UI.TabItem();
-            this.userControlCharts1 = new AppedoLT.userControlCharts();
             this.tabItem1 = new Telerik.WinControls.UI.TabItem();
-            this.userControlReports2 = new AppedoLT.userControlReports();
             this.tapiMonitor = new Telerik.WinControls.UI.TabItem();
-            this.ucMonitor1 = new AppedoLT.UCMonitor();
             this.imcDesign = new System.Windows.Forms.ImageList(this.components);
             this.tmrExecution = new System.Windows.Forms.Timer(this.components);
             this.splitPanel17 = new Telerik.WinControls.UI.SplitPanel();
@@ -111,6 +112,7 @@ namespace AppedoLT
             this.mnuiRecord = new Telerik.WinControls.UI.RadMenuItem();
             this.mnuiHttp = new Telerik.WinControls.UI.RadMenuItem();
             this.mnuiTcpip = new Telerik.WinControls.UI.RadMenuItem();
+            this.proxySettings = new Telerik.WinControls.UI.RadMenuItem();
             this.radMenuItem3 = new Telerik.WinControls.UI.RadMenuItem();
             this.mnuiNewScenario = new Telerik.WinControls.UI.RadMenuItem();
             this.mnuiRun = new Telerik.WinControls.UI.RadMenuItem();
@@ -121,6 +123,9 @@ namespace AppedoLT
             this.imageListForHeading = new System.Windows.Forms.ImageList(this.components);
             this.tabItem4 = new Telerik.WinControls.UI.TabItem();
             this.radMenu1 = new Telerik.WinControls.UI.RadMenu();
+            this.userControlCharts1 = new AppedoLT.userControlCharts();
+            this.userControlReports2 = new AppedoLT.userControlReports();
+            this.ucMonitor1 = new AppedoLT.UCMonitor();
             this.objUCLoadGen = new AppedoLT.ucLoadGen();
             ((System.ComponentModel.ISupportInitialize)(this.tabsDesign)).BeginInit();
             this.tabsDesign.SuspendLayout();
@@ -244,7 +249,6 @@ namespace AppedoLT
             this.tabiVUscript.ForeColor = System.Drawing.Color.Black;
             this.tabiVUscript.Image = ((System.Drawing.Image)(resources.GetObject("tabiVUscript.Image")));
             this.tabiVUscript.ImageKey = "scripts.gif";
-            this.tabiVUscript.IsSelected = true;
             this.tabiVUscript.Margin = new System.Windows.Forms.Padding(2, 0, 0, 0);
             this.tabiVUscript.Name = "tabiVUscript";
             this.tabiVUscript.ScaleTransform = new System.Drawing.SizeF(1.2F, 1.2F);
@@ -252,9 +256,6 @@ namespace AppedoLT
             this.tabiVUscript.StretchHorizontally = false;
             this.tabiVUscript.StretchVertically = false;
             this.tabiVUscript.Text = "Design";
-            ((Telerik.WinControls.Primitives.ImagePrimitive)(this.tabiVUscript.GetChildAt(2).GetChildAt(1))).ScaleSize = new System.Drawing.Size(32, 32);
-            ((Telerik.WinControls.Primitives.ImagePrimitive)(this.tabiVUscript.GetChildAt(2).GetChildAt(1))).Alignment = System.Drawing.ContentAlignment.MiddleLeft;
-            ((Telerik.WinControls.Primitives.ImagePrimitive)(this.tabiVUscript.GetChildAt(2).GetChildAt(1))).AngleTransform = 0F;
             // 
             // tabiRun
             // 
@@ -273,6 +274,7 @@ namespace AppedoLT
             this.tabiRun.ForeColor = System.Drawing.Color.Black;
             this.tabiRun.Image = ((System.Drawing.Image)(resources.GetObject("tabiRun.Image")));
             this.tabiRun.ImageKey = "arrow-right-3.png";
+            this.tabiRun.IsSelected = true;
             this.tabiRun.Margin = new System.Windows.Forms.Padding(2, 0, 0, 0);
             this.tabiRun.Name = "tabiRun";
             this.tabiRun.ScaleTransform = new System.Drawing.SizeF(1.2F, 1.2F);
@@ -480,6 +482,7 @@ namespace AppedoLT
             this.pnlRun.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pnlRun.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(219)))), ((int)(((byte)(255)))));
+            this.pnlRun.Controls.Add(this.comboBrowserVersion);
             this.pnlRun.Controls.Add(this.label6);
             this.pnlRun.Controls.Add(this.lblHitCount);
             this.pnlRun.Controls.Add(this.label2);
@@ -500,6 +503,29 @@ namespace AppedoLT
             this.pnlRun.Name = "pnlRun";
             this.pnlRun.Size = new System.Drawing.Size(715, 102);
             this.pnlRun.TabIndex = 27;
+            // 
+            // comboBrowserVersion
+            // 
+            this.comboBrowserVersion.DisplayMember = "Key";
+            this.comboBrowserVersion.Items.AddRange(new object[] {
+            ((object)(resources.GetObject("comboBrowserVersion.Items"))),
+            ((object)(resources.GetObject("comboBrowserVersion.Items1"))),
+            ((object)(resources.GetObject("comboBrowserVersion.Items2"))),
+            ((object)(resources.GetObject("comboBrowserVersion.Items3"))),
+            ((object)(resources.GetObject("comboBrowserVersion.Items4"))),
+            ((object)(resources.GetObject("comboBrowserVersion.Items5"))),
+            ((object)(resources.GetObject("comboBrowserVersion.Items6"))),
+            ((object)(resources.GetObject("comboBrowserVersion.Items7"))),
+            ((object)(resources.GetObject("comboBrowserVersion.Items8"))),
+            ((object)(resources.GetObject("comboBrowserVersion.Items9"))),
+            ((object)(resources.GetObject("comboBrowserVersion.Items10"))),
+            ((object)(resources.GetObject("comboBrowserVersion.Items11"))),
+            ((object)(resources.GetObject("comboBrowserVersion.Items12")))});
+            this.comboBrowserVersion.Location = new System.Drawing.Point(287, 6);
+            this.comboBrowserVersion.Name = "comboBrowserVersion";
+            this.comboBrowserVersion.Size = new System.Drawing.Size(139, 21);
+            this.comboBrowserVersion.TabIndex = 0;
+            this.comboBrowserVersion.ValueMember = "Value";
             // 
             // label6
             // 
@@ -955,16 +981,6 @@ namespace AppedoLT
             this.tabiCharts.Text = "Charts";
             this.tabiCharts.Visibility = Telerik.WinControls.ElementVisibility.Collapsed;
             // 
-            // userControlCharts1
-            // 
-            this.userControlCharts1.AutoScroll = true;
-            this.userControlCharts1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(219)))), ((int)(((byte)(255)))));
-            this.userControlCharts1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.userControlCharts1.Location = new System.Drawing.Point(0, 0);
-            this.userControlCharts1.Name = "userControlCharts1";
-            this.userControlCharts1.Size = new System.Drawing.Size(941, 499);
-            this.userControlCharts1.TabIndex = 0;
-            // 
             // tabItem1
             // 
             this.tabItem1.Alignment = System.Drawing.ContentAlignment.BottomLeft;
@@ -988,17 +1004,6 @@ namespace AppedoLT
             this.tabItem1.StretchHorizontally = false;
             this.tabItem1.StretchVertically = false;
             this.tabItem1.Text = "Reports";
-            // 
-            // userControlReports2
-            // 
-            this.userControlReports2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.userControlReports2.Location = new System.Drawing.Point(0, 0);
-            this.userControlReports2.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.userControlReports2.Name = "userControlReports2";
-            this.userControlReports2.Size = new System.Drawing.Size(938, 499);
-            this.userControlReports2.TabIndex = 0;
             // 
             // tapiMonitor
             // 
@@ -1024,15 +1029,6 @@ namespace AppedoLT
             this.tapiMonitor.StretchVertically = false;
             this.tapiMonitor.Text = "Monitor";
             this.tapiMonitor.Visibility = Telerik.WinControls.ElementVisibility.Hidden;
-            // 
-            // ucMonitor1
-            // 
-            this.ucMonitor1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ucMonitor1.Location = new System.Drawing.Point(0, 0);
-            this.ucMonitor1.Margin = new System.Windows.Forms.Padding(5, 3, 5, 3);
-            this.ucMonitor1.Name = "ucMonitor1";
-            this.ucMonitor1.Size = new System.Drawing.Size(941, 499);
-            this.ucMonitor1.TabIndex = 0;
             // 
             // imcDesign
             // 
@@ -1077,7 +1073,8 @@ namespace AppedoLT
             this.mnuiVuscript.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.mnuiVuscript.Items.AddRange(new Telerik.WinControls.RadItem[] {
             this.mnuiVariableManager,
-            this.mnuiRecord});
+            this.mnuiRecord,
+            this.proxySettings});
             this.mnuiVuscript.Name = "mnuiVuscript";
             this.mnuiVuscript.Text = "&VUScripts";
             // 
@@ -1110,6 +1107,12 @@ namespace AppedoLT
             this.mnuiTcpip.Name = "mnuiTcpip";
             this.mnuiTcpip.Text = "&TCP/IP";
             this.mnuiTcpip.Click += new System.EventHandler(this.mnuiTcpip_Click);
+            // 
+            // proxySettings
+            // 
+            this.proxySettings.Name = "proxySettings";
+            this.proxySettings.Text = "Settings";
+            this.proxySettings.Click += new System.EventHandler(this.proxySettings_Click);
             // 
             // radMenuItem3
             // 
@@ -1216,6 +1219,36 @@ namespace AppedoLT
             this.radMenu1.TabIndex = 3;
             this.radMenu1.Text = "radMenu1";
             this.radMenu1.ThemeName = "Windows7";
+            // 
+            // userControlCharts1
+            // 
+            this.userControlCharts1.AutoScroll = true;
+            this.userControlCharts1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(219)))), ((int)(((byte)(255)))));
+            this.userControlCharts1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.userControlCharts1.Location = new System.Drawing.Point(0, 0);
+            this.userControlCharts1.Name = "userControlCharts1";
+            this.userControlCharts1.Size = new System.Drawing.Size(941, 499);
+            this.userControlCharts1.TabIndex = 0;
+            // 
+            // userControlReports2
+            // 
+            this.userControlReports2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.userControlReports2.Location = new System.Drawing.Point(0, 0);
+            this.userControlReports2.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.userControlReports2.Name = "userControlReports2";
+            this.userControlReports2.Size = new System.Drawing.Size(939, 499);
+            this.userControlReports2.TabIndex = 0;
+            // 
+            // ucMonitor1
+            // 
+            this.ucMonitor1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucMonitor1.Location = new System.Drawing.Point(0, 0);
+            this.ucMonitor1.Margin = new System.Windows.Forms.Padding(5, 3, 5, 3);
+            this.ucMonitor1.Name = "ucMonitor1";
+            this.ucMonitor1.Size = new System.Drawing.Size(941, 499);
+            this.ucMonitor1.TabIndex = 0;
             // 
             // objUCLoadGen
             // 
@@ -1399,5 +1432,9 @@ namespace AppedoLT
         private System.Windows.Forms.ColumnHeader columnHeader4;
         private System.Windows.Forms.ColumnHeader lvcContainerId;
         private System.Windows.Forms.ColumnHeader lvcContainerName;
+        private ComboBox comboBrowserVersion;
+        private Telerik.WinControls.UI.RadMenuItem proxySettings;
+        
+        
     }
 }

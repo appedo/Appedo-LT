@@ -144,6 +144,7 @@ namespace AppedoLT
                 //Adding details into grid
                 newItem.SubItems.AddRange(new string[] { requestResponse.RequestResult.RequestId.ToString(), requestResponse.ContainerName, requestResponse.RequestResult.RequestName, requestResponse.RequestResult.StartTime.ToString(), requestResponse.RequestResult.EndTime.ToString(), requestResponse.RequestResult.ResponseTime.ToString(), requestResponse.RequestResult.ResponseCode.ToString(), requestResponse.RequestResult.Success.ToString() });
                 lsvResult.Items.Add(newItem);
+                lblHitcoutValue.Text = lsvResult.Items.Count.ToString();
             }
             catch (Exception ex)
             {
@@ -160,42 +161,54 @@ namespace AppedoLT
         {
             try
             {
-                AppedoLT.Core.Constants.GetInstance().btnExecutionType = "Validate";
-                //If it is first validation  or no other validation is running.
-                if (firstRun == true || _vUSer.WorkCompleted == true)
+                // Check for network connectivity has changed 
+                if (RequestCountHandler._NetworkConnectedIP != System.Net.Dns.GetHostByName(System.Net.Dns.GetHostName()).AddressList[0].ToString())
                 {
-                    _errorObj.Clear();
-                    _logObj.Clear();
-                    btnViewError.Text = "&Errors(" + _errorObj.Count.ToString() + ")";
-                    btnViewLog.Text = "&Logs(" + _logObj.Count.ToString() + ")";
-                    if (firstRun == true) firstRun = false;
-                    //Creating data center for variables
-                    VariableManager.dataCenter = new VariableManager();
-                    lsvResult.Items.Clear();
-                    lblVResult.Text = string.Empty;
-                    Clear();
-                    lblVResult.Visible = true;
-                    //Creating single vuser object.
-                    _vUSer = GetUser();
-                    _vUSer.Start();
-                    timer.Start();
-                    // stop watch used to calculate  response time.
-                    stopWatch.Reset();
-                    stopWatch.Start();
-                    lblAvgResponse.Text = string.Empty;
-                    lblStatus.Text = "Started";
-                    _vUSer.WorkCompleted = false;
-                    btnValidate.Enabled = false;
+                    MessageBox.Show("Looks like you have changed to a different network after you opened the tool. Please Restart the Appedo LT tool");
+                    this.Close();
+                }
+                else
+                {
+                    AppedoLT.Core.Constants.GetInstance().btnExecutionType = "Validate";
+                    //If it is first validation  or no other validation is running.
+                    if (firstRun == true || _vUSer.WorkCompleted == true)
+                    {
+                        _errorObj.Clear();
+                        _logObj.Clear();
+                        btnViewError.Text = "&Errors(" + _errorObj.Count.ToString() + ")";
+                        btnViewLog.Text = "&Logs(" + _logObj.Count.ToString() + ")";
+                        lblHitcoutValue.Text = lsvResult.Items.Count.ToString();
+                        if (firstRun == true) firstRun = false;
+                        //Creating data center for variables
+                        VariableManager.dataCenter = new VariableManager();
+                        lsvResult.Items.Clear();
+                        lblVResult.Text = string.Empty;
+                        Clear();
+                        lblVResult.Visible = true;
+                        //Creating single vuser object.
+                        _vUSer = GetUser();
+                        _vUSer.Start();
+                        timer.Start();
+                        // stop watch used to calculate  response time.
+                        stopWatch.Reset();
+                        stopWatch.Start();
+                        lblAvgResponse.Text = string.Empty;
+                        lblStatus.Text = "Started";
+                        _vUSer.WorkCompleted = false;
+                        btnValidate.Enabled = false;
+
+                    }
+                    //Another validation is in progress.
+                    else if (_vUSer.WorkCompleted == false)
+                    {
+                        /*thread.Resume();
+                        stopWatch.Start();
+                        timer.Start();*/
+                        MessageBox.Show("Another script is Running");
+                    }
 
                 }
-                    //Another validation is in progress.
-                else if (_vUSer.WorkCompleted == false)
-                {
-                    /*thread.Resume();
-                    stopWatch.Start();
-                    timer.Start();*/
-                    MessageBox.Show("Another script is Running");
-                }
+
             }
             catch (Exception ex)
             {

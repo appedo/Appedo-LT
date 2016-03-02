@@ -16,6 +16,7 @@ using System.Threading;
 using System.Windows.Forms;
 using System.Xml;
 using Telerik.WinControls.UI;
+using System.Windows.Forms;
 
 namespace AppedoLT
 {
@@ -45,6 +46,8 @@ namespace AppedoLT
             try
             {
                 InitializeComponent();
+
+                comboBrowserVersion.SelectedIndex = 0;
                 mnuiLogin = new Telerik.WinControls.UI.RadMenuItem();
                 radMenu1.Items.Add(mnuiLogin);
                 mnuiLogin.Name = "mnuiLogin";
@@ -857,6 +860,26 @@ namespace AppedoLT
                             #region Without Loadgen
                             //Creating scenario xml
                             XmlDocument scenario = GetScenarioForRun(((XmlNode)tvScenarios.SelectedNode.Tag).Attributes["id"].Value, executionReport.ReportName, 1, 1, Convert.ToBoolean(((XmlNode)tvScenarios.SelectedNode.Tag).Attributes["enableipspoofing"].Value));
+                            string strSelectedUserAgent = ((KeyValuePair<string, string>)comboBrowserVersion.SelectedItem).Value.Trim();
+                            if (strSelectedUserAgent != null && strSelectedUserAgent != "Recorded Agent")
+                            {
+                                string strScenario = scenario.InnerXml.ToString();
+                                string pattern = "<header name=\"User-Agent\" value=\"(.*?)\"";
+
+                                Match m = Regex.Match(strScenario, pattern);
+                                while (m.Success)
+                                {
+                                    Console.WriteLine("'{0}' found at position {1}", m.Value, m.Index);
+                                    Group g = m.Groups[1];
+                                    strScenario = strScenario.Replace(g.Value, strSelectedUserAgent);
+                                    m = m.NextMatch();
+                                }
+                                scenario = new XmlDocument();
+                                scenario.LoadXml(strScenario);
+                                //XmlDocument aa = new XmlDocument();
+                                //aa.LoadXml(strScenario);
+                                //scenario = aa;
+                            }
                             run.AppendChild(GetRuntimeScriptDetail(scenario));
                             //Update varialble details
                             VariableManager.dataCenter = new VariableManager();
@@ -1401,7 +1424,10 @@ namespace AppedoLT
                         _scriptExecutorList.Clear();
                         lblUserCreated.Text = tempCreatedUser.ToString();
                         lblUserCompleted.Text = tempCompletedUser.ToString();
-                        lblHitCount.Text = _hitCount.ToString();
+                        //lblHitCount.Text = _hitCount.ToString();
+                        lblHitCount.Text = Convert.ToString(RequestCountHandler._ReqCount);
+                        // reset request count to zero                        
+                        RequestCountHandler._ReqCount = 0;
                         WaitUntillExecutionComplete();
                         Thread.Sleep(5000);
                         if (executionReport.ReportName != null)
@@ -1563,5 +1589,12 @@ namespace AppedoLT
 
         #endregion
 
+        private void proxySettings_Click(object sender, EventArgs e)
+        {
+            AppedoLT.Forms.frmProxyConfiguration vm = new AppedoLT.Forms.frmProxyConfiguration();
+            vm.ShowDialog();
+        }
+
+       
     }
 }

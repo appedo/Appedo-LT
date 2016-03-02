@@ -10,6 +10,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Xml;
 using System.Collections;
+using System.Configuration;
 
 namespace AppedoLT.BusinessLogic
 {
@@ -156,7 +157,7 @@ namespace AppedoLT.BusinessLogic
 
                 });
 
-                _request.Proxy = null;
+                //_request.Proxy = null;
                 _request.Expect = null;
                 _request.KeepAlive = true;
                 _request.AllowAutoRedirect = false;
@@ -165,6 +166,27 @@ namespace AppedoLT.BusinessLogic
                 _request.ProtocolVersion = HttpVersion.Version11;
                 _request.Method = RequestNode.Attributes["Method"].Value;
                 _request.UnsafeAuthenticatedConnectionSharing = true;
+
+                if (bool.Parse(ConfigurationManager.AppSettings["IsProxyEnabled"].ToString()))
+                {
+                    IWebProxy proxy = _request.Proxy;
+                    WebProxy myProxy = new WebProxy();
+                    // Print the Proxy Url to the console.
+                    if (proxy != null)
+                    {
+
+                        // Create a new Uri object.
+                        Uri newUri = new Uri("http://" + ConfigurationManager.AppSettings["ProxyHost"].ToString() + ":" + ConfigurationManager.AppSettings["ProxyPort"].ToString());
+                        // Associate the newUri object to 'myProxy' object so that new myProxy settings can be set.
+                        myProxy.Address = newUri;
+                    }
+
+                    _request.Proxy = myProxy;
+                }
+                else
+                {
+                    _request.Proxy = null;
+                }
 
                 #endregion
 

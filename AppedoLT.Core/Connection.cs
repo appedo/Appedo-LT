@@ -76,7 +76,22 @@ namespace AppedoLT.Core
 
         public Connection(string host, int port)
         {
-            _client = new TcpClient();
+            //_client = new TcpClient();
+            TcpClient tcpClient = new TcpClient();
+            if (bool.Parse(ConfigurationManager.AppSettings["IsProxyEnabled"].ToString()))
+            {
+                ProxyClientFactory pcf = new ProxyClientFactory();
+
+                //IProxyClient proxy = pcf.CreateProxyClient(ProxyType.Http, ConfigurationManager.AppSettings["ProxyHost"].ToString(), int.Parse(ConfigurationManager.AppSettings["ProxyPort"].ToString()), ConfigurationManager.AppSettings["UserName"].ToString(), ConfigurationManager.AppSettings["Password"].ToString());
+                IProxyClient proxy = pcf.CreateProxyClient(ProxyType.Http, ConfigurationManager.AppSettings["ProxyHost"].ToString(), int.Parse(ConfigurationManager.AppSettings["ProxyPort"].ToString()));
+                tcpClient = proxy.CreateConnection(host, port);
+                //_client = new TcpClient();
+                _client = tcpClient;
+            }
+            else
+            {
+                _client = new TcpClient();
+            }
             _host = host;
             _port = port;
             Connect();
