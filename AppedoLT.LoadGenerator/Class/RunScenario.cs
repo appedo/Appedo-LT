@@ -62,7 +62,7 @@ namespace AppedoLTLoadGenerator
 
         Dictionary<int, PerformanceCounter> CountersAllInstance = new Dictionary<int, PerformanceCounter>();
 
-        public RunScenario(string runid, string appedoIP, string appedoPort, string scenarioXml, string distribution, string appedoFailedUrl, string monitorCounter)
+        public RunScenario(string runid, string appedoIP, string appedoPort, string scenarioXml, string distribution, string appedoFailedUrl)
         {
             _runid = runid;
             _loadGenMonitorBuf.Runid = _logBuf.Runid = _errorBuf.Runid = _reportDataBuf.Runid = _TransactionDataBuf.Runid = _userDetailBuf.Runid = runid;
@@ -82,7 +82,7 @@ namespace AppedoLTLoadGenerator
             _statusUpdateTimer = new System.Timers.Timer(1000);
             _statusUpdateTimer.Enabled = true;
             _statusUpdateTimer.Elapsed += new ElapsedEventHandler(StatusUpdateTimer_Tick);
-            ConfigMoniter(monitorCounter);
+           // ConfigMoniter(monitorCounter);
         }
 
         //Config monitor counters for loadgen.

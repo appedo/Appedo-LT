@@ -97,8 +97,8 @@ namespace AppedoLTLoadGenerator
                                                 runDetail.Add("souceip", ((IPEndPoint)controller.tcpClient.Client.RemoteEndPoint).Address.ToString());
                                                 runDetail.Add("loadgenname", data.Header["loadgenname"] == null ? string.Empty : data.Header["loadgenname"]);
                                                 runDetail.Add("distribution", data.Header["distribution"] == null ? string.Empty : data.Header["distribution"]);
-                                                runDetail.Add("loadgencounters", data.Header["loadgencounters"]);
-
+                                               // runDetail.Add("loadgencounters", data.Header["loadgencounters"]);
+                                                
                                                 if (runScripts.ContainsKey(data.Header["runid"]) == true)
                                                 {
                                                     runScripts[data.Header["runid"]] = runDetail;
@@ -113,7 +113,7 @@ namespace AppedoLTLoadGenerator
                                             }
                                             catch (Exception ex)
                                             {
-                                                controller.Send(GetErrorData("401", "Unable to Save.\r\n" + ex.Message));
+                                                controller.Send(GetErrorData(ex.Message+"Veeru401", "Unable to Save.\r\n" + ex.Message));
                                             }
                                         }
                                         break;
@@ -133,7 +133,8 @@ namespace AppedoLTLoadGenerator
                                                     executionReport.TotalLoadGenUsed = Convert.ToInt16(runDetail["totalloadgenused"]);
                                                     executionReport.CurrentLoadGenid = Convert.ToInt16(runDetail["currentloadgenid"]);
                                                     executionReport.LoadGenName = runDetail["loadgenname"];
-                                                    run = new AppedoLTLoadGenerator.RunScenario(data.Header["runid"], runDetail["appedoip"], runDetail["appedoport"], runDetail["data"], runDetail["distribution"], runDetail["appedofailedurl"], runDetail["loadgencounters"]);
+                                                    //run = new AppedoLTLoadGenerator.RunScenario(data.Header["runid"], runDetail["appedoip"], runDetail["appedoport"], runDetail["data"], runDetail["distribution"], runDetail["appedofailedurl"], runDetail["loadgencounters"]);
+                                                    run = new AppedoLTLoadGenerator.RunScenario(data.Header["runid"], runDetail["appedoip"], runDetail["appedoport"], runDetail["data"], runDetail["distribution"], runDetail["appedofailedurl"]);
 
                                                     if (run.Start() == true)
                                                     {
@@ -307,8 +308,17 @@ namespace AppedoLTLoadGenerator
                         {
                             if (run.TotalCreatedUser != 0 && run.TotalCreatedUser == run.TotalCompletedUser && run.IsCompleted == 1)
                             {
-
-                                ni.Text = "Run completed" + System.Environment.NewLine + "Created: " + run.TotalCreatedUser.ToString() + Environment.NewLine + "Completed: " + run.TotalCompletedUser.ToString() + Environment.NewLine + timer.Elapsed.ToString(@"dd\.hh\:mm\:ss") + Environment.NewLine + "Time: " + DateTime.Now.ToString();
+                                string runStatusMsg = "Run completed" + System.Environment.NewLine + "Created: " + run.TotalCreatedUser.ToString() + Environment.NewLine + "Completed: " + run.TotalCompletedUser.ToString() + Environment.NewLine + timer.Elapsed.ToString(@"dd\.hh\:mm\:ss") + Environment.NewLine + "Time: " + DateTime.Now.ToString();
+                                if (runStatusMsg.Length>63)
+                                {
+                                    ExceptionHandler.WritetoEventLog(runStatusMsg);
+                                    ni.Text = runStatusMsg.Substring(0,63);
+                                }
+                                else
+                                {
+                                    ni.Text = runStatusMsg;
+                                }
+                                //ni.Text = "Run completed" + System.Environment.NewLine + "Created: " + run.TotalCreatedUser.ToString() + Environment.NewLine + "Completed: " + run.TotalCompletedUser.ToString() + Environment.NewLine + timer.Elapsed.ToString(@"dd\.hh\:mm\:ss") + Environment.NewLine + "Time: " + DateTime.Now.ToString();
                                 break;
                             }
                             else
