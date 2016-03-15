@@ -97,6 +97,7 @@ namespace AppedoLT.BusinessLogic
         {
             responseTime.Start();
             StartTime = DateTime.Now;
+            
             _request = null;
             try
             {

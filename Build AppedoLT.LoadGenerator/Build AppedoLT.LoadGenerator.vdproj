@@ -64,7 +64,7 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_7C901534C6CD0E4F06F411EB7602BDB6"
+        "OwnerKey" = "8:_4D39C2826B6511D06ABCEF250161BA8A"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -76,7 +76,7 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_4D39C2826B6511D06ABCEF250161BA8A"
+        "OwnerKey" = "8:_7C901534C6CD0E4F06F411EB7602BDB6"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -237,11 +237,6 @@
             "AssemblyAsmDisplayName" = "8:Ionic.Zip, Version=1.9.1.8, Culture=neutral, PublicKeyToken=edbe51ad942a3f5c, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_4D39C2826B6511D06ABCEF250161BA8A"
-                    {
-                    "Name" = "8:Ionic.Zip.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:Ionic.Zip.dll"
             "TargetName" = "8:"
@@ -268,11 +263,6 @@
             "AssemblyAsmDisplayName" = "8:AppedoLT.Core, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_590BDA3EA80B740C8F8413D97DC315A3"
-                    {
-                    "Name" = "8:AppedoLT.Core.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:AppedoLT.Core.dll"
             "TargetName" = "8:"
@@ -299,11 +289,6 @@
             "AssemblyAsmDisplayName" = "8:AppedoLT.BusinessLogic, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_7C901534C6CD0E4F06F411EB7602BDB6"
-                    {
-                    "Name" = "8:AppedoLT.BusinessLogic.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:AppedoLT.BusinessLogic.dll"
             "TargetName" = "8:"
@@ -421,15 +406,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:APPEDO_LT_LOAD_GENERATOR"
-        "ProductCode" = "8:{1185ACBA-3D29-485C-9C63-A2F1FFE35951}"
-        "PackageCode" = "8:{4C4832FC-082B-4346-B5BB-E373D43B36F7}"
+        "ProductCode" = "8:{774C1F0A-3710-4B34-A2D7-30FB9EF7025A}"
+        "PackageCode" = "8:{D53AC3AB-1714-4A2E-8F4E-1FFD454323D2}"
         "UpgradeCode" = "8:{FDF822FA-D49E-4533-BE33-97FB08C152F3}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:TRUE"
-        "ProductVersion" = "8:1.0.21"
+        "ProductVersion" = "8:1.0.23"
         "Manufacturer" = "8:Appedo"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"

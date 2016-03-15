@@ -827,6 +827,7 @@ namespace AppedoLT
             {
                 try
                 {
+                    MessageBox.Show("Please save any changes done, before validating or running scripts.");
                     _scriptExecutorList.Clear();
                     tmrExecution.Stop();
 

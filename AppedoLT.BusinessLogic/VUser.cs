@@ -99,6 +99,7 @@ namespace AppedoLT.BusinessLogic
         private int _createdConnection = 1;
         private bool _browserCache = false;
         private bool _bReplyThinkTime = true;
+        private string _numOfParallelCon = "0";
         private bool _secondaryRequestPlayed = false;
         private XmlNode _vuScriptXml;
         private Constants _Constants = Constants.GetInstance();
@@ -144,7 +145,7 @@ namespace AppedoLT.BusinessLogic
         public VUserStatus VUserStatus;
         private DateTime _userCreatededTime = new DateTime();
 
-        public VUser(int maxUser, string reportName, string type, int userid, int iteration, XmlNode vuScript, bool browserCache, IPAddress ipaddress, bool bReplyThinkTime)
+        public VUser(int maxUser, string reportName, string type, int userid, int iteration, XmlNode vuScript, bool browserCache, IPAddress ipaddress, bool bReplyThinkTime, string numOfParallelCon)
         {
             //Set current time
             _userCreatededTime = DateTime.Now;
@@ -153,6 +154,15 @@ namespace AppedoLT.BusinessLogic
             _maxUser = maxUser;
             _browserCache = browserCache;
             _bReplyThinkTime = bReplyThinkTime;
+            if (numOfParallelCon != null)
+            {
+                _numOfParallelCon = numOfParallelCon;
+            }
+            else
+            {
+                _numOfParallelCon = "6";
+            }
+            
             _type = type;
             _userid = userid;
             _iteration = iteration;
@@ -418,18 +428,27 @@ namespace AppedoLT.BusinessLogic
                                         {
                                             XmlNode requestHeadeNode = req.SelectSingleNode("./headers/header[@name='Accept']");
                                             // Match mat = new Regex("Content-Type: (.*?)\r\n", RegexOptions.Singleline | RegexOptions.Multiline).Match(req.Attributes["ResponseHeader"].Value);
-
+                                            string aa = req.Attributes["Path"].Value;
                                             if (requestHeadeNode != null && requestHeadeNode.Attributes["value"].Value.Contains("/"))
                                             {
                                                 if (requestHeadeNode.Attributes["value"].Value.ToLower().Contains("application") == false)
                                                 {
                                                     string acceptType = requestHeadeNode.Attributes["value"].Value.Split('/')[1];
                                                     acceptType = acceptType.ToLower();
-                                                    if ((acceptType.Contains("image")
-                                                        || acceptType.Contains("css")
-                                                        || acceptType.Contains("js")
-                                                        || acceptType.Contains("javascript")
-                                                        || temp.LocalPath.EndsWith(".js")
+                                                    //if ((acceptType.Contains("image")
+                                                    //    || acceptType.Contains("css")
+                                                    //    || acceptType.Contains("js")
+                                                    //    || acceptType.Contains("javascript")
+                                                    //    || temp.LocalPath.EndsWith(".js")
+                                                    //    || temp.LocalPath.EndsWith(".css")
+                                                    //    || temp.LocalPath.EndsWith(".png")
+                                                    //    || temp.LocalPath.EndsWith(".jpg")
+                                                    //    || temp.LocalPath.EndsWith(".pdf")
+                                                    //    || temp.LocalPath.EndsWith(".gif")
+                                                    //    || temp.LocalPath.EndsWith(".ico"))
+                                                    //    && acceptType.Contains("application") == false
+                                                    //   )
+                                                        if ((temp.LocalPath.EndsWith(".js")
                                                         || temp.LocalPath.EndsWith(".css")
                                                         || temp.LocalPath.EndsWith(".png")
                                                         || temp.LocalPath.EndsWith(".jpg")
@@ -452,7 +471,7 @@ namespace AppedoLT.BusinessLogic
                                             ExceptionHandler.WritetoEventLog(ex.StackTrace + Environment.NewLine + ex.Message);
                                         }
 
-                                        if (enablePrallel)
+                                        if (enablePrallel && int.Parse(_numOfParallelCon)> 1)
                                         {
                                             reqParallelQ.Enqueue(req);
                                         }
@@ -461,7 +480,7 @@ namespace AppedoLT.BusinessLogic
                                             reqSeqQ.Enqueue(req);
                                         }
 
-                                        if (reqParallelQ.Count == int.Parse(ConfigurationManager.AppSettings["ParallelConncetions"].Trim()))
+                                        if (reqParallelQ.Count == int.Parse(_numOfParallelCon) && int.Parse(_numOfParallelCon) > 1)
                                         {
                                             Parallel.For(0, reqParallelQ.Count, i =>
                                             {
@@ -470,7 +489,7 @@ namespace AppedoLT.BusinessLogic
                                                 XmlNode xn = reqParallelQ.Dequeue();
 
                                                 RequestCountHandler._ReqCount++;
-                                                //ProcessRequest(xn);
+                                                
                                                 ProcessRequest pr = new ProcessRequest(_maxUser, _reportName, _type, _userid, _iteration, _vuScriptXml, _browserCache, _IPAddress, _exVariablesValues, receivedCookies, OnLockError, VUserStatus, OnLockReportData, IsValidation, _pageId, _containerId);
                                                 pr.ProcessParallelRequest(xn);
 
@@ -836,10 +855,7 @@ namespace AppedoLT.BusinessLogic
                                 
                                 LockResponseTime(req.RequestNode.Attributes["id"].Value, req.RequestNode.Attributes["Path"] == null ? req.RequestName : req.RequestNode.Attributes["Path"].Value, req.StartTime, req.EndTime, req.ResponseTime, req.ResponseSize, req.ResponseCode.ToString());
                                 //string aa = System.Configuration.ConfigurationSettings.AppSettings.Get("xx");
-                                if (req.RequestNode.Attributes["Path"].Value.EndsWith("HotelResult.aspx"))
-                                {
-                                    int a = 6;
-                                }
+                                
                                 #region SecondaryReqEnable
                                 if (Convert.ToBoolean(_vuScriptXml.Attributes["dynamicreqenable"].Value) == true && !(_browserCache == true && _index > 1) && Convert.ToBoolean(req.RequestNode.Attributes["Excludesecondaryreq"].Value) == true)
                                 {

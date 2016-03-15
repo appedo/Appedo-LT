@@ -104,6 +104,7 @@ namespace AppedoLT
         {
             try
             {
+                MessageBox.Show("Please save any changes done, before validating or running scripts.");
                 if (Constants.GetInstance().IsValidationScreenOpen == true)
                 {
                     MessageBox.Show("Please close and reopen to load latest script details");
