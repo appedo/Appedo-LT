@@ -51,6 +51,8 @@ namespace AppedoLT
             this.ucDurationTime = new AppedoLT.UCTime();
             this.lblUserCount = new Telerik.WinControls.UI.RadLabel();
             this.radReplyThinkTime = new Telerik.WinControls.UI.RadCheckBox();
+            this.txtParallelCon = new System.Windows.Forms.TextBox();
+            this.lblMaxConnections = new System.Windows.Forms.Label();
             this.txtStatUserCount = new AppedoLT.IntTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.lblScriptName)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).BeginInit();
@@ -84,6 +86,39 @@ namespace AppedoLT
             this.lblScriptName.Size = new System.Drawing.Size(105, 19);
             this.lblScriptName.TabIndex = 49;
             this.lblScriptName.Text = "Script Name : ";
+
+            //
+            // radReplyThinkTime
+            // 
+            this.radReplyThinkTime.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radReplyThinkTime.Location = new System.Drawing.Point(172, 26);
+            this.radReplyThinkTime.Name = "radReplyThinkTime";
+            this.radReplyThinkTime.Size = new System.Drawing.Size(130, 17);
+            this.radReplyThinkTime.TabIndex = 50;
+            this.radReplyThinkTime.Text = "Reply Think Time";
+            
+            //
+            // txtParallelCon
+            // 
+            this.txtParallelCon.Location = new System.Drawing.Point(454, 22);
+            this.txtParallelCon.MaxLength = 2;
+            this.txtParallelCon.Name = "txtParallelCon";
+            this.txtParallelCon.Size = new System.Drawing.Size(100, 21);
+            this.txtParallelCon.TabIndex = 51;
+            this.txtParallelCon.Leave += new System.EventHandler(this.txtParallelCon_Leave);
+            
+            //
+            // lblMaxConnections
+            // 
+            this.lblMaxConnections.AutoSize = true;
+            this.lblMaxConnections.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold);
+            this.lblMaxConnections.Location = new System.Drawing.Point(308, 27);
+            this.lblMaxConnections.Name = "lblMaxConnections";
+            this.lblMaxConnections.Size = new System.Drawing.Size(140, 13);
+            this.lblMaxConnections.TabIndex = 52;
+            this.lblMaxConnections.Text = "Parallel Connections";
+
+
             // 
             // chkBrowseCache
             // 
@@ -337,6 +372,8 @@ namespace AppedoLT
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.lblMaxConnections);
+            this.Controls.Add(this.txtParallelCon);
             this.Controls.Add(this.radReplyThinkTime);
             this.Controls.Add(this.lblScriptName);
             this.Controls.Add(this.chkBrowseCache);
@@ -387,5 +424,7 @@ namespace AppedoLT
         private System.Windows.Forms.RadioButton rbtnIteration;
         private Telerik.WinControls.UI.RadLabel radLabel2;
         private Telerik.WinControls.UI.RadCheckBox radReplyThinkTime;
+        private System.Windows.Forms.TextBox txtParallelCon;
+        private System.Windows.Forms.Label lblMaxConnections;
     }
 }

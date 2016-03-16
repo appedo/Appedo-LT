@@ -44,19 +44,29 @@ namespace AppedoLT
                     radReplyThinkTime.Checked = true;
                     radReplyThinkTime.Hide();
                 }
-
                 
+                if (value.Attributes["parallelconnections"] != null)
+                {
+                    txtParallelCon.Text = value.Attributes["parallelconnections"].Value;
+                } else
+                {
+                    txtParallelCon.Text = "6";
+                }
                 
             }
             get
             {
                 VUScriptSetting vUScriptSettingObj = new VUScriptSetting();
-                if (radReplyThinkTime.Checked)
+                if (_setting.Attributes["replythinktime"] != null)
                 {
-                    _setting.Attributes["replythinktime"].Value = "true";
-                }
-                else {
                     _setting.Attributes["replythinktime"].Value = "false";
+                    if (radReplyThinkTime.Checked)
+                    {
+                        _setting.Attributes["replythinktime"].Value = "true";
+                    }else
+                    {
+                        _setting.Attributes["replythinktime"].Value = "false";
+                    }
                 }
 
                 if (chkBrowseCache.Checked == true) _setting.Attributes["browsercache"].Value = "true";
@@ -75,7 +85,10 @@ namespace AppedoLT
                 _setting.Attributes["maxuser"].Value = txtMaxuser.Text;
                 _setting.Attributes["incrementuser"].Value = txtIncrementUser.Text;
                 _setting.Attributes["incrementtime"].Value = ucIncrementTime.Time.Hours.ToString() + ";" + ucIncrementTime.Time.Minutes.ToString() + ";" + ucIncrementTime.Time.Seconds.ToString();
-
+                if (_setting.Attributes["parallelconnections"] != null) 
+                {
+                    _setting.Attributes["parallelconnections"].Value = txtParallelCon.Text;
+                }
 
                 return _setting;
             }
@@ -307,5 +320,34 @@ namespace AppedoLT
                 txtIteration.Location = new System.Drawing.Point(130, 61);
             }
         }
+
+
+            /// <summary>
+       /// This is to validate the maximum number of connections 
+       /// validate : MAX connections allowed 16 & MIN connections 1
+        /// </summary>
+       /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void txtParallelCon_Leave(object sender, EventArgs e)
+      {
+           if (txtParallelCon.Text.Trim().Length==0)
+         {
+               MessageBox.Show("Please specify max connections");
+            }
+           else if (int.Parse(txtParallelCon.Text) < 1)
+            {
+              MessageBox.Show("Max 0 connections not allowed, Please specify the valid number of connections");
+               txtParallelCon.Focus();
+            }
+           else if (int.Parse(txtParallelCon.Text) > 16)
+           {
+                MessageBox.Show("Max 16 connections allowed");
+               txtParallelCon.Focus();
+          }
+            
+}
+
+       
+  
     }
 }

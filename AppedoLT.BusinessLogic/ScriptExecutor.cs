@@ -92,6 +92,15 @@ namespace AppedoLT.BusinessLogic
                 {
                     setting.ReplyThinkTime = true;
                 }
+
+                if (settingNode.Attributes["parallelconnections"] != null)
+                {
+                    setting.numberOfParallelCon = settingNode.Attributes["parallelconnections"].Value;
+                }
+                else
+                {
+                    setting.numberOfParallelCon = "6";
+                }
                 
 
                 _vuScript = vuScript;
@@ -493,7 +502,8 @@ namespace AppedoLT.BusinessLogic
 
         private VUser GetVUser(int userid)
         {
-            VUser user = new VUser(int.Parse(_setting.MaxUser), _reportName, _setting.Type, userid, int.Parse(_setting.Iterations), _vuScript, _setting.BrowserCache, Request.GetIPAddress(_createdUserCount), _setting.ReplyThinkTime);
+            //VUser user = new VUser(int.Parse(_setting.MaxUser), _reportName, _setting.Type, userid, int.Parse(_setting.Iterations), _vuScript, _setting.BrowserCache, Request.GetIPAddress(_createdUserCount), _setting.ReplyThinkTime);
+            VUser user = new VUser(int.Parse(_setting.MaxUser), _reportName, _setting.Type, userid, int.Parse(_setting.Iterations), _vuScript, _setting.BrowserCache, Request.GetIPAddress(_createdUserCount), _setting.ReplyThinkTime, _setting.numberOfParallelCon);
             if(OnLockReportData!=null) user.OnLockReportData+=OnLockReportData;
             if(OnLockError != null) user.OnLockError += OnLockError;
             if(OnLockLog != null) user.OnLockLog += OnLockLog;

@@ -127,6 +127,8 @@ namespace AppedoLT
                         setting.Attributes.Append(repositoryXml.GetAttribute("browsercache", "false"));
                         setting.Attributes.Append(repositoryXml.GetAttribute("startuserid", "0"));
                         setting.Attributes.Append(repositoryXml.GetAttribute("replythinktime", "true"));
+                        setting.Attributes.Append(repositoryXml.GetAttribute("enableparallelcon", "false"));
+                        setting.Attributes.Append(repositoryXml.GetAttribute("parallelconnections", "6"));
                         script.AppendChild(setting);
                     }
                     _scenario.AppendChild(script);

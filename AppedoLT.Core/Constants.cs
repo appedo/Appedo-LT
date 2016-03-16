@@ -1162,6 +1162,8 @@ namespace AppedoLT.Core
         public int StartUserId { get; set; }
         public bool ReplyThinkTime { get; set; }
 
+        public string numberOfParallelCon { set; get; }
+
         public static VUScriptSetting GetDefault(string scriptId)
         {
             VUScriptSetting vUScriptSetting = new VUScriptSetting();
@@ -1178,6 +1180,7 @@ namespace AppedoLT.Core
             vUScriptSetting.BrowserCache = false;
             vUScriptSetting.StartUserId = 0;
             vUScriptSetting.ReplyThinkTime = true;
+            vUScriptSetting.numberOfParallelCon = "6";
             return vUScriptSetting;
 
         }
@@ -1197,6 +1200,7 @@ namespace AppedoLT.Core
             vUScriptSetting.BrowserCache = false;
             vUScriptSetting.StartUserId = 0;
             vUScriptSetting.ReplyThinkTime = true;
+            vUScriptSetting.numberOfParallelCon = "6";
             return vUScriptSetting;
 
         }
