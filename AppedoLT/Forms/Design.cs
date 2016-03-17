@@ -197,19 +197,24 @@ namespace AppedoLT
                 tvScenarios.Nodes.Clear();
                 foreach (XmlNode scenario in _repositoryXml.Doc.SelectNodes("//scenarios//scenario"))
                 {
-                    RadTreeNode scenarioNode = new RadTreeNode();
-                    scenarioNode.Text = scenario.Attributes["name"].Value;
-                    scenarioNode.Tag = scenario;
-                    scenarioNode.ImageKey = "scenarios.gif";
-                    foreach (XmlNode script in scenario.SelectNodes("script"))
+                    if (scenario.Attributes.Count>0)
                     {
-                        RadTreeNode scenarioScriptNode = new RadTreeNode();
-                        scenarioScriptNode.Text = script.Attributes["name"].Value;
-                        scenarioScriptNode.Tag = script;
-                        scenarioScriptNode.ImageKey = "scripts.gif";
-                        scenarioNode.Nodes.Add(scenarioScriptNode);
+                        RadTreeNode scenarioNode = new RadTreeNode();
+
+                        scenarioNode.Text = scenario.Attributes["name"].Value;
+                        scenarioNode.Tag = scenario;
+                        scenarioNode.ImageKey = "scenarios.gif";
+                        foreach (XmlNode script in scenario.SelectNodes("script"))
+                        {
+                            RadTreeNode scenarioScriptNode = new RadTreeNode();
+                            scenarioScriptNode.Text = script.Attributes["name"].Value;
+                            scenarioScriptNode.Tag = script;
+                            scenarioScriptNode.ImageKey = "scripts.gif";
+                            scenarioNode.Nodes.Add(scenarioScriptNode);
+                        }
+                        tvScenarios.Nodes.Add(scenarioNode);
                     }
-                    tvScenarios.Nodes.Add(scenarioNode);
+                    
                 }
             }
             catch (Exception ex)
@@ -703,6 +708,9 @@ namespace AppedoLT
                     if (MessageBox.Show("Are you sure you want to delete selected scenario?", "Delete", MessageBoxButtons.YesNo) == DialogResult.Yes)
                     {
                         ((XmlNode)tvScenarios.SelectedNode.Tag).ParentNode.RemoveChild((XmlNode)tvScenarios.SelectedNode.Tag);
+                        
+                        string strScenarioFilePath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + "/" + "VUScripts.xml";
+                        DeleteXmlNode(strScenarioFilePath, "scenario", "name", tvScenarios.SelectedNode.Text);
                         tvScenarios.SelectedNode.Remove();
                     }
                 }
@@ -712,6 +720,30 @@ namespace AppedoLT
                 ExceptionHandler.WritetoEventLog(ex.StackTrace + Environment.NewLine + ex.Message);
             }
         }
+
+
+   private static  void DeleteXmlNode(string path, string tagname, string searchconditionAttributename, string searchconditionAttributevalue)
+    {
+        XmlDocument doc =  new XmlDocument();
+         doc.Load(path); 
+        XmlNodeList nodes = doc.GetElementsByTagName(tagname);
+         //XmlNodeList nodes = doc.GetElementsByTagName("user");
+        foreach (XmlNode node in nodes)
+        {
+            foreach (XmlAttribute attribute in node.Attributes)
+            {
+                if ((attribute.Name == searchconditionAttributename) && (attribute.Value == searchconditionAttributevalue))
+                 //if ((attribute.Name == "name") && (attribute.Value == "aaa"))
+                {
+                     //delete.
+                    node.RemoveAll();
+                    break;
+                }
+            }
+        }
+         //save xml file.
+        doc.Save(path);
+    }  
 
         private void btnRun_Click(object sender, EventArgs e)
         {
