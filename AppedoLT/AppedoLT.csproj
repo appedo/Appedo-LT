@@ -476,9 +476,6 @@
       <DependentUpon>frmMessageBox.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\frmProxyConfiguration.resx">
-      <DependentUpon>frmProxyConfiguration.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmReplaceServer.resx">
       <DependentUpon>frmReplaceServer.cs</DependentUpon>
     </EmbeddedResource>
