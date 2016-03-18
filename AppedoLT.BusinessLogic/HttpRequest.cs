@@ -110,6 +110,7 @@ namespace AppedoLT.BusinessLogic
                 #endregion
 
                 #region Create Request
+                long lRequestStartTime = DateTime.Now.Ticks;
                 _request = (HttpWebRequest)WebRequest.Create(RequestNode.Attributes["Address"].Value);
                 
 
@@ -306,6 +307,9 @@ namespace AppedoLT.BusinessLogic
                     {
                         if (httpWebResponse != null)
                         {
+                            long lTimeToFirstByte = DateTime.Now.Ticks-lRequestStartTime;
+                            // TODO return the lTimeToFirstByte also.
+
                             ResponseCode = Convert.ToInt16(((HttpStatusCode)httpWebResponse.StatusCode).ToString("d"));
 
                             result.Append("http/" + httpWebResponse.ProtocolVersion).Append(" ").Append(ResponseCode.ToString()).Append(" ").Append(httpWebResponse.StatusCode.ToString()).Append(Environment.NewLine);
