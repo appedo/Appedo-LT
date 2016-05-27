@@ -911,7 +911,10 @@ namespace AppedoLT.Core
                                                                                    max           DOUBLE,
                                                                                    avg           DOUBLE, 
                                                                                    throughput    DOUBLE,
-                                                                                   hitcount      INT
+                                                                                   hitcount      INT,
+                                                                                   minttfb       DOUBLE,
+                                                                                   maxttfb       DOUBLE,
+                                                                                   avgttfb       DOUBLE
                                                                                    );
                 
                                                           CREATE TABLE transactions_{0} ( 
@@ -945,7 +948,7 @@ namespace AppedoLT.Core
                                                                                    );
                 
                                                            insert into requests_{0} select containerid,containername, requestid,address from reportdata where scriptid={0} group by containerid,containername,requestid order by containerid,requestid;
-                                                           insert into requestresponse_{0} select containerid,containername,requestid,address,min(diff),max(diff),avg(diff),sum(responsesize),count(diff)  from reportdata where scriptid={0} group by containerid,requestid order by containerid,requestid;
+                                                           insert into requestresponse_{0} select containerid,containername,requestid,address,min(diff),max(diff),avg(diff),sum(responsesize),count(diff),min(timetofirstbyte),max(timetofirstbyte),avg(timetofirstbyte)  from reportdata where scriptid={0} group by containerid,requestid order by containerid,requestid;
                                                            insert into containerresponse_{0} select containerid, containername,min(responsetime) AS min,max(responsetime) AS max,avg(responsetime) AS avg from containerresponsetime_{0} group by containerid order by containerid;
                                                            insert into transactions_{0} select transactionname,min(difference),max(difference),avg(difference) from transactions where scriptid={0} group by transactionname;
                                                            insert into errorcount_{0} select containerid,containername, requestid, request,count(*) from error where error.scriptname='{1}' group by error.requestid order by requestid;

@@ -15,6 +15,7 @@ namespace AppedoLT.Core
     {
         protected Constants _Constants = Constants.GetInstance();
         protected Stopwatch responseTime;
+        protected Stopwatch firstByteTime;
         protected string _responseStr = string.Empty;
         protected int _bufferSize = 8192;
         protected MemoryStream ResponseStream;
@@ -81,13 +82,31 @@ namespace AppedoLT.Core
             {
             }
         }
+
+        public double TimeForFirstByte
+        {
+            get
+            {
+                return firstByteTime.Elapsed.TotalMilliseconds;
+            }
+            private set
+            {
+            }
+        }
         public DateTime StartTime { get; set; }
         public DateTime EndTime
         {
-
             get
             {
                 return StartTime.AddTicks(responseTime.Elapsed.Ticks);
+            }
+            private set { }
+        }
+        public DateTime FirstByteReceivedTime
+        {
+            get
+            {
+                return StartTime.AddTicks(firstByteTime.Elapsed.Ticks);
             }
             private set { }
         }

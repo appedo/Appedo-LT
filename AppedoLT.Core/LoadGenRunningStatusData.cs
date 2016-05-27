@@ -225,6 +225,7 @@ namespace AppedoLT.Core
     {
         private DateTime _starttime = new DateTime();
         private DateTime _endtime = new DateTime();
+        private DateTime _firstbytetime = new DateTime();
 
         private string _loadgen = string.Empty;
         private string _sourceip = "0";
@@ -243,8 +244,8 @@ namespace AppedoLT.Core
 
         public DateTime starttime { get { return _starttime; } set { _starttime = value; } }
         public DateTime endtime { get { return _endtime; } set { _endtime = value; } }
-
-
+        public DateTime firstbytereceivedtime { get { return _firstbytetime; } set { _firstbytetime = value; } }
+        
         public string loadgen { get { return _loadgen; } set { _loadgen = value; } }
 
         [DataMember(Name = "source_ip")]
@@ -310,6 +311,21 @@ namespace AppedoLT.Core
             }
         }
 
+        [DataMember(Name = "firstbytetime")]
+        public string firstbytetimestr
+        {
+            get
+            {
+                DateTime origin = new DateTime(1970, 1, 1, 0, 0, 0, 0);
+                TimeSpan diff = _firstbytetime.ToUniversalTime() - origin;
+                return Math.Floor(diff.TotalMilliseconds).ToString();
+            }
+            set
+            {
+                _firstbytetime = Constants.GetInstance().ConvertFromUnixTimestamp(Convert.ToDouble(value));
+            }
+        }
+
         [DataMember(Name = "end_hrs")]
         public string end_hrs
         {
@@ -365,6 +381,9 @@ namespace AppedoLT.Core
         [DataMember(Name = "diff")]
         public double diff { get; set; }
 
+        [DataMember(Name = "timeforfirstbyte")]
+        public double timeforfirstbyte { get; set; }
+
         [DataMember(Name = "responsesize")]
         public long responsesize { get; set; }
 
@@ -376,7 +395,7 @@ namespace AppedoLT.Core
 
         public override string ToString()
         {
-            return string.Format("{0},{1},{2},{3},{4},{5},{6},{7},{8},{9},{10},{11},{12},{13},{14},{15},{16}",
+            return string.Format("{0},{1},{2},{3},{4},{5},{6},{7},{8},{9},{10},{11},{12},{13},{14},{15},{16},{17},{18}",
                                                                                  this.loadgen,
                                                                                  this.sourceip,
                                                                                  this.loadgenanme,
@@ -393,7 +412,9 @@ namespace AppedoLT.Core
                                                                                  this.endtime.ToString("yyyy-MM-dd HH:mm:ss"),
                                                                                  this.diff.ToString(),
                                                                                  this.reponseCode,
-                                                                                 this.responsesize);
+                                                                                 this.responsesize,
+                                                                                 this.firstbytereceivedtime.ToString("yyyy-MM-dd HH:mm:ss"),
+                                                                                 this.timeforfirstbyte.ToString());
         }
         private void SetHMS()
         {

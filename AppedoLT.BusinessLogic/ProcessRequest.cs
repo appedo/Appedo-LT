@@ -106,7 +106,7 @@ namespace AppedoLT.BusinessLogic
                         }
                         else
                         {
-                            LockResponseTime(req.RequestNode.Attributes["id"].Value, req.RequestNode.Attributes["Path"] == null ? req.RequestName : req.RequestNode.Attributes["Path"].Value, req.StartTime, req.EndTime, req.ResponseTime, req.ResponseSize, req.ResponseCode.ToString());
+                            LockResponseTime(req.RequestNode.Attributes["id"].Value, req.RequestNode.Attributes["Path"] == null ? req.RequestName : req.RequestNode.Attributes["Path"].Value, req.StartTime, req.FirstByteReceivedTime, req.EndTime, req.TimeForFirstByte, req.ResponseTime, req.ResponseSize, req.ResponseCode.ToString());
                         }
                     }
                     #endregion
@@ -203,7 +203,7 @@ namespace AppedoLT.BusinessLogic
                                 }
                                 // else
                                 //  {
-                                LockResponseTime(req.RequestNode.Attributes["id"].Value, req.RequestNode.Attributes["Path"] == null ? req.RequestName : req.RequestNode.Attributes["Path"].Value, req.StartTime, req.EndTime, req.ResponseTime, req.ResponseSize, req.ResponseCode.ToString());
+                                LockResponseTime(req.RequestNode.Attributes["id"].Value, req.RequestNode.Attributes["Path"] == null ? req.RequestName : req.RequestNode.Attributes["Path"].Value, req.StartTime, req.FirstByteReceivedTime, req.EndTime, req.TimeForFirstByte, req.ResponseTime, req.ResponseSize, req.ResponseCode.ToString());
                                 //  }
 
                                 #region SecondaryReqEnable
@@ -244,7 +244,7 @@ namespace AppedoLT.BusinessLogic
                                                             }
                                                             else
                                                             {
-                                                                LockResponseTime(req.RequestNode.Attributes["id"].Value, req.RequestNode.Attributes["Path"] == null ? req.RequestName : req.RequestNode.Attributes["Path"].Value, req.StartTime, req.EndTime, req.ResponseTime, req.ResponseSize, req.ResponseCode.ToString());
+                                                                LockResponseTime(req.RequestNode.Attributes["id"].Value, req.RequestNode.Attributes["Path"] == null ? req.RequestName : req.RequestNode.Attributes["Path"].Value, req.StartTime, req.FirstByteReceivedTime, req.EndTime, req.TimeForFirstByte, req.ResponseTime, req.ResponseSize, req.ResponseCode.ToString());
                                                             }
                                                         }
                                                         catch (Exception ex)
@@ -580,7 +580,7 @@ namespace AppedoLT.BusinessLogic
             data.ContainerName = _containerId.Peek()[1];
             if (OnLockRequestResponse != null) OnLockRequestResponse.Invoke(data);
         }
-        private void LockResponseTime(string requestid, string address, DateTime starttime, DateTime endtime, double diff, long responsesize, string reponseCode)
+        private void LockResponseTime(string requestid, string address, DateTime starttime, DateTime firstbytereceivedtime, DateTime endtime, double firstbytetime, double diff, long responsesize, string reponseCode)
         {
             try
             {
@@ -600,11 +600,13 @@ namespace AppedoLT.BusinessLogic
                     rd.requestid = requestid;
                     rd.address = address;
                     rd.starttime = starttime;
+                    rd.firstbytereceivedtime = firstbytereceivedtime;
+                    rd.timeforfirstbyte = firstbytetime;
                     rd.endtime = endtime;
                     rd.diff = diff;
                     rd.responsesize = responsesize;
                     rd.reponseCode = reponseCode;
-
+                    
                     if (OnLockReportData != null && rd != null)
                     {
                         OnLockReportData.Invoke(rd);

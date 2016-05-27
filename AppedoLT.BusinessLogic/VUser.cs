@@ -750,7 +750,7 @@ namespace AppedoLT.BusinessLogic
                         }
                         else
                         {
-                            LockResponseTime(req.RequestNode.Attributes["id"].Value, req.RequestNode.Attributes["Path"] == null ? req.RequestName : req.RequestNode.Attributes["Path"].Value, req.StartTime, req.EndTime, req.ResponseTime, req.ResponseSize, req.ResponseCode.ToString());
+                            LockResponseTime(req.RequestNode.Attributes["id"].Value, req.RequestNode.Attributes["Path"] == null ? req.RequestName : req.RequestNode.Attributes["Path"].Value, req.StartTime, req.FirstByteReceivedTime, req.EndTime, req.TimeForFirstByte, req.ResponseTime, req.ResponseSize, req.ResponseCode.ToString());
                         }
                     }
                     #endregion
@@ -853,7 +853,7 @@ namespace AppedoLT.BusinessLogic
                                     #endregion
                                 }
                                 
-                                LockResponseTime(req.RequestNode.Attributes["id"].Value, req.RequestNode.Attributes["Path"] == null ? req.RequestName : req.RequestNode.Attributes["Path"].Value, req.StartTime, req.EndTime, req.ResponseTime, req.ResponseSize, req.ResponseCode.ToString());
+                                LockResponseTime(req.RequestNode.Attributes["id"].Value, req.RequestNode.Attributes["Path"] == null ? req.RequestName : req.RequestNode.Attributes["Path"].Value, req.StartTime, req.FirstByteReceivedTime, req.EndTime, req.TimeForFirstByte, req.ResponseTime, req.ResponseSize, req.ResponseCode.ToString());
                                 //string aa = System.Configuration.ConfigurationSettings.AppSettings.Get("xx");
                                 
                                 #region SecondaryReqEnable
@@ -901,7 +901,7 @@ namespace AppedoLT.BusinessLogic
                                                             }
                                                             else
                                                             {
-                                                                LockResponseTime(req.RequestNode.Attributes["id"].Value, req.RequestNode.Attributes["Path"] == null ? req.RequestName : req.RequestNode.Attributes["Path"].Value, req.StartTime, req.EndTime, req.ResponseTime, req.ResponseSize, req.ResponseCode.ToString());
+                                                                LockResponseTime(req.RequestNode.Attributes["id"].Value, req.RequestNode.Attributes["Path"] == null ? req.RequestName : req.RequestNode.Attributes["Path"].Value, req.StartTime, req.FirstByteReceivedTime, req.EndTime, req.TimeForFirstByte, req.ResponseTime, req.ResponseSize, req.ResponseCode.ToString());
                                                             }
                                                         }
                                                         catch (Exception ex)
@@ -1352,7 +1352,9 @@ namespace AppedoLT.BusinessLogic
             if (IsValidation == true) requestResponse.IsSucess = true;
             DateTime start = new DateTime();
             DateTime end = new DateTime();
+            DateTime firstbytetime = new DateTime();
             Stopwatch elapsedTimer = new Stopwatch();
+            Stopwatch firstbyteTimer = new Stopwatch();
             StringBuilder response = new StringBuilder();
             ASCIIEncoding asen = new ASCIIEncoding();
             bool isAssertionFaild = false;
@@ -1429,6 +1431,8 @@ namespace AppedoLT.BusinessLogic
                 requestResponse.RequestId = tcpRequest.Attributes["id"].Value;
                 requestResponse.StartTime = DateTime.Now;
                 requestResponse.EndTime = DateTime.Now;
+                requestResponse.FirstByteReceivedTime = DateTime.Now;
+                requestResponse.TimeForFirstByte = 0; // Set as zero since there is exception 
                 requestResponse.Duration = elapsedTimer.Elapsed.TotalMilliseconds;
                 requestResponse.IsSucess = false;
                 requestResponse.TcpIPResponse = ex.Message;
@@ -1461,6 +1465,7 @@ namespace AppedoLT.BusinessLogic
             {
                 requestResponse.StartTime = start = DateTime.Now;
                 elapsedTimer.Start();
+                firstbyteTimer.Start();
                 Connection con;
                 lock (conncetionManager)
                 {
@@ -1483,6 +1488,10 @@ namespace AppedoLT.BusinessLogic
                             requestResponse.StartTime = start = DateTime.Now;
                             elapsedTimer.Reset();
                             elapsedTimer.Start();
+
+                            firstbyteTimer.Reset();
+                            firstbyteTimer.Start();
+
                             con.Reconnect();
                             con.NetworkStream.Flush();
                             con.NetworkStream.Write(requestBytes, 0, requestBytes.Length);
@@ -1510,6 +1519,14 @@ namespace AppedoLT.BusinessLogic
                             timeOut = timeOut - 10;
                             if (timeOut <= 0) break;
                         }
+
+                        if (con.Client.Available > 0)
+                        {
+                            firstbytetime = DateTime.Now;
+                            requestResponse.FirstByteReceivedTime = firstbytetime;
+                            firstbyteTimer.Stop();
+                        }
+
                         //Read if there is any bending data
                         while (con.Client.Available != 0 && (responseSize = con.NetworkStream.Read(receiveBuffer, 0, receiveBuffer.Length)) != 0)
                         {
@@ -1543,8 +1560,13 @@ namespace AppedoLT.BusinessLogic
                     finally
                     {
                         con.IsHold = false;
+                        if (firstbyteTimer.IsRunning)
+                        {
+                            firstbyteTimer.Stop();
+                        }
                         elapsedTimer.Stop();
                         requestResponse.Duration = elapsedTimer.Elapsed.TotalMilliseconds;
+                        requestResponse.TimeForFirstByte = firstbyteTimer.Elapsed.TotalMilliseconds;
                     }
                 }
 
@@ -1687,7 +1709,12 @@ namespace AppedoLT.BusinessLogic
                     requestResponse.TcpIPResponse = ex.Message;
                     requestResponse.TcpIPRequest = requestStr;
                     requestResponse.IsSucess = false;
-                    LockException(tcpRequest.Attributes["id"].Value, ex.Message, "700", tcpRequest.Attributes["name"].Value);
+                    LockException(tcpRequest.Attributes["id"].Value, ex.Message, "700", tcpRequest.Attributes["name"].Value); 
+                    if (firstbyteTimer.IsRunning)
+                    {
+                        firstbytetime = DateTime.Now;
+                        firstbyteTimer.Stop();
+                    }
                     end = DateTime.Now;
                     elapsedTimer.Stop();
                 }
@@ -1699,7 +1726,7 @@ namespace AppedoLT.BusinessLogic
             if (IsValidation != true)
             {
 
-                LockResponseTime(tcpRequest.Attributes["id"].Value, tcpRequest.Attributes["name"].Value, start, end, elapsedTimer.Elapsed.TotalMilliseconds, response.Length, responseCode);
+                LockResponseTime(tcpRequest.Attributes["id"].Value, tcpRequest.Attributes["name"].Value, start, firstbytetime, end, firstbyteTimer.Elapsed.TotalMilliseconds, elapsedTimer.Elapsed.TotalMilliseconds, response.Length, responseCode);
             }
             return requestResponse;
         }
@@ -1935,7 +1962,7 @@ namespace AppedoLT.BusinessLogic
         }
 
         //Lock report data
-        private void LockResponseTime(string requestid, string address, DateTime starttime, DateTime endtime, double diff, long responsesize, string reponseCode)
+        private void LockResponseTime(string requestid, string address, DateTime starttime, DateTime firstbytetime, DateTime endtime, double timeforfirstbyte, double diff, long responsesize, string reponseCode)
         {
             try
             {
@@ -1955,8 +1982,10 @@ namespace AppedoLT.BusinessLogic
                     rd.requestid = requestid;
                     rd.address = address;
                     rd.starttime = starttime;
+                    rd.firstbytereceivedtime = firstbytetime;
                     rd.endtime = endtime;
                     rd.diff = diff;
+                    rd.timeforfirstbyte = timeforfirstbyte;
                     rd.responsesize = responsesize;
                     rd.reponseCode = reponseCode;
 

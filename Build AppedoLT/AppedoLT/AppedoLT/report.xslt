@@ -37,7 +37,7 @@
     </span>
     
     <h4> Summary Report</h4>
-    <table border="1">
+    <table border="1" cellspacing="0">
       <xsl:for-each select="val">
         <tr>
           <td style="bgcolor=#9acd32">
@@ -175,7 +175,7 @@
   <xsl:template match="requestresponse">
     <h4> Request response</h4>
 
-    <table border="1">
+    <table border="1" cellspacing="0">
       <tr bgcolor="#9acd32">
         <th>Containername</th>
         <th>Address</th>
@@ -184,7 +184,9 @@
         <th>Min(ms)</th>
         <th>Max(ms)</th>
         <th>Avg(ms)</th>
-
+		<th>Min TTFB(ms)</th>
+        <th>Max TTFB(ms)</th>
+        <th>Avg TTFB(ms)</th>
       </tr>
       <xsl:for-each select="val">
         <tr>
@@ -209,6 +211,15 @@
           <td style="text-align:right">
             <xsl:value-of select="format-number(@avg,'#.000')"/>
           </td>
+		  <td style="text-align:right">
+            <xsl:value-of select="format-number(@minttfb,'#.000')"/>
+          </td>
+          <td style="text-align:right">
+            <xsl:value-of select="format-number(@maxttfb,'#.000')"/>
+          </td>
+          <td style="text-align:right">
+            <xsl:value-of select="format-number(@avgttfb,'#.000')"/>
+          </td>
         </tr>
       </xsl:for-each>
     </table>
@@ -218,7 +229,7 @@
   <xsl:template match="containerresponse">
     <h4> Container response</h4>
 
-    <table border="1">
+    <table border="1" cellspacing="0">
       <tr bgcolor="#9acd32">
         <th>Containername</th>
         <th>Min(ms)</th>
@@ -248,7 +259,7 @@
   <xsl:template match="transactions">
     <h4> Transactions response</h4>
 
-    <table border="1">
+    <table border="1" cellspacing="0">
       <tr bgcolor="#9acd32">
         <th>Transaction Name</th>
         <th>Min(ms)</th>
@@ -278,7 +289,7 @@
   <xsl:template match="errorcount">
     <h4>Error count</h4>
 
-    <table border="1">
+    <table border="1" cellspacing="0">
       <tr bgcolor="#9acd32">
         <th>Containername</th>
         <th>Address</th>
@@ -303,7 +314,7 @@
   <xsl:template match="errorcode">
     <h4>Error Description</h4>
 
-    <table border="1">
+    <table border="1" cellspacing="0">
       <tr bgcolor="#9acd32">
         <th>Errorcode</th>
         <th>Message</th>

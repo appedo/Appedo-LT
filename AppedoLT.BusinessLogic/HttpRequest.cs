@@ -58,6 +58,7 @@ namespace AppedoLT.BusinessLogic
             HasError = false;
             RequestNode = request;
             responseTime = new Stopwatch();
+            firstByteTime = new Stopwatch();
             ResponseStream = new MemoryStream();
             StoreRequestBody = storeResult;
 
@@ -74,6 +75,7 @@ namespace AppedoLT.BusinessLogic
             _cookiesBuffer = cookies;
             RequestNode = CreateRequestNode(parentRequest, secondaryRequest);
             responseTime = new Stopwatch();
+            firstByteTime = new Stopwatch();
             ResponseStream = new MemoryStream();
             _connectionGroup = ConnectionGroup;
             _IPAdress = ipaddress;
@@ -96,6 +98,7 @@ namespace AppedoLT.BusinessLogic
         public override void GetResponse()
         {
             responseTime.Start();
+            firstByteTime.Start();
             StartTime = DateTime.Now;
             
             _request = null;
@@ -304,6 +307,9 @@ namespace AppedoLT.BusinessLogic
                     {
                         if (httpWebResponse != null)
                         {
+                            //The HttpWebResponse object has already the information about the HTTP headers set, so the data has been already readed and parsed.
+                            //So this can be treated as the TTFB.
+                            firstByteTime.Stop();
                             ResponseCode = Convert.ToInt16(((HttpStatusCode)httpWebResponse.StatusCode).ToString("d"));
 
                             result.Append("http/" + httpWebResponse.ProtocolVersion).Append(" ").Append(ResponseCode.ToString()).Append(" ").Append(httpWebResponse.StatusCode.ToString()).Append(Environment.NewLine);
@@ -333,11 +339,15 @@ namespace AppedoLT.BusinessLogic
                 }
                 catch (WebException webEx)
                 {
-
+                    if (firstByteTime.IsRunning)
+                    {
+                        // Set this as the status code is already received
+                        firstByteTime.Stop();
+                    }
                     Success = false;
                     HasError = true;
                     if (webEx.Response != null)
-                    {
+                    {                        
                         ResponseCode = Convert.ToInt16(((HttpWebResponse)webEx.Response).StatusCode.ToString("d"));
                         ErrorCode = ((HttpWebResponse)webEx.Response).StatusCode.ToString("d");
                     }
@@ -389,6 +399,10 @@ namespace AppedoLT.BusinessLogic
                 }
                 finally
                 {
+                    if (firstByteTime.IsRunning)
+                    {
+                        firstByteTime.Stop();
+                    }
                     responseTime.Stop();
                     PerformAssertion();
                 }

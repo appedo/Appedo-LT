@@ -20,8 +20,9 @@ namespace AppedoLT.Core
         public string Response;
         public List<Parameter> Parameters = new List<Parameter>();
         public DateTime StartTime { get; set; }
-        public DateTime EndTime
-        { get; set; }
+        public DateTime FirstByteReceivedTime { get; set; }
+        public DateTime EndTime { get; set; }
+        public double TimeForFirstByte { get; set; }
         public double Duration
         {
             get;

@@ -18,6 +18,7 @@ namespace AppedoLT.BusinessLogic
             HasError = false;
             RequestNode = request;
             responseTime = new Stopwatch();
+            firstByteTime = new Stopwatch();
             ResponseStream = new MemoryStream();
             StoreRequestBody = storeResult;
             this.con = con;
@@ -127,6 +128,7 @@ namespace AppedoLT.BusinessLogic
                 StartTime = DateTime.Now;
 
                 responseTime.Start();
+                firstByteTime.Start();
 
                 lock (con)
                 {
@@ -142,6 +144,10 @@ namespace AppedoLT.BusinessLogic
                             StartTime = DateTime.Now;
                             responseTime.Reset();
                             responseTime.Start();
+
+                            firstByteTime.Reset();
+                            firstByteTime.Start();
+
                             con.Reconnect();
                             con.NetworkStream.Flush();
                             con.NetworkStream.Write(requestBytes, 0, requestBytes.Length);
@@ -163,6 +169,11 @@ namespace AppedoLT.BusinessLogic
                             Thread.Sleep(10);
                             timeOut = timeOut - 10;
                             if (timeOut <= 0) break;
+                        }
+
+                        if (con.Client.Available != 0)
+                        {
+                            firstByteTime.Stop();
                         }
 
                         while (con.Client.Available != 0 && (responseSize = con.NetworkStream.Read(receiveBuffer, 0, receiveBuffer.Length)) != 0)
@@ -191,6 +202,10 @@ namespace AppedoLT.BusinessLogic
                     finally
                     {
                         con.IsHold = false;
+                        if (firstByteTime.IsRunning)
+                        {
+                            firstByteTime.Stop();
+                        }
                         responseTime.Stop();
                     }
                 }
