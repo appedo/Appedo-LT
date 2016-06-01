@@ -1163,6 +1163,7 @@ namespace AppedoLT.Core
         public bool BrowserCache { get; set; }
         public int StartUserId { get; set; }
         public bool ReplyThinkTime { get; set; }
+        public string Bandwidth { get; set; }
         
         public string numberOfParallelCon { set; get; }
 
@@ -1177,6 +1178,7 @@ namespace AppedoLT.Core
             vUScriptSetting.MaxUser = "1";
             vUScriptSetting.StartUser = "1";
             vUScriptSetting.IncrementUser = "1";
+            vUScriptSetting.Bandwidth = "-1";
 
             vUScriptSetting.ScenarioId = string.Empty;
             vUScriptSetting.BrowserCache = false;
@@ -1203,6 +1205,7 @@ namespace AppedoLT.Core
             vUScriptSetting.StartUserId = 0;
             vUScriptSetting.ReplyThinkTime = true;            
             vUScriptSetting.numberOfParallelCon = "6";
+            vUScriptSetting.Bandwidth = "-1";
             return vUScriptSetting;
 
         }

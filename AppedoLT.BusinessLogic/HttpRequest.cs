@@ -52,7 +52,7 @@ namespace AppedoLT.BusinessLogic
 
         #region The constructor
 
-        public HttpRequest(XmlNode request, ref Dictionary<string, string> cookies, string ConnectionGroup, IPEndPoint ipaddress, bool storeResult)
+        public HttpRequest(XmlNode request, ref Dictionary<string, string> cookies, string ConnectionGroup, IPEndPoint ipaddress, bool storeResult, int bandwidthInKbps)
         {
             RequestId = int.Parse(request.Attributes["id"].Value);
             HasError = false;
@@ -65,9 +65,15 @@ namespace AppedoLT.BusinessLogic
             _connectionGroup = ConnectionGroup;
             _IPAdress = ipaddress;
             _cookiesBuffer = cookies;
+            _bandwidthInKbps = bandwidthInKbps;
+            if (_bandwidthInKbps > 0)
+            {
+                // Allocate the buffersize based on the bandwidth
+                _bufferSize = _bandwidthInKbps * 1024 / 8;
+            }
         }
        
-        public HttpRequest(XmlNode parentRequest, string secondaryRequest, Dictionary<string, string> cookies, string ConnectionGroup, IPEndPoint ipaddress, bool storeResult)
+        public HttpRequest(XmlNode parentRequest, string secondaryRequest, Dictionary<string, string> cookies, string ConnectionGroup, IPEndPoint ipaddress, bool storeResult, int bandwidthInKbps)
         {
             RequestId = 0;
             HasError = false;
@@ -79,6 +85,11 @@ namespace AppedoLT.BusinessLogic
             ResponseStream = new MemoryStream();
             _connectionGroup = ConnectionGroup;
             _IPAdress = ipaddress;
+            _bandwidthInKbps = bandwidthInKbps;
+            if (_bandwidthInKbps > 0)
+            {
+                _bufferSize = _bandwidthInKbps * 1024 / 8;
+            }
         }
       
         #endregion
@@ -264,31 +275,60 @@ namespace AppedoLT.BusinessLogic
 
                     using (var dataStream = _request.GetRequestStream())
                     {
-
+                        // Use throttledStream for emulating bandwidth even while uploading the data
+                        ThrottledStream tStream = new ThrottledStream(dataStream, (_bandwidthInKbps * 1024 / 8));
                         foreach (PostData pData in _posDataContainer.FindAll(f => f.size > 0))
                         {
                             if (pData.type == 1)
                             {
-                                dataStream.Write(Encoding.ASCII.GetBytes(pData.value.ToString().ToCharArray(), 0, pData.value.Length), 0, pData.value.Length);
+                                byte[] data = Encoding.ASCII.GetBytes(pData.value.ToString().ToCharArray(), 0, pData.value.Length);
+                                if (_bandwidthInKbps > 0)
+                                {
+                                    int bytesWritten = 0;
+                                    int bytesToWrite = _bufferSize;
+                                    while (bytesWritten < data.Length)
+                                    {
+                                        // Write in chunks to ensure the bandwidth allocation
+                                        bytesToWrite = pData.value.Length - bytesWritten;
+                                        if (bytesToWrite > _bufferSize)
+                                        {
+                                            bytesToWrite = _bufferSize;
+                                        }
+                                        tStream.Write(data, bytesWritten, bytesToWrite);
+                                        bytesWritten += bytesToWrite;
+                                    }
+                                }
+                                else
+                                {
+                                    tStream.Write(data, 0, data.Length);
+                                }
                             }
                             else if (pData.type == 2)
                             {
-                                byte[] buff = new byte[1028];
-                                int readSize = 0;
+                                if (_bandwidthInKbps <= 0)
+                                    _bufferSize = 8192;
+
+                                byte[] buff = new byte[_bufferSize];
                                 using (FileStream stream = new FileStream(pData.value.ToString(), FileMode.Open, FileAccess.Read))
                                 {
-                                    while (pData.size > 0)
+                                    int bytesWritten = 0;
+                                    int bytesToWrite = _bufferSize;
+                                    while (bytesWritten < stream.Length)
                                     {
-                                        readSize = stream.Read(buff, 0, buff.Length);
+                                        // Write in chunks to ensure the bandwidth allocation
+                                        bytesToWrite = (int)stream.Length - bytesWritten;
+                                        if (bytesToWrite > _bufferSize)
+                                        {
+                                            bytesToWrite = _bufferSize;
+                                        }
+
+                                        int readSize = stream.Read(buff, bytesWritten, bytesToWrite);
                                         try
                                         {
-                                            dataStream.Write(buff, 0, readSize);
+                                            tStream.Write(buff, 0, readSize);
                                         }
-                                        catch
-                                        {
-
-                                        }
-                                        pData.size = pData.size - readSize;
+                                        catch { }
+                                        bytesWritten += readSize;
                                     }
                                 }
                             }
@@ -703,7 +743,16 @@ namespace AppedoLT.BusinessLogic
 
             if (contentLength > 0)
             {
-                _buffer = new Byte[contentLength];
+                // This is a performance killer, if the contentLength is too big a huge memory is allocated, which is a overhead
+                // So allocate a max of 8 KB if buffer is bigger than this
+                if (contentLength < _bufferSize)
+                {
+                    _buffer = new Byte[contentLength];
+                }
+                else
+                {
+                    _buffer = new Byte[_bufferSize];
+                }
                 ResponseSize = contentLength;
             }
             else
@@ -711,6 +760,8 @@ namespace AppedoLT.BusinessLogic
 
             try
             {
+                ThrottledStream bufferStream = new ThrottledStream(responseStream, (_bandwidthInKbps * 1024 / 8));
+
                 if (RequestNode.SelectSingleNode("./extractor") != null || StoreRequestBody == true)
                 {
                     StoreResult = true;
@@ -723,11 +774,11 @@ namespace AppedoLT.BusinessLogic
                     {
                         if (contentLength >= _buffer.Length)
                         {
-                            _bytesRead = responseStream.Read(_buffer, 0, _buffer.Length);
+                            _bytesRead = bufferStream.Read(_buffer, 0, _buffer.Length);
                         }
                         else
                         {
-                            _bytesRead = responseStream.Read(_buffer, 0, (int)contentLength);
+                            _bytesRead = bufferStream.Read(_buffer, 0, (int)contentLength);
                         }
                         responseBody.Write(_buffer, 0, _bytesRead);
                         contentLength -= _bytesRead;
@@ -736,34 +787,34 @@ namespace AppedoLT.BusinessLogic
                 }
                 else if (contentType.ToLower().Contains("Transfer-Encoding: chunked".ToLower()) == true)
                 {
-                    _bytesRead = responseStream.Read(_buffer, 0, _buffer.Length);
+                    _bytesRead = bufferStream.Read(_buffer, 0, _buffer.Length);
                     ResponseSize += _bytesRead;
                     if (StoreResult) responseBody.Write(_buffer, 0, _bytesRead);
                     while (_bytesRead > 0)
                     {
                         ResponseSize += _bytesRead;
-                        _bytesRead = responseStream.Read(_buffer, 0, _buffer.Length);
+                        _bytesRead = bufferStream.Read(_buffer, 0, _buffer.Length);
                         if (StoreResult) responseBody.Write(_buffer, 0, _bytesRead);
                     }
                 }
                 else if (contentLength == 0)
                 {
-                    _bytesRead = responseStream.Read(_buffer, 0, _buffer.Length);
+                    _bytesRead = bufferStream.Read(_buffer, 0, _buffer.Length);
                     ResponseSize += _bytesRead;
                     if (StoreResult) responseBody.Write(_buffer, 0, _bytesRead);
                     while (_bytesRead > 0)
                     {
                         ResponseSize += _bytesRead;
-                        _bytesRead = responseStream.Read(_buffer, 0, _buffer.Length);
+                        _bytesRead = bufferStream.Read(_buffer, 0, _buffer.Length);
                         if (StoreResult) responseBody.Write(_buffer, 0, _bytesRead);
                     }
                 }
-                responseStream.Flush();
+                bufferStream.Flush();
                 if (responseBody.Length > 0)
                 {
                     responseBody.Seek(0, SeekOrigin.Begin);
                 }
-                responseStream.Close();
+                bufferStream.Close();
             }
             catch (Exception ex)
             {

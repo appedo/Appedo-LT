@@ -97,6 +97,7 @@ namespace AppedoLT.BusinessLogic
         private int _index;
         private int _maxConnection = 1;
         private int _createdConnection = 1;
+        private int _bandwidthInKbps = -1;
         private bool _browserCache = false;
         private bool _bReplyThinkTime = true;
         private string _numOfParallelCon = "0";
@@ -145,7 +146,7 @@ namespace AppedoLT.BusinessLogic
         public VUserStatus VUserStatus;
         private DateTime _userCreatededTime = new DateTime();
 
-        public VUser(int maxUser, string reportName, string type, int userid, int iteration, XmlNode vuScript, bool browserCache, IPAddress ipaddress, bool bReplyThinkTime, string numOfParallelCon)
+        public VUser(int maxUser, string reportName, string type, int userid, int iteration, XmlNode vuScript, bool browserCache, IPAddress ipaddress, bool bReplyThinkTime, string numOfParallelCon, int bandwidth)
         {
             //Set current time
             _userCreatededTime = DateTime.Now;
@@ -168,6 +169,7 @@ namespace AppedoLT.BusinessLogic
             _iteration = iteration;
             _vuScriptXml = vuScript;
             _reportName = reportName;
+            _bandwidthInKbps = bandwidth;
             _IPAddress = new IPEndPoint(ipaddress, 0);
             VUserStatus = new VUserStatus();
             _scriptName = _vuScriptXml.Attributes["name"].Value;
@@ -490,7 +492,7 @@ namespace AppedoLT.BusinessLogic
 
                                                 RequestCountHandler._ReqCount++;
                                                 
-                                                ProcessRequest pr = new ProcessRequest(_maxUser, _reportName, _type, _userid, _iteration, _vuScriptXml, _browserCache, _IPAddress, _exVariablesValues, receivedCookies, OnLockError, VUserStatus, OnLockReportData, IsValidation, _pageId, _containerId);
+                                                ProcessRequest pr = new ProcessRequest(_maxUser, _reportName, _type, _userid, _iteration, _vuScriptXml, _browserCache, _IPAddress, _exVariablesValues, receivedCookies, OnLockError, VUserStatus, OnLockReportData, IsValidation, _pageId, _containerId, _bandwidthInKbps);
                                                 pr.ProcessParallelRequest(xn);
 
 
@@ -736,7 +738,7 @@ namespace AppedoLT.BusinessLogic
                         }
                         Connection con=new Connection(request.Attributes["serverip"].Value, int.Parse(request.Attributes["port"].Value));
                        
-                        req = new TcpRequest(request, con, false);
+                        req = new TcpRequest(request, con, false, _bandwidthInKbps);
                         req.Variables = variables;
                         req.GetResponse();
 
@@ -832,7 +834,7 @@ namespace AppedoLT.BusinessLogic
                             //Check request is not in exclutionfiletypes
                             if (cacheEnabled == false && !(fileNameExt != string.Empty && _vuScriptXml.Attributes["exclutionfiletypes"].Value.Contains(fileNameExt.Replace(".", string.Empty).Trim().ToLower()) == true))
                             {
-                                req = new HttpRequest(request, ref receivedCookies, _userid.ToString() + (_createdConnection++ % _maxConnection).ToString(), _IPAddress, IsValidation);
+                                req = new HttpRequest(request, ref receivedCookies, _userid.ToString() + (_createdConnection++ % _maxConnection).ToString(), _IPAddress, IsValidation, _bandwidthInKbps);
                                 req.Variables = variables;
                                 req.GetResponse();
 
@@ -870,7 +872,7 @@ namespace AppedoLT.BusinessLogic
                                         }
                                         try
                                         {
-                                            Request secReq = new HttpRequest(request, links.Dequeue(), receivedCookies, _userid.ToString() + (_createdConnection++ % _maxConnection).ToString(), _IPAddress, IsValidation);
+                                            Request secReq = new HttpRequest(request, links.Dequeue(), receivedCookies, _userid.ToString() + (_createdConnection++ % _maxConnection).ToString(), _IPAddress, IsValidation, _bandwidthInKbps);
                                             //  Request secReq = new HttpRequest(request, links.Dequeue(), receivedCookies, _userid.ToString(), _IPAddress, IsValidation);
 
                                             RequestResponse responseResultSec = new RequestResponse();

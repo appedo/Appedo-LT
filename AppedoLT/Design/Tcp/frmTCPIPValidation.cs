@@ -59,7 +59,8 @@ namespace AppedoLT
 
         private VUser GetUser()
         {
-            VUser _vUSer = new VUser(1, DateTime.Now.ToString("dd_MMM_yyyy_hh_mm_ss"), "1", 1, 1, _vuScript, false, Request.GetIPAddress(1), true, "1");
+            // For validation set the bandwidth value as -1, which indicates no thrortling, full speed will be utilized
+            VUser _vUSer = new VUser(1, DateTime.Now.ToString("dd_MMM_yyyy_hh_mm_ss"), "1", 1, 1, _vuScript, false, Request.GetIPAddress(1), true, "1", -1);
             _vUSer.IsValidation = true;
             _vUSer.OnLockRequestResponse += _vUSer_OnLockRequestResponse;
             return _vUSer;

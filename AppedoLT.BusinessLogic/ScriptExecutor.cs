@@ -84,6 +84,15 @@ namespace AppedoLT.BusinessLogic
                 setting.Iterations = settingNode.Attributes["iterations"].Value;
                 setting.MaxUser = settingNode.Attributes["maxuser"].Value;
                 setting.StartUser = settingNode.Attributes["startuser"].Value;
+                if (settingNode.Attributes["bandwidth"] != null)
+                {
+                    setting.Bandwidth = settingNode.Attributes["bandwidth"].Value;
+                }
+                else
+                {
+                    // Backward compatibality. If noe is not present then run at full speed without any thorttle
+                    setting.Bandwidth = "-1";
+                }
 
                 if (settingNode.Attributes["replythinktime"] != null)
                 {
@@ -192,6 +201,7 @@ namespace AppedoLT.BusinessLogic
                 setting.Iterations = settingNode.Attributes["iterations"].Value;
                 setting.MaxUser = settingNode.Attributes["maxuser"].Value;
                 setting.StartUser = settingNode.Attributes["startuser"].Value;
+                setting.Bandwidth = settingNode.Attributes["bandwidth"].Value;
 
                 _vuScript = vuScript;
                 _setting = setting;
@@ -503,7 +513,7 @@ namespace AppedoLT.BusinessLogic
 
         private VUser GetVUser(int userid)
         {
-            VUser user = new VUser(int.Parse(_setting.MaxUser), _reportName, _setting.Type, userid, int.Parse(_setting.Iterations), _vuScript, _setting.BrowserCache, Request.GetIPAddress(_createdUserCount), _setting.ReplyThinkTime, _setting.numberOfParallelCon );
+            VUser user = new VUser(int.Parse(_setting.MaxUser), _reportName, _setting.Type, userid, int.Parse(_setting.Iterations), _vuScript, _setting.BrowserCache, Request.GetIPAddress(_createdUserCount), _setting.ReplyThinkTime, _setting.numberOfParallelCon, GetBandwidth());
             if(OnLockReportData!=null) user.OnLockReportData+=OnLockReportData;
             if(OnLockError != null) user.OnLockError += OnLockError;
             if(OnLockLog != null) user.OnLockLog += OnLockLog;
@@ -527,6 +537,16 @@ namespace AppedoLT.BusinessLogic
             }
         }
 
+        private int GetBandwidth()
+        {
+            int bandwidth = -1;
+            if (!int.TryParse(_setting.Bandwidth, out bandwidth))
+            {
+                // If value is less than 0,then no thortling will be done
+                bandwidth = -1;
+            }
+            return bandwidth;
+        }
         #endregion
 
     }

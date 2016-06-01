@@ -18,6 +18,7 @@ namespace AppedoLT.Core
         protected Stopwatch firstByteTime;
         protected string _responseStr = string.Empty;
         protected int _bufferSize = 8192;
+        protected int _bandwidthInKbps = -1;
         protected MemoryStream ResponseStream;
         private int _requestTimeOut;
         private List<Tuple<string, string>> _variables = new List<Tuple<string, string>>();

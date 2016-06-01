@@ -28,6 +28,7 @@ namespace AppedoLT.BusinessLogic
         private int _iteration;
         private int _index;
         private int _maxConnection = 1;
+        private int _bandwidth = -1;
         private int _createdConnection = 1;
         private bool _browserCache = false;
         private bool _secondaryRequestPlayed = false;
@@ -47,7 +48,7 @@ namespace AppedoLT.BusinessLogic
         Request req;
         public bool Break { get; set; }
         private ExecutionReport Status = ExecutionReport.GetInstance();
-        public ProcessRequest(int maxUser, string reportName, string type, int userid, int iteration, XmlNode vuScript, bool browserCache, IPEndPoint ipaddress, Dictionary<string, object> exVariablesValue, Dictionary<string, string> cookies, LockError OnlockError, VUserStatus VuserStatus, LockReportData OnlockReportData, bool Isvalidation, Stack<string> pageId, Stack<string[]> containerId)
+        public ProcessRequest(int maxUser, string reportName, string type, int userid, int iteration, XmlNode vuScript, bool browserCache, IPEndPoint ipaddress, Dictionary<string, object> exVariablesValue, Dictionary<string, string> cookies, LockError OnlockError, VUserStatus VuserStatus, LockReportData OnlockReportData, bool Isvalidation, Stack<string> pageId, Stack<string[]> containerId, int bandwidth)
         {
             _maxUser = maxUser;
             _browserCache = browserCache;
@@ -66,6 +67,7 @@ namespace AppedoLT.BusinessLogic
             IsValidation = Isvalidation;
             _pageId = pageId;
             _containerId = containerId;
+            _bandwidth = bandwidth;
         }
 
 
@@ -92,7 +94,7 @@ namespace AppedoLT.BusinessLogic
                         }
                         Connection con = new Connection(request.Attributes["serverip"].Value, int.Parse(request.Attributes["port"].Value));
 
-                        req = new TcpRequest(request, con, false);
+                        req = new TcpRequest(request, con, false, _bandwidth);
                         req.Variables = variables;
                         req.GetResponse();
 
@@ -182,7 +184,7 @@ namespace AppedoLT.BusinessLogic
                             if (cacheEnabled == false && !(fileNameExt != string.Empty && _vuScriptXml.Attributes["exclutionfiletypes"].Value.Contains(fileNameExt.Replace(".", string.Empty).Trim().ToLower()) == true))
                             {
 
-                                req = new HttpRequest(request, ref receivedCookies, _userid.ToString() + (_createdConnection++ % _maxConnection).ToString(), _IPAddress, IsValidation);
+                                req = new HttpRequest(request, ref receivedCookies, _userid.ToString() + (_createdConnection++ % _maxConnection).ToString(), _IPAddress, IsValidation, _bandwidth);
                                 req.Variables = variables;
                                 req.GetResponse();
 
@@ -220,7 +222,7 @@ namespace AppedoLT.BusinessLogic
                                         }
                                         try
                                         {
-                                            Request secReq = new HttpRequest(request, links.Dequeue(), receivedCookies, _userid.ToString() + (_createdConnection++ % _maxConnection).ToString(), _IPAddress, IsValidation);
+                                            Request secReq = new HttpRequest(request, links.Dequeue(), receivedCookies, _userid.ToString() + (_createdConnection++ % _maxConnection).ToString(), _IPAddress, IsValidation, _bandwidth);
                                             //  Request secReq = new HttpRequest(request, links.Dequeue(), receivedCookies, _userid.ToString(), _IPAddress, IsValidation);
 
                                             RequestResponse responseResultSec = new RequestResponse();

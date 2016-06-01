@@ -12,16 +12,22 @@ namespace AppedoLT.BusinessLogic
     class TcpRequest : Request
     {
         Connection con;
-        public TcpRequest(XmlNode request, Connection con, bool storeResult)
+        public TcpRequest(XmlNode request, Connection con, bool storeResult, int bandwidth)
         {
             RequestId = int.Parse(request.Attributes["id"].Value);
             HasError = false;
             RequestNode = request;
+            _bandwidthInKbps = bandwidth;
             responseTime = new Stopwatch();
             firstByteTime = new Stopwatch();
             ResponseStream = new MemoryStream();
             StoreRequestBody = storeResult;
             this.con = con;
+            if (_bandwidthInKbps > 0)
+            {
+                // Allocate the buffersize based on the bandwidth
+                _bufferSize = _bandwidthInKbps * 1024 / 8;
+            }
         }
         public override void GetResponse()
         {
@@ -134,10 +140,11 @@ namespace AppedoLT.BusinessLogic
                 {
                     try
                     {
+                        ThrottledStream bufferStream = new ThrottledStream(con.NetworkStream, (_bandwidthInKbps * 1024 / 8));
                         try
                         {
-                            con.NetworkStream.Flush();
-                            con.NetworkStream.Write(requestBytes, 0, requestBytes.Length);
+                            bufferStream.Flush();
+                            bufferStream.Write(requestBytes, 0, requestBytes.Length);
                         }
                         catch
                         {
@@ -149,8 +156,8 @@ namespace AppedoLT.BusinessLogic
                             firstByteTime.Start();
 
                             con.Reconnect();
-                            con.NetworkStream.Flush();
-                            con.NetworkStream.Write(requestBytes, 0, requestBytes.Length);
+                            bufferStream.Flush();
+                            bufferStream.Write(requestBytes, 0, requestBytes.Length);
                         }
                         con.NetworkStream.ReadTimeout = 120000;
 
@@ -176,7 +183,8 @@ namespace AppedoLT.BusinessLogic
                             firstByteTime.Stop();
                         }
 
-                        while (con.Client.Available != 0 && (responseSize = con.NetworkStream.Read(receiveBuffer, 0, receiveBuffer.Length)) != 0)
+                        bufferStream.Reset();
+                        while (con.Client.Available != 0 && (responseSize = bufferStream.Read(receiveBuffer, 0, receiveBuffer.Length)) != 0)
                         {
                             ResponseStream.Write(receiveBuffer, 0, responseSize);
                             if (con.Client.Available == 0) break;
@@ -185,7 +193,7 @@ namespace AppedoLT.BusinessLogic
                         if (Convert.ToInt32(RequestNode.Attributes["responsesize"].Value) > ResponseStream.Length)
                         {
                             Thread.Sleep(10);
-                            while (con.Client.Available != 0 && (responseSize = con.NetworkStream.Read(receiveBuffer, 0, receiveBuffer.Length)) != 0)
+                            while (con.Client.Available != 0 && (responseSize = bufferStream.Read(receiveBuffer, 0, receiveBuffer.Length)) != 0)
                             {
                                 ResponseStream.Write(receiveBuffer, 0, responseSize);
                                 if (con.Client.Available == 0) break;

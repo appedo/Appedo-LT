@@ -53,6 +53,43 @@ namespace AppedoLT
                 {                    
                     txtParallelCon.Text = "6";                                       
                 }
+
+                if (value.Attributes["bandwidth"] != null)
+                {
+                    int bandwidth = int.Parse(value.Attributes["bandwidth"].Value);
+                    chkSimulateBandwidth.Checked = (bandwidth > 0);
+                    if (chkSimulateBandwidth.Checked)
+                    {
+                        cmbBandwidth.Visible = true;
+                        if (bandwidth == 128)
+                        {
+                            cmbBandwidth.SelectedIndex = 0;
+                        }
+                        else if (bandwidth == 256)
+                        {
+                            cmbBandwidth.SelectedIndex = 1;
+                        }
+                        else if (bandwidth == 512)
+                        {
+                            cmbBandwidth.SelectedIndex = 2;
+                        }
+                        else if (bandwidth == 1024)
+                        {
+                            cmbBandwidth.SelectedIndex = 3;
+                        }
+                        else
+                        {
+                            txtBandwidth.Visible = true;
+                            lblkbps.Visible = true;
+                            cmbBandwidth.SelectedIndex = 4;
+                            txtBandwidth.Text = bandwidth.ToString();
+                        }
+                    }                    
+                }
+                else
+                {
+                    chkSimulateBandwidth.Checked = false;
+                }
             }
             get
             {
@@ -89,7 +126,40 @@ namespace AppedoLT
                 {
                     _setting.Attributes["parallelconnections"].Value = txtParallelCon.Text;
                 }
-                
+                int bandwidth = -1;
+                if (chkSimulateBandwidth.Checked)
+                {
+                    switch (cmbBandwidth.SelectedIndex)
+                    {
+                        case 0:
+                            bandwidth = 128;
+                            break;
+
+                        case 1:
+                            bandwidth = 256;
+                            break;
+
+                        case 2:
+                            bandwidth = 512;
+                            break;
+
+                        case 3:
+                            bandwidth = 1024;
+                            break;
+
+                        default:
+                            bandwidth = int.Parse(txtBandwidth.Text);
+                            break;
+                    }
+                }
+                if (_setting.Attributes["bandwidth"] != null)
+                {
+                    _setting.Attributes["bandwidth"].Value = bandwidth.ToString();
+                }
+                else
+                {
+                    ((XmlElement)_setting).SetAttribute("bandwidth", bandwidth.ToString());
+                }
                 
                 return _setting;
             }
@@ -103,8 +173,7 @@ namespace AppedoLT
         public UCScriptSetting()
         {
             InitializeComponent();
-
-
+            cmbBandwidth.SelectedIndex = 0;
         }
 
 
@@ -346,8 +415,20 @@ namespace AppedoLT
             
         }
 
-        
-        
-        
+        private void cmbBandwidth_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            txtBandwidth.Visible = (cmbBandwidth.SelectedIndex == (cmbBandwidth.Items.Count - 1));
+            lblkbps.Visible = txtBandwidth.Visible;
+        }
+
+        private void chkSimulateBandwidth_ToggleStateChanged(object sender, Telerik.WinControls.UI.StateChangedEventArgs args)
+        {
+            cmbBandwidth.Visible = chkSimulateBandwidth.Checked;
+            if (!chkSimulateBandwidth.Checked)
+            {
+                txtBandwidth.Visible = false;
+                lblkbps.Visible = false;
+            }
+        }
     }
 }
