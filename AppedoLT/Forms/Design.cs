@@ -920,6 +920,17 @@ namespace AppedoLT
                                 XmlNode setting = script.SelectNodes("//script[@id='" + scriptid + "']//setting")[0];
                                 XmlNode vuscript = script.SelectNodes("//script[@id='" + scriptid + "']//vuscript")[0];
                                 ScriptExecutor scriptRunnerSce = new ScriptExecutor(setting, vuscript, executionReport.ReportName);
+
+                                // Write Settings
+                                try
+                                {
+                                    ReportMaster mas = new ReportMaster(executionReport.ReportName);
+                                    mas.Executequery(executionReport.ReportName, _constants.GetSettingsQuery(executionReport.ReportName, scriptid, setting));
+                                }
+                                catch (Exception excp)
+                                {
+                                }
+
                                 //_scriptExecutorList used to store list of script selected by user
                                 _scriptExecutorList.Add(scriptRunnerSce);
                             }

@@ -171,12 +171,6 @@ namespace AppedoLT.BusinessLogic
                 throw new ArgumentNullException("baseStream");
             }
 
-            if (maximumBytesPerSecond < 0)
-            {
-                throw new ArgumentOutOfRangeException("maximumBytesPerSecond",
-                    maximumBytesPerSecond, "The maximum number of bytes per second can't be negatie.");
-            }
-
             _baseStream = baseStream;
             _maximumBytesPerSecond = maximumBytesPerSecond;
             _start = CurrentMilliseconds;

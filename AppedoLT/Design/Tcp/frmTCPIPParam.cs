@@ -42,8 +42,8 @@ namespace AppedoLT
             param.Attributes.Append(_repositoryXml.GetAttribute("paddingchar", txtPaddingChar.Text));
             param.Attributes.Append(_repositoryXml.GetAttribute("value", txtValue.Text));
             parms.AppendChild(param);
-            
-            MessageBox.Show("Saved");
+
+            MessageBox.Show("Script is saved successfully.");
             Clear();
             txtParamName.Focus();
 

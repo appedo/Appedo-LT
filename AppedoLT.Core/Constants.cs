@@ -853,6 +853,43 @@ namespace AppedoLT.Core
             }
             return PageContent;
         }
+
+        public string GetSettingsQuery(string reportName, string scriptId, XmlNode settingNode)
+        {
+            StringBuilder result = new StringBuilder();
+            result.AppendFormat(@" CREATE TABLE settings_{0} ( 
+                                                type   VARCHAR,
+                                                durationTime VARCHAR,
+                                                iterations INT,
+                                                incrementUser INT, 
+                                                incrementTime VARCHAR,
+                                                maxUser INT,
+                                                browserCache VARCHAR,
+                                                startUserId INT ,
+                                                replayThinkTime VARCHAR ,
+                                                bandwidth VARCHAR,
+                                                enableparallelcon VARCHAR ,
+                                                parallelconnections INT 
+                                                );", scriptId);
+
+            result.AppendFormat(@" insert into settings_{0} (type, durationTime, iterations, incrementUser, incrementTime, maxUser, browserCache, startUserId , replayThinkTime, bandwidth, enableparallelcon, parallelconnections) 
+                                                    values ('{1}', '{2}', {3}, {4}, '{5}', {6}, '{7}', {8}, '{9}', '{10}', '{11}', {12});", scriptId,
+                                                    settingNode.Attributes["type"].Value == "1" ? "Iteration" : "Duration",
+                                                    settingNode.Attributes["durationtime"].Value.Replace(';', ':'),
+                                                    settingNode.Attributes["iterations"].Value,
+                                                    settingNode.Attributes["incrementuser"].Value,
+                                                    settingNode.Attributes["incrementtime"].Value.Replace(';', ':'),
+                                                    settingNode.Attributes["maxuser"].Value,
+                                                    settingNode.Attributes["browsercache"].Value,
+                                                    settingNode.Attributes["startuser"].Value,
+                                                    settingNode.Attributes["replythinktime"].Value,
+                                                    settingNode.Attributes["bandwidth"].Value == "-1" ? "Full Speed" : settingNode.Attributes["bandwidth"].Value + " Kbps",
+                                                    settingNode.Attributes["enableparallelcon"].Value,
+                                                    settingNode.Attributes["parallelconnections"].Value);
+            return result.ToString();
+        
+        }
+
         public string GetQuery(string reportName, XmlDocument doc)
         {
             StringBuilder result = new StringBuilder();

@@ -334,7 +334,7 @@ namespace AppedoLT
             {
                 XmlNode node = vUScriptSetting;
                 repositoryXml.Save();
-                MessageBox.Show("Saved");
+                MessageBox.Show("Scenario is saved successfully.");
             }
         }
 

@@ -6,12 +6,14 @@ using System.Text;
 using System.Xml;
 using AppedoLT.Core;
 using System.IO;
+using System.Diagnostics;
 namespace AppedoLT.BusinessLogic
 {
     public class VariableManager
     {
         public static VariableManager dataCenter = null;
         private static DataSet datas = null;
+        private static object _syncObject = new object();
 
         private Dictionary<string, string> _VaraibleStartPosition = new Dictionary<string, string>();
         private Dictionary<string, XmlNode> _variableInfo = new Dictionary<string, XmlNode>();
@@ -139,9 +141,28 @@ namespace AppedoLT.BusinessLogic
             else
             {
                 DataRow[] dr = null;
-                if (VariablePolicy == "eachuser") dr = data.Select("userid=" + userid);
-                else if (VariablePolicy == "eachiteration") dr = data.Select("userid=" + userid + " and iterationid=" + iterationid);
-                else dr = data.Select("userid=0 and iterationid=0");
+                if (VariablePolicy == "eachuser")
+                {
+                    lock (_syncObject)
+                    {
+                        dr = data.Select("userid='" + userid + "'");
+                    }
+                }
+                else if (VariablePolicy == "eachiteration")
+                {
+                    lock (_syncObject)
+                    {
+                        dr = data.Select("userid='" + userid + "' and iterationid='" + iterationid + "'");
+                    }
+                }
+                else
+                {
+                    lock (_syncObject)
+                    {
+                        dr = data.Select("userid='0' and iterationid='0'");
+                    }
+                }
+
                 if (dr.Length > 0)
                 {
                     result = dr[0]["value"];
@@ -153,7 +174,11 @@ namespace AppedoLT.BusinessLogic
                     newItem["iterationid"] = iterationid.ToString();
                     newItem["value"] = GetValue(data.TableName, _variableInfo[data.TableName].Attributes["type"].Value);
                     result = newItem["value"].ToString();
-                    data.Rows.Add(newItem);
+
+                    lock (_syncObject)
+                    {
+                        data.Rows.Add(newItem);
+                    }
                 }
             }
             return result;

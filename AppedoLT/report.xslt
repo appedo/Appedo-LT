@@ -18,6 +18,7 @@
             </b>
           </span>
           <br/>
+          <xsl:apply-templates select="settings"/>
           <xsl:apply-templates select="requestresponse"/>
           <xsl:apply-templates select="containerresponse"/>
           <xsl:apply-templates select="transactions"/>
@@ -35,7 +36,7 @@
       <b>Report Name:  </b>
       <xsl:value-of select="//report/@reportname"/>
     </span>
-    
+
     <h4> Summary Report</h4>
     <table border="1" cellspacing="0">
       <xsl:for-each select="val">
@@ -172,6 +173,96 @@
 
   </xsl:template>
 
+  <xsl:template match="settings">
+    <h4> Settings</h4>
+
+    <table border="1" cellspacing="0" cellpadding="3">
+      <xsl:for-each select="val">
+        <tr>
+          <td  style="width: 160px;">
+            <b>Browser Cache</b>
+          </td>
+          <td style="width: 100px;">
+            <xsl:value-of select="@browserCache"/>
+          </td>
+          <td  style="width: 160px;">
+            <b>Replay Think Time</b>
+          </td>
+          <td style="width: 100px;">
+            <xsl:value-of select="@replayThinkTime"/>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <b>Bandwidth</b>
+          </td>
+          <td>
+            <xsl:value-of select="@bandwidth"/>
+          </td>
+          <td >
+            <b>Parallel Connections</b>
+          </td>
+          <td style="text-align:right">
+            <xsl:value-of select="@parallelconnections"/>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <b>Start User Count</b>
+          </td>
+          <td style="text-align:right">
+            <xsl:value-of select="@startUserId"/>
+          </td>
+          <td>
+            <b>Max Users</b>
+          </td>
+          <td style="text-align:right">
+            <xsl:value-of select="@maxUser"/>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <b>Mode</b>
+          </td>
+          <td>
+            <xsl:value-of select="@type"/>
+          </td>
+          <xsl:if test="@type='Duration'">
+            <td>
+              <b>Duration</b>
+            </td>
+            <td style="text-align:right;">
+              <xsl:value-of select="@durationTime"/>
+            </td>
+          </xsl:if>
+          <xsl:if test="@type='Iteration'">
+          <td>
+            <b>Iterations</b>
+          </td>
+          <td style="text-align:right">
+            <xsl:value-of select="@iterations"/>
+          </td>
+          </xsl:if>
+        </tr>
+        <tr>
+          <td>
+            <b>Increment User</b>
+          </td>
+          <td style="text-align:right">
+            <xsl:value-of select="@incrementUser"/>
+          </td>
+          <td>
+            <b>Increment Time</b>
+          </td>
+          <td style="text-align:right">
+            <xsl:value-of select="@incrementTime"/>
+          </td>
+        </tr>
+      </xsl:for-each>
+    </table>
+
+  </xsl:template>
+
   <xsl:template match="requestresponse">
     <h4> Request response</h4>
 
@@ -184,7 +275,7 @@
         <th>Min(ms)</th>
         <th>Max(ms)</th>
         <th>Avg(ms)</th>
-		<th>Min TTFB(ms)</th>
+        <th>Min TTFB(ms)</th>
         <th>Max TTFB(ms)</th>
         <th>Avg TTFB(ms)</th>
       </tr>
@@ -211,7 +302,7 @@
           <td style="text-align:right">
             <xsl:value-of select="format-number(@avg,'#.000')"/>
           </td>
-		  <td style="text-align:right">
+          <td style="text-align:right">
             <xsl:value-of select="format-number(@minttfb,'#.000')"/>
           </td>
           <td style="text-align:right">
