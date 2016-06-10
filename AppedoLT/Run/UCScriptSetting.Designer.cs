@@ -54,6 +54,10 @@ namespace AppedoLT
             this.txtParallelCon = new System.Windows.Forms.TextBox();
             this.lblMaxConnections = new System.Windows.Forms.Label();
             this.txtStatUserCount = new AppedoLT.IntTextBox();
+            this.chkSimulateBandwidth = new Telerik.WinControls.UI.RadCheckBox();
+            this.cmbBandwidth = new System.Windows.Forms.ComboBox();
+            this.txtBandwidth = new AppedoLT.IntTextBox();
+            this.lblkbps = new Telerik.WinControls.UI.RadLabel();
             ((System.ComponentModel.ISupportInitialize)(this.lblScriptName)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).BeginInit();
             this.panel1.SuspendLayout();
@@ -65,6 +69,8 @@ namespace AppedoLT
             ((System.ComponentModel.ISupportInitialize)(this.lblTime)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblUserCount)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radReplyThinkTime)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkSimulateBandwidth)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblkbps)).BeginInit();
             this.SuspendLayout();
             // 
             // imglSettings
@@ -86,39 +92,6 @@ namespace AppedoLT
             this.lblScriptName.Size = new System.Drawing.Size(105, 19);
             this.lblScriptName.TabIndex = 49;
             this.lblScriptName.Text = "Script Name : ";
-
-            //
-            // radReplyThinkTime
-            // 
-            this.radReplyThinkTime.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radReplyThinkTime.Location = new System.Drawing.Point(172, 26);
-            this.radReplyThinkTime.Name = "radReplyThinkTime";
-            this.radReplyThinkTime.Size = new System.Drawing.Size(130, 17);
-            this.radReplyThinkTime.TabIndex = 50;
-            this.radReplyThinkTime.Text = "Reply Think Time";
-            
-            //
-            // txtParallelCon
-            // 
-            this.txtParallelCon.Location = new System.Drawing.Point(454, 22);
-            this.txtParallelCon.MaxLength = 2;
-            this.txtParallelCon.Name = "txtParallelCon";
-            this.txtParallelCon.Size = new System.Drawing.Size(100, 21);
-            this.txtParallelCon.TabIndex = 51;
-            this.txtParallelCon.Leave += new System.EventHandler(this.txtParallelCon_Leave);
-            
-            //
-            // lblMaxConnections
-            // 
-            this.lblMaxConnections.AutoSize = true;
-            this.lblMaxConnections.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold);
-            this.lblMaxConnections.Location = new System.Drawing.Point(308, 27);
-            this.lblMaxConnections.Name = "lblMaxConnections";
-            this.lblMaxConnections.Size = new System.Drawing.Size(140, 13);
-            this.lblMaxConnections.TabIndex = 52;
-            this.lblMaxConnections.Text = "Parallel Connections";
-
-
             // 
             // chkBrowseCache
             // 
@@ -158,7 +131,7 @@ namespace AppedoLT
             this.panel1.Controls.Add(this.txtIncrementUser);
             this.panel1.Controls.Add(this.ucIncrementTime);
             this.panel1.Controls.Add(this.ucDurationTime);
-            this.panel1.Location = new System.Drawing.Point(2, 75);
+            this.panel1.Location = new System.Drawing.Point(3, 129);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(595, 147);
             this.panel1.TabIndex = 46;
@@ -336,7 +309,7 @@ namespace AppedoLT
             // 
             this.lblUserCount.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblUserCount.ForeColor = System.Drawing.Color.Black;
-            this.lblUserCount.Location = new System.Drawing.Point(8, 48);
+            this.lblUserCount.Location = new System.Drawing.Point(8, 97);
             this.lblUserCount.Name = "lblUserCount";
             // 
             // 
@@ -351,16 +324,35 @@ namespace AppedoLT
             this.radReplyThinkTime.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.radReplyThinkTime.Location = new System.Drawing.Point(172, 26);
             this.radReplyThinkTime.Name = "radReplyThinkTime";
-            this.radReplyThinkTime.Size = new System.Drawing.Size(130, 17);
+            this.radReplyThinkTime.Size = new System.Drawing.Size(137, 17);
             this.radReplyThinkTime.TabIndex = 50;
-            this.radReplyThinkTime.Text = "Reply Think Time";
+            this.radReplyThinkTime.Text = "Replay Think Time";
+            // 
+            // txtParallelCon
+            // 
+            this.txtParallelCon.Location = new System.Drawing.Point(454, 22);
+            this.txtParallelCon.MaxLength = 2;
+            this.txtParallelCon.Name = "txtParallelCon";
+            this.txtParallelCon.Size = new System.Drawing.Size(100, 21);
+            this.txtParallelCon.TabIndex = 51;
+            this.txtParallelCon.Leave += new System.EventHandler(this.txtParallelCon_Leave);
+            // 
+            // lblMaxConnections
+            // 
+            this.lblMaxConnections.AutoSize = true;
+            this.lblMaxConnections.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold);
+            this.lblMaxConnections.Location = new System.Drawing.Point(308, 27);
+            this.lblMaxConnections.Name = "lblMaxConnections";
+            this.lblMaxConnections.Size = new System.Drawing.Size(140, 13);
+            this.lblMaxConnections.TabIndex = 52;
+            this.lblMaxConnections.Text = "Parallel Connections";
             // 
             // txtStatUserCount
             // 
             this.txtStatUserCount.BackColor = System.Drawing.Color.White;
             this.txtStatUserCount.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtStatUserCount.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtStatUserCount.Location = new System.Drawing.Point(133, 48);
+            this.txtStatUserCount.Location = new System.Drawing.Point(133, 97);
             this.txtStatUserCount.Name = "txtStatUserCount";
             this.txtStatUserCount.Size = new System.Drawing.Size(90, 19);
             this.txtStatUserCount.TabIndex = 3;
@@ -368,10 +360,69 @@ namespace AppedoLT
             this.txtStatUserCount.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtStatUserCount.Validated += new System.EventHandler(this.txtStatUserCount_Validated);
             // 
+            // chkSimulateBandwidth
+            // 
+            this.chkSimulateBandwidth.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkSimulateBandwidth.Location = new System.Drawing.Point(9, 60);
+            this.chkSimulateBandwidth.Name = "chkSimulateBandwidth";
+            this.chkSimulateBandwidth.Size = new System.Drawing.Size(148, 17);
+            this.chkSimulateBandwidth.TabIndex = 53;
+            this.chkSimulateBandwidth.Text = "Simulate Bandwidth";
+            this.chkSimulateBandwidth.ToggleStateChanged += new Telerik.WinControls.UI.StateChangedEventHandler(this.chkSimulateBandwidth_ToggleStateChanged);
+            // 
+            // cmbBandwidth
+            // 
+            this.cmbBandwidth.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbBandwidth.FormattingEnabled = true;
+            this.cmbBandwidth.Items.AddRange(new object[] {
+            "128 kbps",
+            "256 kbps",
+            "512 kbps",
+            "1 mbps",
+            "Custom"});
+            this.cmbBandwidth.Location = new System.Drawing.Point(163, 56);
+            this.cmbBandwidth.Name = "cmbBandwidth";
+            this.cmbBandwidth.Size = new System.Drawing.Size(121, 21);
+            this.cmbBandwidth.TabIndex = 54;
+            this.cmbBandwidth.Visible = false;
+            this.cmbBandwidth.SelectedIndexChanged += new System.EventHandler(this.cmbBandwidth_SelectedIndexChanged);
+            // 
+            // txtBandwidth
+            // 
+            this.txtBandwidth.BackColor = System.Drawing.Color.White;
+            this.txtBandwidth.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtBandwidth.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtBandwidth.Location = new System.Drawing.Point(290, 58);
+            this.txtBandwidth.Name = "txtBandwidth";
+            this.txtBandwidth.Size = new System.Drawing.Size(90, 19);
+            this.txtBandwidth.TabIndex = 55;
+            this.txtBandwidth.Text = "1";
+            this.txtBandwidth.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtBandwidth.Visible = false;
+            // 
+            // lblkbps
+            // 
+            this.lblkbps.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblkbps.ForeColor = System.Drawing.Color.Black;
+            this.lblkbps.Location = new System.Drawing.Point(386, 60);
+            this.lblkbps.Name = "lblkbps";
+            // 
+            // 
+            // 
+            this.lblkbps.RootElement.ForeColor = System.Drawing.Color.Black;
+            this.lblkbps.Size = new System.Drawing.Size(36, 17);
+            this.lblkbps.TabIndex = 46;
+            this.lblkbps.Text = "kbps";
+            this.lblkbps.Visible = false;
+            // 
             // UCScriptSetting
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.lblkbps);
+            this.Controls.Add(this.txtBandwidth);
+            this.Controls.Add(this.cmbBandwidth);
+            this.Controls.Add(this.chkSimulateBandwidth);
             this.Controls.Add(this.lblMaxConnections);
             this.Controls.Add(this.txtParallelCon);
             this.Controls.Add(this.radReplyThinkTime);
@@ -383,7 +434,7 @@ namespace AppedoLT
             this.Controls.Add(this.txtStatUserCount);
             this.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Name = "UCScriptSetting";
-            this.Size = new System.Drawing.Size(599, 226);
+            this.Size = new System.Drawing.Size(599, 282);
             ((System.ComponentModel.ISupportInitialize)(this.lblScriptName)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).EndInit();
             this.panel1.ResumeLayout(false);
@@ -396,6 +447,8 @@ namespace AppedoLT
             ((System.ComponentModel.ISupportInitialize)(this.lblTime)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblUserCount)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radReplyThinkTime)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkSimulateBandwidth)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblkbps)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -426,5 +479,9 @@ namespace AppedoLT
         private Telerik.WinControls.UI.RadCheckBox radReplyThinkTime;
         private System.Windows.Forms.TextBox txtParallelCon;
         private System.Windows.Forms.Label lblMaxConnections;
+        private Telerik.WinControls.UI.RadCheckBox chkSimulateBandwidth;
+        private System.Windows.Forms.ComboBox cmbBandwidth;
+        private IntTextBox txtBandwidth;
+        private Telerik.WinControls.UI.RadLabel lblkbps;
     }
 }

@@ -9,8 +9,8 @@ using System.Net.Sockets;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Xml;
-using System.Configuration;
 using System.Collections;
+using System.Configuration;
 
 namespace AppedoLT.BusinessLogic
 {
@@ -52,21 +52,28 @@ namespace AppedoLT.BusinessLogic
 
         #region The constructor
 
-        public HttpRequest(XmlNode request, ref Dictionary<string, string> cookies, string ConnectionGroup, IPEndPoint ipaddress, bool storeResult)
+        public HttpRequest(XmlNode request, ref Dictionary<string, string> cookies, string ConnectionGroup, IPEndPoint ipaddress, bool storeResult, int bandwidthInKbps)
         {
             RequestId = int.Parse(request.Attributes["id"].Value);
             HasError = false;
             RequestNode = request;
             responseTime = new Stopwatch();
+            firstByteTime = new Stopwatch();
             ResponseStream = new MemoryStream();
             StoreRequestBody = storeResult;
 
             _connectionGroup = ConnectionGroup;
             _IPAdress = ipaddress;
             _cookiesBuffer = cookies;
+            _bandwidthInKbps = bandwidthInKbps;
+            if (_bandwidthInKbps > 0)
+            {
+                // Allocate the buffersize based on the bandwidth
+                _bufferSize = _bandwidthInKbps * 1024 / 8;
+            }
         }
        
-        public HttpRequest(XmlNode parentRequest, string secondaryRequest, Dictionary<string, string> cookies, string ConnectionGroup, IPEndPoint ipaddress, bool storeResult)
+        public HttpRequest(XmlNode parentRequest, string secondaryRequest, Dictionary<string, string> cookies, string ConnectionGroup, IPEndPoint ipaddress, bool storeResult, int bandwidthInKbps)
         {
             RequestId = 0;
             HasError = false;
@@ -74,9 +81,15 @@ namespace AppedoLT.BusinessLogic
             _cookiesBuffer = cookies;
             RequestNode = CreateRequestNode(parentRequest, secondaryRequest);
             responseTime = new Stopwatch();
+            firstByteTime = new Stopwatch();
             ResponseStream = new MemoryStream();
             _connectionGroup = ConnectionGroup;
             _IPAdress = ipaddress;
+            _bandwidthInKbps = bandwidthInKbps;
+            if (_bandwidthInKbps > 0)
+            {
+                _bufferSize = _bandwidthInKbps * 1024 / 8;
+            }
         }
       
         #endregion
@@ -96,7 +109,9 @@ namespace AppedoLT.BusinessLogic
         public override void GetResponse()
         {
             responseTime.Start();
+            firstByteTime.Start();
             StartTime = DateTime.Now;
+            
             _request = null;
             try
             {
@@ -110,10 +125,7 @@ namespace AppedoLT.BusinessLogic
                 #endregion
 
                 #region Create Request
-                long lRequestStartTime = DateTime.Now.Ticks;
                 _request = (HttpWebRequest)WebRequest.Create(RequestNode.Attributes["Address"].Value);
-                
-
                 _request.Timeout = RequestTimeOut;
                 _request.ConnectionGroupName = _connectionGroup;
 
@@ -160,12 +172,12 @@ namespace AppedoLT.BusinessLogic
 
                 });
 
-                
+                //_request.Proxy = null;
                 _request.Expect = null;
                 _request.KeepAlive = true;
                 _request.AllowAutoRedirect = false;
                 _request.Connection = "keepalive";
-               _request.CachePolicy = new RequestCachePolicy(RequestCacheLevel.BypassCache);
+                _request.CachePolicy = new RequestCachePolicy(RequestCacheLevel.BypassCache);
                 _request.ProtocolVersion = HttpVersion.Version11;
                 _request.Method = RequestNode.Attributes["Method"].Value;
                 _request.UnsafeAuthenticatedConnectionSharing = true;
@@ -177,7 +189,7 @@ namespace AppedoLT.BusinessLogic
                     // Print the Proxy Url to the console.
                     if (proxy != null)
                     {
-                        
+
                         // Create a new Uri object.
                         Uri newUri = new Uri("http://" + ConfigurationManager.AppSettings["ProxyHost"].ToString() + ":" + ConfigurationManager.AppSettings["ProxyPort"].ToString());
                         // Associate the newUri object to 'myProxy' object so that new myProxy settings can be set.
@@ -190,7 +202,6 @@ namespace AppedoLT.BusinessLogic
                 {
                     _request.Proxy = null;
                 }
-                
 
                 #endregion
 
@@ -233,7 +244,7 @@ namespace AppedoLT.BusinessLogic
                             case "If-Modified-Since":
                                 try
                                 {
-                                   _request.IfModifiedSince = Convert.ToDateTime(hed.Attributes["value"].Value);
+                                    _request.IfModifiedSince = Convert.ToDateTime(hed.Attributes["value"].Value);
                                 }
                                 catch
                                 {
@@ -264,31 +275,60 @@ namespace AppedoLT.BusinessLogic
 
                     using (var dataStream = _request.GetRequestStream())
                     {
-
+                        // Use throttledStream for emulating bandwidth even while uploading the data
+                        ThrottledStream tStream = new ThrottledStream(dataStream, (_bandwidthInKbps * 1024 / 8));
                         foreach (PostData pData in _posDataContainer.FindAll(f => f.size > 0))
                         {
                             if (pData.type == 1)
                             {
-                                dataStream.Write(Encoding.ASCII.GetBytes(pData.value.ToString().ToCharArray(), 0, pData.value.Length), 0, pData.value.Length);
+                                byte[] data = Encoding.ASCII.GetBytes(pData.value.ToString().ToCharArray(), 0, pData.value.Length);
+                                if (_bandwidthInKbps > 0)
+                                {
+                                    int bytesWritten = 0;
+                                    int bytesToWrite = _bufferSize;
+                                    while (bytesWritten < data.Length)
+                                    {
+                                        // Write in chunks to ensure the bandwidth allocation
+                                        bytesToWrite = pData.value.Length - bytesWritten;
+                                        if (bytesToWrite > _bufferSize)
+                                        {
+                                            bytesToWrite = _bufferSize;
+                                        }
+                                        tStream.Write(data, bytesWritten, bytesToWrite);
+                                        bytesWritten += bytesToWrite;
+                                    }
+                                }
+                                else
+                                {
+                                    tStream.Write(data, 0, data.Length);
+                                }
                             }
                             else if (pData.type == 2)
                             {
-                                byte[] buff = new byte[1028];
-                                int readSize = 0;
+                                if (_bandwidthInKbps <= 0)
+                                    _bufferSize = 8192;
+
+                                byte[] buff = new byte[_bufferSize];
                                 using (FileStream stream = new FileStream(pData.value.ToString(), FileMode.Open, FileAccess.Read))
                                 {
-                                    while (pData.size > 0)
+                                    int bytesWritten = 0;
+                                    int bytesToWrite = _bufferSize;
+                                    while (bytesWritten < stream.Length)
                                     {
-                                        readSize = stream.Read(buff, 0, buff.Length);
+                                        // Write in chunks to ensure the bandwidth allocation
+                                        bytesToWrite = (int)stream.Length - bytesWritten;
+                                        if (bytesToWrite > _bufferSize)
+                                        {
+                                            bytesToWrite = _bufferSize;
+                                        }
+
+                                        int readSize = stream.Read(buff, bytesWritten, bytesToWrite);
                                         try
                                         {
-                                            dataStream.Write(buff, 0, readSize);
+                                            tStream.Write(buff, 0, readSize);
                                         }
-                                        catch
-                                        {
-
-                                        }
-                                        pData.size = pData.size - readSize;
+                                        catch { }
+                                        bytesWritten += readSize;
                                     }
                                 }
                             }
@@ -307,9 +347,9 @@ namespace AppedoLT.BusinessLogic
                     {
                         if (httpWebResponse != null)
                         {
-                            long lTimeToFirstByte = DateTime.Now.Ticks-lRequestStartTime;
-                            // TODO return the lTimeToFirstByte also.
-
+                            //The HttpWebResponse object has already the information about the HTTP headers set, so the data has been already readed and parsed.
+                            //So this can be treated as the TTFB.
+                            firstByteTime.Stop();
                             ResponseCode = Convert.ToInt16(((HttpStatusCode)httpWebResponse.StatusCode).ToString("d"));
 
                             result.Append("http/" + httpWebResponse.ProtocolVersion).Append(" ").Append(ResponseCode.ToString()).Append(" ").Append(httpWebResponse.StatusCode.ToString()).Append(Environment.NewLine);
@@ -339,11 +379,15 @@ namespace AppedoLT.BusinessLogic
                 }
                 catch (WebException webEx)
                 {
-
+                    if (firstByteTime.IsRunning)
+                    {
+                        // Set this as the status code is already received
+                        firstByteTime.Stop();
+                    }
                     Success = false;
                     HasError = true;
                     if (webEx.Response != null)
-                    {
+                    {                        
                         ResponseCode = Convert.ToInt16(((HttpWebResponse)webEx.Response).StatusCode.ToString("d"));
                         ErrorCode = ((HttpWebResponse)webEx.Response).StatusCode.ToString("d");
                     }
@@ -395,6 +439,10 @@ namespace AppedoLT.BusinessLogic
                 }
                 finally
                 {
+                    if (firstByteTime.IsRunning)
+                    {
+                        firstByteTime.Stop();
+                    }
                     responseTime.Stop();
                     PerformAssertion();
                 }
@@ -440,7 +488,7 @@ namespace AppedoLT.BusinessLogic
                             else
                             {
                                 AssertionResult = false;
-                               // AssertionFaildMsg.Append(string.Format("Assertion({0}) Failed.\r\n", assertion.Attributes["name"].Value));
+                                // AssertionFaildMsg.Append(string.Format("Assertion({0}) Failed.\r\n", assertion.Attributes["name"].Value));
                                 AssertionFaildMsg.Append(string.Format("Expected value({0}) not present in the response.\r\n", assertion.Attributes["text"].Value));
                             }
                         }
@@ -518,7 +566,7 @@ namespace AppedoLT.BusinessLogic
                 //    ErrorCode = "800";
                 //}
 
-                
+
             }
             #endregion
         }
@@ -695,7 +743,16 @@ namespace AppedoLT.BusinessLogic
 
             if (contentLength > 0)
             {
-                _buffer = new Byte[contentLength];
+                // This is a performance killer, if the contentLength is too big a huge memory is allocated, which is a overhead
+                // So allocate a max of 8 KB if buffer is bigger than this
+                if (contentLength < _bufferSize)
+                {
+                    _buffer = new Byte[contentLength];
+                }
+                else
+                {
+                    _buffer = new Byte[_bufferSize];
+                }
                 ResponseSize = contentLength;
             }
             else
@@ -703,6 +760,8 @@ namespace AppedoLT.BusinessLogic
 
             try
             {
+                ThrottledStream bufferStream = new ThrottledStream(responseStream, (_bandwidthInKbps * 1024 / 8));
+
                 if (RequestNode.SelectSingleNode("./extractor") != null || StoreRequestBody == true)
                 {
                     StoreResult = true;
@@ -715,11 +774,11 @@ namespace AppedoLT.BusinessLogic
                     {
                         if (contentLength >= _buffer.Length)
                         {
-                            _bytesRead = responseStream.Read(_buffer, 0, _buffer.Length);
+                            _bytesRead = bufferStream.Read(_buffer, 0, _buffer.Length);
                         }
                         else
                         {
-                            _bytesRead = responseStream.Read(_buffer, 0, (int)contentLength);
+                            _bytesRead = bufferStream.Read(_buffer, 0, (int)contentLength);
                         }
                         responseBody.Write(_buffer, 0, _bytesRead);
                         contentLength -= _bytesRead;
@@ -728,34 +787,34 @@ namespace AppedoLT.BusinessLogic
                 }
                 else if (contentType.ToLower().Contains("Transfer-Encoding: chunked".ToLower()) == true)
                 {
-                    _bytesRead = responseStream.Read(_buffer, 0, _buffer.Length);
+                    _bytesRead = bufferStream.Read(_buffer, 0, _buffer.Length);
                     ResponseSize += _bytesRead;
                     if (StoreResult) responseBody.Write(_buffer, 0, _bytesRead);
                     while (_bytesRead > 0)
                     {
                         ResponseSize += _bytesRead;
-                        _bytesRead = responseStream.Read(_buffer, 0, _buffer.Length);
+                        _bytesRead = bufferStream.Read(_buffer, 0, _buffer.Length);
                         if (StoreResult) responseBody.Write(_buffer, 0, _bytesRead);
                     }
                 }
                 else if (contentLength == 0)
                 {
-                    _bytesRead = responseStream.Read(_buffer, 0, _buffer.Length);
+                    _bytesRead = bufferStream.Read(_buffer, 0, _buffer.Length);
                     ResponseSize += _bytesRead;
                     if (StoreResult) responseBody.Write(_buffer, 0, _bytesRead);
                     while (_bytesRead > 0)
                     {
                         ResponseSize += _bytesRead;
-                        _bytesRead = responseStream.Read(_buffer, 0, _buffer.Length);
+                        _bytesRead = bufferStream.Read(_buffer, 0, _buffer.Length);
                         if (StoreResult) responseBody.Write(_buffer, 0, _bytesRead);
                     }
                 }
-                responseStream.Flush();
+                bufferStream.Flush();
                 if (responseBody.Length > 0)
                 {
                     responseBody.Seek(0, SeekOrigin.Begin);
                 }
-                responseStream.Close();
+                bufferStream.Close();
             }
             catch (Exception ex)
             {
@@ -766,6 +825,8 @@ namespace AppedoLT.BusinessLogic
 
         private XmlNode CreateRequestNode(XmlNode parentRequest, string url)
         {
+            
+
             XmlNode request = parentRequest.OwnerDocument.CreateElement("request");
             if (url.StartsWith("/") == true)
             {
@@ -789,7 +850,7 @@ namespace AppedoLT.BusinessLogic
                 url = "/" + url;
                 request.Attributes.Append(GetAttribute("Address", new StringBuilder().Append(parentRequest.Attributes["Address"].Value).Append(url).ToString(), request.OwnerDocument));
             }
-
+            
             else
             {
                 request.Attributes.Append(GetAttribute("Address", new StringBuilder().Append(parentRequest.Attributes["Address"].Value).Append(url).ToString(), request.OwnerDocument));

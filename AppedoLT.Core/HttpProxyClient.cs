@@ -1,4 +1,4 @@
-/*
+﻿/*
  *  Authors:  Benton Stark
  * 
  *  Copyright (c) 2007-2009 Starksoft, LLC (http://www.starksoft.com) 

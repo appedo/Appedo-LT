@@ -15,8 +15,10 @@ namespace AppedoLT.Core
     {
         protected Constants _Constants = Constants.GetInstance();
         protected Stopwatch responseTime;
+        protected Stopwatch firstByteTime;
         protected string _responseStr = string.Empty;
         protected int _bufferSize = 8192;
+        protected int _bandwidthInKbps = -1;
         protected MemoryStream ResponseStream;
         private int _requestTimeOut;
         private List<Tuple<string, string>> _variables = new List<Tuple<string, string>>();
@@ -71,7 +73,6 @@ namespace AppedoLT.Core
         public bool Success { get; set; }
         public bool AssertionResult { get; set; }
         public StringBuilder AssertionFaildMsg = new StringBuilder();
-        public StringBuilder AssertionSucessMsg = new StringBuilder();
         public double ResponseTime
         {
             get
@@ -82,13 +83,31 @@ namespace AppedoLT.Core
             {
             }
         }
+
+        public double TimeForFirstByte
+        {
+            get
+            {
+                return firstByteTime.Elapsed.TotalMilliseconds;
+            }
+            private set
+            {
+            }
+        }
         public DateTime StartTime { get; set; }
         public DateTime EndTime
         {
-
             get
             {
                 return StartTime.AddTicks(responseTime.Elapsed.Ticks);
+            }
+            private set { }
+        }
+        public DateTime FirstByteReceivedTime
+        {
+            get
+            {
+                return StartTime.AddTicks(firstByteTime.Elapsed.Ticks);
             }
             private set { }
         }

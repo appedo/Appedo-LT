@@ -582,7 +582,7 @@ namespace AppedoLT.DataAccessLayer
                 {
                     _con.Open();
                     //SQLiteDataReader reader = GetReader(@"SELECT * from reportdata", _con);
-                   SQLiteDataReader reader = GetReader(@"SELECT loadgenname as LoadgenName,scenarioname as ScenarioName,scriptid as ScriptId,containerid as ContainerId,containername as ContainerName,pageid as PageId,requestid as RequestID,address as Address,userid as UserId,iterationid as IterationId,starttime as StartTime,endtime as EndTime,diff as Diff,reponsecode as ResponseCode,responsesize as ResponseSize from reportdata", _con);
+                    SQLiteDataReader reader = GetReader(@"SELECT loadgenname as LoadgenName,scenarioname as ScenarioName,scriptid as ScriptId,containerid as ContainerId,containername as ContainerName,pageid as PageId,requestid as RequestID,address as Address,userid as UserId,iterationid as IterationId,starttime as StartTime, firstbytereceivedtime as FirstByteTime, timetofirstbyte as TTFB,  endtime as EndTime,diff as Diff,reponsecode as ResponseCode,responsesize as ResponseSize from reportdata", _con);
                     dt.Load(reader);
                 }
                 catch (Exception ex)

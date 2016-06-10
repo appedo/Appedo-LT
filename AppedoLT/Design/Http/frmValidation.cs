@@ -83,7 +83,7 @@ namespace AppedoLT
         private VUser GetUser()
         {
             //VUser _vUSer = new VUser(1, DateTime.Now.ToString("dd_MMM_yyyy_hh_mm_ss"), "1", 1, 1, _vuScript, false, Request.GetIPAddress(1), true);
-            VUser _vUSer = new VUser(1, DateTime.Now.ToString("dd_MMM_yyyy_hh_mm_ss"), "1", 1, 1, _vuScript, false, Request.GetIPAddress(1), true, "1");
+            VUser _vUSer = new VUser(1, DateTime.Now.ToString("dd_MMM_yyyy_hh_mm_ss"), "1", 1, 1, _vuScript, false, Request.GetIPAddress(1), true, "1", -1);
             _vUSer.IsValidation = true;
             _vUSer.OnLockRequestResponse += _vUSer_OnLockRequestResponse;
             _vUSer.OnLockError += _vUSer_OnLockError;

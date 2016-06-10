@@ -71,6 +71,7 @@
     </Compile>
     <Compile Include="ScriptExecutor.cs" />
     <Compile Include="TcpRequest.cs" />
+    <Compile Include="ThrottledStream.cs" />
     <Compile Include="VariableManager.cs" />
     <Compile Include="VUser.cs" />
   </ItemGroup>

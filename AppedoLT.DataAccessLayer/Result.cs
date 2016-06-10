@@ -349,7 +349,7 @@ namespace AppedoLT.DataAccessLayer
                         }
                         report.AppendChild(errorNode);
 
-                        string[] tables = new string[] { "requests", "requestresponse", "containerresponse", "errorcount", "errorcode", "transactions" };
+                        string[] tables = new string[] { "settings", "requests", "requestresponse", "containerresponse", "errorcount", "errorcode", "transactions" };
                         foreach (XmlNode script in runNode.SelectSingleNode("scripts").ChildNodes)
                         {
                             XmlNode scriptNode = doc.CreateElement("script");

@@ -84,7 +84,17 @@ namespace AppedoLT.BusinessLogic
                 setting.Iterations = settingNode.Attributes["iterations"].Value;
                 setting.MaxUser = settingNode.Attributes["maxuser"].Value;
                 setting.StartUser = settingNode.Attributes["startuser"].Value;
-                if (settingNode.Attributes["replythinktime"]!=null)
+                if (settingNode.Attributes["bandwidth"] != null)
+                {
+                    setting.Bandwidth = settingNode.Attributes["bandwidth"].Value;
+                }
+                else
+                {
+                    // Backward compatibality. If noe is not present then run at full speed without any thorttle
+                    setting.Bandwidth = "-1";
+                }
+
+                if (settingNode.Attributes["replythinktime"] != null)
                 {
                     setting.ReplyThinkTime = Convert.ToBoolean(settingNode.Attributes["replythinktime"].Value);
                 }
@@ -101,7 +111,6 @@ namespace AppedoLT.BusinessLogic
                 {
                     setting.numberOfParallelCon = "6";
                 }
-                
 
                 _vuScript = vuScript;
                 _setting = setting;
@@ -192,6 +201,7 @@ namespace AppedoLT.BusinessLogic
                 setting.Iterations = settingNode.Attributes["iterations"].Value;
                 setting.MaxUser = settingNode.Attributes["maxuser"].Value;
                 setting.StartUser = settingNode.Attributes["startuser"].Value;
+                setting.Bandwidth = settingNode.Attributes["bandwidth"].Value;
 
                 _vuScript = vuScript;
                 _setting = setting;
@@ -222,7 +232,7 @@ namespace AppedoLT.BusinessLogic
 
                 for (int index = 1; index <= Status.TotalLoadGenUsed; index++)
                 {
-                    userDistribution.Add(index, (int)Math.Floor((Convert.ToInt16(distributionValues[index - 1]) / 100.0) * maxUser));
+                    userDistribution.Add(index, (int)Math.Round((Convert.ToInt16(distributionValues[index - 1]) / 100.0) * maxUser));
                 }
                 int userDistributionSum = userDistribution.Sum(v => v.Value);
                 if (userDistributionSum != maxUser)
@@ -461,6 +471,7 @@ namespace AppedoLT.BusinessLogic
                                 if (thread.WorkCompleted == true) thread.Start();
                             }
                         }
+
                         for (int index = 1; index <= int.Parse(_setting.IncrementUser); index++)
                         {
                             if (_usersList.Count >= int.Parse(_setting.MaxUser) || _isStop == true) break;
@@ -502,8 +513,7 @@ namespace AppedoLT.BusinessLogic
 
         private VUser GetVUser(int userid)
         {
-            //VUser user = new VUser(int.Parse(_setting.MaxUser), _reportName, _setting.Type, userid, int.Parse(_setting.Iterations), _vuScript, _setting.BrowserCache, Request.GetIPAddress(_createdUserCount), _setting.ReplyThinkTime);
-            VUser user = new VUser(int.Parse(_setting.MaxUser), _reportName, _setting.Type, userid, int.Parse(_setting.Iterations), _vuScript, _setting.BrowserCache, Request.GetIPAddress(_createdUserCount), _setting.ReplyThinkTime, _setting.numberOfParallelCon);
+            VUser user = new VUser(int.Parse(_setting.MaxUser), _reportName, _setting.Type, userid, int.Parse(_setting.Iterations), _vuScript, _setting.BrowserCache, Request.GetIPAddress(_createdUserCount), _setting.ReplyThinkTime, _setting.numberOfParallelCon, GetBandwidth());
             if(OnLockReportData!=null) user.OnLockReportData+=OnLockReportData;
             if(OnLockError != null) user.OnLockError += OnLockError;
             if(OnLockLog != null) user.OnLockLog += OnLockLog;
@@ -527,6 +537,16 @@ namespace AppedoLT.BusinessLogic
             }
         }
 
+        private int GetBandwidth()
+        {
+            int bandwidth = -1;
+            if (!int.TryParse(_setting.Bandwidth, out bandwidth))
+            {
+                // If value is less than 0,then no thortling will be done
+                bandwidth = -1;
+            }
+            return bandwidth;
+        }
         #endregion
 
     }

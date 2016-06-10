@@ -28,6 +28,7 @@ namespace AppedoLT.BusinessLogic
         private int _iteration;
         private int _index;
         private int _maxConnection = 1;
+        private int _bandwidth = -1;
         private int _createdConnection = 1;
         private bool _browserCache = false;
         private bool _secondaryRequestPlayed = false;
@@ -47,7 +48,7 @@ namespace AppedoLT.BusinessLogic
         Request req;
         public bool Break { get; set; }
         private ExecutionReport Status = ExecutionReport.GetInstance();
-        public ProcessRequest(int maxUser, string reportName, string type, int userid, int iteration, XmlNode vuScript, bool browserCache, IPEndPoint ipaddress, Dictionary<string, object> exVariablesValue, Dictionary<string, string> cookies, LockError OnlockError, VUserStatus VuserStatus, LockReportData OnlockReportData, bool Isvalidation, Stack<string> pageId, Stack<string[]> containerId)
+        public ProcessRequest(int maxUser, string reportName, string type, int userid, int iteration, XmlNode vuScript, bool browserCache, IPEndPoint ipaddress, Dictionary<string, object> exVariablesValue, Dictionary<string, string> cookies, LockError OnlockError, VUserStatus VuserStatus, LockReportData OnlockReportData, bool Isvalidation, Stack<string> pageId, Stack<string[]> containerId, int bandwidth)
         {
             _maxUser = maxUser;
             _browserCache = browserCache;
@@ -66,6 +67,7 @@ namespace AppedoLT.BusinessLogic
             IsValidation = Isvalidation;
             _pageId = pageId;
             _containerId = containerId;
+            _bandwidth = bandwidth;
         }
 
 
@@ -92,7 +94,7 @@ namespace AppedoLT.BusinessLogic
                         }
                         Connection con = new Connection(request.Attributes["serverip"].Value, int.Parse(request.Attributes["port"].Value));
 
-                        req = new TcpRequest(request, con, false);
+                        req = new TcpRequest(request, con, false, _bandwidth);
                         req.Variables = variables;
                         req.GetResponse();
 
@@ -106,7 +108,7 @@ namespace AppedoLT.BusinessLogic
                         }
                         else
                         {
-                            LockResponseTime(req.RequestNode.Attributes["id"].Value, req.RequestNode.Attributes["Path"] == null ? req.RequestName : req.RequestNode.Attributes["Path"].Value, req.StartTime, req.EndTime, req.ResponseTime, req.ResponseSize, req.ResponseCode.ToString());
+                            LockResponseTime(req.RequestNode.Attributes["id"].Value, req.RequestNode.Attributes["Path"] == null ? req.RequestName : req.RequestNode.Attributes["Path"].Value, req.StartTime, req.FirstByteReceivedTime, req.EndTime, req.TimeForFirstByte, req.ResponseTime, req.ResponseSize, req.ResponseCode.ToString());
                         }
                     }
                     #endregion
@@ -182,7 +184,7 @@ namespace AppedoLT.BusinessLogic
                             if (cacheEnabled == false && !(fileNameExt != string.Empty && _vuScriptXml.Attributes["exclutionfiletypes"].Value.Contains(fileNameExt.Replace(".", string.Empty).Trim().ToLower()) == true))
                             {
 
-                                req = new HttpRequest(request, ref receivedCookies, _userid.ToString() + (_createdConnection++ % _maxConnection).ToString(), _IPAddress, IsValidation);
+                                req = new HttpRequest(request, ref receivedCookies, _userid.ToString() + (_createdConnection++ % _maxConnection).ToString(), _IPAddress, IsValidation, _bandwidth);
                                 req.Variables = variables;
                                 req.GetResponse();
 
@@ -203,7 +205,7 @@ namespace AppedoLT.BusinessLogic
                                 }
                                 // else
                                 //  {
-                                LockResponseTime(req.RequestNode.Attributes["id"].Value, req.RequestNode.Attributes["Path"] == null ? req.RequestName : req.RequestNode.Attributes["Path"].Value, req.StartTime, req.EndTime, req.ResponseTime, req.ResponseSize, req.ResponseCode.ToString());
+                                LockResponseTime(req.RequestNode.Attributes["id"].Value, req.RequestNode.Attributes["Path"] == null ? req.RequestName : req.RequestNode.Attributes["Path"].Value, req.StartTime, req.FirstByteReceivedTime, req.EndTime, req.TimeForFirstByte, req.ResponseTime, req.ResponseSize, req.ResponseCode.ToString());
                                 //  }
 
                                 #region SecondaryReqEnable
@@ -220,7 +222,7 @@ namespace AppedoLT.BusinessLogic
                                         }
                                         try
                                         {
-                                            Request secReq = new HttpRequest(request, links.Dequeue(), receivedCookies, _userid.ToString() + (_createdConnection++ % _maxConnection).ToString(), _IPAddress, IsValidation);
+                                            Request secReq = new HttpRequest(request, links.Dequeue(), receivedCookies, _userid.ToString() + (_createdConnection++ % _maxConnection).ToString(), _IPAddress, IsValidation, _bandwidth);
                                             //  Request secReq = new HttpRequest(request, links.Dequeue(), receivedCookies, _userid.ToString(), _IPAddress, IsValidation);
 
                                             RequestResponse responseResultSec = new RequestResponse();
@@ -244,7 +246,7 @@ namespace AppedoLT.BusinessLogic
                                                             }
                                                             else
                                                             {
-                                                                LockResponseTime(req.RequestNode.Attributes["id"].Value, req.RequestNode.Attributes["Path"] == null ? req.RequestName : req.RequestNode.Attributes["Path"].Value, req.StartTime, req.EndTime, req.ResponseTime, req.ResponseSize, req.ResponseCode.ToString());
+                                                                LockResponseTime(req.RequestNode.Attributes["id"].Value, req.RequestNode.Attributes["Path"] == null ? req.RequestName : req.RequestNode.Attributes["Path"].Value, req.StartTime, req.FirstByteReceivedTime, req.EndTime, req.TimeForFirstByte, req.ResponseTime, req.ResponseSize, req.ResponseCode.ToString());
                                                             }
                                                         }
                                                         catch (Exception ex)
@@ -580,7 +582,7 @@ namespace AppedoLT.BusinessLogic
             data.ContainerName = _containerId.Peek()[1];
             if (OnLockRequestResponse != null) OnLockRequestResponse.Invoke(data);
         }
-        private void LockResponseTime(string requestid, string address, DateTime starttime, DateTime endtime, double diff, long responsesize, string reponseCode)
+        private void LockResponseTime(string requestid, string address, DateTime starttime, DateTime firstbytereceivedtime, DateTime endtime, double firstbytetime, double diff, long responsesize, string reponseCode)
         {
             try
             {
@@ -600,14 +602,15 @@ namespace AppedoLT.BusinessLogic
                     rd.requestid = requestid;
                     rd.address = address;
                     rd.starttime = starttime;
+                    rd.firstbytereceivedtime = firstbytereceivedtime;
+                    rd.timeforfirstbyte = firstbytetime;
                     rd.endtime = endtime;
                     rd.diff = diff;
                     rd.responsesize = responsesize;
                     rd.reponseCode = reponseCode;
-
+                    
                     if (OnLockReportData != null && rd != null)
                     {
-                        
                         OnLockReportData.Invoke(rd);
                         if (req.HasError == true)
                         {
@@ -826,10 +829,4 @@ namespace AppedoLT.BusinessLogic
         }
 
     }
-
-
-
-
-
-
 }

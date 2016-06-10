@@ -16,6 +16,15 @@ using System.Xml;
 
 namespace AppedoLTController
 {
+    /// <summary>
+    /// This is act like service. Every 20 sec it will communicate with appedo and get run detail.
+    /// 
+    /// prerequisites:
+    ///  Appedo ip address
+    ///  Appedo port
+    /// 
+    /// Author: Rasith
+    /// </summary>
     public partial class frmController : Form
     {
         NotifyIcon ni = new NotifyIcon();
@@ -77,6 +86,7 @@ namespace AppedoLTController
             }
         }
 
+        //Old logic
         void DoWork()
         {
             try
@@ -230,6 +240,7 @@ namespace AppedoLTController
             }
         }
 
+        //It act as service. Every 20 sec it will communicate with appedo and get run detail.
         void StartClient()
         {
             new Thread(() =>
@@ -247,15 +258,18 @@ namespace AppedoLTController
                                    Trasport server = new Trasport(AppedoServer, Constants.GetInstance().AppedoPort);
                                    server.Send(data);
                                    data = server.Receive();
+                                   //If there is item in queue 
                                    if (data.Header["status"] == "1")
                                    {
                                        server = new Trasport(AppedoServer, Constants.GetInstance().AppedoPort);
                                        data = new TrasportData("getrundetail", string.Empty, null);
                                        server.Send(data);
                                        data = server.Receive();
+                                     
                                        ExceptionHandler.LogRunDetail(data.Header["runid"], "Received Rundetail for runid " + data.Header["runid"]);
                                        server = new Trasport(AppedoServer, Constants.GetInstance().AppedoPort);
                                        server.Send(new TrasportData("ok", string.Empty, null));
+                                       //Call separate thread to do run script
                                        new Thread(() => { RunOperation(server, data); }).Start();
                                    }
                                    else
@@ -341,12 +355,14 @@ namespace AppedoLTController
                 }).Start();
         }
 
+        //Used to send data to all loadgen and initiate run
         void RunOperation(Trasport server, TrasportData data)
         {
             #region Run
             try
             {
                 string runid = data.Header["runid"];
+                //Negative scenario
                 if (Controllers.ContainsKey(runid) == true)
                 {
                     if (Controllers[runid].Status < ControllerStatus.ReportGenerateCompleted)
@@ -359,6 +375,7 @@ namespace AppedoLTController
                         Controllers.Remove(runid);
                     }
                 }
+                //If received empty scenario xml
                 if (data.DataStr.EndsWith("?><root/>") == true)
                 {
                     ExceptionHandler.LogRunDetail(runid, "Empty scenario received");
@@ -370,6 +387,7 @@ namespace AppedoLTController
                         try
                         {
                             Trasport Appedoserver = new Trasport(AppedoServer, Constants.GetInstance().AppedoPort);
+                            //Send frailer notification to appedo
                             Appedoserver.Send(new TrasportData("failedrunidstatus", ExceptionHandler.GetLog(runid), headerrunid));
                             Appedoserver.Receive();
                             ExceptionHandler.RunDetaillog.Remove(runid);
@@ -396,8 +414,10 @@ namespace AppedoLTController
                     string statusPort = string.Empty;
                     try
                     {
+                        //Get ip and port to send script wise data
                         scriptWiseStatusIp = data.Header["scriptwisedataconnection"].Split(',')[0].Trim();
                         scriptWiseStatusPort = data.Header["scriptwisedataconnection"].Split(',')[1].Trim();
+                        //Get ip and port to send status data
                         statusIp = data.Header["scriptdataconnection"].Split(',')[0].Trim();
                         statusPort = data.Header["scriptdataconnection"].Split(',')[1].Trim();
 
@@ -412,6 +432,7 @@ namespace AppedoLTController
                         List<TcpClient> loadGens = new List<TcpClient>();
                         string[] loadGenIps = loadGensStr.Split(',');
                         int loadGenId = 1;
+                        //Get all loadgen one by one to send data
                         foreach (string ip in loadGenIps)
                         {
                             try
@@ -484,7 +505,7 @@ namespace AppedoLTController
                     }
 
                     #endregion
-
+                    //If any load gen is unavailable
                     if (unAvailableLoadGens.Count > 0)
                     {
                         Dictionary<string, string> headerrunid = new Dictionary<string, string>();
@@ -510,6 +531,7 @@ namespace AppedoLTController
                         }
                         return;
                     }
+                    //If all loadgens are available
                     else
                     {
 
@@ -521,6 +543,7 @@ namespace AppedoLTController
                         // XmlNode runNode = ControllerXml.GetInstance().doc.SelectSingleNode("//runs/run[@reportname='" + runid + "']");
                         if (runDetail != null)
                         {
+                            //Get all load gen one by one
                             foreach (XmlNode loadGenNode in runDetail.SelectNodes("loadgen"))
                             {
                                 try
@@ -533,6 +556,7 @@ namespace AppedoLTController
                                             try
                                             {
                                                 Trasport loadGen = new Trasport(loadGenNode.Attributes["ipaddress"].Value, "8889");
+                                                //Send run command to loadgen
                                                 loadGen.Send(data);
                                                 loadGen.Receive();
                                                 loadGen.Close();
@@ -561,6 +585,7 @@ namespace AppedoLTController
                             if (runDetail != null)
                             {
                                 ExceptionHandler.LogRunDetail(runid, "Run started ");
+                                //Create controller object to update status to appedo until run complete
                                 Controller controller = new Controller(scriptWiseStatusIp, scriptWiseStatusPort, runid, runDetail, loadGensStr, AppedoFailedUrl);
                                 Controllers.Add(runid, controller);
                                 _ControllerXml.doc.SelectSingleNode("root/runs").AppendChild(runDetail);

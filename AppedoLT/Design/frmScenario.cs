@@ -138,7 +138,6 @@ namespace AppedoLT
                 this.Close();
 
                 MessageBox.Show("Scenario mapped successfully");
-                
             }
             else
             {

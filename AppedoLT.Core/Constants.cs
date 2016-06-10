@@ -27,9 +27,9 @@ namespace AppedoLT.Core
     public delegate void LockTransactions(TransactionRunTimeDetail data);
     public delegate void LockUserDetail(UserDetail data);
     public delegate void LockRequestResponse(RequestResponse data);
-    public delegate void IterationCompleted(string scriptName, int userid, int iterationid);
-    public delegate void VUserRunCompleted(string scriptName, int userid);
-    public delegate void VUserCreated(string scriptName, int userid);
+    public delegate void IterationCompleted(string scriptName,int userid,int iterationid);
+    public delegate void VUserRunCompleted(string scriptName,int userid);
+    public delegate void VUserCreated(string scriptName,int userid);
 
     public class Constants
     {
@@ -43,7 +43,7 @@ namespace AppedoLT.Core
         private string _dataFolderPathMonitor = string.Empty;
         private int _recordConncetion = -1;
         private string _recodingIPAddress = string.Empty;
-        private int _recodingHttpsPort = 0;
+        private int _recodingHttpsPort =0;
         private string _recodingPort = string.Empty;
         private int _requestTimeOut = 0;
         private string _uploadIPAddress = string.Empty;
@@ -52,8 +52,7 @@ namespace AppedoLT.Core
         private int _uniqueID = 0;
         private object _logObj = new object();
         private DateTime _dateTime = new DateTime(2000, 1, 1);
-
-        public string btnExecutionType = "Validate";
+        public string btnExecutionType = "Run";
 
         public string ChartsSummaryFileName = "chart_ summary.csv";
         public string ChartsAvgResponse = "chart_useravgresponse.csv";
@@ -157,7 +156,7 @@ namespace AppedoLT.Core
             {
                 if (_recodingHttpsPort == 0)
                 {
-                    _recodingHttpsPort = Convert.ToInt16(System.Configuration.ConfigurationManager.AppSettings["RecodingHttpsPort"]);
+                    _recodingHttpsPort =Convert.ToInt16(System.Configuration.ConfigurationManager.AppSettings["RecodingHttpsPort"]);
                 }
                 return _recodingHttpsPort;
             }
@@ -428,6 +427,7 @@ namespace AppedoLT.Core
         {
             try
             {
+
                 // to find the firefox process by name & then to close
                 Process[] AllProcesses = Process.GetProcesses();
                 foreach (var process in AllProcesses)
@@ -440,7 +440,6 @@ namespace AppedoLT.Core
                             process.Kill();
                     }
                 }
-
                 DirectoryInfo[] myProfileDirectory = new DirectoryInfo(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\Mozilla\\Firefox\\Profiles\\").GetDirectories("*.default");
                 String myFFPrefFile = myProfileDirectory[0].FullName + "\\prefs.js";
                 if (File.Exists(myFFPrefFile) == true)
@@ -800,8 +799,8 @@ namespace AppedoLT.Core
         }
         public string GetPageContent(string Url)
         {
-            HttpWebRequest WebRequestObject = null;
-            string PageContent = string.Empty;
+            HttpWebRequest WebRequestObject=null;
+            string PageContent =string.Empty;
             try
             {
                 WebRequestObject = (HttpWebRequest)HttpWebRequest.Create(Url);
@@ -813,7 +812,7 @@ namespace AppedoLT.Core
                 WebStream.Close();
                 Response.Close();
             }
-            catch (Exception ex)
+            catch(Exception ex)
             {
                 ExceptionHandler.WritetoEventLog(ex.Message + Environment.NewLine + ex.StackTrace);
             }
@@ -854,6 +853,43 @@ namespace AppedoLT.Core
             }
             return PageContent;
         }
+
+        public string GetSettingsQuery(string reportName, string scriptId, XmlNode settingNode)
+        {
+            StringBuilder result = new StringBuilder();
+            result.AppendFormat(@" CREATE TABLE settings_{0} ( 
+                                                type   VARCHAR,
+                                                durationTime VARCHAR,
+                                                iterations INT,
+                                                incrementUser INT, 
+                                                incrementTime VARCHAR,
+                                                maxUser INT,
+                                                browserCache VARCHAR,
+                                                startUserId INT ,
+                                                replayThinkTime VARCHAR ,
+                                                bandwidth VARCHAR,
+                                                enableparallelcon VARCHAR ,
+                                                parallelconnections INT 
+                                                );", scriptId);
+
+            result.AppendFormat(@" insert into settings_{0} (type, durationTime, iterations, incrementUser, incrementTime, maxUser, browserCache, startUserId , replayThinkTime, bandwidth, enableparallelcon, parallelconnections) 
+                                                    values ('{1}', '{2}', {3}, {4}, '{5}', {6}, '{7}', {8}, '{9}', '{10}', '{11}', {12});", scriptId,
+                                                    settingNode.Attributes["type"].Value == "1" ? "Iteration" : "Duration",
+                                                    settingNode.Attributes["durationtime"].Value.Replace(';', ':'),
+                                                    settingNode.Attributes["iterations"].Value,
+                                                    settingNode.Attributes["incrementuser"].Value,
+                                                    settingNode.Attributes["incrementtime"].Value.Replace(';', ':'),
+                                                    settingNode.Attributes["maxuser"].Value,
+                                                    settingNode.Attributes["browsercache"].Value,
+                                                    settingNode.Attributes["startuser"].Value,
+                                                    settingNode.Attributes["replythinktime"].Value,
+                                                    settingNode.Attributes["bandwidth"].Value == "-1" ? "Full Speed" : settingNode.Attributes["bandwidth"].Value + " Kbps",
+                                                    settingNode.Attributes["enableparallelcon"].Value,
+                                                    settingNode.Attributes["parallelconnections"].Value);
+            return result.ToString();
+        
+        }
+
         public string GetQuery(string reportName, XmlDocument doc)
         {
             StringBuilder result = new StringBuilder();
@@ -912,7 +948,10 @@ namespace AppedoLT.Core
                                                                                    max           DOUBLE,
                                                                                    avg           DOUBLE, 
                                                                                    throughput    DOUBLE,
-                                                                                   hitcount      INT
+                                                                                   hitcount      INT,
+                                                                                   minttfb       DOUBLE,
+                                                                                   maxttfb       DOUBLE,
+                                                                                   avgttfb       DOUBLE
                                                                                    );
                 
                                                           CREATE TABLE transactions_{0} ( 
@@ -946,7 +985,7 @@ namespace AppedoLT.Core
                                                                                    );
                 
                                                            insert into requests_{0} select containerid,containername, requestid,address from reportdata where scriptid={0} group by containerid,containername,requestid order by containerid,requestid;
-                                                           insert into requestresponse_{0} select containerid,containername,requestid,address,min(diff),max(diff),avg(diff),sum(responsesize),count(diff)  from reportdata where scriptid={0} group by containerid,requestid order by containerid,requestid;
+                                                           insert into requestresponse_{0} select containerid,containername,requestid,address,min(diff),max(diff),avg(diff),sum(responsesize),count(diff),min(timetofirstbyte),max(timetofirstbyte),avg(timetofirstbyte)  from reportdata where scriptid={0} group by containerid,requestid order by containerid,requestid;
                                                            insert into containerresponse_{0} select containerid, containername,min(responsetime) AS min,max(responsetime) AS max,avg(responsetime) AS avg from containerresponsetime_{0} group by containerid order by containerid;
                                                            insert into transactions_{0} select transactionname,min(difference),max(difference),avg(difference) from transactions where scriptid={0} group by transactionname;
                                                            insert into errorcount_{0} select containerid,containername, requestid, request,count(*) from error where error.scriptname='{1}' group by error.requestid order by requestid;
@@ -1161,7 +1200,8 @@ namespace AppedoLT.Core
         public bool BrowserCache { get; set; }
         public int StartUserId { get; set; }
         public bool ReplyThinkTime { get; set; }
-
+        public string Bandwidth { get; set; }
+        
         public string numberOfParallelCon { set; get; }
 
         public static VUScriptSetting GetDefault(string scriptId)
@@ -1175,11 +1215,12 @@ namespace AppedoLT.Core
             vUScriptSetting.MaxUser = "1";
             vUScriptSetting.StartUser = "1";
             vUScriptSetting.IncrementUser = "1";
+            vUScriptSetting.Bandwidth = "-1";
 
             vUScriptSetting.ScenarioId = string.Empty;
             vUScriptSetting.BrowserCache = false;
             vUScriptSetting.StartUserId = 0;
-            vUScriptSetting.ReplyThinkTime = true;
+            vUScriptSetting.ReplyThinkTime = true;            
             vUScriptSetting.numberOfParallelCon = "6";
             return vUScriptSetting;
 
@@ -1199,8 +1240,9 @@ namespace AppedoLT.Core
             vUScriptSetting.ScenarioId = scenarioId;
             vUScriptSetting.BrowserCache = false;
             vUScriptSetting.StartUserId = 0;
-            vUScriptSetting.ReplyThinkTime = true;
+            vUScriptSetting.ReplyThinkTime = true;            
             vUScriptSetting.numberOfParallelCon = "6";
+            vUScriptSetting.Bandwidth = "-1";
             return vUScriptSetting;
 
         }

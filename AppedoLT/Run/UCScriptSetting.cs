@@ -44,15 +44,52 @@ namespace AppedoLT
                     radReplyThinkTime.Checked = true;
                     radReplyThinkTime.Hide();
                 }
-                
+
                 if (value.Attributes["parallelconnections"] != null)
-                {
-                    txtParallelCon.Text = value.Attributes["parallelconnections"].Value;
-                } else
-                {
-                    txtParallelCon.Text = "6";
+                {                   
+                    txtParallelCon.Text = value.Attributes["parallelconnections"].Value;                    
                 }
-                
+                else
+                {                    
+                    txtParallelCon.Text = "6";                                       
+                }
+
+                if (value.Attributes["bandwidth"] != null)
+                {
+                    int bandwidth = int.Parse(value.Attributes["bandwidth"].Value);
+                    chkSimulateBandwidth.Checked = (bandwidth > 0);
+                    if (chkSimulateBandwidth.Checked)
+                    {
+                        cmbBandwidth.Visible = true;
+                        if (bandwidth == 128)
+                        {
+                            cmbBandwidth.SelectedIndex = 0;
+                        }
+                        else if (bandwidth == 256)
+                        {
+                            cmbBandwidth.SelectedIndex = 1;
+                        }
+                        else if (bandwidth == 512)
+                        {
+                            cmbBandwidth.SelectedIndex = 2;
+                        }
+                        else if (bandwidth == 1024)
+                        {
+                            cmbBandwidth.SelectedIndex = 3;
+                        }
+                        else
+                        {
+                            txtBandwidth.Visible = true;
+                            lblkbps.Visible = true;
+                            cmbBandwidth.SelectedIndex = 4;
+                            txtBandwidth.Text = bandwidth.ToString();
+                        }
+                    }                    
+                }
+                else
+                {
+                    chkSimulateBandwidth.Checked = false;
+                }
             }
             get
             {
@@ -63,7 +100,8 @@ namespace AppedoLT
                     if (radReplyThinkTime.Checked)
                     {
                         _setting.Attributes["replythinktime"].Value = "true";
-                    }else
+                    }
+                    else
                     {
                         _setting.Attributes["replythinktime"].Value = "false";
                     }
@@ -89,7 +127,41 @@ namespace AppedoLT
                 {
                     _setting.Attributes["parallelconnections"].Value = txtParallelCon.Text;
                 }
+                int bandwidth = -1;
+                if (chkSimulateBandwidth.Checked)
+                {
+                    switch (cmbBandwidth.SelectedIndex)
+                    {
+                        case 0:
+                            bandwidth = 128;
+                            break;
 
+                        case 1:
+                            bandwidth = 256;
+                            break;
+
+                        case 2:
+                            bandwidth = 512;
+                            break;
+
+                        case 3:
+                            bandwidth = 1024;
+                            break;
+
+                        default:
+                            bandwidth = int.Parse(txtBandwidth.Text);
+                            break;
+                    }
+                }
+                if (_setting.Attributes["bandwidth"] != null)
+                {
+                    _setting.Attributes["bandwidth"].Value = bandwidth.ToString();
+                }
+                else
+                {
+                    ((XmlElement)_setting).SetAttribute("bandwidth", bandwidth.ToString());
+                }
+                
                 return _setting;
             }
         }
@@ -102,8 +174,7 @@ namespace AppedoLT
         public UCScriptSetting()
         {
             InitializeComponent();
-
-
+            cmbBandwidth.SelectedIndex = 0;
         }
 
 
@@ -264,7 +335,7 @@ namespace AppedoLT
             {
                 XmlNode node = vUScriptSetting;
                 repositoryXml.Save();
-                MessageBox.Show("Saved");
+                MessageBox.Show("Scenario is saved successfully.");
             }
         }
 
@@ -320,34 +391,45 @@ namespace AppedoLT
                 txtIteration.Location = new System.Drawing.Point(130, 61);
             }
         }
-
-
-            /// <summary>
-       /// This is to validate the maximum number of connections 
-       /// validate : MAX connections allowed 16 & MIN connections 1
+        /// <summary>
+        /// This is to validate the maximum number of connections 
+        /// validate : MAX connections allowed 16 & MIN connections 1
         /// </summary>
-       /// <param name="sender"></param>
+        /// <param name="sender"></param>
         /// <param name="e"></param>
         private void txtParallelCon_Leave(object sender, EventArgs e)
-      {
-           if (txtParallelCon.Text.Trim().Length==0)
-         {
-               MessageBox.Show("Please specify max connections");
-            }
-           else if (int.Parse(txtParallelCon.Text) < 1)
+        {
+            if (txtParallelCon.Text.Trim().Length==0)
             {
-              MessageBox.Show("Max 0 connections not allowed, Please specify the valid number of connections");
-               txtParallelCon.Focus();
+                MessageBox.Show("Please specify max connections");
             }
-           else if (int.Parse(txtParallelCon.Text) > 16)
-           {
+            else if (int.Parse(txtParallelCon.Text) < 1)
+            {
+                MessageBox.Show("Max 0 connections not allowed, Please specify the valid number of connections");
+                txtParallelCon.Focus();
+            }
+            else if (int.Parse(txtParallelCon.Text) > 16)
+            {
                 MessageBox.Show("Max 16 connections allowed");
-               txtParallelCon.Focus();
-          }
+                txtParallelCon.Focus();
+            }
             
-}
+        }
 
-       
-  
+        private void cmbBandwidth_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            txtBandwidth.Visible = (cmbBandwidth.SelectedIndex == (cmbBandwidth.Items.Count - 1));
+            lblkbps.Visible = txtBandwidth.Visible;
+        }
+
+        private void chkSimulateBandwidth_ToggleStateChanged(object sender, Telerik.WinControls.UI.StateChangedEventArgs args)
+        {
+            cmbBandwidth.Visible = chkSimulateBandwidth.Checked;
+            if (!chkSimulateBandwidth.Checked)
+            {
+                txtBandwidth.Visible = false;
+                lblkbps.Visible = false;
+            }
+        }
     }
 }

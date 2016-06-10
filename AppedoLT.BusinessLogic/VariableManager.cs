@@ -6,12 +6,14 @@ using System.Text;
 using System.Xml;
 using AppedoLT.Core;
 using System.IO;
+using System.Diagnostics;
 namespace AppedoLT.BusinessLogic
 {
     public class VariableManager
     {
         public static VariableManager dataCenter = null;
         private static DataSet datas = null;
+        private static object _syncObject = new object();
 
         private Dictionary<string, string> _VaraibleStartPosition = new Dictionary<string, string>();
         private Dictionary<string, XmlNode> _variableInfo = new Dictionary<string, XmlNode>();
@@ -119,8 +121,7 @@ namespace AppedoLT.BusinessLogic
             if (variableType == "file")
             {
                 int rowId;
-                int startPosition = 1;
-                //int startPosition = Convert.ToInt32(_variableInfo[data.TableName].Attributes["start"].Value);
+                int startPosition = Convert.ToInt32(_variableInfo[data.TableName].Attributes["start"].Value);
                 if (VariablePolicy == "eachuser")
                 {
                     rowId = ((userid - 1) + (startPosition - 1));
@@ -140,9 +141,28 @@ namespace AppedoLT.BusinessLogic
             else
             {
                 DataRow[] dr = null;
-                if (VariablePolicy == "eachuser") dr = data.Select("userid=" + userid);
-                else if (VariablePolicy == "eachiteration") dr = data.Select("userid=" + userid + " and iterationid=" + iterationid);
-                else dr = data.Select("userid=0 and iterationid=0");
+                if (VariablePolicy == "eachuser")
+                {
+                    lock (_syncObject)
+                    {
+                        dr = data.Select("userid='" + userid + "'");
+                    }
+                }
+                else if (VariablePolicy == "eachiteration")
+                {
+                    lock (_syncObject)
+                    {
+                        dr = data.Select("userid='" + userid + "' and iterationid='" + iterationid + "'");
+                    }
+                }
+                else
+                {
+                    lock (_syncObject)
+                    {
+                        dr = data.Select("userid='0' and iterationid='0'");
+                    }
+                }
+
                 if (dr.Length > 0)
                 {
                     result = dr[0]["value"];
@@ -154,7 +174,11 @@ namespace AppedoLT.BusinessLogic
                     newItem["iterationid"] = iterationid.ToString();
                     newItem["value"] = GetValue(data.TableName, _variableInfo[data.TableName].Attributes["type"].Value);
                     result = newItem["value"].ToString();
-                    data.Rows.Add(newItem);
+
+                    lock (_syncObject)
+                    {
+                        data.Rows.Add(newItem);
+                    }
                 }
             }
             return result;
@@ -273,58 +297,17 @@ namespace AppedoLT.BusinessLogic
                     if (File.Exists(variable.Attributes["location"].Value))
                     {
                         FileInfo source = new FileInfo(variable.Attributes["location"].Value);
-                       // if (source.LastWriteTime.Ticks != Convert.ToDouble(variable.Attributes["modified"].Value))
-                        //{
+                        if (source.LastWriteTime.Ticks != Convert.ToDouble(variable.Attributes["modified"].Value))
+                        {
                             string ticks = source.LastWriteTime.Ticks.ToString();
-                            //File.Copy(variable.Attributes["location"].Value, Constants.GetInstance().ExecutingAssemblyLocation + "\\" + variable.Attributes["vituallocation"].Value, true);
-                            string fsource = variable.Attributes["location"].Value;
-                            string fdestination = Constants.GetInstance().ExecutingAssemblyLocation + "\\" +variable.Attributes["vituallocation"].Value;
-                            // File.Copy(variable.Attributes["location"].Value, Constants.GetInstance().ExecutingAssemblyLocation + "\\" + variable.Attributes["vituallocation"].Value, true);
-                            //FileInfo fdest = new FileInfo(fdestination);
-                            //fdest.Delete();
-
-                            string line = null;
-                            int line_number = 0;
-                            int line_to_start = int.Parse(variable.Attributes["start"].Value);
-                            bool bFirstRow = true;
-                            using (StreamReader reader = new StreamReader(fsource))
-                            {
-                                using (StreamWriter writer = new StreamWriter(fdestination))
-                                {
-                                    while ((line = reader.ReadLine()) != null)
-                                    {
-
-                                        if (bFirstRow)
-                                        {
-                                            writer.WriteLine(line);
-                                            bFirstRow = false;
-                                            line_number++;
-                                            continue;
-                                        }
-
-                                        if (line_number == line_to_start)
-                                        {
-                                            writer.WriteLine(line);
-                                            continue;
-                                        }
-
-                                        line_number++;
-                                        
-                                    }
-
-                                    writer.Close();
-                                }
-                                reader.Close();
-                            }
-                            //File.Copy(fdestination, Constants.GetInstance().ExecutingAssemblyLocation + "\\" + variable.Attributes["vituallocation"].Value, true);
-                           // File.Delete(fdestination);
-                            
-                          //String strFile = File.ReadAllText(Constants.GetInstance().ExecutingAssemblyLocation + "\\" + variable.Attributes["vituallocation"].Value);
-                           // strFile = System.Web.HttpUtility.HtmlEncode(strFile);
-                           // File.WriteAllText(Constants.GetInstance().ExecutingAssemblyLocation + "\\" + variable.Attributes["vituallocation"].Value, strFile);
+                            File.Copy(variable.Attributes["location"].Value, Constants.GetInstance().ExecutingAssemblyLocation + "\\" + variable.Attributes["vituallocation"].Value, true);
+                            String strFile = File.ReadAllText(Constants.GetInstance().ExecutingAssemblyLocation + "\\" + variable.Attributes["vituallocation"].Value);
+                            strFile = System.Web.HttpUtility.HtmlEncode(strFile);
+                            File.WriteAllText(Constants.GetInstance().ExecutingAssemblyLocation + "\\" + variable.Attributes["vituallocation"].Value, strFile);
+                              
                             variable.Attributes["modified"].Value = ticks;
                         }
-                   // }
+                    }
                 }
                 catch (Exception ex)
                 {
