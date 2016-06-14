@@ -429,6 +429,7 @@
     </Content>
     <Content Include="report.xslt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
     </Content>
     <Content Include="sqlite3.exe">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
