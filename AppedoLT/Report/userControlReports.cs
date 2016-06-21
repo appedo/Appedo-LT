@@ -220,6 +220,17 @@ namespace AppedoLT
             {
 
                 string type = string.Empty;
+                brwReportView.Navigate("about:blank");
+                HtmlDocument doc = brwReportView.Document;
+                doc.Write(String.Empty);
+
+                brwErrors.Navigate("about:blank");
+                doc = brwErrors.Document;
+                doc.Write(String.Empty);
+
+                brwLogs.Navigate("about:blank");
+                doc = brwLogs.Document;
+                doc.Write(String.Empty);
 
                 string filePath = Constants.GetInstance().ExecutingAssemblyLocation + "\\Data\\" + reportName + "\\Report\\summary.html";
                 if (File.Exists(filePath))
@@ -233,6 +244,7 @@ namespace AppedoLT
                 {
                     brwReportView.DocumentText = string.Empty;
                 }
+                brwReportView.Update();
 
                 filePath = Constants.GetInstance().ExecutingAssemblyLocation + "\\Data\\" + reportName + "\\Report\\error.html";
                 if (File.Exists(filePath))
@@ -246,6 +258,7 @@ namespace AppedoLT
                 {
                     brwErrors.DocumentText = string.Empty;
                 }
+                brwErrors.Update();
 
                 filePath = Constants.GetInstance().ExecutingAssemblyLocation + "\\Data\\" + reportName + "\\Report\\log.html";
                 if (File.Exists(filePath))
@@ -259,6 +272,7 @@ namespace AppedoLT
                 {
                     brwLogs.DocumentText = string.Empty;
                 }
+                brwLogs.Update();
 
             }
             catch (Exception ex)
