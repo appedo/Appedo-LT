@@ -129,6 +129,7 @@ namespace AppedoLT
                         setting.Attributes.Append(repositoryXml.GetAttribute("replythinktime", "true"));
                         setting.Attributes.Append(repositoryXml.GetAttribute("enableparallelcon", "false"));
                         setting.Attributes.Append(repositoryXml.GetAttribute("parallelconnections", "6"));
+                        setting.Attributes.Append(repositoryXml.GetAttribute("bandwidth", "-1"));
                         script.AppendChild(setting);
                     }
                     _scenario.AppendChild(script);

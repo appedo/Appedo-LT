@@ -218,21 +218,33 @@ namespace AppedoLT
         {
             try
             {
-
                 string type = string.Empty;
+                brwReportView.Navigate("about:blank");
+                HtmlDocument doc = brwReportView.Document;
+                doc.Write(String.Empty);
+
+                brwErrors.Navigate("about:blank");
+                doc = brwErrors.Document;
+                doc.Write(String.Empty);
+
+                brwLogs.Navigate("about:blank");
+                doc = brwLogs.Document;
+                doc.Write(String.Empty);
 
                 string filePath = Constants.GetInstance().ExecutingAssemblyLocation + "\\Data\\" + reportName + "\\Report\\summary.html";
-                if (File.Exists(filePath))
-                {
-                    using (StreamReader reader = new StreamReader(new FileStream(filePath, FileMode.Open, FileAccess.Read)))
-                    {
-                        brwReportView.DocumentText = reader.ReadToEnd();
-                    }
-                }
-                else
-                {
-                    brwReportView.DocumentText = string.Empty;
-                }
+                brwReportView.Url = new Uri(filePath);
+                brwReportView.Update();
+                //if (File.Exists(filePath))
+                //{
+                //    using (StreamReader reader = new StreamReader(new FileStream(filePath, FileMode.Open, FileAccess.Read)))
+                //    {
+                //        brwReportView.DocumentText = reader.ReadToEnd();
+                //    }
+                //}
+                //else
+                //{
+                //    brwReportView.DocumentText = string.Empty;
+                //}
 
                 filePath = Constants.GetInstance().ExecutingAssemblyLocation + "\\Data\\" + reportName + "\\Report\\error.html";
                 if (File.Exists(filePath))
