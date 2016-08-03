@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.Serialization;
 using System.Text;
+using System.Xml.Serialization;
 
 namespace AppedoLT.Core
 {
@@ -678,6 +679,84 @@ namespace AppedoLT.Core
             temp = origin.AddHours(Math.Floor(diff.TotalHours));
             diff = temp - origin;
             _totalEndHrs = Math.Floor(diff.TotalMilliseconds).ToString();
+        }
+    }
+
+    [DataContract]
+    public class VariableDetail
+    {
+        [DataMember(Name = "scriptname")]
+        public string ScriptName = string.Empty;
+
+        [DataMember(Name = "userid")]
+        public int UserId = 1;
+
+        [DataMember(Name = "iteration_id")]
+        public int IterationId = 1;
+
+        [DataMember(Name = "transactionname")]
+        public string TransactionName = string.Empty;
+
+        [DataMember(Name = "reportname")]
+        public string ReportName = string.Empty;
+
+        [DataMember(Name = "isgenerated")]
+        public bool IsGenerated = false;
+
+        [DataMember(Name = "requestedat")]
+        public DateTime RequestedAt = DateTime.Now;
+
+        [DataMember(Name = "variablename")]
+        public string VariableName = string.Empty;
+
+        [DataMember(Name = "requestedat")]
+        public string Value = string.Empty;
+
+        public override string ToString()
+        {
+            return string.Format("{0},{1},{2},{3},{4}", this.RequestedAt.ToString("yyyy-MM-dd HH:mm:ss"), this.UserId, this.IterationId, this.VariableName, this.Value);
+        }
+    }
+
+    [DataContract]
+    public class ResponseDetail
+    {
+        [DataMember(Name = "scriptname")]
+        public string ScriptName = string.Empty;
+
+        [DataMember(Name = "userid")]
+        public int UserId = 1;
+
+        [DataMember(Name = "iteration_id")]
+        public int IterationId = 1;
+
+        [DataMember(Name = "transactionname")]
+        public string TransactionName = string.Empty;
+
+        [DataMember(Name = "reportname")]
+        public string ReportName = string.Empty;
+        
+        [DataMember(Name = "responsestring")]
+        public string ResponseString = null;
+
+        [DataMember(Name = "responsecode")]
+        public int ResponseCode = 0;
+
+        [DataMember(Name = "requestname")]
+        public string RequestName = string.Empty;
+
+        public override string ToString()
+        {
+            StringBuilder query = new StringBuilder();
+            query.Append(Environment.NewLine);
+            query.Append("------------------------------");
+            query.Append(Environment.NewLine);
+            query.Append("Request URL : "+ this.RequestName + Environment.NewLine);
+            query.Append("Result Code : " + this.ResponseCode.ToString() + Environment.NewLine);
+            query.Append("Response : " + Environment.NewLine);
+            query.Append(this.ResponseString);
+
+            return query.ToString();
         }
     }
 }

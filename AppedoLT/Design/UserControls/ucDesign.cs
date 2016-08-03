@@ -1333,7 +1333,7 @@ namespace AppedoLT
                     ((VuscriptXml)script.Tag).Save();                    
                 }
                 getScriptIds();
-                if (sender != null) MessageBox.Show("Script is saved successfully");
+                if (sender != null) MessageBox.Show("Script saved successfully");
             }
             catch (Exception ex)
             {

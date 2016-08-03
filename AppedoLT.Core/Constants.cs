@@ -30,6 +30,8 @@ namespace AppedoLT.Core
     public delegate void IterationCompleted(string scriptName,int userid,int iterationid);
     public delegate void VUserRunCompleted(string scriptName,int userid);
     public delegate void VUserCreated(string scriptName,int userid);
+    public delegate void LockVariable(VariableDetail data);
+    public delegate void LockResponse(ResponseDetail data);
 
     public class Constants
     {

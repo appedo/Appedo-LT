@@ -85,6 +85,8 @@ namespace AppedoLT.BusinessLogic
         public event IterationCompleted OnIterationStart;
         public event VUserRunCompleted OnVUserRunCompleted;
         public event VUserCreated OnVUserCreated;
+        public event LockVariable OnVariableCreated;
+        public event LockResponse OnResponse;
         
         private string _reportName = string.Empty;
         private string _scriptName = string.Empty;
@@ -854,6 +856,33 @@ namespace AppedoLT.BusinessLogic
 
                                     #endregion
                                 }
+
+                                if (OnResponse != null)
+                                {
+                                    // Log the response if someone has subscribed for the event
+                                    StringBuilder pDataBuffer = new StringBuilder();
+                                    foreach (PostData pData in GetPostData(request.SelectSingleNode("//params")))
+                                    {
+                                        pDataBuffer.Append(pData.value.ToString());
+                                    }
+                                    responseResult.PostData = pDataBuffer.ToString();
+                                    responseResult.RequestResult = req;
+                                    responseResult.WebRequestResponseId = Convert.ToInt32(Constants.GetInstance().UniqueID);
+
+                                    ResponseDetail details = new ResponseDetail();
+                                    details.ReportName = _reportName;
+                                    details.UserId = _userid;
+                                    details.ScriptName = _scriptName;
+                                    details.IterationId = _iterationid;
+                                    if (responseResult != null && responseResult.RequestResult != null)
+                                    {
+                                        details.ResponseCode = responseResult.RequestResult.ResponseCode;
+                                        details.ResponseString = responseResult.RequestResult.ResponseStr;
+                                        details.RequestName = responseResult.RequestResult.RequestName;
+                                    }
+
+                                    OnResponse.Invoke(details);
+                                }
                                 
                                 LockResponseTime(req.RequestNode.Attributes["id"].Value, req.RequestNode.Attributes["Path"] == null ? req.RequestName : req.RequestNode.Attributes["Path"].Value, req.StartTime, req.FirstByteReceivedTime, req.EndTime, req.TimeForFirstByte, req.ResponseTime, req.ResponseSize, req.ResponseCode.ToString());
                                 //string aa = System.Configuration.ConfigurationSettings.AppSettings.Get("xx");
@@ -1177,6 +1206,20 @@ namespace AppedoLT.BusinessLogic
                 if (type == "file" || type == "string" || type == "number" || type == "randomnumber" || type == "randomstring" || type == "currentdate")
                 {
                     result = VariableManager.dataCenter.GetVariableValue(_userid, _iterationid, variablename, _maxUser).ToString();
+
+                    if (OnVariableCreated != null)
+                    {
+                        VariableDetail detail = new VariableDetail();
+                        detail.UserId = _userid;
+                        detail.ReportName = _reportName;
+                        detail.ScriptName = _scriptName;
+                        detail.RequestedAt = DateTime.Now;
+                        detail.IterationId = _iterationid;
+                        detail.VariableName = variablename;
+                        detail.Value = System.Web.HttpUtility.HtmlDecode(result);
+
+                        OnVariableCreated.Invoke(detail);
+                    }
                 }
             }
             return System.Web.HttpUtility.HtmlDecode(result);

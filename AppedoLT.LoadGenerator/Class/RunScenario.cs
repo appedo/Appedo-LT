@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading;
 using System.Timers;
 using System.Xml;
+using System.Configuration;
+using System.Messaging;
 
 namespace AppedoLTLoadGenerator
 {
@@ -38,9 +40,19 @@ namespace AppedoLTLoadGenerator
         private DataXml _dataXml = DataXml.GetInstance();
         private Dictionary<string, string> _header = new Dictionary<string, string>();
         private int _currentUserMonierId = 0;
-      
-      
-      
+
+        bool _logResponseData;
+        bool _logVariableData;
+        bool _stopRunning;
+
+        // Response data queue
+        private Queue<ResponseDetail> _responseDetailQueue = new Queue<ResponseDetail>();
+        private object _responseDetailSyncObj = new object();
+
+        // Variable data queue
+        private Queue<VariableDetail> _variableDetailQueue = new Queue<VariableDetail>();
+        private object _variableDetailSyncObj = new object();
+
         private StatusData<LoadGenMonitor> _loadGenMonitorBuf = new StatusData<LoadGenMonitor>();
 
         private LoadGenRunningStatusData allData = new LoadGenRunningStatusData();
@@ -50,8 +62,8 @@ namespace AppedoLTLoadGenerator
         public RunScenario(string runid, string appedoIP, string appedoPort, string scenarioXml, string distribution, string appedoFailedUrl, string monitorCounter)
         {
             _runid = runid;
-            _loadGenMonitorBuf.Runid   = runid;
-         
+            _loadGenMonitorBuf.Runid = runid;
+
             _loadGenMonitorBuf.Type = "loadgenstatus";
             _header.Add("runid", runid);
             _header.Add("queuename", "ltreport");
@@ -60,6 +72,26 @@ namespace AppedoLTLoadGenerator
             _appedoPort = appedoPort;
             _scenarioXml = scenarioXml;
             _distribution = distribution;
+
+            _logResponseData = false;
+            _logVariableData = false;
+
+            if (!string.IsNullOrEmpty(ConfigurationManager.AppSettings["LogResponseData"]))
+            {
+                bool.TryParse(ConfigurationManager.AppSettings["LogResponseData"].ToString(), out _logResponseData);
+            }
+
+            if (!string.IsNullOrEmpty(ConfigurationManager.AppSettings["LogVariableData"]))
+            {
+                bool.TryParse(ConfigurationManager.AppSettings["LogVariableData"].ToString(), out _logVariableData);
+            }
+
+            if (_logResponseData || _logVariableData)
+            {
+                Thread logResponseThread = new Thread(new ThreadStart(ResponseMessageWriter));
+                logResponseThread.Start();
+            }
+
             _statusUpdateTimer = new System.Timers.Timer(1000);
             _statusUpdateTimer.Enabled = true;
             _statusUpdateTimer.Elapsed += new ElapsedEventHandler(StatusUpdateTimer_Tick);
@@ -130,7 +162,7 @@ namespace AppedoLTLoadGenerator
                         _statusUpdateTimer.Stop();
                         for (int index = 0; index < 9; index++)
                         {
-                            if (allData.ReportData.Count > 0 ||allData.Transactions.Count > 0 ||allData.Log.Count > 0 ||allData.Error.Count > 0 ||allData.UserDetailData.Count > 0)
+                            if (allData.ReportData.Count > 0 || allData.Transactions.Count > 0 || allData.Log.Count > 0 || allData.Error.Count > 0 || allData.UserDetailData.Count > 0)
                             {
                                 Thread.Sleep(5000);
                             }
@@ -193,6 +225,15 @@ namespace AppedoLTLoadGenerator
                 scr.OnLockLog += scr_OnLockLog;
                 scr.OnLockTransactions += scr_OnLockTransactions;
                 scr.OnLockUserDetail += scr_OnLockUserDetail;
+                if (_logVariableData)
+                {
+                    scr.OnVariableCreated += scr_OnVariableCreated;
+                }
+
+                if (_logResponseData)
+                {
+                    scr.OnResponse += scr_OnResponse;
+                }
                 scr.Run();
             }
             if (_scriptExecutorList.Count > 0)
@@ -205,6 +246,22 @@ namespace AppedoLTLoadGenerator
             {
                 executionReport.ExecutionStatus = Status.Completed;
                 return false;
+            }
+        }
+
+        void scr_OnResponse(ResponseDetail data)
+        {
+            lock (_responseDetailSyncObj)
+            {
+                _responseDetailQueue.Enqueue(data);
+            }
+        }
+
+        void scr_OnVariableCreated(VariableDetail data)
+        {
+            lock (_variableDetailSyncObj)
+            {
+                _variableDetailQueue.Enqueue(data);
             }
         }
 
@@ -283,6 +340,7 @@ namespace AppedoLTLoadGenerator
         {
             try
             {
+                _stopRunning = true;
                 executionReport.ExecutionStatus = Status.Completed;
                 foreach (ScriptExecutor scr in _scriptExecutorList)
                 {
@@ -352,7 +410,7 @@ namespace AppedoLTLoadGenerator
                         }
                         #endregion
 
-                       
+
 
                         #region After completed
                         if (hasData == false
@@ -462,7 +520,7 @@ namespace AppedoLTLoadGenerator
                             mon.loadgenanme = executionReport.LoadGenName;
                             _loadGenMonitorBuf.Data.Add(mon);
                         }
-                        mon.counter_value =Convert.ToDecimal(CountersAllInstance[key].NextValue());
+                        mon.counter_value = Convert.ToDecimal(CountersAllInstance[key].NextValue());
                         mon.received_on = DateTime.Now;
                     }
                     catch (Exception ex)
@@ -485,6 +543,85 @@ namespace AppedoLTLoadGenerator
             {
                 ExceptionHandler.WritetoEventLog(ex.StackTrace + Environment.NewLine + ex.Message);
             }
+        }
+
+        private void ResponseMessageWriter()
+        {
+            MessageQueue queue = GetMSMQ(string.Format("FormatName:Direct=TCP:{0}\\private$\\appedo_logs", _appedoIp));
+            if (queue == null)
+            {
+                // Don't run the thread when there is no MSMQ active service
+                return;
+            }
+
+            while (!_stopRunning)
+            {
+                try
+                {
+                    if (_responseDetailQueue.Count == 0 || _variableDetailQueue.Count == 0)
+                    {
+                        Thread.Sleep(5000);
+                        continue;
+                    }
+
+                    #region Write Response Data
+                    while (_responseDetailQueue.Count > 0)
+                    {
+                        ResponseDetail detail = null;
+                        lock (_responseDetailSyncObj)
+                        {
+                            detail = _responseDetailQueue.Dequeue();
+                        }
+
+                        if (detail != null)
+                        {
+                            queue.Send(detail, "ResponseData");
+                        }
+                    }
+                    #endregion
+
+                    #region Write Variable Data
+                    while (_variableDetailQueue.Count > 0)
+                    {
+                        VariableDetail detail = null;
+                        lock (_variableDetailSyncObj)
+                        {
+                            detail = _variableDetailQueue.Dequeue();
+                        }
+
+                        if (detail != null)
+                        {
+                            queue.Send(detail, "VariableData");
+                        }
+                    }
+                    #endregion
+
+                    Thread.Sleep(1);
+                }
+                catch (Exception ex)
+                {
+                    Thread.Sleep(10000);
+                }
+            }
+
+            if (queue != null)
+            {
+                queue.Close();
+            }
+        }
+
+        private MessageQueue GetMSMQ(string queueName)
+        {
+            MessageQueue msmq = null;
+            try
+            {
+                msmq = new MessageQueue(queueName, false);
+            }
+            catch (Exception excp)
+            {
+                ExceptionHandler.WritetoEventLog("Error while opening the MSMQ for log response messages. " + Environment.NewLine + excp.StackTrace + Environment.NewLine + excp.Message);
+            }
+            return msmq;
         }
     }
 }

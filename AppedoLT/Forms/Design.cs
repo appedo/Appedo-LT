@@ -17,6 +17,9 @@ using System.Windows.Forms;
 using System.Xml;
 using Telerik.WinControls.UI;
 using System.Windows.Forms;
+using System.Messaging;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.Configuration;
 
 namespace AppedoLT
 {
@@ -36,6 +39,17 @@ namespace AppedoLT
         private int _hitCount = 0;
         private BindingList<VUScriptStatus> _vususerStatus = new BindingList<VUScriptStatus>();
         private IPAddress _localIpAddress = null;
+
+        // Response data queue
+        private Queue<ResponseDetail> _responseDetailQueue = new Queue<ResponseDetail>();
+        private object _responseDetailSyncObj = new object();
+
+        // Variable data queue
+        private Queue<VariableDetail> _variableDetailQueue = new Queue<VariableDetail>();
+        private object _variableDetailSyncObj = new object();
+
+        bool _logResponseData;
+        bool _logVariableData;
 
         public Design()
         {
@@ -95,6 +109,7 @@ namespace AppedoLT
                 if (!Directory.Exists(".\\Scripts")) Directory.CreateDirectory(".\\Scripts");
                 if (!Directory.Exists(".\\Upload")) Directory.CreateDirectory(".\\Upload");
                 if (!Directory.Exists(".\\Variables")) Directory.CreateDirectory(".\\Variables");
+                if (!Directory.Exists(".\\Runlog")) Directory.CreateDirectory(".\\Runlog");
                 _ucDesignObj = ucDesign.GetInstance();
                 tabiVUscript.ContentPanel.Controls.Add(_ucDesignObj);
                 ListView.CheckForIllegalCrossThreadCalls = false;
@@ -106,7 +121,22 @@ namespace AppedoLT
                 String strHostName = Dns.GetHostName();
                 IPHostEntry iphostentry = Dns.GetHostByName(strHostName);
                 _localIpAddress = iphostentry.AddressList[0];
+
+                _logResponseData = false;
+                _logVariableData = false;
+
+                if (!string.IsNullOrEmpty(ConfigurationManager.AppSettings["LogResponseData"]))
+                {
+                    bool.TryParse(ConfigurationManager.AppSettings["LogResponseData"].ToString(), out _logResponseData);
+                }
+
+                if (!string.IsNullOrEmpty(ConfigurationManager.AppSettings["LogVariableData"]))
+                {
+                    bool.TryParse(ConfigurationManager.AppSettings["LogVariableData"].ToString(), out _logVariableData);
+                }
+
                 DataRecieve(_localIpAddress);
+                LogDataWatcher();
             }
             catch (Exception ex)
             {
@@ -858,6 +888,16 @@ namespace AppedoLT
                                 scr.OnIterationStarted += scr_OnIterationCompleted;
                                 scr.OnVUserRunCompleted += scr_OnVUserRunCompleted;
                                 scr.OnVUserCreated += scr_OnVUserCreated;
+                                if (_logVariableData)
+                                {
+                                    scr.OnVariableCreated += scr_OnVariableCreated;
+                                }
+
+                                if (_logResponseData)
+                                {
+                                    // Subscribe only if settings value is set to TRUE
+                                    scr.OnResponse += scr_OnResponse;
+                                }
                                 scr.Run();
                             }
                             runTime.Reset();
@@ -964,6 +1004,22 @@ namespace AppedoLT
                 }
             }
 
+        }
+
+        void scr_OnResponse(ResponseDetail data)
+        {
+            lock (_responseDetailSyncObj)
+            {
+                _responseDetailQueue.Enqueue(data);
+            }
+        }
+
+        void scr_OnVariableCreated(VariableDetail data)
+        {
+            lock (_variableDetailSyncObj)
+            {
+                _variableDetailQueue.Enqueue(data);
+            }
         }
 
         void scr_OnVUserCreated(string scriptname, int userid)
@@ -1694,7 +1750,6 @@ namespace AppedoLT
                         }
                     }
 
-
                 }).Start();
         }
 
@@ -1705,19 +1760,14 @@ namespace AppedoLT
                 System.Data.DataTable dt = new System.Data.DataTable();
                 Result _resultLog = Result.GetInstance();
                 dt = _resultLog.GetReportData(ddlReports.Text);
-               // dt.Columns.RemoveAt(0);
-               // dt.Columns.RemoveAt(0);
-                //grdvData.DataSource = dt.Copy();
-               this.radReportData.DataSource = dt.Copy();
-               // radReportData.GridElement.BorderColor = Color.Red;
-               // radReportData.GridElement.BackColor = Color.PowderBlue;
-                radReportData.MasterGridViewInfo.GridViewElement.BorderColor = Color.Red;
-                
-                for (int i = 0; i < dt.Columns.Count; i++  )
-                    this.radReportData.Columns[i].Width = 66;
 
-               
-               
+               this.radReportData.DataSource = dt.Copy();
+
+                for (int i = 0; i < dt.Columns.Count; i++)
+                {
+                    this.radReportData.Columns[i].BestFit();
+                }
+                    
             }
             catch (Exception ex)
             {
@@ -1740,6 +1790,247 @@ namespace AppedoLT
             AppedoLT.Forms.frmProxyConfiguration vm = new AppedoLT.Forms.frmProxyConfiguration();
             vm.ShowDialog();
         }
+
+        #region Logging Variables & Responses
+        private void LogDataWatcher()
+        {
+            if (_logResponseData || _logVariableData)
+            {
+                // Start a thread to watch for the MSMQ data
+                Thread dumpDataMSMQReadThread = new Thread(new ThreadStart(WatchMSMQForLogData));
+                dumpDataMSMQReadThread.Start();
+            }
+
+            // Start a thread to write the logs in to a file
+            Thread logResponseThread = new Thread(new ThreadStart(LogResponses));
+            logResponseThread.Start();
+        }
+
+        private void WatchMSMQForLogData()
+        {
+            string queueName = ".\\private$\\appedo_logs";
+            MessageQueue queue = GetMSMQ(queueName);
+            if (queue == null)
+            {
+                return;
+            }
+
+            System.Messaging.Message logMessage = null;
+            byte[] data = new byte[256];
+            BinaryFormatter binaryFormatter = new BinaryFormatter();
+            while (true)
+            {
+                try
+                {
+                    while (_responseDetailQueue.Count >= 512)
+                    {
+                        Thread.Sleep(2000);
+                    }
+                    logMessage = queue.Receive();
+
+                    if (logMessage.Label == "ResponseData")
+                    {
+                        logMessage.Formatter = new System.Messaging.XmlMessageFormatter(new Type[1] { typeof(ResponseDetail) });
+                        lock (_responseDetailSyncObj)
+                        {
+                            _responseDetailQueue.Enqueue(logMessage.Body as ResponseDetail);
+                        }
+                    }
+                    else if (logMessage.Label == "VariableData")
+                    {
+                        logMessage.Formatter = new System.Messaging.XmlMessageFormatter(new Type[1] { typeof(VariableDetail) });
+                        lock (_variableDetailSyncObj)
+                        {
+                            _variableDetailQueue.Enqueue(logMessage.Body as VariableDetail);
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Thread.Sleep(5000);
+                }
+            }
+        }
+
+        private void LogResponses()
+        {
+            while (true)
+            {
+                try
+                {
+                    if (_responseDetailQueue.Count == 0 && _variableDetailQueue.Count == 0)
+                    {
+                        Thread.Sleep(5000);
+                        continue;
+                    }
+
+                    #region Write Response Data
+                    if (_responseDetailQueue.Count > 0)
+                    {
+                        // Drain the messageDetails into a local dictionary, so that all messages pertaining to a single vuser can be writter into a file in a single streach.
+                        // Otherwise the file needs to be opened and closed everytime for every occurence.
+                        Dictionary<int, List<ResponseDetail>> dumpData = new Dictionary<int, List<ResponseDetail>>();
+                        lock (_responseDetailSyncObj)
+                        {
+                            while (_responseDetailQueue.Count > 0)
+                            {
+                                ResponseDetail detail = _responseDetailQueue.Dequeue();
+                                if (!dumpData.ContainsKey(detail.UserId))
+                                {
+                                    dumpData.Add(detail.UserId, new List<ResponseDetail>());
+                                }
+                                dumpData[detail.UserId].Add(detail);
+                            }
+                        }
+
+                        WriteRequestResponseToFile(dumpData);
+                    }
+                    #endregion
+
+                    #region Write Variable Data
+                    if (_variableDetailQueue.Count > 0)
+                    {
+                        // Drain the messageDetails into a local dictionary, so that all messages pertaining to a single vuser can be writter into a file in a single streach.
+                        // Otherwise the file needs to be opened and closed everytime for every occurence.
+                        Dictionary<string, List<VariableDetail>> variableData = new Dictionary<string, List<VariableDetail>>();
+                        lock (_variableDetailSyncObj)
+                        {
+                            while (_variableDetailQueue.Count > 0)
+                            {
+                                VariableDetail detail = _variableDetailQueue.Dequeue();
+                                if (!variableData.ContainsKey(detail.ScriptName))
+                                {
+                                    variableData.Add(detail.ScriptName, new List<VariableDetail>());
+                                }
+                                variableData[detail.ScriptName].Add(detail);
+                            }
+                        }
+
+                        WriteVariableInfoToFile(variableData);
+                    }
+                    #endregion
+
+                    Thread.Sleep(1);
+                }
+                catch (Exception ex)
+                {
+                    Thread.Sleep(10000);
+                }
+            }
+        }
+
+        private static void WriteRequestResponseToFile(Dictionary<int, List<ResponseDetail>> dumpData)
+        {
+           new Thread(() =>
+           {
+               foreach (KeyValuePair<int, List<ResponseDetail>> data in dumpData)
+               {
+                   try
+                   {
+                       // Add to the queue 
+                       string folderName = AppDomain.CurrentDomain.BaseDirectory + "\\Runlog\\" + data.Value[0].ScriptName + "\\" + data.Value[0].ReportName;
+                       if (!Directory.Exists(folderName))
+                           Directory.CreateDirectory(folderName);
+                       
+                       foreach (ResponseDetail detail in data.Value)
+                       {
+                           if (detail == null)
+                               continue;
+
+                           using (StreamWriter writer = new StreamWriter(folderName + "\\ResponseLog_" + data.Key.ToString() + ".log", true))
+                           {
+                               writer.WriteLine(detail.ToString());
+                               writer.Close();
+                           }
+                       }
+                   }
+                   catch (Exception excp)
+                   {
+                       ExceptionHandler.WritetoEventLog("Error while writing the response details to file. " + Environment.NewLine + excp.StackTrace + Environment.NewLine + excp.Message);
+                   }
+               }
+           }).Start();
+        }
+
+        private static void WriteVariableInfoToFile(Dictionary<string, List<VariableDetail>> variableData)
+        {
+           new Thread(() =>
+           {
+               foreach (KeyValuePair<string, List<VariableDetail>> data in variableData)
+               {
+                   try
+                   {
+                       bool newFileCreated = false;
+                       // Add to the queue 
+                       string folderName = AppDomain.CurrentDomain.BaseDirectory + "\\Runlog\\" + data.Value[0].ScriptName + "\\" + data.Value[0].ReportName;
+                       if (!Directory.Exists(folderName))
+                           Directory.CreateDirectory(folderName);
+                       
+                       foreach (VariableDetail detail in data.Value)
+                       {
+                           if (string.IsNullOrEmpty(detail.Value))
+                               continue;
+
+                           newFileCreated = false;
+                           string fileName = folderName + "\\variables.csv";
+                           if (!File.Exists(fileName))
+                           {
+                               newFileCreated = true;
+                           }
+
+                           using (StreamWriter writer = new StreamWriter(fileName, true))
+                           {
+                               if (newFileCreated)
+                               {
+                                   writer.WriteLine("RequestedAt, User, Iteration, Parameter, Value");
+                               }
+
+                               writer.WriteLine(detail.ToString());
+                               writer.Close();
+                           }
+                       }
+                   }
+                   catch (Exception excp)
+                   {
+                       ExceptionHandler.WritetoEventLog("Error while writing the variable details to file. " + Environment.NewLine + excp.StackTrace + Environment.NewLine + excp.Message);
+                   }
+               }
+           }).Start();
+        }
+
+        /// <summary>
+        /// Create MSMQ for profiler. It could take 30sec. It will only once when profiler start.
+        /// </summary>
+        /// <returns></returns>
+        private MessageQueue GetMSMQ(string queueName)
+        {
+            MessageQueue msmq = null;
+            try
+            {
+                if (!MessageQueue.Exists(queueName))
+                {
+                    msmq = MessageQueue.Create(queueName, false);
+                    msmq.SetPermissions(
+                              "Everyone",
+                              MessageQueueAccessRights.FullControl,
+                              AccessControlEntryType.Allow);
+                }
+                else
+                {
+                    msmq = new MessageQueue(queueName, false);
+                }
+            }
+            catch (Exception excp)
+            {
+                ExceptionHandler.WritetoEventLog("Error while opening the MSMQ for log response messages. "+ Environment.NewLine +  excp.StackTrace + Environment.NewLine + excp.Message);
+            }
+            return msmq;
+        }
+
+        private void FileWriter()
+        {
+        }
+        #endregion
 
     }
 }

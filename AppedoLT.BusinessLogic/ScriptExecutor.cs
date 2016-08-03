@@ -64,7 +64,8 @@ namespace AppedoLT.BusinessLogic
         public event IterationCompleted OnIterationStarted;
         public event VUserRunCompleted OnVUserRunCompleted;
         public event VUserCreated OnVUserCreated;
-
+        public event LockVariable OnVariableCreated;
+        public event LockResponse OnResponse;
         #endregion
 
         #region The constructor
@@ -522,6 +523,8 @@ namespace AppedoLT.BusinessLogic
             if (OnIterationStarted != null) user.OnIterationStart += OnIterationStarted;
             if (OnVUserRunCompleted != null) user.OnVUserRunCompleted += OnVUserRunCompleted;
             if (OnVUserCreated != null) user.OnVUserCreated += OnVUserCreated;
+            if (OnVariableCreated != null) user.OnVariableCreated += OnVariableCreated;
+            if (OnResponse != null) user.OnResponse += OnResponse;
             return user;
         }
 

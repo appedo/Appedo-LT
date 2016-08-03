@@ -48,7 +48,7 @@ namespace AppedoLT.Forms
             xmlDoc.SelectSingleNode("//configuration/appSettings/add[@key='IsProxyEnabled']").Attributes["value"].Value = chkProxy.Checked.ToString();
             xmlDoc.Save(AppDomain.CurrentDomain.SetupInformation.ConfigurationFile);
             ConfigurationManager.RefreshSection("configuration/appSettings");
-            //string msg = xmlDoc.SelectSingleNode("//configuration/appSettings/add[@key='ProxyHost']").Attributes["value"].Value+"\n"+xmlDoc.SelectSingleNode("//configuration/appSettings/add[@key='ProxyPort']").Attributes["value"].Value+"\n"+xmlDoc.SelectSingleNode("//configuration/appSettings/add[@key='UserName']").Attributes["value"].Value+"\n"+xmlDoc.SelectSingleNode("//configuration/appSettings/add[@key='Password']").Attributes["value"].Value+"\n"+xmlDoc.SelectSingleNode("//configuration/appSettings/add[@key='IsProxyEnabled']").Attributes["value"].Value;
+            //string logMessage = xmlDoc.SelectSingleNode("//configuration/appSettings/add[@key='ProxyHost']").Attributes["value"].Value+"\n"+xmlDoc.SelectSingleNode("//configuration/appSettings/add[@key='ProxyPort']").Attributes["value"].Value+"\n"+xmlDoc.SelectSingleNode("//configuration/appSettings/add[@key='UserName']").Attributes["value"].Value+"\n"+xmlDoc.SelectSingleNode("//configuration/appSettings/add[@key='Password']").Attributes["value"].Value+"\n"+xmlDoc.SelectSingleNode("//configuration/appSettings/add[@key='IsProxyEnabled']").Attributes["value"].Value;
             MessageBox.Show("Sucessfully Configured");
             this.Close();
         }
