@@ -1190,7 +1190,7 @@ namespace AppedoLT.BusinessLogic
         }
 
         //Get value for given variable. 
-        private string GetVariableValue(string variablename)
+        private string GetVariableValue(string variablename, bool isEvaluation)
         {
             string result = string.Empty;
 
@@ -1206,22 +1206,23 @@ namespace AppedoLT.BusinessLogic
                 if (type == "file" || type == "string" || type == "number" || type == "randomnumber" || type == "randomstring" || type == "currentdate")
                 {
                     result = VariableManager.dataCenter.GetVariableValue(_userid, _iterationid, variablename, _maxUser).ToString();
-
-                    if (OnVariableCreated != null)
-                    {
-                        VariableDetail detail = new VariableDetail();
-                        detail.UserId = _userid;
-                        detail.ReportName = _reportName;
-                        detail.ScriptName = _scriptName;
-                        detail.RequestedAt = DateTime.Now;
-                        detail.IterationId = _iterationid;
-                        detail.VariableName = variablename;
-                        detail.Value = System.Web.HttpUtility.HtmlDecode(result);
-
-                        OnVariableCreated.Invoke(detail);
-                    }
                 }
             }
+
+            if (OnVariableCreated != null && !isEvaluation)
+            {
+                VariableDetail detail = new VariableDetail();
+                detail.UserId = _userid;
+                detail.ReportName = _reportName;
+                detail.ScriptName = _scriptName;
+                detail.RequestedAt = DateTime.Now;
+                detail.IterationId = _iterationid;
+                detail.VariableName = variablename;
+                detail.Value = System.Web.HttpUtility.HtmlDecode(result);
+
+                OnVariableCreated.Invoke(detail);
+            }
+
             return System.Web.HttpUtility.HtmlDecode(result);
 
         }
@@ -1253,7 +1254,7 @@ namespace AppedoLT.BusinessLogic
         }
 
         //It will replace all variables with value in given xmlnode(Http request).
-        public List<AppedoLT.Core.Tuple<string, string>> EvaluteExp(XmlNode expression)
+        public List<AppedoLT.Core.Tuple<string, string>> EvaluteExp(XmlNode expression, bool isEvaluation = false)
         {
             #region Parm has variable
             List<AppedoLT.Core.Tuple<string, string>> Varialbles = new List<AppedoLT.Core.Tuple<string, string>>();
@@ -1274,7 +1275,7 @@ namespace AppedoLT.BusinessLogic
                     parm.Key = match.Groups[1].Value;
                     try
                     {
-                        parm.Value = GetVariableValue(parm.Key);
+                        parm.Value = GetVariableValue(parm.Key, isEvaluation);
                     }
                     catch
                     {
@@ -1302,7 +1303,7 @@ namespace AppedoLT.BusinessLogic
                 parm.Key = match.Groups[1].Value;
                 try
                 {
-                    parm.Value = GetVariableValue(parm.Key);
+                    parm.Value = GetVariableValue(parm.Key, isEvaluation);
                 }
                 catch
                 {
@@ -1341,7 +1342,7 @@ namespace AppedoLT.BusinessLogic
                     parm.Key = match.Groups[1].Value;
                     try
                     {
-                        parm.Value = GetVariableValue(parm.Key);
+                        parm.Value = GetVariableValue(parm.Key, false);
                     }
                     catch
                     {
@@ -1366,7 +1367,7 @@ namespace AppedoLT.BusinessLogic
                 parm.Key = match.Groups[1].Value;
                 try
                 {
-                    parm.Value = GetVariableValue(parm.Key);
+                    parm.Value = GetVariableValue(parm.Key, false);
                 }
                 catch
                 {
@@ -1988,7 +1989,7 @@ namespace AppedoLT.BusinessLogic
             {
                 Log logObj = new Log();
                 logObj.logid = log.Attributes["id"].Value;
-                EvaluteExp(log);
+                EvaluteExp(log, true);
                 logObj.logname = log.Attributes["name"].Value;
                 logObj.reportname = _reportName;
                 logObj.scenarioname = Status.ScenarioName;
