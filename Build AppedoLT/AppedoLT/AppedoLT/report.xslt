@@ -7,8 +7,43 @@
       <head>
         <title>Appedo</title>
         <link rel="shortcut icon" type="image/x-icon" href="images/appedo-16.ico" />
+        <link rel="stylesheet" href="css/morris.css" />
+        <script src="js/raphael-min.js"></script>
+        <script src="js/jquery-1.8.2.min.js"></script>
+        <script src="js/morris-0.4.1.min.js"></script>
+        <script>
+          function drawCharts()
+          {
+            drawSummaryGraph();
+            drawErrorGraph();
+            drawPageResponseGraph();
+            drawVUserGraph();
+          }        
+        </script>
+        <style>
+          body {
+          font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+          font-size: 14px;
+          line-height: 1.42857143;
+          color: #333;
+          background-color: #fff;
+          }
+
+          .graphheadingrow
+          {
+          text-align: center;
+          border-bottom: 1px solid #1b639e;
+          }
+
+          .graph
+          {
+          width: 400px; 
+          height: 250px;
+          padding: 25px;
+          }
+        </style>
       </head>
-      <body>
+      <body onload="drawCharts();">
         <xsl:apply-templates select="summaryreport"/>
         <br/>
         <xsl:for-each select="script">
@@ -19,11 +54,15 @@
           </span>
           <br/>
           <xsl:apply-templates select="settings"/>
+          <xsl:apply-templates select="graphs"/>
           <xsl:apply-templates select="requestresponse"/>
+          <xsl:apply-templates select="pageresponsegraph"/>
+          <xsl:apply-templates select="errorgraph"/>
           <xsl:apply-templates select="containerresponse"/>
           <xsl:apply-templates select="transactions"/>
           <xsl:apply-templates select="errorcount"/>
           <xsl:apply-templates select="errorcode"/>
+          <xsl:apply-templates select="vuserrungraph"/>
         </xsl:for-each>
       </body>
     </html>
@@ -175,7 +214,6 @@
 
   <xsl:template match="settings">
     <h4> Settings</h4>
-
     <table border="1" cellspacing="0" cellpadding="3">
       <xsl:for-each select="val">
         <tr>
@@ -236,12 +274,12 @@
             </td>
           </xsl:if>
           <xsl:if test="@type='Iteration'">
-          <td>
-            <b>Iterations</b>
-          </td>
-          <td style="text-align:right">
-            <xsl:value-of select="@iterations"/>
-          </td>
+            <td>
+              <b>Iterations</b>
+            </td>
+            <td style="text-align:right">
+              <xsl:value-of select="@iterations"/>
+            </td>
           </xsl:if>
         </tr>
         <tr>
@@ -260,12 +298,140 @@
         </tr>
       </xsl:for-each>
     </table>
+  </xsl:template>
 
+  <xsl:template match="graphs">
+    <table style="width: 875px;" cellpadding="10" cellspacing="0">
+      <tr>
+        <td>
+          <div id="{concat('vuser_', ../@id)}" class="graph"></div>
+        </td>
+        <td style="width: 15px;"></td>
+        <td>
+          <div id="{concat('hps_', ../@id)}" class="graph"></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="graphheadingrow">
+          <b>Virtual User Running Graph</b>
+        </td>
+        <td></td>
+        <td class="graphheadingrow">
+          <b>Hits per Sec Graph</b>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <div id="{concat('kbps_', ../@id)}" style="width: 400px; height: 250px;"></div>
+        </td>
+        <td></td>
+        <td>
+          <div id="{concat('pageres_', ../@id)}" style="width: 400px; height: 250px;"></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="graphheadingrow">
+          <b>Throughput per Sec Graph (KBps)</b>
+        </td>
+        <td></td>
+        <td class="graphheadingrow">
+          <b>Page Response Time Graph</b>
+        </td>
+      </tr>
+    </table>
+    <script>
+      function drawSummaryGraph() {      
+      new Morris.Line({
+      element: 'hps_<xsl:value-of select="../@id"/>',
+      data: [
+      <xsl:for-each select="val">
+        <xsl:choose>
+          <xsl:when test="position() != last()">
+            { time: '<xsl:value-of select="@localtime"/>', hitspersec: <xsl:value-of select="@hitpersec"/> },
+          </xsl:when>
+          <xsl:otherwise>
+            { time: '<xsl:value-of select="@localtime"/>', hitspersec: <xsl:value-of select="@hitpersec"/> }
+          </xsl:otherwise>
+        </xsl:choose>
+      </xsl:for-each>
+      ],
+      xkey: 'time',
+      ykeys: ['hitspersec'],
+      labels: ['Hits per Sec'],
+      lineColors: ['#D26B16']
+      });
+
+      new Morris.Line({
+      element: 'kbps_<xsl:value-of select="../@id"/>',
+      data: [
+      <xsl:for-each select="val">
+        <xsl:choose>
+          <xsl:when test="position() != last()">
+            { time: '<xsl:value-of select="@localtime"/>', kbps: <xsl:value-of select="@kbps"/> },
+          </xsl:when>
+          <xsl:otherwise>
+            { time: '<xsl:value-of select="@localtime"/>', kbps: <xsl:value-of select="@kbps"/> }
+          </xsl:otherwise>
+        </xsl:choose>
+      </xsl:for-each>
+      ],
+      xkey: 'time',
+      ykeys: ['kbps'],
+      labels: ['KBps'],
+      lineColors: ['#800000']
+      });
+
+      new Morris.Line({
+      element: 'art_<xsl:value-of select="../@id"/>',
+      data: [
+      <xsl:for-each select="val">
+        <xsl:choose>
+          <xsl:when test="position() != last()">
+            { time: '<xsl:value-of select="@localtime"/>', avgresponsetime: <xsl:value-of select="@avgresponsetime"/> },
+          </xsl:when>
+          <xsl:otherwise>
+            { time: '<xsl:value-of select="@localtime"/>', avgresponsetime: <xsl:value-of select="@avgresponsetime"/> }
+          </xsl:otherwise>
+        </xsl:choose>
+      </xsl:for-each>
+      ],
+      xkey: 'time',
+      ykeys: ['avgresponsetime'],
+      labels: ['Avg. Response Time'],
+      lineColors: ['#FFA500']
+      });
+      }
+    </script>
+  </xsl:template>
+
+  <xsl:template match="pageresponsegraph">
+    <script>
+      function drawPageResponseGraph() {
+        new Morris.Line({
+        element: 'pageres_<xsl:value-of select="../@id"/>',
+        data: [
+        <xsl:for-each select="val">
+          <xsl:choose>
+            <xsl:when test="position() != last()">
+              { time: '<xsl:value-of select="@localtime"/>', resptime: <xsl:value-of select="@resptime"/> },
+            </xsl:when>
+            <xsl:otherwise>
+              { time: '<xsl:value-of select="@localtime"/>', resptime: <xsl:value-of select="@resptime"/> }
+            </xsl:otherwise>
+          </xsl:choose>
+        </xsl:for-each>
+        ],
+        xkey: 'time',
+        ykeys: ['resptime'],
+        labels: ['Avg. Response Time'],
+        lineColors: ['#2616D2']
+        });
+      }
+    </script>
   </xsl:template>
 
   <xsl:template match="requestresponse">
     <h4> Request response</h4>
-
     <table border="1" cellspacing="0">
       <tr bgcolor="#9acd32">
         <th>Containername</th>
@@ -425,6 +591,78 @@
         </tr>
       </xsl:for-each>
     </table>
+  </xsl:template>
+  
+  <xsl:template match="errorgraph">
+    <table style="width: 875px;" cellpadding="10" cellspacing="0">
+      <tr>
+         <td>
+          <div id="{concat('art_', ../@id)}" class="graph"></div>
+        </td>
+        <td style="width: 15px;"></td>
+        <td>
+          <div id="{concat('error_', ../@id)}" class="graph"></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="graphheadingrow">
+          <b>Request Response Graph</b>
+        </td>
+        <td></td>
+        <td class="graphheadingrow">
+          <b>Error Graph</b>
+        </td>
+      </tr>
+    </table>
+    <script>
+      function drawErrorGraph() {
+        new Morris.Line({
+            element: 'error_<xsl:value-of select="../@id"/>',
+            data: [
+            <xsl:for-each select="val">
+              <xsl:choose>
+                <xsl:when test="position() != last()">
+                  { time: '<xsl:value-of select="@localtime"/>', errorcount: <xsl:value-of select="@errorcount"/> },
+                </xsl:when>
+                <xsl:otherwise>
+                  { time: '<xsl:value-of select="@localtime"/>', errorcount: <xsl:value-of select="@errorcount"/> }
+                </xsl:otherwise>
+              </xsl:choose>
+            </xsl:for-each>
+            ],
+            xkey: 'time',
+            ykeys: ['errorcount'],
+            labels: ['Error Count'],
+            lineColors: ['#D21629']
+        });
+      }
+    </script>
+  </xsl:template>
+
+  <xsl:template match="vuserrungraph">
+    <script>
+      function drawVUserGraph() {
+        new Morris.Line({
+        element: 'vuser_<xsl:value-of select="../@id"/>',
+        data: [
+        <xsl:for-each select="val">
+          <xsl:choose>
+            <xsl:when test="position() != last()">
+              { time: '<xsl:value-of select="@localtime"/>', vuserrunning: <xsl:value-of select="@vuserrunning"/> },
+            </xsl:when>
+            <xsl:otherwise>
+              { time: '<xsl:value-of select="@localtime"/>', vuserrunning: <xsl:value-of select="@vuserrunning"/> }
+            </xsl:otherwise>
+          </xsl:choose>
+        </xsl:for-each>
+        ],
+        xkey: 'time',
+        ykeys: ['vuserrunning'],
+        labels: ['VUsers Running'],
+        lineColors: ['#68D216']
+        });
+      }
+    </script>
   </xsl:template>
 
 </xsl:stylesheet>

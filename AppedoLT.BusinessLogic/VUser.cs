@@ -777,13 +777,15 @@ namespace AppedoLT.BusinessLogic
                             }
                             request.Attributes["Address"].Value = new StringBuilder().Append(request.Attributes["Schema"].Value).Append("://").Append(request.Attributes["Host"].Value).Append(":").Append(request.Attributes["Port"].Value).Append(request.Attributes["Path"].Value).ToString();
                             Uri temp = new Uri(request.Attributes["Address"].Value);
+                            
+                            Match mat = new Regex("Content-Type: (.*?)\r\n", RegexOptions.Singleline | RegexOptions.Multiline).Match(request.Attributes["ResponseHeader"].Value);
+                                                     
                             //If Browser cache enabled
                             if (_browserCache == true && _index > 1)
                             {
                                 try
                                 {
                                     XmlNode requestHeadeNode = request.SelectSingleNode("./headers/header[@name='Accept']");
-                                    Match mat = new Regex("Content-Type: (.*?)\r\n", RegexOptions.Singleline | RegexOptions.Multiline).Match(request.Attributes["ResponseHeader"].Value);
 
                                     if (requestHeadeNode != null && requestHeadeNode.Attributes["value"].Value.Contains("/"))
                                     {
@@ -877,13 +879,29 @@ namespace AppedoLT.BusinessLogic
                                     if (responseResult != null && responseResult.RequestResult != null)
                                     {
                                         details.ResponseCode = responseResult.RequestResult.ResponseCode;
-                                        details.ResponseString = responseResult.RequestResult.ResponseStr;
+                                        bool writeResponseData = false;
+                                        if (mat.Success == true && mat.Groups[1] != null && mat.Groups[1].Value.Contains("/"))
+                                        {
+                                            if (mat.Groups[1].Value.ToLower().Contains("application") || mat.Groups[1].Value.ToLower().Contains("text"))
+                                            {
+                                                writeResponseData = true;
+                                            }
+                                        }
+
+                                        if (writeResponseData)
+                                        {
+                                            details.ResponseString = responseResult.RequestResult.ResponseStr;
+                                        }
+                                        else
+                                        {
+                                            details.ResponseString = "[[Data writing skipped]]";
+                                        }
                                         details.RequestName = responseResult.RequestResult.RequestName;
                                     }
 
                                     OnResponse.Invoke(details);
                                 }
-                                
+
                                 LockResponseTime(req.RequestNode.Attributes["id"].Value, req.RequestNode.Attributes["Path"] == null ? req.RequestName : req.RequestNode.Attributes["Path"].Value, req.StartTime, req.FirstByteReceivedTime, req.EndTime, req.TimeForFirstByte, req.ResponseTime, req.ResponseSize, req.ResponseCode.ToString());
                                 //string aa = System.Configuration.ConfigurationSettings.AppSettings.Get("xx");
                                 
@@ -919,7 +937,6 @@ namespace AppedoLT.BusinessLogic
                                                         try
                                                         {
                                                             secReq.GetResponse();
-
                                                             if (OnLockRequestResponse != null)
                                                             {
                                                                 responseResultSec.RequestResult = secReq;
@@ -933,6 +950,45 @@ namespace AppedoLT.BusinessLogic
                                                             else
                                                             {
                                                                 LockResponseTime(req.RequestNode.Attributes["id"].Value, req.RequestNode.Attributes["Path"] == null ? req.RequestName : req.RequestNode.Attributes["Path"].Value, req.StartTime, req.FirstByteReceivedTime, req.EndTime, req.TimeForFirstByte, req.ResponseTime, req.ResponseSize, req.ResponseCode.ToString());
+                                                            }
+
+                                                            if (OnResponse != null)
+                                                            {
+                                                                mat = new Regex("Content-Type: (.*?)\r\n", RegexOptions.Singleline | RegexOptions.Multiline).Match(secReq.RequestNode.Attributes["ResponseHeader"].Value);
+                             
+                                                                responseResult.PostData = secReq.ToString();
+                                                                responseResult.RequestResult = secReq;
+                                                                responseResult.WebRequestResponseId = Convert.ToInt32(Constants.GetInstance().UniqueID);
+
+                                                                ResponseDetail details = new ResponseDetail();
+                                                                details.ReportName = _reportName;
+                                                                details.UserId = _userid;
+                                                                details.ScriptName = _scriptName;
+                                                                details.IterationId = _iterationid;
+                                                                if (responseResult != null && responseResult.RequestResult != null)
+                                                                {
+                                                                    details.ResponseCode = responseResult.RequestResult.ResponseCode;
+                                                                    bool writeResponseData = false;
+                                                                    if (mat.Success == true && mat.Groups[1] != null && mat.Groups[1].Value.Contains("/"))
+                                                                    {
+                                                                        if (mat.Groups[1].Value.ToLower().Contains("application") || mat.Groups[1].Value.ToLower().Contains("text"))
+                                                                        {
+                                                                            writeResponseData = true;
+                                                                        }
+                                                                    }
+
+                                                                    if (writeResponseData)
+                                                                    {
+                                                                        details.ResponseString = responseResult.RequestResult.ResponseStr;
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        details.ResponseString = "[[Data writing skipped]]";
+                                                                    }
+                                                                    details.RequestName = responseResult.RequestResult.RequestName;
+                                                                }
+
+                                                                OnResponse.Invoke(details);
                                                             }
                                                         }
                                                         catch (Exception ex)

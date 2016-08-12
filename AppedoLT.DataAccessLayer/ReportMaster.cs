@@ -47,11 +47,12 @@ namespace AppedoLT.DataAccessLayer
 
                 using (SQLiteConnection _con = new SQLiteConnection("Data Source=" + _databasePath + "\\database.db;Version=3;New=True;Compress=True;Read Only=True;"))
                 {
+                    SQLiteDataReader reader = null;
                     try
                     {
                         _con.Open();
-                        SQLiteDataReader reader = GetReader("select min(starttime),max(endtime) from reportdata", _con);
-                       
+                        reader = GetReader("select min(starttime),max(endtime) from reportdata", _con);
+
                         if (reader.HasRows)
                         {
                             reader.Read();
@@ -61,7 +62,19 @@ namespace AppedoLT.DataAccessLayer
                     }
                     catch (Exception ex)
                     {
-                        
+
+                    }
+                    finally
+                    {
+                        if (reader != null)
+                        {
+                            reader.Close();
+                        }
+
+                        if (_con != null && _con.State == ConnectionState.Open)
+                        {
+                            _con.Close();
+                        }
                     }
                 }
             }
@@ -97,10 +110,11 @@ namespace AppedoLT.DataAccessLayer
 
                 using (SQLiteConnection _con = new SQLiteConnection("Data Source=" + _databasePath + "\\database.db;Version=3;New=True;Compress=True;Read Only=True;"))
                 {
+                    SQLiteDataReader reader = null;
                     try
                     {
                         _con.Open();
-                        SQLiteDataReader reader = GetReader("select max(endtime) from reportdata", _con);
+                        reader = GetReader("select max(endtime) from reportdata", _con);
                         if (reader.HasRows)
                         {
                             reader.Read();
@@ -110,6 +124,18 @@ namespace AppedoLT.DataAccessLayer
                     catch (Exception ex)
                     {
                         ExceptionHandler.WritetoEventLog(ex.StackTrace + ex.Message);
+                    }
+                    finally
+                    {
+                        if (reader != null)
+                        {
+                            reader.Close();
+                        }
+
+                        if (_con != null && _con.State == ConnectionState.Open)
+                        {
+                            _con.Close();
+                        }
                     }
                 }
             }
@@ -134,16 +160,22 @@ namespace AppedoLT.DataAccessLayer
             //new Thread(() => { SetContainerSummaryReport(); }).Start();
             //new Thread(() => { SetTransactionSummaryReport(); }).Start();
         }
-       
+
+        public TimeSpan GetTotalRunDuration()
+        {
+            return _maxDate - _minDate;
+        }
+
         public DateTime GetRunEndTime()
         {
             DateTime endtime = new DateTime();
             using (SQLiteConnection _con = new SQLiteConnection("Data Source=" + _databasePath + "\\database.db;Version=3;New=True;Compress=True;Read Only=True;"))
             {
+                SQLiteDataReader reader = null;
                 try
                 {
                     _con.Open();
-                    SQLiteDataReader reader = GetReader(@"SELECT max(endtime)as endtime from reportdata", _con);
+                    reader = GetReader(@"SELECT max(endtime)as endtime from reportdata", _con);
                     reader.Read();
                     if (reader.HasRows)
                     {
@@ -156,6 +188,11 @@ namespace AppedoLT.DataAccessLayer
                 }
                 finally
                 {
+                    if (reader != null)
+                    {
+                        reader.Close();
+                    }
+
                     if (_con != null && _con.State == ConnectionState.Open)
                     {
                         _con.Close();
@@ -234,6 +271,13 @@ namespace AppedoLT.DataAccessLayer
                 catch (Exception ex)
                 {
                     ExceptionHandler.WritetoEventLog(ex.StackTrace + ex.Message);
+                }
+                finally
+                {
+                    if (_con != null && _con.State == ConnectionState.Open)
+                    {
+                        _con.Close();
+                    }
                 }
             }
         }
@@ -321,8 +365,13 @@ namespace AppedoLT.DataAccessLayer
                 {
                     ExceptionHandler.WritetoEventLog(ex.StackTrace + ex.Message);
                 }
-
-
+                finally
+                {
+                    if (_con != null && _con.State == ConnectionState.Open)
+                    {
+                        _con.Close();
+                    }
+                }
             }
         }
 
@@ -341,6 +390,13 @@ namespace AppedoLT.DataAccessLayer
                 catch (Exception ex)
                 {
                     ExceptionHandler.WritetoEventLog(ex.StackTrace + ex.Message);
+                }
+                finally
+                {
+                    if (_con != null && _con.State == ConnectionState.Open)
+                    {
+                        _con.Close();
+                    }
                 }
             }
             return dt;
@@ -589,6 +645,13 @@ namespace AppedoLT.DataAccessLayer
                 {
                     ExceptionHandler.WritetoEventLog(ex.StackTrace + ex.Message);
                 }
+                finally
+                {
+                    if (_con != null && _con.State == ConnectionState.Open)
+                    {
+                        _con.Close();
+                    }
+                }
             }
             return dt;
         }
@@ -606,6 +669,13 @@ namespace AppedoLT.DataAccessLayer
                 catch (Exception ex)
                 {
                     ExceptionHandler.WritetoEventLog(ex.StackTrace + ex.Message);
+                }
+                finally
+                {
+                    if (_con != null && _con.State == ConnectionState.Open)
+                    {
+                        _con.Close();
+                    }
                 }
             }
             return dt;
@@ -627,12 +697,9 @@ namespace AppedoLT.DataAccessLayer
                 }
                 finally
                 {
-                    try
+                    if (_con != null && _con.State == ConnectionState.Open)
                     {
                         _con.Close();
-                    }
-                    catch
-                    {
                     }
                 }
             }

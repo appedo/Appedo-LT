@@ -286,6 +286,22 @@ namespace AppedoLT.DataAccessLayer
                 string reportFolder = Constants.GetInstance().DataFolderPath + "\\" + reportName + "\\Report";
                 string databasePath = Constants.GetInstance().DataFolderPath + "\\" + reportName;
 
+                // Copy all js files
+                Directory.CreateDirectory(reportFolder + "\\js");
+                string sourceDirectory = Constants.GetInstance().ExecutingAssemblyLocation + "\\js";
+                foreach (string fileName in Directory.GetFiles(sourceDirectory, "*.js"))
+                {
+                    File.Copy(fileName, reportFolder + "\\js\\" + Path.GetFileName(fileName));
+                }
+
+                // Copy all css files
+                Directory.CreateDirectory(reportFolder + "\\css");
+                sourceDirectory = Constants.GetInstance().ExecutingAssemblyLocation + "\\css";
+                foreach (string fileName in Directory.GetFiles(sourceDirectory, "*.css"))
+                {
+                    File.Copy(fileName, reportFolder + "\\css\\" + Path.GetFileName(fileName));
+                }
+
                 using (SQLiteConnection _con = new SQLiteConnection("Data Source=" + databasePath + "\\database.db;Version=3;New=True;Compress=True;"))
                 {
                     try
@@ -349,7 +365,7 @@ namespace AppedoLT.DataAccessLayer
                         }
                         report.AppendChild(errorNode);
 
-                        string[] tables = new string[] { "settings", "requests", "requestresponse", "containerresponse", "errorcount", "errorcode", "transactions" };
+                        string[] tables = new string[] { "settings", "requests", "requestresponse", "containerresponse", "errorcount", "errorcode", "transactions", "graphs", "errorgraph", "pageresponsegraph", "vuserrungraph" };
                         foreach (XmlNode script in runNode.SelectSingleNode("scripts").ChildNodes)
                         {
                             XmlNode scriptNode = doc.CreateElement("script");
@@ -368,7 +384,14 @@ namespace AppedoLT.DataAccessLayer
                                     {
                                         try
                                         {
-                                            val.Attributes.Append(GetAttribute(tableNode.OwnerDocument, reader.GetName(index), reader[reader.GetName(index)].ToString()));
+                                            if (reader[index].GetType() == typeof(DateTime))
+                                            {
+                                                val.Attributes.Append(GetAttribute(tableNode.OwnerDocument, reader.GetName(index), reader.GetDateTime(index).ToString("yyyy-MM-dd HH:mm:ss")));
+                                            }
+                                            else
+                                            {
+                                                val.Attributes.Append(GetAttribute(tableNode.OwnerDocument, reader.GetName(index), reader[reader.GetName(index)].ToString()));
+                                            }
                                         }
                                         catch (Exception ex)
                                         {

@@ -1588,7 +1588,17 @@ namespace AppedoLT
             try
             {
                 ReportMaster mas = new ReportMaster(reportName);
-                mas.Executequery(reportName, _constants.GetQuery(reportName, _repositoryXml.Doc));
+                TimeSpan span = mas.GetTotalRunDuration();
+                int timeInterval = 30;
+                if (span.TotalMinutes <= 30)
+                {
+                    timeInterval = 5;
+                }
+                else if (span.TotalMinutes <= 60)
+                {
+                    timeInterval = 10;
+                }
+                mas.Executequery(reportName, _constants.GetQuery(reportName, _repositoryXml.Doc, timeInterval));
                 XmlNode runNode = _repositoryXml.Doc.SelectSingleNode("//run[@reportname='" + reportName + "']");
                 Result.GetInstance().GetSummaryReportByScript(reportName, runNode);
             }
@@ -1858,7 +1868,7 @@ namespace AppedoLT
             {
                 try
                 {
-                    if (_responseDetailQueue.Count == 0 || _variableDetailQueue.Count == 0)
+                    if (_responseDetailQueue.Count == 0 && _variableDetailQueue.Count == 0)
                     {
                         Thread.Sleep(5000);
                         continue;

@@ -892,7 +892,7 @@ namespace AppedoLT.Core
         
         }
 
-        public string GetQuery(string reportName, XmlDocument doc)
+        public string GetQuery(string reportName, XmlDocument doc, int timeinterval = 30)
         {
             StringBuilder result = new StringBuilder();
             XmlNode runNode = doc.SelectSingleNode("//run[@reportname='" + reportName + "']");
@@ -911,9 +911,11 @@ namespace AppedoLT.Core
                                          ", this.ExecutingAssemblyLocation + "\\data\\" + reportName + "", loadgen.Attributes["ipaddress"].Value.Replace('.', '_'));
                 }
 
-                result.AppendLine(@" CREATE INDEX idx_reportdata ON reportdata(scriptid);
-                                           CREATE INDEX idx_reportdata_requestid ON reportdata(requestid);
-                                           CREATE INDEX idx_scriptname ON error(scriptname );");
+                result.AppendLine(@"CREATE INDEX idx_reportdata ON reportdata(scriptid);
+                                    CREATE INDEX idx_reportdata_requestid ON reportdata(requestid);
+                                    CREATE INDEX idx_scriptname ON error(scriptname );
+                                    ALTER TABLE reportdata ADD COLUMN gmttime DATETIME;
+                                    UPDATE reportdata SET gmttime=strftime('%s',strftime('%Y-%m-%dT%H:%M:%S', endtime)) -19800;");
                 foreach (XmlNode script in runNode.SelectSingleNode("scripts").ChildNodes)
                 {
                     #region Script Query
@@ -985,15 +987,76 @@ namespace AppedoLT.Core
                                                                                    message     VARCHAR,
                                                                                    count       INT
                                                                                    );
+
+                                                          CREATE TABLE graphs_{0} ( 
+                                                                                   gmttime   INT,
+                                                                                   localtime DATETIME,
+                                                                                   gmt       DATETIME,
+                                                                                   hitpersec DOUBLE,
+                                                                                   totalkb   DOUBLE,
+                                                                                   kbps      DOUBLE,
+                                                                                   avgresponsetime      DOUBLE
+                                                                                   );
+
+                                                           CREATE TABLE errorgraph_{0} ( 
+                                                                                   gmttime   INT,
+                                                                                   localtime DATETIME,
+                                                                                   errorcount    INT
+                                                                                   );
+
+                                                           CREATE TABLE pageresponsegraph_{0} ( 
+                                                                                   endtime   INT,
+                                                                                   localtime DATETIME,
+                                                                                   resptime   DOUBLE
+                                                                                   );
                 
                                                            insert into requests_{0} select containerid,containername, requestid,address from reportdata where scriptid={0} group by containerid,containername,requestid order by containerid,requestid;
                                                            insert into requestresponse_{0} select containerid,containername,requestid,address,min(diff),max(diff),avg(diff),sum(responsesize),count(diff),min(timetofirstbyte),max(timetofirstbyte),avg(timetofirstbyte)  from reportdata where scriptid={0} group by containerid,requestid order by containerid,requestid;
                                                            insert into containerresponse_{0} select containerid, containername,min(responsetime) AS min,max(responsetime) AS max,avg(responsetime) AS avg from containerresponsetime_{0} group by containerid order by containerid;
                                                            insert into transactions_{0} select transactionname,min(difference),max(difference),avg(difference) from transactions where scriptid={0} group by transactionname;
                                                            insert into errorcount_{0} select containerid,containername, requestid, request,count(*) from error where error.scriptname='{1}' group by error.requestid order by requestid;
-                                                           insert into errorcode_{0} select errorcode,message,count(*) from error where error.scriptname='{1}' group by message;", script.Attributes["id"].Value, script.Attributes["name"].Value, rampuptime).AppendLine();
-                    #endregion
+                                                           insert into errorcode_{0} select errorcode,message,count(*) from error where error.scriptname='{1}' group by message;
+                                                           insert into  graphs_{0} select gmttime, datetime(gmttime, 'unixepoch', 'localtime') as localtime, datetime(gmttime, 'unixepoch') as gmt, 
+                                                           round((count(requestid))/{3}.00,2) as hitpersec, round(sum(responsesize)/(1024.0),2) as totalkb, round(sum(responsesize)/({3}.00*1024.0),2) as kbps,
+                                                           round(Avg(diff),2) as avgresponsetime from reportdata where scriptid={0} group by gmttime/{3} order by 1 asc;
+                                                           insert into errorgraph_{0} select (strftime('%s',strftime('%Y-%m-%dT%H:%M:%S', time)) -19800) as ttime, time as localtime, count(errorcode) as errorcount from error where error.scriptname='{1}' group by (strftime('%s',strftime('%Y-%m-%dT%H:%M:%S', time)) -19800)/5;
+                                                           insert into pageresponsegraph_{0} select endtime, datetime(endtime, 'unixepoch', 'localtime') as localtime, Round(Avg(resptime),2) resptime from 
+                                                            (select pageid, userid, iterationid, strftime('%s',strftime('%Y-%m-%dT%H:%M:%S', Min(starttime))) -19800 sttime, strftime('%s',strftime('%Y-%m-%dT%H:%M:%S', Max(endtime))) -19800 endtime,
+                                                            (strftime('%s',strftime('%Y-%m-%dT%H:%M:%S', Max(endtime))) -19800) - (strftime('%s',strftime('%Y-%m-%dT%H:%M:%S', Min(starttime))) -19800) resptime
+                                                            from reportdata where scriptid={0} group by pageid, userid, iterationid) group by endtime/{3} order by 1;", script.Attributes["id"].Value, script.Attributes["name"].Value, rampuptime, timeinterval).AppendLine();
+                                                           #endregion
+                        result.AppendFormat(@"CREATE TABLE vuserrungraph_{0} (
+                                                            gmt BIGINT, 
+                                                            localtime DATETIME, 
+                                                            vusercnt INT, 
+                                                            vuserrunning INT); 
+                                              WITH RECURSIVE 
+                                              cnt(gmt) 
+                                              AS (
+                                                 SELECT (select strftime('%s',strftime('%Y-%m-%dT%H:%M:%S', Min(starttime))) -19800 from reportdata where scriptid={0} )
+                                                 UNION ALL
+                                                 SELECT gmt + {1} FROM cnt
+                                                  LIMIT (select ((strftime('%s',strftime('%Y-%m-%dT%H:%M:%S', Max(endtime))) - strftime('%s',strftime('%Y-%m-%dT%H:%M:%S', Min(starttime)))) / {1}) + 1 from reportdata where scriptid={0})
+                                              ) 
+
+                                            insert into vuserrungraph_{0} (gmt, localtime) select gmt, datetime(gmt, 'unixepoch', 'localtime') localtime FROM cnt;
+                                            create table vusergr_{0} (gmt bigint, vusercnt int) ;
+                                            insert into vusergr_{0} (gmt, vusercnt)
+                                            select gmt, count(userid) as usercnt from 
+                                            (Select userid, min(starttime), strftime('%s',strftime('%Y-%m-%dT%H:%M:%S', Min(starttime))) -19800 as gmt from reportdata where scriptid={0} group by userid order by gmt) 
+                                            group by gmt;
+
+                                            insert into vusergr_{0} (gmt, vusercnt)
+                                            select gmt, count(userid)*-1 as usercnt from 
+                                            (Select userid, max(endtime), strftime('%s',strftime('%Y-%m-%dT%H:%M:%S', Max(endtime))) -19800 as gmt from reportdata where scriptid={0} group by userid order by gmt) 
+                                            group by gmt;
+
+                                            update vuserrungraph_{0} set vusercnt = (select vusercnt from vusergr_{0} where vuserrungraph_{0}.gmt = vusergr_{0}.gmt);
+                                            update vuserrungraph_{0} set vuserrunning = (select sum(vusercnt) from vuserrungraph_{0} as t2  where t2.gmt <= vuserrungraph_{0}.gmt);
+                                            ", script.Attributes["id"].Value, timeinterval);
                 }
+                
+
                 result.Append("CREATE INDEX idx_responsecode ON reportdata(reponsecode);");
                 result.Append(@" insert into summaryreport SELECT 
                                                                          MIN(starttime) AS start_time,
@@ -1016,9 +1079,12 @@ namespace AppedoLT.Core
                                                                           (SELECT COUNT(reponsecode) FROM reportdata WHERE reponsecode>=500 AND reponsecode<600 ) AS reponse_500
                                                                       FROM 
                                                                           reportdata;");
+                
             }
             return result.ToString();
         }
+
+
         public void Zip(string sourcePath, string destinationPath)
         {
             ZipFile zip = new ZipFile();
