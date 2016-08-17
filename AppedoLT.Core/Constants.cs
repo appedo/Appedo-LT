@@ -1025,35 +1025,35 @@ namespace AppedoLT.Core
                                                             (strftime('%s',strftime('%Y-%m-%dT%H:%M:%S', Max(endtime))) -19800) - (strftime('%s',strftime('%Y-%m-%dT%H:%M:%S', Min(starttime))) -19800) resptime
                                                             from reportdata where scriptid={0} group by pageid, userid, iterationid) group by endtime/{3} order by 1;", script.Attributes["id"].Value, script.Attributes["name"].Value, rampuptime, timeinterval).AppendLine();
                                                            #endregion
-                        result.AppendFormat(@"CREATE TABLE vuserrungraph_{0} (
-                                                            gmt BIGINT, 
-                                                            localtime DATETIME, 
-                                                            vusercnt INT, 
-                                                            vuserrunning INT); 
-                                              WITH RECURSIVE 
-                                              cnt(gmt) 
-                                              AS (
-                                                 SELECT (select strftime('%s',strftime('%Y-%m-%dT%H:%M:%S', Min(starttime))) -19800 from reportdata where scriptid={0} )
-                                                 UNION ALL
-                                                 SELECT gmt + {1} FROM cnt
-                                                  LIMIT (select ((strftime('%s',strftime('%Y-%m-%dT%H:%M:%S', Max(endtime))) - strftime('%s',strftime('%Y-%m-%dT%H:%M:%S', Min(starttime)))) / {1}) + 1 from reportdata where scriptid={0})
-                                              ) 
+                    result.AppendFormat(@"CREATE TABLE vuserrungraph_{0} (
+                                                        gmt BIGINT, 
+                                                        localtime DATETIME, 
+                                                        vusercnt INT, 
+                                                        vuserrunning INT); 
+                                            WITH RECURSIVE 
+                                            cnt(gmt) 
+                                            AS (
+                                                SELECT (select strftime('%s',strftime('%Y-%m-%dT%H:%M:%S', Min(starttime))) -19800 from reportdata where scriptid={0} )
+                                                UNION ALL
+                                                SELECT gmt + 1 FROM cnt
+                                                LIMIT (select ((strftime('%s',strftime('%Y-%m-%dT%H:%M:%S', Max(endtime))) - strftime('%s',strftime('%Y-%m-%dT%H:%M:%S', Min(starttime)))) / 1) + 15 from reportdata where scriptid={0})
+                                            ) 
 
-                                            insert into vuserrungraph_{0} (gmt, localtime) select gmt, datetime(gmt, 'unixepoch', 'localtime') localtime FROM cnt;
-                                            create table vusergr_{0} (gmt bigint, vusercnt int) ;
-                                            insert into vusergr_{0} (gmt, vusercnt)
-                                            select gmt, count(userid) as usercnt from 
-                                            (Select userid, min(starttime), strftime('%s',strftime('%Y-%m-%dT%H:%M:%S', Min(starttime))) -19800 as gmt from reportdata where scriptid={0} group by userid order by gmt) 
-                                            group by gmt;
+                                        insert into vuserrungraph_{0} (gmt, localtime) select gmt, datetime(gmt, 'unixepoch', 'localtime') localtime FROM cnt;
+                                        create table vusergr_{0} (gmt bigint, vusercnt int) ;
+                                        insert into vusergr_{0} (gmt, vusercnt)
+                                        select gmt, count(userid) as usercnt from 
+                                        (Select userid, min(starttime), strftime('%s',strftime('%Y-%m-%dT%H:%M:%S', Min(starttime))) -19800 as gmt from reportdata where scriptid={0} group by userid order by gmt) 
+                                        group by gmt;
 
-                                            insert into vusergr_{0} (gmt, vusercnt)
-                                            select gmt, count(userid)*-1 as usercnt from 
-                                            (Select userid, max(endtime), strftime('%s',strftime('%Y-%m-%dT%H:%M:%S', Max(endtime))) -19800 as gmt from reportdata where scriptid={0} group by userid order by gmt) 
-                                            group by gmt;
+                                        insert into vusergr_{0} (gmt, vusercnt)
+                                        select gmt, count(userid)*-1 as usercnt from 
+                                        (Select userid, max(endtime), strftime('%s',strftime('%Y-%m-%dT%H:%M:%S', Max(endtime))) -19800 as gmt from reportdata where scriptid={0} group by userid order by gmt) 
+                                        group by gmt;
 
-                                            update vuserrungraph_{0} set vusercnt = (select vusercnt from vusergr_{0} where vuserrungraph_{0}.gmt = vusergr_{0}.gmt);
-                                            update vuserrungraph_{0} set vuserrunning = (select sum(vusercnt) from vuserrungraph_{0} as t2  where t2.gmt <= vuserrungraph_{0}.gmt);
-                                            ", script.Attributes["id"].Value, timeinterval);
+                                        update vuserrungraph_{0} set vusercnt = (select vusercnt from vusergr_{0} where vuserrungraph_{0}.gmt = vusergr_{0}.gmt);
+                                        update vuserrungraph_{0} set vuserrunning = (select sum(vusercnt) from vuserrungraph_{0} as t2  where t2.gmt <= vuserrungraph_{0}.gmt);
+                                        ", script.Attributes["id"].Value, timeinterval);
                 }
                 
 

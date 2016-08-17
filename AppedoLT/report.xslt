@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
-<!-- Edited by XMLSpy® -->
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Edited by XMLSpyÂ® -->
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
   <xsl:template match="//report">
@@ -18,6 +18,7 @@
             drawErrorGraph();
             drawPageResponseGraph();
             drawVUserGraph();
+            drawTransactionGraph();
           }        
         </script>
         <style>
@@ -301,16 +302,8 @@
   </xsl:template>
 
   <xsl:template match="graphs">
+    
     <table style="width: 875px;" cellpadding="10" cellspacing="0">
-      <tr>
-        <td>
-          <div id="{concat('vuser_', ../@id)}" class="graph"></div>
-        </td>
-        <td style="width: 15px;"></td>
-        <td>
-          <div id="{concat('hps_', ../@id)}" class="graph"></div>
-        </td>
-      </tr>
       <tr>
         <td class="graphheadingrow">
           <b>Virtual User Running Graph</b>
@@ -322,6 +315,28 @@
       </tr>
       <tr>
         <td>
+          <div id="{concat('vuser_', ../@id)}" class="graph"></div>
+        </td>
+        <td style="width: 15px;"></td>
+        <td>
+          <div id="{concat('hps_', ../@id)}" class="graph"></div>
+        </td>
+      </tr>
+
+      <br/>
+      <br/>
+           
+      <tr>
+        <td class="graphheadingrow">
+          <b>Throughput per Sec Graph (KBps)</b>
+        </td>
+        <td></td>
+        <td class="graphheadingrow">
+          <b>Page Response Time Graph (secs)</b>
+        </td>
+      </tr>
+      <tr>
+        <td>
           <div id="{concat('kbps_', ../@id)}" style="width: 400px; height: 250px;"></div>
         </td>
         <td></td>
@@ -329,16 +344,10 @@
           <div id="{concat('pageres_', ../@id)}" style="width: 400px; height: 250px;"></div>
         </td>
       </tr>
-      <tr>
-        <td class="graphheadingrow">
-          <b>Throughput per Sec Graph (KBps)</b>
-        </td>
-        <td></td>
-        <td class="graphheadingrow">
-          <b>Page Response Time Graph</b>
-        </td>
-      </tr>
+    
     </table>
+    <br/>
+
     <script>
       function drawSummaryGraph() {      
       new Morris.Line({
@@ -358,7 +367,10 @@
       xkey: 'time',
       ykeys: ['hitspersec'],
       labels: ['Hits per Sec'],
-      lineColors: ['#D26B16']
+      lineColors: ['#D26B16'],
+      lineWidth: 1,
+      pointSize: 2,
+      hideHover: 'auto'
       });
 
       new Morris.Line({
@@ -378,7 +390,10 @@
       xkey: 'time',
       ykeys: ['kbps'],
       labels: ['KBps'],
-      lineColors: ['#800000']
+      lineColors: ['#800000'],
+      lineWidth: 1,
+      pointSize: 2,
+      hideHover: 'auto'
       });
 
       new Morris.Line({
@@ -398,7 +413,10 @@
       xkey: 'time',
       ykeys: ['avgresponsetime'],
       labels: ['Avg. Response Time'],
-      lineColors: ['#FFA500']
+      lineColors: ['#800000'],
+      lineWidth: 1,
+      pointSize: 2,
+      hideHover: 'auto'
       });
       }
     </script>
@@ -424,7 +442,10 @@
         xkey: 'time',
         ykeys: ['resptime'],
         labels: ['Avg. Response Time'],
-        lineColors: ['#2616D2']
+        lineColors: ['#2616D2'],
+        lineWidth: 1,
+        pointSize: 2,
+        hideHover: 'auto'
         });
       }
     </script>
@@ -540,6 +561,45 @@
         </tr>
       </xsl:for-each>
     </table>
+    <br/>
+    <table style="width: 475px;" cellpadding="10" cellspacing="0">
+      <tr>
+        <td class="graphheadingrow">
+          <b>Transaction Graph</b>
+        </td>
+      </tr>
+       <tr>
+        <td>
+          <div id="{concat('transactions_', ../@id)}" class="graph"></div>
+        </td>
+      </tr>
+      </table>
+    
+    <script>
+      function drawTransactionGraph() {
+        new Morris.Bar({
+		    barSizeRatio:0.40,
+        element: 'transactions_<xsl:value-of select="../@id"/>',
+        data: [
+        <xsl:for-each select="val">
+          <xsl:choose>
+            <xsl:when test="position() != last()">
+              { transaction: '<xsl:value-of select="@transactionname"/>', min: <xsl:value-of select="@min"/>, max: <xsl:value-of select="@max"/>, avg: <xsl:value-of select="@avg"/> },
+            </xsl:when>
+            <xsl:otherwise>
+              { transaction: '<xsl:value-of select="@transactionname"/>', min: <xsl:value-of select="@min"/>, max: <xsl:value-of select="@max"/>, avg: <xsl:value-of select="@avg"/> }
+            </xsl:otherwise>
+          </xsl:choose>
+        </xsl:for-each>
+        ],
+        xkey: 'transaction',
+        ykeys: ['min', 'max', 'avg'],
+        labels: ['Min', 'Max', 'Avg.'],
+        barColors: ['#373BF0', '#68D216', '#D26B16'],
+        hideHover: 'auto'
+        });
+      }
+    </script>
 
   </xsl:template>
 
@@ -594,7 +654,19 @@
   </xsl:template>
   
   <xsl:template match="errorgraph">
+    <br/>
+    <br/>
     <table style="width: 875px;" cellpadding="10" cellspacing="0">
+      <tr>
+        <td class="graphheadingrow">
+          <b>Request Response Graph (ms)</b>
+        </td>
+        <td></td>
+        <td class="graphheadingrow">
+          <b>Error Graph</b>
+        </td>
+      </tr>
+      
       <tr>
          <td>
           <div id="{concat('art_', ../@id)}" class="graph"></div>
@@ -604,17 +676,11 @@
           <div id="{concat('error_', ../@id)}" class="graph"></div>
         </td>
       </tr>
-      <tr>
-        <td class="graphheadingrow">
-          <b>Request Response Graph</b>
-        </td>
-        <td></td>
-        <td class="graphheadingrow">
-          <b>Error Graph</b>
-        </td>
-      </tr>
     </table>
+    <br/>
     <script>
+      
+      
       function drawErrorGraph() {
         new Morris.Line({
             element: 'error_<xsl:value-of select="../@id"/>',
@@ -633,7 +699,10 @@
             xkey: 'time',
             ykeys: ['errorcount'],
             labels: ['Error Count'],
-            lineColors: ['#D21629']
+            lineColors: ['#D21629'],
+            lineWidth: 1,
+            pointSize: 2,
+            hideHover: 'auto'
         });
       }
     </script>
@@ -659,7 +728,10 @@
         xkey: 'time',
         ykeys: ['vuserrunning'],
         labels: ['VUsers Running'],
-        lineColors: ['#68D216']
+        lineColors: ['#2616D2'],
+        lineWidth: 1,
+        pointSize: 1,
+        hideHover: 'auto'
         });
       }
     </script>
