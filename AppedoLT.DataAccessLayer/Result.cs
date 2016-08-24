@@ -47,6 +47,27 @@ namespace AppedoLT.DataAccessLayer
             return dt;
         }
 
+        public DataTable GetCompareReportList(string scriptName = null)
+        {
+            DataTable dt = new DataTable();
+            dt.Columns.Add("Report name", typeof(string));
+            dt.Columns.Add("Timestamp", typeof(string));
+            string directoryPath = Constants.GetInstance().CompareReportsFolderPath;
+            if (!string.IsNullOrEmpty(scriptName))
+            {
+                directoryPath += "\\" + scriptName;
+            }
+            DirectoryInfo dicInfo = new DirectoryInfo(directoryPath);
+            foreach (DirectoryInfo info in dicInfo.GetDirectories().OrderByDescending(p => p.CreationTime))
+            {
+                if (info.Name != "Current")
+                {
+                    dt.Rows.Add(info.Name, info.CreationTime.ToShortDateString());
+                }
+            }
+            return dt;
+        }
+
         public DataTable GetChartSummary(string ReportName)
         {
             DataTable dt = new DataTable();
@@ -644,6 +665,177 @@ namespace AppedoLT.DataAccessLayer
             return result;
         }
 
+        public XmlNode GenerateCompareReport(string scriptId, string scriptName, string report1, string report2, string report3)
+        {
+            XmlNode result = null;
+                XmlDocument doc = new XmlDocument();
+                doc.LoadXml("<?xml version=\"1.0\" encoding=\"utf-8\"?><comparereport></comparereport>");
+                XmlNode report = doc.SelectSingleNode("//comparereport");
+                report.Attributes.Append(GetAttribute(doc, "script", scriptName));
+
+                XmlNode summaryNode = doc.CreateElement("summaryreport");
+                report.AppendChild(summaryNode);
+
+                XmlNode requestresponseNode = doc.CreateElement("requestresponse");
+                report.AppendChild(requestresponseNode);
+
+                for (int i = 0; i < 3; i++)
+                {
+                    string reportName = report1;
+                    if (i == 1)
+                    {
+                        reportName = report2;
+                    }
+                    else if (i == 2)
+                    {
+                        reportName = report3;
+                    }
+
+                    if (string.IsNullOrEmpty(reportName))
+                        continue;
+
+                    string reportFolder = Constants.GetInstance().DataFolderPath + "\\" + reportName + "\\Report";
+                    string databasePath = Constants.GetInstance().DataFolderPath + "\\" + reportName;
+
+                    using (SQLiteConnection _con = new SQLiteConnection("Data Source=" + databasePath + "\\database.db;Version=3;New=True;Compress=True;"))
+                    {
+                        try
+                        {
+                            _con.Open();
+                            int index = 0;
+
+                            SQLiteDataReader reader = null;
+
+                            reader = GetReader("select * from summaryreport", _con);
+                            reader.Read();
+                            while (reader.HasRows == true)
+                            {
+                                string[] columns = new string[] { "name", "starttime", "endtime", "durationsec", "usercount", "totalhits", "avgresponse", "avghits", "totalthroughput", "avgthroughput", "totalerrors", "totalpage", "avgpageresponse","reponse200", "reponse300", "reponse400", "reponse500" };
+                                string[] columnHeading = new string[] { "", "Start Time", "End Time", "Duration(sec)", "User Count", "Total Hits", "Average Request Response(sec)", "Average Hits/Sec", "Total Throughput(MB)", "Average Throughput(Mbps)", "Total Errors", "Total pages", "Average Page Response(sec)", "Response Code 200 Count", "Response Code 300 Count", "Response Code 400 Count", "Response Code 500 Count" };
+                                for (index = 0; index < columns.Length; index++)
+                                {
+                                    try
+                                    {
+                                        string columnName = columns[index];
+
+                                        XmlNode valNode = null;
+                                        if (summaryNode.ChildNodes.Count > 0)
+                                        {
+                                            valNode = summaryNode.SelectSingleNode(string.Format("//attribute[@name='{0}']", columnName));
+                                        }
+
+                                        if (valNode == null)
+                                        {
+                                            valNode = doc.CreateElement("attribute");
+                                            valNode.Attributes.Append(GetAttribute(doc, "name", columnName));
+                                            valNode.Attributes.Append(GetAttribute(doc, "displayName", columnHeading[index]));
+                                            summaryNode.AppendChild(valNode);
+                                        }
+
+                                        XmlNode rprtNode = doc.CreateElement("report");
+                                        if (index == 0)
+                                        {
+                                            rprtNode.Attributes.Append(GetAttribute(doc, "val", reportName));
+                                            rprtNode.Attributes.Append(GetAttribute(doc, "align", "center"));
+                                        }
+                                        else if (reader[columnName].GetType() == typeof(DateTime))
+                                        {
+                                            rprtNode.Attributes.Append(GetAttribute(doc, "val", ((DateTime)reader[columnName]).ToString("yyyy-MM-dd HH:mm:ss")));
+                                            rprtNode.Attributes.Append(GetAttribute(doc, "align", "right"));
+                                        }
+                                        else if (reader[columnName].GetType() == typeof(Decimal))
+                                        {
+                                            rprtNode.Attributes.Append(GetAttribute(doc, "val", ((Decimal)reader[columnName]).ToString("#.000")));
+                                            rprtNode.Attributes.Append(GetAttribute(doc, "align", "right"));
+                                        }
+                                        else
+                                        {
+                                            rprtNode.Attributes.Append(GetAttribute(doc, "val", reader[columnName].ToString()));
+                                            rprtNode.Attributes.Append(GetAttribute(doc, "align", "right"));
+                                        }
+
+                                        valNode.AppendChild(rprtNode);
+                                    }
+                                    catch (Exception ex)
+                                    {
+                                        ExceptionHandler.WritetoEventLog(ex.StackTrace + ex.Message);
+                                    }
+                                }
+                                reader.Read();
+                            }
+                            reader.Close();
+                                                        
+                            reader = GetReader(string.Format("select * from requestresponse_{0}", scriptId), _con);
+                            reader.Read();
+                            while (reader.HasRows == true)
+                            {
+                                XmlNode requestNode = null;
+                                if (requestresponseNode.ChildNodes.Count > 0)
+                                {
+                                    requestNode = requestresponseNode.SelectSingleNode(string.Format("//request[@id='{0}']", reader["requestid"].ToString()));
+                                }
+
+                                if(requestNode == null)
+                                {
+                                    requestNode = doc.CreateElement("request");
+                                    requestNode.Attributes.Append(GetAttribute(requestresponseNode.OwnerDocument, "id",  reader["requestid"].ToString()));
+                                    requestNode.Attributes.Append(GetAttribute(requestresponseNode.OwnerDocument, "address",  reader["address"].ToString()));
+                                    requestNode.Attributes.Append(GetAttribute(requestresponseNode.OwnerDocument, "containername", reader["containername"].ToString()));
+                                    requestresponseNode.AppendChild(requestNode);
+                                }
+
+                                XmlNode reportNode = doc.CreateElement("report");
+                                reportNode.Attributes.Append(GetAttribute(requestresponseNode.OwnerDocument, "name", reportName));
+                                requestNode.AppendChild(reportNode);
+
+                                string[] columns = new string[] { "min", "max", "avg", "throughput", "hitcount", "minttfb", "maxttfb", "avgttfb" };                                
+                                for (index = 0; index < columns.Length; index++)
+                                {
+                                    try
+                                    {
+                                        string columnName = columns[index];
+                                        if (reader[columnName].GetType() == typeof(DateTime))
+                                        {
+                                            reportNode.Attributes.Append(GetAttribute(requestresponseNode.OwnerDocument, columnName, ((DateTime)reader[columnName]).ToString("yyyy-MM-dd HH:mm:ss")));
+                                        }
+                                        if (reader[columnName].GetType() == typeof(Decimal))
+                                        {
+                                            reportNode.Attributes.Append(GetAttribute(requestresponseNode.OwnerDocument, columnName, ((Decimal)reader[columnName]).ToString("#.000")));
+                                        }
+                                        else
+                                        {
+                                            reportNode.Attributes.Append(GetAttribute(requestresponseNode.OwnerDocument, columnName, reader[columnName].ToString()));
+                                        }
+                                    }
+                                    catch (Exception ex)
+                                    {
+                                        ExceptionHandler.WritetoEventLog(ex.StackTrace + ex.Message);
+                                    }
+                                }
+                                reader.Read();
+                            }
+                            reader.Close();
+                            
+                            _con.Close();
+                        }
+                        catch (Exception ex)
+                        {
+                            ExceptionHandler.WritetoEventLog(ex.StackTrace + ex.Message);
+                        }
+                    }
+                }
+                string compareReportFolder = Constants.GetInstance().CompareReportsFolderPath + "\\Current";
+                if (!Directory.Exists(compareReportFolder))
+                {
+                    Directory.CreateDirectory(compareReportFolder);
+                }
+                doc.Save(compareReportFolder + "\\summary.xml");
+
+                TransformCompareXML(compareReportFolder);
+        
+            return result;
+        }
+
         public static void TransformXMLJmeter(string reportFolderPath)
         {
             // Create a resolver with default credentials.
@@ -677,6 +869,20 @@ namespace AppedoLT.DataAccessLayer
 
             transform.Load(Constants.GetInstance().ExecutingAssemblyLocation + "\\error.xslt", resolver);
             transform.Transform(reportFolderPath + "\\summary.xml", reportFolderPath + "\\error.html", resolver);
+        }
+
+        public static void TransformCompareXML(string reportFolderPath)
+        {
+            // Create a resolver with default credentials.
+            XmlUrlResolver resolver = new XmlUrlResolver();
+            resolver.Credentials = System.Net.CredentialCache.DefaultCredentials;
+            // transform the personnel.xml file to HTML
+            XslTransform transform = new XslTransform();
+            // load up the stylesheet
+            transform.Load(Constants.GetInstance().ExecutingAssemblyLocation + "\\comparereport.xslt", resolver);
+            // perform the transformation
+            transform.Transform(reportFolderPath + "\\summary.xml", reportFolderPath + "\\summary.html", resolver);
+            transform.Transform(reportFolderPath + "\\summary.xml", reportFolderPath + "\\summary.xls", resolver);
         }
 
         public DataTable GetAvgUsers(string newReportName)

@@ -1446,13 +1446,14 @@ namespace AppedoLT
                         Thread.Sleep(5000);
                         if (executionReport.ReportName != null)
                         {
-                            MessageBox.Show("Report Generation is in progress. Please wait.");
+                            //MessageBox.Show("Report Generation is in progress. Please wait.");
                             CreateSummaryReport(executionReport.ReportName);
                             ReportMaster reportMaster = new ReportMaster(executionReport.ReportName);
 
                             reportMaster.GenerateReports();
                             UpdateReportStatus();
                             userControlReports2.LoadReportName(executionReport.ReportName);
+                            MessageBox.Show("Report Generation Completed.");
                         }
                     }
                 }

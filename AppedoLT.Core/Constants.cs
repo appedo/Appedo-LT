@@ -42,6 +42,7 @@ namespace AppedoLT.Core
         private string _executingAssplyFolder = string.Empty;
         private string _certificatePath = string.Empty;
         private string _dataFolderPath = string.Empty;
+        private string _compareReportsFolderPath = string.Empty;
         private string _dataFolderPathMonitor = string.Empty;
         private int _recordConncetion = -1;
         private string _recodingIPAddress = string.Empty;
@@ -114,6 +115,7 @@ namespace AppedoLT.Core
                 return _loadgen;
             }
         }
+
         public string DataFolderPath
         {
             get
@@ -126,6 +128,20 @@ namespace AppedoLT.Core
             }
             private set { }
         }
+
+        public string CompareReportsFolderPath
+        {
+            get
+            {
+                if (_compareReportsFolderPath == string.Empty)
+                {
+                    _compareReportsFolderPath = ExecutingAssemblyLocation + "\\CompareReports";
+                }
+                return _compareReportsFolderPath;
+            }
+            private set { }
+        }
+
         public string DataFolderPathMonitor
         {
             get

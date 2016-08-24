@@ -33,7 +33,6 @@
             this.okButton = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.labelVersion = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
@@ -48,7 +47,7 @@
             // 
             // textBoxDescription
             // 
-            this.textBoxDescription.Location = new System.Drawing.Point(7, 271);
+            this.textBoxDescription.Location = new System.Drawing.Point(7, 251);
             this.textBoxDescription.Margin = new System.Windows.Forms.Padding(6, 3, 3, 3);
             this.textBoxDescription.Multiline = true;
             this.textBoxDescription.Name = "textBoxDescription";
@@ -83,25 +82,16 @@
             // labelVersion
             // 
             this.labelVersion.AutoSize = true;
-            this.labelVersion.Location = new System.Drawing.Point(7, 184);
+            this.labelVersion.Location = new System.Drawing.Point(7, 190);
             this.labelVersion.Name = "labelVersion";
             this.labelVersion.Size = new System.Drawing.Size(60, 13);
             this.labelVersion.TabIndex = 27;
             this.labelVersion.Text = "Version 3.0";
             // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(7, 213);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(51, 13);
-            this.label2.TabIndex = 28;
-            this.label2.Text = "Build 398";
-            // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(7, 242);
+            this.label3.Location = new System.Drawing.Point(7, 220);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(183, 13);
             this.label3.TabIndex = 29;
@@ -113,7 +103,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(435, 399);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
             this.Controls.Add(this.labelVersion);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.okButton);
@@ -140,7 +129,6 @@
         private System.Windows.Forms.Button okButton;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label labelVersion;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
 
 

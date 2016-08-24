@@ -728,7 +728,7 @@
         xkey: 'time',
         ykeys: ['vuserrunning'],
         labels: ['VUsers Running'],
-        lineColors: ['#2616D2'],
+        lineColors: ['#800000'],
         lineWidth: 1,
         pointSize: 1,
         hideHover: 'auto'

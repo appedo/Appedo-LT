@@ -97,6 +97,7 @@ namespace AppedoLT
             this.btnExport = new Telerik.WinControls.UI.RadButton();
             this.tabiCharts = new Telerik.WinControls.UI.TabItem();
             this.tabItem1 = new Telerik.WinControls.UI.TabItem();
+            this.compareReportsTab = new Telerik.WinControls.UI.TabItem();
             this.tapiMonitor = new Telerik.WinControls.UI.TabItem();
             this.imcDesign = new System.Windows.Forms.ImageList(this.components);
             this.tmrExecution = new System.Windows.Forms.Timer(this.components);
@@ -126,6 +127,7 @@ namespace AppedoLT
             this.userControlCharts1 = new AppedoLT.userControlCharts();
             this.userControlReports2 = new AppedoLT.userControlReports();
             this.ucMonitor1 = new AppedoLT.UCMonitor();
+            this.userControlCompareReports1 = new AppedoLT.userControlCompareReports();
             ((System.ComponentModel.ISupportInitialize)(this.tabsDesign)).BeginInit();
             this.tabsDesign.SuspendLayout();
             this.tabiRun.ContentPanel.SuspendLayout();
@@ -172,6 +174,7 @@ namespace AppedoLT
             ((System.ComponentModel.ISupportInitialize)(this.btnExport)).BeginInit();
             this.tabiCharts.ContentPanel.SuspendLayout();
             this.tabItem1.ContentPanel.SuspendLayout();
+            this.compareReportsTab.ContentPanel.SuspendLayout();
             this.tapiMonitor.ContentPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitPanel17)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitPanel14)).BeginInit();
@@ -221,6 +224,7 @@ namespace AppedoLT
             this.tabiRun,
             this.tabiCharts,
             this.tabItem1,
+            this.compareReportsTab,
             this.tapiMonitor});
             this.tabsDesign.ItemsOffset = 150;
             this.tabsDesign.Location = new System.Drawing.Point(-1, 23);
@@ -849,12 +853,10 @@ namespace AppedoLT
             // 
             // 
             // 
-            
             this.radReportData.RootElement.Padding = new System.Windows.Forms.Padding(0, 0, 0, 1);
             this.radReportData.ShowNoDataText = false;
             this.radReportData.Size = new System.Drawing.Size(713, 152);
             this.radReportData.TabIndex = 0;
-            
             // 
             // tabItem2
             // 
@@ -1036,6 +1038,29 @@ namespace AppedoLT
             this.tabItem1.StretchHorizontally = false;
             this.tabItem1.StretchVertically = false;
             this.tabItem1.Text = "Reports";
+            // 
+            // compareReportsTab
+            // 
+            this.compareReportsTab.Alignment = System.Drawing.ContentAlignment.BottomLeft;
+            // 
+            // compareReportsTab.ContentPanel
+            // 
+            this.compareReportsTab.ContentPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(239)))), ((int)(((byte)(249)))));
+            this.compareReportsTab.ContentPanel.CausesValidation = true;
+            this.compareReportsTab.ContentPanel.Controls.Add(this.userControlCompareReports1);
+            this.compareReportsTab.ContentPanel.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.compareReportsTab.ContentPanel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(66)))), ((int)(((byte)(139)))));
+            this.compareReportsTab.ContentPanel.Location = new System.Drawing.Point(1, 36);
+            this.compareReportsTab.ContentPanel.Size = new System.Drawing.Size(941, 499);
+            this.compareReportsTab.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.compareReportsTab.ForeColor = System.Drawing.Color.Black;
+            this.compareReportsTab.IsSelected = true;
+            this.compareReportsTab.Margin = new System.Windows.Forms.Padding(2, 0, 0, 0);
+            this.compareReportsTab.Name = "compareReportsTab";
+            this.compareReportsTab.ScaleTransform = new System.Drawing.SizeF(1.2F, 1.2F);
+            this.compareReportsTab.StretchHorizontally = false;
+            this.compareReportsTab.StretchVertically = false;
+            this.compareReportsTab.Text = "Compare Reports";
             // 
             // tapiMonitor
             // 
@@ -1293,9 +1318,8 @@ namespace AppedoLT
             this.ucMonitor1.Name = "ucMonitor1";
             this.ucMonitor1.Size = new System.Drawing.Size(941, 499);
             this.ucMonitor1.TabIndex = 0;
-
             // 
-            // comboBrowserVersion
+            // userControlCompareReports1
             // 
             this.comboBrowserVersion.FormattingEnabled = true;
             this.comboBrowserVersion.Location = new System.Drawing.Point(335, 5);
@@ -1329,6 +1353,12 @@ namespace AppedoLT
             comboBrowserVersion.DataSource = new BindingSource(comboSource, null);
             comboBrowserVersion.DisplayMember = "Key";
             comboBrowserVersion.ValueMember = "Value";
+            this.userControlCompareReports1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.userControlCompareReports1.Location = new System.Drawing.Point(0, 0);
+            this.userControlCompareReports1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.userControlCompareReports1.Name = "userControlCompareReports1";
+            this.userControlCompareReports1.Size = new System.Drawing.Size(941, 499);
+            this.userControlCompareReports1.TabIndex = 0;
             // 
             // Design
             // 
@@ -1397,6 +1427,7 @@ namespace AppedoLT
             ((System.ComponentModel.ISupportInitialize)(this.btnExport)).EndInit();
             this.tabiCharts.ContentPanel.ResumeLayout(false);
             this.tabItem1.ContentPanel.ResumeLayout(false);
+            this.compareReportsTab.ContentPanel.ResumeLayout(false);
             this.tapiMonitor.ContentPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitPanel17)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitPanel14)).EndInit();
@@ -1506,5 +1537,7 @@ namespace AppedoLT
         private ComboBox comboBrowserVersion;
         private Telerik.WinControls.UI.RadMenuItem proxySettings;
         private Telerik.WinControls.UI.RadGridView radReportData;
+        private Telerik.WinControls.UI.TabItem compareReportsTab;
+        private userControlCompareReports userControlCompareReports1;
     }
 }

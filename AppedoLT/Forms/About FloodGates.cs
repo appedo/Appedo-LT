@@ -44,7 +44,11 @@ namespace AppedoLT
         {
             get
             {
-                return Assembly.GetExecutingAssembly().GetName().Version.ToString();
+                //return Assembly.GetExecutingAssembly().GetName().Version.ToString();
+
+                // Changed by Allan This is to show Major.Minor.Build number The build number should be .005
+
+                return Assembly.GetExecutingAssembly().GetName().Version.Major.ToString() + "." + Assembly.GetExecutingAssembly().GetName().Version.Minor.ToString() + "." + Assembly.GetExecutingAssembly().GetName().Version.Build.ToString("000");
             }
         }
 
