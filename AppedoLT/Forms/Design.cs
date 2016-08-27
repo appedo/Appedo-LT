@@ -1453,7 +1453,7 @@ namespace AppedoLT
                             reportMaster.GenerateReports();
                             UpdateReportStatus();
                             userControlReports2.LoadReportName(executionReport.ReportName);
-                            MessageBox.Show("Report Generation Completed.");
+                            MessageBox.Show("Report generation completed.");
                         }
                     }
                 }
@@ -2042,6 +2042,14 @@ namespace AppedoLT
         {
         }
         #endregion
+        
+        private void tabsDesign_TabSelected(object sender, TabEventArgs args)
+        {
+            if (args.TabItem == compareReportsTab)
+            {
+                userControlCompareReports1.LoadScripts();
+            }
+        }
 
     }
 }

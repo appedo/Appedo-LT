@@ -18,7 +18,9 @@
             drawErrorGraph();
             drawPageResponseGraph();
             drawVUserGraph();
-            drawTransactionGraph();
+            <xsl:for-each select="script">
+              drawTransactionGraph_<xsl:value-of select="@id"/>();
+            </xsl:for-each>
           }        
         </script>
         <style>
@@ -46,6 +48,10 @@
       </head>
       <body onload="drawCharts();">
         <xsl:apply-templates select="summaryreport"/>
+        <xsl:apply-templates select="graphs"/>
+        <xsl:apply-templates select="pageresponsegraph"/>
+        <xsl:apply-templates select="errorgraph"/>
+        <xsl:apply-templates select="vuserrungraph"/>
         <br/>
         <xsl:for-each select="script">
           <span>
@@ -55,15 +61,12 @@
           </span>
           <br/>
           <xsl:apply-templates select="settings"/>
-          <xsl:apply-templates select="graphs"/>
           <xsl:apply-templates select="requestresponse"/>
-          <xsl:apply-templates select="pageresponsegraph"/>
-          <xsl:apply-templates select="errorgraph"/>
           <xsl:apply-templates select="containerresponse"/>
           <xsl:apply-templates select="transactions"/>
           <xsl:apply-templates select="errorcount"/>
           <xsl:apply-templates select="errorcode"/>
-          <xsl:apply-templates select="vuserrungraph"/>
+          <br/>
         </xsl:for-each>
       </body>
     </html>
@@ -302,8 +305,8 @@
   </xsl:template>
 
   <xsl:template match="graphs">
-    
-    <table style="width: 875px;" cellpadding="10" cellspacing="0">
+    <h4> Graphs </h4>
+      <table style="width: 875px;" cellpadding="10" cellspacing="0">
       <tr>
         <td class="graphheadingrow">
           <b>Virtual User Running Graph</b>
@@ -450,7 +453,62 @@
       }
     </script>
   </xsl:template>
-
+  
+  <xsl:template match="errorgraph">
+    <br/>
+    <br/>
+    <table style="width: 875px;" cellpadding="10" cellspacing="0">
+      <tr>
+        <td class="graphheadingrow">
+          <b>Request Response Graph (ms)</b>
+        </td>
+        <td></td>
+        <td class="graphheadingrow">
+          <b>Error Graph</b>
+        </td>
+      </tr>
+      
+      <tr>
+         <td>
+          <div id="{concat('art_', ../@id)}" class="graph"></div>
+        </td>
+        <td style="width: 15px;"></td>
+        <td>
+          <div id="{concat('error_', ../@id)}" class="graph"></div>
+        </td>
+      </tr>
+    </table>
+    <br/>
+    <script>
+      
+      
+      function drawErrorGraph() {
+        new Morris.Line({
+            element: 'error_<xsl:value-of select="../@id"/>',
+            data: [
+            <xsl:for-each select="val">
+              <xsl:choose>
+                <xsl:when test="position() != last()">
+                  { time: '<xsl:value-of select="@localtime"/>', errorcount: <xsl:value-of select="@errorcount"/> },
+                </xsl:when>
+                <xsl:otherwise>
+                  { time: '<xsl:value-of select="@localtime"/>', errorcount: <xsl:value-of select="@errorcount"/> }
+                </xsl:otherwise>
+              </xsl:choose>
+            </xsl:for-each>
+            ],
+            xkey: 'time',
+            ykeys: ['errorcount'],
+            labels: ['Error Count'],
+            lineColors: ['#D21629'],
+            lineWidth: 1,
+            pointSize: 2,
+            hideHover: 'auto'
+        });
+      }
+    </script>
+  </xsl:template>
+   
   <xsl:template match="requestresponse">
     <h4> Request response</h4>
     <table border="1" cellspacing="0">
@@ -576,7 +634,7 @@
       </table>
     
     <script>
-      function drawTransactionGraph() {
+      function drawTransactionGraph_<xsl:value-of select="../@id"/>() {
         new Morris.Bar({
 		    barSizeRatio:0.40,
         element: 'transactions_<xsl:value-of select="../@id"/>',
@@ -653,60 +711,7 @@
     </table>
   </xsl:template>
   
-  <xsl:template match="errorgraph">
-    <br/>
-    <br/>
-    <table style="width: 875px;" cellpadding="10" cellspacing="0">
-      <tr>
-        <td class="graphheadingrow">
-          <b>Request Response Graph (ms)</b>
-        </td>
-        <td></td>
-        <td class="graphheadingrow">
-          <b>Error Graph</b>
-        </td>
-      </tr>
-      
-      <tr>
-         <td>
-          <div id="{concat('art_', ../@id)}" class="graph"></div>
-        </td>
-        <td style="width: 15px;"></td>
-        <td>
-          <div id="{concat('error_', ../@id)}" class="graph"></div>
-        </td>
-      </tr>
-    </table>
-    <br/>
-    <script>
-      
-      
-      function drawErrorGraph() {
-        new Morris.Line({
-            element: 'error_<xsl:value-of select="../@id"/>',
-            data: [
-            <xsl:for-each select="val">
-              <xsl:choose>
-                <xsl:when test="position() != last()">
-                  { time: '<xsl:value-of select="@localtime"/>', errorcount: <xsl:value-of select="@errorcount"/> },
-                </xsl:when>
-                <xsl:otherwise>
-                  { time: '<xsl:value-of select="@localtime"/>', errorcount: <xsl:value-of select="@errorcount"/> }
-                </xsl:otherwise>
-              </xsl:choose>
-            </xsl:for-each>
-            ],
-            xkey: 'time',
-            ykeys: ['errorcount'],
-            labels: ['Error Count'],
-            lineColors: ['#D21629'],
-            lineWidth: 1,
-            pointSize: 2,
-            hideHover: 'auto'
-        });
-      }
-    </script>
-  </xsl:template>
+  
 
   <xsl:template match="vuserrungraph">
     <script>
@@ -728,9 +733,9 @@
         xkey: 'time',
         ykeys: ['vuserrunning'],
         labels: ['VUsers Running'],
-        lineColors: ['#800000'],
+        lineColors: ['#B22222'],
         lineWidth: 1,
-        pointSize: 1,
+        pointSize: 2,
         hideHover: 'auto'
         });
       }

@@ -384,9 +384,44 @@ namespace AppedoLT.DataAccessLayer
                             errorNode.AppendChild(val);
                             reader.Read();
                         }
+                        reader.Close();
                         report.AppendChild(errorNode);
 
-                        string[] tables = new string[] { "settings", "requests", "requestresponse", "containerresponse", "errorcount", "errorcode", "transactions", "graphs", "errorgraph", "pageresponsegraph", "vuserrungraph" };
+
+                        string[] tables = new string[] { "graphs", "errorgraph", "pageresponsegraph", "vuserrungraph" };
+                        foreach (string table in tables)
+                        {
+                            XmlNode tableNode = doc.CreateElement(table);
+                            reader = GetReader(string.Format("select * from {0}", table), _con);
+                            reader.Read();
+                            while (reader.HasRows == true)
+                            {
+                                XmlNode val = tableNode.OwnerDocument.CreateElement("val");
+                                for (index = 0; index < reader.FieldCount; index++)
+                                {
+                                    try
+                                    {
+                                        if (reader[index].GetType() == typeof(DateTime))
+                                        {
+                                            val.Attributes.Append(GetAttribute(tableNode.OwnerDocument, reader.GetName(index), reader.GetDateTime(index).ToString("yyyy-MM-dd HH:mm:ss")));
+                                        }
+                                        else
+                                        {
+                                            val.Attributes.Append(GetAttribute(tableNode.OwnerDocument, reader.GetName(index), reader[reader.GetName(index)].ToString()));
+                                        }
+                                    }
+                                    catch (Exception ex)
+                                    {
+                                        ExceptionHandler.WritetoEventLog(ex.StackTrace + ex.Message);
+                                    }
+                                }
+                                tableNode.AppendChild(val);
+                                reader.Read();
+                            }
+                            report.AppendChild(tableNode);
+                        }
+
+                        tables = new string[] { "settings", "requests", "requestresponse", "containerresponse", "errorcount", "errorcode", "transactions" };
                         foreach (XmlNode script in runNode.SelectSingleNode("scripts").ChildNodes)
                         {
                             XmlNode scriptNode = doc.CreateElement("script");
@@ -679,6 +714,15 @@ namespace AppedoLT.DataAccessLayer
                 XmlNode requestresponseNode = doc.CreateElement("requestresponse");
                 report.AppendChild(requestresponseNode);
 
+                XmlNode errorNode = doc.CreateElement("errorcount");
+                report.AppendChild(errorNode);
+
+                XmlNode containersNode = doc.CreateElement("containers");
+                report.AppendChild(containersNode);
+
+                XmlNode transactionsNode = doc.CreateElement("transactions");
+                report.AppendChild(transactionsNode);
+
                 for (int i = 0; i < 3; i++)
                 {
                     string reportName = report1;
@@ -705,7 +749,7 @@ namespace AppedoLT.DataAccessLayer
                             int index = 0;
 
                             SQLiteDataReader reader = null;
-
+                            #region Summary Report
                             reader = GetReader("select * from summaryreport", _con);
                             reader.Read();
                             while (reader.HasRows == true)
@@ -764,7 +808,9 @@ namespace AppedoLT.DataAccessLayer
                                 reader.Read();
                             }
                             reader.Close();
-                                                        
+                            #endregion
+
+                            #region Request Response
                             reader = GetReader(string.Format("select * from requestresponse_{0}", scriptId), _con);
                             reader.Read();
                             while (reader.HasRows == true)
@@ -815,7 +861,141 @@ namespace AppedoLT.DataAccessLayer
                                 reader.Read();
                             }
                             reader.Close();
-                            
+                            #endregion
+
+                            #region Containers
+                            reader = GetReader(string.Format("select * from containerresponse_{0}", scriptId), _con);
+                            reader.Read();
+                            while (reader.HasRows == true)
+                            {
+                                XmlNode containerNode = null;
+                                if (containersNode.ChildNodes.Count > 0)
+                                {
+                                    containerNode = containersNode.SelectSingleNode(string.Format("//container[@id='{0}']", reader["containerid"].ToString()));
+                                }
+
+                                if (containerNode == null)
+                                {
+                                    containerNode = doc.CreateElement("container");
+                                    containerNode.Attributes.Append(GetAttribute(doc, "id", reader["containerid"].ToString()));
+                                    containerNode.Attributes.Append(GetAttribute(doc, "name", reader["containername"].ToString()));
+                                    containersNode.AppendChild(containerNode);
+                                }
+
+                                XmlNode reportNode = doc.CreateElement("report");
+                                reportNode.Attributes.Append(GetAttribute(doc, "name", reportName));
+                                containerNode.AppendChild(reportNode);
+
+                                string[] columns = new string[] { "min", "max", "avg" };
+                                for (index = 0; index < columns.Length; index++)
+                                {
+                                    try
+                                    {
+                                        string columnName = columns[index];
+                                        reportNode.Attributes.Append(GetAttribute(doc, columnName, ((double)reader[columnName]).ToString("#.000")));
+                                    }
+                                    catch (Exception ex)
+                                    {
+                                        ExceptionHandler.WritetoEventLog(ex.StackTrace + ex.Message);
+                                    }
+                                }
+                                reader.Read();
+                            }
+                            reader.Close();
+                            #endregion
+
+                            #region Transactions
+                            reader = GetReader(string.Format("select * from transactions_{0}", scriptId), _con);
+                            reader.Read();
+                            while (reader.HasRows == true)
+                            {
+                                XmlNode transactionNode = null;
+                                if (transactionsNode.ChildNodes.Count > 0)
+                                {
+                                    transactionNode = transactionsNode.SelectSingleNode(string.Format("//transaction[@name='{0}']", reader["transactionname"].ToString()));
+                                }
+
+                                if (transactionNode == null)
+                                {
+                                    transactionNode = doc.CreateElement("transaction");
+                                    transactionNode.Attributes.Append(GetAttribute(doc, "name", reader["transactionname"].ToString()));
+                                    transactionsNode.AppendChild(transactionNode);
+                                }
+
+                                XmlNode reportNode = doc.CreateElement("report");
+                                reportNode.Attributes.Append(GetAttribute(doc, "name", reportName));
+                                transactionNode.AppendChild(reportNode);
+
+                                string[] columns = new string[] { "min", "max", "avg" };
+                                for (index = 0; index < columns.Length; index++)
+                                {
+                                    try
+                                    {
+                                        string columnName = columns[index];
+                                        reportNode.Attributes.Append(GetAttribute(doc, columnName, ((double)reader[columnName]).ToString("#.000")));
+                                    }
+                                    catch (Exception ex)
+                                    {
+                                        ExceptionHandler.WritetoEventLog(ex.StackTrace + ex.Message);
+                                    }
+                                }
+                                reader.Read();
+                            }
+                            reader.Close();
+                            #endregion
+
+                            #region Error
+                            reader = GetReader(string.Format("select * from errorcode_{0}", scriptId), _con);
+                            reader.Read();
+
+                               // rprtNode.Attributes.Append(GetAttribute(doc, "val", reportName));
+                               // rprtNode.Attributes.Append(GetAttribute(doc, "align", "center"));
+
+                            while (reader.HasRows == true)
+                            {
+                                XmlNode errorcodeNode = null;
+                                if (errorNode.ChildNodes.Count > 0)
+                                {
+                                    errorcodeNode = errorNode.SelectSingleNode(string.Format("//error[@code='{0}']", reader["errorcode"].ToString()));
+                                }
+
+                                if (errorcodeNode == null)
+                                {
+                                    errorcodeNode = doc.CreateElement("error");
+                                    errorcodeNode.Attributes.Append(GetAttribute(requestresponseNode.OwnerDocument, "message", reader["message"].ToString()));
+                                    errorcodeNode.Attributes.Append(GetAttribute(requestresponseNode.OwnerDocument, "code", reader["errorcode"].ToString()));
+                                    errorNode.AppendChild(errorcodeNode);
+                                }
+
+                                XmlNode reportNode = doc.CreateElement("report");
+                                reportNode.Attributes.Append(GetAttribute(requestresponseNode.OwnerDocument, "name", reportName));
+                                errorcodeNode.AppendChild(reportNode);
+
+                                try
+                                {
+                                    string columnName = "count";
+                                    if (reader[columnName].GetType() == typeof(DateTime))
+                                    {
+                                        reportNode.Attributes.Append(GetAttribute(requestresponseNode.OwnerDocument, columnName, ((DateTime)reader[columnName]).ToString("yyyy-MM-dd HH:mm:ss")));
+                                    }
+                                    if (reader[columnName].GetType() == typeof(Decimal))
+                                    {
+                                        reportNode.Attributes.Append(GetAttribute(requestresponseNode.OwnerDocument, columnName, ((Decimal)reader[columnName]).ToString("#.000")));
+                                    }
+                                    else
+                                    {
+                                        reportNode.Attributes.Append(GetAttribute(requestresponseNode.OwnerDocument, columnName, reader[columnName].ToString()));
+                                    }
+                                }
+                                catch (Exception ex)
+                                {
+                                    ExceptionHandler.WritetoEventLog(ex.StackTrace + ex.Message);
+                                }
+                                reader.Read();
+                            }
+                            reader.Close();
+                            #endregion
+
                             _con.Close();
                         }
                         catch (Exception ex)

@@ -44,19 +44,23 @@ namespace AppedoLT
             }
         }
 
-        private void LoadScripts()
+        public void LoadScripts()
         {
             try
             {
+                HideAllReportSelection();
+
+                cmbScript.DataSource = new List<Script>();
+
                 List<Script> scripts = new List<Script>();
                 scripts.Add( new Script() { Id = "0", Name = "-- Select --" } );
-                cmbScript.Items.Clear();
                 Dictionary<string, string> scriptObjs = VuscriptXml.GetScriptidAndName();
                 foreach (KeyValuePair<string, string> script in scriptObjs)
                 {
                     scripts.Add(new Script() { Id = script.Key, Name = script.Value });
                 }
                 cmbScript.DataSource = scripts;
+                cmbScript.SelectedIndex = 0;
             }
             catch (Exception ex)
             {
@@ -118,7 +122,7 @@ namespace AppedoLT
             cmbReport2.Items.Clear();
             cmbReport3.Items.Clear();
 
-            if (cmbScript.SelectedIndex == 0)
+            if (cmbScript.SelectedIndex <= 0)
             {
                 HideAllReportSelection();
             }
@@ -236,11 +240,14 @@ namespace AppedoLT
 
         private void cmbReport2_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (cmbReport2.SelectedIndex == 0 || cmbReport2.Items.Count <= 2)
+            if (cmbReport2.SelectedIndex <= 0 || cmbReport2.Items.Count <= 2)
             {
+                cmbReport3.Items.Clear();
+                cmbReport3.Items.Add("-- Select --");
+
                 lblReport3.Visible = false;
                 cmbReport3.Visible = false;
-                btnCompare.Visible = false;
+                btnCompare.Visible = true;
             }
             else
             {
@@ -270,9 +277,11 @@ namespace AppedoLT
                 string scriptId = cmbScript.SelectedValue.ToString();
                 string report1 = cmbReport1.SelectedItem.ToString();
                 string report2 = cmbReport2.SelectedItem.ToString();
-                string report3 = cmbReport3.SelectedItem.ToString();
-                if (cmbReport3.SelectedIndex == 0)
-                    report3 = string.Empty;
+                string report3 = string.Empty;
+                if (cmbReport3.SelectedIndex > 0)
+                {
+                    report3 = cmbReport3.SelectedItem.ToString();
+                }
 
                 Result.GetInstance().GenerateCompareReport(scriptId, ((Script)cmbScript.SelectedItem).Name, report1, report2, report3);
                 LoadResult("Current");

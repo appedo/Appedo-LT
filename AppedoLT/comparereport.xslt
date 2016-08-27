@@ -38,6 +38,9 @@
         <br/>
         <xsl:apply-templates select="summaryreport"/>
         <xsl:apply-templates select="requestresponse"/>
+        <xsl:apply-templates select="containers"/>
+        <xsl:apply-templates select="transactions"/>
+        <xsl:apply-templates select="errorcount"/>
       </body>
     </html>
   </xsl:template>
@@ -130,5 +133,122 @@
 
   </xsl:template>
 
+  <xsl:template match="errorcount">
+    <h4>Error</h4>
+    <table border="1" cellspacing="0">
+      <tr bgcolor="#9acd32">
+        <th>
+          Name
+        </th>
+        <th>
+          Message
+        </th>
+		<xsl:for-each select="error">
+        <xsl:for-each select="report">
+          <th>
+            <xsl:value-of select="@name"/>
+          </th>
+        </xsl:for-each>
+		</xsl:for-each>
+      </tr>
+      <xsl:for-each select="error">
+        <tr>
+          <td>
+            <xsl:value-of select="@code"/>
+          </td>
+          <td>
+            <xsl:value-of select="@message"/>
+          </td>
+          <xsl:for-each select="report">
+            <td style="text-align: right">
+              <xsl:value-of select="@count"/>
+            </td>
+          </xsl:for-each>
+        </tr>
+      </xsl:for-each>
+    </table>
+  </xsl:template>
+
+  <xsl:template match="transactions">
+    <h4>Transactions</h4>
+
+    <table border="1" cellspacing="0" cellpadding="0" >
+      <tr bgcolor="#9acd32">
+        <th>Transaction Name</th>
+        <th style="width: 300px; max-width: 300px;">Report Name</th>
+        <th style="width: 80px;">Min (ms)</th>
+        <th style="width: 80px;">Max (ms)</th>
+        <th style="width: 80px;">Avg (ms)</th>
+      </tr>
+      <xsl:for-each select="transaction">
+        <tr>
+          <td>
+            <xsl:value-of select="@name"/>
+          </td>
+          <td colspan="4" border="0" style="border: none; width: 550px;">
+            <table border="1" cellspacing="0" cellpadding="0" style="width: 550px;">
+              <xsl:for-each select="report">
+                <tr>
+                  <td style="width: 300px; max-width: 300px;">
+                    <xsl:value-of select="@name"/>
+                  </td>
+                  <td style="width: 80px; text-align:right">
+                    <xsl:value-of select="format-number(@min,'#.000')"/>
+                  </td>
+                  <td style="width: 80px; text-align:right">
+                    <xsl:value-of select="format-number(@max,'#.000')"/>
+                  </td>
+                  <td style="width: 80px; text-align:right">
+                    <xsl:value-of select="format-number(@avg,'#.000')"/>
+                  </td>
+                </tr>
+              </xsl:for-each>
+            </table>
+          </td>
+        </tr>
+      </xsl:for-each>
+    </table>
+  </xsl:template>
+
+  <xsl:template match="containers">
+    <h4>Containers</h4>
+
+    <table border="1" cellspacing="0" cellpadding="0" >
+      <tr bgcolor="#9acd32">
+        <th>Container Name</th>
+        <th style="width: 300px; max-width: 300px;">Report Name</th>
+        <th style="width: 80px;">Min (ms)</th>
+        <th style="width: 80px;">Max (ms)</th>
+        <th style="width: 80px;">Avg (ms)</th>
+      </tr>
+      <xsl:for-each select="container">
+        <tr>
+          <td>
+            <xsl:value-of select="@name"/>
+          </td>
+          <td colspan="4" border="0" style="border: none; width: 550px;">
+            <table border="1" cellspacing="0" cellpadding="0" style="width: 550px;">
+              <xsl:for-each select="report">
+                <tr>
+                  <td style="width: 300px; max-width: 300px;">
+                    <xsl:value-of select="@name"/>
+                  </td>
+                  <td style="width: 80px; text-align:right">
+                    <xsl:value-of select="format-number(@min,'#.000')"/>
+                  </td>
+                  <td style="width: 80px; text-align:right">
+                    <xsl:value-of select="format-number(@max,'#.000')"/>
+                  </td>
+                  <td style="width: 80px; text-align:right">
+                    <xsl:value-of select="format-number(@avg,'#.000')"/>
+                  </td>
+                </tr>
+              </xsl:for-each>
+            </table>
+          </td>
+        </tr>
+      </xsl:for-each>
+    </table>
+  </xsl:template>
 </xsl:stylesheet>
 
