@@ -696,17 +696,61 @@ namespace AppedoLT
                         
                         string[] strArrayParams = Regex.Split(param.ChildNodes[i].Attributes["value"].Value.Replace("Text=", ""), "&");
 
+
                         foreach (string str in strArrayParams)
                         {
                             string[] arrParamKeyValue = Regex.Split(str, "=");
 
-                            XmlElement xeParam = doc.CreateElement("Param");
-                            xeParam.SetAttribute("name", arrParamKeyValue[0]);
-                            xeParam.SetAttribute("value", arrParamKeyValue[1]);
-                            xeParam.SetAttribute("rawname", arrParamKeyValue[1]);
-                            xeParam.SetAttribute("rawvalue", "");
-                            
-                            xeParams.AppendChild(xeParam);
+                            if (arrParamKeyValue.Length > 1)
+                            {
+                                XmlElement xeParam = doc.CreateElement("Param");
+
+                                // This is added to check if the Name valuue is null some time & is coming at the end and the arrayindexoutof bound error was throwing.
+                                if (!string.IsNullOrEmpty(arrParamKeyValue[0]))
+                                {
+                                    xeParam.SetAttribute("name", arrParamKeyValue[0]);
+
+                                    // Check for if the "=" split values size contain more than 2 
+                                    //&smCourse_TSM=;;AjaxControlToolkit, Version=4.1.51116.0, Culture=neutral&
+
+                                    if (arrParamKeyValue.Length > 2)
+                                    {
+                                        StringBuilder sbParam1 = new StringBuilder("");
+                                        for (int j = 1; j < arrParamKeyValue.Length; j++)
+                                        {
+                                            if (j == 1)
+                                            {
+                                                sbParam1.Append(arrParamKeyValue[j]);
+                                            }
+                                            else
+                                            {
+                                                sbParam1.Append("=" + arrParamKeyValue[j]);
+                                            }
+
+                                        }
+
+                                        xeParam.SetAttribute("value", sbParam1.ToString());
+                                        xeParam.SetAttribute("rawname", sbParam1.ToString());
+                                        xeParam.SetAttribute("rawvalue", "");
+                                        xeParams.AppendChild(xeParam);
+                                    }
+
+
+                                    else
+                                    {
+
+                                        xeParam.SetAttribute("value", arrParamKeyValue[1]);
+                                        xeParam.SetAttribute("rawname", arrParamKeyValue[1]);
+                                        xeParam.SetAttribute("rawvalue", "");
+                                        xeParams.AppendChild(xeParam);
+
+
+                                    }
+
+
+                                }
+                            }
+
                         }
                     }
 

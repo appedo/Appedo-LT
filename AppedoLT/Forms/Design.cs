@@ -717,6 +717,7 @@ namespace AppedoLT
                         }
                     }
                     btnRun.Visible = true;
+                    btnClear.Visible = true;
                     lblStatus.Text = "Completed";
                 }
                 catch (Exception ex)
@@ -777,6 +778,9 @@ namespace AppedoLT
 
         private void btnRun_Click(object sender, EventArgs e)
         {
+            // Allan- to clear the report show if it is previously opened for other reports 
+            this.radReportData.DataSource = null;
+
             AppedoLT.Core.Constants.GetInstance().btnExecutionType = "Run";
             
             RequestCountHandler._ReqCount = 0;
@@ -1313,6 +1317,7 @@ namespace AppedoLT
             try
             {
                 btnRun.Visible = false;
+                btnClear.Visible = false;
                 int isCompleted = 0;
 
                 if (_isUseLoadGen == true)
@@ -1447,6 +1452,7 @@ namespace AppedoLT
                         if (executionReport.ReportName != null)
                         {
                             //MessageBox.Show("Report Generation is in progress. Please wait.");
+                            //lblStatus.Text = "Report generation started";
                             CreateSummaryReport(executionReport.ReportName);
                             ReportMaster reportMaster = new ReportMaster(executionReport.ReportName);
 
@@ -2050,6 +2056,20 @@ namespace AppedoLT
                 userControlCompareReports1.LoadScripts();
             }
         }
+
+        // To clear the counter values and report values
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+            this.radReportData.DataSource = null;
+            lblElapsedTime.Text = "0";
+            lblErrorCount.Text = "0";
+            lblHitCount.Text = "0";
+            lblUserCompleted.Text = "0";
+            lblUserCreated.Text = "0";
+            lblStatus.ResetText();
+            lsvErrors.Items.Clear();
+            
+        }   
 
     }
 }

@@ -52,6 +52,7 @@ namespace AppedoLT
             this.radSplitContainer5 = new Telerik.WinControls.UI.RadSplitContainer();
             this.splitPanel7 = new Telerik.WinControls.UI.SplitPanel();
             this.pnlRun = new Telerik.WinControls.UI.RadPanel();
+            this.btnClear = new Telerik.WinControls.UI.RadButton();
             this.comboBrowserVersion = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
             this.lblHitCount = new Telerik.WinControls.UI.RadLabel();
@@ -69,6 +70,7 @@ namespace AppedoLT
             this.label3 = new System.Windows.Forms.Label();
             this.lblUserCompleted = new System.Windows.Forms.Label();
             this.pnlScriptSettings = new System.Windows.Forms.Panel();
+            this.objUCLoadGen = new AppedoLT.ucLoadGen();
             this.splitPanel8 = new Telerik.WinControls.UI.SplitPanel();
             this.splcRunErrorReport = new Telerik.WinControls.UI.RadSplitContainer();
             this.splitPanel18 = new Telerik.WinControls.UI.SplitPanel();
@@ -96,9 +98,13 @@ namespace AppedoLT
             this.ivcErrorCode = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.btnExport = new Telerik.WinControls.UI.RadButton();
             this.tabiCharts = new Telerik.WinControls.UI.TabItem();
+            this.userControlCharts1 = new AppedoLT.userControlCharts();
             this.tabItem1 = new Telerik.WinControls.UI.TabItem();
+            this.userControlReports2 = new AppedoLT.userControlReports();
             this.compareReportsTab = new Telerik.WinControls.UI.TabItem();
+            this.userControlCompareReports1 = new AppedoLT.userControlCompareReports();
             this.tapiMonitor = new Telerik.WinControls.UI.TabItem();
+            this.ucMonitor1 = new AppedoLT.UCMonitor();
             this.imcDesign = new System.Windows.Forms.ImageList(this.components);
             this.tmrExecution = new System.Windows.Forms.Timer(this.components);
             this.splitPanel17 = new Telerik.WinControls.UI.SplitPanel();
@@ -123,11 +129,6 @@ namespace AppedoLT
             this.imageListForHeading = new System.Windows.Forms.ImageList(this.components);
             this.tabItem4 = new Telerik.WinControls.UI.TabItem();
             this.radMenu1 = new Telerik.WinControls.UI.RadMenu();
-            this.objUCLoadGen = new AppedoLT.ucLoadGen();
-            this.userControlCharts1 = new AppedoLT.userControlCharts();
-            this.userControlReports2 = new AppedoLT.userControlReports();
-            this.ucMonitor1 = new AppedoLT.UCMonitor();
-            this.userControlCompareReports1 = new AppedoLT.userControlCompareReports();
             ((System.ComponentModel.ISupportInitialize)(this.tabsDesign)).BeginInit();
             this.tabsDesign.SuspendLayout();
             this.tabiRun.ContentPanel.SuspendLayout();
@@ -151,6 +152,7 @@ namespace AppedoLT
             this.splitPanel7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pnlRun)).BeginInit();
             this.pnlRun.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.btnClear)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblHitCount)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblErrorCount)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnSave)).BeginInit();
@@ -491,6 +493,7 @@ namespace AppedoLT
             this.pnlRun.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pnlRun.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(219)))), ((int)(((byte)(255)))));
+            this.pnlRun.Controls.Add(this.btnClear);
             this.pnlRun.Controls.Add(this.comboBrowserVersion);
             this.pnlRun.Controls.Add(this.label6);
             this.pnlRun.Controls.Add(this.lblHitCount);
@@ -513,6 +516,17 @@ namespace AppedoLT
             this.pnlRun.Size = new System.Drawing.Size(715, 102);
             this.pnlRun.TabIndex = 27;
             // 
+            // btnClear
+            // 
+            this.btnClear.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnClear.Location = new System.Drawing.Point(267, 3);
+            this.btnClear.Name = "btnClear";
+            this.btnClear.Size = new System.Drawing.Size(82, 24);
+            this.btnClear.TabIndex = 35;
+            this.btnClear.Text = "Clear";
+            this.btnClear.ThemeName = "Telerik";
+            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
+            // 
             // comboBrowserVersion
             // 
             this.comboBrowserVersion.DisplayMember = "Key";
@@ -531,11 +545,44 @@ namespace AppedoLT
             ((object)(resources.GetObject("comboBrowserVersion.Items10"))),
             ((object)(resources.GetObject("comboBrowserVersion.Items11"))),
             ((object)(resources.GetObject("comboBrowserVersion.Items12")))});
-            this.comboBrowserVersion.Location = new System.Drawing.Point(335, 5);
+            this.comboBrowserVersion.Location = new System.Drawing.Point(355, 5);
             this.comboBrowserVersion.Name = "comboBrowserVersion";
             this.comboBrowserVersion.Size = new System.Drawing.Size(121, 21);
             this.comboBrowserVersion.TabIndex = 44;
             this.comboBrowserVersion.ValueMember = "Value";
+
+
+            //-----------------------------------------------------------------------------------------------------
+            //AddedManually - For comboBrowserVersion
+            //
+
+            this.comboBrowserVersion.FormattingEnabled = true;
+            this.comboBrowserVersion.Location = new System.Drawing.Point(355, 5);
+            this.comboBrowserVersion.Name = "comboBrowserVersion";
+            this.comboBrowserVersion.Size = new System.Drawing.Size(121, 21);
+            this.comboBrowserVersion.TabIndex = 44;
+            Dictionary<string, string> comboSource = new Dictionary<string, string>();
+
+            // Recorded Agent
+            comboSource.Add("Recorded Agent", "Recorded Agent");
+            comboSource.Add("Chrome 45", "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.101 Safari/537.36");
+            comboSource.Add("Chrome 44", "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2395.5 Safari/537.36");
+            comboSource.Add("Chrome 43", "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/43.0.2314.2 Safari/537.36");
+            comboSource.Add("Chrome 42", "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2302.4 Safari/537.36");
+            comboSource.Add("Firefox 38", "Mozilla/5.0 (Windows NT 10.0; WOW64; rv:38.0) Gecko/20100101 Firefox/38.0");
+            comboSource.Add("Firefox 37", "Mozilla/5.0 (Windows NT 10.0; WOW64; rv:37.0) Gecko/20100101 Firefox/37.0");
+            comboSource.Add("Firefox 36", "Mozilla/5.0 (Windows NT 10.0; WOW64; rv:36.0) Gecko/20100101 Firefox/36.0");
+            comboSource.Add("Firefox 35", "Mozilla/5.0 (Windows NT 10.0; WOW64; rv:35.0) Gecko/20100101 Firefox/35.0");
+            comboSource.Add("IE 11", "Mozilla/5.0 (Windows NT 6.1; WOW64; Trident/7.0; AS; rv:11.0) like Gecko");
+            comboSource.Add("IE 10", "Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.1; WOW64; Trident/6.0)");
+            comboSource.Add("IE 09", "Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; WOW64; Trident/5.0; SLCC2; Media Center PC 6.0)");
+            comboSource.Add("Edge", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2311.135 Safari/537.36 Edge/12.10240SS");
+            comboBrowserVersion.DataSource = new BindingSource(comboSource, null);
+            comboBrowserVersion.DisplayMember = "Key";
+            comboBrowserVersion.ValueMember = "Value";
+
+
+
             // 
             // label6
             // 
@@ -712,6 +759,17 @@ namespace AppedoLT
             this.pnlScriptSettings.Size = new System.Drawing.Size(714, 168);
             this.pnlScriptSettings.TabIndex = 28;
             this.pnlScriptSettings.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlScriptSettings_Paint);
+            // 
+            // objUCLoadGen
+            // 
+            this.objUCLoadGen.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.objUCLoadGen.Dock = System.Windows.Forms.DockStyle.Left;
+            this.objUCLoadGen.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.objUCLoadGen.Location = new System.Drawing.Point(0, 0);
+            this.objUCLoadGen.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.objUCLoadGen.Name = "objUCLoadGen";
+            this.objUCLoadGen.Size = new System.Drawing.Size(318, 168);
+            this.objUCLoadGen.TabIndex = 0;
             // 
             // splitPanel8
             // 
@@ -1016,6 +1074,16 @@ namespace AppedoLT
             this.tabiCharts.Text = "Charts";
             this.tabiCharts.Visibility = Telerik.WinControls.ElementVisibility.Collapsed;
             // 
+            // userControlCharts1
+            // 
+            this.userControlCharts1.AutoScroll = true;
+            this.userControlCharts1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(219)))), ((int)(((byte)(255)))));
+            this.userControlCharts1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.userControlCharts1.Location = new System.Drawing.Point(0, 0);
+            this.userControlCharts1.Name = "userControlCharts1";
+            this.userControlCharts1.Size = new System.Drawing.Size(941, 499);
+            this.userControlCharts1.TabIndex = 0;
+            // 
             // tabItem1
             // 
             this.tabItem1.Alignment = System.Drawing.ContentAlignment.BottomLeft;
@@ -1040,6 +1108,17 @@ namespace AppedoLT
             this.tabItem1.StretchVertically = false;
             this.tabItem1.Text = "Reports";
             // 
+            // userControlReports2
+            // 
+            this.userControlReports2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.userControlReports2.Location = new System.Drawing.Point(0, 0);
+            this.userControlReports2.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.userControlReports2.Name = "userControlReports2";
+            this.userControlReports2.Size = new System.Drawing.Size(938, 499);
+            this.userControlReports2.TabIndex = 0;
+            // 
             // compareReportsTab
             // 
             this.compareReportsTab.Alignment = System.Drawing.ContentAlignment.BottomLeft;
@@ -1055,13 +1134,21 @@ namespace AppedoLT
             this.compareReportsTab.ContentPanel.Size = new System.Drawing.Size(941, 499);
             this.compareReportsTab.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.compareReportsTab.ForeColor = System.Drawing.Color.Black;
-            this.compareReportsTab.IsSelected = true;
             this.compareReportsTab.Margin = new System.Windows.Forms.Padding(2, 0, 0, 0);
             this.compareReportsTab.Name = "compareReportsTab";
             this.compareReportsTab.ScaleTransform = new System.Drawing.SizeF(1.2F, 1.2F);
             this.compareReportsTab.StretchHorizontally = false;
             this.compareReportsTab.StretchVertically = false;
             this.compareReportsTab.Text = "Compare Reports";
+            // 
+            // userControlCompareReports1
+            // 
+            this.userControlCompareReports1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.userControlCompareReports1.Location = new System.Drawing.Point(0, 0);
+            this.userControlCompareReports1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.userControlCompareReports1.Name = "userControlCompareReports1";
+            this.userControlCompareReports1.Size = new System.Drawing.Size(941, 499);
+            this.userControlCompareReports1.TabIndex = 0;
             // 
             // tapiMonitor
             // 
@@ -1087,6 +1174,15 @@ namespace AppedoLT
             this.tapiMonitor.StretchVertically = false;
             this.tapiMonitor.Text = "Monitor";
             this.tapiMonitor.Visibility = Telerik.WinControls.ElementVisibility.Hidden;
+            // 
+            // ucMonitor1
+            // 
+            this.ucMonitor1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucMonitor1.Location = new System.Drawing.Point(0, 0);
+            this.ucMonitor1.Margin = new System.Windows.Forms.Padding(5, 3, 5, 3);
+            this.ucMonitor1.Name = "ucMonitor1";
+            this.ucMonitor1.Size = new System.Drawing.Size(941, 499);
+            this.ucMonitor1.TabIndex = 0;
             // 
             // imcDesign
             // 
@@ -1279,88 +1375,6 @@ namespace AppedoLT
             this.radMenu1.Text = "radMenu1";
             this.radMenu1.ThemeName = "Windows7";
             // 
-            // objUCLoadGen
-            // 
-            this.objUCLoadGen.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.objUCLoadGen.Dock = System.Windows.Forms.DockStyle.Left;
-            this.objUCLoadGen.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.objUCLoadGen.Location = new System.Drawing.Point(0, 0);
-            this.objUCLoadGen.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.objUCLoadGen.Name = "objUCLoadGen";
-            this.objUCLoadGen.Size = new System.Drawing.Size(318, 168);
-            this.objUCLoadGen.TabIndex = 0;
-            // 
-            // userControlCharts1
-            // 
-            this.userControlCharts1.AutoScroll = true;
-            this.userControlCharts1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(219)))), ((int)(((byte)(255)))));
-            this.userControlCharts1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.userControlCharts1.Location = new System.Drawing.Point(0, 0);
-            this.userControlCharts1.Name = "userControlCharts1";
-            this.userControlCharts1.Size = new System.Drawing.Size(941, 499);
-            this.userControlCharts1.TabIndex = 0;
-            // 
-            // userControlReports2
-            // 
-            this.userControlReports2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.userControlReports2.Location = new System.Drawing.Point(0, 0);
-            this.userControlReports2.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.userControlReports2.Name = "userControlReports2";
-            this.userControlReports2.Size = new System.Drawing.Size(938, 499);
-            this.userControlReports2.TabIndex = 0;
-            // 
-            // ucMonitor1
-            // 
-            this.ucMonitor1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ucMonitor1.Location = new System.Drawing.Point(0, 0);
-            this.ucMonitor1.Margin = new System.Windows.Forms.Padding(5, 3, 5, 3);
-            this.ucMonitor1.Name = "ucMonitor1";
-            this.ucMonitor1.Size = new System.Drawing.Size(941, 499);
-            this.ucMonitor1.TabIndex = 0;
-            // 
-            // userControlCompareReports1
-            // 
-            this.comboBrowserVersion.FormattingEnabled = true;
-            this.comboBrowserVersion.Location = new System.Drawing.Point(335, 5);
-            this.comboBrowserVersion.Name = "comboBrowserVersion";
-            this.comboBrowserVersion.Size = new System.Drawing.Size(121, 21);
-            this.comboBrowserVersion.TabIndex = 44;
-
-            Dictionary<string, string> comboSource = new Dictionary<string, string>();
-            // Recorded Agent
-
-            comboSource.Add("Recorded Agent", "Recorded Agent");
-
-            comboSource.Add("Chrome 45", "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.101 Safari/537.36");
-            comboSource.Add("Chrome 44", "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2395.5 Safari/537.36");
-            comboSource.Add("Chrome 43", "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/43.0.2314.2 Safari/537.36");
-            comboSource.Add("Chrome 42", "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2302.4 Safari/537.36");
-
-
-            comboSource.Add("Firefox 38", "Mozilla/5.0 (Windows NT 10.0; WOW64; rv:38.0) Gecko/20100101 Firefox/38.0");
-            comboSource.Add("Firefox 37", "Mozilla/5.0 (Windows NT 10.0; WOW64; rv:37.0) Gecko/20100101 Firefox/37.0");
-            comboSource.Add("Firefox 36", "Mozilla/5.0 (Windows NT 10.0; WOW64; rv:36.0) Gecko/20100101 Firefox/36.0");
-            comboSource.Add("Firefox 35", "Mozilla/5.0 (Windows NT 10.0; WOW64; rv:35.0) Gecko/20100101 Firefox/35.0");
-            comboSource.Add("IE 11", "Mozilla/5.0 (Windows NT 6.1; WOW64; Trident/7.0; AS; rv:11.0) like Gecko");
-            comboSource.Add("IE 10", "Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.1; WOW64; Trident/6.0)");
-            comboSource.Add("IE 09", "Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; WOW64; Trident/5.0; SLCC2; Media Center PC 6.0)");
-
-            comboSource.Add("Edge", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2311.135 Safari/537.36 Edge/12.10240SS");
-
-
-
-            comboBrowserVersion.DataSource = new BindingSource(comboSource, null);
-            comboBrowserVersion.DisplayMember = "Key";
-            comboBrowserVersion.ValueMember = "Value";
-            this.userControlCompareReports1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.userControlCompareReports1.Location = new System.Drawing.Point(0, 0);
-            this.userControlCompareReports1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.userControlCompareReports1.Name = "userControlCompareReports1";
-            this.userControlCompareReports1.Size = new System.Drawing.Size(941, 499);
-            this.userControlCompareReports1.TabIndex = 0;
-            // 
             // Design
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1405,6 +1419,7 @@ namespace AppedoLT
             ((System.ComponentModel.ISupportInitialize)(this.pnlRun)).EndInit();
             this.pnlRun.ResumeLayout(false);
             this.pnlRun.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.btnClear)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblHitCount)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblErrorCount)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnSave)).EndInit();
@@ -1540,5 +1555,6 @@ namespace AppedoLT
         private Telerik.WinControls.UI.RadGridView radReportData;
         private Telerik.WinControls.UI.TabItem compareReportsTab;
         private userControlCompareReports userControlCompareReports1;
+        private Telerik.WinControls.UI.RadButton btnClear;
     }
 }
