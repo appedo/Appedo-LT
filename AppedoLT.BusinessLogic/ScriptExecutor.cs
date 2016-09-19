@@ -7,6 +7,7 @@ using System.Linq;
 using System.Threading;
 using System.Timers;
 using System.Xml;
+using System.Configuration;
 
 namespace AppedoLT.BusinessLogic
 {
@@ -33,6 +34,7 @@ namespace AppedoLT.BusinessLogic
         private VUScriptSetting _setting = new VUScriptSetting();
         private bool _isStop = false;
         private Constants _constant = Constants.GetInstance();
+        List<int> excludeLogList = null;
 
         #endregion
 
@@ -354,14 +356,63 @@ namespace AppedoLT.BusinessLogic
                 elapsedTime.Reset();
                 elapsedTime.Start();
 
+                #region Users for which data needs to be logged
+                if (OnResponse != null)
+                {
+                    // Default value is 10%
+                    int percentageUserToLogResponseData = 10;
+                    if (!string.IsNullOrEmpty(ConfigurationManager.AppSettings["PercentageUserToLogResponseData"]))
+                    {
+                        if (!int.TryParse(ConfigurationManager.AppSettings["PercentageUserToLogResponseData"], out percentageUserToLogResponseData))
+                        {
+                            percentageUserToLogResponseData = 1;
+                        }
+                        if (percentageUserToLogResponseData == 0)
+                        {
+                            // Default value is 10%
+                            percentageUserToLogResponseData = 10;
+                        }
+                    }
+
+                    // Get the user list
+                    int totalUsers = _endUserid - _startUserid + 1;
+                    int numberOfUsersToLog = (int)Math.Ceiling((double)(totalUsers * percentageUserToLogResponseData) / 100);
+                    if (numberOfUsersToLog == 0)
+                        numberOfUsersToLog = 1;
+
+                    excludeLogList = new List<int>();
+                    if (numberOfUsersToLog < totalUsers)
+                    {
+                        int numberOfUsersToExclude = totalUsers - numberOfUsersToLog;
+                        Random rand = new Random(Environment.TickCount);
+                        for (int i = 0; i < numberOfUsersToExclude; i++)
+                        {
+                            // Generate random numbers for which the data need not to be logged
+                            int randomNumber = rand.Next(0, totalUsers);
+                            while (excludeLogList.Contains(randomNumber))
+                            {
+                                randomNumber = rand.Next(0, totalUsers);
+                            }
+                            excludeLogList.Add(randomNumber);
+                        }
+                    }
+                }
+                #endregion
+
                 for (int index = 1; index <= int.Parse(_setting.StartUser); index++)
                 {
                     _createdUserCount++;
                     if (_createdUserCount >= _startUserid && _createdUserCount <= _endUserid)
                     {
-                        _usersList.Add(GetVUser(_createdUserCount));
+                        VUser user = GetVUser(_createdUserCount);
+                        if (excludeLogList.Contains(_usersList.Count))
+                        {
+                            user.OnResponse -= OnResponse;
+                        }
+                        _usersList.Add(user);
                     }
                 }
+
                 foreach (VUser vuser in _usersList)
                 {
                     vuser.Start();
@@ -490,6 +541,11 @@ namespace AppedoLT.BusinessLogic
 
                         foreach (VUser user in VUCreatorUsers)
                         {
+                            if (excludeLogList.Contains(_usersList.Count))
+                            {
+                                user.OnResponse -= OnResponse;
+                            }
+
                             user.Start();
                             StatusSummary.TotalVUserCreated++;
                             _usersList.Add(user);
@@ -525,6 +581,7 @@ namespace AppedoLT.BusinessLogic
             if (OnVUserCreated != null) user.OnVUserCreated += OnVUserCreated;
             if (OnVariableCreated != null) user.OnVariableCreated += OnVariableCreated;
             if (OnResponse != null) user.OnResponse += OnResponse;
+                        
             return user;
         }
 
