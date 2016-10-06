@@ -1070,7 +1070,13 @@ namespace AppedoLT.Core
                 
                                                            insert into requests_{0} select containerid,containername, requestid,address from reportdata where scriptid={0} group by containerid,containername,requestid order by containerid,requestid;
                                                            insert into requestresponse_{0} select containerid,containername,requestid,address,min(diff),max(diff),avg(diff),sum(responsesize),count(diff),min(timetofirstbyte),max(timetofirstbyte),avg(timetofirstbyte)  from reportdata where scriptid={0} group by containerid,requestid order by containerid,requestid;
-                                                           insert into containerresponse_{0} select containerid, containername,min(responsetime) AS min,max(responsetime) AS max,avg(responsetime) AS avg from containerresponsetime_{0} group by containerid order by containerid;
+                                                           insert into containerresponse_{0} select containerid, containername, Min(diffmin) Min, Max(diffmax) Max, Avg(diffavg) Avg from (
+                                                            select containerid, containername, userid, iterationid, sum(diffmin) diffmin, sum(diffavg) diffavg, sum(diffmax) diffmax from (
+                                                            select containerid, containername, userid, iterationid, requestid, Min(starttime) starttime, Min(diff) diffmin, AVG(diff) diffavg, max(diff) diffmax
+                                                            from reportdata where scriptid={0}
+                                                            group by containerid, containername, userid, iterationid, requestid order by 1) as cont
+                                                            group by containerid, containername, userid, iterationid order by 1) as contb
+                                                            group by containerid, containername order by 1;
                                                            insert into transactions_{0} select transactionname,min(difference),max(difference),avg(difference) from transactions where scriptid={0} group by transactionname;
                                                            insert into errorcount_{0} select containerid,containername, requestid, request,count(*) from error where error.scriptname='{1}' group by error.requestid order by requestid;
                                                            insert into errorcode_{0} select errorcode,message,count(*) from error where error.scriptname='{1}' group by message;", script.Attributes["id"].Value, script.Attributes["name"].Value, rampuptime, timeinterval).AppendLine();
@@ -1100,7 +1106,6 @@ namespace AppedoLT.Core
                                                                           (SELECT COUNT(reponsecode) FROM reportdata WHERE reponsecode>=500 AND reponsecode<600 ) AS reponse_500
                                                                       FROM 
                                                                           reportdata;");
-                
             }
             return result.ToString();
         }
