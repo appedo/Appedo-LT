@@ -1,5 +1,6 @@
 ﻿using AppedoLT.Core;
 using System;
+using System.Linq;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
@@ -13,6 +14,7 @@ using System.Windows.Forms;
 using System.Xml;
 using System.Configuration;
 using System.Threading.Tasks;
+using System.Collections;
 
 namespace AppedoLT.BusinessLogic
 {
@@ -493,8 +495,8 @@ namespace AppedoLT.BusinessLogic
                                                 XmlNode xn = reqParallelQ.Dequeue();
 
                                                 RequestCountHandler._ReqCount++;
-                                                
-                                                ProcessRequest pr = new ProcessRequest(_maxUser, _reportName, _type, _userid, _iteration, _vuScriptXml, _browserCache, _IPAddress, _exVariablesValues, receivedCookies, OnLockError, VUserStatus, OnLockReportData, IsValidation, _pageId, _containerId, _bandwidthInKbps);
+
+                                                ProcessRequest pr = new ProcessRequest(_maxUser, _reportName, _type, _userid, _iterationid, _vuScriptXml, _browserCache, _IPAddress, _exVariablesValues, receivedCookies, OnLockError, VUserStatus, OnLockReportData, IsValidation, _pageId, _containerId, _bandwidthInKbps);
                                                 pr.ProcessParallelRequest(xn);
 
 
@@ -507,16 +509,42 @@ namespace AppedoLT.BusinessLogic
                                             reqParallelQ.Clear();
 
                                         }
-
-
                                     }
-
 
                                     foreach (XmlNode req in reqParallelQ)
                                     {
                                         if (Break == true) break;
                                         RequestCountHandler._ReqCount++;
+                                        AppedoLogger.Log(new LogMessage()
+                                        {
+                                            ThreadID = Thread.CurrentThread.ManagedThreadId,
+                                            TotalThread = Process.GetCurrentProcess().Threads.Count,
+                                            ActiveThreads = ((IEnumerable)System.Diagnostics.Process.GetCurrentProcess().Threads).OfType<System.Diagnostics.ProcessThread>().Where(t => t.ThreadState == System.Diagnostics.ThreadState.Running).Count(),
+                                            UserID = _userid,
+                                            IterationNumber = _iterationid,
+                                            RequestID = 0,
+                                            ResponseID = 0,
+                                            Timestamp = DateTime.Now,
+                                            Status = "Before Request",
+                                            Request = (req == null || req.Attributes["Address"] == null) ? "" : req.Attributes["Address"].Value
+                                        });
+
                                         ProcessRequest(req.Clone());
+
+                                        AppedoLogger.Log(new LogMessage()
+                                        {
+                                            ThreadID = Thread.CurrentThread.ManagedThreadId,
+                                            TotalThread = ((IEnumerable)System.Diagnostics.Process.GetCurrentProcess().Threads).OfType<System.Diagnostics.ProcessThread>().Count(),
+                                            ActiveThreads = ((IEnumerable)System.Diagnostics.Process.GetCurrentProcess().Threads).OfType<System.Diagnostics.ProcessThread>().Where(t => t.ThreadState == System.Diagnostics.ThreadState.Running).Count(),
+                                            UserID = _userid,
+                                            IterationNumber = _iterationid,
+                                            RequestID = 0,
+                                            ResponseID = 0,
+                                            Timestamp = DateTime.Now,
+                                            Status = "After Request",
+                                            Request = (req == null || req.Attributes["Address"] == null) ? "" : req.Attributes["Address"].Value
+                                        });
+
                                         if (_secondaryRequestPlayed == true)
                                         {
                                             break;
@@ -528,7 +556,36 @@ namespace AppedoLT.BusinessLogic
                                     {
                                         if (Break == true) break;
                                         RequestCountHandler._ReqCount++;
+                                        AppedoLogger.Log(new LogMessage()
+                                        {
+                                            ThreadID = Thread.CurrentThread.ManagedThreadId,
+                                            TotalThread = Process.GetCurrentProcess().Threads.Count,
+                                            ActiveThreads = ((IEnumerable)System.Diagnostics.Process.GetCurrentProcess().Threads).OfType<System.Diagnostics.ProcessThread>().Where(t => t.ThreadState == System.Diagnostics.ThreadState.Running).Count(),
+                                            UserID = _userid,
+                                            IterationNumber = _iterationid,
+                                            RequestID = 0,
+                                            ResponseID = 0,
+                                            Timestamp = DateTime.Now,
+                                            Status = "Before Request",
+                                            Request = (req == null || req.Attributes["Address"] == null) ? "" : req.Attributes["Address"].Value
+                                        });
+
                                         ProcessRequest(req.Clone());
+
+                                        AppedoLogger.Log(new LogMessage()
+                                        {
+                                            ThreadID = Thread.CurrentThread.ManagedThreadId,
+                                            TotalThread = Process.GetCurrentProcess().Threads.Count,
+                                            ActiveThreads = ((IEnumerable)System.Diagnostics.Process.GetCurrentProcess().Threads).OfType<System.Diagnostics.ProcessThread>().Where(t => t.ThreadState == System.Diagnostics.ThreadState.Running).Count(),
+                                            UserID = _userid,
+                                            IterationNumber = _iterationid,
+                                            RequestID = 0,
+                                            ResponseID = 0,
+                                            Timestamp = DateTime.Now,
+                                            Status = "After Request",
+                                            Request = (req == null || req.Attributes["Address"] == null) ? "" : req.Attributes["Address"].Value
+                                        });
+
                                         if (_secondaryRequestPlayed == true)
                                         {
                                             break;
@@ -646,9 +703,36 @@ namespace AppedoLT.BusinessLogic
                             #endregion
 
                         case "request":
-
                             #region Request
+                            AppedoLogger.Log(new LogMessage()
+                            {
+                                ThreadID = Thread.CurrentThread.ManagedThreadId,
+                                TotalThread = Process.GetCurrentProcess().Threads.Count,
+                                ActiveThreads = ((IEnumerable)System.Diagnostics.Process.GetCurrentProcess().Threads).OfType<System.Diagnostics.ProcessThread>().Where(t => t.ThreadState == System.Diagnostics.ThreadState.Running).Count(),
+                                UserID = _userid,
+                                IterationNumber = _iterationid,
+                                RequestID = 0,
+                                ResponseID = 0,
+                                Timestamp = DateTime.Now,
+                                Status = "Before Processing Request",
+                                Request = (child == null || child.Attributes["Address"] == null) ? "" : child.Attributes["Address"].Value
+                            });
+
                             ProcessRequest(child.Clone());
+
+                            AppedoLogger.Log(new LogMessage()
+                            {
+                                ThreadID = Thread.CurrentThread.ManagedThreadId,
+                                TotalThread = Process.GetCurrentProcess().Threads.Count,
+                                ActiveThreads = ((IEnumerable)System.Diagnostics.Process.GetCurrentProcess().Threads).OfType<System.Diagnostics.ProcessThread>().Where(t => t.ThreadState == System.Diagnostics.ThreadState.Running).Count(),
+                                UserID = _userid,
+                                IterationNumber = _iterationid,
+                                RequestID = 0,
+                                ResponseID = 0,
+                                Timestamp = DateTime.Now,
+                                Status = "After Processing Request",
+                                Request = (child == null || child.Attributes["Address"] == null) ? "" : child.Attributes["Address"].Value
+                            });
                             break;
                             #endregion
 

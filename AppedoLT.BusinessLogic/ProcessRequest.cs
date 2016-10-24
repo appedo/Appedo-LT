@@ -1,5 +1,6 @@
 ﻿using AppedoLT.Core;
 using System;
+using System.Linq;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
@@ -12,6 +13,7 @@ using System.Web;
 using System.Windows.Forms;
 using System.Xml;
 using System.Threading.Tasks;
+using System.Collections;
 
 namespace AppedoLT.BusinessLogic
 {
@@ -25,7 +27,6 @@ namespace AppedoLT.BusinessLogic
         private int _userid;
         private int _iterationid;
         private int _maxUser;
-        private int _iteration;
         private int _index;
         private int _maxConnection = 1;
         private int _bandwidth = -1;
@@ -48,13 +49,13 @@ namespace AppedoLT.BusinessLogic
         Request req;
         public bool Break { get; set; }
         private ExecutionReport Status = ExecutionReport.GetInstance();
-        public ProcessRequest(int maxUser, string reportName, string type, int userid, int iteration, XmlNode vuScript, bool browserCache, IPEndPoint ipaddress, Dictionary<string, object> exVariablesValue, Dictionary<string, string> cookies, LockError OnlockError, VUserStatus VuserStatus, LockReportData OnlockReportData, bool Isvalidation, Stack<string> pageId, Stack<string[]> containerId, int bandwidth)
+        public ProcessRequest(int maxUser, string reportName, string type, int userid, int iterationid, XmlNode vuScript, bool browserCache, IPEndPoint ipaddress, Dictionary<string, object> exVariablesValue, Dictionary<string, string> cookies, LockError OnlockError, VUserStatus VuserStatus, LockReportData OnlockReportData, bool Isvalidation, Stack<string> pageId, Stack<string[]> containerId, int bandwidth)
         {
             _maxUser = maxUser;
             _browserCache = browserCache;
             _type = type;
             _userid = userid;
-            _iteration = iteration;
+            _iterationid = iterationid;
             _vuScriptXml = vuScript;
             _reportName = reportName;
             _IPAddress = ipaddress;
@@ -75,6 +76,20 @@ namespace AppedoLT.BusinessLogic
         {
             //XmlNode request = (XmlNode)request1;
             if (Break == true) { return; }
+
+            AppedoLogger.Log(new LogMessage()
+            {
+                ThreadID = Thread.CurrentThread.ManagedThreadId,
+                TotalThread = ((IEnumerable)System.Diagnostics.Process.GetCurrentProcess().Threads).OfType<System.Diagnostics.ProcessThread>().Count(),
+                ActiveThreads = ((IEnumerable)System.Diagnostics.Process.GetCurrentProcess().Threads).OfType<System.Diagnostics.ProcessThread>().Where(t => t.ThreadState == System.Diagnostics.ThreadState.Running).Count(),
+                UserID = _userid,
+                IterationNumber = _iterationid,
+                RequestID = 0,
+                ResponseID = 0,
+                Timestamp = DateTime.Now,
+                Status = "After Request",
+                Request = (req == null || request.Attributes["Address"] == null) ? "" : request.Attributes["Address"].Value
+            });
 
             RequestResponse responseResult = new RequestResponse();
             string response = string.Empty;
@@ -183,7 +198,6 @@ namespace AppedoLT.BusinessLogic
                             string fileNameExt = Path.GetExtension(temp.LocalPath);
                             if (cacheEnabled == false && !(fileNameExt != string.Empty && _vuScriptXml.Attributes["exclutionfiletypes"].Value.Contains(fileNameExt.Replace(".", string.Empty).Trim().ToLower()) == true))
                             {
-
                                 req = new HttpRequest(request, ref receivedCookies, _userid.ToString() + (_createdConnection++ % _maxConnection).ToString(), _IPAddress, IsValidation, _bandwidth);
                                 req.Variables = variables;
                                 req.GetResponse();
@@ -374,8 +388,19 @@ namespace AppedoLT.BusinessLogic
                 responseResult = null;
                 request = null;
             }
-
-
+            AppedoLogger.Log(new LogMessage()
+            {
+                ThreadID = Thread.CurrentThread.ManagedThreadId,
+                TotalThread = Process.GetCurrentProcess().Threads.Count,
+                ActiveThreads = ((IEnumerable)System.Diagnostics.Process.GetCurrentProcess().Threads).OfType<System.Diagnostics.ProcessThread>().Where(t => t.ThreadState == System.Diagnostics.ThreadState.Running).Count(),
+                UserID = _userid,
+                IterationNumber = _iterationid,
+                RequestID = 0,
+                ResponseID = 0,
+                Timestamp = DateTime.Now,
+                Status = "After Request",
+                Request = (req == null || request.Attributes["Address"] == null) ? "" : request.Attributes["Address"].Value
+            });
         }
         public List<AppedoLT.Core.Tuple<string, string>> EvaluteExp(XmlNode expression)
         {

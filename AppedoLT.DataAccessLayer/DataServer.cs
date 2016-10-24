@@ -20,6 +20,7 @@ namespace AppedoLT.DataAccessLayer
         public ExecutionReport Status = ExecutionReport.GetInstance();
 
         public StreamWriter reportDataFile = null;
+        public StreamWriter reportDataDebugFile = null;
         public StreamWriter errorFile = null;
         public StreamWriter transactionFile = null;
         public StreamWriter logsFile = null;
@@ -28,6 +29,7 @@ namespace AppedoLT.DataAccessLayer
 
         private DataServer()
         {
+            reportDataDebugFile = new StreamWriter(Constants.GetInstance().ExecutingAssemblyLocation + "\\reportdata.csv");
             reportDataFile = new StreamWriter(Constants.GetInstance().ExecutingAssemblyLocation + "\\out.txt");
             errorFile = new StreamWriter(Constants.GetInstance().ExecutingAssemblyLocation + "\\error.txt");
             transactionFile = new StreamWriter(Constants.GetInstance().ExecutingAssemblyLocation + "\\transaction.txt");
@@ -71,7 +73,12 @@ namespace AppedoLT.DataAccessLayer
                                         }
                                         rt = null;
                                     }
-                                    if (temp.Length > 0) reportDataFile.Write(temp.ToString());
+                                    if (temp.Length > 0) 
+                                    {
+                                        reportDataFile.Write(temp.ToString());
+                                        reportDataDebugFile.Write(temp.ToString());
+                                    }
+                                    reportDataDebugFile.Flush();
                                     reportDataFile.Flush();
                                 }
                                 catch (Exception ex)
