@@ -167,7 +167,8 @@ namespace AppedoLT.BusinessLogic
             {
                 _numOfParallelCon = "6";
             }
-            
+            _maxParallelConnections = int.Parse(_numOfParallelCon);
+
             _type = type;
             _userid = userid;
             _iteration = iteration;
@@ -417,181 +418,45 @@ namespace AppedoLT.BusinessLogic
                                 // The below code commented to implement parallel connection feature
                                 if (AppedoLT.Core.Constants.GetInstance().btnExecutionType == "Run")
                                 {
-                                    //Queue<XmlNode> reqQ = new Queue<XmlNode>();
-
-                                    Queue<XmlNode> reqParallelQ = new Queue<XmlNode>();
-                                    Queue<XmlNode> reqSeqQ = new Queue<XmlNode>();
-
                                     Boolean enablePrallel = false;
                                     foreach (XmlNode req in child.ChildNodes)
                                     {
                                         enablePrallel = false;
                                         req.Attributes["Address"].Value = new StringBuilder().Append(req.Attributes["Schema"].Value).Append("://").Append(req.Attributes["Host"].Value).Append(":").Append(req.Attributes["Port"].Value).Append(req.Attributes["Path"].Value).ToString();
-                                        Uri temp = new Uri(req.Attributes["Address"].Value);
-                                        //reqQ.Enqueue(req);
-
+                                       
                                         try
                                         {
+                                            if (Convert.ToBoolean(req.Attributes["IsEnable"].Value) == false)
+                                                continue;
+
                                             XmlNode requestHeadeNode = req.SelectSingleNode("./headers/header[@name='Accept']");
                                             // Match mat = new Regex("Content-Type: (.*?)\r\n", RegexOptions.Singleline | RegexOptions.Multiline).Match(req.Attributes["ResponseHeader"].Value);
-                                            string aa = req.Attributes["Path"].Value;
-                                            if (requestHeadeNode != null && requestHeadeNode.Attributes["value"].Value.Contains("/"))
+                                            if (requestHeadeNode != null)
                                             {
-                                                if (requestHeadeNode.Attributes["value"].Value.ToLower().Contains("application") == false)
-                                                {
-                                                    string acceptType = requestHeadeNode.Attributes["value"].Value.Split('/')[1];
-                                                    acceptType = acceptType.ToLower();
-                                                    //if ((acceptType.Contains("image")
-                                                    //    || acceptType.Contains("css")
-                                                    //    || acceptType.Contains("js")
-                                                    //    || acceptType.Contains("javascript")
-                                                    //    || temp.LocalPath.EndsWith(".js")
-                                                    //    || temp.LocalPath.EndsWith(".css")
-                                                    //    || temp.LocalPath.EndsWith(".png")
-                                                    //    || temp.LocalPath.EndsWith(".jpg")
-                                                    //    || temp.LocalPath.EndsWith(".pdf")
-                                                    //    || temp.LocalPath.EndsWith(".gif")
-                                                    //    || temp.LocalPath.EndsWith(".ico"))
-                                                    //    && acceptType.Contains("application") == false
-                                                    //   )
-                                                        if ((temp.LocalPath.EndsWith(".js")
-                                                        || temp.LocalPath.EndsWith(".css")
-                                                        || temp.LocalPath.EndsWith(".png")
-                                                        || temp.LocalPath.EndsWith(".jpg")
-                                                        || temp.LocalPath.EndsWith(".pdf")
-                                                        || temp.LocalPath.EndsWith(".gif")
-                                                        || temp.LocalPath.EndsWith(".ico"))
-                                                        && acceptType.Contains("application") == false
-                                                       )
-                                                    {
-
-                                                        enablePrallel = true;
-
-                                                    }
-                                                }
+                                                string acceptType = requestHeadeNode.Attributes["value"].Value.ToLower();
+                                                enablePrallel = (acceptType.Contains("application") == false && acceptType.Contains("text/html") == false);
                                             }
 
+                                            if (enablePrallel)
+                                            {
+                                                ProcessParalell(req.Clone());
+                                            }
+                                            else
+                                            {
+                                                ProcessSequential(req.Clone());
+                                            }
                                         }
                                         catch (Exception ex)
                                         {
                                             ExceptionHandler.WritetoEventLog(ex.StackTrace + Environment.NewLine + ex.Message);
                                         }
-
-                                        if (enablePrallel && int.Parse(_numOfParallelCon)> 1)
-                                        {
-                                            reqParallelQ.Enqueue(req);
-                                        }
-                                        else
-                                        {
-                                            reqSeqQ.Enqueue(req);
-                                        }
-
-                                        if (reqParallelQ.Count == int.Parse(_numOfParallelCon) && int.Parse(_numOfParallelCon) > 1)
-                                        {
-                                            Parallel.For(0, reqParallelQ.Count, i =>
-                                            {
-                                                //Do Work.
-                                                // if (Break == true) break;
-                                                XmlNode xn = reqParallelQ.Dequeue();
-
-                                                RequestCountHandler._ReqCount++;
-
-                                                ProcessRequest pr = new ProcessRequest(_maxUser, _reportName, _type, _userid, _iterationid, _vuScriptXml, _browserCache, _IPAddress, _exVariablesValues, receivedCookies, OnLockError, VUserStatus, OnLockReportData, IsValidation, _pageId, _containerId, _bandwidthInKbps);
-                                                pr.ProcessParallelRequest(xn);
-
-
-                                                if (_secondaryRequestPlayed == true)
-                                                {
-                                                    // break;
-                                                }
-                                            });
-
-                                            reqParallelQ.Clear();
-
-                                        }
                                     }
 
-                                    foreach (XmlNode req in reqParallelQ)
+                                    // Wait till all threads complete their work
+                                    while (_requestProcessingThreadCount > 0)
                                     {
-                                        if (Break == true) break;
-                                        RequestCountHandler._ReqCount++;
-                                        AppedoLogger.Log(new LogMessage()
-                                        {
-                                            ThreadID = Thread.CurrentThread.ManagedThreadId,
-                                            TotalThread = Process.GetCurrentProcess().Threads.Count,
-                                            ActiveThreads = ((IEnumerable)System.Diagnostics.Process.GetCurrentProcess().Threads).OfType<System.Diagnostics.ProcessThread>().Where(t => t.ThreadState == System.Diagnostics.ThreadState.Running).Count(),
-                                            UserID = _userid,
-                                            IterationNumber = _iterationid,
-                                            RequestID = 0,
-                                            ResponseID = 0,
-                                            Timestamp = DateTime.Now,
-                                            Status = "Before Request",
-                                            Request = (req == null || req.Attributes["Address"] == null) ? "" : req.Attributes["Address"].Value
-                                        });
-
-                                        ProcessRequest(req.Clone());
-
-                                        AppedoLogger.Log(new LogMessage()
-                                        {
-                                            ThreadID = Thread.CurrentThread.ManagedThreadId,
-                                            TotalThread = ((IEnumerable)System.Diagnostics.Process.GetCurrentProcess().Threads).OfType<System.Diagnostics.ProcessThread>().Count(),
-                                            ActiveThreads = ((IEnumerable)System.Diagnostics.Process.GetCurrentProcess().Threads).OfType<System.Diagnostics.ProcessThread>().Where(t => t.ThreadState == System.Diagnostics.ThreadState.Running).Count(),
-                                            UserID = _userid,
-                                            IterationNumber = _iterationid,
-                                            RequestID = 0,
-                                            ResponseID = 0,
-                                            Timestamp = DateTime.Now,
-                                            Status = "After Request",
-                                            Request = (req == null || req.Attributes["Address"] == null) ? "" : req.Attributes["Address"].Value
-                                        });
-
-                                        if (_secondaryRequestPlayed == true)
-                                        {
-                                            break;
-                                        }
+                                        Thread.Sleep(10);
                                     }
-
-
-                                    foreach (XmlNode req in reqSeqQ)
-                                    {
-                                        if (Break == true) break;
-                                        RequestCountHandler._ReqCount++;
-                                        AppedoLogger.Log(new LogMessage()
-                                        {
-                                            ThreadID = Thread.CurrentThread.ManagedThreadId,
-                                            TotalThread = Process.GetCurrentProcess().Threads.Count,
-                                            ActiveThreads = ((IEnumerable)System.Diagnostics.Process.GetCurrentProcess().Threads).OfType<System.Diagnostics.ProcessThread>().Where(t => t.ThreadState == System.Diagnostics.ThreadState.Running).Count(),
-                                            UserID = _userid,
-                                            IterationNumber = _iterationid,
-                                            RequestID = 0,
-                                            ResponseID = 0,
-                                            Timestamp = DateTime.Now,
-                                            Status = "Before Request",
-                                            Request = (req == null || req.Attributes["Address"] == null) ? "" : req.Attributes["Address"].Value
-                                        });
-
-                                        ProcessRequest(req.Clone());
-
-                                        AppedoLogger.Log(new LogMessage()
-                                        {
-                                            ThreadID = Thread.CurrentThread.ManagedThreadId,
-                                            TotalThread = Process.GetCurrentProcess().Threads.Count,
-                                            ActiveThreads = ((IEnumerable)System.Diagnostics.Process.GetCurrentProcess().Threads).OfType<System.Diagnostics.ProcessThread>().Where(t => t.ThreadState == System.Diagnostics.ThreadState.Running).Count(),
-                                            UserID = _userid,
-                                            IterationNumber = _iterationid,
-                                            RequestID = 0,
-                                            ResponseID = 0,
-                                            Timestamp = DateTime.Now,
-                                            Status = "After Request",
-                                            Request = (req == null || req.Attributes["Address"] == null) ? "" : req.Attributes["Address"].Value
-                                        });
-
-                                        if (_secondaryRequestPlayed == true)
-                                        {
-                                            break;
-                                        }
-                                    }
-
                                 }
                                 else
                                 {
@@ -711,10 +576,10 @@ namespace AppedoLT.BusinessLogic
                                 ActiveThreads = ((IEnumerable)System.Diagnostics.Process.GetCurrentProcess().Threads).OfType<System.Diagnostics.ProcessThread>().Where(t => t.ThreadState == System.Diagnostics.ThreadState.Running).Count(),
                                 UserID = _userid,
                                 IterationNumber = _iterationid,
-                                RequestID = 0,
+                                RequestID = (child == null || child.Attributes["id"] == null) ? "" : child.Attributes["id"].Value,
                                 ResponseID = 0,
                                 Timestamp = DateTime.Now,
-                                Status = "Before Processing Request",
+                                Status = "Before Request, Direct",
                                 Request = (child == null || child.Attributes["Address"] == null) ? "" : child.Attributes["Address"].Value
                             });
 
@@ -727,10 +592,10 @@ namespace AppedoLT.BusinessLogic
                                 ActiveThreads = ((IEnumerable)System.Diagnostics.Process.GetCurrentProcess().Threads).OfType<System.Diagnostics.ProcessThread>().Where(t => t.ThreadState == System.Diagnostics.ThreadState.Running).Count(),
                                 UserID = _userid,
                                 IterationNumber = _iterationid,
-                                RequestID = 0,
+                                RequestID = (child == null || child.Attributes["id"] == null) ? "" : child.Attributes["id"].Value,
                                 ResponseID = 0,
                                 Timestamp = DateTime.Now,
-                                Status = "After Processing Request",
+                                Status = "After Request, Direct",
                                 Request = (child == null || child.Attributes["Address"] == null) ? "" : child.Attributes["Address"].Value
                             });
                             break;
@@ -805,6 +670,22 @@ namespace AppedoLT.BusinessLogic
         private void ProcessRequest(XmlNode request)
         {
             if (Break == true) { return; }
+
+            string url = (request == null || request.Attributes["Address"] == null) ? "" : request.Attributes["Address"].Value;
+            string requestId = (request == null || request.Attributes["id"] == null) ? "" : request.Attributes["id"].Value;
+            AppedoLogger.Log(new LogMessage()
+            {
+                ThreadID = Thread.CurrentThread.ManagedThreadId,
+                TotalThread = Process.GetCurrentProcess().Threads.Count,
+                ActiveThreads = ((IEnumerable)System.Diagnostics.Process.GetCurrentProcess().Threads).OfType<System.Diagnostics.ProcessThread>().Where(t => t.ThreadState == System.Diagnostics.ThreadState.Running).Count(),
+                UserID = _userid,
+                IterationNumber = _iterationid,
+                RequestID = requestId,
+                ResponseID = 0,
+                Timestamp = DateTime.Now,
+                Status = "Before Request, Sequential",
+                Request = url
+            });
 
             RequestResponse responseResult = new RequestResponse();
             string response = string.Empty;
@@ -992,7 +873,6 @@ namespace AppedoLT.BusinessLogic
                                 #region SecondaryReqEnable
                                 if (Convert.ToBoolean(_vuScriptXml.Attributes["dynamicreqenable"].Value) == true && !(_browserCache == true && _index > 1) && Convert.ToBoolean(req.RequestNode.Attributes["Excludesecondaryreq"].Value) == true)
                                 {
-
                                     Queue<String> links = FetchLinksFromSource(req.ResponseStr);
                                     int created = 0;
                                     while (links.Count > 0)
@@ -1196,6 +1076,20 @@ namespace AppedoLT.BusinessLogic
             }
             finally
             {
+                AppedoLogger.Log(new LogMessage()
+                {
+                    ThreadID = Thread.CurrentThread.ManagedThreadId,
+                    TotalThread = Process.GetCurrentProcess().Threads.Count,
+                    ActiveThreads = ((IEnumerable)System.Diagnostics.Process.GetCurrentProcess().Threads).OfType<System.Diagnostics.ProcessThread>().Where(t => t.ThreadState == System.Diagnostics.ThreadState.Running).Count(),
+                    UserID = _userid,
+                    IterationNumber = _iterationid,
+                    RequestID = requestId,
+                    ResponseID = 0,
+                    Timestamp = DateTime.Now,
+                    Status = "After Request, Sequential",
+                    Request = url
+                });
+
                 req = null;
                 responseResult = null;
                 request = null;
@@ -2231,6 +2125,101 @@ namespace AppedoLT.BusinessLogic
         {
             data.ContainerName = _containerId.Peek()[1];
             if (OnLockRequestResponse != null) OnLockRequestResponse.Invoke(data);
+        }
+        #endregion
+
+        #region Paralellism
+        int _requestProcessingThreadCount; 
+        bool _isSequntialRequestRunning;
+        object _sequentialSyncObject = new object();
+        Queue<XmlNode> _sequentialRequestsQueue = new Queue<XmlNode>();
+        int _maxParallelConnections = 1;
+
+        void ProcessSequential(XmlNode request)
+        {
+            lock (_sequentialSyncObject)
+            {
+                _sequentialRequestsQueue.Enqueue(request);
+                if (_isSequntialRequestRunning)
+                {
+                    // Return from here so that you can continue processing other paralell requests
+                    // The current request will be processed once the current running request completes
+                    return;
+                }
+            }
+
+            // Wait if the threads are not available. The current thread will be blocked
+            while (_requestProcessingThreadCount >= _maxParallelConnections)
+            {
+                Thread.Sleep(10);
+            }
+
+            lock (_sequentialSyncObject)
+            {
+                _isSequntialRequestRunning = true;
+            }
+            Interlocked.Increment(ref _requestProcessingThreadCount);
+
+            new Thread(() =>
+            {
+                try
+                {
+                    // Process all the requests in the queue
+                    while (true)
+                    {
+                        lock (_sequentialSyncObject)
+                        {
+                            if (_sequentialRequestsQueue.Count == 0)
+                                return;
+
+                            // Dequeue the request, if present
+                            request = _sequentialRequestsQueue.Dequeue();
+                        }
+
+                        Interlocked.Increment(ref RequestCountHandler._ReqCount);
+                        ProcessRequest(request);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    ExceptionHandler.WritetoEventLog(ex.StackTrace + ex.Message);
+                }
+                finally
+                {
+                    lock (_sequentialSyncObject)
+                    {
+                        _isSequntialRequestRunning = false;
+                    }
+                    Interlocked.Decrement(ref _requestProcessingThreadCount);
+                }
+            }).Start();
+        }
+
+        void ProcessParalell(XmlNode request)
+        {
+            // Wait if the threads are not available.
+            while (_requestProcessingThreadCount >= _maxParallelConnections)
+            {
+                Thread.Sleep(10);
+            }
+            Interlocked.Increment(ref _requestProcessingThreadCount);
+            new Thread(() =>
+            {
+                try
+                {
+                    Interlocked.Increment(ref RequestCountHandler._ReqCount);
+                    ProcessRequest pr = new ProcessRequest(_maxUser, _reportName, _type, _userid, _iterationid, _vuScriptXml, _browserCache, _IPAddress, _exVariablesValues, receivedCookies, OnLockError, VUserStatus, OnLockReportData, IsValidation, _pageId, _containerId, _bandwidthInKbps);
+                    pr.ProcessParallelRequest(request);
+                }
+                catch (Exception ex)
+                {
+                    ExceptionHandler.WritetoEventLog(ex.StackTrace + ex.Message);
+                }
+                finally
+                {
+                    Interlocked.Decrement(ref _requestProcessingThreadCount);
+                }
+            }).Start();
         }
         #endregion
     }

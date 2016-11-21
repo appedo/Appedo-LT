@@ -715,6 +715,13 @@ namespace AppedoLT
                         {
                             ExceptionHandler.WritetoEventLog(ex.StackTrace + Environment.NewLine + ex.Message);
                         }
+
+                        if (ReportMaster.IsReportGenerationCompleted)
+                        {
+                            break;
+                        }
+
+                        Thread.Sleep(100);
                     }
                     btnRun.Visible = true;
                     btnClear.Visible = true;
@@ -1038,7 +1045,6 @@ namespace AppedoLT
 
         void scr_OnVUserRunCompleted(string scriptname, int userid)
         {
-            
             //lock (listView1)
             //{
             //    ListViewItem newItem = listView1.FindItemWithText(scriptname + "_" + userid.ToString());
@@ -1141,7 +1147,6 @@ namespace AppedoLT
                     reportMaster.GenerateReports();
                     UpdateReportStatus();
                     userControlReports2.LoadReportName(executionReport.ReportName);
-
                 }
                 else
                 {
@@ -1447,12 +1452,14 @@ namespace AppedoLT
                         lblHitCount.Text = Convert.ToString(RequestCountHandler._ReqCount);
                         // reset request count to zero                        
                         RequestCountHandler._ReqCount = 0;
+                        lblStatus.Text = "Waiting for all data to be logged";
                         WaitUntillExecutionComplete();
+                        lblStatus.Text = "All data to be logged";
                         Thread.Sleep(5000);
                         if (executionReport.ReportName != null)
                         {
                             //MessageBox.Show("Report Generation is in progress. Please wait.");
-                            //lblStatus.Text = "Report generation started";
+                            lblStatus.Text = "Report generation started";
                             CreateSummaryReport(executionReport.ReportName);
                             ReportMaster reportMaster = new ReportMaster(executionReport.ReportName);
 
@@ -1476,23 +1483,10 @@ namespace AppedoLT
         {
             ReceiveAllLoadGenDatafiles(executionReport.ReportName);
             DataServer resultLog = DataServer.GetInstance();
-            int time = 4;
 
-            while (true && time-- > 0)
+            while (true)
             {
-                if (resultLog.reportDT.Count > 0 || resultLog.transcations.Count > 0 || resultLog.errors.Count > 0)
-                {
-                    Thread.Sleep(5000);
-                }
-                else
-                {
-                    break;
-                }
-            }
-            time = 4;
-            while (true && time-- > 0)
-            {
-                if ((resultLog.reportDataFile != null && resultLog.reportDataFile.BaseStream != null && resultLog.reportDataFile.BaseStream.Length > 0) || (resultLog.transactionFile != null && resultLog.transactionFile.BaseStream != null && resultLog.transactionFile.BaseStream.Length > 0) || (resultLog.errorFile.BaseStream != null && resultLog.errorFile.BaseStream.Length > 0))
+                if (resultLog.reportDT.Count > 0 || resultLog.transcations.Count > 0 || resultLog.errors.Count > 0 || resultLog.logs.Count > 0)
                 {
                     Thread.Sleep(1000);
                 }
@@ -1501,7 +1495,17 @@ namespace AppedoLT
                     break;
                 }
             }
-
+            while (true)
+            {
+                if (resultLog.threadCount > 0)
+                {
+                    Thread.Sleep(1000);
+                }
+                else
+                {
+                    break;
+                }
+            }
         }
 
         private void ReceiveAllLoadGenDatafiles(string reportName)

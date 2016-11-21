@@ -15,6 +15,7 @@ namespace AppedoLT.Core
         public static bool IsLogEnabled { get; set; }
         private static Queue<LogMessage> logMessages = new Queue<LogMessage>();
         private static string fileName;
+        private static object synchObject = new object();
 
         static AppedoLogger()
         {
@@ -28,7 +29,7 @@ namespace AppedoLT.Core
                 fileName = Constants.GetInstance().ExecutingAssemblyLocation + "\\log.csv";
                 using (StreamWriter logFile = new StreamWriter(fileName, false))
                 {
-                    logFile.WriteLine(string.Format("{0},{1},{2},{3},{4},{5},{6},{7}", "Thread ID", "Total Thread", "Active Threads", "User ID", "Iteration Number", "Timestamp", "Status", "Request"));
+                    logFile.WriteLine(string.Format("{0},{1},{2},{3},{4},{5},{6},{7},{8},{9}", "Thread ID", "Total Thread", "Active Threads", "User ID", "Iteration Number", "RequestId", "Timestamp", "Status", "Type", "Request"));
                     logFile.Flush();
                     logFile.Close();
                 }
@@ -41,11 +42,15 @@ namespace AppedoLT.Core
             }
         }
 
+        static int totalCount = 0;
         public static void Log(LogMessage message)
         {
             if (IsLogEnabled)
             {
-                logMessages.Enqueue(message);
+                lock (synchObject)
+                {
+                    logMessages.Enqueue(message);
+                }
             }
         }
 
@@ -61,23 +66,6 @@ namespace AppedoLT.Core
                    {
                        try
                        {
-                           if (logMessages.Count == 0)
-                           {
-                               Thread.Sleep(2000);
-                               continue;
-                           }
-
-                           int logLength = logMessages.Count;
-                            for (int index = 0; index < logLength; index++)
-                            {
-                                object data = logMessages.Dequeue();
-                                if (data != null)
-                                {
-                                    temp.AppendLine(data.ToString());
-                                }
-                                data = null;
-                            }
-
                            if (timer.Elapsed.Seconds >= 10)
                            {
                                if (temp.Length > 0)
@@ -90,10 +78,31 @@ namespace AppedoLT.Core
                                    }
                                    temp.Remove(0, temp.Length);
                                }
-
+                               
                                timer.Reset();
                                timer.Start();
                            }
+
+                           if (logMessages.Count == 0)
+                           {
+                               Thread.Sleep(2000);
+                               continue;
+                           }
+
+                           int logLength = logMessages.Count;
+                           object data;
+                            for (int index = 0; index < logLength; index++)
+                            {
+                                lock (synchObject)
+                                {
+                                    data = logMessages.Dequeue();
+                                }
+                                if (data != null)
+                                {
+                                    temp.AppendLine(data.ToString());
+                                }
+                                data = null;
+                            }
                        }
                        catch (Exception ex)
                        {
@@ -113,7 +122,7 @@ namespace AppedoLT.Core
         public int UserID { get; set; }
         public int IterationNumber { get; set; }
         public int LoopID { get; set; }
-        public int RequestID { get; set; }
+        public string RequestID { get; set; }
         public int ResponseID { get; set; }
         public DateTime Timestamp { get; set; }
         public string Request { get; set; }
@@ -121,7 +130,7 @@ namespace AppedoLT.Core
 
         public override string ToString()
         {
-            return string.Format("{0},{1},{2},{3},{4},{5},{6},{7}", this.ThreadID, this.TotalThread, this.ActiveThreads, this.UserID, this.IterationNumber, this.Timestamp, this.Status, this.Request);
+            return string.Format("{0},{1},{2},{3},{4},{5},{6},{7},{8}", this.ThreadID, this.TotalThread, this.ActiveThreads, this.UserID, this.IterationNumber, this.RequestID, this.Timestamp.ToString("yyyy-MM-dd hh:mm:ss.ffffff"), this.Status, this.Request);
         }
     }
 }

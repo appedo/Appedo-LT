@@ -121,7 +121,7 @@ namespace AppedoLT.DataAccessLayer
                 SQLiteDataAdapter da = new SQLiteDataAdapter(query, SQLiteMasterAccess.con);
                 da.Fill(resultTable);
 
-                //com = this.GetCommand(query, this.GetConnection(this.ConnectionString));
+                //com = this.GetCommand(data, this.GetConnection(this.ConnectionString));
                 //resultTable.Load(com.ExecuteReader());
                 return resultTable;
             }

@@ -5,6 +5,9 @@ using System.Diagnostics;
 using System.IO;
 using System.Text;
 using System.Threading;
+using System.Data.SQLite;
+using System.Data;
+using System.Configuration;
 
 namespace AppedoLT.DataAccessLayer
 {
@@ -19,21 +22,21 @@ namespace AppedoLT.DataAccessLayer
         public Queue<Log> logs = new Queue<Log>();
         public ExecutionReport Status = ExecutionReport.GetInstance();
 
-        public StreamWriter reportDataFile = null;
-        public StreamWriter reportDataDebugFile = null;
-        public StreamWriter errorFile = null;
-        public StreamWriter transactionFile = null;
-        public StreamWriter logsFile = null;
+        public string ReportPath { get; set; }
+        public string ReportName { get; set; }
+
+        private bool isLogEnabled;
+        public int threadCount;
 
         private static DataServer _instance;
 
         private DataServer()
         {
-            reportDataDebugFile = new StreamWriter(Constants.GetInstance().ExecutingAssemblyLocation + "\\reportdata.csv");
-            reportDataFile = new StreamWriter(Constants.GetInstance().ExecutingAssemblyLocation + "\\out.txt");
-            errorFile = new StreamWriter(Constants.GetInstance().ExecutingAssemblyLocation + "\\error.txt");
-            transactionFile = new StreamWriter(Constants.GetInstance().ExecutingAssemblyLocation + "\\transaction.txt");
-            logsFile = new StreamWriter(Constants.GetInstance().ExecutingAssemblyLocation + "\\log.txt");
+            isLogEnabled = false;
+            if (!string.IsNullOrEmpty(ConfigurationManager.AppSettings["EnableLoggin"]))
+            {
+                isLogEnabled = bool.Parse(ConfigurationManager.AppSettings["EnableLoggin"]);
+            }
         }
         public static DataServer GetInstance()
         {
@@ -45,8 +48,22 @@ namespace AppedoLT.DataAccessLayer
             return _instance;
 
         }
+
+        public const int MaxEntryCount = 20000;
         private void Start()
         {
+            using (FileStream stream = new FileStream(Constants.GetInstance().ExecutingAssemblyLocation + "\\reportdata.txt", FileMode.Create))
+            {
+            };
+            using (FileStream stream = new FileStream(Constants.GetInstance().ExecutingAssemblyLocation + "\\error.txt", FileMode.Create))
+            {
+            };
+            using (FileStream stream = new FileStream(Constants.GetInstance().ExecutingAssemblyLocation + "\\transactions.txt", FileMode.Create))
+            {
+            };
+            using (FileStream stream = new FileStream(Constants.GetInstance().ExecutingAssemblyLocation + "\\logs.txt", FileMode.Create))
+            { };
+
             new Thread(() =>
             {
                 Stopwatch timer = new Stopwatch();
@@ -55,164 +72,22 @@ namespace AppedoLT.DataAccessLayer
                 {
                     try
                     {
-                        if (reportDataFile != null && errorFile != null && transactionFile != null)
+                        if (reportDT.Count > MaxEntryCount || errors.Count > MaxEntryCount || logs.Count > MaxEntryCount || transcations.Count > MaxEntryCount)
                         {
-                            #region Enque
-                            if (reportDT.Count > 0)
-                            {
-                                try
-                                {
-                                    int currentReportData = reportDT.Count;
-                                    StringBuilder temp = new StringBuilder();
-                                    for (int index = 0; index < currentReportData; index++)
-                                    {
-                                        ReportData rt = reportDT.Dequeue();
-                                        if (rt != null && rt.starttime.Year != 1 && rt.endtime.Year != 1)
-                                        {
-                                            temp.AppendLine(rt.ToString());
-                                        }
-                                        rt = null;
-                                    }
-                                    if (temp.Length > 0) 
-                                    {
-                                        reportDataFile.Write(temp.ToString());
-                                        reportDataDebugFile.Write(temp.ToString());
-                                    }
-                                    reportDataDebugFile.Flush();
-                                    reportDataFile.Flush();
-                                }
-                                catch (Exception ex)
-                                {
-                                    ExceptionHandler.WritetoEventLog(ex.Message);
-                                }
-                            }
-
-                            if (errors.Count > 0)
-                            {
-                                try
-                                {
-                                    int errorsData = errors.Count;
-                                    StringBuilder temp = new StringBuilder();
-
-                                    for (int index = 0; index < errorsData; index++)
-                                    {
-                                        RequestException runException = errors.Dequeue();
-                                        if (runException != null)
-                                        {
-                                            temp.AppendLine(runException.ToString());
-                                        }
-
-                                        runException = null;
-                                    }
-                                    if (temp.Length > 0) errorFile.Write(temp.ToString());
-                                    errorFile.Flush();
-                                }
-                                catch (Exception ex)
-                                {
-                                    ExceptionHandler.WritetoEventLog(ex.Message);
-                                }
-                            }
-
-                            if (logs.Count > 0)
-                            {
-                                try
-                                {
-                                    int logData = logs.Count;
-                                    StringBuilder temp = new StringBuilder();
-                                    for (int index = 0; index < logData; index++)
-                                    {
-                                        Log logObj = logs.Dequeue();
-                                        if (logObj != null)
-                                        {
-                                            temp.AppendLine(logObj.ToString());
-                                        }
-                                        logObj = null;
-                                    }
-                                    if (temp.Length > 0) logsFile.Write(temp.ToString());
-                                    logsFile.Flush();
-                                }
-                                catch (Exception ex)
-                                {
-                                    ExceptionHandler.WritetoEventLog(ex.Message);
-                                }
-                            }
-
-                            if (transcations.Count > 0)
-                            {
-                                try
-                                {
-                                    int transcationsData = transcations.Count;
-                                    StringBuilder temp = new StringBuilder();
-                                    for (int index = 0; index < transcationsData; index++)
-                                    {
-                                        TransactionRunTimeDetail transcation = transcations.Dequeue();
-                                        if (transcation != null)
-                                        {
-                                            temp.AppendLine(transcation.ToString());
-                                        }
-                                        transcation = null;
-                                    }
-                                    if (temp.Length > 0) transactionFile.Write(temp.ToString());
-                                    transactionFile.Flush();
-                                }
-                                catch (Exception ex)
-                                {
-                                    ExceptionHandler.WritetoEventLog(ex.Message);
-                                }
-                            }
-                            #endregion
-
-                            if (timer.Elapsed.Seconds >= 5)
-                            {
-                                #region Write to database
-                                if (reportDataFile.BaseStream.Length > 0 || errorFile.BaseStream.Length > 0 || transactionFile.BaseStream.Length > 0 || logsFile.BaseStream.Length > 0)
-                                {
-
-                                    long reportDataLength = reportDataFile.BaseStream.Length;
-                                    long errorFileLength = errorFile.BaseStream.Length;
-                                    long transactionFileLength = transactionFile.BaseStream.Length;
-                                    long logFileLength = logsFile.BaseStream.Length;
-
-                                    reportDataFile.Close();
-                                    errorFile.Close();
-                                    transactionFile.Close();
-                                    logsFile.Close();
-
-                                    try
-                                    {
-                                        lock (DataBaseLock)
-                                        {
-                                            Constants.GetInstance().ExecuteBat(Constants.GetInstance().ExecutingAssemblyLocation + "\\execute.bat");
-                                        }
-                                    }
-                                    catch (Exception ex)
-                                    {
-                                        ExceptionHandler.WritetoEventLog(ex.Message + Environment.NewLine + ex.StackTrace);
-                                    }
-                                    finally
-                                    {
-                                        using (FileStream stream = new FileStream(Constants.GetInstance().ExecutingAssemblyLocation + "\\out.txt", FileMode.Truncate)) 
-                                        {
-                                        };
-                                        using (FileStream stream = new FileStream(Constants.GetInstance().ExecutingAssemblyLocation + "\\error.txt", FileMode.Truncate)) 
-                                        {
-                                        };
-                                        using (FileStream stream = new FileStream(Constants.GetInstance().ExecutingAssemblyLocation + "\\transaction.txt", FileMode.Truncate)) 
-                                        {
-                                        };
-                                        using (FileStream stream = new FileStream(Constants.GetInstance().ExecutingAssemblyLocation + "\\log.txt", FileMode.Truncate)) 
-                                        { };
-                                        reportDataFile = new StreamWriter(Constants.GetInstance().ExecutingAssemblyLocation + "\\out.txt");
-                                        errorFile = new StreamWriter(Constants.GetInstance().ExecutingAssemblyLocation + "\\error.txt");
-                                        transactionFile = new StreamWriter(Constants.GetInstance().ExecutingAssemblyLocation + "\\transaction.txt");
-                                        logsFile = new StreamWriter(Constants.GetInstance().ExecutingAssemblyLocation + "\\log.txt");
-                                    }
-                                }
-                                timer.Reset();
-                                timer.Start();
-                                #endregion
-                            }
+                            LogToDatabase();
                         }
+
+                        if (timer.Elapsed.Seconds >= 5)
+                        {
+                            if (reportDT.Count > 0 || errors.Count > 0 || logs.Count > 0 || transcations.Count > 0)
+                            {
+                                LogToDatabase();
+                            }
+
+                            timer.Reset();
+                            timer.Start();
+                        }
+
                         if (reportDT.Count == 0 && errors.Count == 0 && transcations.Count == 0 && logs.Count == 0)
                         {
                             System.Threading.Thread.Sleep(4000);
@@ -225,11 +100,173 @@ namespace AppedoLT.DataAccessLayer
                 } while (true);
             }).Start();
         }
+
+        #region Database Logging
+        public void LogToDatabase()
+        {
+            new Thread(() =>
+            {
+                Interlocked.Increment(ref threadCount);
+
+                try
+                {
+                    Queue<ReportData> reportDataCopy = null;
+                    lock (reportDT)
+                    {
+                        reportDataCopy = new Queue<ReportData>(reportDT);
+                        reportDT.Clear();
+                    }
+
+                    Queue<RequestException> errorCopy = null;
+                    lock (errors)
+                    {
+                        errorCopy = new Queue<RequestException>(errors);
+                        errors.Clear();
+                    }
+
+                    Queue<Log> logsCopy = null;
+                    lock (logs)
+                    {
+                        logsCopy = new Queue<Log>(logs);
+                        logs.Clear();
+                    }
+
+                    Queue<TransactionRunTimeDetail> transactionsCopy = null;
+                    lock (transcations)
+                    {
+                        transactionsCopy = new Queue<TransactionRunTimeDetail>(transcations);
+                        transcations.Clear();
+                    }
+                    
+                    StringBuilder queryBuilder = new StringBuilder();
+                    Dictionary<string, string> fileList = new Dictionary<string, string>();
+                    
+                    if (reportDataCopy.Count > 0)
+                    {
+                        fileList.Add("reportdata", PrepareFile(reportDataCopy));
+                    }
+
+                    if (errorCopy.Count > 0)
+                    {
+                        fileList.Add("error", PrepareFile(errorCopy));
+                    }
+
+                    if (logsCopy.Count > 0)
+                    {
+                        fileList.Add("log", PrepareFile(logsCopy));
+                    }
+
+                    if (transactionsCopy.Count > 0)
+                    {
+                        fileList.Add("transactions", PrepareFile(transactionsCopy));
+                    }
+                    
+                    string commandsFile = Constants.GetInstance().ExecutingAssemblyLocation + "\\commands_" + DateTime.Now.ToString("hhmmssfffffff") + ".txt";
+                    using (StreamWriter writer = new StreamWriter(commandsFile))
+                    {
+                        writer.WriteLine(".separator ,");
+                        foreach (KeyValuePair<string, string> file in fileList)
+                        {
+                            writer.WriteLine(string.Format(".import {0} {1}", Path.GetFileName(file.Value), file.Key));
+                        }
+                    }
+                    if (Import(commandsFile))
+                    {
+                        foreach (KeyValuePair<string, string> file in fileList)
+                        {
+                            File.Delete(file.Value);
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    ExceptionHandler.WritetoEventLog(ex.Message + Environment.NewLine + ex.StackTrace);
+                }
+                finally
+                {
+                    Interlocked.Decrement(ref threadCount);
+                }
+            }).Start();
+        }
+
+        //private object logSynchObject = new object();
+        private string PrepareFile<T>(Queue<T> queue)
+        {
+            string entityName = typeof(T).Name;
+            StringBuilder queryBuilder = new StringBuilder();
+            int count = queue.Count;
+            //for (var i = 0; i < count; i++)
+            //{
+            //    queryBuilder.AppendLine(queue.Dequeue().ToString());
+            //}
+
+            //if (isLogEnabled)
+            //{
+            //    lock (logSynchObject)
+            //    {
+            //        using (StreamWriter reportDataFile = new StreamWriter(Constants.GetInstance().ExecutingAssemblyLocation + "\\" + entityName + ".txt", true))
+            //        {
+            //            reportDataFile.WriteLine(queryBuilder.ToString());
+            //            reportDataFile.Close();
+            //        }
+            //    }
+            //}
+
+            string fileName = string.Format("{0}\\{1}.csv", Constants.GetInstance().ExecutingAssemblyLocation, Guid.NewGuid().ToString());
+            using (StreamWriter writer = new StreamWriter(fileName))
+            {
+                for (var i = 0; i < count; i++)
+                {
+                    writer.WriteLine(queue.Dequeue().ToString());
+                }
+                //writer.Write(queryBuilder.ToString());
+            }
+            return fileName;
+        }
+
+        private bool Import(string commandFile)
+        {
+            lock (DataBaseLock)
+            {
+                try
+                {
+                    string fileName = Constants.GetInstance().ExecutingAssemblyLocation + "\\execute.bat";
+                    using (StreamWriter writer = new StreamWriter(fileName))
+                    {
+                        writer.WriteLine(string.Format("sqlite3 \"{0}\\Data\\{1}\\database.db\" < \"{2}\"", Constants.GetInstance().ExecutingAssemblyLocation, ReportName, commandFile));
+                    }
+
+                    ProcessStartInfo startInfo = new ProcessStartInfo(fileName);
+                    startInfo.WorkingDirectory = Constants.GetInstance().ExecutingAssemblyLocation;
+                    startInfo.CreateNoWindow = true;
+                    startInfo.UseShellExecute = false;
+
+                    Process process = Process.Start(startInfo);
+
+                    process.WaitForExit();
+
+                    int exitCode = process.ExitCode;
+                    process.Close();
+                }
+                catch (Exception ex)
+                {
+                    ExceptionHandler.WritetoEventLog(ex.Message + Environment.NewLine + ex.StackTrace);
+                    return false;
+                }
+                finally
+                {
+                    File.Delete(commandFile);
+                }
+            }
+
+            return true;
+        }
+        #endregion
+
         public void LogResult(ReportData rd)
         {
             try
             {
-               
                 lock (reportDT)
                 {
                     reportDT.Enqueue(rd);
@@ -240,6 +277,7 @@ namespace AppedoLT.DataAccessLayer
                 ExceptionHandler.WritetoEventLog(ex.Message + Environment.NewLine + ex.StackTrace);
             }
         }
+
         public void ClearData()
         {
             try

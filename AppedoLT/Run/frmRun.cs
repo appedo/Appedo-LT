@@ -33,6 +33,9 @@ namespace AppedoLT
                     File.Copy(Constants.GetInstance().ExecutingAssemblyLocation + "\\database.db", folderPath + "\\database.db");
                     File.Delete(Constants.GetInstance().ExecutingAssemblyLocation + "\\execute.bat");
                     File.WriteAllText(Constants.GetInstance().ExecutingAssemblyLocation + "\\execute.bat", @"sqlite3 " + "\""+Constants.GetInstance().ExecutingAssemblyLocation + @"\Data\" + txtReportName.Text + "\\database.db\"" + " < \"" + Constants.GetInstance().ExecutingAssemblyLocation + "\\commands.txt\"");
+
+                    // For the logging
+                    DataServer.GetInstance().ReportName = txtReportName.Text;
                     strReportName = txtReportName.Text;
                     this.DialogResult = DialogResult.OK;
                 }

@@ -77,6 +77,8 @@ namespace AppedoLT.BusinessLogic
             //XmlNode request = (XmlNode)request1;
             if (Break == true) { return; }
 
+            string url = (request == null || request.Attributes["Address"] == null) ? "" : request.Attributes["Address"].Value;
+            string requestId = (request == null || request.Attributes["id"] == null) ? "" : request.Attributes["id"].Value;
             AppedoLogger.Log(new LogMessage()
             {
                 ThreadID = Thread.CurrentThread.ManagedThreadId,
@@ -84,11 +86,11 @@ namespace AppedoLT.BusinessLogic
                 ActiveThreads = ((IEnumerable)System.Diagnostics.Process.GetCurrentProcess().Threads).OfType<System.Diagnostics.ProcessThread>().Where(t => t.ThreadState == System.Diagnostics.ThreadState.Running).Count(),
                 UserID = _userid,
                 IterationNumber = _iterationid,
-                RequestID = 0,
+                RequestID = requestId,
                 ResponseID = 0,
                 Timestamp = DateTime.Now,
-                Status = "After Request",
-                Request = (req == null || request.Attributes["Address"] == null) ? "" : request.Attributes["Address"].Value
+                Status = "Before Request, Parallel",
+                Request = url
             });
 
             RequestResponse responseResult = new RequestResponse();
@@ -384,23 +386,24 @@ namespace AppedoLT.BusinessLogic
             }
             finally
             {
+                AppedoLogger.Log(new LogMessage()
+                {
+                    ThreadID = Thread.CurrentThread.ManagedThreadId,
+                    TotalThread = Process.GetCurrentProcess().Threads.Count,
+                    ActiveThreads = ((IEnumerable)System.Diagnostics.Process.GetCurrentProcess().Threads).OfType<System.Diagnostics.ProcessThread>().Where(t => t.ThreadState == System.Diagnostics.ThreadState.Running).Count(),
+                    UserID = _userid,
+                    IterationNumber = _iterationid,
+                    RequestID = requestId,
+                    ResponseID = 0,
+                    Timestamp = DateTime.Now,
+                    Status = "After Request, Parallel",
+                    Request = url
+                });
+
                 req = null;
                 responseResult = null;
                 request = null;
             }
-            AppedoLogger.Log(new LogMessage()
-            {
-                ThreadID = Thread.CurrentThread.ManagedThreadId,
-                TotalThread = Process.GetCurrentProcess().Threads.Count,
-                ActiveThreads = ((IEnumerable)System.Diagnostics.Process.GetCurrentProcess().Threads).OfType<System.Diagnostics.ProcessThread>().Where(t => t.ThreadState == System.Diagnostics.ThreadState.Running).Count(),
-                UserID = _userid,
-                IterationNumber = _iterationid,
-                RequestID = 0,
-                ResponseID = 0,
-                Timestamp = DateTime.Now,
-                Status = "After Request",
-                Request = (req == null || request.Attributes["Address"] == null) ? "" : request.Attributes["Address"].Value
-            });
         }
         public List<AppedoLT.Core.Tuple<string, string>> EvaluteExp(XmlNode expression)
         {

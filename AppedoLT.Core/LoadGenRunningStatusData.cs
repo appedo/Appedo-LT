@@ -119,7 +119,7 @@ namespace AppedoLT.Core
         public override string ToString()
         {
             return string.Format("{0},{1},{2},{3},{4},{5},{6},{7},{8},\"{9}\",{10}", this.loadGen, this.reportname, this.scenarioname, this.scriptid, this.scriptname,
-                                                                                     this.logid, this.logname, this.userid, this.iterationid, this.message.Replace("\"", "\"\""), this.time.ToString("yyyy-MM-dd HH:mm:ss"));
+                                                                                     this.logid, this.logname, this.userid, this.iterationid, this.message.Replace("\"", "\"\""), this.time.ToString("yyyy-MM-dd HH:mm:ss.fffffff"));
         }
     }
 
@@ -217,7 +217,7 @@ namespace AppedoLT.Core
         {
 
             return string.Format("{0},{1},{2},{3},{4},{5},{6},{7},\"{8}\",{9},\"{10}\",{11},{12}", this.loadGen, this.reportname, this.scenarioname, this.scriptname, this.requestid,
-                                                                            this.userid, this.iterationid, this.errorcode, this.message.Replace("\"", "\"\""), this.time.ToString("yyyy-MM-dd HH:mm:ss"), this.request.Replace("\"", "\"\""), this.containerid, this.containername);
+                                                                            this.userid, this.iterationid, this.errorcode, this.message.Replace("\"", "\"\""), this.time.ToString("yyyy-MM-dd HH:mm:ss.fffffff"), this.request.Replace("\"", "\"\""), this.containerid, this.containername);
         }
     }
 
@@ -409,12 +409,12 @@ namespace AppedoLT.Core
                                                                                  this.address,
                                                                                  this.userid,
                                                                                  this.iterationid,
-                                                                                 this.starttime.ToString("yyyy-MM-dd HH:mm:ss"),
-                                                                                 this.endtime.ToString("yyyy-MM-dd HH:mm:ss"),
+                                                                                 this.starttime.ToString("yyyy-MM-dd HH:mm:ss.fffffff"),
+                                                                                 this.endtime.ToString("yyyy-MM-dd HH:mm:ss.fffffff"),
                                                                                  this.diff.ToString(),
                                                                                  this.reponseCode,
                                                                                  this.responsesize,
-                                                                                 this.firstbytereceivedtime.ToString("yyyy-MM-dd HH:mm:ss"),
+                                                                                 this.firstbytereceivedtime.ToString("yyyy-MM-dd HH:mm:ss.fffffff"),
                                                                                  this.timeforfirstbyte.ToString());
         }
         private void SetHMS()
@@ -535,8 +535,8 @@ namespace AppedoLT.Core
             query.Append(UserId).Append(",");
             query.Append(IterationId).Append(",");
             query.Append("\"").Append(TransactionName).Append("\"").Append(",");
-            query.Append("\"").Append(StartTime.ToString("yyyy-MM-dd HH:mm:ss")).Append("\"").Append(",");
-            query.Append("\"").Append(EndTime.ToString("yyyy-MM-dd HH:mm:ss")).Append("\"").Append(",");
+            query.Append("\"").Append(StartTime.ToString("yyyy-MM-dd HH:mm:ss.fffffff")).Append("\"").Append(",");
+            query.Append("\"").Append(EndTime.ToString("yyyy-MM-dd HH:mm:ss.fffffff")).Append("\"").Append(",");
             query.Append(Convert.ToInt16(IsEnd)).Append(",");
             query.Append(Difference.ToString());
             return query.ToString();
@@ -714,7 +714,7 @@ namespace AppedoLT.Core
 
         public override string ToString()
         {
-            return string.Format("{0},{1},{2},{3},{4}", this.RequestedAt.ToString("yyyy-MM-dd HH:mm:ss"), this.UserId, this.IterationId, this.VariableName, this.Value);
+            return string.Format("{0},{1},{2},{3},{4}", this.RequestedAt.ToString("yyyy-MM-dd HH:mm:ss.fffffff"), this.UserId, this.IterationId, this.VariableName, this.Value);
         }
     }
 

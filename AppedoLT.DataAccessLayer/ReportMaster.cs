@@ -20,12 +20,14 @@ namespace AppedoLT.DataAccessLayer
         private string _databasePath = string.Empty;
         public static Dictionary<string, ReportRuningStatus> Status = new Dictionary<string, ReportRuningStatus>();
         private string _loadGenName = string.Empty;
+        public static bool IsReportGenerationCompleted = false;
 
 
         public ReportMaster(string reportName)
         {
             try
             {
+                IsReportGenerationCompleted = false;
                 _reportName = reportName;
                 _reportFolder = _constants.DataFolderPath + "\\" + reportName + "\\Report";
                 _databasePath = _constants.DataFolderPath + "\\" + reportName;
@@ -88,6 +90,7 @@ namespace AppedoLT.DataAccessLayer
         {
             try
             {
+                IsReportGenerationCompleted = false;
                 _reportName = reportName;
                 _loadGenName = loagGenName;
                 _reportFolder = _constants.DataFolderPath + "\\" + reportName + "\\Report";
@@ -150,7 +153,6 @@ namespace AppedoLT.DataAccessLayer
             //Status = new Dictionary<string, ReportRuningStatus>();
            // new Thread(() =>
          //   {
-                
                 SetChartSummary();
            // }).Start();
             //new Thread(() => { SetReportSummary(); }).Start();
@@ -351,7 +353,6 @@ namespace AppedoLT.DataAccessLayer
                                     from = from.AddSeconds(5);
                                     tempTo = new DateTime(from.Ticks).AddSeconds(4);
                                     status.CompetedSecounts = sample;
-
                                 }
                                 catch (Exception ex)
                                 {
@@ -373,6 +374,8 @@ namespace AppedoLT.DataAccessLayer
                     }
                 }
             }
+
+            IsReportGenerationCompleted = true;
         }
 
         public DataTable GetLoadGenNames()
