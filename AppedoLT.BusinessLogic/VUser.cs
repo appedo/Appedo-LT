@@ -866,7 +866,6 @@ namespace AppedoLT.BusinessLogic
 
                                     OnResponse.Invoke(details);
                                 }
-
                                 LockResponseTime(req.RequestNode.Attributes["id"].Value, req.RequestNode.Attributes["Path"] == null ? req.RequestName : req.RequestNode.Attributes["Path"].Value, req.StartTime, req.FirstByteReceivedTime, req.EndTime, req.TimeForFirstByte, req.ResponseTime, req.ResponseSize, req.ResponseCode.ToString());
                                 //string aa = System.Configuration.ConfigurationSettings.AppSettings.Get("xx");
                                 
@@ -2048,6 +2047,8 @@ namespace AppedoLT.BusinessLogic
             {
                 if (Break == false)
                 {
+                    Interlocked.Increment(ref RequestCountHandler._ReqCount);
+
                     ReportData rd = new ReportData();
                     rd.loadgen = Constants.GetInstance().LoadGen;
                     rd.sourceip = _IPAddress.Address.ToString();
@@ -2151,8 +2152,11 @@ namespace AppedoLT.BusinessLogic
             // Wait if the threads are not available. The current thread will be blocked
             while (_requestProcessingThreadCount >= _maxParallelConnections)
             {
+                if (Break == true) break;
                 Thread.Sleep(10);
             }
+
+            if (Break == true) return;
 
             lock (_sequentialSyncObject)
             {
@@ -2176,7 +2180,9 @@ namespace AppedoLT.BusinessLogic
                             request = _sequentialRequestsQueue.Dequeue();
                         }
 
-                        Interlocked.Increment(ref RequestCountHandler._ReqCount);
+                        if (Break == true) 
+                            break;
+                                                
                         ProcessRequest(request);
                     }
                 }
@@ -2200,14 +2206,20 @@ namespace AppedoLT.BusinessLogic
             // Wait if the threads are not available.
             while (_requestProcessingThreadCount >= _maxParallelConnections)
             {
+                if (Break == true) 
+                    break;
+
                 Thread.Sleep(10);
             }
+
+            if (Break == true)
+                return;
+
             Interlocked.Increment(ref _requestProcessingThreadCount);
             new Thread(() =>
             {
                 try
                 {
-                    Interlocked.Increment(ref RequestCountHandler._ReqCount);
                     ProcessRequest pr = new ProcessRequest(_maxUser, _reportName, _type, _userid, _iterationid, _vuScriptXml, _browserCache, _IPAddress, _exVariablesValues, receivedCookies, OnLockError, VUserStatus, OnLockReportData, IsValidation, _pageId, _containerId, _bandwidthInKbps);
                     pr.ProcessParallelRequest(request);
                 }

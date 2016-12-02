@@ -389,6 +389,7 @@ namespace AppedoLT
 
         private bool ValidateLicence(XmlNode scenario)
         {
+            
             int userCount = 0;
 
             foreach (XmlNode script in scenario.ChildNodes)
@@ -1448,14 +1449,14 @@ namespace AppedoLT
                         _scriptExecutorList.Clear();
                         lblUserCreated.Text = tempCreatedUser.ToString();
                         lblUserCompleted.Text = tempCompletedUser.ToString();
-                        // lblHitCount.Text = _hitCount.ToString();
+                        //lblHitCount.Text = _hitCount.ToString();
                         lblHitCount.Text = Convert.ToString(RequestCountHandler._ReqCount);
-                        // reset request count to zero                        
-                        RequestCountHandler._ReqCount = 0;
                         lblStatus.Text = "Waiting for all data to be logged";
                         WaitUntillExecutionComplete();
                         lblStatus.Text = "All data to be logged";
                         Thread.Sleep(5000);
+                        // reset request count to zero                        
+                        RequestCountHandler._ReqCount = 0;
                         if (executionReport.ReportName != null)
                         {
                             //MessageBox.Show("Report Generation is in progress. Please wait.");
@@ -1481,9 +1482,10 @@ namespace AppedoLT
 
         private void WaitUntillExecutionComplete()
         {
+            lblHitCount.Text = Convert.ToString(RequestCountHandler._ReqCount);
             ReceiveAllLoadGenDatafiles(executionReport.ReportName);
             DataServer resultLog = DataServer.GetInstance();
-
+            lblHitCount.Text = Convert.ToString(RequestCountHandler._ReqCount);
             while (true)
             {
                 if (resultLog.reportDT.Count > 0 || resultLog.transcations.Count > 0 || resultLog.errors.Count > 0 || resultLog.logs.Count > 0)
@@ -1495,6 +1497,8 @@ namespace AppedoLT
                     break;
                 }
             }
+
+            lblHitCount.Text = Convert.ToString(RequestCountHandler._ReqCount);
             while (true)
             {
                 if (resultLog.threadCount > 0)
@@ -1506,6 +1510,8 @@ namespace AppedoLT
                     break;
                 }
             }
+
+            lblHitCount.Text = Convert.ToString(RequestCountHandler._ReqCount);
         }
 
         private void ReceiveAllLoadGenDatafiles(string reportName)

@@ -616,6 +616,8 @@ namespace AppedoLT.BusinessLogic
             {
                 if (Break == false)
                 {
+                    Interlocked.Increment(ref RequestCountHandler._ReqCount);
+
                     ReportData rd = new ReportData();
                     rd.loadgen = Constants.GetInstance().LoadGen;
                     rd.sourceip = _IPAddress.Address.ToString();
