@@ -13,6 +13,7 @@ using System.Text;
 using System.Threading;
 using System.Windows.Forms;
 using System.Xml;
+using log4net;
 
 namespace AppedoLTController
 {
@@ -27,6 +28,8 @@ namespace AppedoLTController
     /// </summary>
     public partial class frmController : Form
     {
+        private static readonly ILog logger = LogManager.GetLogger("frmController");
+
         NotifyIcon ni = new NotifyIcon();
         TcpListener serverSocket = new TcpListener(8888);
         TcpClient clientSocket = default(TcpClient);
@@ -68,6 +71,7 @@ namespace AppedoLTController
                         Environment.Exit(1);
                     }
                 }
+                logger.Debug("AppedoServer IP is " + AppedoServer);
                 serverSocket.Start();
                 DoWorkThread = new Thread(new ThreadStart(DoWork));
                 DoWorkThread.Start();
@@ -256,21 +260,25 @@ namespace AppedoLTController
                                {
                                    TrasportData data = new TrasportData("isqueueavailable", string.Empty, null);
                                    Trasport server = new Trasport(AppedoServer, Constants.GetInstance().AppedoPort);
+                                   logger.Debug("Sending isqueueavailable to appedo server");
                                    server.Send(data);
                                    data = server.Receive();
+                                   logger.Debug("Status received from appedo server - " + data.Header["status"]);
                                    //If there is item in queue 
                                    if (data.Header["status"] == "1")
                                    {
                                        server = new Trasport(AppedoServer, Constants.GetInstance().AppedoPort);
                                        data = new TrasportData("getrundetail", string.Empty, null);
+                                       logger.Debug("Sending getrundetail to appedo server");
                                        server.Send(data);
                                        data = server.Receive();
-                                     
+                                       logger.Debug("Status received from appedo server - Received Rundetail for runid " + data.Header["runid"]);
                                        ExceptionHandler.LogRunDetail(data.Header["runid"], "Received Rundetail for runid " + data.Header["runid"]);
                                        server = new Trasport(AppedoServer, Constants.GetInstance().AppedoPort);
                                        server.Send(new TrasportData("ok", string.Empty, null));
                                        //Call separate thread to do run script
                                        new Thread(() => { RunOperation(server, data); }).Start();
+                                       Thread.Sleep(200);
                                    }
                                    else
                                    {
@@ -362,6 +370,7 @@ namespace AppedoLTController
             try
             {
                 string runid = data.Header["runid"];
+                logger.Debug("Starting RunOperation for runid = " + data.Header["runid"] + "; DataString = " + data.DataStr);
                 //Negative scenario
                 if (Controllers.ContainsKey(runid) == true)
                 {

@@ -312,7 +312,7 @@ namespace AppedoLT.Core
             }
         }
 
-        [DataMember(Name = "firstbytetime")]
+        [DataMember(Name = "first_byte_received_on")]
         public string firstbytetimestr
         {
             get
@@ -382,7 +382,7 @@ namespace AppedoLT.Core
         [DataMember(Name = "diff")]
         public double diff { get; set; }
 
-        [DataMember(Name = "timeforfirstbyte")]
+        [DataMember(Name = "ttfb_ms")]
         public double timeforfirstbyte { get; set; }
 
         [DataMember(Name = "responsesize")]

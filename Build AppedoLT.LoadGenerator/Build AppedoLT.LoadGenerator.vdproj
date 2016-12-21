@@ -237,11 +237,6 @@
             "AssemblyAsmDisplayName" = "8:AppedoLT.BusinessLogic, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_12E6A4EC2A984B462B1F83D3BB15DABE"
-                    {
-                    "Name" = "8:AppedoLT.BusinessLogic.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:AppedoLT.BusinessLogic.dll"
             "TargetName" = "8:"
@@ -268,11 +263,6 @@
             "AssemblyAsmDisplayName" = "8:AppedoLT.Core, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_57734B4432E0498E240C695D62F52496"
-                    {
-                    "Name" = "8:AppedoLT.Core.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:AppedoLT.Core.dll"
             "TargetName" = "8:"
@@ -299,11 +289,6 @@
             "AssemblyAsmDisplayName" = "8:Ionic.Zip, Version=1.9.1.8, Culture=neutral, PublicKeyToken=edbe51ad942a3f5c, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_8D53CD1C1CCEFFE5E08639E099715D16"
-                    {
-                    "Name" = "8:Ionic.Zip.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:Ionic.Zip.dll"
             "TargetName" = "8:"
@@ -421,15 +406,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:APPEDO_LT_LOAD_GENERATOR"
-        "ProductCode" = "8:{D4844AF5-5BA3-48C9-84F1-33A7380D3892}"
-        "PackageCode" = "8:{6E7DBA42-02CC-401A-B801-0CDCCD43229C}"
+        "ProductCode" = "8:{E9672168-6C24-43DB-9E2E-4B7755D07E62}"
+        "PackageCode" = "8:{058B9A21-43BA-4BB9-B64F-8B747B1180EF}"
         "UpgradeCode" = "8:{FDF822FA-D49E-4533-BE33-97FB08C152F3}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:TRUE"
-        "ProductVersion" = "8:1.0.20"
+        "ProductVersion" = "8:1.0.024"
         "Manufacturer" = "8:Appedo"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"

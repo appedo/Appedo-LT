@@ -9,6 +9,7 @@ using AppedoLT.BusinessLogic;
 using System.IO;
 using AppedoLT.LoadGenerator.Properties;
 using System.Diagnostics;
+using log4net.Config;
 namespace AppedoLTLoadGenerator
 {
     static class Program
@@ -29,6 +30,7 @@ namespace AppedoLTLoadGenerator
                 {
                     using (LoadGenerator frm = new LoadGenerator())
                     {
+                        XmlConfigurator.Configure();
                         Application.Run();
                     }
                 }
@@ -41,6 +43,7 @@ namespace AppedoLTLoadGenerator
                             process.Kill();
                             using (LoadGenerator frm = new LoadGenerator())
                             {
+                                XmlConfigurator.Configure();
                                 Application.Run();
                             }
                             break;

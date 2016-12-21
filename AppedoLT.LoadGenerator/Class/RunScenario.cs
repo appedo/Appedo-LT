@@ -10,11 +10,13 @@ using System.Timers;
 using System.Xml;
 using System.Configuration;
 using System.Messaging;
+using log4net;
 
 namespace AppedoLTLoadGenerator
 {
     public class RunScenario
     {
+        private static readonly ILog logger = LogManager.GetLogger("LoadGenerator");
         private List<ScriptExecutor> _scriptExecutorList = new List<ScriptExecutor>();
         private string _scenarioXml;
         private int _tempCreatedUser = 0;
@@ -53,18 +55,26 @@ namespace AppedoLTLoadGenerator
         private Queue<VariableDetail> _variableDetailQueue = new Queue<VariableDetail>();
         private object _variableDetailSyncObj = new object();
 
+        private StatusData<Log> _logBuf = new StatusData<Log>();
+        private StatusData<RequestException> _errorBuf = new StatusData<RequestException>();
+        private StatusData<ReportData> _reportDataBuf = new StatusData<ReportData>();
+        private StatusData<TransactionRunTimeDetail> _TransactionDataBuf = new StatusData<TransactionRunTimeDetail>();
+        private StatusData<UserDetail> _userDetailBuf = new StatusData<UserDetail>();
         private StatusData<LoadGenMonitor> _loadGenMonitorBuf = new StatusData<LoadGenMonitor>();
-
-        private LoadGenRunningStatusData allData = new LoadGenRunningStatusData();
 
         Dictionary<int, PerformanceCounter> CountersAllInstance = new Dictionary<int, PerformanceCounter>();
 
-        public RunScenario(string runid, string appedoIP, string appedoPort, string scenarioXml, string distribution, string appedoFailedUrl, string monitorCounter)
+        public RunScenario(string runid, string appedoIP, string appedoPort, string scenarioXml, string distribution, string appedoFailedUrl, string monitorCounter = null)
         {
             _runid = runid;
-            _loadGenMonitorBuf.Runid = runid;
+            _loadGenMonitorBuf.Runid = _logBuf.Runid = _errorBuf.Runid = _reportDataBuf.Runid = _TransactionDataBuf.Runid = _userDetailBuf.Runid = runid;
 
             _loadGenMonitorBuf.Type = "loadgenstatus";
+            _logBuf.Type = "log";
+            _errorBuf.Type = "error";
+            _reportDataBuf.Type = "reporddata";
+            _TransactionDataBuf.Type = "transactions";
+            _userDetailBuf.Type = "userdetail";
             _header.Add("runid", runid);
             _header.Add("queuename", "ltreport");
             _appedoFailedUrl = appedoFailedUrl;
@@ -95,7 +105,10 @@ namespace AppedoLTLoadGenerator
             _statusUpdateTimer = new System.Timers.Timer(1000);
             _statusUpdateTimer.Enabled = true;
             _statusUpdateTimer.Elapsed += new ElapsedEventHandler(StatusUpdateTimer_Tick);
-            ConfigMoniter(monitorCounter);
+            if (monitorCounter != null)
+            {
+                ConfigMoniter(monitorCounter);
+            }
         }
 
         void ConfigMoniter(string json)
@@ -162,7 +175,7 @@ namespace AppedoLTLoadGenerator
                         _statusUpdateTimer.Stop();
                         for (int index = 0; index < 9; index++)
                         {
-                            if (allData.ReportData.Count > 0 || allData.Transactions.Count > 0 || allData.Log.Count > 0 || allData.Error.Count > 0 || allData.UserDetailData.Count > 0)
+                            if (_reportDataBuf.Data.Count > 0 || _TransactionDataBuf.Data.Count > 0 || _logBuf.Data.Count > 0 || _errorBuf.Data.Count > 0 || _userDetailBuf.Data.Count > 0)
                             {
                                 Thread.Sleep(5000);
                             }
@@ -208,6 +221,7 @@ namespace AppedoLTLoadGenerator
             foreach (XmlNode script in scenario.SelectNodes("//script"))
             {
                 string scriptid = script.Attributes["id"].Value;
+                logger.Debug("scriptid = " + scriptid);
                 XmlNode setting = script.SelectNodes("//script[@id='" + scriptid + "']//setting")[0];
                 XmlNode vuscript = script.SelectNodes("//script[@id='" + scriptid + "']//vuscript")[0];
                 ScriptExecutor scriptRunnerSce = new ScriptExecutor(setting, vuscript, executionReport.ReportName, _distribution);
@@ -216,6 +230,7 @@ namespace AppedoLTLoadGenerator
                     _scriptExecutorList.Add(scriptRunnerSce);
                 }
             }
+
             executionReport.StartTime = DateTime.Now;
 
             foreach (ScriptExecutor scr in _scriptExecutorList)
@@ -269,11 +284,11 @@ namespace AppedoLTLoadGenerator
         {
             try
             {
-                allData.ReportData.Clear();
-                allData.Transactions.Clear();
-                allData.Log.Clear();
-                allData.Error.Clear();
-                allData.UserDetailData.Clear();
+                _reportDataBuf.Data.Clear();
+                _TransactionDataBuf.Data.Clear();
+                _logBuf.Data.Clear();
+                _errorBuf.Data.Clear();
+                _userDetailBuf.Data.Clear();
             }
             catch (Exception ex)
             {
@@ -281,57 +296,62 @@ namespace AppedoLTLoadGenerator
             }
         }
 
+        //Store UserDetail into queue
         void scr_OnLockUserDetail(UserDetail data)
         {
-            lock (allData)
-            {
-                if (allData.UserDetailData != null)
-                {
-                    allData.UserDetailData.Add(data);
-                }
-            }
-        }
-
-        void scr_OnLockTransactions(TransactionRunTimeDetail data)
-        {
-            lock (allData)
-            {
-                if (allData.Transactions != null)
-                {
-                    allData.Transactions.Add(data);
-                }
-            }
-        }
-
-        void scr_OnLockLog(Log data)
-        {
-            lock (allData)
-            {
-                if (allData.Log != null)
-                {
-                    allData.Log.Add(data);
-                }
-            }
-        }
-
-        void scr_OnLockError(RequestException data)
-        {
-            lock (allData)
+            lock (_userDetailBuf)
             {
                 if (data != null)
                 {
-                    allData.Error.Add(data);
+                    _userDetailBuf.Data.Add(data);
                 }
             }
         }
 
+        //Store TransactionRunTimeDetail into queue
+        void scr_OnLockTransactions(TransactionRunTimeDetail data)
+        {
+            lock (_TransactionDataBuf)
+            {
+                if (data != null)
+                {
+                    _TransactionDataBuf.Data.Add(data);
+                }
+            }
+        }
+
+        //Store Log into queue
+        void scr_OnLockLog(Log data)
+        {
+            lock (_logBuf)
+            {
+                if (data != null)
+                {
+                    _logBuf.Data.Add(data);
+                }
+            }
+        }
+
+        //Store RequestException into queue
+        void scr_OnLockError(RequestException data)
+        {
+            lock (_errorBuf)
+            {
+                if (data != null)
+                {
+                    _errorBuf.Data.Add(data);
+                }
+            }
+        }
+
+        //Store ReportData into queue
         void scr_OnLockReportData(ReportData data)
         {
-            lock (allData)
+            lock (_reportDataBuf)
             {
-                if (allData.ReportData != null)
+                if (data != null)
                 {
-                    allData.ReportData.Add(data);
+                    _reportDataBuf.Data.Add(data);
                 }
             }
         }
@@ -384,22 +404,13 @@ namespace AppedoLTLoadGenerator
                         #region Report data
                         try
                         {
-                            if (allData.ReportData.Count > 0
-                                || allData.Transactions.Count > 0
-                                || allData.Transactions.Count > 0
-                                || allData.Log.Count > 0
-                                || allData.Error.Count > 0
-                                || allData.UserDetailData.Count > 0)
+                            if (_reportDataBuf.Data.Count > 0)
                             {
                                 hasData = true;
-                                lock (allData)
+                                lock (_reportDataBuf)
                                 {
-                                    dataBuf = _constants.Serialise(allData);
-                                    allData.ReportData.Clear();
-                                    allData.Transactions.Clear();
-                                    allData.Log.Clear();
-                                    allData.Error.Clear();
-                                    allData.UserDetailData.Clear();
+                                    dataBuf = _constants.Serialise(_reportDataBuf);
+                                    _reportDataBuf.Data.Clear();
                                 }
                                 Send(dataBuf);
                             }
@@ -410,7 +421,109 @@ namespace AppedoLTLoadGenerator
                         }
                         #endregion
 
+                        #region send Log
+                        try
+                        {
+                            if (_logBuf.Data.Count > 0)
+                            {
+                                hasData = true;
+                                lock (_logBuf)
+                                {
+                                    dataBuf = _constants.Serialise(_logBuf);
+                                    _logBuf.Data.Clear();
+                                }
+                                Send(dataBuf);
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            ExceptionHandler.WritetoEventLog(ex.StackTrace + Environment.NewLine + ex.Message);
+                        }
+                        #endregion
 
+                        #region Send error
+                        try
+                        {
+                            if (_errorBuf.Data.Count > 0)
+                            {
+                                hasData = true;
+                                lock (_errorBuf)
+                                {
+                                    dataBuf = _constants.Serialise(_errorBuf);
+                                    _errorBuf.Data.Clear();
+                                }
+                                Send(dataBuf);
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            ExceptionHandler.WritetoEventLog(ex.StackTrace + Environment.NewLine + ex.Message);
+                        }
+                        #endregion
+
+                        #region transaction
+                        try
+                        {
+                            if (_TransactionDataBuf.Data.Count > 0)
+                            {
+                                hasData = true;
+                                lock (_TransactionDataBuf)
+                                {
+                                    dataBuf = _constants.Serialise(_TransactionDataBuf);
+                                    _TransactionDataBuf.Data.Clear();
+                                }
+                                Send(dataBuf);
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            ExceptionHandler.WritetoEventLog(ex.StackTrace + Environment.NewLine + ex.Message);
+                        }
+                        #endregion
+
+                        #region Userdetail
+                        try
+                        {
+                            if (_userDetailBuf.Data.Count > 0)
+                            {
+                                hasData = true;
+                                lock (_userDetailBuf)
+                                {
+                                    dataBuf = _constants.Serialise(_userDetailBuf);
+                                    _userDetailBuf.Data.Clear();
+                                }
+                                Send(dataBuf);
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            ExceptionHandler.WritetoEventLog(ex.StackTrace + Environment.NewLine + ex.Message);
+                        }
+                        #endregion
+
+                        #region LoadGenMontor
+
+                        try
+                        {
+                            if (CountersAllInstance.Count > 0)
+                            {
+                                UpdateCounter();
+                                if (_loadGenMonitorBuf.Data.Count > 0)
+                                {
+                                    lock (_loadGenMonitorBuf)
+                                    {
+                                        dataBuf = _constants.Serialise(_loadGenMonitorBuf);
+                                        _loadGenMonitorBuf.Data.Clear();
+                                    }
+                                    Send(dataBuf);
+                                }
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            ExceptionHandler.WritetoEventLog(ex.StackTrace + Environment.NewLine + ex.Message);
+                        }
+                        #endregion
 
                         #region After completed
                         if (hasData == false
@@ -436,7 +549,6 @@ namespace AppedoLTLoadGenerator
                             break;
                         }
                         #endregion
-
                     }
                     catch (Exception ex)
                     {
@@ -454,6 +566,13 @@ namespace AppedoLTLoadGenerator
             try
             {
                 data = new TrasportData("status", dataObj, _header);
+                //logger.Debug("Sending data to Appedo Server.");
+                //logger.Debug("Header : ");
+                //foreach(KeyValuePair<string, string> header in data.Header)
+                //{
+                //    logger.Debug(header.Key + " : " + header.Value);
+                //}
+                //logger.Debug("DataString = " + data.DataStr);
                 Trasport trasport = new Trasport(_appedoIp, _appedoPort, 30000);
                 trasport.Send(data);
 

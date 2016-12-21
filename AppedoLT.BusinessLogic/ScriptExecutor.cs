@@ -204,7 +204,14 @@ namespace AppedoLT.BusinessLogic
                 setting.Iterations = settingNode.Attributes["iterations"].Value;
                 setting.MaxUser = settingNode.Attributes["maxuser"].Value;
                 setting.StartUser = settingNode.Attributes["startuser"].Value;
-                setting.Bandwidth = settingNode.Attributes["bandwidth"].Value;
+                if (settingNode.Attributes["bandwidth"] != null)
+                {
+                    setting.Bandwidth = settingNode.Attributes["bandwidth"].Value;
+                }
+                else
+                {
+                    setting.Bandwidth = "-1";
+                }
 
                 _vuScript = vuScript;
                 _setting = setting;

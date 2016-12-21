@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using log4net.Config;
 
 namespace AppedoLTController
 {
@@ -25,6 +26,8 @@ namespace AppedoLTController
                 {
                     using (frmController frm = new frmController())
                     {
+                        XmlConfigurator.Configure();
+
                         Application.Run();
                     }
                 }
@@ -37,6 +40,8 @@ namespace AppedoLTController
                             process.Kill();
                             using (frmController frm = new frmController())
                             {
+                                XmlConfigurator.Configure();
+
                                 Application.Run();
                             }
                             break;

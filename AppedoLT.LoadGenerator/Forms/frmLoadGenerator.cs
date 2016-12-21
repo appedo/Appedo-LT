@@ -11,11 +11,14 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using System.Windows.Forms;
 using System.Xml;
+using log4net;
 
 namespace AppedoLTLoadGenerator
 {
     public partial class LoadGenerator : Form
     {
+        private static readonly ILog logger = LogManager.GetLogger("LoadGenerator");
+
         NotifyIcon ni = new NotifyIcon();
 
         TcpListener serverSocket = new TcpListener(8889);
@@ -90,7 +93,7 @@ namespace AppedoLTLoadGenerator
                                                 runDetail.Add("souceip", ((IPEndPoint)controller.tcpClient.Client.RemoteEndPoint).Address.ToString());
                                                 runDetail.Add("loadgenname", data.Header["loadgenname"] == null ? string.Empty : data.Header["loadgenname"]);
                                                 runDetail.Add("distribution", data.Header["distribution"] == null ? string.Empty : data.Header["distribution"]);
-                                                runDetail.Add("loadgencounters", data.Header["loadgencounters"]);
+                                                //runDetail.Add("loadgencounters", data.Header["loadgencounters"]);
 
                                                 if (runScripts.ContainsKey(data.Header["runid"]) == true)
                                                 {
@@ -106,6 +109,7 @@ namespace AppedoLTLoadGenerator
                                             }
                                             catch (Exception ex)
                                             {
+                                                logger.Error("Error while saving", ex);
                                                 controller.Send(GetErrorData("401", "Unable to Save.\r\n" + ex.Message));
                                             }
                                         }
@@ -126,7 +130,9 @@ namespace AppedoLTLoadGenerator
                                                     executionReport.TotalLoadGenUsed = Convert.ToInt16(runDetail["totalloadgenused"]);
                                                     executionReport.CurrentLoadGenid = Convert.ToInt16(runDetail["currentloadgenid"]);
                                                     executionReport.LoadGenName = runDetail["loadgenname"];
-                                                    run = new AppedoLTLoadGenerator.RunScenario(data.Header["runid"], runDetail["appedoip"], runDetail["appedoport"], runDetail["data"], runDetail["distribution"], runDetail["appedofailedurl"], runDetail["loadgencounters"]);
+
+                                                    //run = new AppedoLTLoadGenerator.RunScenario(data.Header["runid"], runDetail["appedoip"], runDetail["appedoport"], runDetail["data"], runDetail["distribution"], runDetail["appedofailedurl"], runDetail["loadgencounters"]);
+                                                    run = new AppedoLTLoadGenerator.RunScenario(data.Header["runid"], runDetail["appedoip"], runDetail["appedoport"], runDetail["data"], runDetail["distribution"], runDetail["appedofailedurl"]);
 
                                                     if (run.Start() == true)
                                                     {

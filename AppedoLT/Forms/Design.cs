@@ -389,7 +389,6 @@ namespace AppedoLT
 
         private bool ValidateLicence(XmlNode scenario)
         {
-            
             int userCount = 0;
 
             foreach (XmlNode script in scenario.ChildNodes)
