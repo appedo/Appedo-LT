@@ -149,6 +149,7 @@ namespace AppedoLT.BusinessLogic
         Dictionary<string, string> receivedCookies = new Dictionary<string, string>();
         public VUserStatus VUserStatus;
         private DateTime _userCreatededTime = new DateTime();
+        private bool dynamicRequestsEnabled;
 
         public VUser(int maxUser, string reportName, string type, int userid, int iteration, XmlNode vuScript, bool browserCache, IPAddress ipaddress, bool bReplyThinkTime, string numOfParallelCon, int bandwidth)
         {
@@ -266,6 +267,8 @@ namespace AppedoLT.BusinessLogic
             WorkCompleted = false;
             _exVariablesValues.Clear();
             if (OnVUserCreated != null) OnVUserCreated.Invoke(_scriptName,_userid);
+
+            dynamicRequestsEnabled = Convert.ToBoolean(_vuScriptXml.Attributes["dynamicreqenable"].Value);
            
             try
             {
@@ -445,6 +448,11 @@ namespace AppedoLT.BusinessLogic
                                             {
                                                 ProcessSequential(req.Clone());
                                             }
+
+                                            if (_secondaryRequestPlayed == true)
+                                            {
+                                                break;
+                                            }
                                         }
                                         catch (Exception ex)
                                         {
@@ -459,7 +467,7 @@ namespace AppedoLT.BusinessLogic
                                     }
                                 }
                                 else
-                                {
+                                {                                    
                                     foreach (XmlNode req in child.ChildNodes)
                                     {
                                         if (Break == true) break;
@@ -910,14 +918,10 @@ namespace AppedoLT.BusinessLogic
                                                                     LockException(Convert.ToString(secReq.RequestId), secReq.ErrorMessage, secReq.ErrorCode, secReq.RequestNode.Attributes["Address"].Value);
                                                                 }
                                                             }
-                                                            else
-                                                            {
-                                                                LockResponseTime(req.RequestNode.Attributes["id"].Value, req.RequestNode.Attributes["Path"] == null ? req.RequestName : req.RequestNode.Attributes["Path"].Value, req.StartTime, req.FirstByteReceivedTime, req.EndTime, req.TimeForFirstByte, req.ResponseTime, req.ResponseSize, req.ResponseCode.ToString());
-                                                            }
 
                                                             if (OnResponse != null)
                                                             {
-                                                                mat = new Regex("Content-Type: (.*?)\r\n", RegexOptions.Singleline | RegexOptions.Multiline).Match(secReq.RequestNode.Attributes["ResponseHeader"].Value);
+                                                                mat = new Regex("Content-Type: (.*?)\r\n", RegexOptions.Singleline | RegexOptions.Multiline).Match(req.RequestNode.Attributes["ResponseHeader"].Value);
                              
                                                                 responseResult.PostData = secReq.ToString();
                                                                 responseResult.RequestResult = secReq;
@@ -953,6 +957,7 @@ namespace AppedoLT.BusinessLogic
 
                                                                 OnResponse.Invoke(details);
                                                             }
+                                                            LockResponseTime(req.RequestNode.Attributes["id"].Value, secReq.RequestNode.Attributes["Path"] == null ? secReq.RequestName : secReq.RequestNode.Attributes["Path"].Value, secReq.StartTime, secReq.FirstByteReceivedTime, secReq.EndTime, secReq.TimeForFirstByte, secReq.ResponseTime, secReq.ResponseSize, secReq.ResponseCode.ToString());
                                                         }
                                                         catch (Exception ex)
                                                         {
@@ -2138,6 +2143,13 @@ namespace AppedoLT.BusinessLogic
 
         void ProcessSequential(XmlNode request)
         {
+            if (dynamicRequestsEnabled)
+            {
+                // When dynamic requests are enabled, then do the processing in synchronous manner
+                ProcessRequest(request);
+                return;
+            }
+
             lock (_sequentialSyncObject)
             {
                 _sequentialRequestsQueue.Enqueue(request);
@@ -2180,9 +2192,9 @@ namespace AppedoLT.BusinessLogic
                             request = _sequentialRequestsQueue.Dequeue();
                         }
 
-                        if (Break == true) 
+                        if (Break == true)
                             break;
-                                                
+
                         ProcessRequest(request);
                     }
                 }
